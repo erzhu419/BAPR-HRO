@@ -13,8 +13,10 @@ from typing import Optional
 
 from .transit_graph import TransitGraph, Connection
 from .bandit_router import BanditRouter
+from .bandit_router_v2 import BanditRouterV2
 from .ssp_mdp import PosteriorSamplingRouter
 from .bamcp_router import BAMCPRouter
+from .dro_router import DRORouter
 from .router import StaticRouter
 from .durner.topocsa import HyperpathResult
 from .simulator import (
@@ -50,7 +52,7 @@ def simulate_bandit_journey(
     n_transfers = 0
     total_comp_ms = 0.0
 
-    is_bandit = isinstance(router, (BanditRouter, PosteriorSamplingRouter, BAMCPRouter))
+    is_bandit = isinstance(router, (BanditRouter, BanditRouterV2, PosteriorSamplingRouter, BAMCPRouter, DRORouter))
 
     # Initial route computation
     if is_bandit:
