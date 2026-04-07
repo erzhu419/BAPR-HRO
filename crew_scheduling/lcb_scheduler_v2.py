@@ -133,8 +133,8 @@ class LCBCrewSchedulerV2:
         ood_scores = [self._get_route_belief(r).ood_score for r in route_ids]
         return self.beta_base + self.beta_ood * max(ood_scores)
 
-    def score_duty(self, fd: FeasibleDuty, driver_id: int) -> float:
-        """V2 LCB score with ensemble std and dynamic beta."""
+    def _score_duty_base(self, fd: FeasibleDuty) -> float:
+        """Compute the driver-independent part of V2 LCB score (cacheable)."""
         pieces = [self.env.pieces[pid] for pid in fd.piece_ids]
 
         route_ids = set()
@@ -149,15 +149,22 @@ class LCBCrewSchedulerV2:
                 total_delay_mean += belief.ensemble_mean
                 total_ensemble_var += belief.ensemble_std ** 2
 
-        # Dynamic beta based on OOD
         beta = self._compute_dynamic_beta(list(route_ids))
 
         cost_adj = fd.cost + total_delay_mean / 60
         uncertainty_penalty = beta * max(total_ensemble_var, 1e-6) ** 0.5 / 60
+        return cost_adj + uncertainty_penalty
+
+    def score_duty(self, fd: FeasibleDuty, driver_id: int) -> float:
+        """V2 LCB score with ensemble std and dynamic beta."""
+        # Use cached base score if available
+        if hasattr(self, '_duty_base_cache') and fd.duty_id in self._duty_base_cache:
+            base = self._duty_base_cache[fd.duty_id]
+        else:
+            base = self._score_duty_base(fd)
         driver_belief = self._get_driver_belief(driver_id)
         failure_penalty = self.gamma * driver_belief.absence_prob
-
-        return cost_adj + uncertainty_penalty + failure_penalty
+        return base + failure_penalty
 
     def assign(
         self, available_drivers: Optional[list[int]] = None,
@@ -168,6 +175,11 @@ class LCBCrewSchedulerV2:
             self.compute_structure()
         if available_drivers is None:
             available_drivers = [d.driver_id for d in self.env.drivers]
+
+        # Pre-compute duty base scores (driver-independent part)
+        self._duty_base_cache = {}
+        for fd in self.feasible_duties:
+            self._duty_base_cache[fd.duty_id] = self._score_duty_base(fd)
 
         uncovered = set(range(len(self.env.pieces)))
         assignments: dict[int, list[int]] = {d: [] for d in available_drivers}
@@ -229,6 +241,11 @@ class LCBCrewSchedulerV2:
         t0 = time.perf_counter()
         if available_drivers is None:
             available_drivers = list(current_assignments.keys())
+
+        # Refresh duty base score cache
+        self._duty_base_cache = {}
+        for fd in self.feasible_duties:
+            self._duty_base_cache[fd.duty_id] = self._score_duty_base(fd)
 
         updated = {}
         for did, pids in current_assignments.items():
