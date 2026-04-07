@@ -82,18 +82,26 @@ def simulate_bandit_journey(
 
         current_regime = regime_schedule.get_regime(current_time)
 
-        # Feed observations to bandit (learn from nearby delays)
+        # Get candidate labels at this stop
+        labels = hyperpath.stop_labels.get(current_stop, [])
+
+        # Feed observations to bandit — ONLY for routes relevant to this decision.
+        # Global disruption signals from unrelated routes cause over-penalization.
         if is_bandit:
+            relevant_routes = set()
+            for lab in labels:
+                c = graph.connections[lab.connection_id]
+                relevant_routes.add(c.route)
+
             obs = generate_delay_observations(
                 graph, current_stop, current_time, current_regime, rng, n_obs=5)
             for o in obs:
-                if o.actual_delay > 25:  # likely cancel signal
+                if o.route not in relevant_routes:
+                    continue
+                if o.actual_delay > 25:
                     router.observe_cancel(o.route)
                 else:
                     router.observe_delay(o.route, o.actual_delay)
-
-        # Get candidate labels at this stop
-        labels = hyperpath.stop_labels.get(current_stop, [])
         if not labels:
             events.append(JourneyEvent(current_time, current_stop, "stuck"))
             break

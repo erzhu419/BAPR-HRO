@@ -120,13 +120,9 @@ def generate_delay_observations(
     nearby_conns += [c for c in graph.get_connections_to(current_stop)
                      if current_time - 10 <= c.arr_time <= current_time + 5]
 
-    # GTFS-RT provides system-wide info: also sample from other stops
-    # (models real transit apps that show alerts/delays across the network)
-    all_active = [c for c in graph.connections
-                  if current_time - 3 <= c.dep_time <= current_time + 10]
-    if all_active:
-        sampled_global = rng.choice(all_active, size=min(3, len(all_active)), replace=False)
-        nearby_conns += list(sampled_global)
+    # Note: removed global network sampling — it pollutes per-route beliefs
+    # with unrelated disruption signals. Real GTFS-RT observations are
+    # per-vehicle, so only nearby connections are observed.
 
     for c in nearby_conns[:n_obs]:
         delay = sample_actual_delay(c, regime, rng)
