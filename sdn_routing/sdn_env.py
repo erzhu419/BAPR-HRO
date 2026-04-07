@@ -164,16 +164,17 @@ class SDNEnv:
         """Get K candidate paths from src to dst."""
         return self.all_paths.get((src, dst), [])
 
-    def sample_path_delay(self, path: list[int], episode: int) -> float:
+    def sample_path_delay(self, path: list[int], episode: int,
+                          demand_idx: int = 0) -> float:
         """Sample the end-to-end delay of a path under current conditions."""
         self._apply_regime(episode)
         total_delay = 0.0
         for i in range(len(path) - 1):
             link = self.link_states.get((path[i], path[i + 1]))
             if link is None or link.failed:
-                return 1000.0  # failed link → very high delay
-            delay = (link.base_delay + link.congestion
-                     + self.rng.normal(0, link.noise_std))
+                return 1000.0
+            noise = self.rng.normal(0, link.noise_std)
+            delay = link.base_delay + link.congestion + noise
             total_delay += max(delay, 0.1)
         return total_delay
 
