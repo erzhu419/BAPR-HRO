@@ -137,20 +137,46 @@ def generate_candidate_routes(instance: VRPInstance, k: int = 10,
     if base_route not in candidates:
         candidates.insert(0, base_route)
 
-    # Add 2-opt variants of best candidates
-    if len(candidates) < k:
-        for route in list(candidates[:3]):
-            for _ in range(2):
-                new = route.copy()
-                a = rng.integers(0, max(1, len(new) - 2))
-                b = rng.integers(a + 2, min(len(new), a + 5))
-                new[a:b] = new[a:b][::-1]
-                if new not in candidates:
-                    candidates.append(new)
-                if len(candidates) >= k:
-                    break
+    # 2-opt improve each candidate route (keep near-optimal distance)
+    improved = []
+    for route in candidates:
+        best = route.copy()
+        best_dist = _route_distance(instance, best)
+        for _ in range(3):
+            changed = False
+            for i in range(len(best) - 1):
+                for j in range(i + 2, min(len(best), i + 6)):
+                    new = best[:i] + best[i:j][::-1] + best[j:]
+                    d = _route_distance(instance, new)
+                    if d < best_dist - 0.1:
+                        best, best_dist = new, d
+                        changed = True
+            if not changed:
+                break
+        if best not in improved:
+            improved.append(best)
 
-    return candidates[:k]
+    # Fill remaining slots with random 2-opt perturbations
+    while len(improved) < k:
+        base = improved[rng.integers(0, len(improved))]
+        new = base.copy()
+        a = rng.integers(0, max(1, len(new) - 2))
+        b = rng.integers(a + 2, min(len(new), a + 5))
+        new[a:b] = new[a:b][::-1]
+        if new not in improved:
+            improved.append(new)
+
+    return improved[:k]
+
+
+def _route_distance(instance: VRPInstance, route: list[int]) -> float:
+    """Total static distance of a route (depot → route → depot)."""
+    total = instance.get_distance(0, route[0]) if route else 0
+    for i in range(len(route) - 1):
+        total += instance.get_distance(route[i], route[i + 1])
+    if route:
+        total += instance.get_distance(route[-1], 0)
+    return total
 
 
 # ── Edge beliefs ─────────────────────────────────────────────────────────────
@@ -404,26 +430,27 @@ class LCBRouterV1:
     """
 
     def __init__(self, instance: VRPInstance, candidates: list[list[int]],
-                 beta: float = 1.0, explore_top: int = 4):
+                 beta0: float = 2.0, explore_top: int = 4):
         self.inst = instance
         self.candidates = candidates
-        self.beta = beta
+        self.beta0 = beta0
         self.bm = BeliefManager(instance, belief_type="ng")
         self._episode = 0
-        # Only explore the top candidates by static distance
         scored = sorted(range(len(candidates)),
                         key=lambda i: self.bm.score_route_static(candidates[i]))
         self._explore_order = scored[:explore_top]
 
     def select_route(self) -> list[int]:
-        # Exploration phase: try top routes once each
         if self._episode < len(self._explore_order):
             return self.candidates[self._explore_order[self._episode]]
+
+        # Adaptive β: decays as observations accumulate
+        beta = self.beta0 / max(self._episode - len(self._explore_order) + 1, 1) ** 0.5
 
         best_route = self.candidates[0]
         best_score = float("inf")
         for route in self.candidates:
-            score = self.bm.score_route_lcb(route, self.beta)
+            score = self.bm.score_route_lcb(route, beta)
             if score < best_score:
                 best_score = score
                 best_route = route

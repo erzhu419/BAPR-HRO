@@ -466,3 +466,84 @@ class TSRouter(_LinkBeliefRouter):
         if not paths:
             return
         self._observe_path(paths[path_idx], delay)
+
+
+class HybridRouter(_LinkBeliefRouter):
+    """Hybrid UCB→LCB: explore with UCB first, then exploit with LCB.
+
+    Phase 1 (episode < switch_ep): UCB (optimistic, score = mean - β·std)
+    Phase 2: LCB (pessimistic, score = mean + β·std)
+    Adaptive β = β₀ / √(episode)
+    """
+    def __init__(self, beta0: float = 2.0, switch_ep: int = 15):
+        self.beta0 = beta0
+        self.switch_ep = switch_ep
+        self.link_beliefs: dict[tuple, DelayBeliefNG] = {}
+        self._episode = 0
+
+    def select_path(self, paths, **kw) -> int:
+        beta = self.beta0 / max(self._episode + 1, 1) ** 0.5
+
+        best, best_score = 0, float("inf")
+        for i, path in enumerate(paths):
+            if self._episode < self.switch_ep:
+                # UCB: optimistic about delay (hope it's low)
+                score = self._score_path(path, -beta)
+            else:
+                # LCB: pessimistic about delay (prepare for worst)
+                score = self._score_path(path, beta)
+            if score < best_score:
+                best_score = score
+                best = i
+        return best
+
+    def observe(self, path_idx, delay, paths=None, **kw):
+        self._episode += 1
+        if paths:
+            self._observe_path(paths[path_idx], delay)
+
+
+class FlowLCBRouter(_LinkBeliefRouter):
+    """Flow-level LCB: once a path is chosen for a (src,dst) flow,
+    it's locked for flow_duration episodes (irrecoverable).
+
+    This makes LCB advantageous: picking a bad path is costly for
+    flow_duration episodes, not just one packet.
+    """
+    def __init__(self, beta0: float = 2.0, flow_duration: int = 5):
+        self.beta0 = beta0
+        self.flow_duration = flow_duration
+        self.link_beliefs: dict[tuple, DelayBeliefNG] = {}
+        self._episode = 0
+        self._committed: dict[str, tuple[int, int]] = {}  # (src:dst) → (path_idx, expire_ep)
+
+    def _pair_key(self, src, dst):
+        return f"{src}:{dst}"
+
+    def select_path(self, paths, src=0, dst=0, **kw) -> int:
+        pk = self._pair_key(src, dst)
+
+        # If flow is committed and not expired, keep using same path
+        if pk in self._committed:
+            committed_idx, expire = self._committed[pk]
+            if self._episode < expire and committed_idx < len(paths):
+                return committed_idx
+
+        # Select new path using LCB
+        beta = self.beta0 / max(self._episode + 1, 1) ** 0.5
+
+        best, best_score = 0, float("inf")
+        for i, path in enumerate(paths):
+            score = self._score_path(path, beta)
+            if score < best_score:
+                best_score = score
+                best = i
+
+        # Commit to this path for flow_duration episodes
+        self._committed[pk] = (best, self._episode + self.flow_duration)
+        return best
+
+    def observe(self, path_idx, delay, paths=None, src=0, dst=0, **kw):
+        self._episode += 1
+        if paths:
+            self._observe_path(paths[path_idx], delay)

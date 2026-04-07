@@ -169,6 +169,7 @@ def execute_schedule(
     day_idx: int = 0,
     seed: int = 0,
     voll: float = 500,
+    wind_regime: str = "normal",
 ) -> ScheduleResult:
     """Execute a commitment schedule on the rl4uc environment.
 
@@ -178,6 +179,10 @@ def execute_schedule(
         day_idx: which day in test data to use
         seed: random seed for demand/wind noise
         voll: value of lost load ($/MWh)
+        wind_regime: "normal", "low_wind", "volatile"
+            - normal: standard ARMA noise
+            - low_wind: wind forecast errors biased negative (wind lower than expected)
+            - volatile: 3x ARMA sigma (large swings)
 
     Returns:
         ScheduleResult with cost breakdown and observed errors.
@@ -188,6 +193,16 @@ def execute_schedule(
 
     # Reset to specific day
     env.reset()
+
+    # Apply wind regime shift AFTER reset (modifies the episode's wind forecast)
+    if wind_regime == "low_wind":
+        # Wind drops to 10% of forecast — sudden calm / storm
+        env.episode_wind_forecast = env.episode_wind_forecast * 0.1
+        env.wind_forecast = env.episode_wind_forecast[env.episode_timestep]
+        env.arma_wind.sigma *= 2
+    elif wind_regime == "volatile":
+        env.arma_wind.sigma *= 5
+        env.arma_demand.sigma *= 2
 
     T = schedule.shape[0]
     total_fuel = 0.0

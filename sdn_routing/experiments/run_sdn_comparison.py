@@ -12,7 +12,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import numpy as np
 import time as _t
 from sdn_env import (SDNEnv, StaticRouter, LCBRouter, LCBRouterV2,
-                      ReactUCBRouter, TSRouter)
+                      ReactUCBRouter, TSRouter, HybridRouter, FlowLCBRouter)
 
 
 def run_experiment(
@@ -24,7 +24,7 @@ def run_experiment(
     seed: int = 42,
 ):
     if methods is None:
-        methods = ["Static", "React-UCB", "TS", "V1-LCB", "V2-LCB"]
+        methods = ["Static", "React-UCB", "TS", "V1-LCB", "V2-LCB", "Hybrid", "Flow-LCB"]
 
     print(f"\n{'='*75}")
     print(f"  SDN Routing: {topology}, {n_episodes} episodes, "
@@ -62,13 +62,17 @@ def run_experiment(
         if method == "Static":
             router = StaticRouter()
         elif method == "React-UCB":
-            router = ReactUCBRouter(c=1.0, gamma=0.9)
+            router = ReactUCBRouter(c=1.0, gamma=0.95)
         elif method == "TS":
             router = TSRouter(seed=seed)
         elif method == "V1-LCB":
             router = LCBRouter(beta=1.0)
         elif method == "V2-LCB":
             router = LCBRouterV2(beta_base=0.8, beta_ood=0.8, seed=seed)
+        elif method == "Hybrid":
+            router = HybridRouter(beta0=2.0, switch_ep=20)
+        elif method == "Flow-LCB":
+            router = FlowLCBRouter(beta0=2.0, flow_duration=5)
 
         ep_delays = []
         during_shift_delays = []
@@ -143,13 +147,17 @@ def run_experiment(
             if method == "Static":
                 router = StaticRouter()
             elif method == "React-UCB":
-                router = ReactUCBRouter(c=1.0, gamma=0.9)
+                router = ReactUCBRouter(c=1.0, gamma=0.95)
             elif method == "TS":
                 router = TSRouter(seed=seed)
             elif method == "V1-LCB":
                 router = LCBRouter(beta=1.0)
             elif method == "V2-LCB":
                 router = LCBRouterV2(beta_base=0.8, beta_ood=0.8, seed=seed)
+            elif method == "Hybrid":
+                router = HybridRouter(beta0=2.0, switch_ep=20)
+            elif method == "Flow-LCB":
+                router = FlowLCBRouter(beta0=2.0, flow_duration=5)
 
             for ep in range(ms):
                 for src, dst in all_pairs[ep]:
