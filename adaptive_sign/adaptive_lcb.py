@@ -1,14 +1,17 @@
-"""Adaptive-Sign BAPR: auto-detects LCB vs UCB from environment structure.
+"""Adaptive-β BAPR: learns BOTH sign AND magnitude of β from data.
 
-Three-phase protocol:
-  Phase 1 (explore): try each arm once to initialize beliefs
-  Phase 2 (calibrate): alternate LCB/UCB on the SAME best-mean arm
-     to measure whether pessimism or optimism gives lower realized cost
-  Phase 3 (exploit): follow the detected winner
+Evolution:
+  V1-LCB:  β = +1.5 (fixed positive = always pessimistic)
+  V2-LCB:  β = β_base + β_ood·OOD (dynamic magnitude, always positive)
+  Adaptive-Sign: β = β₀ · sign_factor (learned sign, fixed magnitude)
+  → Adaptive-β: β learned end-to-end via online gradient descent
 
-The key insight: during calibration, LCB and UCB may pick DIFFERENT arms.
-We track the cumulative cost of each policy's picks to determine which
-policy structure (pessimistic or optimistic) suits this environment.
+Method: discretize β into a grid [-3, -2, -1, 0, +1, +2, +3],
+treat each as a "meta-arm", track which β value produces lowest
+cost via EXP3-style multiplicative weights.
+
+This is a meta-bandit over β values, where the environment's
+irrecoverability structure determines the optimal β.
 """
 
 from __future__ import annotations
@@ -52,130 +55,175 @@ class BeliefNG:
         self.mu, self.kappa, self.alpha, self.beta = mn, kn, an, bn
 
 
-class AdaptiveSignRouter:
-    """Arm-level adaptive LCB/UCB router.
+class AdaptiveBetaRouter:
+    """Meta-bandit over β: learns optimal β (sign + magnitude) online.
 
-    Phase 1: explore each arm once
-    Phase 2: alternate LCB(+β)/UCB(-β) picks for calibrate_eps episodes
-    Phase 3: follow the winner
+    Maintains a grid of β values and EXP3 weights.
+    Each episode: pick β via softmax over weights, select arm using that β,
+    observe cost, update both arm beliefs AND β weights.
+
+    β grid: [-2, -1, -0.5, 0, +0.5, +1, +2]
+      negative = UCB (optimistic)
+      zero = pure mean (no uncertainty)
+      positive = LCB (pessimistic)
     """
 
-    def __init__(self, n_arms: int, beta0: float = 2.0,
-                 calibrate_eps: int = 10,
-                 warm_costs: list[float] | None = None):
+    def __init__(
+        self,
+        n_arms: int,
+        beta_grid: list[float] | None = None,
+        eta: float = 0.1,   # EXP3 learning rate
+        warm_costs: list[float] | None = None,
+    ):
         self.n_arms = n_arms
-        self.beta0 = beta0
-        self.calibrate_eps = calibrate_eps
+        self.beta_grid = beta_grid or [-2.0, -1.0, -0.5, 0.0, 0.5, 1.0, 2.0]
+        self.n_betas = len(self.beta_grid)
+        self.eta = eta
+
+        # EXP3 weights over β values (log-space for stability)
+        self._log_weights = np.zeros(self.n_betas)
+
+        # Arm beliefs
         self.beliefs = [BeliefNG() for _ in range(n_arms)]
         self._episode = 0
-        self._current_mode = "LCB"
+        self._current_beta_idx = self.n_betas // 2  # start at β=0
 
-        # Phase 2 tracking
-        self._lcb_costs = []
-        self._ucb_costs = []
+        # Track for reporting
+        self._beta_history = []
 
         if warm_costs:
             for i, c in enumerate(warm_costs):
                 self.beliefs[i].update(c)
-            self._episode = n_arms  # skip explore phase
 
     @property
-    def sign_factor(self) -> float:
-        if not self._lcb_costs or not self._ucb_costs:
-            return 0.0
-        lcb_avg = np.mean(self._lcb_costs)
-        ucb_avg = np.mean(self._ucb_costs)
-        total = (lcb_avg + ucb_avg) / 2
-        if total < 1e-8:
-            return 0.0
-        return np.clip((ucb_avg - lcb_avg) / total, -1, 1)
+    def current_beta(self) -> float:
+        return self.beta_grid[self._current_beta_idx]
+
+    @property
+    def beta_probs(self) -> np.ndarray:
+        """Current softmax probability over β grid."""
+        w = self._log_weights - self._log_weights.max()
+        p = np.exp(w)
+        return p / p.sum()
+
+    @property
+    def expected_beta(self) -> float:
+        """Expected β under current distribution."""
+        return float(np.dot(self.beta_probs, self.beta_grid))
 
     @property
     def mode(self) -> str:
-        sf = self.sign_factor
-        if sf > 0.01:
+        eb = self.expected_beta
+        if eb > 0.2:
             return "LCB"
-        elif sf < -0.01:
+        elif eb < -0.2:
             return "UCB"
         return "~0"
 
-    def _pick_with_sign(self, sign: float) -> int:
-        beta = self.beta0 * sign / max(self._episode, 1) ** 0.3
+    def _pick_with_beta(self, beta: float) -> int:
+        """Select arm using given β value."""
+        # Explore unvisited
+        for i in range(self.n_arms):
+            if self.beliefs[i].n_obs == 0:
+                return i
+
+        decay = 1.0 / max(self._episode, 1) ** 0.3
+        beta_eff = beta * decay
+
         best_i, best_s = 0, float("inf")
         for i in range(self.n_arms):
             b = self.beliefs[i]
-            score = b.mean + beta * b.std
+            score = b.mean + beta_eff * b.std
             if score < best_s:
                 best_s = score
                 best_i = i
         return best_i
 
     def select(self) -> int:
-        # Phase 1: explore
-        if self._episode < self.n_arms:
-            for i in range(self.n_arms):
-                if self.beliefs[i].n_obs == 0:
-                    self._current_mode = "explore"
-                    return i
-
-        # Phase 2: calibrate — alternate LCB/UCB
-        cal_ep = self._episode - self.n_arms
-        if cal_ep < self.calibrate_eps:
-            if cal_ep % 2 == 0:
-                self._current_mode = "LCB"
-                return self._pick_with_sign(+1.0)
-            else:
-                self._current_mode = "UCB"
-                return self._pick_with_sign(-1.0)
-
-        # Phase 3: exploit winner
-        sf = self.sign_factor
-        self._current_mode = "LCB" if sf >= 0 else "UCB"
-        return self._pick_with_sign(+1.0 if sf >= 0 else -1.0)
+        """Select arm using β sampled from current meta-distribution."""
+        # Sample β from softmax
+        probs = self.beta_probs
+        self._current_beta_idx = np.random.choice(self.n_betas, p=probs)
+        beta = self.beta_grid[self._current_beta_idx]
+        self._beta_history.append(beta)
+        return self._pick_with_beta(beta)
 
     def observe(self, arm_idx: int, cost: float):
-        # Track calibration costs
-        if self._current_mode == "LCB":
-            self._lcb_costs.append(cost)
-        elif self._current_mode == "UCB":
-            self._ucb_costs.append(cost)
-
+        """Update arm belief AND β weights."""
+        # Update arm belief
         self.beliefs[arm_idx].update(cost)
+
+        # Update β weights: what would each β have picked, and what would the cost be?
+        # For the β that was actually used, we know the true cost.
+        # For other βs, estimate using beliefs.
+        probs = self.beta_probs
+
+        for j in range(self.n_betas):
+            would_pick = self._pick_with_beta(self.beta_grid[j])
+            if would_pick == arm_idx:
+                # Same arm → same cost
+                estimated_cost = cost
+            else:
+                # Different arm → use belief estimate
+                estimated_cost = self.beliefs[would_pick].mean
+
+            # EXP3 update: lower weight for higher cost
+            # Normalize cost to [0, 1] range for stable updates
+            if self._episode > 0:
+                cost_range = max(
+                    max(b.mean for b in self.beliefs if b.n_obs > 0) -
+                    min(b.mean for b in self.beliefs if b.n_obs > 0),
+                    1e-6,
+                )
+                normalized = (estimated_cost - min(b.mean for b in self.beliefs if b.n_obs > 0)) / cost_range
+                self._log_weights[j] -= self.eta * normalized / max(probs[j], 0.01)
+
         self._episode += 1
 
 
-class AdaptiveSignLinkRouter:
-    """Link-level adaptive LCB/UCB router for SDN/VRP.
+class AdaptiveBetaLinkRouter:
+    """Link-level adaptive-β router for SDN/VRP/Transit.
 
-    Same three-phase protocol but at the path level with link-level beliefs.
+    Same meta-bandit over β, but with link-level beliefs.
     """
 
-    def __init__(self, beta0: float = 2.0, calibrate_eps: int = 20):
-        self.beta0 = beta0
-        self.calibrate_eps = calibrate_eps
+    def __init__(
+        self,
+        beta_grid: list[float] | None = None,
+        eta: float = 0.1,
+    ):
+        self.beta_grid = beta_grid or [-2.0, -1.0, -0.5, 0.0, 0.5, 1.0, 2.0]
+        self.n_betas = len(self.beta_grid)
+        self.eta = eta
+
+        self._log_weights = np.zeros(self.n_betas)
         self.link_beliefs: dict[tuple, BeliefNG] = {}
         self._episode = 0
-        self._current_mode = "LCB"
-        self._lcb_delays = []
-        self._ucb_delays = []
+        self._current_beta_idx = self.n_betas // 2
+        self._beta_history = []
+        self._last_paths = None
+        self._last_path_mean = 0.0
 
     @property
-    def sign_factor(self) -> float:
-        if not self._lcb_delays or not self._ucb_delays:
-            return 0.0
-        lcb_avg = np.mean(self._lcb_delays)
-        ucb_avg = np.mean(self._ucb_delays)
-        total = (lcb_avg + ucb_avg) / 2
-        if total < 1e-8:
-            return 0.0
-        return np.clip((ucb_avg - lcb_avg) / total, -1, 1)
+    def current_beta(self) -> float:
+        return self.beta_grid[self._current_beta_idx]
+
+    @property
+    def beta_probs(self) -> np.ndarray:
+        w = self._log_weights - self._log_weights.max()
+        p = np.exp(w)
+        return p / p.sum()
+
+    @property
+    def expected_beta(self) -> float:
+        return float(np.dot(self.beta_probs, self.beta_grid))
 
     @property
     def mode(self) -> str:
-        sf = self.sign_factor
-        if sf > 0.01:
+        eb = self.expected_beta
+        if eb > 0.2:
             return "LCB"
-        elif sf < -0.01:
+        elif eb < -0.2:
             return "UCB"
         return "~0"
 
@@ -195,35 +243,56 @@ class AdaptiveSignLinkRouter:
             total += b.mean + beta * b.std
         return total
 
-    def select_path(self, paths, **kw) -> int:
-        beta_mag = self.beta0 / max(self._episode + 1, 1) ** 0.3
+    def _path_mean(self, path):
+        return sum(self._get_belief(path[k], path[k+1]).mean
+                   for k in range(len(path) - 1))
 
-        if self._episode < self.calibrate_eps:
-            sign = +1.0 if self._episode % 2 == 0 else -1.0
-            self._current_mode = "LCB" if sign > 0 else "UCB"
-        else:
-            sf = self.sign_factor
-            sign = +1.0 if sf >= 0 else -1.0
-            self._current_mode = "LCB" if sign > 0 else "UCB"
-
-        beta = beta_mag * sign
-        best, best_score = 0, float("inf")
+    def _pick_path_with_beta(self, paths, beta):
+        decay = 1.0 / max(self._episode + 1, 1) ** 0.3
+        beta_eff = beta * decay
+        best, best_s = 0, float("inf")
         for i, path in enumerate(paths):
-            score = self._score_path(path, beta)
-            if score < best_score:
-                best_score = score
+            score = self._score_path(path, beta_eff)
+            if score < best_s:
+                best_s = score
                 best = i
         return best
 
+    def select_path(self, paths, **kw) -> int:
+        self._last_paths = paths
+
+        probs = self.beta_probs
+        self._current_beta_idx = np.random.choice(self.n_betas, p=probs)
+        beta = self.beta_grid[self._current_beta_idx]
+        self._beta_history.append(beta)
+
+        pick = self._pick_path_with_beta(paths, beta)
+        self._last_path_mean = self._path_mean(paths[pick])
+        return pick
+
     def observe(self, path_idx, delay, paths=None, **kw):
-        if self._episode < self.calibrate_eps:
-            if self._current_mode == "LCB":
-                self._lcb_delays.append(delay)
-            elif self._current_mode == "UCB":
-                self._ucb_delays.append(delay)
+        if paths is None:
+            paths = self._last_paths
+
+        # Update β weights (clip extreme delays from link failures)
+        if paths and self._episode > 5:
+            delay_clipped = min(delay, 50.0)  # cap at 50ms to avoid link-failure outliers
+            probs = self.beta_probs
+            for j in range(self.n_betas):
+                would_pick = self._pick_path_with_beta(paths, self.beta_grid[j])
+                if would_pick == path_idx:
+                    est_cost = delay_clipped
+                else:
+                    est_cost = min(self._path_mean(paths[would_pick]), 50.0)
+
+                costs_all = [min(self._path_mean(p), 50.0) for p in paths]
+                cost_range = max(max(costs_all) - min(costs_all), 1e-6)
+                normalized = (est_cost - min(costs_all)) / cost_range
+                self._log_weights[j] -= self.eta * normalized / max(probs[j], 0.01)
 
         self._episode += 1
 
+        # Update link beliefs
         if paths:
             path = paths[path_idx]
             n_links = len(path) - 1
