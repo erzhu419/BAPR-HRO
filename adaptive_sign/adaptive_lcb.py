@@ -1,14 +1,14 @@
-"""Adaptive-Sign LCB/UCB: automatically detects whether the environment
-rewards pessimism (LCB) or optimism (UCB).
+"""Adaptive-Sign BAPR: auto-detects LCB vs UCB from environment structure.
 
-Method: Alternating Trial.
-  - Even episodes: play with LCB (β > 0)
-  - Odd episodes: play with UCB (β < 0)
-  - Track cumulative regret of each
-  - After warmup, follow the winner exclusively
+Three-phase protocol:
+  Phase 1 (explore): try each arm once to initialize beliefs
+  Phase 2 (calibrate): alternate LCB/UCB on the SAME best-mean arm
+     to measure whether pessimism or optimism gives lower realized cost
+  Phase 3 (exploit): follow the detected winner
 
-This is clean, unbiased, and directly measures which policy is better.
-The sign_factor is simply: (UCB_avg_cost - LCB_avg_cost) / normalization.
+The key insight: during calibration, LCB and UCB may pick DIFFERENT arms.
+We track the cumulative cost of each policy's picks to determine which
+policy structure (pessimistic or optimistic) suits this environment.
 """
 
 from __future__ import annotations
@@ -53,30 +53,34 @@ class BeliefNG:
 
 
 class AdaptiveSignRouter:
-    """Alternating-trial adaptive router for arm-level selection.
+    """Arm-level adaptive LCB/UCB router.
 
-    Phase 1 (first warmup episodes): alternate LCB/UCB to measure which wins.
-    Phase 2: follow the winner exclusively.
+    Phase 1: explore each arm once
+    Phase 2: alternate LCB(+β)/UCB(-β) picks for calibrate_eps episodes
+    Phase 3: follow the winner
     """
 
     def __init__(self, n_arms: int, beta0: float = 2.0,
-                 warmup: int = 20, warm_costs: list[float] | None = None):
+                 calibrate_eps: int = 10,
+                 warm_costs: list[float] | None = None):
         self.n_arms = n_arms
         self.beta0 = beta0
-        self.warmup = warmup
+        self.calibrate_eps = calibrate_eps
         self.beliefs = [BeliefNG() for _ in range(n_arms)]
         self._episode = 0
+        self._current_mode = "LCB"
 
-        self._lcb_costs = []  # costs observed when using LCB
-        self._ucb_costs = []  # costs observed when using UCB
+        # Phase 2 tracking
+        self._lcb_costs = []
+        self._ucb_costs = []
 
         if warm_costs:
             for i, c in enumerate(warm_costs):
                 self.beliefs[i].update(c)
+            self._episode = n_arms  # skip explore phase
 
     @property
     def sign_factor(self) -> float:
-        """Positive = LCB better, Negative = UCB better."""
         if not self._lcb_costs or not self._ucb_costs:
             return 0.0
         lcb_avg = np.mean(self._lcb_costs)
@@ -84,7 +88,6 @@ class AdaptiveSignRouter:
         total = (lcb_avg + ucb_avg) / 2
         if total < 1e-8:
             return 0.0
-        # Positive when UCB costs more (LCB is better)
         return np.clip((ucb_avg - lcb_avg) / total, -1, 1)
 
     @property
@@ -96,78 +99,76 @@ class AdaptiveSignRouter:
             return "UCB"
         return "~0"
 
-    def _pick(self, sign: float) -> int:
-        """Pick arm with sign-adjusted β."""
-        # Explore first
-        for i in range(self.n_arms):
-            if self.beliefs[i].n_obs == 0:
-                return i
-
+    def _pick_with_sign(self, sign: float) -> int:
         beta = self.beta0 * sign / max(self._episode, 1) ** 0.3
-        best_i, best_score = 0, float("inf")
+        best_i, best_s = 0, float("inf")
         for i in range(self.n_arms):
             b = self.beliefs[i]
             score = b.mean + beta * b.std
-            if score < best_score:
-                best_score = score
+            if score < best_s:
+                best_s = score
                 best_i = i
         return best_i
 
     def select(self) -> int:
-        if self._episode < self.warmup:
-            # Alternate: even=LCB, odd=UCB
-            if self._episode % 2 == 0:
+        # Phase 1: explore
+        if self._episode < self.n_arms:
+            for i in range(self.n_arms):
+                if self.beliefs[i].n_obs == 0:
+                    self._current_mode = "explore"
+                    return i
+
+        # Phase 2: calibrate — alternate LCB/UCB
+        cal_ep = self._episode - self.n_arms
+        if cal_ep < self.calibrate_eps:
+            if cal_ep % 2 == 0:
                 self._current_mode = "LCB"
-                return self._pick(+1.0)
+                return self._pick_with_sign(+1.0)
             else:
                 self._current_mode = "UCB"
-                return self._pick(-1.0)
-        else:
-            # Follow the winner
-            sf = self.sign_factor
-            self._current_mode = "LCB" if sf >= 0 else "UCB"
-            return self._pick(+1.0 if sf >= 0 else -1.0)
+                return self._pick_with_sign(-1.0)
+
+        # Phase 3: exploit winner
+        sf = self.sign_factor
+        self._current_mode = "LCB" if sf >= 0 else "UCB"
+        return self._pick_with_sign(+1.0 if sf >= 0 else -1.0)
 
     def observe(self, arm_idx: int, cost: float):
-        if self._episode < self.warmup:
-            if self._current_mode == "LCB":
-                self._lcb_costs.append(cost)
-            else:
-                self._ucb_costs.append(cost)
+        # Track calibration costs
+        if self._current_mode == "LCB":
+            self._lcb_costs.append(cost)
+        elif self._current_mode == "UCB":
+            self._ucb_costs.append(cost)
 
         self.beliefs[arm_idx].update(cost)
         self._episode += 1
 
 
 class AdaptiveSignLinkRouter:
-    """Dual-play adaptive router: runs LCB and UCB beliefs in parallel.
+    """Link-level adaptive LCB/UCB router for SDN/VRP.
 
-    Both policies share the same observations (link delays) but make
-    different path selections. The sign_factor tracks which policy
-    WOULD HAVE accumulated lower total delay.
+    Same three-phase protocol but at the path level with link-level beliefs.
     """
 
-    def __init__(self, beta0: float = 2.0, warmup: int = 30):
+    def __init__(self, beta0: float = 2.0, calibrate_eps: int = 20):
         self.beta0 = beta0
-        self.warmup = warmup
-        # Shared beliefs (both policies see the same data)
+        self.calibrate_eps = calibrate_eps
         self.link_beliefs: dict[tuple, BeliefNG] = {}
         self._episode = 0
-
-        # Track virtual costs of each policy
-        self._lcb_total = 0.0
-        self._ucb_total = 0.0
-        self._n_compared = 0
+        self._current_mode = "LCB"
+        self._lcb_delays = []
+        self._ucb_delays = []
 
     @property
     def sign_factor(self) -> float:
-        if self._n_compared < 10:
+        if not self._lcb_delays or not self._ucb_delays:
             return 0.0
-        total = (self._lcb_total + self._ucb_total) / 2
+        lcb_avg = np.mean(self._lcb_delays)
+        ucb_avg = np.mean(self._ucb_delays)
+        total = (lcb_avg + ucb_avg) / 2
         if total < 1e-8:
             return 0.0
-        # Positive when UCB costs more → LCB wins
-        return np.clip((self._ucb_total - self._lcb_total) / total, -1, 1)
+        return np.clip((ucb_avg - lcb_avg) / total, -1, 1)
 
     @property
     def mode(self) -> str:
@@ -194,49 +195,35 @@ class AdaptiveSignLinkRouter:
             total += b.mean + beta * b.std
         return total
 
-    def _path_mean(self, path):
-        return sum(self._get_belief(path[k], path[k+1]).mean
-                   for k in range(len(path)-1))
-
     def select_path(self, paths, **kw) -> int:
         beta_mag = self.beta0 / max(self._episode + 1, 1) ** 0.3
 
-        # Compute what both policies would pick
-        lcb_pick = min(range(len(paths)),
-                       key=lambda i: self._score_path(paths[i], +beta_mag))
-        ucb_pick = min(range(len(paths)),
-                       key=lambda i: self._score_path(paths[i], -beta_mag))
-        self._last_lcb_pick = lcb_pick
-        self._last_ucb_pick = ucb_pick
-        self._last_paths = paths
-
-        # During warmup: alternate; after: follow winner
-        if self._episode < self.warmup:
-            return lcb_pick if self._episode % 2 == 0 else ucb_pick
+        if self._episode < self.calibrate_eps:
+            sign = +1.0 if self._episode % 2 == 0 else -1.0
+            self._current_mode = "LCB" if sign > 0 else "UCB"
         else:
             sf = self.sign_factor
-            return lcb_pick if sf >= 0 else ucb_pick
+            sign = +1.0 if sf >= 0 else -1.0
+            self._current_mode = "LCB" if sign > 0 else "UCB"
+
+        beta = beta_mag * sign
+        best, best_score = 0, float("inf")
+        for i, path in enumerate(paths):
+            score = self._score_path(path, beta)
+            if score < best_score:
+                best_score = score
+                best = i
+        return best
 
     def observe(self, path_idx, delay, paths=None, **kw):
+        if self._episode < self.calibrate_eps:
+            if self._current_mode == "LCB":
+                self._lcb_delays.append(delay)
+            elif self._current_mode == "UCB":
+                self._ucb_delays.append(delay)
+
         self._episode += 1
 
-        if paths is None:
-            paths = self._last_paths
-
-        # Track virtual costs: what would each policy have experienced?
-        if hasattr(self, '_last_lcb_pick') and paths:
-            self._n_compared += 1
-            if self._last_lcb_pick == path_idx:
-                self._lcb_total += delay
-            else:
-                self._lcb_total += self._path_mean(paths[self._last_lcb_pick])
-
-            if self._last_ucb_pick == path_idx:
-                self._ucb_total += delay
-            else:
-                self._ucb_total += self._path_mean(paths[self._last_ucb_pick])
-
-        # Update shared link beliefs
         if paths:
             path = paths[path_idx]
             n_links = len(path) - 1
