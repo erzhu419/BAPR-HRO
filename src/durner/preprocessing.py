@@ -42,6 +42,7 @@ def build_successor_graph(graph: TransitGraph, query_window: tuple[int, int]
         stop_to_deps.setdefault(c.dep_stop, []).append(cid)
 
     successors: dict[int, list[int]] = {}
+    max_wait = 60  # max minutes to wait for a connection (prune obvious non-successors)
     for cid in active_ids:
         c = graph.connections[cid]
         arr_stop = c.arr_stop
@@ -54,6 +55,12 @@ def build_successor_graph(graph: TransitGraph, query_window: tuple[int, int]
             # Same trip connections (next segment) are always successors
             if c.trip_id == c2.trip_id:
                 succs.append(cid2)
+                continue
+            # Prune: skip connections departing too late (> max_wait after arrival)
+            if c2.dep_time > c.arr_time + max_wait:
+                continue
+            # Prune: skip connections that departed before we arrive
+            if c2.dep_time < c.arr_time - 5:
                 continue
             # Check if transfer is possible
             if c.arr_distribution is not None and c2.dep_distribution is not None:
