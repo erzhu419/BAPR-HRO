@@ -14,6 +14,7 @@ from typing import Optional
 from .transit_graph import TransitGraph, Connection
 from .bandit_router import BanditRouter
 from .bandit_router_v2 import BanditRouterV2
+from .adaptive_bandit_router import AdaptiveBetaBanditRouter
 from .ssp_mdp import PosteriorSamplingRouter
 from .bamcp_router import BAMCPRouter
 from .dro_router import DRORouter
@@ -52,7 +53,12 @@ def simulate_bandit_journey(
     n_transfers = 0
     total_comp_ms = 0.0
 
-    is_bandit = isinstance(router, (BanditRouter, BanditRouterV2, PosteriorSamplingRouter, BAMCPRouter, DRORouter))
+    is_bandit = isinstance(router, (BanditRouter, BanditRouterV2, AdaptiveBetaBanditRouter,
+                                    PosteriorSamplingRouter, BAMCPRouter, DRORouter))
+
+    # Adaptive-β: signal start of journey
+    if isinstance(router, AdaptiveBetaBanditRouter):
+        router.begin_journey()
 
     # Initial route computation
     if is_bandit:
@@ -169,6 +175,11 @@ def simulate_bandit_journey(
 
     status = "arrived" if current_stop == s_dest else "timeout"
     events.append(JourneyEvent(current_time, current_stop, "finish", details=status))
+
+    # Adaptive-β: signal end of journey with total travel time
+    if isinstance(router, AdaptiveBetaBanditRouter):
+        tt = (current_time if current_stop == s_dest else t_depart + max_time) - t_depart
+        router.end_journey(tt)
 
     return JourneyResult(
         origin=s_source,

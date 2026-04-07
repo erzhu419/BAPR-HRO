@@ -29,7 +29,7 @@ def run_transit(n_seeds=5):
     n_j = 50  # more journeys so adaptive can calibrate
 
     results = {}
-    for mname in ['Static', 'V1-LCB', 'V2-LCB']:
+    for mname in ['Static', 'V1-LCB', 'V2-LCB', 'Adaptive-β']:
         seed_tts = []
         for seed in range(n_seeds):
             graph = create_bus_story_network()
@@ -39,6 +39,9 @@ def run_transit(n_seeds=5):
                 router = BanditRouter(graph)
             elif mname == 'V2-LCB':
                 router = BanditRouterV2(graph, seed=seed)
+            elif mname == 'Adaptive-β':
+                from src.adaptive_bandit_router import AdaptiveBetaBanditRouter
+                router = AdaptiveBetaBanditRouter(graph, eta=0.15)
             tts = []
             for i in range(n_j):
                 jr = simulate_bandit_journey(graph, router, 0, 9, 480+i,
@@ -47,9 +50,6 @@ def run_transit(n_seeds=5):
             seed_tts.append(np.mean(tts))
         results[mname] = np.mean(seed_tts)
 
-    # Note: Transit Adaptive would require wrapping the per-stop
-    # connection selection as arm-level, which is architecturally different.
-    # V1-LCB already IS the adaptive policy for transit (it learns per-route beliefs).
     return results
 
 
