@@ -397,16 +397,29 @@ class StaticNNRouter:
 
 
 class LCBRouterV1:
-    """BAPR-HRO V1: Normal-Gamma + fixed β."""
+    """BAPR-HRO V1: Normal-Gamma + fixed β.
+
+    First len(candidates) episodes: round-robin exploration (try each route once).
+    After that: pick route with lowest LCB score.
+    """
 
     def __init__(self, instance: VRPInstance, candidates: list[list[int]],
-                 beta: float = 1.5):
+                 beta: float = 1.0, explore_top: int = 4):
         self.inst = instance
         self.candidates = candidates
         self.beta = beta
         self.bm = BeliefManager(instance, belief_type="ng")
+        self._episode = 0
+        # Only explore the top candidates by static distance
+        scored = sorted(range(len(candidates)),
+                        key=lambda i: self.bm.score_route_static(candidates[i]))
+        self._explore_order = scored[:explore_top]
 
     def select_route(self) -> list[int]:
+        # Exploration phase: try top routes once each
+        if self._episode < len(self._explore_order):
+            return self.candidates[self._explore_order[self._episode]]
+
         best_route = self.candidates[0]
         best_score = float("inf")
         for route in self.candidates:
@@ -417,6 +430,7 @@ class LCBRouterV1:
         return best_route
 
     def observe(self, steps: list[StepResult]):
+        self._episode += 1
         for step in steps:
             self.bm.update(step)
 
@@ -425,8 +439,8 @@ class LCBRouterV2:
     """BAPR-HRO V2: Ensemble + dynamic β."""
 
     def __init__(self, instance: VRPInstance, candidates: list[list[int]],
-                 beta_base: float = 1.0, beta_ood: float = 1.0,
-                 n_estimators: int = 5, seed: int = 0):
+                 beta_base: float = 0.8, beta_ood: float = 0.8,
+                 n_estimators: int = 5, seed: int = 0, explore_top: int = 4):
         self.inst = instance
         self.candidates = candidates
         self.beta_base = beta_base
@@ -434,8 +448,16 @@ class LCBRouterV2:
         self.rng = np.random.default_rng(seed)
         self.bm = BeliefManager(instance, belief_type="ensemble",
                                 n_estimators=n_estimators)
+        self._episode = 0
+        bm_tmp = BeliefManager(instance, belief_type="ng")
+        scored = sorted(range(len(candidates)),
+                        key=lambda i: bm_tmp.score_route_static(candidates[i]))
+        self._explore_order = scored[:explore_top]
 
     def select_route(self) -> list[int]:
+        if self._episode < len(self._explore_order):
+            return self.candidates[self._explore_order[self._episode]]
+
         best_route = self.candidates[0]
         best_score = float("inf")
         for route in self.candidates:
@@ -447,6 +469,7 @@ class LCBRouterV2:
         return best_route
 
     def observe(self, steps: list[StepResult]):
+        self._episode += 1
         for step in steps:
             self.bm.update(step, self.rng)
 
@@ -455,13 +478,20 @@ class TSRouter:
     """Thompson Sampling — optimistic baseline (Lagos et al. analog)."""
 
     def __init__(self, instance: VRPInstance, candidates: list[list[int]],
-                 seed: int = 0):
+                 seed: int = 0, explore_top: int = 4):
         self.inst = instance
         self.candidates = candidates
         self.rng = np.random.default_rng(seed)
         self.bm = BeliefManager(instance, belief_type="ng")
+        self._episode = 0
+        scored = sorted(range(len(candidates)),
+                        key=lambda i: self.bm.score_route_static(candidates[i]))
+        self._explore_order = scored[:explore_top]
 
     def select_route(self) -> list[int]:
+        if self._episode < len(self._explore_order):
+            return self.candidates[self._explore_order[self._episode]]
+
         best_route = self.candidates[0]
         best_score = float("inf")
         for route in self.candidates:
@@ -472,6 +502,7 @@ class TSRouter:
         return best_route
 
     def observe(self, steps: list[StepResult]):
+        self._episode += 1
         for step in steps:
             self.bm.update(step)
 
