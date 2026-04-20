@@ -19,6 +19,9 @@ from .adaptive_bandit_router import AdaptiveBetaBanditRouter
 from .ssp_mdp import PosteriorSamplingRouter
 from .bamcp_router import BAMCPRouter
 from .dro_router import DRORouter
+from .sw_lcb_router import SWLCBRouter
+from .exp3_router import EXP3Router
+from .oracle_router import OracleRouter
 from .router import StaticRouter
 from .durner.topocsa import HyperpathResult
 from .simulator import (
@@ -56,7 +59,8 @@ def simulate_bandit_journey(
 
     is_bandit = isinstance(router, (BanditRouter, BanditRouterV2, BanditRouterV3,
                                     AdaptiveBetaBanditRouter,
-                                    PosteriorSamplingRouter, BAMCPRouter, DRORouter))
+                                    PosteriorSamplingRouter, BAMCPRouter, DRORouter,
+                                    SWLCBRouter, EXP3Router, OracleRouter))
 
     # Adaptive-β: signal start of journey
     if isinstance(router, AdaptiveBetaBanditRouter):
