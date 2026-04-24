@@ -119,7 +119,7 @@ def find_od_pairs(g, disrupted_by_name, n_pairs=15, max_search_time=120):
 
 def run_experiment(
     g, od_pairs, normal_by_name, disrupted_by_name,
-    N=30, seed=42, max_time=50,
+    N=30, seed=42, max_time=120,
 ):
     """Run the full multi-OD experiment."""
 
@@ -284,7 +284,7 @@ if __name__ == "__main__":
     # Run experiment
     results = run_experiment(
         g, od_pairs, normal_by_name, disrupted_by_name,
-        N=30, seed=42, max_time=50,
+        N=30, seed=42, max_time=120,
     )
 
     # Aggregate
@@ -306,7 +306,7 @@ if __name__ == "__main__":
         "od_pairs": od_pairs,
         "results": results,
         "summary": summary,
-        "config": {"N": 30, "seed": 42, "max_time": 50},
+        "config": {"N": 30, "seed": 42, "max_time": 120},
     }
     with open('experiments/swiss_full/results/swiss_multi_od.json', 'w') as f:
         json.dump(output, f, indent=2, default=str)

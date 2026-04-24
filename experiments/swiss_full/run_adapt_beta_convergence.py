@@ -87,7 +87,7 @@ def run_convergence(g, s1, s2, normal_by_name, disrupted_by_name,
             current_beta = adapt_router.current_beta
             res_adapt = simulate_bandit_journey(
                 adapt_router.graph, adapt_router, s1, s2,
-                490 + rng.integers(0, 10), sched_j, rng, 50)
+                490 + rng.integers(0, 10), sched_j, rng, 120)
             travel_adapt = res_adapt.arrival_time - res_adapt.departure_time
             adapt_router.end_journey(travel_adapt)
 
@@ -96,7 +96,7 @@ def run_convergence(g, s1, s2, normal_by_name, disrupted_by_name,
             static_r = StaticRouter(copy.deepcopy(g))
             res_static = simulate_bandit_journey(
                 static_r.graph, static_r, s1, s2,
-                490 + rng2.integers(0, 10), sched_j, rng2, 50)
+                490 + rng2.integers(0, 10), sched_j, rng2, 120)
             travel_static = res_static.arrival_time - res_static.departure_time
 
             adapt_times.append(travel_adapt)
@@ -168,5 +168,5 @@ if __name__ == "__main__":
     # Save
     os.makedirs('experiments/swiss_full/results', exist_ok=True)
     with open('experiments/swiss_full/results/adapt_beta_convergence.json', 'w') as f:
-        json.dump(results, f, indent=2)
+        json.dump(results, f, indent=2, default=lambda o: int(o) if hasattr(o, "item") else str(o))
     print("\nSaved to experiments/swiss_full/results/adapt_beta_convergence.json")

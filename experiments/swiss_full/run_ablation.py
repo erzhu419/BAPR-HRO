@@ -61,7 +61,7 @@ def run_ablation(g, s1, s2, normal_by_name, disrupted_by_name, N=20, seed=42):
                 ri = DRORouter(copy.deepcopy(g), beta=beta, gamma=60.0)
                 rng = np.random.default_rng(seed + i)
                 res = simulate_bandit_journey(
-                    ri.graph, ri, s1, s2, 490, sched, rng, 50)
+                    ri.graph, ri, s1, s2, 490, sched, rng, 120)
                 times.append(res.arrival_time - res.departure_time)
             arr = np.array(times)
             key = f"beta={beta}_{scen_name}"
@@ -84,7 +84,7 @@ def run_ablation(g, s1, s2, normal_by_name, disrupted_by_name, N=20, seed=42):
                 ri = DRORouter(copy.deepcopy(g), beta=1.5, gamma=gamma)
                 rng = np.random.default_rng(seed + i)
                 res = simulate_bandit_journey(
-                    ri.graph, ri, s1, s2, 490, sched, rng, 50)
+                    ri.graph, ri, s1, s2, 490, sched, rng, 120)
                 times.append(res.arrival_time - res.departure_time)
             arr = np.array(times)
             key = f"gamma={gamma}_{scen_name}"
@@ -106,7 +106,7 @@ def run_ablation(g, s1, s2, normal_by_name, disrupted_by_name, N=20, seed=42):
                 ri = BanditRouterV2(copy.deepcopy(g), n_estimators=K)
                 rng = np.random.default_rng(seed + i)
                 res = simulate_bandit_journey(
-                    ri.graph, ri, s1, s2, 490, sched, rng, 50)
+                    ri.graph, ri, s1, s2, 490, sched, rng, 120)
                 times.append(res.arrival_time - res.departure_time)
             arr = np.array(times)
             key = f"K={K}_{scen_name}"

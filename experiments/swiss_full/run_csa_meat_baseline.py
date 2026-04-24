@@ -25,7 +25,7 @@ from src.gtfs_parser import load_routes
 from src.gtfs_rt_parser import load_distributions
 from src.bandit_router import BanditRouter
 from src.dro_router import DRORouter
-from src.router import StaticRouter
+from src.router import StaticRouter, RoutingDecision
 from src.simulate_bandit import simulate_bandit_journey
 from src.simulator import (RegimeSchedule, set_regime_dist_fn,
                            _regime_dist_cache, sample_actual_delay,
@@ -53,7 +53,7 @@ class CSAMEATRouter:
         # Extract the single best path (greedy: always take top-ranked)
         if self.cached_result.mean_arrival < float('inf'):
             self.best_path = self._extract_best_path(s_source, s_dest, t_source)
-        return self.cached_result
+        return RoutingDecision(hyperpath=self.cached_result, regime_id=0, regime_name="normal", confidence=1.0, surprise=0.0, recomputed=False, computation_ms=0.0)
 
     def _extract_best_path(self, s_source, s_dest, t_source):
         """Extract the single best path from the hyperpath."""
@@ -160,7 +160,7 @@ def run_baseline_comparison(g, s1, s2, normal_by_name, disrupted_by_name,
                 ri = Cls(copy.deepcopy(g))
                 rng = np.random.default_rng(seed + i)
                 res = simulate_bandit_journey(
-                    ri.graph, ri, s1, s2, 490, sched, rng, 50)
+                    ri.graph, ri, s1, s2, 490, sched, rng, 120)
                 times.append(res.arrival_time - res.departure_time)
             arr = np.array(times)
             results[scen_name][mname] = {
