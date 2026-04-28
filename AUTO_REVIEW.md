@@ -148,3 +148,56 @@ substantive new work. Pausing here for user direction.
 
 Items 1-4 are 2 hours total. Item 5 is the heaviest.
 
+
+---
+
+## Round 3 — 2026-04-28
+
+### Assessment summary
+
+- **Score: 5/10** (round 1: 3/10, round 2: 4/10, **+1**)
+- **Verdict: NOT READY** (no change)
+- Verdict trajectory: 3 → 4 → 5 over three rounds.
+
+### Per-issue status (round 3 verbatim from reviewer)
+
+| # | Round 1 | Round 2 | Round 3 |
+|---|---|---|---|
+| 1 LCB=DRO tight | NOT FIXED | PARTIAL | **SUPERFICIAL** — still no `⨆` in `dro_iSup_equals_value_plus_eps` |
+| 2 Real DRO Bellman | NOT FIXED | PARTIAL | **SUPERFICIAL** — `WassersteinKRProperty` is sandwich predicate, no actual sup-over-ball |
+| 3 EXP3 axiom | NOT FIXED | FIXED narrow | **GENUINELY FIXED narrow** ✅ |
+| 4 Ensemble = empirical DRO | NOT FIXED | PARTIAL | **SUPERFICIAL** — empirical measure + W₁≤ε real, but no sup-equality |
+| 5 Bayes-risk gap | NOT FIXED | NOT FIXED | **SUPERFICIAL** — invokes `per_step_gap` now, but assumes `h_acc` and `h_prob` rather than deriving |
+| 6 Adversarial minimax | NOT FIXED | PARTIAL | **SUPERFICIAL** — has `Trajectory T` type, but uses `runAlgNat` not defined `cumulativeRegret` |
+| 7 EXP3 linked to alg | NOT FIXED | NOT FIXED | **SUPERFICIAL** — Hedge algorithm + regret + `hedge_W_ge_best` real, but no `hedgeRegret ≤ ...` theorem |
+| 8 Empirical CIs | PARTIAL | PARTIAL | **GENUINELY FIXED methodologically** ✅ — paired bootstrap shows honest negative result |
+| 9 Complexity | UNDEVELOPED | PARTIAL | **SUPERFICIAL** — cost definitions + identities, no algorithm-level complexity |
+| 10 Novelty | OVERSTATED | FIXED | **GENUINELY FIXED** ✅ |
+
+### Reviewer's diagnosis (verbatim)
+
+> "The single most important fix is an exact-statement audit. The
+> authors need to replace theorem-shaped fragments with the actual
+> target theorems. Until the theorem statements exactly encode the
+> paper claims, the formal component remains overclaimed."
+
+### Single biggest remaining fix
+
+A SPECIFICATION AUDIT making each theorem literally encode the
+advertised claim:
+- `dro_iSup_equals_value_plus_eps` → state and prove an actual
+  `⨆ P with W₁ P P̂ ≤ ε, ∫f dP = ∫f dP̂ + ε` over a well-defined
+  W₁ ambiguity set
+- Hedge: prove `hedgeRegret hK η ℓ T ≤ ln K / η + η T / 2` under
+  explicit loss assumptions (full potential-function chain)
+- `exists_adversarial_trajectory` → conclude with the already-defined
+  `cumulativeRegret alg T traj d`
+- Bayes-risk: derive the good event from an actual posterior model
+
+### Status
+
+- Score 3 → 4 → 5: real upward trend, each round adds ~1 point
+- Rate of progress: ~+1 per round despite substantial Lean work
+- Estimated rounds to reach READY (6/10+): 1-2 more rounds of
+  focused specification audits (~3-4 hours each)
+
