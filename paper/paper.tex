@@ -109,7 +109,7 @@ This paper makes five contributions:
 \begin{enumerate}
 \item \textbf{BA-SSP-MDP formulation.} We model single-journey transit routing as a Bayesian Adaptive SSP-MDP with conjugate posteriors, where the ``dynamics'' are delay distributions that update $O(1)$ per observation (Section~\ref{sec:model}).
 \item \textbf{LCB $=$ Wasserstein DRO.} We derive the LCB selection rule and prove it equivalent to DRO on a Wasserstein ball of radius $\varepsilon = \beta\hat\sigma + \gamma\hat{p}_{\mathrm{cancel}}$. This gives a distribution-free guarantee: the selected connection minimizes worst-case travel time against \emph{any} delay distribution within $W_1$-distance $\varepsilon$ (Section~\ref{sec:method}).
-\item \textbf{2,590-line Lean~4 formalization (0 \texttt{sorry}).} The first formalization of $W_1$ in any proof assistant (806 lines: coupling, transport cost, metric properties, gluing lemma, KR inequality, DRO bound). Extended with a tight-attainment witness for the DRO bound (translation push-forward), ensemble-LCB $=$ empirical DRO (Prop.~\ref{prop:ensdro}), irrecoverability theorems (488 lines), EXP3 regret (160), adaptive convergence (129), and minimax lower bound (173) (Section~\ref{sec:lean}).
+\item \textbf{2,659-line Lean~4 formalization (0 \texttt{sorry}).} The first formalization of $W_1$ in any proof assistant (806 lines: coupling, transport cost, metric properties, gluing lemma, KR inequality, DRO bound). Extended with a tight-attainment witness for the DRO bound (translation push-forward), ensemble-LCB $=$ empirical DRO (Prop.~\ref{prop:ensdro}), irrecoverability theorems (488 lines), EXP3 regret (160), adaptive convergence (129), and minimax lower bound (173) (Section~\ref{sec:lean}).
 \item \textbf{Nine-method comparison.} Static, LCB-V1, LCB-V2 (ensemble), V3-Topo, DRO, Adaptive-$\beta$ (EXP3 meta-bandit over a 9-value $\beta$ grid), PS-SSP, BAMCP, SW-LCB~\cite{garivier2011}, EXP3~\cite{kocak2014}, and Oracle. Under disruptions, LCB-V2 reduces mean travel time by 14\% and P95 by 42\% vs.\ static; exploration-based methods (PS-SSP, BAMCP, EXP3) perform \emph{worse} than static (Section~\ref{sec:results}).
 \item \textbf{Swiss real-data validation.} We extract 687-stop Z\"urich data from 35~days of SBB GTFS-RT archives (358{,}372 delay observations, 1{,}653 routes). On a single focused OD with rich hyperpath diversity, DRO reproduces $+20\%$ improvement on a normal day; V1-LCB and Adaptive-$\beta$ achieve $+29\%$. On a catastrophic disrupted day (47 routes cancelled), adaptive methods rescue $5$ extra percentage points of reach rate ($29\%\!\to\!34\%$) and cut conditional travel time by $9\%$ among completions (Section~\ref{sec:swiss-results}).
 \item \textbf{Neural acceleration.} An MLP ensemble surrogate replaces Topological CSA, cutting initial computation from 712\,ms to 0.6\,ms ($224\times$) (Section~\ref{sec:neural}).
@@ -234,7 +234,7 @@ An additional 1,522 lines verify the transit-specific theory:
 irrecoverability ($\rho > 0$ from environment structure, 488 lines),
 EXP3 regret (160 lines), $O(1/T)$ convergence (129 lines),
 and the minimax lower bound (173 lines).
-All 2,590 lines compile with zero \texttt{sorry}.
+All 2,659 lines compile with zero \texttt{sorry}.
 
 %% ================================================================
 \section{Problem Formulation: BA-SSP-MDP}
@@ -505,7 +505,7 @@ is the number of routes in the hyperpath (typically 4--8).
 We establish a chain of results connecting Wasserstein optimal transport
 to Bayesian adaptive routing.
 All results are machine-verified in Lean~4 with the Mathlib library
-(2,590 lines, zero unproved obligations); proofs are available in the
+(2,659 lines, zero unproved obligations); proofs are available in the
 online supplement.
 We present each result in standard mathematical form with a concise
 proof and its operational interpretation.
@@ -1198,7 +1198,7 @@ File & Lines & Key results \\
 \midrule
 Coupling.lean & 94 & Definition of coupling; product coupling; nonemptiness of $\Gamma(\mu,\nu)$ \\
 Distance.lean & 378 & $W_1$ non-negativity, self-distance, symmetry, triangle inequality (Thm.~\ref{thm:w1_metric}) \\
-DRO.lean & 357 & Weak KR inequality (Thm.~\ref{thm:dro}); LCB $=$ DRO with tight attainment (Cor.~\ref{cor:lcb_dro}, Rem.~\ref{rem:tight}); translation-witness lemma \\
+DRO.lean & 426 & Weak KR inequality (Thm.~\ref{thm:dro}); LCB $=$ DRO with tight attainment (Cor.~\ref{cor:lcb_dro}, Rem.~\ref{rem:tight}); translation-witness lemma; BAPR $\equiv$ DRO unification (\texttt{bapr\_score\_equals\_dro}, \texttt{bapr\_hro\_radius\_equivalence}) \\
 DROBellman.lean & 106 & DRO-Bellman contraction (Thm.~\ref{thm:bellman}) \\
 BAPRHRO.lean & 285 & Per-stop gap (Lem.~\ref{lem:perstep}); LCB suboptimality (Thm.~\ref{thm:lcb_bound}); posterior contraction (Lem.~\ref{lem:contraction}) \\
 BAPRHRO\_V2.lean & 334 & Ensemble LCB bound; dynamic $\beta$; ensemble $=$ empirical DRO (Prop.~\ref{prop:ensdro}) \\
@@ -1209,7 +1209,7 @@ AdaptiveConvergence.lean & 129 & $O(1/T)$ convergence rate (Thm.~\ref{thm:conver
 LowerBound.lean & 173 & Minimax lower bound $\Omega(C\cdot d_{\min})$ (Thm.~\ref{thm:lower}) \\
 Architecture.lean & 86 & Component interface contracts \\
 \midrule
-\textbf{Total} & \textbf{2,590} & \textbf{0 \texttt{sorry}} \\
+\textbf{Total} & \textbf{2,659} & \textbf{0 \texttt{sorry}} \\
 \bottomrule
 \end{tabular}
 \end{table*}
@@ -1714,7 +1714,7 @@ would complement the current mean-time DRO formulation.
 \section{Conclusion}
 \label{sec:conclusion}
 
-We formalized adaptive transit routing as a Bayesian Adaptive SSP-MDP and derived an LCB hyperpath selection policy \emph{tightly} equivalent (with explicit attainment) to Wasserstein DRO, with the equivalence formally verified in 2,590 lines of Lean~4 code (zero unproved obligations)---the first formalization of the Wasserstein distance in any proof assistant, extended with ensemble-empirical DRO equivalence (Prop.~\ref{prop:ensdro}), irrecoverability, EXP3 regret bounds, and $O(1/T)$ convergence theorems. On synthetic networks, LCB and DRO achieve 12--20\% mean and 42\% worst-case travel time improvement under disruptions, outperforming both static routing and all baselines including 2024 non-stationary bandit methods (SW-LCB, EXP3) and classic Bayesian RL approaches (PS-SSP, BAMCP) that waste irrecoverable time on exploration. On real GTFS-RT data from Z\"urich (SBB, 35 days, 687 stops), DRO reproduces $+20\%$ improvement on a normal day; V1-LCB and Adaptive-$\beta$ reach $+29\%$; and on a catastrophic disrupted day (47 routes cancelled) adaptive methods rescue $17\%$ more passengers ($29\%\to 34\%$ reach rate) while reducing conditional travel time by $9\%$. The Oracle upper bound confirms that LCB-V2 leaves only a 1.5\,min gap attributable to Bayesian uncertainty. A neural surrogate provides $224{\times}$ acceleration.
+We formalized adaptive transit routing as a Bayesian Adaptive SSP-MDP and derived an LCB hyperpath selection policy \emph{tightly} equivalent (with explicit attainment) to Wasserstein DRO, with the equivalence formally verified in 2,659 lines of Lean~4 code (zero unproved obligations)---the first formalization of the Wasserstein distance in any proof assistant, extended with ensemble-empirical DRO equivalence (Prop.~\ref{prop:ensdro}), irrecoverability, EXP3 regret bounds, and $O(1/T)$ convergence theorems. On synthetic networks, LCB and DRO achieve 12--20\% mean and 42\% worst-case travel time improvement under disruptions, outperforming both static routing and all baselines including 2024 non-stationary bandit methods (SW-LCB, EXP3) and classic Bayesian RL approaches (PS-SSP, BAMCP) that waste irrecoverable time on exploration. On real GTFS-RT data from Z\"urich (SBB, 35 days, 687 stops), DRO reproduces $+20\%$ improvement on a normal day; V1-LCB and Adaptive-$\beta$ reach $+29\%$; and on a catastrophic disrupted day (47 routes cancelled) adaptive methods rescue $17\%$ more passengers ($29\%\to 34\%$ reach rate) while reducing conditional travel time by $9\%$. The Oracle upper bound confirms that LCB-V2 leaves only a 1.5\,min gap attributable to Bayesian uncertainty. A neural surrogate provides $224{\times}$ acceleration.
 
 The central insight is that stochastic hyperpaths are \emph{structurally robust but ranking-fragile}: the right alternatives are already present; their ranking needs real-time updating through online learning rather than full re-optimization. For single-shot risk-sensitive sequential decisions, deterministic pessimism outperforms stochastic exploration.
 
@@ -1858,21 +1858,51 @@ satisfy. Extensions to mixture-of-Gaussians or Dirichlet-process
 posteriors would sharpen the per-route prior but do not change the
 Wasserstein-DRO equivalence.
 
-\textbf{Relationship to BAPR.}
-The present work and the companion BAPR paper~\cite{bapr2025} share the
-core insight that \emph{frozen-belief Bellman operators enable
-provable contraction}; however, they address complementary problem settings:
-\begin{itemize}
-\item \textbf{BAPR} targets \emph{multi-episode piecewise-stationary RL}
-  (locomotion control with regime switches) and provides a BOCD-driven
-  adaptive conservatism mechanism with formal piecewise convergence rate.
-\item \textbf{This work} targets \emph{single-shot transit routing}
-  and provides a Wasserstein DRO framework with the first formal
-  verification of the Wasserstein distance and irrecoverability theory.
-\end{itemize}
-The two papers are methodologically distinct (BOCD + adaptive $\beta$ for
-multi-episode vs.\ Wasserstein DRO + conjugate posteriors for single-shot)
-and serve different audiences (RL for BAPR; OR/ITS for this work).
+\textbf{Relationship to BAPR: a unified DRO framework.}
+The companion paper BAPR~\cite{bapr2025} addresses
+\emph{multi-episode piecewise-stationary} RL (locomotion control with
+regime switches) using an adaptive-conservatism rule
+$\beta_{\mathrm{eff}} = \beta_{\mathrm{base}} - \lambda_w c_{\mathrm{pen}}$,
+where $c_{\mathrm{pen}} \geq 0$ tracks BOCD changepoint surprise. BAPR's
+selection rule scores each action $a$ as
+$\mathrm{score}_{\mathrm{BAPR}}(a) = \hat\mu_a + |\beta_{\mathrm{eff}}|\,\hat\sigma_a$.
+The present paper addresses \emph{single-shot} transit routing using
+the LCB rule $\hat\mu_r + \beta\hat\sigma_r + \gamma\hat p_{\mathrm{cancel},r}$
+on hyperpath labels.
+
+Despite the apparent algorithmic gap, both rules instantiate the
+\emph{same} Wasserstein-DRO framework: by Corollary~\ref{cor:lcb_dro}
+applied with radius $\varepsilon = |\beta_{\mathrm{eff}}|\hat\sigma$
+versus $\varepsilon = \beta\hat\sigma + \gamma\hat p_{\mathrm{cancel}}$,
+each is exactly the worst-case expected cost on its respective
+$W_1$-ball. We make this connection formal in Lean as
+\texttt{bapr\_score\_equals\_dro} and \texttt{bapr\_hro\_radius\_equivalence}
+(\texttt{Wasserstein/DRO.lean}, lines~395--430): setting
+$\beta_{\mathrm{eff}} = -(\beta + \gamma\hat p_{\mathrm{cancel}}/\hat\sigma)$
+makes the two selection rules \emph{pick the same action} on a fixed
+posterior. The two papers thus differ only in (i) the state space
+(continuous control vs.\ transit graph), (ii) the changepoint mechanism
+(explicit BOCD vs.\ implicit posterior tracking), and (iii) the
+radius parametrization (detection-modulated vs.\ posterior-driven).
+The underlying robust-optimization principle---a 1-Lipschitz cost
+expectation maximized over a Wasserstein ball whose radius shrinks
+with data---is identical, and the proof machinery
+(\texttt{dro\_upper\_bound} + \texttt{translation\_is\_dro\_witness\_real})
+is shared.
+
+This unification has two practical consequences. First, the BAPR-HRO
+ensemble result (Proposition~\ref{prop:ensdro}, ensemble LCB $=$
+empirical DRO) immediately ports to BAPR's Q-ensembles: BAPR with a
+bootstrap critic ensemble inherits the same empirical-DRO
+interpretation. Second, BAPR's BOCD detector
+$c_{\mathrm{pen}}$ can be reinterpreted as a \emph{computational} way
+to enlarge the Wasserstein radius after a regime change, supplementing
+the slower posterior-contraction mechanism used here. Whether explicit
+detection is worth the implementation cost is then an empirical
+question in each setting (Section~\ref{sec:recomp} and
+Remark~\ref{rem:no-bocd} answered ``no'' for transit; BAPR's locomotion
+results answer ``yes'' for sim-to-real with abrupt physical regime
+shifts).
 
 \bibliographystyle{IEEEtran}
 \begin{thebibliography}{99}
