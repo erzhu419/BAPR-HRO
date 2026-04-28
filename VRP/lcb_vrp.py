@@ -534,6 +534,85 @@ class TSRouter:
             self.bm.update(step)
 
 
+class AdaptiveBetaRouter:
+    """BAPR-HRO Adaptive-β: V1-LCB wrapped in an EXP3 meta-bandit over a β grid.
+
+    At the start of each episode, β is sampled from the current EXP3
+    distribution; after the episode, the realized total travel time
+    updates the β weights. Same pattern as the transit
+    `AdaptiveBetaBanditRouter` in src/adaptive_bandit_router.py.
+    """
+
+    def __init__(self, instance: VRPInstance, candidates: list[list[int]],
+                 beta_grid: list[float] | None = None, eta: float = 0.1,
+                 seed: int = 0, explore_top: int = 4):
+        self.inst = instance
+        self.candidates = candidates
+        self.beta_grid = beta_grid or [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0]
+        self.n_betas = len(self.beta_grid)
+        self.eta = eta
+        self.rng = np.random.default_rng(seed)
+        self.bm = BeliefManager(instance, belief_type="ng")
+        self._log_weights = np.zeros(self.n_betas)
+        self._episode = 0
+        self._current_beta_idx = self.n_betas // 2
+        self._episode_costs: dict[int, list[float]] = {i: [] for i in range(self.n_betas)}
+        scored = sorted(range(len(candidates)),
+                        key=lambda i: self.bm.score_route_static(candidates[i]))
+        self._explore_order = scored[:explore_top]
+
+    @property
+    def beta_probs(self) -> np.ndarray:
+        w = self._log_weights - self._log_weights.max()
+        p = np.exp(w)
+        return p / p.sum()
+
+    def select_route(self) -> list[int]:
+        if self._episode < len(self._explore_order):
+            return self.candidates[self._explore_order[self._episode]]
+
+        # Sample β from EXP3 distribution at start of episode
+        probs = self.beta_probs
+        self._current_beta_idx = int(self.rng.choice(self.n_betas, p=probs))
+        beta = self.beta_grid[self._current_beta_idx]
+
+        best_route = self.candidates[0]
+        best_score = float("inf")
+        for route in self.candidates:
+            score = self.bm.score_route_lcb(route, beta)
+            if score < best_score:
+                best_score = score
+                best_route = route
+        return best_route
+
+    def observe(self, steps: list[StepResult]):
+        self._episode += 1
+        for step in steps:
+            self.bm.update(step)
+
+        # Total cost for this episode (sum of step travel times)
+        total_cost = sum(getattr(s, 'travel_time', 0.0) for s in steps)
+        if total_cost <= 0:
+            # Fallback: sum any numeric attribute
+            for attr in ('arrival_time', 'duration', 'cost'):
+                total_cost = sum(getattr(s, attr, 0.0) for s in steps)
+                if total_cost > 0:
+                    break
+
+        if self._episode > len(self._explore_order):
+            self._episode_costs[self._current_beta_idx].append(total_cost)
+            # Update EXP3 weights once each β has at least one observation
+            if self._episode >= len(self._explore_order) + self.n_betas:
+                probs = self.beta_probs
+                all_costs = [np.mean(c) for c in self._episode_costs.values() if c]
+                if all_costs:
+                    cost_range = max(max(all_costs) - min(all_costs), 1e-6)
+                    for j in range(self.n_betas):
+                        avg = np.mean(self._episode_costs[j]) if self._episode_costs[j] else total_cost
+                        normalized = (avg - min(all_costs)) / cost_range
+                        self._log_weights[j] -= self.eta * normalized / max(probs[j], 0.01)
+
+
 # ── Run one episode ──────────────────────────────────────────────────────────
 
 def run_episode(instance: VRPInstance, router,

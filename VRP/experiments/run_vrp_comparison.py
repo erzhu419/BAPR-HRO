@@ -19,6 +19,7 @@ from vrp_env import VRPInstance, generate_instance
 from lcb_vrp import (
     generate_candidate_routes,
     StaticNNRouter, LCBRouterV1, LCBRouterV2, TSRouter,
+    AdaptiveBetaRouter,
     run_episode,
 )
 
@@ -31,7 +32,7 @@ def run_experiment(
     methods: list[str] | None = None,
 ):
     if methods is None:
-        methods = ["Static-NN", "TS", "V1-LCB", "V2-LCB"]
+        methods = ["Static-NN", "TS", "V1-LCB", "V2-LCB", "Adapt-β"]
 
     print(f"\n{'='*75}")
     print(f"  VRP Experiment: {n_customers} cust, {n_instances} inst, "
@@ -65,6 +66,8 @@ def run_experiment(
             elif method == "V2-LCB":
                 router = LCBRouterV2(instance, candidates,
                                      beta_base=1.0, beta_ood=1.0, seed=inst_seed)
+            elif method == "Adapt-β":
+                router = AdaptiveBetaRouter(instance, candidates, seed=inst_seed)
             else:
                 raise ValueError(method)
 
@@ -117,6 +120,8 @@ def run_experiment(
                 elif method == "V2-LCB":
                     router = LCBRouterV2(instance, candidates,
                                          beta_base=1.0, beta_ood=1.0, seed=inst_seed)
+                elif method == "Adapt-β":
+                    router = AdaptiveBetaRouter(instance, candidates, seed=inst_seed)
                 else:
                     raise ValueError(method)
 

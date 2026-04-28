@@ -289,3 +289,74 @@ class HybridRouter:
     def observe(self, schedule_idx: int, result: ScheduleResult):
         self._episode += 1
         self.beliefs[schedule_idx].update(result.total_cost)
+
+
+class AdaptiveBetaRouter:
+    """BAPR-HRO Adaptive-β: V1-LCB wrapped in an EXP3 meta-bandit over a β grid.
+
+    At the start of each day, β is sampled from the current EXP3
+    distribution; after the day, the realized cost updates the β
+    weights. Same pattern as the transit
+    `AdaptiveBetaBanditRouter` in src/adaptive_bandit_router.py.
+    """
+
+    def __init__(self, n_schedules: int,
+                 beta_grid: list[float] | None = None, eta: float = 0.1,
+                 seed: int = 0,
+                 warm_costs: list[float] | None = None):
+        self.n = n_schedules
+        self.beta_grid = beta_grid or [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0]
+        self.n_betas = len(self.beta_grid)
+        self.eta = eta
+        self.rng = np.random.default_rng(seed)
+        self.beliefs = [CostBeliefNG() for _ in range(n_schedules)]
+        if warm_costs:
+            for i, c in enumerate(warm_costs):
+                self.beliefs[i].update(c)
+        self._log_weights = np.zeros(self.n_betas)
+        self._episode = 0
+        self._current_beta_idx = self.n_betas // 2
+        self._episode_costs: dict[int, list[float]] = {i: [] for i in range(self.n_betas)}
+
+    @property
+    def beta_probs(self) -> np.ndarray:
+        w = self._log_weights - self._log_weights.max()
+        p = np.exp(w)
+        return p / p.sum()
+
+    def select_schedule(self) -> int:
+        # Explore unobserved schedules first (mirrors LCBRouter)
+        for i in range(self.n):
+            if self.beliefs[i].n_obs == 0:
+                return i
+
+        # Sample β at the start of each day
+        probs = self.beta_probs
+        self._current_beta_idx = int(self.rng.choice(self.n_betas, p=probs))
+        beta = self.beta_grid[self._current_beta_idx]
+
+        best_i, best_score = 0, float("inf")
+        for i in range(self.n):
+            b = self.beliefs[i]
+            score = b.mean + beta * b.std
+            if score < best_score:
+                best_score = score
+                best_i = i
+        return best_i
+
+    def observe(self, schedule_idx: int, result: ScheduleResult):
+        self._episode += 1
+        self.beliefs[schedule_idx].update(result.total_cost)
+
+        if self._episode > self.n:  # past initial exploration
+            self._episode_costs[self._current_beta_idx].append(result.total_cost)
+            if self._episode >= self.n + self.n_betas:
+                probs = self.beta_probs
+                all_costs = [np.mean(c) for c in self._episode_costs.values() if c]
+                if all_costs:
+                    cost_range = max(max(all_costs) - min(all_costs), 1e-6)
+                    for j in range(self.n_betas):
+                        avg = (np.mean(self._episode_costs[j])
+                               if self._episode_costs[j] else result.total_cost)
+                        normalized = (avg - min(all_costs)) / cost_range
+                        self._log_weights[j] -= self.eta * normalized / max(probs[j], 0.01)

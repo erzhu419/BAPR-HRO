@@ -12,7 +12,8 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import numpy as np
 import time as _t
 from sdn_env import (SDNEnv, StaticRouter, LCBRouter, LCBRouterV2,
-                      ReactUCBRouter, TSRouter, HybridRouter, FlowLCBRouter)
+                      ReactUCBRouter, TSRouter, HybridRouter, FlowLCBRouter,
+                      AdaptiveBetaRouter)
 
 
 def run_experiment(
@@ -24,7 +25,7 @@ def run_experiment(
     seed: int = 42,
 ):
     if methods is None:
-        methods = ["Static", "React-UCB", "TS", "V1-LCB", "V2-LCB", "Hybrid", "Flow-LCB"]
+        methods = ["Static", "React-UCB", "TS", "V1-LCB", "V2-LCB", "Hybrid", "Flow-LCB", "Adapt-β"]
 
     print(f"\n{'='*75}")
     print(f"  SDN Routing: {topology}, {n_episodes} episodes, "
@@ -73,6 +74,8 @@ def run_experiment(
             router = HybridRouter(beta0=2.0, switch_ep=20)
         elif method == "Flow-LCB":
             router = FlowLCBRouter(beta0=2.0, flow_duration=5)
+        elif method == "Adapt-β":
+            router = AdaptiveBetaRouter(seed=seed)
 
         ep_delays = []
         during_shift_delays = []
@@ -111,6 +114,10 @@ def run_experiment(
                 during_shift_delays.append(avg_delay)
             elif ep > max((rs.time_end for rs in shifts), default=0):
                 after_shift_delays.append(avg_delay)
+
+            # Adaptive-β meta-bandit update at end of each episode
+            if hasattr(router, 'end_batch'):
+                router.end_batch(batch_size=demands_per_episode)
 
             env.step_episode()
 
@@ -158,6 +165,8 @@ def run_experiment(
                 router = HybridRouter(beta0=2.0, switch_ep=20)
             elif method == "Flow-LCB":
                 router = FlowLCBRouter(beta0=2.0, flow_duration=5)
+            elif method == "Adapt-β":
+                router = AdaptiveBetaRouter(seed=seed)
 
             for ep in range(ms):
                 for src, dst in all_pairs[ep]:
@@ -168,6 +177,8 @@ def run_experiment(
                     pi = min(pi, len(paths) - 1)
                     d = env.sample_path_delay(paths[pi], ep)
                     router.observe(pi, d, src=src, dst=dst, paths=paths)
+                if hasattr(router, 'end_batch'):
+                    router.end_batch(batch_size=demands_per_episode)
                 env.step_episode()
 
             # Delay at milestone episode

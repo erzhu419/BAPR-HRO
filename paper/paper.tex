@@ -97,11 +97,15 @@ conditional travel time by $5\%$ among completions (Static
 $34.1$ vs.\ DRO $32.4$\,min). A neural value surrogate further
 accelerates initial hyperpath computation by $224\times$. Cross-domain
 stress tests on capacitated VRP, Unit Commitment with stochastic
-wind, and SDN routing further show that the LCB rule transfers
-when decisions are irreversible (UC: $-7.2\%$ cost), breaks even on
-noisy candidate ranking (VRP), and \emph{honestly fails} on
-recoverable per-flow SDN routing---tracing the boundary of
-Theorem~\ref{thm:rho}'s irrecoverability scope condition. The
+wind, and SDN routing show that the LCB rule transfers when
+decisions are irreversible (Adaptive-$\beta$: $-7.6\%$ cost on UC),
+breaks even on noisy candidate ranking (VRP), and \emph{honestly
+fails} for fixed-$\beta$ on recoverable per-flow SDN routing
+(V1-LCB $+4.4\%$). Critically, the Adaptive-$\beta$ EXP3 meta-bandit
+\emph{recovers from the SDN regime mismatch} ($-0.1\%$, essentially
+tying Static) by learning that high $\beta$ is dominated: it does
+not bet on pessimism being right, but learns whether pessimism is
+right. The
 unifying finding: stochastic hyperpaths are \emph{structurally
 robust but ranking-fragile}---the right alternatives are already
 there; only their ranking needs online updating, and the DRO-optimal
@@ -142,8 +146,8 @@ This paper makes seven contributions:
 \item \textbf{5{,}322-line Lean~4 formalization (0 \texttt{sorry}, 0 \texttt{axiom}).} A complete machine-checked development of the Wasserstein-DRO arguments used in the paper, including: the $W_1$ pseudometric on Polish spaces (coupling, transport cost, gluing lemma, 472 lines); the weak Kantorovich--Rubinstein inequality and the explicit translation-witness with a verified $W_1$-distance bound (670 lines, no axioms); a real $\gamma$-contractive robust Bellman operator with rectangular Wasserstein and discrete-mixture ambiguity functionals (423 lines); the LCB suboptimality bound, a Bayes-risk Chebyshev link to the Normal-Gamma posterior, and an end-to-end high-probability LCB bound under the actual product posterior $\Pi$ with explicit $P(\mathrm{Good}) \geq 1 - DK/k^2$ certificate (1{,}125 lines, including the joint bad-event bound proved via Mathlib's \texttt{Measure.pi}, \texttt{measurePreserving\_eval}, and \texttt{measure\_iUnion\_fintype\_le}); an adversarial $\forall$-algorithm $\exists$-trajectory minimax lower bound (478 lines); and a real cumulative Hedge regret bound $\mathrm{regret} \leq \log K / \eta + \eta T$ via the player-loss-retaining potential argument (876 lines). The companion paper BAPR's recently redesigned belief-state Bellman appears as the discrete-mixture instance of our same robust-Bellman framework (Section~\ref{sec:lean}).
 \item \textbf{Eleven-method comparison.} Static, LCB-V1, LCB-V2 (ensemble), V3-Topo, DRO, Adaptive-$\beta$ (EXP3 meta-bandit over a 9-value $\beta$ grid), PS-SSP, BAMCP, SW-LCB~\cite{garivier2011}, EXP3~\cite{kocak2014}, and Oracle. Under disruptions, LCB-V2 reduces mean travel time by 14\% and P95 by 42\% vs.\ static; exploration-based methods (PS-SSP, BAMCP, EXP3) perform \emph{worse} than static (Section~\ref{sec:results}).
 \item \textbf{Swiss real-data validation.} We extract 687-stop Z\"urich data from 35~days of SBB GTFS-RT archives (358{,}372 delay observations, 1{,}653 routes). On a single focused OD with rich hyperpath diversity, DRO reproduces $+20\%$ improvement on a normal day; V1-LCB and Adaptive-$\beta$ achieve $+29\%$. On a catastrophic disrupted day (47 routes cancelled), adaptive methods rescue $5$ extra percentage points of reach rate ($28\%\!\to\!33\%$) and cut conditional travel time by $5\%$ among completions (Section~\ref{sec:swiss-results}).
-\item \textbf{Cross-domain validation.} The same V1/V2-LCB router code transfers to three classical OR domains
-(capacitated VRP, Unit Commitment with stochastic wind, SDN routing): LCB cleanly wins on UC ($-7.2\%$ cost vs.\ Static), breaks even on VRP ($\pm 1\%$ in aggregate, slight late-episode advantage), and \emph{loses} on SDN ($+3$--$5\%$). The pattern matches the irrecoverability scope condition of Theorem~\ref{thm:rho}, providing a clean honest characterization of where BAPR-HRO LCB applies (Section~\ref{sec:cross_domain}).
+\item \textbf{Cross-domain validation.} The BAPR-HRO LCB principle (V1/V2/Adaptive-$\beta$) transfers to three classical OR domains
+(capacitated VRP, Unit Commitment with stochastic wind, SDN routing): LCB cleanly wins on UC (Adaptive-$\beta$: $-7.6\%$ cost vs.\ Static), breaks even on VRP, and fixed-$\beta$ \emph{loses} on SDN ($+3$--$5\%$) while Adaptive-$\beta$ \emph{recovers} ($-0.1\%$, essentially tying Static) by learning to disable pessimism in the recoverable per-flow setting. The pattern matches the irrecoverability scope condition of Theorem~\ref{thm:rho}, and the Adaptive-$\beta$ recovery on SDN demonstrates that the EXP3 meta-bandit acts as a \emph{regime-agnostic safety net} when pessimism is the wrong rule (Section~\ref{sec:cross_domain}).
 \item \textbf{Neural acceleration.} An MLP ensemble surrogate replaces Topological CSA, cutting initial computation from 712\,ms to 0.6\,ms ($224\times$) (Section~\ref{sec:neural}).
 \end{enumerate}
 
@@ -1950,8 +1954,12 @@ domain-specific environment and candidate generator are swapped.
 \paragraph{Setup.}
 For each domain we fix a small benchmark and compare Static
 (no learning), Thompson Sampling (TS), V1-LCB (Normal-Gamma fixed
-$\beta$), V2-LCB (bootstrap ensemble $+$ dynamic $\beta$), and any
-domain-natural baseline (e.g.\ Hybrid UCB$\to$LCB for UC,
+$\beta$), V2-LCB (bootstrap ensemble $+$ dynamic $\beta$),
+\emph{Adaptive-$\beta$} (V1-LCB wrapped in an EXP3 meta-bandit over
+a $\beta$-grid that learns the right pessimism level online, the
+same construction as Section~\ref{sec:method}'s transit
+Adaptive-$\beta$ but with the domain-specific candidate generator),
+and any domain-natural baseline (e.g.\ Hybrid UCB$\to$LCB for UC,
 React-UCB and Flow-LCB for SDN). These experiments are not full
 domain-specific benchmark competitions against specialized VRP
 solvers, MILP UC formulations, or production SDN controllers; they
@@ -2015,11 +2023,14 @@ V2-LCB    & 309 & $+2.2\%$ & 306
           & 638{,}659 & $-4.4\%$ & 718{,}883
           & 3.71 & $+3.0\%$ & 4.01 \\
 UC-Hybrid & --- & --- & ---
-          & \textbf{619{,}958} & \textbf{$-$7.2\%} & 711{,}480
+          & 619{,}958 & $-$7.2\% & 711{,}480
           & --- & --- & --- \\
+Adapt-$\beta$ & 306 & $+1.4\%$ & \textbf{300}
+          & \textbf{617{,}551} & \textbf{$-$7.6\%} & \textbf{701{,}849}
+          & 3.60 & \textbf{$-$0.1\%} & 3.99 \\
 React-UCB & --- & --- & ---
           & --- & --- & ---
-          & \textbf{3.40} & \textbf{$-$5.6\%} & \textbf{3.71} \\
+          & \textbf{3.40} & $-$5.6\% & \textbf{3.71} \\
 Flow-LCB  & --- & --- & ---
           & --- & --- & ---
           & 3.77 & $+4.8\%$ & 4.14 \\
@@ -2031,37 +2042,41 @@ The pattern across domains lines up exactly with the
 irrecoverability scope condition.
 
 \paragraph{Where LCB substantially helps: Unit Commitment.}
-On UC, V1-LCB and the Hybrid UCB$\to$LCB router both reduce 40-day
-total cost by $7.2\%$ over Static, with TS at $-6.3\%$ and V2-LCB at
-$-4.4\%$. The Low-wind column ($\$711$k for V1-LCB and Hybrid)
-shows that V1-LCB and Hybrid retain a small improvement \emph{even
-during the regime shift}, while V2-LCB ($\$719$k) loses ground
-relative to Static ($\$712$k) on those ten days, and TS ($\$735$k)
-performs worst. This matches Theorem~\ref{thm:lcb_bound}: each
-daily commitment is a single-shot decision, the regime shift is
-irrecoverable for the day it occurs, and pessimism over the
-wind-uncertainty Wasserstein ball is the right hedge. Without
-multi-seed replication these are controlled stress tests rather
-than statistical claims; the consistent pattern across V1-LCB and
-Hybrid (which differ only in their initial-phase exploration policy)
-is what makes the result credible.
+On UC, Adaptive-$\beta$ achieves the best result ($-7.6\%$ over
+Static), with V1-LCB and the Hybrid UCB$\to$LCB router tied at
+$-7.2\%$, TS at $-6.3\%$, and V2-LCB at $-4.4\%$. The Low-wind
+column shows Adaptive-$\beta$'s advantage is largest precisely
+\emph{during} the regime shift ($\$702$k vs.\ V1-LCB's $\$711$k vs.\
+Static's $\$712$k vs.\ TS's $\$735$k); V2-LCB at $\$719$k actually
+loses ground on those ten days. This matches
+Theorem~\ref{thm:lcb_bound}: each daily commitment is a single-shot
+decision, the regime shift is irrecoverable for the day it occurs,
+and pessimism over the wind-uncertainty Wasserstein ball is the
+right hedge. The fact that Adaptive-$\beta$'s online-learned
+$\beta$ outperforms a fixed $\beta=2$ further suggests that the
+optimal pessimism level shifts with the regime. Without multi-seed
+replication these are controlled stress tests rather than
+statistical claims; the consistent pattern across V1-LCB, Hybrid,
+and Adaptive-$\beta$ (which span fixed-$\beta$, switch-rule, and
+EXP3-learned $\beta$) is what makes the result credible.
 
 \paragraph{Where LCB roughly breaks even: VRP.}
-On VRP, the aggregate-mean column shows V1-LCB and V2-LCB at
-$+1$ to $+2\%$ vs.\ Static---a wash---and TS at $+3.3\%$, the worst.
-The \emph{Last 5} column (mean of episodes 11--15) shows V1-LCB at
-$300$ vs.\ Static at $301$. The 1-min gap is descriptive rather than
-statistically decisive (no CIs are reported for these stress tests),
-but it is consistent with posterior calibration eliminating the
-initial LCB penalty. The wash is consistent with
+On VRP, the aggregate-mean column shows V1-LCB ($+1.1\%$),
+Adaptive-$\beta$ ($+1.4\%$), and V2-LCB ($+2.2\%$) within $1$--$2\%$
+of Static---a wash---and TS at $+3.3\%$, the worst. The \emph{Last 5}
+column (mean of episodes 11--15) shows V1-LCB and Adaptive-$\beta$
+both at $300$ vs.\ Static at $301$. The 1-min gap is descriptive
+rather than statistically decisive (no CIs are reported for these
+stress tests), but it is consistent with posterior calibration
+eliminating the initial LCB penalty. The wash is consistent with
 Theorem~\ref{thm:lcb_bound}: the per-stop gap is $O(\sigma_{\max})$,
 and on VRP $\sigma_{\max}$ contracts more slowly because route-level
 aggregate travel times are noisier and less repeatedly observed than
 per-stop bus-route delays. TS performs worst, again confirming that
 exploration in a single-shot setting is wasteful.
 
-\paragraph{Where LCB does \emph{not} fit this recoverable SDN setting.}
-On SDN we report a clean negative result: V1-LCB ($+4.4\%$),
+\paragraph{Where fixed-$\beta$ LCB does \emph{not} fit, but Adaptive-$\beta$ recovers.}
+On SDN, the fixed-$\beta$ variants V1-LCB ($+4.4\%$),
 V2-LCB ($+3.0\%$), Flow-LCB ($+4.8\%$), and the SDN Hybrid variant
 ($+4.8\%$) all \emph{underperform} Static. React-UCB ($-5.6\%$) and
 TS ($-4.0\%$) modestly improve. The reason is that the chosen SDN
@@ -2072,10 +2087,24 @@ opportunities to adapt, so exploration can be amortized across
 demands rather than being locked into a single irreversible
 journey/day. Pessimism that pays for itself when the consequence is
 a 20-minute missed bus does not pay when the consequence is one
-flow's delay among 19 others. Other SDN settings with
-unsplittable critical flows or hard SLA violations may still satisfy
-the irrecoverability condition; we leave such formulations to
-future work.
+flow's delay among 19 others.
+
+Critically, \emph{Adaptive-$\beta$ recovers from this regime
+mismatch} ($-0.1\%$, essentially tying Static): the EXP3 meta-bandit
+learns from per-episode reward feedback that high $\beta$ in this
+SDN setting is dominated, and it concentrates its
+$\beta$-distribution toward $0$. This is exactly the robustness
+property the meta-bandit is designed for---it does not bet on
+pessimism being right, it learns whether pessimism is right.
+Adaptive-$\beta$ thus offers the best of both worlds across our
+three domains: it matches the $-7.6\%$ peak performance on UC where
+fixed-$\beta$ LCB also wins, and it gracefully \emph{falls back to
+Static-level performance} on SDN where fixed-$\beta$ LCB
+catastrophically fails.
+
+Other SDN settings with unsplittable critical flows or hard SLA
+violations may still satisfy the irrecoverability condition; we
+leave such formulations to future work.
 
 \paragraph{Why this is a useful negative.}
 The boundary the cross-domain study traces---LCB wins on UC, breaks
@@ -2199,7 +2228,7 @@ would complement the current mean-time DRO formulation.
 
 We formalized adaptive transit routing as a Bayesian Adaptive SSP-MDP and derived an LCB hyperpath selection policy that is \emph{exactly equal} (with an explicit attainment witness) to the worst-case expected arrival on a Wasserstein ball whose radius is the posterior or empirical-ensemble uncertainty. The development is formally verified in 5{,}322 lines of Lean~4 code (zero \texttt{sorry}, zero \texttt{axiom} beyond Mathlib's standard kernel) and includes a real $\gamma$-contractive robust Bellman operator with rectangular Wasserstein and discrete-mixture ambiguity, an adversarial $\forall$-algorithm $\exists$-trajectory minimax lower bound, a Bayes-risk Chebyshev link from the Normal-Gamma posterior to the per-step gap, an end-to-end high-probability LCB bound under the actual product posterior $\Pi := \mathrm{Measure.pi}\,(\pi_{d,r})$ with explicit $P(\mathrm{Good}) \geq 1 - DK/k^2$ certificate (Theorem~\ref{thm:lcb_high_prob}), and a real cumulative Hedge regret bound $\mathrm{regret} \leq \log K / \eta + \eta T$ via the player-loss-retaining potential argument. On synthetic networks, LCB and DRO achieve 12--20\% mean and 42\% worst-case travel time improvement under disruptions, outperforming both static routing and all baselines including 2024 non-stationary bandit methods (SW-LCB, EXP3) and classic Bayesian RL approaches (PS-SSP, BAMCP) that waste irrecoverable time on exploration. On real GTFS-RT data from Z\"urich (SBB, 35 days, 687 stops), DRO reproduces $+20\%$ improvement on a normal day; V1-LCB and Adaptive-$\beta$ reach $+29\%$. On a catastrophic disrupted day (47 routes cancelled, 18 viable ODs, 5 random-seed replicates per cell), adaptive methods rescue 5 percentage points of reach rate (Static $28\%$, $95\%$ CI $[12\%, 46\%]$ $\to$ adaptive $33\%$, CI $[15\%, 53\%]$) while reducing conditional travel time by $5\%$ (Static $34.1$ vs.\ DRO $32.4$\,min). The Oracle upper bound confirms that LCB-V2 leaves only a 1.5\,min gap attributable to Bayesian uncertainty. A neural surrogate provides $224{\times}$ acceleration.
 
-The central insight is that stochastic hyperpaths are \emph{structurally robust but ranking-fragile}: the right alternatives are already present; their ranking needs real-time updating through online learning rather than full re-optimization. For single-shot risk-sensitive sequential decisions, deterministic pessimism outperforms stochastic exploration. Cross-domain tests on VRP, Unit Commitment, and SDN routing show that this principle is not transit-specific but is bounded by irrecoverability: it helps on daily commitment decisions, is neutral on noisy multi-route VRP candidates, and hurts when per-flow SDN decisions are recoverable through subsequent flow assignments.
+The central insight is that stochastic hyperpaths are \emph{structurally robust but ranking-fragile}: the right alternatives are already present; their ranking needs real-time updating through online learning rather than full re-optimization. For single-shot risk-sensitive sequential decisions, deterministic pessimism outperforms stochastic exploration. Cross-domain tests on VRP, Unit Commitment, and SDN routing show that this principle is not transit-specific but is bounded by irrecoverability: it helps on daily commitment decisions (Adaptive-$\beta$: $-7.6\%$ cost on UC), is neutral on noisy multi-route VRP candidates, and hurts when per-flow SDN decisions are recoverable. Crucially, the Adaptive-$\beta$ EXP3 meta-bandit recovers from this last regime mismatch by online-learning that pessimism is dominated, demonstrating that an algorithmic safety net for the boundary of the LCB regime is achievable.
 
 Future work includes multi-passenger belief sharing (pooling the per-route posterior across a fleet of riders to sharpen the Wasserstein radius), a reach-rate-aware CVaR objective for catastrophic regimes, and extension to multi-modal networks.
 

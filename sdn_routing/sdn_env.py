@@ -548,3 +548,71 @@ class FlowLCBRouter(_LinkBeliefRouter):
         self._episode += 1
         if paths:
             self._observe_path(paths[path_idx], delay)
+
+
+class AdaptiveBetaRouter(_LinkBeliefRouter):
+    """BAPR-HRO Adaptive-β: V1-LCB wrapped in an EXP3 meta-bandit over a β grid.
+
+    Per-episode (a batch of demands is one episode in our SDN setup), β
+    is sampled from the EXP3 distribution; after the episode the mean
+    delay updates β weights. Same pattern as the transit
+    `AdaptiveBetaBanditRouter` in src/adaptive_bandit_router.py.
+    """
+    def __init__(self, beta_grid: list[float] | None = None,
+                 eta: float = 0.1, seed: int = 0):
+        self.beta_grid = beta_grid or [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0]
+        self.n_betas = len(self.beta_grid)
+        self.eta = eta
+        self.rng = np.random.default_rng(seed)
+        self.link_beliefs: dict[tuple, DelayBeliefNG] = {}
+        self._log_weights = np.zeros(self.n_betas)
+        self._current_beta_idx = self.n_betas // 2
+        self._episode_delays: dict[int, list[float]] = {i: [] for i in range(self.n_betas)}
+        self._step_count = 0
+        self._batch_delays: list[float] = []
+        # Sample initial β
+        self._resample_beta()
+
+    @property
+    def beta_probs(self) -> np.ndarray:
+        w = self._log_weights - self._log_weights.max()
+        p = np.exp(w)
+        return p / p.sum()
+
+    def _resample_beta(self):
+        probs = self.beta_probs
+        self._current_beta_idx = int(self.rng.choice(self.n_betas, p=probs))
+
+    def select_path(self, paths, **kw) -> int:
+        beta = self.beta_grid[self._current_beta_idx]
+        best, best_score = 0, float("inf")
+        for i, path in enumerate(paths):
+            score = self._score_path(path, beta)
+            if score < best_score:
+                best_score = score
+                best = i
+        return best
+
+    def observe(self, path_idx, delay, paths=None, **kw):
+        if paths:
+            self._observe_path(paths[path_idx], delay)
+        self._batch_delays.append(delay)
+        self._step_count += 1
+
+    def end_batch(self, batch_size: int = 20):
+        """Call at end of each episode batch. Update β weights."""
+        if not self._batch_delays:
+            return
+        mean_delay = float(np.mean(self._batch_delays))
+        self._episode_delays[self._current_beta_idx].append(mean_delay)
+        self._batch_delays = []
+        # Update weights once each β has at least one batch
+        if min(len(v) for v in self._episode_delays.values()) >= 1:
+            probs = self.beta_probs
+            all_costs = [np.mean(c) for c in self._episode_delays.values()]
+            cost_range = max(max(all_costs) - min(all_costs), 1e-6)
+            for j in range(self.n_betas):
+                avg = np.mean(self._episode_delays[j])
+                normalized = (avg - min(all_costs)) / cost_range
+                self._log_weights[j] -= self.eta * normalized / max(probs[j], 0.01)
+        self._resample_beta()
