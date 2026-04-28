@@ -201,3 +201,57 @@ advertised claim:
 - Estimated rounds to reach READY (6/10+): 1-2 more rounds of
   focused specification audits (~3-4 hours each)
 
+
+---
+
+## Round 4 — 2026-04-28
+
+### Assessment summary
+
+- **Score: 7/10** (round 1: 3, round 2: 4, round 3: 5, **+2**)
+- **Verdict: NOT READY** but reviewer says "**major revision, not rejection**"
+- Score trajectory: 3 → 4 → 5 → **7** (biggest jump yet)
+- Reviewer: *"This is the first round where the main specification-audit complaint is substantially addressed."*
+
+### R4 audit results — all 4 targets GENUINELY FIXED
+
+| Fix | Status | Reviewer's assessment |
+|---|---|---|
+| #1 DRO iSup | **GENUINELY FIXED** | `dro_iSup_real_equality` "now contains a literal `⨆` over measures, probability-measure witnesses, W₁-ball membership, and nonnegative-support hypotheses. The proof structure is also the right one." |
+| #5 Posterior Chebyshev | **GENUINELY FIXED with caveat** | `posterior_chebyshev_route` "starts from an actual probability measure with `[IsProbabilityMeasure]` and derives a tail-probability bound from a second-moment bound using measure-theoretic Markov/Chebyshev machinery." |
+| #6 Trajectory minimax | **GENUINELY FIXED** | `exists_adversarial_trajectory_cumulativeRegret` "has the exact desired shape: `∃ traj : Trajectory T, cumulativeRegret alg T traj d = T * d`. Uses the defined `cumulativeRegret`, not the old surrogate." |
+| #7 Hedge per-round | **GENUINELY FIXED for audited theorem** | `hedge_per_round_unnormalized` "is now a real per-round potential inequality over actual Hedge weights, losses, and exponential updates. No longer merely a formula identity." |
+
+### Reviewer's diagnosis of trajectory
+
+> *"3/10: early formalization had many placeholders. 4/10: some structure appeared but several theorems encoded weaker claims. 5/10: many local lemmas were real, but the four most important claims were still not stated in the right form. **7/10 now**: the main audited claims have the right formal shape, and several are substantively proved."*
+
+> *"This round is **not** just diminishing returns. The R4 changes directly target the biggest R3 criticism and mostly succeed."*
+
+### Single biggest remaining gap
+
+> *"End-to-end integration from the probabilistic/statistical model and online algorithm to the final OR-level performance theorem."*
+
+Concrete examples:
+1. Bayes-risk pipeline: `posterior_chebyshev_route` is real, but doesn't yet fully derive joint high-prob good event → `per_step_gap` → `lcb_suboptimality`.
+2. Hedge: per-round lemma real, but cumulative log-potential/telescoping missing → no `hedgeRegret ≤ ln K/η + ηT/2`.
+3. EXP3 still conditional on `StationaryRegretCertificate`.
+4. DRO is iSup equality but only for affine/ENNReal/support-restricted setting.
+
+### OR revision decision
+
+> *"I would recommend **major revision, not rejection**. The formal contribution is now credible enough to be worth salvaging, but the paper needs to tighten its claims around what is actually proved."*
+
+### Next single most important addition
+
+> ```lean
+> posterior_good_event_implies_lcb_suboptimality_high_prob
+> ```
+> *"Construct route posterior measures, derive per-route Chebyshev bounds, prove finite-union good-event probability, obtain deterministic `h_acc`, apply `per_step_gap`, sum via `lcb_suboptimality`. That would convert the current collection of local lemmas into a recognizable OR-style theorem."*
+
+### Status
+
+- Score 3 → 4 → 5 → 7 over 4 rounds; **+2 in R4** is the biggest jump
+- Reviewer changed from NOT READY to "major revision" tier
+- 1 more focused round (end-to-end integration theorem) likely → 8/10 / READY
+
