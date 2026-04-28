@@ -61,7 +61,7 @@ def run_experiment(
             elif method == "TS":
                 router = TSRouter(instance, candidates, seed=inst_seed)
             elif method == "V1-LCB":
-                router = LCBRouterV1(instance, candidates, beta=1.5)
+                router = LCBRouterV1(instance, candidates, beta0=1.5)
             elif method == "V2-LCB":
                 router = LCBRouterV2(instance, candidates,
                                      beta_base=1.0, beta_ood=1.0, seed=inst_seed)
@@ -113,7 +113,7 @@ def run_experiment(
                 elif method == "TS":
                     router = TSRouter(instance, candidates, seed=inst_seed)
                 elif method == "V1-LCB":
-                    router = LCBRouterV1(instance, candidates, beta=1.5)
+                    router = LCBRouterV1(instance, candidates, beta0=1.5)
                 elif method == "V2-LCB":
                     router = LCBRouterV2(instance, candidates,
                                          beta_base=1.0, beta_ood=1.0, seed=inst_seed)
