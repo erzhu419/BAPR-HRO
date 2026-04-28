@@ -38,11 +38,14 @@
 
 \begin{document}
 
-\title{Distributionally Robust Stochastic Transit Routing via Wasserstein Online Learning: Theory, Formal Verification, and Experiments}
+\title{Distributionally Robust Stochastic Transit Routing via\\
+       Wasserstein Online Learning: Theory, Formal Verification,\\
+       and Experiments}
+\date{}
 
-\author{Author~One~and~Author~Two%
-\thanks{Manuscript received [date]. This work was supported in part by [funding].}%
-\thanks{The authors are with the Department of [Dept], University of [Univ], City, Country. (e-mail: author@univ.edu)}%
+\author{%
+  \normalsize Anonymous Authors\\[0.5em]
+  \normalsize\textit{Author affiliations and acknowledgments redacted for review.}
 }
 
 \maketitle
@@ -809,8 +812,9 @@ policies but does not enter the contraction factor.
 \subsection{LCB Suboptimality and Posterior Contraction}
 
 \begin{lemma}[Per-stop gap]\label{lem:perstep}
-At a single stop, let $c^*$ be the connection minimizing true expected arrival
-and $c_{\mathrm{LCB}}$ be the connection selected by the LCB policy.
+Let $\beta \geq 0$ be the LCB pessimism parameter. At a single stop,
+let $c^*$ be the connection minimizing true expected arrival and
+$c_{\mathrm{LCB}}$ be the connection selected by the LCB policy.
 If, for all $K$ candidate connections, the posterior mean error
 satisfies $|\hat\mu_k - \mu^*_k| \leq \sigma_{\max}$ and the
 posterior std satisfies $0 \leq \hat\sigma_k \leq \sigma_{\max}$,
@@ -1211,16 +1215,23 @@ Then for any $T \geq 1$:
 \[
 T\cdot\Bigl(\sqrt{c/T} + v/T\Bigr)^2 \;\leq\; 2c + 2v^2.
 \]
-Hence the squared per-episode regret is $O(1/T)$, and for any target
-$\varepsilon > 0$, the per-episode regret falls below $\varepsilon$
-for all $T \geq (c+v)/\varepsilon + 1$.
+Hence the squared per-episode regret is $O(1/T)$:
+$\bigl(\sqrt{c/T} + v/T\bigr)^2 \leq (2c + 2v^2)/T$, so for any
+target $\varepsilon > 0$ the squared per-episode regret falls below
+$\varepsilon$ for all $T \geq (2c + 2v^2)/\varepsilon$. Equivalently,
+the unsquared per-episode regret is $O(1/\sqrt{T})$ and falls below
+$\varepsilon$ for $T \gtrsim 2c/\varepsilon^2$ (when the variation
+term $v^2/T^2$ is dominated by the cumulative-regret term $c/T$).
 \end{theorem}
 
 \begin{proof}
 By the inequality $(a+b)^2 \leq 2(a^2 + b^2)$:
 $(\sqrt{c/T} + v/T)^2 \leq 2(c/T + v^2/T^2)$.
 Multiplying by $T$ and using $v^2/T \leq v^2$ (since $T \geq 1$):
-$T(\sqrt{c/T}+v/T)^2 \leq 2c + 2v^2/T \leq 2c + 2v^2$.
+$T(\sqrt{c/T}+v/T)^2 \leq 2c + 2v^2/T \leq 2c + 2v^2$. Dividing
+by $T$ recovers the squared-regret bound $(2c+2v^2)/T$. The
+threshold $T \geq (2c+2v^2)/\varepsilon$ then makes the squared
+per-episode regret at most $\varepsilon$.
 \end{proof}
 
 \begin{theorem}[Minimax regret lower bound]\label{thm:lower}
@@ -1245,14 +1256,19 @@ Summing over $C$ changepoints: $\mathrm{regret} \geq C \cdot d_{\min}$.
 \end{proof}
 
 \begin{corollary}[Tight regret sandwich]\label{cor:sandwich}
-For any online routing algorithm in a single-shot BA-SSP-MDP with
-$C \geq 1$ regime changepoints, minimum cost gap $d_{\min}>0$,
-and $D$ stops:
+In a single-shot BA-SSP-MDP with $C \geq 1$ regime changepoints,
+minimum cost gap $d_{\min}>0$, and $D$ stops, the LCB policy
+$\pi_{\mathrm{LCB}}$ achieves:
 \[
-C \cdot d_{\min}
-\;\leq\; \mathrm{regret}(\mathrm{ALG})
-\;\leq\; 2D(1+\beta)\,\sigma_{\max}.
+\underbrace{C \cdot d_{\min}}_{\substack{\text{lower bound for}\\
+\text{any online algorithm}}}
+\;\leq\; \mathrm{regret}(\pi_{\mathrm{LCB}})
+\;\leq\; \underbrace{2D(1+\beta)\,\sigma_{\max}}_{\substack{\text{upper bound for}\\
+\text{LCB only}}}.
 \]
+The lower bound applies to every online algorithm (any
+$\pi$, including LCB itself); the upper bound applies specifically
+to $\pi_{\mathrm{LCB}}$ via Theorem~\ref{thm:lcb_bound}.
 \end{corollary}
 
 \begin{proof}
@@ -1334,8 +1350,8 @@ verify the build with a single \texttt{lake build} command.
 match those at repository commit \texttt{6ddd805}; the build is
 deterministic and reproducible.}
 \label{tab:xref}
-\setlength{\tabcolsep}{4pt}
-\begin{tabular}{>{\raggedright\arraybackslash}p{4.5cm}>{\raggedright\arraybackslash}p{8cm}>{\raggedright\arraybackslash}p{4cm}}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{>{\raggedright\arraybackslash}p{4.2cm}>{\raggedright\arraybackslash}p{7.3cm}>{\raggedright\arraybackslash}p{3.7cm}}
 \toprule
 Paper result & Lean theorem & File \\
 \midrule
