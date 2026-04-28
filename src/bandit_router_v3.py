@@ -160,8 +160,11 @@ class BanditRouterV3(BanditRouterV2):
             # V3: topo_gate scales ALL penalties, not just β
             # When only 1 route: gate=0 → score=nominal+delay_adj (like static)
             # When multiple routes: gate=1 → full LCB scoring
-            std_penalty = beta * belief.ensemble_std
-            cancel_penalty = self.cancel_penalty_weight * belief.cancel_rate * gate
+            # Cold-start fix (mirrors V2): use posterior_std, not ensemble_std.
+            # See bandit_router_v2.py for rationale.
+            std_penalty = beta * belief.posterior_std
+            cancel_penalty = (self.cancel_penalty_weight * belief.cancel_rate * gate
+                              if belief.n_attempts > 0 else 0.0)
             score = label.mean_dest_arrival + delay_adj + std_penalty + cancel_penalty
             scored.append((label, c, score, beta))
 

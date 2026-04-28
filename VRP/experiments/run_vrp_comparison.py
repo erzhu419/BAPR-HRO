@@ -30,9 +30,12 @@ def run_experiment(
     n_episodes: int = 15,
     n_candidates: int = 10,
     methods: list[str] | None = None,
+    seed_offset: int = 0,
+    out_path: str | None = None,
 ):
     if methods is None:
         methods = ["Static-NN", "TS", "V1-LCB", "V2-LCB", "Adapt-β", "Hybrid", "Flow-LCB"]
+    results: dict[str, dict] = {}
 
     print(f"\n{'='*75}")
     print(f"  VRP Experiment: {n_customers} cust, {n_instances} inst, "
@@ -50,7 +53,8 @@ def run_experiment(
         t0 = _t.time()
         all_eps = {i: [] for i in range(n_episodes)}
 
-        for inst_seed in range(n_instances):
+        for _inst_idx in range(n_instances):
+            inst_seed = seed_offset * 1000 + _inst_idx
             instance = generate_instance(
                 n_customers=n_customers, seed=inst_seed, n_congestion_zones=2)
             candidates = generate_candidate_routes(
@@ -82,6 +86,9 @@ def run_experiment(
 
         ep_means = [np.mean(all_eps[i]) for i in range(n_episodes)]
         mean_all = np.mean(ep_means)
+        last5 = float(np.mean(ep_means[-5:])) if n_episodes >= 5 else float(mean_all)
+        results[method] = {'mean': float(mean_all), 'last5': last5,
+                           'ep_means': [float(x) for x in ep_means]}
 
         if static_mean is None:
             static_mean = mean_all
@@ -109,7 +116,8 @@ def run_experiment(
         print(f"  {ep+1:<2}", end="")
         for method in methods:
             ep_times = []
-            for inst_seed in range(n_instances):
+            for _inst_idx in range(n_instances):
+                inst_seed = seed_offset * 1000 + _inst_idx
                 instance = generate_instance(
                     n_customers=n_customers, seed=inst_seed, n_congestion_zones=2)
                 candidates = generate_candidate_routes(
@@ -141,10 +149,27 @@ def run_experiment(
             print(f" {np.mean(ep_times):>10.1f}", end="")
         print()
 
+    return results
+
 
 if __name__ == "__main__":
-    print("=== Quick test (15 cust, 5 inst, 10 ep, 10 routes) ===")
-    run_experiment(n_customers=15, n_instances=5, n_episodes=10, n_candidates=10)
+    import argparse, json
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--seed-offset', type=int, default=0)
+    parser.add_argument('--out', default=None)
+    parser.add_argument('--quick', action='store_true')
+    args = parser.parse_args()
 
-    print("\n\n=== Main (20 cust, 10 inst, 15 ep, 15 routes) ===")
-    run_experiment(n_customers=20, n_instances=10, n_episodes=15, n_candidates=15)
+    if args.quick:
+        run_experiment(n_customers=15, n_instances=5, n_episodes=10,
+                       n_candidates=10, seed_offset=args.seed_offset)
+        print()
+    print(f"\n=== Main (20 cust, 10 inst, 15 ep, 15 routes), seed={args.seed_offset} ===")
+    res = run_experiment(n_customers=20, n_instances=10, n_episodes=15,
+                          n_candidates=15, seed_offset=args.seed_offset,
+                          out_path=args.out)
+    if args.out and isinstance(res, dict):
+        with open(args.out, 'w') as f:
+            json.dump({'seed_offset': args.seed_offset, 'results': res},
+                      f, indent=2)
+        print(f"Saved {args.out}")

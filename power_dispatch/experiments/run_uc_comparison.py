@@ -12,9 +12,11 @@ from lcb_uc import StaticRouter, LCBRouter, LCBRouterV2, TSRouter, HybridRouter,
 def run_experiment(
     num_gen: int = 10, n_candidates: int = 6, n_days: int = 40, voll: float = 500,
     methods: list[str] | None = None,
+    seed_offset: int = 0,
 ):
     if methods is None:
         methods = ["Static", "TS", "V1-LCB", "V2-LCB", "Hybrid", "Adapt-β", "Flow-LCB"]
+    results: dict[str, dict] = {}
 
     env = _load_rl4uc_env(num_gen=num_gen, voll=voll)
     gen_max = env.max_output
@@ -80,7 +82,8 @@ def run_experiment(
         for day in range(n_days):
             idx = router.select_schedule()
             picks.append(idx)
-            result = execute_schedule(scheds[idx], num_gen=num_gen, seed=day,
+            result = execute_schedule(scheds[idx], num_gen=num_gen,
+                                      seed=seed_offset * 1000 + day,
                                       voll=voll, wind_regime=wind_regimes[day])
             router.observe(idx, result)
             day_costs.append(result.total_cost)
@@ -96,6 +99,10 @@ def run_experiment(
 
         print(f"{method:<12} {normal:>8.0f} {low_wind:>8.0f} {recovery:>8.0f}"
               f"  {mean_all:>8.0f} {delta:>+5.1f}%")
+
+        results[method] = {'mean': float(mean_all), 'delta_pct': float(delta),
+                           'normal': float(normal), 'low_wind': float(low_wind),
+                           'recovery': float(recovery)}
 
     # Show picks
     print(f"\nSchedule picks (S0=safe ... S5=aggressive):")
@@ -137,6 +144,18 @@ def run_experiment(
             print(f"{label}=S{most[0]}({most[1]}/{len(phase)}) ", end="")
         print()
 
+    return results
+
 
 if __name__ == "__main__":
-    run_experiment()
+    import argparse, json
+    p = argparse.ArgumentParser()
+    p.add_argument('--seed-offset', type=int, default=0)
+    p.add_argument('--out', default=None)
+    args = p.parse_args()
+    res = run_experiment(seed_offset=args.seed_offset)
+    if args.out and isinstance(res, dict):
+        with open(args.out, 'w') as f:
+            json.dump({'seed_offset': args.seed_offset, 'results': res},
+                      f, indent=2)
+        print(f"Saved {args.out}")

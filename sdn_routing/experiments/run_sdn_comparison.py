@@ -26,6 +26,7 @@ def run_experiment(
 ):
     if methods is None:
         methods = ["Static", "React-UCB", "TS", "V1-LCB", "V2-LCB", "Hybrid", "Flow-LCB", "Adapt-β"]
+    results: dict[str, dict] = {}
 
     print(f"\n{'='*75}")
     print(f"  SDN Routing: {topology}, {n_episodes} episodes, "
@@ -137,6 +138,10 @@ def run_experiment(
               f"  {mean_all:>8.2f} {delta:>+5.1f}% {during:>8.2f} {after:>8.2f}"
               f"  ({elapsed:.1f}s)")
 
+        results[method] = {'mean': float(mean_all), 'delta_pct': float(delta),
+                           'early': float(early), 'late': float(late),
+                           'during': float(during), 'after': float(after)}
+
     # Learning curve
     print(f"\n--- Learning curve (avg delay per episode, first 5 methods) ---")
     milestones = [1, 5, 10, 20, 30, 50, 70, 90, 100]
@@ -199,7 +204,20 @@ def run_experiment(
             print(f" {last_delay:>10.2f}", end="")
         print()
 
+    return results
+
 
 if __name__ == "__main__":
-    run_experiment(topology="nsfnet", n_episodes=100,
-                   demands_per_episode=20, n_regime_shifts=3, seed=42)
+    import argparse, json
+    p = argparse.ArgumentParser()
+    p.add_argument('--seed-offset', type=int, default=0)
+    p.add_argument('--out', default=None)
+    args = p.parse_args()
+    res = run_experiment(topology="nsfnet", n_episodes=100,
+                         demands_per_episode=20, n_regime_shifts=3,
+                         seed=42 + args.seed_offset * 1000)
+    if args.out and isinstance(res, dict):
+        with open(args.out, 'w') as f:
+            json.dump({'seed_offset': args.seed_offset, 'results': res},
+                      f, indent=2)
+        print(f"Saved {args.out}")

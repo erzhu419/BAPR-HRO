@@ -79,6 +79,10 @@ def make_router(name: str, graph, net: str, seed: int, schedule: RegimeSchedule,
         return PosteriorSamplingRouter(graph)
     elif name == "BAMCP-60":
         return BAMCPRouter(graph, n_simulations=60)
+    elif name == "BAMCP-120":
+        return BAMCPRouter(graph, n_simulations=120)
+    elif name == "BAMCP-240":
+        return BAMCPRouter(graph, n_simulations=240)
     elif name == "SW-LCB":
         return SWLCBRouter(graph, window_size=20, beta=1.5, gamma=60.0)
     elif name == "EXP3":

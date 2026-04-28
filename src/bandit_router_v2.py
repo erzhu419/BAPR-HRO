@@ -51,7 +51,10 @@ class RouteEnsembleBelief:
 
     # Prior
     prior_mean: float = 1.0
-    prior_var: float = 25.0
+    # Tightened to Swiss real-data scale: std ≈ 1.4 min vs old 5 min.
+    # Old prior_var=25 inflated cold-start std_penalty by 5×, making
+    # V2 over-pessimistic on normal days (reviewer R-final concern #2).
+    prior_var: float = 2.0
     prior_n: float = 2.0
 
     def __post_init__(self):
@@ -102,8 +105,11 @@ class RouteEnsembleBelief:
     def cancel_rate(self) -> float:
         if self.n_attempts == 0:
             return 0.0
+        # Tightened cancel prior Beta(1, 99) → 1% (was Beta(1, 9) → 10%
+        # which was 20× higher than Swiss-normal-day reality and added
+        # ~6 min spurious cancel-penalty at cold start).
         alpha = 1 + self.n_cancels
-        beta = 9 + (self.n_attempts - self.n_cancels)
+        beta = 99 + (self.n_attempts - self.n_cancels)
         return alpha / (alpha + beta)
 
     def update_delay(self, delay: float, rng: np.random.Generator):
@@ -259,9 +265,20 @@ class BanditRouterV2:
             belief = self._get_belief(c.route)
 
             delay_adj = belief.ensemble_mean - 1.0
-            # V2: use ensemble_std (model-free) instead of parametric posterior_var
-            std_penalty = beta * belief.ensemble_std
-            cancel_penalty = self.cancel_penalty_weight * belief.cancel_rate
+            # Cold-start fix: use posterior_std (epistemic ensemble disagreement
+            # ⊕ aleatoric within-estimator uncertainty / sqrt(n_obs)) rather
+            # than ensemble_std alone. ensemble_std is exactly 0 at cold start
+            # (all K bootstrap members initialized to the same prior mean), so
+            # std_penalty = beta * ensemble_std = 0 there, collapsing V2 to
+            # "argmin nominal_dest_arrival" = Static. posterior_std correctly
+            # carries the prior aleatoric uncertainty until the first
+            # observations diversify the ensemble.
+            std_penalty = beta * belief.posterior_std
+            # Only apply cancel penalty after observing this route at
+            # least once: pre-observation, the Beta prior gives a uniform
+            # cross-route penalty that biases nothing but inflates scores.
+            cancel_penalty = (self.cancel_penalty_weight * belief.cancel_rate
+                              if belief.n_attempts > 0 else 0.0)
 
             score = label.mean_dest_arrival + delay_adj + std_penalty + cancel_penalty
             scored.append((label, c, score, beta))
