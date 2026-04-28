@@ -102,10 +102,11 @@ decisions are irreversible (Adaptive-$\beta$: $-7.6\%$ cost on UC),
 breaks even on noisy candidate ranking (VRP), and \emph{honestly
 fails} for fixed-$\beta$ on recoverable per-flow SDN routing
 (V1-LCB $+4.4\%$). Critically, the Adaptive-$\beta$ EXP3 meta-bandit
-\emph{recovers from the SDN regime mismatch} ($-0.1\%$, essentially
-tying Static) by learning that high $\beta$ is dominated: it does
-not bet on pessimism being right, but learns whether pessimism is
-right. The
+\emph{recovers to Static-level performance in the SDN regime
+mismatch} ($-0.1\%$) by online-learning that high $\beta$ is
+dominated: it does not bet on pessimism being right, but learns
+whether pessimism is right. This makes Adaptive-$\beta$ a safety
+net within the LCB/DRO family against pessimism mis-specification. The
 unifying finding: stochastic hyperpaths are \emph{structurally
 robust but ranking-fragile}---the right alternatives are already
 there; only their ranking needs online updating, and the DRO-optimal
@@ -147,7 +148,7 @@ This paper makes seven contributions:
 \item \textbf{Eleven-method comparison.} Static, LCB-V1, LCB-V2 (ensemble), V3-Topo, DRO, Adaptive-$\beta$ (EXP3 meta-bandit over a 9-value $\beta$ grid), PS-SSP, BAMCP, SW-LCB~\cite{garivier2011}, EXP3~\cite{kocak2014}, and Oracle. Under disruptions, LCB-V2 reduces mean travel time by 14\% and P95 by 42\% vs.\ static; exploration-based methods (PS-SSP, BAMCP, EXP3) perform \emph{worse} than static (Section~\ref{sec:results}).
 \item \textbf{Swiss real-data validation.} We extract 687-stop Z\"urich data from 35~days of SBB GTFS-RT archives (358{,}372 delay observations, 1{,}653 routes). On a single focused OD with rich hyperpath diversity, DRO reproduces $+20\%$ improvement on a normal day; V1-LCB and Adaptive-$\beta$ achieve $+29\%$. On a catastrophic disrupted day (47 routes cancelled), adaptive methods rescue $5$ extra percentage points of reach rate ($28\%\!\to\!33\%$) and cut conditional travel time by $5\%$ among completions (Section~\ref{sec:swiss-results}).
 \item \textbf{Cross-domain validation.} The BAPR-HRO LCB principle (V1/V2/Adaptive-$\beta$) transfers to three classical OR domains
-(capacitated VRP, Unit Commitment with stochastic wind, SDN routing): LCB cleanly wins on UC (Adaptive-$\beta$: $-7.6\%$ cost vs.\ Static), breaks even on VRP, and fixed-$\beta$ \emph{loses} on SDN ($+3$--$5\%$) while Adaptive-$\beta$ \emph{recovers} ($-0.1\%$, essentially tying Static) by learning to disable pessimism in the recoverable per-flow setting. The pattern matches the irrecoverability scope condition of Theorem~\ref{thm:rho}, and the Adaptive-$\beta$ recovery on SDN demonstrates that the EXP3 meta-bandit acts as a \emph{regime-agnostic safety net} when pessimism is the wrong rule (Section~\ref{sec:cross_domain}).
+(capacitated VRP, Unit Commitment with stochastic wind, SDN routing): LCB cleanly wins on UC (Adaptive-$\beta$: $-7.6\%$ cost vs.\ Static, the column best), breaks even on VRP, and fixed-$\beta$ \emph{loses} on SDN ($+3$--$5\%$) while Adaptive-$\beta$ \emph{recovers to Static-level performance} ($-0.1\%$) by online-learning to attenuate pessimism in the recoverable per-flow setting. The pattern matches the irrecoverability scope condition of Theorem~\ref{thm:rho}, and the Adaptive-$\beta$ recovery on SDN demonstrates a \emph{safety net within the LCB/DRO family} against pessimism mis-specification (Adaptive-$\beta$ does not match SDN-specific exploration baselines such as React-UCB, but avoids the fixed-$\beta$ loss; Section~\ref{sec:cross_domain}).
 \item \textbf{Neural acceleration.} An MLP ensemble surrogate replaces Topological CSA, cutting initial computation from 712\,ms to 0.6\,ms ($224\times$) (Section~\ref{sec:neural}).
 \end{enumerate}
 
@@ -1953,14 +1954,17 @@ domain-specific environment and candidate generator are swapped.
 
 \paragraph{Setup.}
 For each domain we fix a small benchmark and compare Static
-(no learning), Thompson Sampling (TS), V1-LCB (Normal-Gamma fixed
-$\beta$), V2-LCB (bootstrap ensemble $+$ dynamic $\beta$),
-\emph{Adaptive-$\beta$} (V1-LCB wrapped in an EXP3 meta-bandit over
-a $\beta$-grid that learns the right pessimism level online, the
-same construction as Section~\ref{sec:method}'s transit
-Adaptive-$\beta$ but with the domain-specific candidate generator),
-and any domain-natural baseline (e.g.\ Hybrid UCB$\to$LCB for UC,
-React-UCB and Flow-LCB for SDN). These experiments are not full
+(no learning), Thompson Sampling (TS), V1-LCB (Normal-Gamma with
+adaptive $\beta_0/\sqrt{t}$ schedule, $\beta_0=1.5$ for VRP and
+SDN, $\beta_0=2.0$ for UC), V2-LCB (bootstrap ensemble $+$ dynamic
+$\beta$), \emph{Adaptive-$\beta$} (V1-LCB wrapped in an EXP3
+meta-bandit over a non-negative $\beta$-grid
+$\{0,0.5,1,1.5,2,2.5,3\}$ that learns the right pessimism level
+online; same construction as Section~\ref{sec:method}'s transit
+Adaptive-$\beta$ but with the domain-specific candidate generator
+and a non-negative grid since the cross-domain stress tests do not
+need to learn optimism), and any domain-natural baseline (e.g.\
+Hybrid UCB$\to$LCB for UC, React-UCB and Flow-LCB for SDN). These experiments are not full
 domain-specific benchmark competitions against specialized VRP
 solvers, MILP UC formulations, or production SDN controllers; they
 are controlled stress tests of whether the same candidate-selection
@@ -1996,7 +2000,11 @@ $20$ demands per episode and 3 stochastic congestion shifts.
 \emph{Last 5}: mean of episodes 11--15.
 \emph{Low-wind}: days 16--25 of the UC regime shift.
 \emph{Shift}: episodes overlapping any of the 3 SDN congestion
-shifts. Negative $\Delta$ favors the method.}
+shifts. Negative $\Delta$ favors the method. Bold marks the
+column best per domain. The Adaptive-$\beta$ row uses a $\beta$ grid
+$\{0,0.5,1,1.5,2,2.5,3\}$ in all three domains (non-negative
+because the cross-domain stress tests do not need to learn
+explicit optimism).}
 \label{tab:cross_domain}
 \small
 \setlength{\tabcolsep}{3pt}
@@ -2010,27 +2018,27 @@ Method   & Mean & $\Delta$ & Last 5
          & Mean & $\Delta$ & Low-wind
          & Mean & $\Delta$ & Shift \\
 \midrule
-Static    & 302 & $+0.0\%$ & 301
-          & 668{,}142 & $+0.0\%$ & 712{,}390
-          & 3.60 & $+0.0\%$ & 3.98 \\
+Static    & \textbf{302} & $\phantom{-}0.0\%$ & 301
+          & 668{,}142 & $\phantom{-}0.0\%$ & 712{,}390
+          & 3.60 & $\phantom{-}0.0\%$ & 3.98 \\
 TS        & 312 & $+3.3\%$ & 315
           & 625{,}806 & $-6.3\%$ & 734{,}872
           & 3.46 & $-4.0\%$ & 3.81 \\
 V1-LCB    & 305 & $+1.1\%$ & \textbf{300}
-          & \textbf{619{,}958} & \textbf{$-$7.2\%} & \textbf{711{,}480}
+          & 619{,}958 & $-7.2\%$ & 711{,}480
           & 3.76 & $+4.4\%$ & 4.16 \\
 V2-LCB    & 309 & $+2.2\%$ & 306
           & 638{,}659 & $-4.4\%$ & 718{,}883
           & 3.71 & $+3.0\%$ & 4.01 \\
 UC-Hybrid & --- & --- & ---
-          & 619{,}958 & $-$7.2\% & 711{,}480
+          & 619{,}958 & $-7.2\%$ & 711{,}480
           & --- & --- & --- \\
 Adapt-$\beta$ & 306 & $+1.4\%$ & \textbf{300}
           & \textbf{617{,}551} & \textbf{$-$7.6\%} & \textbf{701{,}849}
-          & 3.60 & \textbf{$-$0.1\%} & 3.99 \\
+          & 3.60 & $-0.1\%$ & 3.99 \\
 React-UCB & --- & --- & ---
           & --- & --- & ---
-          & \textbf{3.40} & $-$5.6\% & \textbf{3.71} \\
+          & \textbf{3.40} & \textbf{$-$5.6\%} & \textbf{3.71} \\
 Flow-LCB  & --- & --- & ---
           & --- & --- & ---
           & 3.77 & $+4.8\%$ & 4.14 \\
@@ -2077,8 +2085,8 @@ exploration in a single-shot setting is wasteful.
 
 \paragraph{Where fixed-$\beta$ LCB does \emph{not} fit, but Adaptive-$\beta$ recovers.}
 On SDN, the fixed-$\beta$ variants V1-LCB ($+4.4\%$),
-V2-LCB ($+3.0\%$), Flow-LCB ($+4.8\%$), and the SDN Hybrid variant
-($+4.8\%$) all \emph{underperform} Static. React-UCB ($-5.6\%$) and
+V2-LCB ($+3.0\%$), and Flow-LCB ($+4.8\%$) all \emph{underperform}
+Static. React-UCB ($-5.6\%$) and
 TS ($-4.0\%$) modestly improve. The reason is that the chosen SDN
 formulation violates the single-decision-per-episode irrecoverability
 assumption: each episode includes 20 different source--destination
@@ -2089,18 +2097,20 @@ journey/day. Pessimism that pays for itself when the consequence is
 a 20-minute missed bus does not pay when the consequence is one
 flow's delay among 19 others.
 
-Critically, \emph{Adaptive-$\beta$ recovers from this regime
-mismatch} ($-0.1\%$, essentially tying Static): the EXP3 meta-bandit
-learns from per-episode reward feedback that high $\beta$ in this
-SDN setting is dominated, and it concentrates its
-$\beta$-distribution toward $0$. This is exactly the robustness
-property the meta-bandit is designed for---it does not bet on
-pessimism being right, it learns whether pessimism is right.
-Adaptive-$\beta$ thus offers the best of both worlds across our
-three domains: it matches the $-7.6\%$ peak performance on UC where
-fixed-$\beta$ LCB also wins, and it gracefully \emph{falls back to
-Static-level performance} on SDN where fixed-$\beta$ LCB
-catastrophically fails.
+Critically, \emph{Adaptive-$\beta$ recovers to Static-level
+performance in this regime mismatch} ($-0.1\%$): the EXP3
+meta-bandit's per-episode reward feedback is consistent with
+shifting probability mass toward small $\beta$ when high $\beta$
+proves dominated, and the realized losses match what a
+near-zero-$\beta$ policy would attain. This is exactly the
+robustness property the meta-bandit is designed for---it does not
+bet on pessimism being right, it learns whether pessimism is right.
+Adaptive-$\beta$ does not make LCB competitive with React-UCB and
+TS in this recoverable per-flow setting (those remain superior),
+but it preserves Adaptive-$\beta$'s peak performance on UC
+($-7.6\%$) while avoiding the fixed-$\beta$ LCB loss on SDN: a
+safety net \emph{within the LCB/DRO family} against pessimism
+mis-specification.
 
 Other SDN settings with unsplittable critical flows or hard SLA
 violations may still satisfy the irrecoverability condition; we
@@ -2228,7 +2238,7 @@ would complement the current mean-time DRO formulation.
 
 We formalized adaptive transit routing as a Bayesian Adaptive SSP-MDP and derived an LCB hyperpath selection policy that is \emph{exactly equal} (with an explicit attainment witness) to the worst-case expected arrival on a Wasserstein ball whose radius is the posterior or empirical-ensemble uncertainty. The development is formally verified in 5{,}322 lines of Lean~4 code (zero \texttt{sorry}, zero \texttt{axiom} beyond Mathlib's standard kernel) and includes a real $\gamma$-contractive robust Bellman operator with rectangular Wasserstein and discrete-mixture ambiguity, an adversarial $\forall$-algorithm $\exists$-trajectory minimax lower bound, a Bayes-risk Chebyshev link from the Normal-Gamma posterior to the per-step gap, an end-to-end high-probability LCB bound under the actual product posterior $\Pi := \mathrm{Measure.pi}\,(\pi_{d,r})$ with explicit $P(\mathrm{Good}) \geq 1 - DK/k^2$ certificate (Theorem~\ref{thm:lcb_high_prob}), and a real cumulative Hedge regret bound $\mathrm{regret} \leq \log K / \eta + \eta T$ via the player-loss-retaining potential argument. On synthetic networks, LCB and DRO achieve 12--20\% mean and 42\% worst-case travel time improvement under disruptions, outperforming both static routing and all baselines including 2024 non-stationary bandit methods (SW-LCB, EXP3) and classic Bayesian RL approaches (PS-SSP, BAMCP) that waste irrecoverable time on exploration. On real GTFS-RT data from Z\"urich (SBB, 35 days, 687 stops), DRO reproduces $+20\%$ improvement on a normal day; V1-LCB and Adaptive-$\beta$ reach $+29\%$. On a catastrophic disrupted day (47 routes cancelled, 18 viable ODs, 5 random-seed replicates per cell), adaptive methods rescue 5 percentage points of reach rate (Static $28\%$, $95\%$ CI $[12\%, 46\%]$ $\to$ adaptive $33\%$, CI $[15\%, 53\%]$) while reducing conditional travel time by $5\%$ (Static $34.1$ vs.\ DRO $32.4$\,min). The Oracle upper bound confirms that LCB-V2 leaves only a 1.5\,min gap attributable to Bayesian uncertainty. A neural surrogate provides $224{\times}$ acceleration.
 
-The central insight is that stochastic hyperpaths are \emph{structurally robust but ranking-fragile}: the right alternatives are already present; their ranking needs real-time updating through online learning rather than full re-optimization. For single-shot risk-sensitive sequential decisions, deterministic pessimism outperforms stochastic exploration. Cross-domain tests on VRP, Unit Commitment, and SDN routing show that this principle is not transit-specific but is bounded by irrecoverability: it helps on daily commitment decisions (Adaptive-$\beta$: $-7.6\%$ cost on UC), is neutral on noisy multi-route VRP candidates, and hurts when per-flow SDN decisions are recoverable. Crucially, the Adaptive-$\beta$ EXP3 meta-bandit recovers from this last regime mismatch by online-learning that pessimism is dominated, demonstrating that an algorithmic safety net for the boundary of the LCB regime is achievable.
+The central insight is that stochastic hyperpaths are \emph{structurally robust but ranking-fragile}: the right alternatives are already present; their ranking needs real-time updating through online learning rather than full re-optimization. For single-shot risk-sensitive sequential decisions, deterministic pessimism outperforms stochastic exploration. Cross-domain tests on VRP, Unit Commitment, and SDN routing show that this principle is not transit-specific but is bounded by irrecoverability: it helps on daily commitment decisions (Adaptive-$\beta$: $-7.6\%$ cost on UC), is neutral on noisy multi-route VRP candidates, and hurts when per-flow SDN decisions are recoverable. Crucially, the Adaptive-$\beta$ EXP3 meta-bandit recovers to Static-level performance in this last regime mismatch by online-learning to attenuate pessimism, demonstrating an algorithmic safety net within the LCB/DRO family against pessimism mis-specification.
 
 Future work includes multi-passenger belief sharing (pooling the per-route posterior across a fleet of riders to sharpen the Wasserstein radius), a reach-rate-aware CVaR objective for catastrophic regimes, and extension to multi-modal networks.
 
