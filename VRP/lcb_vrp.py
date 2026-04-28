@@ -534,6 +534,98 @@ class TSRouter:
             self.bm.update(step)
 
 
+class HybridRouter:
+    """UCB warmup → LCB exploit. Adapted from power_dispatch HybridRouter.
+
+    First `switch_ep` episodes: UCB (mean - β · std). After: LCB
+    (mean + β · std). The idea: explore in early episodes where
+    beliefs are uncertain, then commit to the pessimistic choice.
+    """
+    def __init__(self, instance: VRPInstance, candidates: list[list[int]],
+                 beta0: float = 2.0, switch_ep: int = 5,
+                 explore_top: int = 4):
+        self.inst = instance
+        self.candidates = candidates
+        self.beta0 = beta0
+        self.switch_ep = switch_ep
+        self.bm = BeliefManager(instance, belief_type="ng")
+        self._episode = 0
+        scored = sorted(range(len(candidates)),
+                        key=lambda i: self.bm.score_route_static(candidates[i]))
+        self._explore_order = scored[:explore_top]
+
+    def select_route(self) -> list[int]:
+        if self._episode < len(self._explore_order):
+            return self.candidates[self._explore_order[self._episode]]
+
+        beta = self.beta0 / max(self._episode - len(self._explore_order) + 1, 1) ** 0.5
+        # UCB during warmup, LCB after
+        sign = -1.0 if self._episode < self.switch_ep else +1.0
+        best_route = self.candidates[0]
+        best_score = float("inf")
+        for route in self.candidates:
+            score = self.bm.score_route_lcb(route, sign * beta)
+            if score < best_score:
+                best_score = score
+                best_route = route
+        return best_route
+
+    def observe(self, steps: list[StepResult]):
+        self._episode += 1
+        for step in steps:
+            self.bm.update(step)
+
+
+class FlowLCBRouter:
+    """LCB with route-commitment for `commit_duration` consecutive episodes.
+
+    Adapted from sdn_routing FlowLCBRouter ("commit a path for N
+    episodes"). For VRP this is "commit a route for N episodes" —
+    once selected, the same route is used until the commit window
+    expires.
+    """
+    def __init__(self, instance: VRPInstance, candidates: list[list[int]],
+                 beta0: float = 2.0, commit_duration: int = 5,
+                 explore_top: int = 4):
+        self.inst = instance
+        self.candidates = candidates
+        self.beta0 = beta0
+        self.commit_duration = commit_duration
+        self.bm = BeliefManager(instance, belief_type="ng")
+        self._episode = 0
+        self._committed_route: list[int] | None = None
+        self._commit_until = -1
+        scored = sorted(range(len(candidates)),
+                        key=lambda i: self.bm.score_route_static(candidates[i]))
+        self._explore_order = scored[:explore_top]
+
+    def select_route(self) -> list[int]:
+        if self._episode < len(self._explore_order):
+            return self.candidates[self._explore_order[self._episode]]
+
+        # Reuse committed route if commit window still active
+        if self._committed_route is not None and self._episode < self._commit_until:
+            return self._committed_route
+
+        # Select fresh route via LCB and commit
+        beta = self.beta0 / max(self._episode - len(self._explore_order) + 1, 1) ** 0.5
+        best_route = self.candidates[0]
+        best_score = float("inf")
+        for route in self.candidates:
+            score = self.bm.score_route_lcb(route, beta)
+            if score < best_score:
+                best_score = score
+                best_route = route
+        self._committed_route = best_route
+        self._commit_until = self._episode + self.commit_duration
+        return best_route
+
+    def observe(self, steps: list[StepResult]):
+        self._episode += 1
+        for step in steps:
+            self.bm.update(step)
+
+
 class AdaptiveBetaRouter:
     """BAPR-HRO Adaptive-β: V1-LCB wrapped in an EXP3 meta-bandit over a β grid.
 

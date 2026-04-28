@@ -6,7 +6,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import numpy as np
 import time as _t
 from uc_env import generate_candidate_schedules, execute_schedule, _load_rl4uc_env
-from lcb_uc import StaticRouter, LCBRouter, LCBRouterV2, TSRouter, HybridRouter, AdaptiveBetaRouter
+from lcb_uc import StaticRouter, LCBRouter, LCBRouterV2, TSRouter, HybridRouter, AdaptiveBetaRouter, FlowLCBRouter
 
 
 def run_experiment(
@@ -14,7 +14,7 @@ def run_experiment(
     methods: list[str] | None = None,
 ):
     if methods is None:
-        methods = ["Static", "TS", "V1-LCB", "V2-LCB", "Hybrid", "Adapt-β"]
+        methods = ["Static", "TS", "V1-LCB", "V2-LCB", "Hybrid", "Adapt-β", "Flow-LCB"]
 
     env = _load_rl4uc_env(num_gen=num_gen, voll=voll)
     gen_max = env.max_output
@@ -70,6 +70,10 @@ def run_experiment(
         elif method == "Adapt-β":
             router = AdaptiveBetaRouter(n_candidates, seed=0,
                                          warm_costs=warm_costs)
+        elif method == "Flow-LCB":
+            router = FlowLCBRouter(n_candidates, beta0=2.0,
+                                    commit_duration=5,
+                                    warm_costs=warm_costs)
 
         day_costs = []
         picks = []
@@ -111,6 +115,10 @@ def run_experiment(
         elif method == "Adapt-β":
             router = AdaptiveBetaRouter(n_candidates, seed=0,
                                          warm_costs=warm_costs)
+        elif method == "Flow-LCB":
+            router = FlowLCBRouter(n_candidates, beta0=2.0,
+                                    commit_duration=5,
+                                    warm_costs=warm_costs)
         picks = []
         for day in range(n_days):
             idx = router.select_schedule()

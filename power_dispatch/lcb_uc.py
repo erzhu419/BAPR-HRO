@@ -291,6 +291,57 @@ class HybridRouter:
         self.beliefs[schedule_idx].update(result.total_cost)
 
 
+class FlowLCBRouter:
+    """LCB with schedule-commitment for `commit_duration` consecutive days.
+
+    Adapted from sdn_routing FlowLCBRouter ("commit a path for N
+    episodes"). For UC this is "commit a schedule for N days" —
+    once selected, the same schedule is used until the commit window
+    expires.
+    """
+    def __init__(self, n_schedules: int, beta0: float = 2.0,
+                 commit_duration: int = 5,
+                 warm_costs: list[float] | None = None):
+        self.n = n_schedules
+        self.beta0 = beta0
+        self.commit_duration = commit_duration
+        self.beliefs = [CostBeliefNG() for _ in range(n_schedules)]
+        if warm_costs:
+            for i, c in enumerate(warm_costs):
+                self.beliefs[i].update(c)
+        self._committed_idx: int | None = None
+        self._commit_until = -1
+        self._episode = 0
+
+    def select_schedule(self) -> int:
+        # Initial round-robin exploration
+        for i in range(self.n):
+            if self.beliefs[i].n_obs == 0:
+                return i
+
+        # Reuse commitment if window still active
+        if self._committed_idx is not None and self._episode < self._commit_until:
+            return self._committed_idx
+
+        # Fresh LCB selection + commit
+        min_obs = min(b.n_obs for b in self.beliefs)
+        beta = self.beta0 / max(min_obs, 1) ** 0.5
+        best_i, best_score = 0, float("inf")
+        for i in range(self.n):
+            b = self.beliefs[i]
+            score = b.mean + beta * b.std
+            if score < best_score:
+                best_score = score
+                best_i = i
+        self._committed_idx = best_i
+        self._commit_until = self._episode + self.commit_duration
+        return best_i
+
+    def observe(self, schedule_idx: int, result: ScheduleResult):
+        self._episode += 1
+        self.beliefs[schedule_idx].update(result.total_cost)
+
+
 class AdaptiveBetaRouter:
     """BAPR-HRO Adaptive-β: V1-LCB wrapped in an EXP3 meta-bandit over a β grid.
 

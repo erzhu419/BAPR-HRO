@@ -2001,11 +2001,17 @@ $20$ demands per episode and 3 stochastic congestion shifts.
 \emph{Last 5}: mean of episodes 11--15.
 \emph{Low-wind}: days 16--25 of the UC regime shift.
 \emph{Shift}: episodes overlapping any of the 3 SDN congestion
-shifts. Negative $\Delta$ favors the method. Bold marks the
-column best per domain. The Adaptive-$\beta$ row uses a $\beta$ grid
+shifts. Negative $\Delta$ favors the method. Bold marks the column
+best per domain. The Adaptive-$\beta$ row uses a $\beta$ grid
 $\{0,0.5,1,1.5,2,2.5,3\}$ in all three domains (non-negative
 because the cross-domain stress tests do not need to learn
-explicit optimism).}
+explicit optimism). The Hybrid (UCB-warmup $\to$ LCB switch) and
+Flow-LCB (LCB with $5$-step commitment) rows are domain-natural
+ports tested across all three domains. React-UCB$^{\dagger}$ is the
+only method that does not transfer: its mechanism (per-link
+contextual UCB reacting to congestion) has no natural analog in
+VRP (no link/congestion observation) or UC (no link concept), so
+it is reported only in SDN where it was introduced.}
 \label{tab:cross_domain}
 \small
 \setlength{\tabcolsep}{3pt}
@@ -2025,24 +2031,24 @@ Static    & \textbf{302} & $\phantom{-}0.0\%$ & 301
 TS        & 312 & $+3.3\%$ & 315
           & 625{,}806 & $-6.3\%$ & 734{,}872
           & 3.46 & $-4.0\%$ & 3.81 \\
-V1-LCB    & 305 & $+1.1\%$ & \textbf{300}
+V1-LCB    & 305 & $+1.1\%$ & 300
           & 619{,}958 & $-7.2\%$ & 711{,}480
           & 3.76 & $+4.4\%$ & 4.16 \\
 V2-LCB    & 309 & $+2.2\%$ & 306
           & 638{,}659 & $-4.4\%$ & 718{,}883
           & 3.71 & $+3.0\%$ & 4.01 \\
-UC-Hybrid & --- & --- & ---
+Hybrid    & 304 & $+0.6\%$ & \textbf{297}
           & 619{,}958 & $-7.2\%$ & 711{,}480
-          & --- & --- & --- \\
-Adapt-$\beta$ & 306 & $+1.4\%$ & \textbf{300}
+          & 3.77 & $+4.8\%$ & 4.14 \\
+Adapt-$\beta$ & 306 & $+1.4\%$ & 300
           & \textbf{617{,}551} & \textbf{$-$7.6\%} & \textbf{701{,}849}
           & 3.60 & $-0.1\%$ & 3.99 \\
-React-UCB & --- & --- & ---
+Flow-LCB  & 309 & $+2.5\%$ & \textbf{297}
+          & 631{,}150 & $-5.5\%$ & 706{,}838
+          & 3.77 & $+4.8\%$ & 4.14 \\
+React-UCB$^{\dagger}$ & --- & --- & ---
           & --- & --- & ---
           & \textbf{3.40} & \textbf{$-$5.6\%} & \textbf{3.71} \\
-Flow-LCB  & --- & --- & ---
-          & --- & --- & ---
-          & 3.77 & $+4.8\%$ & 4.14 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -2053,7 +2059,10 @@ irrecoverability scope condition.
 \paragraph{Where LCB substantially helps: Unit Commitment.}
 On UC, Adaptive-$\beta$ achieves the best result ($-7.6\%$ over
 Static), with V1-LCB and the Hybrid UCB$\to$LCB router tied at
-$-7.2\%$, TS at $-6.3\%$, and V2-LCB at $-4.4\%$. The Low-wind
+$-7.2\%$, TS at $-6.3\%$, Flow-LCB at $-5.5\%$, and V2-LCB at
+$-4.4\%$. Note that all six learning methods beat Static here, so
+the question is not "does pessimism help?" but "which form of
+pessimism captures the regime shift best?". The Low-wind
 column shows Adaptive-$\beta$'s advantage is largest precisely
 \emph{during} the regime shift ($\$702$k vs.\ V1-LCB's $\$711$k vs.\
 Static's $\$712$k vs.\ TS's $\$735$k); V2-LCB at $\$719$k actually
@@ -2070,11 +2079,13 @@ and Adaptive-$\beta$ (which span fixed-$\beta$, switch-rule, and
 EXP3-learned $\beta$) is what makes the result credible.
 
 \paragraph{Where LCB roughly breaks even: VRP.}
-On VRP, the aggregate-mean column shows V1-LCB ($+1.1\%$),
-Adaptive-$\beta$ ($+1.4\%$), and V2-LCB ($+2.2\%$) within $1$--$2\%$
-of Static---a wash---and TS at $+3.3\%$, the worst. The \emph{Last 5}
-column (mean of episodes 11--15) shows V1-LCB and Adaptive-$\beta$
-both at $300$ vs.\ Static at $301$. The 1-min gap is descriptive
+On VRP, the aggregate-mean column shows Hybrid ($+0.6\%$),
+V1-LCB ($+1.1\%$), Adaptive-$\beta$ ($+1.4\%$), V2-LCB
+($+2.2\%$), and Flow-LCB ($+2.5\%$) all within $1$--$3\%$ of
+Static---a wash---and TS at $+3.3\%$, the worst. The \emph{Last 5}
+column (mean of episodes 11--15) shows Hybrid and Flow-LCB both at
+$297$ (column best, $1.3\%$ ahead of Static $301$); V1-LCB and
+Adaptive-$\beta$ at $300$. The 1-min gap is descriptive
 rather than statistically decisive (no CIs are reported for these
 stress tests), but it is consistent with posterior calibration
 eliminating the initial LCB penalty. The wash is consistent with
@@ -2086,8 +2097,8 @@ exploration in a single-shot setting is wasteful.
 
 \paragraph{Where fixed-$\beta$ LCB does \emph{not} fit, but Adaptive-$\beta$ recovers.}
 On SDN, the fixed-$\beta$ variants V1-LCB ($+4.4\%$),
-V2-LCB ($+3.0\%$), and Flow-LCB ($+4.8\%$) all \emph{underperform}
-Static. React-UCB ($-5.6\%$) and
+V2-LCB ($+3.0\%$), Hybrid ($+4.8\%$), and Flow-LCB ($+4.8\%$) all
+\emph{underperform} Static. React-UCB ($-5.6\%$) and
 TS ($-4.0\%$) modestly improve. The reason is that the chosen SDN
 formulation violates the single-decision-per-episode irrecoverability
 assumption: each episode includes 20 different source--destination
