@@ -1,5 +1,13 @@
-\documentclass[journal]{IEEEtran}
+% Submission format: INFORMS Operations Research style.
+% (Generic single-column article + 11pt + 1" margins + double-spacing,
+%  matching INFORMS submission requirements. For the final
+%  camera-ready, replace the documentclass with `or.cls` / `informs3.cls`
+%  available from https://pubsonline.informs.org/page/opre/template.)
+\documentclass[11pt]{article}
 
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage{setspace}
+\onehalfspacing
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{algorithmic}
 \usepackage{algorithm}
@@ -14,6 +22,8 @@
 \usepackage{amsthm}
 \usepackage{array}
 \usepackage{placeins}
+\usepackage{caption}
+\captionsetup{font=small}
 
 % OR-style theorem environments
 \newtheorem{theorem}{Theorem}
@@ -34,9 +44,6 @@
 \thanks{Manuscript received [date]. This work was supported in part by [funding].}%
 \thanks{The authors are with the Department of [Dept], University of [Univ], City, Country. (e-mail: author@univ.edu)}%
 }
-
-\markboth{IEEE Transactions on Intelligent Transportation Systems}%
-{One \MakeLowercase{\textit{et al.}}: Distributionally Robust Stochastic Transit Routing}
 
 \maketitle
 
@@ -92,15 +99,13 @@ there; only their ranking needs online updating, and the DRO-optimal
 update rule is an $O(1)$ posterior-based LCB score.
 \end{abstract}
 
-\begin{IEEEkeywords}
-stochastic transit routing, Wasserstein distance, distributionally robust optimization, formal verification, Lean~4, hyperpath, online learning
-\end{IEEEkeywords}
+\noindent\textbf{Keywords.} Stochastic transit routing; Wasserstein distance; distributionally robust optimization; formal verification; Lean~4; hyperpath; online learning.
 
 %% ================================================================
 \section{Introduction}
 \label{sec:intro}
 
-\IEEEPARstart{A}{t} 8:05\,AM, a passenger at stop~$A$ plans to take bus~402 (the direct route to~$B$, expected arrival 8:42). The hyperpath---a ranked set of fallback connections at each intermediate stop~\cite{durner2024}---also recommends lines 102, 311, and~317. At 8:10, line~402 is canceled. The hyperpath says to try line~311 next, but 311 shares disrupted infrastructure with~402 and is also running 20 minutes late. Meanwhile, line~317, ranked last under normal conditions, is running on time.
+At 8:05\,AM, a passenger at stop~$A$ plans to take bus~402 (the direct route to~$B$, expected arrival 8:42). The hyperpath---a ranked set of fallback connections at each intermediate stop~\cite{durner2024}---also recommends lines 102, 311, and~317. At 8:10, line~402 is canceled. The hyperpath says to try line~311 next, but 311 shares disrupted infrastructure with~402 and is also running 20 minutes late. Meanwhile, line~317, ranked last under normal conditions, is running on time.
 
 The passenger has no way to know this from the static hyperpath. Both the rankings and the delay distributions they were computed from are stale. This is the central tension we address: \emph{stochastic hyperpaths carry the right alternatives but the wrong ranking under disruptions.}
 Figure~\ref{fig:concept_ranking} illustrates this point: the four candidate
@@ -451,8 +456,8 @@ follows immediately.
 \end{proof}
 
 Proposition~\ref{prop:ensdro} is formalized in Lean~4 as
-\texttt{ensemble\_lcb\_equals\_empirical\_dro} and
-\texttt{ensemble\_argmin\_equals\_empirical\_dro\_argmin} in
+\texttt{ensemble\_lcb\_equals\_\allowbreak empirical\_dro} and
+\texttt{ensemble\_argmin\_\allowbreak equals\_\allowbreak empirical\_\allowbreak dro\_\allowbreak argmin} in
 \texttt{BAPRHRO\_V2.lean}. Concretely, V2 inherits V1's distribution-free
 DRO guarantee \emph{without} the parametric Normal-Gamma assumption
 (Assumption~\ref{asm:prior}): the Wasserstein ball is centered on the
@@ -1287,7 +1292,7 @@ to estimate.
 
 \subsection{Verification Summary}
 
-\begin{table*}[t]
+\begin{table}[t]
 \centering
 \caption{Machine-verified results (Lean~4 + Mathlib). All 12 files compile with zero \texttt{sorry} and zero \texttt{axiom} (apart from Mathlib's standard kernel). Repository at commit \texttt{6ddd805}.}
 \label{tab:lean}
@@ -1311,7 +1316,7 @@ Architecture.lean & 201 & Component interface contracts \\
 \textbf{Total} & \textbf{5{,}322} & \textbf{0 \texttt{sorry}, 0 \texttt{axiom}} \\
 \bottomrule
 \end{tabular}
-\end{table*}
+\end{table}
 
 \subsection{Paper-to-Lean Cross-Reference}
 \label{sec:lean_xref}
@@ -1323,15 +1328,14 @@ against Mathlib commit \texttt{8f9d9cff6b} at repository commit
 \texttt{6ddd805}. We invite referees to clone the repository and
 verify the build with a single \texttt{lake build} command.
 
-\begin{table*}[!t]
+\begin{table}[!t]
 \centering
 \caption{Paper theorems and their Lean~4 counterparts. Theorem names
 match those at repository commit \texttt{6ddd805}; the build is
 deterministic and reproducible.}
 \label{tab:xref}
-\small
-\setlength{\tabcolsep}{3pt}
-\begin{tabular}{>{\raggedright\arraybackslash}p{4.3cm}>{\raggedright\arraybackslash}p{6.5cm}>{\raggedright\arraybackslash}p{4.8cm}}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{>{\raggedright\arraybackslash}p{4.5cm}>{\raggedright\arraybackslash}p{8cm}>{\raggedright\arraybackslash}p{4cm}}
 \toprule
 Paper result & Lean theorem & File \\
 \midrule
@@ -1398,7 +1402,7 @@ Ensemble = empirical DRO (Prop.~\ref{prop:ensdro}) &
   \texttt{BAPR-HRO/\allowbreak BAPRHRO\_V2.lean} \\
 \bottomrule
 \end{tabular}
-\end{table*}
+\end{table}
 
 \subsection{Reproducibility and Scope of Verification}
 \label{sec:lean_scope}
@@ -1519,7 +1523,7 @@ mean residual delay. The two stars mark the focused-OD endpoints
 (Sternen Oerlikon $\to$ Sihlpost/HB) and the diamond marks
 Paradeplatz, the common origin of the 17-OD multi-OD experiment.
 
-\begin{figure*}[t]
+\begin{figure}[t]
 \centering
 \includegraphics[width=0.78\textwidth]{fig_zurich_network.pdf}
 \caption{Z\"urich GTFS sub-network used in the BAPR-HRO real-data
@@ -1533,7 +1537,7 @@ Paradeplatz (origin of the 17-OD multi-OD experiment); the gold stars
 mark Sternen Oerlikon and Sihlpost/HB (the focused-OD endpoints in
 Section~\ref{sec:swiss-results}).}
 \label{fig:zurich_network}
-\end{figure*}
+\end{figure}
 
 \subsection{Disruption Scenarios}
 
@@ -1581,7 +1585,7 @@ Journeys simulated with patience-based boarding and cancel blacklisting. $N{=}10
 
 \subsection{Main Comparison}
 
-\begin{table*}[t]
+\begin{table}[t]
 \centering
 \caption{Travel time (minutes) across methods, networks, and scenarios. Best in \textbf{bold}. P95~=~95th percentile. SW-LCB and EXP3 are 2024 baselines; Oracle is the perfect-information upper bound.}
 \label{tab:main}
@@ -1598,7 +1602,7 @@ Net & Scen & Mean & P95 & Mean & P95 & Mean & P95 & Mean & P95 & Mean & P95 \\
 & Disr & 84.0 & 120 & \textbf{74.5} & \textbf{89} & 79.7 & 120 & 77.3 & 95 & 71.2 & 84 \\
 \bottomrule
 \end{tabular}
-\end{table*}
+\end{table}
 
 Table~\ref{tab:main} shows the primary comparison. LCB-V2 and DRO both substantially outperform Static under disruption (12--16\% mean reduction, up to 42\% P95 reduction on the large network). SW-LCB performs between Static and LCB-V2: its window forgetting helps but discards informative history during stable periods. The Oracle upper bound shows LCB-V2 achieves 98\% of the optimal gain under disruption, leaving only a small optimality gap due to the cost of initial uncertainty. Under normal conditions, all online methods perform comparably.
 
@@ -1657,8 +1661,6 @@ Each cell is $N{=}100$ journeys, $t_{\max}{=}180$\,min.
 (min) and improvement over Static. Adaptive-$\beta$ uses EXP3 meta-bandit
 over a 9-value $\beta$ grid.}
 \label{tab:synth_repro}
-\footnotesize
-\setlength{\tabcolsep}{2.5pt}
 \begin{tabular}{l rrrrr}
 \toprule
 Scenario          & Static & V1-LCB & V2-LCB & DRO & Adapt-$\beta$ \\
@@ -1773,8 +1775,6 @@ that complete before $t_{\max}{=}120$; CondMean = mean travel time among
 completions. Bracketed numbers are $95\%$ bootstrap CIs over the
 cross-OD distribution.}
 \label{tab:swiss_multi}
-\footnotesize
-\setlength{\tabcolsep}{2.5pt}
 \begin{tabular}{l rr rr}
 \toprule
 & \multicolumn{2}{c}{Normal (Oct~2)} & \multicolumn{2}{c}{Disrupted (Oct~29)} \\
@@ -1995,7 +1995,7 @@ The central insight is that stochastic hyperpaths are \emph{structurally robust 
 Future work includes multi-passenger belief sharing (pooling the per-route posterior across a fleet of riders to sharpen the Wasserstein radius), a reach-rate-aware CVaR objective for catastrophic regimes, and extension to multi-modal networks.
 
 %% ================================================================
-\appendices
+\appendix
 
 \section{Normal-Gamma Conjugate Posterior: Derivation}
 \label{app:ng}
@@ -2047,7 +2047,7 @@ radius $\varepsilon \to 0$ as observations accumulate.
 Table~\ref{tab:params} lists all hyperparameters used in the experiments
 of Section~\ref{sec:results}, with the rationale for each default value.
 
-\begin{table*}[h]
+\begin{table}[h]
 \centering
 \caption{Hyperparameter settings for all methods.}
 \label{tab:params}
@@ -2094,7 +2094,7 @@ Departure window      & ---         & $[480, 500]$ & 8:00--8:20\,AM \\
 Timeout               & $t_{\max}$  & 120\,min (small) & 180\,min (large) \\
 \bottomrule
 \end{tabular}
-\end{table*}
+\end{table}
 
 \section{Scope, Limitations, and Relationship to BAPR}
 \label{app:scope}
