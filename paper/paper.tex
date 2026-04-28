@@ -87,6 +87,19 @@ stochastic transit routing, Wasserstein distance, distributionally robust optimi
 \IEEEPARstart{A}{t} 8:05\,AM, a passenger at stop~$A$ plans to take bus~402 (the direct route to~$B$, expected arrival 8:42). The hyperpath---a ranked set of fallback connections at each intermediate stop~\cite{durner2024}---also recommends lines 102, 311, and~317. At 8:10, line~402 is canceled. The hyperpath says to try line~311 next, but 311 shares disrupted infrastructure with~402 and is also running 20 minutes late. Meanwhile, line~317, ranked last under normal conditions, is running on time.
 
 The passenger has no way to know this from the static hyperpath. Both the rankings and the delay distributions they were computed from are stale. This is the central tension we address: \emph{stochastic hyperpaths carry the right alternatives but the wrong ranking under disruptions.}
+Figure~\ref{fig:concept_ranking} illustrates this point: the four candidate
+lines remain valid contingencies after Line~402 is cancelled; only their
+ranking should change.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.95\columnwidth]{fig_concept_ranking.pdf}
+\caption{The hyperpath alternatives are unchanged when Line~402 is
+cancelled --- only their ranking should be updated. Adaptive routing
+re-ranks the existing fallbacks online; it does \emph{not} recompute
+the hyperpath structure.}
+\label{fig:concept_ranking}
+\end{figure}
 
 A natural fix is to recompute the hyperpath from updated delay estimates. We show this is counter-productive (Section~\ref{sec:recomp}): the recomputed hyperpath drops line~317 entirely, because the optimizer, now aware of the disruption on the~402 corridor, concentrates on a different corridor---losing the very fallback that would have saved 15 minutes.
 
@@ -296,6 +309,23 @@ a bus is observed missing~\cite{adams2007}.
 \section{Method: LCB Selection and DRO Equivalence}
 \label{sec:method}
 
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.99\columnwidth]{fig_concept_architecture.pdf}
+\caption{BAPR-HRO system architecture. The hyperpath structure (left)
+is computed once via Topological CSA (or its neural surrogate
+$\hat V$). At each stop, a per-route Normal-Gamma posterior is
+updated $O(1)$ per GTFS-RT observation; the LCB score on the
+candidate connections is, by Corollary~\ref{cor:lcb_dro}, exactly the
+Wasserstein-DRO worst case over a ball of radius $\varepsilon =
+\beta\hat\sigma_r + \gamma\hat p_{\mathrm{cancel},r}$. The
+equivalence is machine-verified in Lean~4 (2{,}590 lines, zero
+\texttt{sorry}).}
+\label{fig:arch}
+\end{figure}
+
+We unfold the architecture in Figure~\ref{fig:arch}.
+
 \subsection{LCB Selection Policy}
 
 At each transfer point, the passenger scores each candidate connection $c$ on route $r$:
@@ -306,6 +336,21 @@ At each transfer point, the passenger scores each candidate connection $c$ on ro
 and selects $c^* = \arg\min_c \text{score}(c)$. Here $\beta \geq 0$ controls pessimism and $\gamma > 0$ is the expected cancellation cost.
 
 \subsection{Wasserstein DRO Equivalence}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.85\columnwidth]{fig_concept_dro_ball.pdf}
+\caption{Tight LCB$=$DRO equivalence (Corollary~\ref{cor:lcb_dro}). The
+empirical (or posterior) measure $\hat P$ sits at the center of a
+$W_1$-ball of radius $\varepsilon = \beta\hat\sigma + \gamma\hat
+p_{\mathrm{cancel}}$. The translation push-forward
+$P^\star = T_\#\hat P$ with $T(\delta)=\delta+\varepsilon$ is on the
+boundary and \emph{attains} the supremum: $\mathbb{E}_{P^\star}[\mathrm{arr}]
+= \mathbb{E}_{\hat P}[\mathrm{arr}] + \varepsilon = \mathrm{LCB}$. Hence
+the $\le$ direction (weak Kantorovich-Rubinstein) and the $\ge$ direction
+(explicit witness) match, giving an \emph{equality}, not a bound.}
+\label{fig:dro_ball}
+\end{figure}
 
 The Wasserstein-1 distance between probability measures $\mu$ and $\nu$ on a metric space $(X, d)$ is
 \begin{equation}
@@ -1464,22 +1509,78 @@ pessimism is slack work; when the environment is catastrophically
 adversarial, pessimism purchases both survivability and speed among
 survivors.
 
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.99\columnwidth]{fig_reach_rate.pdf}
+\caption{Swiss multi-OD aggregate (17 viable ODs from Paradeplatz origin).
+Left: reach rate on Oct~2 normal vs.\ Oct~29 disrupted. All five adaptive
+variants lift the disrupted-day reach rate from $29\%$ to $34\%$ (relative
+$+17\%$). Right: conditional mean travel time among completions on the
+disrupted day. The ensemble-based methods (V2, V3, DRO) further cut
+conditional time from $33.2$ to $30.2$\,min ($-9\%$).}
+\label{fig:reach_rate}
+\end{figure}
+
 \paragraph{Per-OD heterogeneity.}
 The aggregate reach-rate improvement masks substantial per-OD
-variation. Adaptive methods deliver large rescues on ODs where the
-Static-preferred route is heavily disrupted
-(Laubegg: $13\%\to70\%$; Saalsporthalle: $33\%\to80\%$; Sihlcity Nord:
-$67\%\to97\%$). On ODs where the Static hyperpath happens to already
-use safe routes, adaptive methods can \emph{over-correct} and hurt
-reach rate modestly (Goldbrunnenplatz: $27\%\to 3{-}10\%$; Schmiede
-Wiedikon: $67\%\to 40{-}53\%$). This heterogeneity is intrinsic to
-the \emph{per-OD} DRO guarantee: Theorem~\ref{thm:lcb_bound} bounds
-\emph{expected} excess cost, not per-OD best-case behavior. Averaged
-across a representative OD set, the rescues dominate.
+variation, shown in Figure~\ref{fig:per_od}. Adaptive methods deliver
+large rescues on ODs where the Static-preferred route is heavily
+disrupted (Laubegg: $13\%\to70\%$; Saalsporthalle: $33\%\to80\%$;
+Sihlcity Nord: $67\%\to97\%$). On ODs where the Static hyperpath
+happens to already use safe routes, adaptive methods can
+\emph{over-correct} and hurt reach rate modestly (Goldbrunnenplatz:
+$27\%\to 3{-}10\%$; Schmiede Wiedikon: $67\%\to 40{-}53\%$). This
+heterogeneity is intrinsic to the \emph{per-OD} DRO guarantee:
+Theorem~\ref{thm:lcb_bound} bounds \emph{expected} excess cost, not
+per-OD best-case behavior. Averaged across a representative OD set,
+the rescues dominate.
 
-\subsection{Sensitivity to $\beta$}
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.95\columnwidth]{fig_per_od_heatmap.pdf}
+\caption{Per-OD reach rate on Oct~29 disrupted day (rows are ODs sorted by
+mean reach rate across methods; columns are methods). Adaptive methods
+strongly help on the lower-half ODs (Laubegg, Saalsporthalle, Sihlcity
+Nord) where the Static-preferred routes are themselves disrupted; mild
+over-correction on Goldbrunnenplatz and Schmiede Wiedikon. Many ODs
+remain unreachable in $120$\,min for all methods, reflecting structural
+disconnection of the disrupted graph rather than algorithm quality.}
+\label{fig:per_od}
+\end{figure}
 
-LCB is robust across $\beta \in [0, 2]$ (Table~\ref{tab:beta}), degrading only at $\beta{=}3$ (excess conservatism). The cancel penalty $\gamma \hat{p}_{\mathrm{cancel}}$ dominates under disruptions, making $\beta$ less critical.
+\subsection{Sensitivity and Adaptive-$\beta$ Convergence}
+\label{sec:sensitivity}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.99\columnwidth]{fig_ablation.pdf}
+\caption{Sensitivity of mean travel time on the Swiss real network to
+the three core hyperparameters. \emph{Left:} pessimism $\beta$.
+\emph{Center:} cancel penalty $\gamma$ (min). \emph{Right:} ensemble
+size $K$ (V2). The disrupted-day curve flattens at the $t_{\max}{=}120$
+cap; on the normal day the optima are $\beta\!\approx\!2$,
+$\gamma\!=\!300$, $K\!\geq\!3$, with broad plateaus around each
+optimum --- the policy is robust to substantial mis-tuning.}
+\label{fig:ablation}
+\end{figure}
+
+LCB is robust across $\beta \in [0, 2]$ (Table~\ref{tab:beta} and
+Figure~\ref{fig:ablation}, left), degrading only at $\beta{=}3$ (excess
+conservatism). The cancel penalty $\gamma \hat{p}_{\mathrm{cancel}}$
+dominates under disruptions, making $\beta$ less critical.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.99\columnwidth]{fig_adapt_beta.pdf}
+\caption{Adaptive-$\beta$ EXP3 weights over 50 sequential journeys on the
+Swiss real network. Each panel is one regime; vertical strata are the
+EXP3 weight on each $\beta\in\{-2,-1,-0.5,0,0.5,1,1.5,2,3\}$. On the
+normal day the meta-bandit converges towards small $\beta$ (low
+pessimism is best when uncertainty is small); on the disrupted day
+weight concentrates on $\beta\!\approx\!1.5$--$2$; on the alternating
+regime EXP3 retains a broader posterior, hedging across regimes.}
+\label{fig:adapt_beta}
+\end{figure}
 
 \begin{table}[t]
 \centering
