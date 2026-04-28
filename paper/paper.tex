@@ -12,6 +12,8 @@
 \usepackage{xcolor}
 \usepackage{enumitem}
 \usepackage{amsthm}
+\usepackage{array}
+\usepackage{placeins}
 
 % OR-style theorem environments
 \newtheorem{theorem}{Theorem}
@@ -1328,15 +1330,19 @@ match those at repository commit \texttt{6ddd805}; the build is
 deterministic and reproducible.}
 \label{tab:xref}
 \small
-\begin{tabular}{p{5.5cm}lp{4.8cm}}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{>{\raggedright\arraybackslash}p{4.3cm}>{\raggedright\arraybackslash}p{6.5cm}>{\raggedright\arraybackslash}p{4.8cm}}
 \toprule
 Paper result & Lean theorem & File \\
 \midrule
 $W_1$ pseudometric (Thm.~\ref{thm:w1_metric}) &
-  \texttt{wassersteinDist\_self}, \texttt{wassersteinDist\_comm}, \texttt{wassersteinDist\_triangle} &
+  \texttt{wassersteinDist\_self},\newline
+  \texttt{wassersteinDist\_comm},\newline
+  \texttt{wassersteinDist\_triangle} &
   \texttt{Wasserstein/Distance.lean} \\
 DRO upper bound (Thm.~\ref{thm:dro}) &
-  \texttt{dro\_upper\_bound}, \texttt{dro\_iSup\_real\_equality} &
+  \texttt{dro\_upper\_bound},\newline
+  \texttt{dro\_iSup\_real\_equality} &
   \texttt{Wasserstein/DRO.lean} \\
 LCB$\,=\,$DRO equivalence (Cor.~\ref{cor:lcb_dro}) &
   \texttt{lcb\_equals\_dro\_attained} &
@@ -1345,7 +1351,9 @@ Translation-witness $W_1$ bound &
   \texttt{w1\_translation\_le} &
   \texttt{Wasserstein/DRO.lean} \\
 Robust Bellman $\gamma$-contraction &
-  \texttt{robustBellmanOp\_contraction}, \texttt{mixture\_robust\_bellman\_contraction}, \texttt{wasserstein\_robust\_bellman\_lipBound} &
+  \texttt{robustBellmanOp\_contraction},\newline
+  \texttt{mixture\_robust\_bellman\_\allowbreak contraction},\newline
+  \texttt{wasserstein\_robust\_bellman\_\allowbreak lipBound} &
   \texttt{Wasserstein/DROBellman.lean} \\
 Per-stop gap (Lem.~\ref{lem:perstep}) &
   \texttt{per\_step\_gap} &
@@ -1357,35 +1365,37 @@ Posterior Chebyshev (per route) &
   \texttt{posterior\_chebyshev\_route} &
   \texttt{BAPR-HRO/BAPRHRO.lean} \\
 Joint bad-event bound (under product posterior) &
-  \texttt{posterior\_product\_joint\_bad\_event\_bound} &
+  \texttt{posterior\_product\_\allowbreak joint\_bad\_event\_\allowbreak bound} &
   \texttt{BAPR-HRO/BAPRHRO.lean} \\
 $P(\mathrm{Good}) \geq 1 - DK/k^2$ corollary &
-  \texttt{posterior\_product\_good\_event\_probability\_lower\_bound} &
+  \texttt{posterior\_product\_\allowbreak good\_event\_\allowbreak probability\_\allowbreak lower\_\allowbreak bound} &
   \texttt{BAPR-HRO/BAPRHRO.lean} \\
 High-prob LCB bound (Thm.~\ref{thm:lcb_high_prob}) &
-  \texttt{posterior\_product\_high\_prob\_lcb\_bound} &
+  \texttt{posterior\_product\_\allowbreak high\_prob\_\allowbreak lcb\_\allowbreak bound} &
   \texttt{BAPR-HRO/BAPRHRO.lean} \\
 Posterior contraction (Lem.~\ref{lem:contraction}) &
   \texttt{posterior\_variance\_bound} &
   \texttt{BAPR-HRO/BAPRHRO.lean} \\
 Optimal pessimism sign (Thm.~\ref{thm:rho}) &
-  \texttt{optimal\_beta\_sign\_matches\_rho} &
-  \texttt{BAPR-HRO/Irrecoverability.lean} \\
+  \texttt{optimal\_beta\_sign\_\allowbreak matches\_rho} &
+  \texttt{BAPR-HRO/\allowbreak Irrecoverability.lean} \\
 Hedge regret (textbook form) &
   \texttt{hedge\_regret\_real\_bound} &
   \texttt{BAPR-HRO/EXP3Regret.lean} \\
 Adaptive-$\beta$ convergence (Thm.~\ref{thm:converge}) &
-  \texttt{per\_episode\_sq\_rate}, \texttt{convergence} &
-  \texttt{BAPR-HRO/AdaptiveConvergence.lean} \\
+  \texttt{per\_episode\_sq\_rate},\newline
+  \texttt{convergence} &
+  \texttt{BAPR-HRO/\allowbreak AdaptiveConvergence.lean} \\
 Minimax regret lower bound (Thm.~\ref{thm:lower}) &
-  \texttt{exists\_adversarial\_trajectory\_cumulativeRegret} &
+  \texttt{exists\_adversarial\_\allowbreak trajectory\_\allowbreak cumulativeRegret} &
   \texttt{BAPR-HRO/LowerBound.lean} \\
 Regret sandwich (Cor.~\ref{cor:sandwich}) &
   \texttt{regret\_sandwich} &
   \texttt{BAPR-HRO/LowerBound.lean} \\
 Ensemble = empirical DRO (Prop.~\ref{prop:ensdro}) &
-  \texttt{ensemble\_lcb\_equals\_empirical\_dro}, \texttt{ensemble\_W1\_translation\_le} &
-  \texttt{BAPR-HRO/BAPRHRO\_V2.lean} \\
+  \texttt{ensemble\_lcb\_equals\_\allowbreak empirical\_dro},\newline
+  \texttt{ensemble\_W1\_\allowbreak translation\_le} &
+  \texttt{BAPR-HRO/\allowbreak BAPRHRO\_V2.lean} \\
 \bottomrule
 \end{tabular}
 \end{table*}
@@ -1647,6 +1657,8 @@ Each cell is $N{=}100$ journeys, $t_{\max}{=}180$\,min.
 (min) and improvement over Static. Adaptive-$\beta$ uses EXP3 meta-bandit
 over a 9-value $\beta$ grid.}
 \label{tab:synth_repro}
+\footnotesize
+\setlength{\tabcolsep}{2.5pt}
 \begin{tabular}{l rrrrr}
 \toprule
 Scenario          & Static & V1-LCB & V2-LCB & DRO & Adapt-$\beta$ \\
@@ -1753,7 +1765,7 @@ $150$ journeys per cell, $2{,}700$ per scenario), $t_{\max}{=}120$\,min,
 and bootstrap $95\%$ confidence intervals over the cross-OD
 distribution of per-cell statistics ($1{,}000$ resamples).
 
-\begin{table}[t]
+\begin{table}[!t]
 \centering
 \caption{Swiss real data, 18 viable ODs (Paradeplatz origin), $5$ seeds
 $\times$ $30$ journeys per cell. Reach rate = fraction of journeys
@@ -1761,6 +1773,8 @@ that complete before $t_{\max}{=}120$; CondMean = mean travel time among
 completions. Bracketed numbers are $95\%$ bootstrap CIs over the
 cross-OD distribution.}
 \label{tab:swiss_multi}
+\footnotesize
+\setlength{\tabcolsep}{2.5pt}
 \begin{tabular}{l rr rr}
 \toprule
 & \multicolumn{2}{c}{Normal (Oct~2)} & \multicolumn{2}{c}{Disrupted (Oct~29)} \\
@@ -1804,6 +1818,7 @@ disrupted day. DRO further cuts conditional time from $34.1$ to $32.4$\,min ($-5
 \label{fig:reach_rate}
 \end{figure}
 
+\FloatBarrier
 \paragraph{Per-OD heterogeneity.}
 The aggregate reach-rate improvement masks substantial per-OD
 variation, shown in Figure~\ref{fig:per_od}. Adaptive methods deliver
@@ -2183,12 +2198,12 @@ Fix $i \in I$ and $k > 0$. The posterior $\pi_i$ has finite second
 moment around $\hat\mu_i$, with $\int (x - \hat\mu_i)^2\,d\pi_i(x)
 \leq \hat\sigma_i^2$ by hypothesis. Markov's inequality applied to
 the non-negative random variable $(x - \hat\mu_i)^2$ gives
-\[
+\begin{align*}
 \pi_i\bigl(\{x : (x - \hat\mu_i)^2 \geq (k\hat\sigma_i)^2\}\bigr)
-\;\leq\; \frac{\int (x - \hat\mu_i)^2 d\pi_i}{(k\hat\sigma_i)^2}
-\;\leq\; \frac{\hat\sigma_i^2}{k^2 \hat\sigma_i^2}
-\;=\; \frac{1}{k^2}.
-\]
+  &\leq \frac{\int (x - \hat\mu_i)^2 \, d\pi_i}{(k\hat\sigma_i)^2} \\
+  &\leq \frac{\hat\sigma_i^2}{k^2 \hat\sigma_i^2}
+  \;=\; \frac{1}{k^2}.
+\end{align*}
 Since $(x - \hat\mu_i)^2 \geq (k\hat\sigma_i)^2$ iff
 $|x - \hat\mu_i| \geq k\hat\sigma_i$ (using
 $|x|^2 = x^2$ and that $k\hat\sigma_i \geq 0$),
@@ -2216,12 +2231,11 @@ $s \subseteq \mathbb{R}$, the cylinder set
 $\mathrm{eval}_i^{-1}(s) = \prod_{j \in I} A_j$ with $A_i = s$ and
 $A_j = \mathbb{R}$ for $j \neq i$, so by the product-measure
 identity (Mathlib's \texttt{Measure.pi\_pi}),
-\[
+\begin{align*}
 \Pi\bigl(\mathrm{eval}_i^{-1}(s)\bigr)
-\;=\; \pi_i(s) \cdot \!\prod_{j \in I,\, j \neq i}\! \pi_j(\mathbb{R})
-\;=\; \pi_i(s) \cdot 1
-\;=\; \pi_i(s),
-\]
+  &= \pi_i(s) \cdot \!\prod_{j \in I,\, j \neq i}\! \pi_j(\mathbb{R}) \\
+  &= \pi_i(s) \cdot 1 = \pi_i(s),
+\end{align*}
 where the second equality uses $\pi_j(\mathbb{R}) = 1$ for every
 $j$ together with $\mathtt{Finset.prod\_eq\_one}$ over
 $\mathtt{Finset.univ.erase}\,i$. In Mathlib the resulting
@@ -2239,11 +2253,11 @@ Combining \eqref{eq:per_coord_chebyshev} and
 
 \paragraph{Step 3: finite union bound.}
 Define
-\[
-B_i \;:=\; \mathrm{eval}_i^{-1}\{x : |x - \hat\mu_i| \geq k\hat\sigma_i\}
-\;\subseteq\; \mathbb{R}^I,\qquad
-\mathrm{Bad} \;:=\; \bigcup_{i \in I} B_i.
-\]
+\begin{align*}
+B_i &:= \mathrm{eval}_i^{-1}\{x : |x - \hat\mu_i| \geq k\hat\sigma_i\}
+       \subseteq \mathbb{R}^I, \\
+\mathrm{Bad} &:= \bigcup_{i \in I} B_i.
+\end{align*}
 Each $B_i$ is measurable (preimage of a closed set under the
 measurable map $\mathrm{eval}_i$), so $\mathrm{Bad}$ is measurable
 as a finite union of measurable sets. Countable subadditivity of
@@ -2268,12 +2282,13 @@ $\mathtt{IsProbabilityMeasure}$ from the auto-instance
 $\Pi(\mathbb{R}^I) = 1$. By
 \texttt{MeasureTheory.measure\_compl} applied to the measurable set
 $\mathrm{Bad}$,
-\[
-\Pi(\mathrm{Good}) \;=\; \Pi(\mathrm{Bad}^c)
-\;=\; \Pi(\mathbb{R}^I) - \Pi(\mathrm{Bad})
-\;=\; 1 - \Pi(\mathrm{Bad})
-\;\geq\; 1 - \frac{DK}{k^2}.
-\]
+\begin{align*}
+\Pi(\mathrm{Good})
+  &= \Pi(\mathrm{Bad}^c)
+  = \Pi(\mathbb{R}^I) - \Pi(\mathrm{Bad}) \\
+  &= 1 - \Pi(\mathrm{Bad})
+  \;\geq\; 1 - \frac{DK}{k^2}.
+\end{align*}
 The conversion from $\mathrm{ENNReal}$ subtraction to real-valued
 subtraction is mechanically handled by
 \texttt{ENNReal.toReal\_sub\_of\_le}, which requires the upper
@@ -2307,13 +2322,14 @@ which suffices. Summing over the $D$ stops gives the cumulative bound
 \;\leq\; D \cdot 2(1+\beta) \cdot k\sigma_{\max},
 \]
 which is \eqref{eq:cum_high_prob}. This step is mechanically
-verified by \texttt{posterior\_measures\_to\_lcb\_suboptimality\_full\_chain},
+verified by\linebreak
+\texttt{posterior\_measures\_to\_lcb\_\allowbreak suboptimality\_\allowbreak full\_\allowbreak chain},
 which invokes \texttt{per\_step\_gap} at each stop and
 \texttt{lcb\_suboptimality} to sum across stops.
 
 \paragraph{Combining.} The complete chain (Steps 1--5) is verified
-as the single Lean theorem
-\texttt{posterior\_product\_high\_prob\_lcb\_bound}, which packages
+as the single Lean theorem\linebreak
+\texttt{posterior\_product\_\allowbreak high\_prob\_\allowbreak lcb\_\allowbreak bound}, which packages
 the joint bad-event bound (Step 4) with the conditional cumulative
 bound (Step 5) into one statement matching
 Theorem~\ref{thm:lcb_high_prob}. \hfill$\square$
