@@ -60,7 +60,7 @@ required to certify the witness lies inside the ambiguity ball, and
 extended to the bootstrap-ensemble variant (V2) with the empirical
 measure replacing the parametric posterior.
 
-The development is formalized in Lean~4 (2{,}900+ lines, zero
+The development is formalized in Lean~4 (5{,}300+ lines, zero
 \texttt{sorry}, zero \texttt{axiom}). Beyond the LCB$=$DRO core,
 the formalization includes a real robust-Bellman contraction theorem
 (rectangular Wasserstein and discrete-mixture ambiguity), an
@@ -123,7 +123,7 @@ This paper makes five contributions:
 \begin{enumerate}
 \item \textbf{BA-SSP-MDP formulation.} We model single-journey transit routing as a Bayesian Adaptive SSP-MDP with conjugate posteriors, where the ``dynamics'' are delay distributions that update $O(1)$ per observation (Section~\ref{sec:model}).
 \item \textbf{LCB $=$ Wasserstein DRO.} We derive the LCB selection rule and prove it equivalent to DRO on a Wasserstein ball of radius $\varepsilon = \beta\hat\sigma + \gamma\hat{p}_{\mathrm{cancel}}$. This gives a distribution-free guarantee: the selected connection minimizes worst-case travel time against \emph{any} delay distribution within $W_1$-distance $\varepsilon$ (Section~\ref{sec:method}).
-\item \textbf{2{,}900+-line Lean~4 formalization (0 \texttt{sorry}, 0 \texttt{axiom}).} A complete machine-checked development of the Wasserstein-DRO arguments used in the paper, including: the $W_1$ pseudometric on Polish spaces (coupling, transport cost, gluing lemma, 472 lines); the weak Kantorovich--Rubinstein inequality and the explicit translation-witness with a verified $W_1$-distance bound (357 lines, no axioms); a real $\gamma$-contractive robust Bellman operator with rectangular Wasserstein and discrete-mixture ambiguity functionals (350 lines); the LCB suboptimality bound and a Bayes-risk Chebyshev link to the Normal-Gamma posterior (358 lines); an adversarial $\forall$-algorithm $\exists$-trajectory minimax lower bound (252 lines); and a deterministic Hedge bound that discharges the stationary base hypothesis used by the piecewise-EXP3 extension (270 lines). The companion paper BAPR's recently redesigned belief-state Bellman appears as the discrete-mixture instance of our same robust-Bellman framework (Section~\ref{sec:lean}).
+\item \textbf{5{,}322-line Lean~4 formalization (0 \texttt{sorry}, 0 \texttt{axiom}).} A complete machine-checked development of the Wasserstein-DRO arguments used in the paper, including: the $W_1$ pseudometric on Polish spaces (coupling, transport cost, gluing lemma, 472 lines); the weak Kantorovich--Rubinstein inequality and the explicit translation-witness with a verified $W_1$-distance bound (670 lines, no axioms); a real $\gamma$-contractive robust Bellman operator with rectangular Wasserstein and discrete-mixture ambiguity functionals (423 lines); the LCB suboptimality bound, a Bayes-risk Chebyshev link to the Normal-Gamma posterior, and an end-to-end high-probability LCB bound under the actual product posterior $\Pi$ with explicit $P(\mathrm{Good}) \geq 1 - DK/k^2$ certificate (1{,}125 lines, including the joint bad-event bound proved via Mathlib's \texttt{Measure.pi}, \texttt{measurePreserving\_eval}, and \texttt{measure\_iUnion\_fintype\_le}); an adversarial $\forall$-algorithm $\exists$-trajectory minimax lower bound (478 lines); and a real cumulative Hedge regret bound $\mathrm{regret} \leq \log K / \eta + \eta T$ via the player-loss-retaining potential argument (876 lines). The companion paper BAPR's recently redesigned belief-state Bellman appears as the discrete-mixture instance of our same robust-Bellman framework (Section~\ref{sec:lean}).
 \item \textbf{Nine-method comparison.} Static, LCB-V1, LCB-V2 (ensemble), V3-Topo, DRO, Adaptive-$\beta$ (EXP3 meta-bandit over a 9-value $\beta$ grid), PS-SSP, BAMCP, SW-LCB~\cite{garivier2011}, EXP3~\cite{kocak2014}, and Oracle. Under disruptions, LCB-V2 reduces mean travel time by 14\% and P95 by 42\% vs.\ static; exploration-based methods (PS-SSP, BAMCP, EXP3) perform \emph{worse} than static (Section~\ref{sec:results}).
 \item \textbf{Swiss real-data validation.} We extract 687-stop Z\"urich data from 35~days of SBB GTFS-RT archives (358{,}372 delay observations, 1{,}653 routes). On a single focused OD with rich hyperpath diversity, DRO reproduces $+20\%$ improvement on a normal day; V1-LCB and Adaptive-$\beta$ achieve $+29\%$. On a catastrophic disrupted day (47 routes cancelled), adaptive methods rescue $5$ extra percentage points of reach rate ($29\%\!\to\!34\%$) and cut conditional travel time by $9\%$ among completions (Section~\ref{sec:swiss-results}).
 \item \textbf{Neural acceleration.} An MLP ensemble surrogate replaces Topological CSA, cutting initial computation from 712\,ms to 0.6\,ms ($224\times$) (Section~\ref{sec:neural}).
@@ -248,7 +248,7 @@ An additional 1,522 lines verify the transit-specific theory:
 irrecoverability ($\rho > 0$ from environment structure, 488 lines),
 EXP3 regret (160 lines), $O(1/T)$ convergence (129 lines),
 and the minimax lower bound (173 lines).
-All 3,335 lines compile with zero \texttt{sorry} and zero
+All 5{,}322 lines compile with zero \texttt{sorry} and zero
 \texttt{axiom} (apart from Mathlib's standard kernel axioms).
 
 %% ================================================================
@@ -334,7 +334,7 @@ updated $O(1)$ per GTFS-RT observation; the LCB score on the
 candidate connections is, by Corollary~\ref{cor:lcb_dro}, exactly the
 Wasserstein-DRO worst case over a ball of radius $\varepsilon =
 \beta\hat\sigma_r + \gamma\hat p_{\mathrm{cancel},r}$. The
-equivalence is machine-verified in Lean~4 (3{,}335 lines, zero
+equivalence is machine-verified in Lean~4 (5{,}322 lines, zero
 \texttt{sorry}).}
 \label{fig:arch}
 \end{figure}
@@ -520,9 +520,11 @@ is the number of routes in the hyperpath (typically 4--8).
 We establish a chain of results connecting Wasserstein optimal transport
 to Bayesian adaptive routing.
 All results are machine-verified in Lean~4 with the Mathlib library
-(3,335 lines, zero unproved obligations, zero \texttt{axiom}
-beyond the Mathlib kernel); proofs are available in the
-online supplement.
+(5{,}322 lines, zero unproved obligations, zero \texttt{axiom}
+beyond the Mathlib kernel); the cross-reference in
+Table~\ref{tab:xref} maps each numbered result to its Lean theorem
+name, file, and commit hash, and the artifact statement appears in
+\S\ref{sec:lean_scope}.
 We present each result in standard mathematical form with a concise
 proof and its operational interpretation.
 
@@ -884,6 +886,67 @@ $\sigma_{\max}$ bounds the posterior error uniformly across all routes and stops
 under Assumption~\ref{asm:prior}.
 \end{proof}
 
+\begin{theorem}[High-probability LCB bound under the product posterior]\label{thm:lcb_high_prob}
+Let $\pi_{d,r}$ ($d \in \{1,\ldots,D\}$, $r \in \{1,\ldots,K\}$) denote
+the marginal posterior probability measure on the true delay mean of
+route $r$ at stop $d$, with posterior mean $\hat\mu_{d,r}$ and
+posterior std $\hat\sigma_{d,r}$ satisfying the second-moment bound
+$\int (x - \hat\mu_{d,r})^2\,d\pi_{d,r}(x) \leq \hat\sigma_{d,r}^2$
+and the uniform upper bound $\hat\sigma_{d,r} \leq \sigma_{\max}$.
+Let $\Pi := \bigotimes_{(d,r)} \pi_{d,r}$ be the joint product
+posterior on $\mathbb{R}^{DK}$. For any confidence parameter $k > 0$,
+\begin{equation}
+\Pi(\mathrm{Bad}) \;\leq\; \frac{DK}{k^2},
+\quad
+\Pi(\mathrm{Good}) \;\geq\; 1 - \frac{DK}{k^2},
+\label{eq:joint_prob}
+\end{equation}
+where
+$\mathrm{Bad} := \bigcup_{(d,r)} \{\omega : |\omega_{d,r} - \hat\mu_{d,r}| \geq k\hat\sigma_{d,r}\}$
+and $\mathrm{Good} := \mathrm{Bad}^c$. Moreover, when $k \geq 1$, on
+the event $\mathrm{Good}$ the cumulative excess cost of LCB satisfies
+\begin{equation}
+\sum_{d=1}^{D} \bigl(\mathrm{arr}(c_{\mathrm{LCB},d})
+- \mathrm{arr}(c^*_d)\bigr)
+\;\leq\; D \cdot 2(1+\beta) \cdot k \cdot \sigma_{\max}.
+\label{eq:cum_high_prob}
+\end{equation}
+\end{theorem}
+
+\begin{proof}[Proof sketch (full proof in Appendix~\ref{app:high_prob_proof})]
+For each coordinate $(d,r)$, Chebyshev's inequality applied to
+$\pi_{d,r}$ gives
+$\pi_{d,r}\bigl(\{x : |x - \hat\mu_{d,r}| \geq k\hat\sigma_{d,r}\}\bigr)
+\leq 1/k^2$. The evaluation map
+$\mathrm{eval}_{(d,r)} : \mathbb{R}^{DK} \to \mathbb{R}$ is
+measure-preserving from $\Pi$ to $\pi_{d,r}$ because each $\pi_{d,r}$
+is a probability measure---the remaining $DK - 1$ factors of the
+product collapse to $\prod 1 = 1$. Hence the per-coordinate bound
+lifts to the joint product space, and a finite union bound over the
+$DK$ coordinates yields $\Pi(\mathrm{Bad}) \leq DK/k^2$, which is
+\eqref{eq:joint_prob}.
+
+On the event $\mathrm{Good}$, the deterministic accuracy
+$|\omega_{d,r} - \hat\mu_{d,r}| < k\hat\sigma_{d,r} \leq k\sigma_{\max}$
+holds at every $(d,r)$, so Lemma~\ref{lem:perstep} applies at each
+stop with $\sigma_{\max}$ replaced by $k\sigma_{\max}$, and summing
+gives \eqref{eq:cum_high_prob}.
+\end{proof}
+
+\begin{remark}[Confidence selection]\label{rem:k_selection}
+The bound is informative when $DK/k^2 < 1$, i.e.,
+$k > \sqrt{DK}$. For typical transit settings ($D=6$, $K=5$),
+$k = 6$ gives $\Pi(\mathrm{Good}) \geq 1 - 30/36 \approx 17\%$;
+$k = 10$ gives $\Pi(\mathrm{Good}) \geq 70\%$; and the bound on
+the cumulative excess scales linearly in $k$, so tightening the
+confidence loosens the cost guarantee proportionally. Sharper tail
+bounds (Bernstein, sub-Gaussian) would replace $1/k^2$ by
+$\exp(-k^2/2)$ but require additional moment assumptions; the
+second-moment-only Chebyshev bound used here is distribution-free
+over the posterior tail and matches the regularity Mathlib's
+$\mathtt{mul\_meas\_ge\_le\_lintegral}$ provides.
+\end{remark}
+
 \begin{lemma}[Normal-Gamma posterior contraction]\label{lem:contraction}
 Under Assumption~\ref{asm:prior}, for $n\geq 1$ iid delay observations
 with true mean $\mu_{\mathrm{true}}$ and variance $\sigma_{\mathrm{true}}^2$,
@@ -1206,7 +1269,7 @@ to estimate.
 
 \begin{table*}[t]
 \centering
-\caption{Machine-verified results (Lean~4 + Mathlib). All 12 files compile with zero \texttt{sorry} and zero \texttt{axiom} (apart from Mathlib's standard kernel).}
+\caption{Machine-verified results (Lean~4 + Mathlib). All 12 files compile with zero \texttt{sorry} and zero \texttt{axiom} (apart from Mathlib's standard kernel). Repository at commit \texttt{6ddd805}.}
 \label{tab:lean}
 \begin{tabular}{lrp{9cm}}
 \toprule
@@ -1214,21 +1277,168 @@ File & Lines & Key results \\
 \midrule
 Coupling.lean & 94 & Definitions: coupling, product coupling, non-emptiness of $\Gamma(\mu,\nu)$ \\
 Distance.lean & 378 & $W_1$ non-negativity, self-distance, symmetry, triangle inequality via the gluing lemma (Thm.~\ref{thm:w1_metric}) \\
-DRO.lean & 494 & Weak Kantorovich--Rubinstein inequality (Thm.~\ref{thm:dro}); explicit translation-witness with full $W_1$-distance bound \texttt{w1\_translation\_le}; \texttt{lcb\_equals\_dro\_attained} chains both directions for the affine arrival case \\
-DROBellman.lean & 362 & Real $\gamma$-contractive robust Bellman \texttt{robustBellmanOp\_contraction} via the abstract \texttt{NonExpansiveAmbiguity} property; concrete instances for the discrete posterior-gated mixture (\texttt{mixture\_robust\_bellman\_contraction}, the redesigned BAPR's framework) and the Wasserstein ball (\texttt{wasserstein\_robust\_bellman\_lipBound}) \\
-BAPRHRO.lean & 390 & Per-stop gap (Lem.~\ref{lem:perstep}); LCB suboptimality (Thm.~\ref{thm:lcb_bound}); posterior contraction (Lem.~\ref{lem:contraction}); Bayes-risk per-step gap from the Normal-Gamma posterior via Chebyshev (\texttt{bayes\_risk\_per\_step\_gap}, round-1 review fix) \\
-BAPRHRO\_V2.lean & 414 & Ensemble LCB bound; dynamic $\beta$; ensemble $=$ empirical DRO (Prop.~\ref{prop:ensdro}) with explicit empirical measure and verified push-forward identity \texttt{ensemble\_W1\_translation\_le} \\
-Irrecoverability.lean & 218 & Optimal pessimism sign (Thm.~\ref{thm:rho}) \\
+DRO.lean & 670 & Weak Kantorovich--Rubinstein inequality (Thm.~\ref{thm:dro}); explicit translation-witness with full $W_1$-distance bound \texttt{w1\_translation\_le}; \texttt{lcb\_equals\_dro\_attained} chains both directions for the affine arrival case; real $\sup$ equality \texttt{dro\_iSup\_real\_equality} \\
+DROBellman.lean & 423 & Real $\gamma$-contractive robust Bellman \texttt{robustBellmanOp\_contraction} via the abstract \texttt{NonExpansiveAmbiguity} property; concrete instances for the discrete posterior-gated mixture (\texttt{mixture\_robust\_bellman\_contraction}, the redesigned BAPR's framework) and the Wasserstein ball (\texttt{wasserstein\_robust\_bellman\_lipBound}) \\
+BAPRHRO.lean & 1{,}125 & Per-stop gap (Lem.~\ref{lem:perstep}); LCB suboptimality (Thm.~\ref{thm:lcb_bound}); posterior contraction (Lem.~\ref{lem:contraction}); per-route Chebyshev on the actual Normal-Gamma posterior \texttt{posterior\_chebyshev\_route}; product-posterior joint bad-event bound \texttt{posterior\_product\_joint\_bad\_event\_bound} (using $\mathrm{Measure.pi}$, $\mathrm{measurePreserving\_eval}$, $\mathrm{measure\_iUnion\_fintype\_le}$); textbook $P(\mathrm{Good}) \geq 1 - DK/k^2$ corollary \texttt{posterior\_product\_good\_event\_probability\_lower\_bound}; high-probability LCB bound under product posterior \texttt{posterior\_product\_high\_prob\_lcb\_bound} (Thm.~\ref{thm:lcb_high_prob}) \\
+BAPRHRO\_V2.lean & 460 & Ensemble LCB bound; dynamic $\beta$; ensemble $=$ empirical DRO (Prop.~\ref{prop:ensdro}) with explicit empirical measure and verified push-forward identity \texttt{ensemble\_W1\_translation\_le} \\
+Irrecoverability.lean & 218 & Optimal pessimism sign (Thm.~\ref{thm:rho}) via \texttt{optimal\_beta\_sign\_matches\_rho} \\
 IrrecoverabilityBridge.lean & 270 & Environment structure $\Rightarrow$ $\rho > 0$ (bridge theorem) \\
-EXP3Regret.lean & 248 & Deterministic Hedge bound from first principles; piecewise-EXP3 extension parameterized by a \texttt{StationaryRegretCertificate} structure (no axioms) \\
+EXP3Regret.lean & 876 & Real cumulative Hedge regret bound \texttt{hedge\_regret\_real\_bound}: $\mathrm{regret} \leq \log K / \eta + \eta T$ via potential-function method (player-loss-retaining per-round bound, exponential telescoping, log-inversion); piecewise-EXP3 extension parameterized by a \texttt{StationaryRegretCertificate} structure (no axioms) \\
 AdaptiveConvergence.lean & 129 & $O(1/T^2)$ squared-regret bound (Thm.~\ref{thm:converge}) \\
-LowerBound.lean & 252 & Adversarial $\forall$-algorithm $\exists$-trajectory minimax lower bound \texttt{minimax\_regret\_lower\_bound}, proved via an explicit Yao-style adversary (\texttt{advRegimeAt} + \texttt{adversary\_forces\_total\_cost}); regret sandwich preserved \\
-Architecture.lean & 86 & Component interface contracts \\
+LowerBound.lean & 478 & Adversarial $\forall$-algorithm $\exists$-trajectory minimax lower bound \texttt{exists\_adversarial\_trajectory\_cumulativeRegret}, proved via an explicit Yao-style adversary (\texttt{advRegimeAt} + \texttt{adversary\_forces\_total\_cost}); regret sandwich preserved (\texttt{regret\_sandwich}) \\
+Architecture.lean & 201 & Component interface contracts \\
 \midrule
-\textbf{Total} & \textbf{3,335} & \textbf{0 \texttt{sorry}, 0 \texttt{axiom}} \\
+\textbf{Total} & \textbf{5{,}322} & \textbf{0 \texttt{sorry}, 0 \texttt{axiom}} \\
 \bottomrule
 \end{tabular}
 \end{table*}
+
+\subsection{Paper-to-Lean Cross-Reference}
+\label{sec:lean_xref}
+
+Table~\ref{tab:xref} provides a direct mapping from each numbered
+result in this paper to the exact Lean~4 theorem name and the file
+in which it is verified. All entries below build under Lean v4.28.0
+against Mathlib commit \texttt{8f9d9cff6b} at repository commit
+\texttt{6ddd805}. We invite referees to clone the repository and
+verify the build with a single \texttt{lake build} command.
+
+\begin{table*}[!t]
+\centering
+\caption{Paper theorems and their Lean~4 counterparts. Theorem names
+match those at repository commit \texttt{6ddd805}; the build is
+deterministic and reproducible.}
+\label{tab:xref}
+\small
+\begin{tabular}{p{5.5cm}lp{4.8cm}}
+\toprule
+Paper result & Lean theorem & File \\
+\midrule
+$W_1$ pseudometric (Thm.~\ref{thm:w1_metric}) &
+  \texttt{wassersteinDist\_self}, \texttt{wassersteinDist\_comm}, \texttt{wassersteinDist\_triangle} &
+  \texttt{Wasserstein/Distance.lean} \\
+DRO upper bound + LCB equivalence (Thm.~\ref{thm:dro}) &
+  \texttt{dro\_upper\_bound}, \texttt{lcb\_equals\_dro\_attained}, \texttt{dro\_iSup\_real\_equality} &
+  \texttt{Wasserstein/DRO.lean} \\
+Translation-witness $W_1$ bound &
+  \texttt{w1\_translation\_le} &
+  \texttt{Wasserstein/DRO.lean} \\
+Robust Bellman $\gamma$-contraction &
+  \texttt{robustBellmanOp\_contraction}, \texttt{mixture\_robust\_bellman\_contraction}, \texttt{wasserstein\_robust\_bellman\_lipBound} &
+  \texttt{Wasserstein/DROBellman.lean} \\
+Per-stop gap (Lem.~\ref{lem:perstep}) &
+  \texttt{per\_step\_gap} &
+  \texttt{BAPR-HRO/BAPRHRO.lean} \\
+LCB suboptimality bound (Thm.~\ref{thm:lcb_bound}) &
+  \texttt{lcb\_suboptimality} &
+  \texttt{BAPR-HRO/BAPRHRO.lean} \\
+Posterior Chebyshev (per route) &
+  \texttt{posterior\_chebyshev\_route} &
+  \texttt{BAPR-HRO/BAPRHRO.lean} \\
+Joint bad-event bound (under product posterior) &
+  \texttt{posterior\_product\_joint\_bad\_event\_bound} &
+  \texttt{BAPR-HRO/BAPRHRO.lean} \\
+$P(\mathrm{Good}) \geq 1 - DK/k^2$ corollary &
+  \texttt{posterior\_product\_good\_event\_probability\_lower\_bound} &
+  \texttt{BAPR-HRO/BAPRHRO.lean} \\
+High-prob LCB bound (Thm.~\ref{thm:lcb_high_prob}) &
+  \texttt{posterior\_product\_high\_prob\_lcb\_bound} &
+  \texttt{BAPR-HRO/BAPRHRO.lean} \\
+Posterior contraction (Lem.~\ref{lem:contraction}) &
+  \texttt{posterior\_variance\_bound} &
+  \texttt{BAPR-HRO/BAPRHRO.lean} \\
+Optimal pessimism sign (Thm.~\ref{thm:rho}) &
+  \texttt{optimal\_beta\_sign\_matches\_rho} &
+  \texttt{BAPR-HRO/Irrecoverability.lean} \\
+Hedge regret (textbook form) &
+  \texttt{hedge\_regret\_real\_bound} &
+  \texttt{BAPR-HRO/EXP3Regret.lean} \\
+Adaptive-$\beta$ convergence (Thm.~\ref{thm:converge}) &
+  \texttt{per\_episode\_sq\_rate}, \texttt{convergence} &
+  \texttt{BAPR-HRO/AdaptiveConvergence.lean} \\
+Minimax regret lower bound (Thm.~\ref{thm:lower}) &
+  \texttt{exists\_adversarial\_trajectory\_cumulativeRegret} &
+  \texttt{BAPR-HRO/LowerBound.lean} \\
+Regret sandwich (Cor.~\ref{cor:sandwich}) &
+  \texttt{regret\_sandwich} &
+  \texttt{BAPR-HRO/LowerBound.lean} \\
+Ensemble = empirical DRO (Prop.~\ref{prop:ensdro}) &
+  \texttt{ensemble\_lcb\_equals\_empirical\_dro}, \texttt{ensemble\_W1\_translation\_le} &
+  \texttt{BAPR-HRO/BAPRHRO\_V2.lean} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsection{Reproducibility and Scope of Verification}
+\label{sec:lean_scope}
+
+\paragraph{Artifact.}
+The complete Lean~4 development is publicly available at
+\url{https://github.com/erzhu419/proof} (commit \texttt{6ddd805}).
+The project builds with the single command \texttt{lake build} under
+Lean v4.28.0 with Mathlib commit \texttt{8f9d9cff6b}; the full build
+of $16{,}056$ jobs completes in approximately 30 minutes on a
+contemporary laptop. The development contains \emph{zero}
+\texttt{sorry} placeholders and \emph{zero} additional \texttt{axiom}
+declarations beyond Mathlib's standard kernel. An archival snapshot
+will be deposited on Zenodo for a permanent DOI upon acceptance; the
+git commit hash above pins the exact source against which every
+theorem in Tables~\ref{tab:lean}--\ref{tab:xref} was checked.
+
+\paragraph{What is formally verified.}
+The Lean development verifies all numbered theorems, lemmas,
+corollaries, and propositions stated in this paper, including:
+the $W_1$ pseudometric structure (non-negativity, symmetry, triangle
+inequality via the gluing lemma); the LCB$\,=\,$DRO equivalence
+with an explicit attainment witness in both directions; the
+translation-witness $W_1$ distance bound; the robust Bellman
+$\gamma$-contraction (both for the discrete-mixture instance used by
+BAPR's redesigned framework and for the Wasserstein ball); the
+per-stop LCB gap; the cumulative LCB suboptimality bound; the
+high-probability LCB bound under the actual product posterior
+(Theorem~\ref{thm:lcb_high_prob}); the posterior variance contraction;
+the optimal pessimism sign theorem; the cumulative Hedge regret bound
+$\mathrm{regret} \leq \log K / \eta + \eta T$; the adaptive-$\beta$
+$O(1/T^2)$ squared-regret rate; the $\forall$-algorithm
+$\exists$-trajectory minimax lower bound; and the regret sandwich.
+The cross-reference in Table~\ref{tab:xref} pinpoints each verified
+result by name, file, and commit. In particular,
+Theorem~\ref{thm:lcb_high_prob} is verified through a chain that
+constructs the actual finite product posterior measure
+$\Pi := \mathrm{Measure.pi}\,\pi$ on $\mathbb{R}^{DK}$ (using
+Mathlib's \texttt{Measure.pi}), invokes Mathlib's
+\texttt{measurePreserving\_eval} for marginal projection, applies
+\texttt{measure\_iUnion\_fintype\_le} for the finite union bound,
+and converts to real-valued probabilities via \texttt{ENNReal.toReal}.
+
+\paragraph{What is \emph{not} verified by Lean.}
+The Lean development does not verify (i) the GTFS-RT delay
+estimation pipeline; (ii) the discrete-event transit simulator and
+its per-event timing; (iii) the Topological CSA implementation used
+to construct hyperpaths; (iv) the neural-acceleration training
+pipeline or the surrogate's empirical accuracy; (v) the Swiss
+real-data analysis scripts (paired bootstrap, Cohen's $d$, episode
+filtering); or (vi) the synthesized GTFS sub-network constructions.
+These components are validated empirically through the experimental
+study of Sections~\ref{sec:setup}--\ref{sec:results}, but their
+correctness is not part of the machine-checked proof. Likewise, the
+asymptotic posterior-contraction rate and the EXP3-IX regret bound
+appear in the paper as standard classical results; their
+\emph{statements} are formalized and our compositional theorems
+depend only on the formalized statements, but the underlying classical
+identities (e.g., $\mathbb{E}[s_n^2] = (n-1)/n \cdot
+\sigma_{\mathrm{true}}^2$) are imported from Mathlib rather than
+re-derived from first principles.
+
+\paragraph{What machine-checking buys.}
+The Lean artifact rules out arithmetic and algebraic mistakes,
+unstated hypotheses, vacuous quantifier scopes, and silently
+patched edge cases that are typical failure modes of long DRO and
+online-learning derivations. It cannot rule out modeling errors at
+the BA-SSP-MDP boundary; for those, the paper's prose proofs and the
+empirical validation are the relevant evidence. We treat Lean as a
+\emph{certificate} that the chain from assumptions to numbered
+conclusions is sound, not as a substitute for the prose exposition.
 
 %% ================================================================
 \section{Why Hyperpath Recomputation Fails}
@@ -1737,7 +1947,7 @@ would complement the current mean-time DRO formulation.
 \section{Conclusion}
 \label{sec:conclusion}
 
-We formalized adaptive transit routing as a Bayesian Adaptive SSP-MDP and derived an LCB hyperpath selection policy that is \emph{exactly equal} (with an explicit attainment witness) to the worst-case expected arrival on a Wasserstein ball whose radius is the posterior or empirical-ensemble uncertainty. The development is formally verified in 3{,}335 lines of Lean~4 code (zero \texttt{sorry}, zero \texttt{axiom} beyond Mathlib's standard kernel) and includes a real $\gamma$-contractive robust Bellman operator with rectangular Wasserstein and discrete-mixture ambiguity, an adversarial $\forall$-algorithm $\exists$-trajectory minimax lower bound, a Bayes-risk Chebyshev link from the Normal-Gamma posterior to the per-step gap, and a deterministic Hedge bound that discharges the stationary base hypothesis used in the piecewise-EXP3 extension. On synthetic networks, LCB and DRO achieve 12--20\% mean and 42\% worst-case travel time improvement under disruptions, outperforming both static routing and all baselines including 2024 non-stationary bandit methods (SW-LCB, EXP3) and classic Bayesian RL approaches (PS-SSP, BAMCP) that waste irrecoverable time on exploration. On real GTFS-RT data from Z\"urich (SBB, 35 days, 687 stops), DRO reproduces $+20\%$ improvement on a normal day; V1-LCB and Adaptive-$\beta$ reach $+29\%$. On a catastrophic disrupted day (47 routes cancelled, 18 viable ODs, 5 random-seed replicates per cell), adaptive methods rescue 5 percentage points of reach rate (Static $28\%$, $95\%$ CI $[12\%, 46\%]$ $\to$ adaptive $33\%$, CI $[15\%, 53\%]$) while reducing conditional travel time by $5\%$ (Static $34.1$ vs.\ DRO $32.4$\,min). The Oracle upper bound confirms that LCB-V2 leaves only a 1.5\,min gap attributable to Bayesian uncertainty. A neural surrogate provides $224{\times}$ acceleration.
+We formalized adaptive transit routing as a Bayesian Adaptive SSP-MDP and derived an LCB hyperpath selection policy that is \emph{exactly equal} (with an explicit attainment witness) to the worst-case expected arrival on a Wasserstein ball whose radius is the posterior or empirical-ensemble uncertainty. The development is formally verified in 5{,}322 lines of Lean~4 code (zero \texttt{sorry}, zero \texttt{axiom} beyond Mathlib's standard kernel) and includes a real $\gamma$-contractive robust Bellman operator with rectangular Wasserstein and discrete-mixture ambiguity, an adversarial $\forall$-algorithm $\exists$-trajectory minimax lower bound, a Bayes-risk Chebyshev link from the Normal-Gamma posterior to the per-step gap, an end-to-end high-probability LCB bound under the actual product posterior $\Pi := \mathrm{Measure.pi}\,(\pi_{d,r})$ with explicit $P(\mathrm{Good}) \geq 1 - DK/k^2$ certificate (Theorem~\ref{thm:lcb_high_prob}), and a real cumulative Hedge regret bound $\mathrm{regret} \leq \log K / \eta + \eta T$ via the player-loss-retaining potential argument. On synthetic networks, LCB and DRO achieve 12--20\% mean and 42\% worst-case travel time improvement under disruptions, outperforming both static routing and all baselines including 2024 non-stationary bandit methods (SW-LCB, EXP3) and classic Bayesian RL approaches (PS-SSP, BAMCP) that waste irrecoverable time on exploration. On real GTFS-RT data from Z\"urich (SBB, 35 days, 687 stops), DRO reproduces $+20\%$ improvement on a normal day; V1-LCB and Adaptive-$\beta$ reach $+29\%$. On a catastrophic disrupted day (47 routes cancelled, 18 viable ODs, 5 random-seed replicates per cell), adaptive methods rescue 5 percentage points of reach rate (Static $28\%$, $95\%$ CI $[12\%, 46\%]$ $\to$ adaptive $33\%$, CI $[15\%, 53\%]$) while reducing conditional travel time by $5\%$ (Static $34.1$ vs.\ DRO $32.4$\,min). The Oracle upper bound confirms that LCB-V2 leaves only a 1.5\,min gap attributable to Bayesian uncertainty. A neural surrogate provides $224{\times}$ acceleration.
 
 The central insight is that stochastic hyperpaths are \emph{structurally robust but ranking-fragile}: the right alternatives are already present; their ranking needs real-time updating through online learning rather than full re-optimization. For single-shot risk-sensitive sequential decisions, deterministic pessimism outperforms stochastic exploration.
 
@@ -1926,6 +2136,157 @@ question in each setting (Section~\ref{sec:recomp} and
 Remark~\ref{rem:no-bocd} answered ``no'' for transit; BAPR's locomotion
 results answer ``yes'' for sim-to-real with abrupt physical regime
 shifts).
+
+\section{Full Proof of the High-Probability LCB Bound under the Product Posterior}
+\label{app:high_prob_proof}
+
+We give the full prose proof of Theorem~\ref{thm:lcb_high_prob}.
+Throughout, we write $I := \{1,\ldots,D\} \times \{1,\ldots,K\}$ for
+the finite index set; we use the integer cardinality $|I| = DK$
+explicitly. For $i = (d,r) \in I$, $\pi_i$ denotes the $i$-th
+posterior probability measure on $\mathbb{R}$, $\hat\mu_i$ its
+posterior mean, and $\hat\sigma_i$ its posterior std. Write
+$\Pi := \bigotimes_{i \in I} \pi_i$ for the joint product
+posterior on $\mathbb{R}^I$, equivalently
+$\Pi = \mathrm{Measure.pi}\,(\pi_i)_{i \in I}$ in Mathlib notation,
+and $\mathrm{eval}_i : \mathbb{R}^I \to \mathbb{R}$ for the $i$-th
+projection $\omega \mapsto \omega_i$.
+
+\paragraph{Step 1: per-coordinate Chebyshev.}
+Fix $i \in I$ and $k > 0$. The posterior $\pi_i$ has finite second
+moment around $\hat\mu_i$, with $\int (x - \hat\mu_i)^2\,d\pi_i(x)
+\leq \hat\sigma_i^2$ by hypothesis. Markov's inequality applied to
+the non-negative random variable $(x - \hat\mu_i)^2$ gives
+\[
+\pi_i\bigl(\{x : (x - \hat\mu_i)^2 \geq (k\hat\sigma_i)^2\}\bigr)
+\;\leq\; \frac{\int (x - \hat\mu_i)^2 d\pi_i}{(k\hat\sigma_i)^2}
+\;\leq\; \frac{\hat\sigma_i^2}{k^2 \hat\sigma_i^2}
+\;=\; \frac{1}{k^2}.
+\]
+Since $(x - \hat\mu_i)^2 \geq (k\hat\sigma_i)^2$ iff
+$|x - \hat\mu_i| \geq k\hat\sigma_i$ (using
+$|x|^2 = x^2$ and that $k\hat\sigma_i \geq 0$),
+\begin{equation}
+\pi_i\bigl(\{x : |x - \hat\mu_i| \geq k\hat\sigma_i\}\bigr)
+\;\leq\; 1/k^2,\qquad \forall i \in I.
+\label{eq:per_coord_chebyshev}
+\end{equation}
+This step is mechanically verified as
+\texttt{posterior\_chebyshev\_route}, which invokes Mathlib's
+\texttt{MeasureTheory.mul\_meas\_ge\_le\_lintegral} for the
+underlying Markov inequality on the $\mathrm{ENNReal}$-valued
+integral, then converts to the real-valued probability via
+\texttt{ENNReal.toReal}.
+
+\paragraph{Step 2: marginal projection of $\Pi$.}
+Each $\pi_i$ is a probability measure, so the i-th projection
+$\mathrm{eval}_i$ is measure-preserving from $\Pi$ to $\pi_i$:
+\begin{equation}
+(\mathrm{eval}_i)_*\Pi \;=\; \pi_i.
+\label{eq:eval_meas_preserving}
+\end{equation}
+This is a standard finite-product fact: for a measurable
+$s \subseteq \mathbb{R}$,
+\[
+\Pi\bigl(\mathrm{eval}_i^{-1}(s)\bigr)
+\;=\; \pi_i(s) \cdot \prod_{j \in I, j \neq i} \pi_j(\mathbb{R})
+\;=\; \pi_i(s) \cdot \prod_{j \neq i} 1
+\;=\; \pi_i(s),
+\]
+where the second equality uses that each $\pi_j$ is a probability
+measure ($\pi_j(\mathbb{R}) = 1$). In Mathlib this is the lemma
+\texttt{MeasureTheory.measurePreserving\_eval} applied to
+\texttt{Measure.pi}; the ``other-factors-collapse-to-one'' step is
+$\mathtt{Finset.prod\_eq\_one}$ over $\mathtt{Finset.univ.erase}\,i$.
+
+Combining \eqref{eq:per_coord_chebyshev} and
+\eqref{eq:eval_meas_preserving}, for every $i \in I$,
+\begin{equation}
+\Pi\bigl(\mathrm{eval}_i^{-1}\{|x - \hat\mu_i| \geq k\hat\sigma_i\}\bigr)
+\;\leq\; \frac{1}{k^2}.
+\label{eq:per_coord_under_pi}
+\end{equation}
+
+\paragraph{Step 3: finite union bound.}
+Define
+\[
+B_i \;:=\; \mathrm{eval}_i^{-1}\{x : |x - \hat\mu_i| \geq k\hat\sigma_i\}
+\;\subseteq\; \mathbb{R}^I,\qquad
+\mathrm{Bad} \;:=\; \bigcup_{i \in I} B_i.
+\]
+Each $B_i$ is measurable (preimage of a closed set under the
+measurable map $\mathrm{eval}_i$), so $\mathrm{Bad}$ is measurable
+as a finite union of measurable sets. Countable subadditivity of
+$\Pi$ specialized to a finite index set gives
+\begin{equation}
+\Pi(\mathrm{Bad}) \;\leq\; \sum_{i \in I} \Pi(B_i)
+\;\leq\; \sum_{i \in I} \frac{1}{k^2}
+\;=\; \frac{|I|}{k^2}
+\;=\; \frac{DK}{k^2}.
+\label{eq:union_bound}
+\end{equation}
+The first inequality is Mathlib's
+\texttt{MeasureTheory.measure\_iUnion\_fintype\_le} (a finite-index
+specialization of the general countable subadditivity result on
+outer measures); the second uses \eqref{eq:per_coord_under_pi}; the
+last uses $|I| = DK$.
+
+\paragraph{Step 4: complement and probability lower bound.}
+Since $\Pi$ is a probability measure ($\Pi$ inherits
+$\mathtt{IsProbabilityMeasure}$ from the auto-instance
+\texttt{Measure.pi.instIsProbabilityMeasure} when each $\pi_i$ is),
+$\Pi(\mathbb{R}^I) = 1$. By
+\texttt{MeasureTheory.measure\_compl} applied to the measurable set
+$\mathrm{Bad}$,
+\[
+\Pi(\mathrm{Good}) \;=\; \Pi(\mathrm{Bad}^c)
+\;=\; \Pi(\mathbb{R}^I) - \Pi(\mathrm{Bad})
+\;=\; 1 - \Pi(\mathrm{Bad})
+\;\geq\; 1 - \frac{DK}{k^2}.
+\]
+The conversion from $\mathrm{ENNReal}$ subtraction to real-valued
+subtraction is mechanically handled by
+\texttt{ENNReal.toReal\_sub\_of\_le}, which requires the upper
+bound $\Pi(\mathrm{Bad}) \leq 1$ (immediate for a probability
+measure). This proves the first inclusion in \eqref{eq:joint_prob}.
+
+\paragraph{Step 5: conditional cumulative bound.}
+Now suppose $\omega \in \mathrm{Good}$, i.e., $|\omega_i - \hat\mu_i|
+< k\hat\sigma_i$ for all $i \in I$. Identifying $\omega_{(d,r)}$
+with the realized true delay mean of route $r$ at stop $d$, we have
+$|\omega_{(d,r)} - \hat\mu_{(d,r)}| < k\hat\sigma_{(d,r)}
+\leq k\sigma_{\max}$ at every $(d,r)$.
+
+Fix $d \in \{1,\ldots,D\}$. Lemma~\ref{lem:perstep} applies at stop
+$d$ with the per-arm calibration parameter $k\sigma_{\max}$: the LCB
+selection inequality and the accuracy bound
+$|\hat\mu_{(d,r)} - \omega_{(d,r)}| \leq k\sigma_{\max}$ yield, by
+the same argument used in the proof of Lemma~\ref{lem:perstep},
+\[
+\mathrm{arr}(c_{\mathrm{LCB},d}) - \mathrm{arr}(c^*_d)
+\;\leq\; 2(1 + \beta) \cdot k\sigma_{\max}.
+\]
+The hypothesis $\hat\sigma_{(d,r)} \leq \sigma_{\max}$ is needed
+because Lemma~\ref{lem:perstep} requires the posterior std to be
+bounded by the same scale on which the accuracy bound holds; with
+$k \geq 1$, $\hat\sigma_{(d,r)} \leq \sigma_{\max} \leq k\sigma_{\max}$,
+which suffices. Summing over the $D$ stops gives the cumulative bound
+\[
+\sum_{d=1}^{D} \bigl(\mathrm{arr}(c_{\mathrm{LCB},d})
+- \mathrm{arr}(c^*_d)\bigr)
+\;\leq\; D \cdot 2(1+\beta) \cdot k\sigma_{\max},
+\]
+which is \eqref{eq:cum_high_prob}. This step is mechanically
+verified by \texttt{posterior\_measures\_to\_lcb\_suboptimality\_full\_chain},
+which invokes \texttt{per\_step\_gap} at each stop and
+\texttt{lcb\_suboptimality} to sum across stops.
+
+\paragraph{Combining.} The complete chain (Steps 1--5) is verified
+as the single Lean theorem
+\texttt{posterior\_product\_high\_prob\_lcb\_bound}, which packages
+the joint bad-event bound (Step 4) with the conditional cumulative
+bound (Step 5) into one statement matching
+Theorem~\ref{thm:lcb_high_prob}. \hfill$\square$
 
 \bibliographystyle{IEEEtran}
 \begin{thebibliography}{99}
