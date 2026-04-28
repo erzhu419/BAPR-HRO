@@ -119,13 +119,13 @@ A natural fix is to recompute the hyperpath from updated delay estimates. We sho
 
 Our approach is different: keep the hyperpath, re-rank its alternatives online. At each stop, a conjugate Normal-Gamma posterior tracks each route's delay distribution from GTFS-RT observations. A Lower Confidence Bound (LCB) policy scores each connection pessimistically---penalizing posterior uncertainty and estimated cancellation probability---and boards the one with the lowest pessimistic arrival time. We prove that this policy solves a Wasserstein DRO problem: the LCB score \emph{equals} the worst-case expected arrival over a $W_1$-ball whose radius is the posterior uncertainty. The equivalence is machine-verified in Lean~4~\cite{lean4}.
 
-This paper makes five contributions:
+This paper makes six contributions:
 \begin{enumerate}
 \item \textbf{BA-SSP-MDP formulation.} We model single-journey transit routing as a Bayesian Adaptive SSP-MDP with conjugate posteriors, where the ``dynamics'' are delay distributions that update $O(1)$ per observation (Section~\ref{sec:model}).
 \item \textbf{LCB $=$ Wasserstein DRO.} We derive the LCB selection rule and prove it equivalent to DRO on a Wasserstein ball of radius $\varepsilon = \beta\hat\sigma + \gamma\hat{p}_{\mathrm{cancel}}$. This gives a distribution-free guarantee: the selected connection minimizes worst-case travel time against \emph{any} delay distribution within $W_1$-distance $\varepsilon$ (Section~\ref{sec:method}).
 \item \textbf{5{,}322-line Lean~4 formalization (0 \texttt{sorry}, 0 \texttt{axiom}).} A complete machine-checked development of the Wasserstein-DRO arguments used in the paper, including: the $W_1$ pseudometric on Polish spaces (coupling, transport cost, gluing lemma, 472 lines); the weak Kantorovich--Rubinstein inequality and the explicit translation-witness with a verified $W_1$-distance bound (670 lines, no axioms); a real $\gamma$-contractive robust Bellman operator with rectangular Wasserstein and discrete-mixture ambiguity functionals (423 lines); the LCB suboptimality bound, a Bayes-risk Chebyshev link to the Normal-Gamma posterior, and an end-to-end high-probability LCB bound under the actual product posterior $\Pi$ with explicit $P(\mathrm{Good}) \geq 1 - DK/k^2$ certificate (1{,}125 lines, including the joint bad-event bound proved via Mathlib's \texttt{Measure.pi}, \texttt{measurePreserving\_eval}, and \texttt{measure\_iUnion\_fintype\_le}); an adversarial $\forall$-algorithm $\exists$-trajectory minimax lower bound (478 lines); and a real cumulative Hedge regret bound $\mathrm{regret} \leq \log K / \eta + \eta T$ via the player-loss-retaining potential argument (876 lines). The companion paper BAPR's recently redesigned belief-state Bellman appears as the discrete-mixture instance of our same robust-Bellman framework (Section~\ref{sec:lean}).
-\item \textbf{Nine-method comparison.} Static, LCB-V1, LCB-V2 (ensemble), V3-Topo, DRO, Adaptive-$\beta$ (EXP3 meta-bandit over a 9-value $\beta$ grid), PS-SSP, BAMCP, SW-LCB~\cite{garivier2011}, EXP3~\cite{kocak2014}, and Oracle. Under disruptions, LCB-V2 reduces mean travel time by 14\% and P95 by 42\% vs.\ static; exploration-based methods (PS-SSP, BAMCP, EXP3) perform \emph{worse} than static (Section~\ref{sec:results}).
-\item \textbf{Swiss real-data validation.} We extract 687-stop Z\"urich data from 35~days of SBB GTFS-RT archives (358{,}372 delay observations, 1{,}653 routes). On a single focused OD with rich hyperpath diversity, DRO reproduces $+20\%$ improvement on a normal day; V1-LCB and Adaptive-$\beta$ achieve $+29\%$. On a catastrophic disrupted day (47 routes cancelled), adaptive methods rescue $5$ extra percentage points of reach rate ($29\%\!\to\!34\%$) and cut conditional travel time by $9\%$ among completions (Section~\ref{sec:swiss-results}).
+\item \textbf{Eleven-method comparison.} Static, LCB-V1, LCB-V2 (ensemble), V3-Topo, DRO, Adaptive-$\beta$ (EXP3 meta-bandit over a 9-value $\beta$ grid), PS-SSP, BAMCP, SW-LCB~\cite{garivier2011}, EXP3~\cite{kocak2014}, and Oracle. Under disruptions, LCB-V2 reduces mean travel time by 14\% and P95 by 42\% vs.\ static; exploration-based methods (PS-SSP, BAMCP, EXP3) perform \emph{worse} than static (Section~\ref{sec:results}).
+\item \textbf{Swiss real-data validation.} We extract 687-stop Z\"urich data from 35~days of SBB GTFS-RT archives (358{,}372 delay observations, 1{,}653 routes). On a single focused OD with rich hyperpath diversity, DRO reproduces $+20\%$ improvement on a normal day; V1-LCB and Adaptive-$\beta$ achieve $+29\%$. On a catastrophic disrupted day (47 routes cancelled), adaptive methods rescue $5$ extra percentage points of reach rate ($28\%\!\to\!33\%$) and cut conditional travel time by $5\%$ among completions (Section~\ref{sec:swiss-results}).
 \item \textbf{Neural acceleration.} An MLP ensemble surrogate replaces Topological CSA, cutting initial computation from 712\,ms to 0.6\,ms ($224\times$) (Section~\ref{sec:neural}).
 \end{enumerate}
 
@@ -242,12 +242,17 @@ of an infinite-dimensional minimax optimization.
 The Wasserstein distance appears in optimal transport~\cite{villani2009},
 generative modeling, and DRO, yet had no machine-checked formalization
 prior to this work.
-Our 806-line Lean~4 formalization (coupling theory, $W_1$ metric, gluing
-lemma, KR inequality, DRO bound) fills this gap.
-An additional 1,522 lines verify the transit-specific theory:
-irrecoverability ($\rho > 0$ from environment structure, 488 lines),
-EXP3 regret (160 lines), $O(1/T)$ convergence (129 lines),
-and the minimax lower bound (173 lines).
+Our 1{,}565-line Wasserstein/DRO development (coupling theory,
+$W_1$ pseudometric, gluing lemma, weak Kantorovich--Rubinstein
+inequality, DRO upper bound, real $\sup$ equality, robust Bellman
+$\gamma$-contraction) fills this gap. An additional 3{,}757 lines
+verify the transit-specific theory: per-stop and cumulative LCB
+gap with high-probability bound under the actual product posterior
+(BAPRHRO + BAPRHRO\_V2, 1{,}585 lines); irrecoverability ($\rho > 0$
+from environment structure, 488 lines); a real cumulative Hedge
+regret bound and adaptive-$\beta$ $O(1/T)$ squared regret (876 + 129
+lines); the minimax lower bound and regret sandwich (478 lines);
+and component interface contracts (201 lines).
 All 5{,}322 lines compile with zero \texttt{sorry} and zero
 \texttt{axiom} (apart from Mathlib's standard kernel axioms).
 
@@ -799,8 +804,10 @@ policies but does not enter the contraction factor.
 \begin{lemma}[Per-stop gap]\label{lem:perstep}
 At a single stop, let $c^*$ be the connection minimizing true expected arrival
 and $c_{\mathrm{LCB}}$ be the connection selected by the LCB policy.
-If the posterior mean error satisfies $|\hat\mu_k - \mu^*_k| \leq \sigma_{\max}$
-for all $K$ candidate connections, then:
+If, for all $K$ candidate connections, the posterior mean error
+satisfies $|\hat\mu_k - \mu^*_k| \leq \sigma_{\max}$ and the
+posterior std satisfies $0 \leq \hat\sigma_k \leq \sigma_{\max}$,
+then:
 \[
 \mathrm{arr}(c_{\mathrm{LCB}}) - \mathrm{arr}(c^*) \;\leq\; 2(1+\beta)\,\sigma_{\max}.
 \]
@@ -887,14 +894,21 @@ under Assumption~\ref{asm:prior}.
 \end{proof}
 
 \begin{theorem}[High-probability LCB bound under the product posterior]\label{thm:lcb_high_prob}
-Let $\pi_{d,r}$ ($d \in \{1,\ldots,D\}$, $r \in \{1,\ldots,K\}$) denote
+Let $\beta \geq 0$ be the LCB pessimism parameter, and let
+$\pi_{d,r}$ ($d \in \{1,\ldots,D\}$, $r \in \{1,\ldots,K\}$) denote
 the marginal posterior probability measure on the true delay mean of
 route $r$ at stop $d$, with posterior mean $\hat\mu_{d,r}$ and
-posterior std $\hat\sigma_{d,r}$ satisfying the second-moment bound
-$\int (x - \hat\mu_{d,r})^2\,d\pi_{d,r}(x) \leq \hat\sigma_{d,r}^2$
-and the uniform upper bound $\hat\sigma_{d,r} \leq \sigma_{\max}$.
-Let $\Pi := \bigotimes_{(d,r)} \pi_{d,r}$ be the joint product
-posterior on $\mathbb{R}^{DK}$. For any confidence parameter $k > 0$,
+posterior std $0 < \hat\sigma_{d,r} \leq \sigma_{\max}$ satisfying
+the second-moment bound
+$\int (x - \hat\mu_{d,r})^2\,d\pi_{d,r}(x) \leq \hat\sigma_{d,r}^2$.
+(Positivity of $\hat\sigma_{d,r}$ holds under
+Assumption~\ref{asm:prior} since $\beta_0 > 0$.) Let $c_{\mathrm{LCB},d}$
+denote the connection selected by the LCB rule at stop $d$, and let
+$c^*_d$ denote the connection minimizing the realized true expected
+arrival among the $K$ candidates at that stop. Let
+$\Pi := \bigotimes_{(d,r)} \pi_{d,r}$ be the joint product posterior
+on $\mathbb{R}^{I}$, where $I := \{1,\ldots,D\} \times \{1,\ldots,K\}$.
+For any confidence parameter $k > 0$,
 \begin{equation}
 \Pi(\mathrm{Bad}) \;\leq\; \frac{DK}{k^2},
 \quad
@@ -937,14 +951,18 @@ gives \eqref{eq:cum_high_prob}.
 The bound is informative when $DK/k^2 < 1$, i.e.,
 $k > \sqrt{DK}$. For typical transit settings ($D=6$, $K=5$),
 $k = 6$ gives $\Pi(\mathrm{Good}) \geq 1 - 30/36 \approx 17\%$;
-$k = 10$ gives $\Pi(\mathrm{Good}) \geq 70\%$; and the bound on
-the cumulative excess scales linearly in $k$, so tightening the
-confidence loosens the cost guarantee proportionally. Sharper tail
-bounds (Bernstein, sub-Gaussian) would replace $1/k^2$ by
-$\exp(-k^2/2)$ but require additional moment assumptions; the
-second-moment-only Chebyshev bound used here is distribution-free
-over the posterior tail and matches the regularity Mathlib's
-$\mathtt{mul\_meas\_ge\_le\_lintegral}$ provides.
+$k = 10$ gives $\Pi(\mathrm{Good}) \geq 70\%$; and a $95\%$
+Chebyshev certificate ($1 - DK/k^2 = 0.95$) requires
+$k \geq \sqrt{DK / 0.05} \approx 24.5$. The bound on the cumulative
+excess scales linearly in $k$, so tightening the confidence loosens
+the cost guarantee proportionally. Theorem~\ref{thm:lcb_high_prob}
+should therefore be read as a conservative distribution-free
+correctness certificate, not as a tight operational calibration
+rule. Sharper tail bounds (Bernstein, sub-Gaussian) would replace
+$1/k^2$ by $\exp(-k^2/2)$ but require additional moment assumptions;
+the second-moment-only Chebyshev bound used here matches the
+regularity Mathlib's
+\texttt{mul\_meas\_ge\_le\_lintegral\textsubscript{0}} provides.
 \end{remark}
 
 \begin{lemma}[Normal-Gamma posterior contraction]\label{lem:contraction}
@@ -1284,7 +1302,7 @@ BAPRHRO\_V2.lean & 460 & Ensemble LCB bound; dynamic $\beta$; ensemble $=$ empir
 Irrecoverability.lean & 218 & Optimal pessimism sign (Thm.~\ref{thm:rho}) via \texttt{optimal\_beta\_sign\_matches\_rho} \\
 IrrecoverabilityBridge.lean & 270 & Environment structure $\Rightarrow$ $\rho > 0$ (bridge theorem) \\
 EXP3Regret.lean & 876 & Real cumulative Hedge regret bound \texttt{hedge\_regret\_real\_bound}: $\mathrm{regret} \leq \log K / \eta + \eta T$ via potential-function method (player-loss-retaining per-round bound, exponential telescoping, log-inversion); piecewise-EXP3 extension parameterized by a \texttt{StationaryRegretCertificate} structure (no axioms) \\
-AdaptiveConvergence.lean & 129 & $O(1/T^2)$ squared-regret bound (Thm.~\ref{thm:converge}) \\
+AdaptiveConvergence.lean & 129 & $O(1/T)$ squared per-episode-regret bound (Thm.~\ref{thm:converge}) \\
 LowerBound.lean & 478 & Adversarial $\forall$-algorithm $\exists$-trajectory minimax lower bound \texttt{exists\_adversarial\_trajectory\_cumulativeRegret}, proved via an explicit Yao-style adversary (\texttt{advRegimeAt} + \texttt{adversary\_forces\_total\_cost}); regret sandwich preserved (\texttt{regret\_sandwich}) \\
 Architecture.lean & 201 & Component interface contracts \\
 \midrule
@@ -1317,8 +1335,11 @@ Paper result & Lean theorem & File \\
 $W_1$ pseudometric (Thm.~\ref{thm:w1_metric}) &
   \texttt{wassersteinDist\_self}, \texttt{wassersteinDist\_comm}, \texttt{wassersteinDist\_triangle} &
   \texttt{Wasserstein/Distance.lean} \\
-DRO upper bound + LCB equivalence (Thm.~\ref{thm:dro}) &
-  \texttt{dro\_upper\_bound}, \texttt{lcb\_equals\_dro\_attained}, \texttt{dro\_iSup\_real\_equality} &
+DRO upper bound (Thm.~\ref{thm:dro}) &
+  \texttt{dro\_upper\_bound}, \texttt{dro\_iSup\_real\_equality} &
+  \texttt{Wasserstein/DRO.lean} \\
+LCB$\,=\,$DRO equivalence (Cor.~\ref{cor:lcb_dro}) &
+  \texttt{lcb\_equals\_dro\_attained} &
   \texttt{Wasserstein/DRO.lean} \\
 Translation-witness $W_1$ bound &
   \texttt{w1\_translation\_le} &
@@ -1398,8 +1419,12 @@ per-stop LCB gap; the cumulative LCB suboptimality bound; the
 high-probability LCB bound under the actual product posterior
 (Theorem~\ref{thm:lcb_high_prob}); the posterior variance contraction;
 the optimal pessimism sign theorem; the cumulative Hedge regret bound
-$\mathrm{regret} \leq \log K / \eta + \eta T$; the adaptive-$\beta$
-$O(1/T^2)$ squared-regret rate; the $\forall$-algorithm
+$\mathrm{regret} \leq \log K / \eta + \eta T$ (the deterministic
+potential-function inequality used as the inner argument of
+Theorem~\ref{thm:exp3}; the standard EXP3-IX reduction from bandit
+feedback to Hedge via importance-weighted losses is presented in
+prose, not formalized); the adaptive-$\beta$
+$O(1/T)$ squared per-episode-regret rate; the $\forall$-algorithm
 $\exists$-trajectory minimax lower bound; and the regret sandwich.
 The cross-reference in Table~\ref{tab:xref} pinpoints each verified
 result by name, file, and commit. In particular,
@@ -1421,14 +1446,15 @@ real-data analysis scripts (paired bootstrap, Cohen's $d$, episode
 filtering); or (vi) the synthesized GTFS sub-network constructions.
 These components are validated empirically through the experimental
 study of Sections~\ref{sec:setup}--\ref{sec:results}, but their
-correctness is not part of the machine-checked proof. Likewise, the
-asymptotic posterior-contraction rate and the EXP3-IX regret bound
-appear in the paper as standard classical results; their
-\emph{statements} are formalized and our compositional theorems
-depend only on the formalized statements, but the underlying classical
-identities (e.g., $\mathbb{E}[s_n^2] = (n-1)/n \cdot
-\sigma_{\mathrm{true}}^2$) are imported from Mathlib rather than
-re-derived from first principles.
+correctness is not part of the machine-checked proof. Standard
+probability identities used inside the formal proofs (e.g.,
+$\mathbb{E}[s_n^2] = (n-1)/n \cdot \sigma_{\mathrm{true}}^2$,
+Markov's inequality, the product-measure rule) are not re-proved
+from first principles---they enter as Mathlib theorems and are still
+machine-checked, just not inside this project. The project-level
+contribution is the composition of those Mathlib facts into the
+BAPR-HRO performance guarantees stated in Tables~\ref{tab:lean}
+and~\ref{tab:xref}.
 
 \paragraph{What machine-checking buys.}
 The Lean artifact rules out arithmetic and algebraic mistakes,
@@ -1922,7 +1948,7 @@ dominated by the timeout cap and provide little signal about method
 quality. The reach-rate metric used in Table~\ref{tab:swiss_multi}
 separates \emph{structural reachability} (a property of the disrupted
 graph, not the algorithm) from \emph{ranking quality} (what
-adaptive methods actually control). The $29\%\to 34\%$ rescue is modest
+adaptive methods actually control). The $28\%\to 33\%$ rescue is modest
 in absolute terms but represents a $17\%$ relative reduction in
 stranded passengers --- a metric that a transit operator would
 prioritize. Pure expected-time DRO objectives are not well-suited to
@@ -2173,31 +2199,35 @@ $|x|^2 = x^2$ and that $k\hat\sigma_i \geq 0$),
 \end{equation}
 This step is mechanically verified as
 \texttt{posterior\_chebyshev\_route}, which invokes Mathlib's
-\texttt{MeasureTheory.mul\_meas\_ge\_le\_lintegral} for the
+\texttt{MeasureTheory.mul\_meas\_ge\_le\_lintegral\textsubscript{0}} for the
 underlying Markov inequality on the $\mathrm{ENNReal}$-valued
 integral, then converts to the real-valued probability via
 \texttt{ENNReal.toReal}.
 
 \paragraph{Step 2: marginal projection of $\Pi$.}
-Each $\pi_i$ is a probability measure, so the i-th projection
+Each $\pi_i$ is a probability measure, so the $i$-th projection
 $\mathrm{eval}_i$ is measure-preserving from $\Pi$ to $\pi_i$:
 \begin{equation}
 (\mathrm{eval}_i)_*\Pi \;=\; \pi_i.
 \label{eq:eval_meas_preserving}
 \end{equation}
 This is a standard finite-product fact: for a measurable
-$s \subseteq \mathbb{R}$,
+$s \subseteq \mathbb{R}$, the cylinder set
+$\mathrm{eval}_i^{-1}(s) = \prod_{j \in I} A_j$ with $A_i = s$ and
+$A_j = \mathbb{R}$ for $j \neq i$, so by the product-measure
+identity (Mathlib's \texttt{Measure.pi\_pi}),
 \[
 \Pi\bigl(\mathrm{eval}_i^{-1}(s)\bigr)
-\;=\; \pi_i(s) \cdot \prod_{j \in I, j \neq i} \pi_j(\mathbb{R})
-\;=\; \pi_i(s) \cdot \prod_{j \neq i} 1
+\;=\; \pi_i(s) \cdot \!\prod_{j \in I,\, j \neq i}\! \pi_j(\mathbb{R})
+\;=\; \pi_i(s) \cdot 1
 \;=\; \pi_i(s),
 \]
-where the second equality uses that each $\pi_j$ is a probability
-measure ($\pi_j(\mathbb{R}) = 1$). In Mathlib this is the lemma
+where the second equality uses $\pi_j(\mathbb{R}) = 1$ for every
+$j$ together with $\mathtt{Finset.prod\_eq\_one}$ over
+$\mathtt{Finset.univ.erase}\,i$. In Mathlib the resulting
+identity is packaged as
 \texttt{MeasureTheory.measurePreserving\_eval} applied to
-\texttt{Measure.pi}; the ``other-factors-collapse-to-one'' step is
-$\mathtt{Finset.prod\_eq\_one}$ over $\mathtt{Finset.univ.erase}\,i$.
+\texttt{Measure.pi}.
 
 Combining \eqref{eq:per_coord_chebyshev} and
 \eqref{eq:eval_meas_preserving}, for every $i \in I$,
@@ -2248,7 +2278,7 @@ The conversion from $\mathrm{ENNReal}$ subtraction to real-valued
 subtraction is mechanically handled by
 \texttt{ENNReal.toReal\_sub\_of\_le}, which requires the upper
 bound $\Pi(\mathrm{Bad}) \leq 1$ (immediate for a probability
-measure). This proves the first inclusion in \eqref{eq:joint_prob}.
+measure). This proves both inequalities in \eqref{eq:joint_prob}.
 
 \paragraph{Step 5: conditional cumulative bound.}
 Now suppose $\omega \in \mathrm{Good}$, i.e., $|\omega_i - \hat\mu_i|
