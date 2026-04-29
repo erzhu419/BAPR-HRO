@@ -45,6 +45,14 @@ class RouteBeliefState:
     delay_sq_sum: float = 0.0
     n_cancels: int = 0
     n_attempts: int = 0
+    # A3 (GPT review): typed cancel counters. true_cancels are signal
+    # cancellations confirmed by GTFS-RT (delay > 30 min sentinel);
+    # late_no_shows are passenger-side timeouts (waited past patience).
+    # In current data we cannot distinguish "feed_missing"; we collapse
+    # both observed kinds into n_cancels for the cancel_rate property
+    # but keep the sub-counts for later reweighting.
+    n_true_cancels: int = 0
+    n_late_no_shows: int = 0
 
     # Prior parameters. The defaults reflect Swiss real-data normal-day
     # statistics: mean delay ≈ 0.7 min, std ≈ 1.3 min, cancel rate ≈
@@ -98,10 +106,30 @@ class RouteBeliefState:
         self.delay_sq_sum += delay * delay
         self.n_attempts += 1
 
-    def update_cancel(self):
-        """Update with a cancellation observation."""
+    def update_cancel(self, kind: str = 'true'):
+        """Update with a cancellation observation.
+
+        A3 (GPT review): kind ∈ {'true', 'late_no_show', 'feed_missing'}.
+        For backward compat, default 'true'. Caller can pass kind to
+        track sub-types.
+        """
         self.n_cancels += 1
         self.n_attempts += 1
+        if kind == 'late_no_show':
+            self.n_late_no_shows += 1
+        elif kind == 'true':
+            self.n_true_cancels += 1
+        # 'feed_missing' is structurally tracked but we treat it as
+        # not strongly indicative of route reliability.
+
+    @property
+    def cancel_rate_by_type(self) -> tuple[float, float]:
+        """A3: weighted cancel rate that down-weights late_no_show vs
+        true_cancel. Returns (true_rate, late_rate)."""
+        denom = self.cancel_alpha + self.cancel_beta + self.n_attempts
+        true_rate = (1.0 + self.n_true_cancels) / denom
+        late_rate = (1.0 + self.n_late_no_shows) / denom
+        return float(true_rate), float(late_rate)
 
     def sample_expected_arrival(self, scheduled_arrival: float, rng: np.random.Generator) -> float:
         """Thompson Sampling: sample expected arrival from posterior.
@@ -131,15 +159,40 @@ class BanditRouter:
     No regime detection. No hyperpath recomputation. Just learning.
     """
 
+    # A4 (GPT-5.5 review): hierarchical prior. Lazy-loaded once per
+    # process from data/route_priors.pkl. Each route gets a prior
+    # initialized to its historical mean/std/cancel rate (averaged
+    # across the 34 normal days), instead of the uniform global prior.
+    _route_priors_cache: Optional[dict] = None
+
+    @classmethod
+    def _load_route_priors(cls) -> dict:
+        if cls._route_priors_cache is not None:
+            return cls._route_priors_cache
+        try:
+            import pickle
+            with open('data/route_priors.pkl', 'rb') as f:
+                cls._route_priors_cache = pickle.load(f)
+        except Exception:
+            cls._route_priors_cache = {}
+        return cls._route_priors_cache
+
     def __init__(self, graph: TransitGraph,
                  disruption_gate: bool = True,
-                 cancel_threshold: float = 0.02,
-                 delay_threshold: float = 3.0):
+                 cancel_threshold: float = 0.05,
+                 delay_threshold: float = 10.0,
+                 max_time: int = 120,
+                 infeasibility_weight: float = 60.0,
+                 timeout_weight: float = 60.0,
+                 use_hierarchical_prior: bool = True):
         self.graph = graph
         self.cached_result: Optional[HyperpathResult] = None
         # Per-route belief states
         self.route_beliefs: dict[str, RouteBeliefState] = {}
         self.total_observations: int = 0
+        self.use_hierarchical_prior = use_hierarchical_prior
+        self._route_priors = (self._load_route_priors()
+                              if use_hierarchical_prior else {})
         # Disruption gating: scales β by an observed regime signal.
         # If observed cancel rate ≪ cancel_threshold AND observed mean
         # delay ≪ delay_threshold, the day looks normal and we shrink
@@ -149,10 +202,43 @@ class BanditRouter:
         self.disruption_gate = disruption_gate
         self.cancel_threshold = cancel_threshold
         self.delay_threshold = delay_threshold
+        # A7 (GPT-5.5 review): layered risk score. Use the hyperpath's
+        # built-in `feasibility` and `dest_arrival` PMF to penalize
+        # candidates that have a high probability of being infeasible
+        # (user already gone past) or arriving past the timeout window.
+        # Without these two terms, V1 was over-fitting the scalar
+        # `mean_dest_arrival` and getting bitten when the *tail* of the
+        # arrival distribution crossed `max_time`. These penalties
+        # directly target reach rate (the metric V1 was losing on).
+        self.max_time = max_time
+        self.infeasibility_weight = infeasibility_weight
+        self.timeout_weight = timeout_weight
 
     def _get_belief(self, route: str) -> RouteBeliefState:
         if route not in self.route_beliefs:
-            self.route_beliefs[route] = RouteBeliefState()
+            # A4: hierarchical prior — use this route's historical
+            # mean/std/cancel rate when available, else fall back to
+            # the global default prior.
+            p = self._route_priors.get(route)
+            if p is None:
+                self.route_beliefs[route] = RouteBeliefState()
+            else:
+                # Convert std -> var; clip cancel rate to a reasonable
+                # Beta-prior denominator. With a per-route historical
+                # cancel rate p, set Beta(α, β) so α/(α+β) = p with
+                # a moderate effective sample size of 100 pseudo-obs.
+                hist_var = max(p['std'] ** 2, 0.5)  # floor to avoid zero
+                p_cancel = max(min(p['cancel_rate'], 0.5), 1e-4)
+                pseudo_n = 100.0
+                cancel_alpha = max(p_cancel * pseudo_n, 1.0)
+                cancel_beta = max(pseudo_n - cancel_alpha, 1.0)
+                self.route_beliefs[route] = RouteBeliefState(
+                    prior_mean=float(p['mean']),
+                    prior_var=float(hist_var),
+                    prior_n=2.0,
+                    cancel_alpha=cancel_alpha,
+                    cancel_beta=cancel_beta,
+                )
         return self.route_beliefs[route]
 
     def route(self, s_source: int, s_dest: int, t_source: int) -> HyperpathResult:
@@ -175,16 +261,22 @@ class BanditRouter:
     def _disruption_factor(self) -> float:
         """Compute disruption signal in [0, 1] from accumulated observations.
 
-        Aggregates observed cancel rate and mean delay across all routes.
-        Returns 0 if conditions look normal (≪ thresholds), 1 if either
-        signal saturates. This is the regime-detection mechanism that
-        gates β: on a normal day we want β_eff ≈ 0; on a disrupted day,
-        β_eff ≈ β. The transit V1 previously used fixed β, which biased
-        the policy toward already-ridden routes irrespective of regime.
+        A2 (GPT review): use bilinear combine instead of max — both
+        cancel_rate and mean delay contribute multiplicatively, so a
+        moderate cancel rate AND a moderate delay together can trigger
+        full β even when neither alone saturates the threshold. Pure max
+        was binary-ish and missed compound disruption.
+
+        On normal day with cancel≈0.005 and delay≈0.7 min:
+            cancel_score = 0.1, delay_score = 0.07 → bilinear ≈ 0.16
+        On Oct 29 with cancel≈0.05 and delay≈1.5 min:
+            cancel_score = 1.0, delay_score = 0.15 → bilinear ≈ 1.0
+
+        We additionally floor by max(cancel_score, delay_score)/2 so
+        a strong single signal still triggers half-β, preserving the
+        old behaviour as a lower bound.
         """
         if not self.disruption_gate or self.total_observations < 3:
-            # Cold start: no evidence yet; use neutral β=0 to avoid
-            # over-pessimism on what might be a normal day.
             return 0.0
         total_delay, total_n, total_cancels, total_attempts = 0.0, 0, 0, 0
         for b in self.route_beliefs.values():
@@ -196,7 +288,12 @@ class BanditRouter:
         cancel_rate = total_cancels / max(total_attempts, 1)
         cancel_score = min(cancel_rate / self.cancel_threshold, 1.0)
         delay_score = min(max(avg_delay, 0) / self.delay_threshold, 1.0)
-        return float(max(cancel_score, delay_score))
+        # Bilinear: each signal contributes; both saturating ⇒ 1.0
+        bilinear = 1.0 - (1.0 - cancel_score) * (1.0 - delay_score)
+        # Floor by half of the strongest single signal so a clear
+        # single-channel disruption still partly engages.
+        floor = 0.5 * max(cancel_score, delay_score)
+        return float(max(bilinear, floor))
 
     def select_connection(
         self,
@@ -223,14 +320,18 @@ class BanditRouter:
         if not labels:
             return None
 
-        # Apply disruption gate: shrink β when no disruption signal
-        # observed yet, restore to full β when disruption detected.
-        # (We tested an additional std-amplification under disruption
-        # (1+4·gate) but it over-pessimized — V1 skipped buses on Oct
-        # 29 and timed out, dropping reach from 49% to 38%. The
-        # un-amplified version gives the best aggregate result.)
         gate = self._disruption_factor()
         beta_eff = beta * gate
+
+        # A5 (GPT review): adaptive top-k and lookahead. On normal day
+        # gate≈0, top-k stays at the caller's value (default 5) and
+        # lookahead is the canonical 25 minutes. On disrupted day,
+        # widen both: top-k expands to 5+3=8 to give the LCB more
+        # safe-route candidates to choose from, and lookahead grows to
+        # 25+25=50 minutes so the agent can wait through congested
+        # buses for a still-feasible later one.
+        top_k_eff = int(round(top_k + 3 * gate))
+        lookahead_eff = int(round(25 + 25 * gate))
 
         candidates = []
         seen_routes = set()
@@ -238,7 +339,7 @@ class BanditRouter:
             c = self.graph.connections[label.connection_id]
             if c.dep_time < current_time - 1:
                 continue
-            if c.dep_time > current_time + 25:
+            if c.dep_time > current_time + lookahead_eff:
                 continue
             if c.route in seen_routes:
                 continue
@@ -252,12 +353,27 @@ class BanditRouter:
             # Cancel penalty: only fire if we have evidence of cancels
             # (gate by total_attempts to avoid penalizing the prior).
             cancel_penalty = belief.cancel_rate * 60 if belief.n_attempts > 0 else 0.0
+            # A7: layered risk penalties from the hyperpath label itself.
+            # `feasibility` ∈ [0,1] is the probability the user is still at
+            # this stop in time to board this connection — a low value means
+            # the alternative is "looks great on mean but the user
+            # probably already missed it". `dest_arrival.prob_le(max_time)`
+            # is the probability the destination is reached before the
+            # journey timeout. Both directly target reach rate without
+            # changing conditional mean.
+            infeasibility_penalty = self.infeasibility_weight * (1.0 - label.feasibility)
+            if label.dest_arrival is not None:
+                p_on_time = label.dest_arrival.prob_le(self.max_time)
+                timeout_penalty = self.timeout_weight * (1.0 - p_on_time)
+            else:
+                timeout_penalty = 0.0
 
-            score = label.mean_dest_arrival + delay_adj + std_penalty + cancel_penalty
+            score = (label.mean_dest_arrival + delay_adj + std_penalty
+                     + cancel_penalty + infeasibility_penalty + timeout_penalty)
 
             candidates.append((label, c, score))
 
-            if len(candidates) >= top_k:
+            if len(candidates) >= top_k_eff:
                 break
 
         if not candidates:

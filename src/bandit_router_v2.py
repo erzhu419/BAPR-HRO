@@ -176,11 +176,41 @@ class BanditRouterV2:
         self.cached_result: Optional[HyperpathResult] = None
         self.route_beliefs: dict[str, RouteEnsembleBelief] = {}
         self.total_observations: int = 0
+        # A4: hierarchical route priors (shared across instances)
+        if not hasattr(type(self), '_route_priors_cache'):
+            type(self)._route_priors_cache = None
+        if type(self)._route_priors_cache is None:
+            try:
+                import pickle
+                with open('data/route_priors.pkl', 'rb') as f:
+                    type(self)._route_priors_cache = pickle.load(f)
+            except Exception:
+                type(self)._route_priors_cache = {}
+        self._route_priors = type(self)._route_priors_cache
 
     def _get_belief(self, route: str) -> RouteEnsembleBelief:
         if route not in self.route_beliefs:
-            self.route_beliefs[route] = RouteEnsembleBelief(
-                n_estimators=self.n_estimators)
+            # A4: initialize ensemble around the route's historical
+            # mean (with a small per-estimator jitter to break the
+            # cold-start ensemble_std=0 symmetry that previously
+            # collapsed V2 to argmin nominal_arrival).
+            p = self._route_priors.get(route)
+            if p is None:
+                self.route_beliefs[route] = RouteEnsembleBelief(
+                    n_estimators=self.n_estimators)
+            else:
+                hist_mean = float(p['mean'])
+                hist_var = max(float(p['std']) ** 2, 0.5)
+                # Tiny per-estimator jitter
+                jitter = self.rng.normal(0, 0.1, self.n_estimators)
+                belief = RouteEnsembleBelief(
+                    n_estimators=self.n_estimators,
+                    prior_mean=hist_mean,
+                    prior_var=hist_var,
+                )
+                belief.__post_init__()
+                belief._means = belief._means + jitter
+                self.route_beliefs[route] = belief
         return self.route_beliefs[route]
 
     def route(self, s_source: int, s_dest: int, t_source: int) -> HyperpathResult:
@@ -235,6 +265,17 @@ class BanditRouterV2:
         if not labels:
             return None
 
+        # A5: adaptive top-k / lookahead based on V2's max OOD score.
+        # When all routes look in-distribution, narrow window; when any
+        # route is OOD, widen.
+        any_ood = max((self._get_belief(c.route).ood_score
+                        for c_label in labels[-min(8, len(labels)):]
+                        for c in [self.graph.connections[c_label.connection_id]]),
+                      default=0.0)
+        any_ood = float(min(any_ood, 1.0))
+        top_k_eff = int(round(top_k + 3 * any_ood))
+        lookahead_eff = int(round(25 + 25 * any_ood))
+
         candidates = []
         seen_routes = set()
         candidate_routes = []
@@ -243,14 +284,14 @@ class BanditRouterV2:
             c = self.graph.connections[label.connection_id]
             if c.dep_time < current_time - 1:
                 continue
-            if c.dep_time > current_time + 25:
+            if c.dep_time > current_time + lookahead_eff:
                 continue
             if c.route in seen_routes:
                 continue
             seen_routes.add(c.route)
             candidates.append((label, c))
             candidate_routes.append(c.route)
-            if len(candidates) >= top_k:
+            if len(candidates) >= top_k_eff:
                 break
 
         if not candidates:
@@ -279,8 +320,17 @@ class BanditRouterV2:
             # cross-route penalty that biases nothing but inflates scores.
             cancel_penalty = (self.cancel_penalty_weight * belief.cancel_rate
                               if belief.n_attempts > 0 else 0.0)
+            # A7 (GPT review): layered risk penalties from the hyperpath
+            # label. See bandit_router.py for rationale.
+            infeasibility_penalty = 60.0 * (1.0 - label.feasibility)
+            if label.dest_arrival is not None:
+                p_on_time = label.dest_arrival.prob_le(120)
+                timeout_penalty = 60.0 * (1.0 - p_on_time)
+            else:
+                timeout_penalty = 0.0
 
-            score = label.mean_dest_arrival + delay_adj + std_penalty + cancel_penalty
+            score = (label.mean_dest_arrival + delay_adj + std_penalty
+                     + cancel_penalty + infeasibility_penalty + timeout_penalty)
             scored.append((label, c, score, beta))
 
         best = min(scored, key=lambda x: x[2])

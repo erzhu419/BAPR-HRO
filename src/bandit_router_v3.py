@@ -165,7 +165,16 @@ class BanditRouterV3(BanditRouterV2):
             std_penalty = beta * belief.posterior_std
             cancel_penalty = (self.cancel_penalty_weight * belief.cancel_rate * gate
                               if belief.n_attempts > 0 else 0.0)
-            score = label.mean_dest_arrival + delay_adj + std_penalty + cancel_penalty
+            # A7 (GPT review): layered risk penalties.
+            infeasibility_penalty = 60.0 * (1.0 - label.feasibility)
+            if label.dest_arrival is not None:
+                p_on_time = label.dest_arrival.prob_le(120)
+                timeout_penalty = 60.0 * (1.0 - p_on_time)
+            else:
+                timeout_penalty = 0.0
+
+            score = (label.mean_dest_arrival + delay_adj + std_penalty
+                     + cancel_penalty + infeasibility_penalty + timeout_penalty)
             scored.append((label, c, score, beta))
 
         best = min(scored, key=lambda x: x[2])

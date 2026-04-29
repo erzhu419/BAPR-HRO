@@ -25,29 +25,95 @@ class AdaptiveBetaBanditRouter:
 
     Inherits all belief tracking from BanditRouter.
     Adds: meta-bandit over β grid, updated after each journey.
+
+    A8 (GPT-5.5 review): cross-journey persistent meta-policy. With a
+    single short journey (~6 stops) the EXP3 inner loop has too few
+    samples to learn a useful β. We share the meta-bandit state across
+    all journeys via a class-level table, so weights accumulate across
+    OD pairs and days. Each journey starts from the current global
+    posterior over β and contributes one observation back.
     """
+
+    # A8: class-level shared meta-state (persistent across journeys
+    # and instances). EXP3 weights, journey costs, and counter are
+    # accumulated globally so a single passenger trip's small sample is
+    # pooled with all other trips.
+    _shared_log_weights: np.ndarray | None = None
+    _shared_journey_costs: dict | None = None
+    _shared_journey_count: int = 0
+    _shared_n_betas: int = 0
+
+    @classmethod
+    def reset_shared_state(cls, n_betas: int):
+        cls._shared_log_weights = np.zeros(n_betas)
+        cls._shared_journey_costs = {i: [] for i in range(n_betas)}
+        cls._shared_journey_count = 0
+        cls._shared_n_betas = n_betas
 
     def __init__(
         self,
         graph: TransitGraph,
         beta_grid: list[float] | None = None,
         eta: float = 0.1,
+        share_meta_state: bool = True,
     ):
         self.graph = graph
-        # Underlying bandit router (does all belief tracking)
         self._inner = BanditRouter(graph)
-
-        # β meta-bandit
         self.beta_grid = beta_grid or [-2.0, -1.0, -0.5, 0.0, 0.5, 1.0, 1.5, 2.0, 3.0]
         self.n_betas = len(self.beta_grid)
         self.eta = eta
-        self._log_weights = np.zeros(self.n_betas)
+        self.share_meta_state = share_meta_state
         self._rng = np.random.default_rng(42)
+        self._current_beta_idx = self.n_betas // 2
 
-        # Journey tracking
-        self._journey_count = 0
-        self._current_beta_idx = self.n_betas // 2  # start neutral
-        self._journey_costs = {i: [] for i in range(self.n_betas)}
+        if share_meta_state:
+            cls = type(self)
+            if (cls._shared_log_weights is None
+                    or cls._shared_n_betas != self.n_betas):
+                cls.reset_shared_state(self.n_betas)
+        else:
+            self._log_weights_local = np.zeros(self.n_betas)
+            self._journey_costs_local = {i: [] for i in range(self.n_betas)}
+            self._journey_count_local = 0
+
+    @property
+    def _log_weights(self) -> np.ndarray:
+        if self.share_meta_state:
+            return type(self)._shared_log_weights
+        return self._log_weights_local
+
+    @_log_weights.setter
+    def _log_weights(self, val: np.ndarray):
+        if self.share_meta_state:
+            type(self)._shared_log_weights = val
+        else:
+            self._log_weights_local = val
+
+    @property
+    def _journey_costs(self) -> dict:
+        if self.share_meta_state:
+            return type(self)._shared_journey_costs
+        return self._journey_costs_local
+
+    @_journey_costs.setter
+    def _journey_costs(self, val: dict):
+        if self.share_meta_state:
+            type(self)._shared_journey_costs = val
+        else:
+            self._journey_costs_local = val
+
+    @property
+    def _journey_count(self) -> int:
+        if self.share_meta_state:
+            return type(self)._shared_journey_count
+        return self._journey_count_local
+
+    @_journey_count.setter
+    def _journey_count(self, val: int):
+        if self.share_meta_state:
+            type(self)._shared_journey_count = val
+        else:
+            self._journey_count_local = val
 
     @property
     def cached_result(self) -> Optional[HyperpathResult]:

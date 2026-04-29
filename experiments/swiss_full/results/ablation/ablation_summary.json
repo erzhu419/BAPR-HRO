@@ -1,0 +1,308 @@
+{
+  "configs": [
+    {
+      "name": "A0_baseline_pre_fix",
+      "source": "swiss_multi_day_baseline.json",
+      "description": "No A1-A10. Original priors, hard cancel gate, no feasibility/timeout layer."
+    },
+    {
+      "name": "A1_threshold_fix_only",
+      "source": "swiss_multi_day_v3.json",
+      "description": "Tightened priors + relaxed gate thresholds. No A7 layered penalties."
+    },
+    {
+      "name": "A2_A7_plus_cold_start",
+      "source": "swiss_multi_day_A7.json",
+      "description": "A7 (feasibility + timeout penalties from hyperpath) + V2 cold-start posterior_std fix."
+    },
+    {
+      "name": "A3_all_on",
+      "source": "swiss_multi_day.json",
+      "description": "All A1-A10 enabled (A6 skipped: API cost). Adds A2 bilinear gate, A3 typed cancels, A4 historical priors, A5 adaptive top-k, A8 cross-journey shared meta-bandit."
+    }
+  ],
+  "cross_day": {
+    "A0_baseline_pre_fix": {
+      "Static": {
+        "reach": 0.7824338624338625,
+        "cond_min": 44.27109412918643,
+        "E_total_min": 60.747139681608935,
+        "n_obs": 630
+      },
+      "V1-LCB": {
+        "reach": 0.7015873015873015,
+        "cond_min": 43.86034428977237,
+        "E_total_min": 66.58138440647522,
+        "n_obs": 630
+      },
+      "V2-LCB": {
+        "reach": 0.701058201058201,
+        "cond_min": 43.92216624116166,
+        "E_total_min": 66.66501072462391,
+        "n_obs": 630
+      },
+      "V3-Topo": {
+        "reach": 0.701058201058201,
+        "cond_min": 43.92216624116166,
+        "E_total_min": 66.66501072462391,
+        "n_obs": 630
+      },
+      "DRO": {
+        "reach": 0.7424691358024691,
+        "cond_min": 42.16555269374157,
+        "E_total_min": 62.210325172859484,
+        "n_obs": 630
+      },
+      "Adaptive-\u03b2": {
+        "reach": 0.7015873015873015,
+        "cond_min": 43.86034428977237,
+        "E_total_min": 66.58138440647522,
+        "n_obs": 630
+      }
+    },
+    "A1_threshold_fix_only": {
+      "Static": {
+        "reach": 0.7824338624338625,
+        "cond_min": 44.27109412918643,
+        "E_total_min": 60.747139681608935,
+        "n_obs": 630
+      },
+      "V1-LCB": {
+        "reach": 0.7619753086419754,
+        "cond_min": 35.229634185958794,
+        "E_total_min": 55.40707434515279,
+        "n_obs": 630
+      },
+      "V2-LCB": {
+        "reach": 0.7551322751322752,
+        "cond_min": 35.933226547144436,
+        "E_total_min": 56.51846609951562,
+        "n_obs": 630
+      },
+      "V3-Topo": {
+        "reach": 0.7551322751322752,
+        "cond_min": 35.933226547144436,
+        "E_total_min": 56.51846609951562,
+        "n_obs": 630
+      },
+      "DRO": {
+        "reach": 0.7424691358024691,
+        "cond_min": 42.165552693741574,
+        "E_total_min": 62.210325172859484,
+        "n_obs": 630
+      },
+      "Adaptive-\u03b2": {
+        "reach": 0.7619753086419754,
+        "cond_min": 35.229634185958794,
+        "E_total_min": 55.40707434515279,
+        "n_obs": 630
+      }
+    },
+    "A2_A7_plus_cold_start": {
+      "Static": {
+        "reach": 0.7824338624338625,
+        "cond_min": 44.27109412918643,
+        "E_total_min": 60.747139681608935,
+        "n_obs": 630
+      },
+      "V1-LCB": {
+        "reach": 0.8064902998236331,
+        "cond_min": 35.19427625384697,
+        "E_total_min": 51.60500642920485,
+        "n_obs": 630
+      },
+      "V2-LCB": {
+        "reach": 0.8050088183421517,
+        "cond_min": 35.322000292847655,
+        "E_total_min": 51.83346351616822,
+        "n_obs": 630
+      },
+      "V3-Topo": {
+        "reach": 0.8050088183421517,
+        "cond_min": 35.322000292847655,
+        "E_total_min": 51.83346351616822,
+        "n_obs": 630
+      },
+      "DRO": {
+        "reach": 0.7424691358024691,
+        "cond_min": 42.16555269374157,
+        "E_total_min": 62.210325172859484,
+        "n_obs": 630
+      },
+      "Adaptive-\u03b2": {
+        "reach": 0.8064902998236331,
+        "cond_min": 35.19427625384697,
+        "E_total_min": 51.60500642920485,
+        "n_obs": 630
+      }
+    },
+    "A3_all_on": {
+      "Static": {
+        "reach": 0.7824338624338625,
+        "cond_min": 44.27109412918643,
+        "E_total_min": 60.747139681608935,
+        "n_obs": 630
+      },
+      "V1-LCB": {
+        "reach": 0.8077954144620811,
+        "cond_min": 36.16715716121145,
+        "E_total_min": 52.28021397350629,
+        "n_obs": 630
+      },
+      "V2-LCB": {
+        "reach": 0.8063844797178131,
+        "cond_min": 37.45166160202926,
+        "E_total_min": 53.43430108938239,
+        "n_obs": 630
+      },
+      "V3-Topo": {
+        "reach": 0.8040917107583775,
+        "cond_min": 35.55170019218101,
+        "E_total_min": 52.09582213689447,
+        "n_obs": 630
+      },
+      "DRO": {
+        "reach": 0.7424691358024692,
+        "cond_min": 42.165552693741574,
+        "E_total_min": 62.21032517285948,
+        "n_obs": 630
+      },
+      "Adaptive-\u03b2": {
+        "reach": 0.8076190476190476,
+        "cond_min": 35.795688665416904,
+        "E_total_min": 51.99499427454623,
+        "n_obs": 630
+      }
+    }
+  },
+  "oct29_disrupted": {
+    "A0_baseline_pre_fix": {
+      "Static": {
+        "reach": 0.5728395061728395,
+        "cond_min": 34.7176724137931,
+        "E_total_min": 71.14691358024692
+      },
+      "V1-LCB": {
+        "reach": 0.5259259259259259,
+        "cond_min": 31.77699530516432,
+        "E_total_min": 73.60123456790123
+      },
+      "V2-LCB": {
+        "reach": 0.5481481481481482,
+        "cond_min": 32.06531531531532,
+        "E_total_min": 71.79876543209876
+      },
+      "V3-Topo": {
+        "reach": 0.5481481481481482,
+        "cond_min": 32.06531531531532,
+        "E_total_min": 71.79876543209876
+      },
+      "DRO": {
+        "reach": 0.5419753086419753,
+        "cond_min": 31.43507972665148,
+        "E_total_min": 72.0
+      },
+      "Adaptive-\u03b2": {
+        "reach": 0.5259259259259259,
+        "cond_min": 31.77699530516432,
+        "E_total_min": 73.60123456790123
+      }
+    },
+    "A1_threshold_fix_only": {
+      "Static": {
+        "reach": 0.5728395061728395,
+        "cond_min": 34.7176724137931,
+        "E_total_min": 71.14691358024692
+      },
+      "V1-LCB": {
+        "reach": 0.5172839506172839,
+        "cond_min": 31.56563245823389,
+        "E_total_min": 74.25432098765432
+      },
+      "V2-LCB": {
+        "reach": 0.5296296296296297,
+        "cond_min": 31.75990675990676,
+        "E_total_min": 73.26543209876543
+      },
+      "V3-Topo": {
+        "reach": 0.5296296296296297,
+        "cond_min": 31.75990675990676,
+        "E_total_min": 73.26543209876543
+      },
+      "DRO": {
+        "reach": 0.5419753086419753,
+        "cond_min": 31.43507972665148,
+        "E_total_min": 72.0
+      },
+      "Adaptive-\u03b2": {
+        "reach": 0.5172839506172839,
+        "cond_min": 31.56563245823389,
+        "E_total_min": 74.25432098765432
+      }
+    },
+    "A2_A7_plus_cold_start": {
+      "Static": {
+        "reach": 0.5728395061728395,
+        "cond_min": 34.7176724137931,
+        "E_total_min": 71.14691358024692
+      },
+      "V1-LCB": {
+        "reach": 0.6382716049382716,
+        "cond_min": 34.868471953578336,
+        "E_total_min": 65.66296296296296
+      },
+      "V2-LCB": {
+        "reach": 0.6271604938271605,
+        "cond_min": 34.48622047244095,
+        "E_total_min": 66.36913580246913
+      },
+      "V3-Topo": {
+        "reach": 0.6271604938271605,
+        "cond_min": 34.48622047244095,
+        "E_total_min": 66.36913580246913
+      },
+      "DRO": {
+        "reach": 0.5419753086419753,
+        "cond_min": 31.43507972665148,
+        "E_total_min": 72.0
+      },
+      "Adaptive-\u03b2": {
+        "reach": 0.6382716049382716,
+        "cond_min": 34.868471953578336,
+        "E_total_min": 65.66296296296296
+      }
+    },
+    "A3_all_on": {
+      "Static": {
+        "reach": 0.5728395061728395,
+        "cond_min": 34.7176724137931,
+        "E_total_min": 71.14691358024692
+      },
+      "V1-LCB": {
+        "reach": 0.6617283950617284,
+        "cond_min": 34.21082089552239,
+        "E_total_min": 63.23086419753086
+      },
+      "V2-LCB": {
+        "reach": 0.6370370370370371,
+        "cond_min": 33.383720930232556,
+        "E_total_min": 64.82222222222222
+      },
+      "V3-Topo": {
+        "reach": 0.6308641975308642,
+        "cond_min": 34.483365949119374,
+        "E_total_min": 66.05061728395061
+      },
+      "DRO": {
+        "reach": 0.5419753086419753,
+        "cond_min": 31.43507972665148,
+        "E_total_min": 72.0
+      },
+      "Adaptive-\u03b2": {
+        "reach": 0.6530864197530865,
+        "cond_min": 34.0945179584121,
+        "E_total_min": 63.8962962962963
+      }
+    }
+  }
+}
