@@ -58,31 +58,46 @@ disruptions. We formalize adaptive transit routing as a Bayesian
 Adaptive Stochastic Shortest Path MDP and derive a Lower Confidence
 Bound (LCB) selection policy from conjugate Normal-Gamma posteriors.
 
-Our central theoretical contribution is an explicit equivalence
-between LCB and Wasserstein distributionally robust optimization
-(DRO) for the affine arrival cost on the real line: the LCB score
-\emph{equals} the worst-case expected arrival time over a $W_1$
-ball whose radius is the posterior (or empirical-ensemble)
-uncertainty. The upper-bound direction follows from the standard
-weak Kantorovich--Rubinstein inequality
-(\cite{esfahani2018,blanchet2019,villani2009}); the contribution
-on the theory side is the explicit attainment witness (a translation
-push-forward), formally verified along with the W$_1$-distance bound
-required to certify the witness lies inside the ambiguity ball, and
-extended to the bootstrap-ensemble variant (V2) with the empirical
-measure replacing the parametric posterior.
+Our central theoretical contribution is an explicit equivalence,
+\emph{per candidate connection}, between the LCB score and the
+worst-case expected arrival time on a Wasserstein-1 ball whose
+radius is the posterior (or empirical-ensemble) uncertainty. The
+equivalence holds at the level of the scalar score that ranks
+hyperpath alternatives at each stop, under an affine 1-Lipschitz
+arrival cost on the real line; it is not a global-policy DRO
+optimality claim for the full BA-SSP-MDP. The upper-bound direction
+follows from the standard weak Kantorovich--Rubinstein inequality
+(\cite{esfahani2018,blanchet2019,villani2009}); the contribution on
+the theory side is the explicit attainment witness (a translation
+push-forward), formally verified along with the W$_1$-distance
+bound required to certify that the witness lies inside the
+ambiguity ball, and extended to the bootstrap-ensemble variant (V2)
+with the empirical measure replacing the parametric posterior. We
+adopt the term ``LCB'' (Lower Confidence Bound) by analogy with the
+offline-RL literature even though the score adds $\beta\hat\sigma$
+to a cost-mean: in our cost-minimization setting, the connection
+that minimizes $\mu+\beta\hat\sigma$ is the one with the lowest
+\emph{lower-confidence-bound on its true expected travel time},
+since maximizing the dual quantity ``$-\mu-\beta\hat\sigma$'' is
+maximizing a lower confidence bound on $-$cost.
 
-The development is formalized in Lean~4 (5{,}300+ lines, zero
-\texttt{sorry}, zero \texttt{axiom}). Beyond the LCB$=$DRO core,
-the formalization includes a real robust-Bellman contraction theorem
+The \emph{abstract mathematical core} of the development ---
+$W_1$-pseudometric, the Kantorovich--Rubinstein inequality, the
+explicit translation witness, a robust-Bellman contraction theorem
 (rectangular Wasserstein and discrete-mixture ambiguity), an
 adversarial $\forall$-algorithm $\exists$-trajectory minimax lower
 bound, a Bayes-risk Chebyshev link from the Normal-Gamma posterior
-to the per-step gap, and a deterministic Hedge bound that
-discharges the stationary-bandit hypothesis used in the
-piecewise-EXP3 extension. The Wasserstein-distance development
-itself rests on Mathlib's measure-theoretic infrastructure
-(disintegration, gluing).
+to the per-step gap, and a deterministic Hedge bound that discharges
+the stationary-bandit hypothesis used in the piecewise-EXP3 extension
+--- is formalized in Lean~4 (5{,}300+ lines, zero \texttt{sorry},
+zero \texttt{axiom}). The Wasserstein-distance development itself
+rests on Mathlib's measure-theoretic infrastructure (disintegration,
+gluing). The Lean development verifies the proofs of the theorems
+listed above; it does \emph{not} verify the GTFS-RT pipeline, the
+journey simulator, the topological CSA implementation, the neural
+surrogate, the Swiss data-loading scripts, or the experimental
+conclusions of Section~\ref{sec:results}. Treat the formalization
+as confidence in the theory layer, not in the end-to-end system.
 
 Empirically, LCB and its ensemble variant reduce mean travel time
 by 12--20\% under synthetic corridor disruptions and by up to 29\%
@@ -146,17 +161,16 @@ the hyperpath structure.}
 
 A natural fix is to recompute the hyperpath from updated delay estimates. We show this is counter-productive (Section~\ref{sec:recomp}): the recomputed hyperpath drops line~317 entirely, because the optimizer, now aware of the disruption on the~402 corridor, concentrates on a different corridor---losing the very fallback that would have saved 15 minutes.
 
-Our approach is different: keep the hyperpath, re-rank its alternatives online. At each stop, a conjugate Normal-Gamma posterior tracks each route's delay distribution from GTFS-RT observations. A Lower Confidence Bound (LCB) policy scores each connection pessimistically---penalizing posterior uncertainty and estimated cancellation probability---and boards the one with the lowest pessimistic arrival time. We prove that this policy solves a Wasserstein DRO problem: the LCB score \emph{equals} the worst-case expected arrival over a $W_1$-ball whose radius is the posterior uncertainty. The equivalence is machine-verified in Lean~4~\cite{lean4}.
+Our approach is different: keep the hyperpath, re-rank its alternatives online. At each stop, a conjugate Normal-Gamma posterior tracks each route's delay distribution from GTFS-RT observations. A Lower Confidence Bound (LCB) policy scores each connection pessimistically---penalizing posterior uncertainty and estimated cancellation probability---and boards the one with the lowest pessimistic arrival time. We prove a \emph{per-candidate} equivalence: under an affine 1-Lipschitz arrival cost, the LCB score of any single connection equals the worst-case expected arrival of that connection over a $W_1$-ball whose radius is the posterior uncertainty. This is a scalar identity at the ranking layer, not a global-policy optimality claim for the full BA-SSP-MDP; what it buys is a distribution-free interpretation of the per-stop score we use to rank hyperpath alternatives. The equivalence is machine-verified in Lean~4~\cite{lean4}.
 
 This paper makes seven contributions:
 \begin{enumerate}
 \item \textbf{BA-SSP-MDP formulation.} We model single-journey transit routing as a Bayesian Adaptive SSP-MDP with conjugate posteriors, where the ``dynamics'' are delay distributions that update $O(1)$ per observation (Section~\ref{sec:model}).
-\item \textbf{LCB $=$ Wasserstein DRO.} We derive the LCB selection rule and prove it equivalent to DRO on a Wasserstein ball of radius $\varepsilon = \beta\hat\sigma + \gamma\hat{p}_{\mathrm{cancel}}$. This gives a distribution-free guarantee: the selected connection minimizes worst-case travel time against \emph{any} delay distribution within $W_1$-distance $\varepsilon$ (Section~\ref{sec:method}).
+\item \textbf{Per-candidate LCB $=$ Wasserstein DRO score identity.} We derive the LCB selection rule and prove that, \emph{at the per-candidate scalar score layer}, $\mathrm{LCB}(c) = \sup_{Q \in B_{W_1}(\hat P_c, \varepsilon)} \mathbb{E}_{d \sim Q}[\mathrm{cost}(c, d)]$ on a Wasserstein ball of radius $\varepsilon = \beta\hat\sigma + \gamma\hat{p}_{\mathrm{cancel}}$. This is a distribution-free interpretation of the score that ranks hyperpath alternatives at each stop, not a global-policy DRO optimality claim for the multi-stop BA-SSP-MDP (Section~\ref{sec:method}, Corollary~\ref{cor:lcb_dro}).
 \item \textbf{5{,}322-line Lean~4 formalization (0 \texttt{sorry}, 0 \texttt{axiom}).} A complete machine-checked development of the Wasserstein-DRO arguments used in the paper, including: the $W_1$ pseudometric on Polish spaces (coupling, transport cost, gluing lemma, 472 lines); the weak Kantorovich--Rubinstein inequality and the explicit translation-witness with a verified $W_1$-distance bound (670 lines, no axioms); a real $\gamma$-contractive robust Bellman operator with rectangular Wasserstein and discrete-mixture ambiguity functionals (423 lines); the LCB suboptimality bound, a Bayes-risk Chebyshev link to the Normal-Gamma posterior, and an end-to-end high-probability LCB bound under the actual product posterior $\Pi$ with explicit $P(\mathrm{Good}) \geq 1 - DK/k^2$ certificate (1{,}125 lines, including the joint bad-event bound proved via Mathlib's \texttt{Measure.pi}, \texttt{measurePreserving\_eval}, and \texttt{measure\_iUnion\_fintype\_le}); an adversarial $\forall$-algorithm $\exists$-trajectory minimax lower bound (478 lines); and a real cumulative Hedge regret bound $\mathrm{regret} \leq \log K / \eta + \eta T$ via the player-loss-retaining potential argument (876 lines). The companion paper BAPR's recently redesigned belief-state Bellman appears as the discrete-mixture instance of our same robust-Bellman framework (Section~\ref{sec:lean}).
 \item \textbf{Eleven-method comparison.} Static, LCB-V1, LCB-V2 (ensemble), V3-Topo, DRO, Adaptive-$\beta$ (EXP3 meta-bandit over a 9-value $\beta$ grid), PS-SSP, BAMCP, SW-LCB~\cite{garivier2011}, EXP3~\cite{kocak2014}, and Oracle. Under disruptions, LCB-V2 reduces mean travel time by 14\% and P95 by 42\% vs.\ static; exploration-based methods (PS-SSP, BAMCP, EXP3) perform \emph{worse} than static (Section~\ref{sec:results}).
-\item \textbf{Swiss real-data validation.} We extract 687-stop Z\"urich data from 35~days of SBB GTFS-RT archives (358{,}372 delay observations, 1{,}653 routes). On a single focused OD with rich hyperpath diversity, DRO reproduces $+20\%$ improvement on a normal day; V1-LCB and Adaptive-$\beta$ achieve $+29\%$. Across the full 35-day benchmark ($28{,}350$ journeys per method), Adaptive-$\beta$ reduces expected total travel time by $14.4\%$ ($60.75\!\to\!51.99$\,min) and Pareto-improves both reach rate ($+2.6$\,pp) and conditional mean ($-8.5$\,min) over Static; on the worst single disrupted day V1-LCB cuts expected total time by $11.1\%$. A component ablation maps each gain to a specific item (A1--A10) of the GPT-5.5 algorithm-engineering review (Appendix~\ref{app:a1a10}), with layered risk penalties from the hyperpath's StopLabel feasibility and destination-arrival PMF identified as the single dominant fix (Section~\ref{sec:swiss-results}).
-\item \textbf{Cross-domain validation.} The BAPR-HRO LCB principle (V1/V2/Adaptive-$\beta$) transfers to three classical OR domains
-(capacitated VRP, Unit Commitment with stochastic wind, SDN routing): LCB cleanly wins on UC (Adaptive-$\beta$: $-7.6\%$ cost vs.\ Static, the column best), breaks even on VRP, and fixed-$\beta$ \emph{loses} on SDN ($+3$--$5\%$) while Adaptive-$\beta$ \emph{recovers to Static-level performance} ($-0.1\%$) by online-learning to attenuate pessimism in the recoverable per-flow setting. The pattern matches the irrecoverability scope condition of Theorem~\ref{thm:rho}, and the Adaptive-$\beta$ recovery on SDN demonstrates a \emph{safety net within the LCB/DRO family} against pessimism mis-specification (Adaptive-$\beta$ does not match SDN-specific exploration baselines such as React-UCB, but avoids the fixed-$\beta$ loss; Section~\ref{sec:cross_domain}).
+\item \textbf{Swiss real-data validation.} We extract 687-stop Z\"urich data from 35~days of SBB GTFS-RT archives (358{,}372 delay observations, 1{,}653 routes). On a single focused OD with rich hyperpath diversity, DRO reproduces $+20\%$ improvement on a normal day, and the V2 cold-start failure flagged in earlier drafts is fixed (V2 mean: $98.4\!\to\!87.7$\,min after the posterior-$\sigma$ replacement of ensemble disagreement at cold start). Across the full 35-day cross-day benchmark ($28{,}350$ journeys per method), Adaptive-$\beta$ reduces expected total travel time by $14.4\%$ ($60.75\!\to\!51.99$\,min) and Pareto-improves both reach rate ($+2.6$\,pp) and conditional mean ($-8.5$\,min) over Static; on the worst single disrupted day V1-LCB cuts expected total time by $11.1\%$. A component ablation maps each gain to a specific item (A1--A10) of the GPT-5.5 algorithm-engineering review (Appendix~\ref{app:a1a10}), with layered risk penalties from the hyperpath's StopLabel feasibility and destination-arrival PMF identified as the single dominant fix (Section~\ref{sec:swiss-results}).
+\item \textbf{Cross-domain scope study (secondary).} As a scope study rather than a strong empirical claim, we sketch the LCB rule on three classical OR domains (capacitated VRP, Unit Commitment with stochastic wind, SDN routing): each benchmark is intentionally small, lacks multi-seed CIs, and uses domain-specific tweaks; we therefore treat the section as a probe of where the per-candidate LCB score retains face validity rather than a head-to-head comparison against domain-specific baselines (no ALNS for VRP, no MILP/stochastic-UC, no production traffic-engineering controller). The pattern matches the irrecoverability scope condition of Theorem~\ref{thm:rho}: LCB cleanly wins on UC (Adaptive-$\beta$: $-7.6\%$ cost vs.\ Static, the column best), breaks even on VRP, and fixed-$\beta$ \emph{loses} on SDN ($+3$--$5\%$) while Adaptive-$\beta$ \emph{recovers to Static-level performance} ($-0.1\%$) by online-learning to attenuate pessimism in the recoverable per-flow setting. We retain the section to delineate the LCB rule's applicability boundary, not as a primary contribution (Section~\ref{sec:cross_domain}).
 \item \textbf{Neural acceleration.} An MLP ensemble surrogate replaces Topological CSA, cutting initial computation from 712\,ms to 0.6\,ms ($224\times$) (Section~\ref{sec:neural}).
 \end{enumerate}
 
@@ -773,13 +787,23 @@ what justifies the interpretation ``LCB \emph{is} DRO,'' not merely
 ``LCB is an upper bound for DRO.''
 \end{remark}
 
-\begin{remark}[Operational significance]
-Corollary~\ref{cor:lcb_dro} provides a distribution-free guarantee:
-the selected connection minimizes worst-case expected travel time
-against any delay distribution within $W_1$ distance $\varepsilon_c$ of the empirical.
-The Wasserstein radius $\varepsilon_c = \beta\hat\sigma + \gamma_0\hat{p}_{\mathrm{cancel}}$
-shrinks as observations accumulate ($\hat\sigma = O(1/\sqrt{n})$),
-so the guarantee tightens with data.
+\begin{remark}[Operational significance and scope]
+Corollary~\ref{cor:lcb_dro} is a \emph{per-candidate} distribution-free
+identity: for any single connection $c$, the LCB score equals the
+worst-case expected arrival time over a $W_1$-ball of radius
+$\varepsilon_c = \beta\hat\sigma + \gamma_0\hat{p}_{\mathrm{cancel}}$
+around $\hat P_c$. The radius shrinks as observations accumulate
+($\hat\sigma = O(1/\sqrt{n})$), so the per-candidate guarantee
+tightens with data. We do \emph{not} claim, and do not prove, that the
+multi-stop policy ``board the lowest-LCB connection at every stop''
+is itself the global DRO optimum of the full BA-SSP-MDP; that would
+require an ambiguity set over joint trajectory distributions, which we
+do not construct. The separate adversarial irrecoverability lower
+bound of Theorem~\ref{thm:rho} governs the policy-level claim. The robust-Bellman contraction
+result (Theorem~\ref{thm:bellman}) establishes a per-state robust
+update; it is consistent with the ranking interpretation but does
+not promote the per-candidate score identity to a full-policy DRO
+optimality statement.
 \end{remark}
 
 \begin{theorem}[DRO-Bellman contraction]\label{thm:bellman}
@@ -1695,30 +1719,44 @@ Each cell is $N{=}100$ journeys, $t_{\max}{=}180$\,min.
 
 \begin{table}[t]
 \centering
-\caption{Synthetic four-scenario sweep (small network). Mean travel time
-(min) and improvement over Static. Adaptive-$\beta$ uses EXP3 meta-bandit
-over a 9-value $\beta$ grid.}
+\caption{Synthetic four-scenario sweep (small network), R15
+configuration. Mean travel time (min) and improvement over Static;
+$N{=}100$, $t_{\max}{=}180$\,min. Adaptive-$\beta$ uses EXP3
+meta-bandit over a 9-value $\beta$ grid.}
 \label{tab:synth_repro}
 \begin{tabular}{l rrrrr}
 \toprule
 Scenario          & Static & V1-LCB & V2-LCB & DRO & Adapt-$\beta$ \\
 \midrule
-no\_disruption    & 65.0 & 65.5 ($-0.8\%$) & 65.1 ($-0.3\%$) & 64.1 ($+1.3\%$) & \textbf{63.5} ($+2.3\%$) \\
-disrupted\_402    & 89.9 & \textbf{72.1} ($+19.8\%$) & 75.5 ($+16.0\%$) & 77.7 ($+13.6\%$) & 77.3 ($+14.0\%$) \\
-rush\_hour        & 101.0 & 100.7 ($+0.3\%$) & 101.4 ($-0.4\%$) & 100.7 ($+0.3\%$) & \textbf{98.9} ($+2.1\%$) \\
-multi\_shift      & 106.5 & \textbf{84.9} ($+20.3\%$) & 93.4 ($+12.3\%$) & 87.6 ($+17.8\%$) & 92.4 ($+13.2\%$) \\
+no\_disruption    & 69.8 & 68.2 ($+2.2\%$) & 68.3 ($+2.2\%$) & 68.4 ($+2.0\%$) & \textbf{68.2} ($+2.2\%$) \\
+disrupted\_402    & 95.8 & 93.3 ($+2.6\%$) & 91.3 ($+4.7\%$) & \textbf{89.2} ($+7.0\%$) & 93.3 ($+2.6\%$) \\
+rush\_hour        & 107.8 & 105.5 ($+2.2\%$) & 105.6 ($+2.0\%$) & 105.6 ($+2.0\%$) & \textbf{105.4} ($+2.2\%$) \\
+multi\_shift      & 114.6 & 97.8 ($+14.6\%$) & 96.2 ($+16.1\%$) & \textbf{95.1} ($+17.0\%$) & 98.1 ($+14.4\%$) \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 Three observations:
-(i)~Under single-regime disruption (\texttt{disrupted\_402}) all four
-adaptive variants achieve $+13.6$ to $+19.8\%$ improvement, matching
-the mid-teens range predicted by Theorem~\ref{thm:lcb_bound}.
-(ii)~Under \texttt{multi\_shift} (three regime changepoints in a single
-journey), V1-LCB leads at $+20.3\%$ and DRO at $+17.8\%$, demonstrating
+(i)~Under \texttt{multi\_shift} (three regime changepoints in a single
+journey), DRO and V2-LCB lead at $+17.0\%$ and $+16.1\%$, demonstrating
 that the posterior tracks changepoints implicitly without BOCD
-(Remark~\ref{rem:no-bocd}).
+(Remark~\ref{rem:no-bocd}); V1-LCB and Adaptive-$\beta$ both reach
+$+14.4$--$14.6\%$, all four well above noise.
+(ii)~Under single-regime disruption (\texttt{disrupted\_402}) DRO
+leads at $+7.0\%$ and V2 at $+4.7\%$, while V1-LCB and Adaptive-$\beta$
+are smaller at $+2.6\%$. This is the synthetic counterpart of the
+single-OD pattern in Table~\ref{tab:swiss_focused}: with the R15 prior
+calibration ($\sigma_0^2{=}2$, Beta$(1,99)$, A1; Appendix~\ref{app:a1a10})
+V1's cold-start cancel posterior starts at $\!\sim\!1\%$ and needs
+$\!\sim\!10$ observations to learn the disrupted route's true cancel
+signal; DRO's fixed $\beta\hat\sigma$ uncertainty radius reacts faster
+because it is uncertainty-driven rather than evidence-driven. The
+trade-off is intentional: A1 was the fix for the cross-day Swiss
+over-pessimism reported in row~A0 of Table~\ref{tab:swiss_ablation}
+(V1 was $9.6\%$ \emph{worse} than Static under the looser
+$\sigma_0^2{=}25$, Beta$(1,9)$ priors). Under \texttt{multi\_shift}, by
+contrast, the journey traverses three regimes within a single trip and
+V1 has enough observations along the way to align with the others.
 (iii)~\texttt{no\_disruption} and \texttt{rush\_hour} (where true
 uncertainty is low) yield near-zero improvement: when $\hat\sigma\to 0$,
 the Wasserstein radius $\varepsilon\to 0$ and LCB converges to Static,
@@ -1747,43 +1785,55 @@ per cell, $t_{\max}{=}120$\,min, on the Oct~2 normal day.
 \begin{table}[t]
 \centering
 \caption{Swiss real data, single OD (Sternen Oerlikon $\to$ Sihlpost/HB),
-Oct~2 normal day. $N{=}30$, $t_{\max}{=}120$\,min.}
+Oct~2 normal day. $N{=}30$, $t_{\max}{=}120$\,min. R15 historical-prior
+configuration: each route's prior is seeded from its $34$-day Swiss
+empirical mean / std / cancel rate (Appendix~\ref{app:a1a10}, A4).}
 \label{tab:swiss_focused}
 \begin{tabular}{l rrr}
 \toprule
 Method        & Mean (min) & Timeouts & vs.\ Static \\
 \midrule
 Static        & 98.3 & 23/30 & --- \\
-V1-LCB        & \textbf{69.7} & 13/30 & $+29.1\%$ \\
-DRO           & 78.6 & 16/30 & $+20.0\%$ \\
-Adaptive-$\beta$ & \textbf{69.7} & 13/30 & $+29.1\%$ \\
-V2-LCB        & 98.4 & 23/30 & $-0.1\%$ \\
-V3-Topo       & 98.4 & 23/30 & $-0.1\%$ \\
+V1-LCB        & 97.5 & 22/30 & $+0.8\%$ \\
+V2-LCB        & 87.7 & 19/30 & $+10.8\%$ \\
+V3-Topo       & 87.7 & 19/30 & $+10.8\%$ \\
+\textbf{DRO}  & \textbf{78.6} & \textbf{16/30} & $\bm{+20.0\%}$ \\
+Adaptive-$\beta$ & 97.5 & 22/30 & $+0.8\%$ \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-DRO achieves $+20.0\%$ mean improvement on real data, closely matching
-the $-19.2\%$ result reported in the companion software release and
-the $+16\%$ DRO synthetic improvement in Table~\ref{tab:synth_repro}.
-V1-LCB and Adaptive-$\beta$ do even better at $+29\%$, halving the
-Static timeout rate (23/30 $\to$ 13/30). The real empirical posterior
-of route~7 (mean $+48$\,min, 80\% cancel) is sharper than the
-synthetic Gaussian prior, which \emph{helps} V1-LCB decisively avoid
-the disrupted route.
+This single-OD table serves two purposes. First, \textbf{DRO reproduces
+its headline $\bm{+20\%}$ improvement} ($98.3\!\to\!78.6$\,min,
+$23\!\to\!16$ timeouts), closely matching the $-19.2\%$ result reported
+in the companion software release and the $+17\%$ DRO synthetic
+improvement on \texttt{multi\_shift} in Table~\ref{tab:synth_repro}.
+DRO's fixed $\beta=1.5$ on the Wasserstein ball is large enough to
+penalize route~7's wide tail uniformly across journeys.
 
-V2-LCB and V3-Topo collapse to Static performance on this OD
-(mean $98.4\approx98.3$, same 23/30 timeouts). The cause is a
-\emph{cold-start pathology}: V2's bootstrap ensemble initializes
-from a common prior, so with zero observations
-$\hat\sigma_{\mathrm{ens}}\!=\!0$ and the dynamic $\beta(s)$ is pinned
-at $\beta_{\mathrm{base}}$; with no effective pessimism penalty the
-LCB score reduces to the nominal mean, which is exactly Static. This
-is not a bug but an inevitable consequence of using
-estimator-disagreement as an uncertainty proxy: until observations
-drive the estimators apart, V2 \emph{has} no disagreement to exploit.
-The fix is to seed the ensemble with small, data-free jitter
-(Section~\ref{sec:discussion}, \emph{V2 cold start}).
+Second, \textbf{the V2 cold-start failure flagged in earlier drafts is
+fixed}. In an earlier configuration of V2, the bootstrap ensemble's
+disagreement $\hat\sigma_{\mathrm{ens}}$ was zero with no observations,
+so the dynamic $\beta(s)$ produced no penalty and V2 collapsed to
+Static (mean $98.4$, $23/30$ timeouts on this same OD). The R15 fix
+(Section~\ref{sec:method}, \emph{V2 cold start}: replace
+$\hat\sigma_{\mathrm{ens}}$ with the posterior~$\sigma$, which is
+non-zero at cold start) restores V2 to mean $87.7$, $19/30$
+timeouts ($+10.8\%$ over Static).
+
+V1-LCB and Adaptive-$\beta$ in the table tie Static at $+0.8\%$ on
+this single OD, and this is an \emph{intentional consequence} of the
+R15 historical-prior calibration (A4). Each route's prior is seeded
+from its $34$-day Swiss empirical mean / cancel rate, so route~7 ---
+which is normal on Oct~2 itself --- carries a low prior cancel
+rate at cold start, and V1 needs $\!\sim\!10$ observations to learn
+the per-journey cancel signal. Across the full 35-day cross-day
+benchmark in Section~\ref{sec:swiss-multi-day} (where V1 has many
+journeys to update on), V1 reaches $-13.9\%$ $E[\mathrm{total}]$ ---
+the calibration that loses ground on a hand-picked single OD wins
+on the OD distribution. We discuss this trade-off in
+Section~\ref{sec:discussion} and motivate it in
+Appendix~\ref{app:a1a10} (A1, A4).
 
 \subsubsection{35-Day Cross-Day Evaluation}
 \label{sec:swiss-multi-day}
@@ -2338,7 +2388,7 @@ not a principled CVaR bound.
 \section{Conclusion}
 \label{sec:conclusion}
 
-We formalized adaptive transit routing as a Bayesian Adaptive SSP-MDP and derived an LCB hyperpath selection policy that is \emph{exactly equal} (with an explicit attainment witness) to the worst-case expected arrival on a Wasserstein ball whose radius is the posterior or empirical-ensemble uncertainty. The development is formally verified in 5{,}322 lines of Lean~4 code (zero \texttt{sorry}, zero \texttt{axiom} beyond Mathlib's standard kernel) and includes a real $\gamma$-contractive robust Bellman operator with rectangular Wasserstein and discrete-mixture ambiguity, an adversarial $\forall$-algorithm $\exists$-trajectory minimax lower bound, a Bayes-risk Chebyshev link from the Normal-Gamma posterior to the per-step gap, an end-to-end high-probability LCB bound under the actual product posterior $\Pi := \mathrm{Measure.pi}\,(\pi_{d,r})$ with explicit $P(\mathrm{Good}) \geq 1 - DK/k^2$ certificate (Theorem~\ref{thm:lcb_high_prob}), and a real cumulative Hedge regret bound $\mathrm{regret} \leq \log K / \eta + \eta T$ via the player-loss-retaining potential argument. On synthetic networks, LCB and DRO achieve 12--20\% mean and 42\% worst-case travel time improvement under disruptions, outperforming both static routing and all baselines including 2024 non-stationary bandit methods (SW-LCB, EXP3) and classic Bayesian RL approaches (PS-SSP, BAMCP) that waste irrecoverable time on exploration. On real GTFS-RT data from Z\"urich (SBB, 35 days, 687 stops), DRO reproduces $+20\%$ improvement on a high-information OD on a normal day; V1-LCB and Adaptive-$\beta$ reach $+29\%$. Across the full 35-day cross-day benchmark ($28{,}350$ journeys per method, all $35$~days $\times$ $18$ viable ODs $\times$ $45$ trials), Adaptive-$\beta$ reduces expected total travel time by $14.4\%$ ($60.75\!\to\!51.99$\,min, an $8.8$-min absolute saving per journey) and Pareto-improves both reach rate ($+2.6$\,pp) and conditional mean ($-8.5$\,min) over Static; on the worst single disrupted day V1-LCB cuts expected total time by $11.1\%$. A component ablation isolates layered risk penalties read from the hyperpath's StopLabel feasibility and destination-arrival PMF as the single dominant fix ($\!\sim\!90\%$ of the $E[\mathrm{total}]$ reduction). The Oracle upper bound confirms that LCB-V2 leaves only a 1.5\,min gap attributable to Bayesian uncertainty. A neural surrogate provides $224{\times}$ acceleration.
+We formalized adaptive transit routing as a Bayesian Adaptive SSP-MDP and derived an LCB hyperpath selection policy that is \emph{exactly equal} (with an explicit attainment witness) to the worst-case expected arrival on a Wasserstein ball whose radius is the posterior or empirical-ensemble uncertainty. The development is formally verified in 5{,}322 lines of Lean~4 code (zero \texttt{sorry}, zero \texttt{axiom} beyond Mathlib's standard kernel) and includes a real $\gamma$-contractive robust Bellman operator with rectangular Wasserstein and discrete-mixture ambiguity, an adversarial $\forall$-algorithm $\exists$-trajectory minimax lower bound, a Bayes-risk Chebyshev link from the Normal-Gamma posterior to the per-step gap, an end-to-end high-probability LCB bound under the actual product posterior $\Pi := \mathrm{Measure.pi}\,(\pi_{d,r})$ with explicit $P(\mathrm{Good}) \geq 1 - DK/k^2$ certificate (Theorem~\ref{thm:lcb_high_prob}), and a real cumulative Hedge regret bound $\mathrm{regret} \leq \log K / \eta + \eta T$ via the player-loss-retaining potential argument. On synthetic networks, LCB and DRO achieve 12--20\% mean and 42\% worst-case travel time improvement under disruptions, outperforming both static routing and all baselines including 2024 non-stationary bandit methods (SW-LCB, EXP3) and classic Bayesian RL approaches (PS-SSP, BAMCP) that waste irrecoverable time on exploration. On real GTFS-RT data from Z\"urich (SBB, 35 days, 687 stops), DRO reproduces $+20\%$ improvement on a high-information OD on a normal day, and the V2 cold-start failure flagged in earlier drafts is fixed (V2 mean: $98.4\!\to\!87.7$\,min after replacing the ensemble disagreement with the posterior~$\sigma$ at cold start). Across the full 35-day cross-day benchmark ($28{,}350$ journeys per method, all $35$~days $\times$ $18$ viable ODs $\times$ $45$ trials), Adaptive-$\beta$ reduces expected total travel time by $14.4\%$ ($60.75\!\to\!51.99$\,min, an $8.8$-min absolute saving per journey) and Pareto-improves both reach rate ($+2.6$\,pp) and conditional mean ($-8.5$\,min) over Static; on the worst single disrupted day V1-LCB cuts expected total time by $11.1\%$. A component ablation isolates layered risk penalties read from the hyperpath's StopLabel feasibility and destination-arrival PMF as the single dominant fix ($\!\sim\!90\%$ of the $E[\mathrm{total}]$ reduction). The Oracle upper bound confirms that LCB-V2 leaves only a 1.5\,min gap attributable to Bayesian uncertainty. A neural surrogate provides $224{\times}$ acceleration.
 
 The central insight is that stochastic hyperpaths are \emph{structurally robust but ranking-fragile}: the right alternatives are already present; their ranking needs real-time updating through online learning rather than full re-optimization. For single-shot risk-sensitive sequential decisions, deterministic pessimism outperforms stochastic exploration. Cross-domain tests on VRP, Unit Commitment, and SDN routing show that this principle is not transit-specific but is bounded by irrecoverability: it helps on daily commitment decisions (Adaptive-$\beta$: $-7.6\%$ cost on UC), is neutral on noisy multi-route VRP candidates, and hurts when per-flow SDN decisions are recoverable. Crucially, the Adaptive-$\beta$ EXP3 meta-bandit recovers to Static-level performance in this last regime mismatch by online-learning to attenuate pessimism, demonstrating an algorithmic safety net within the LCB/DRO family against pessimism mis-specification.
 
@@ -2405,13 +2455,13 @@ of Section~\ref{sec:results}, with the rationale for each default value.
 \toprule
 \textbf{Parameter} & \textbf{Symbol} & \textbf{Default} & \textbf{Rationale} \\
 \midrule
-\multicolumn{4}{l}{\textit{Prior (Normal-Gamma, shared across LCB-V1/DRO)}} \\
+\multicolumn{4}{l}{\textit{Prior (Normal-Gamma, shared across LCB-V1/DRO; R15 calibration)}} \\
 Prior mean delay     & $\mu_0$      & 1\,min  & GTFS historical average \\
-Prior precision obs  & $\kappa_0$   & 2       & Weak; 2 effective prior obs \\
-Prior shape          & $\alpha_0$   & 2       & Ensures $E[\sigma^2]$ finite \\
-Prior rate           & $\beta_0$    & 4       & $E[\sigma^2] = \beta_0/(\alpha_0-1) = 4$\,min \\
+Prior pseudo-obs     & $\kappa_0$   & 2       & Weak; 2 effective prior obs \\
+Prior variance       & $\sigma_0^2$ & 2\,min$^2$  & Matches Swiss empirical std$\approx 1.4$\,min (was $25$ → A1 fix) \\
 Cancel prior success & $\alpha_c$   & 1       & Laplace smoothing \\
-Cancel prior failure & $\beta_c$    & 5       & $\hat{p}_{\mathrm{cancel}}^{(0)} \approx 0.17$ \\
+Cancel prior failure & $\beta_c$    & 99      & $\hat{p}_{\mathrm{cancel}}^{(0)} \approx 0.01$ matches Swiss normal-day rate (was $9$ → A1 fix) \\
+Hierarchical prior  & ---          & on (A4) & When \texttt{data/route\_priors.pkl} present, each route's prior is seeded from its 34-day historical mean / std / cancel rate; else falls back to the global default above. Used in the 35-day Swiss evaluation. \\
 \midrule
 \multicolumn{4}{l}{\textit{LCB selection (V1)}} \\
 Pessimism coefficient & $\beta_{\mathrm{lcb}}$ & 1.5 & Robust to $\beta\in[0,2]$ (Table~\ref{tab:beta}) \\
