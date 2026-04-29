@@ -147,8 +147,12 @@ SDN but it does transfer to SDN under proper multi-seed evaluation,
 contradicting an earlier single-seed report. The
 unifying finding: stochastic hyperpaths are \emph{structurally
 robust but ranking-fragile}---the right alternatives are already
-there; only their ranking needs online updating, and the DRO-optimal
-update rule is an $O(1)$ posterior-based LCB score.
+there; only their ranking needs online updating. The four-term core
+of the LCB score has a tight per-candidate Wasserstein-DRO
+interpretation (Cor.~\ref{cor:lcb_dro}); the deployed R16 router
+augments this core with two bounded hyperpath-structural risk
+terms that further improve cross-day reach rate and conditional
+travel time on Swiss real data.
 \end{abstract}
 
 \noindent\textbf{Keywords.} Stochastic transit routing; Wasserstein distance; distributionally robust optimization; formal verification; Lean~4; hyperpath; online learning.
@@ -525,15 +529,22 @@ and selects $c^* = \arg\min_c \text{score}(c)$. Here $\beta \geq 0$ controls pes
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.85\columnwidth]{fig_concept_dro_ball.pdf}
-\caption{Tight LCB$=$DRO equivalence (Corollary~\ref{cor:lcb_dro}). The
-empirical (or posterior) measure $\hat P$ sits at the center of a
-$W_1$-ball of radius $\varepsilon = \beta\hat\sigma + \gamma\hat
-p_{\mathrm{cancel}}$. The translation push-forward
-$P^\star = T_\#\hat P$ with $T(\delta)=\delta+\varepsilon$ is on the
-boundary and \emph{attains} the supremum: $\mathbb{E}_{P^\star}[\mathrm{arr}]
+\caption{Tight LCB$=$DRO equivalence for the four-term core
+$\hat\mu + \beta\hat\sigma + \gamma\hat p_{\mathrm{cancel}}$
+(Corollary~\ref{cor:lcb_dro}). The empirical (or posterior) measure
+$\hat P$ sits at the center of a $W_1$-ball of radius $\varepsilon =
+\beta\hat\sigma + \gamma\hat p_{\mathrm{cancel}}$. The translation
+push-forward $P^\star = T_\#\hat P$ with $T(\delta)=\delta+\varepsilon$
+is on the boundary and \emph{attains} the supremum:
+$\mathbb{E}_{P^\star}[\mathrm{arr}]
 = \mathbb{E}_{\hat P}[\mathrm{arr}] + \varepsilon = \mathrm{LCB}$. Hence
 the $\le$ direction (weak Kantorovich-Rubinstein) and the $\ge$ direction
-(explicit witness) match, giving an \emph{equality}, not a bound.}
+(explicit witness) match, giving an \emph{equality}, not a bound.
+The two A7 hyperpath-structural penalties ($60(1{-}\phi)$ and
+$60(1{-}P_{\mathrm{ontime}})$) of the deployed R16 score
+\eqref{eq:r15-score} sit \emph{outside} this ball and have no
+DRO interpretation; they are bounded empirical augmentations
+(\S\ref{sec:method-r15-score}, Remark~\ref{rem:r15-score-scope}).}
 \label{fig:dro_ball}
 \end{figure}
 
@@ -1102,7 +1113,7 @@ be a genuine cancellation, a vehicle-matching error in the feed, a
 short-line truncation, or a feed gap. Treating all observed
 no-shows as cancellations would inflate $\hat p_{\mathrm{cxl}}$ in
 both the prior (A1) and the posterior. Our implementation (A3,
-\texttt{RouteBeliefState.update\_cancel(kind={'true','late\_no\_show'})})
+\texttt{RouteBeliefState.\allowbreak update\_cancel(kind=\allowbreak\{'true',\allowbreak 'late\_no\_show'\})})
 maintains separate counters for confirmed cancellations
 (delay-feed sentinel $>30$\,min) and passenger-side late no-shows
 (patience window expired with no boarding); both update the
@@ -1256,25 +1267,26 @@ relative to the Bayes-optimal policy $\pi^*$ satisfies:
 The bound is stated for the four-term LCB score
 $\hat\mu + \beta\hat\sigma + \gamma_0\hat p_{\mathrm{cxl}}$
 on which Cor.~\ref{cor:lcb_dro} holds; this is the part the Lean
-development verifies. The R16 deployed score
-\eqref{eq:r15-score} adds two bounded
-hyperpath-structural penalties (each in $[0, 60]$\,min); since they
-are non-negative and at most $C_{\mathrm{A7}}=120$\,min per stop,
-the substitution preserves
+development verifies. The four-term core gives
 $\mathbb{E}[\mathrm{cost}(\pi_{\mathrm{LCB}})] -
-\mathbb{E}[\mathrm{cost}(\pi^*)] = O(\sigma_{\max})$ asymptotically
-but the additive slack $D \cdot C_{\mathrm{A7}}$ is non-trivial when
-$D \cdot C_{\mathrm{A7}}$ approaches $t_{\max}$ (in our setting
+\mathbb{E}[\mathrm{cost}(\pi^*)] = O(\sigma_{\max})$. The R16 deployed
+score \eqref{eq:r15-score} adds two bounded hyperpath-structural
+penalties (each in $[0, 60]$\,min, so $\leq C_{\mathrm{A7}}=120$\,min
+per stop). Substituting the R16 score for the four-term core therefore
+gives a bound of the form
+$O(\sigma_{\max}) + D \cdot C_{\mathrm{A7}}$, \emph{not} a pure
+$O(\sigma_{\max})$ rate: the additive constant $D \cdot C_{\mathrm{A7}}$
+does not vanish with $\sigma_{\max}$, and in our setting
 $D{=}6$, $C_{\mathrm{A7}}{=}120$, $t_{\max}{=}120$, so the slack is
-$\!\sim\!6t_{\max}$ and the formal bound is vacuous on a single
-journey). We do \emph{not} claim that the R16 layered score has the
-same theoretical guarantee as the four-term DRO core; we treat A7 as
-an empirical augmentation justified by Table~\ref{tab:swiss_ablation}
-(it is the dominant single fix for the cross-day Swiss benchmark) and
-make the verified theorem layer correspond exactly to the four-term
-core. The asymptotic-rate statement is the formal content; the
-constant-slack statement is conservative bookkeeping rather than an
-operational guarantee.
+$\!\sim\!6\,t_{\max}$ and the formal bound is vacuous on a single
+journey. We therefore do \emph{not} claim that the R16 layered score
+has the same theoretical guarantee as the four-term DRO core; we treat
+A7 as an empirical augmentation justified by
+Table~\ref{tab:swiss_ablation} (it is the dominant single fix for the
+cross-day Swiss benchmark) and make the verified theorem layer
+correspond exactly to the four-term core. Only the four-term verified
+component remains $O(\sigma_{\max})$; the deployed R16 score has an
+additional bounded perturbation that has to be controlled separately.
 \end{theorem}
 
 \begin{proof}
@@ -1770,7 +1782,8 @@ DRO upper bound (Thm.~\ref{thm:dro}) &
   \texttt{dro\_iSup\_real\_equality} &
   \texttt{Wasserstein/DRO.lean} \\
 LCB$\,=\,$DRO equivalence (Cor.~\ref{cor:lcb_dro}) &
-  \texttt{lcb\_equals\_dro\_attained} &
+  \texttt{lcb\_equals\_dro\_attained},\newline
+  \texttt{dro\_iSup\_real\_equality} &
   \texttt{Wasserstein/DRO.lean} \\
 Translation-witness $W_1$ bound &
   \texttt{w1\_translation\_le} &
@@ -1892,6 +1905,23 @@ machine-checked, just not inside this project. The project-level
 contribution is the composition of those Mathlib facts into the
 BAPR-HRO performance guarantees stated in Tables~\ref{tab:lean}
 and~\ref{tab:xref}.
+
+\paragraph{Implementation note: two parallel $W_1$ definitions.}
+For modular reasons the proof project keeps two structurally
+identical $W_1$ definitions in two files: \texttt{Wasserstein/Distance.lean}
+defines \texttt{wassersteinDist} as $\inf_\gamma \mathtt{transportCost}\,\gamma$
+over couplings $\gamma$ of $(\mu,\nu)$, and
+\texttt{Wasserstein/DRO.lean} keeps a local copy \texttt{W$_1$} as
+$\inf_\gamma \mathtt{transportCost'}\,\gamma$ over a primed coupling
+predicate \texttt{IsCoupling'}. The primed and unprimed versions
+share the same coupling-measure structure, so the two definitions
+are extensionally equal; a one-line bridge theorem
+$\mathtt{W}_1\,\mu\,\nu = \mathtt{wassersteinDist}\,\mu\,\nu$ is
+implementation-level and is not currently exposed as a separate
+Lean theorem. We flag this so a formal-methods reader is aware
+that the same metric appears under two names; nothing in the proof
+chain depends on the bridge being a single named theorem rather
+than a definitional unfolding.
 
 \paragraph{What machine-checking buys.}
 The Lean artifact rules out arithmetic and algebraic mistakes,
@@ -2446,6 +2476,17 @@ routers use exactly the parameters of Table~\ref{tab:params}; routers
 are rebuilt from scratch each (day, OD) cell so the per-route
 posterior is reset (no information leakage across days).
 
+\paragraph{Scope of the benchmark (caveat).} This is a Paradeplatz-origin
+disrupted-route OD panel, not a city-wide random OD sample. The
+selection is deliberate stress-test design: each OD has both a
+disrupted route and a safe alternative in its hyperpath, which is
+where adaptive ranking can plausibly help. Generalisation from this
+panel to a uniformly-sampled city-wide OD pool is not established
+here; we report the result as ``Z\"urich sub-network stress-test
+benchmark'' rather than ``city-wide superiority of LCB''. A
+random-origin / random-OD multi-panel robustness check is left as
+future work and would strengthen the empirical case if positive.
+
 \begin{table}[!t]
 \centering
 \caption{Swiss real data, 35-day cross-day evaluation, $35{\times}18{=}630$
@@ -2665,9 +2706,12 @@ attribution (A2) hold.}
 \toprule
 Configuration             & V1-LCB & V2-LCB & V3-Topo & DRO & Adaptive-$\beta$ \\
 \midrule
+\multicolumn{6}{l}{\emph{R15-era simulator (A0--A2, historical code states):}} \\
 A0 (pre-fix)              & 56.33 ($+14.2\%$) & 56.33 ($+14.2\%$) & 56.33 ($+14.2\%$) & 52.77 ($+7.0\%$)  & 56.33 ($+14.2\%$) \\
 A1 (threshold-fix)        & 51.18 ($+3.7\%$)  & 51.77 ($+4.9\%$)  & 51.77 ($+4.9\%$)  & 52.77 ($+7.0\%$)  & 51.18 ($+3.7\%$)  \\
 A2 ($+$A7$+$cold-start)   & 47.60 ($-3.5\%$)  & 47.74 ($-3.3\%$)  & 47.74 ($-3.3\%$)  & 52.77 ($+7.0\%$)  & 47.60 ($-3.5\%$)  \\
+\midrule
+\multicolumn{6}{l}{\emph{R16 simulator (current default, with typed-cancellation + A7 deadline fixes):}} \\
 A3 (all-on, A1--A10, R16) & 46.76 ($-5.2\%$)  & \textbf{46.47} ($\bm{-5.8\%}$) & 48.27 ($-2.2\%$) & 55.70 ($+12.9\%$) & 46.76 ($-5.2\%$) \\
 \bottomrule
 \end{tabular}
@@ -3189,19 +3233,21 @@ of Section~\ref{sec:results}, with the rationale for each default value.
 
 \begin{table}[h]
 \centering
+\scriptsize
 \caption{Hyperparameter settings for all methods.}
 \label{tab:params}
-\begin{tabular}{llll}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{l l l p{6.0cm}}
 \toprule
 \textbf{Parameter} & \textbf{Symbol} & \textbf{Default} & \textbf{Rationale} \\
 \midrule
 \multicolumn{4}{l}{\textit{Prior (Normal-Gamma, shared across LCB-V1/DRO; R16 calibration)}} \\
 Prior mean delay     & $\mu_0$      & 1\,min  & GTFS historical average \\
 Prior pseudo-obs     & $\kappa_0$   & 2       & Weak; 2 effective prior obs \\
-Prior variance       & $\sigma_0^2$ & 2\,min$^2$  & Matches Swiss empirical std$\approx 1.4$\,min (was $25$ → A1 fix) \\
+Prior variance       & $\sigma_0^2$ & 2\,min$^2$  & Matches Swiss empirical std$\approx 1.4$\,min (A1 fix; was $25$) \\
 Cancel prior success & $\alpha_c$   & 1       & Laplace smoothing \\
-Cancel prior failure & $\beta_c$    & 99      & $\hat{p}_{\mathrm{cancel}}^{(0)} \approx 0.01$ matches Swiss normal-day rate (was $9$ → A1 fix) \\
-Hierarchical prior  & ---          & on (A4) & When \texttt{data/route\_priors.pkl} present, each route's prior is seeded from its 34-day historical mean / std / cancel rate; else falls back to the global default above. Used in the 35-day Swiss evaluation. \\
+Cancel prior failure & $\beta_c$    & 99      & $\hat{p}_{\mathrm{cxl}}^{(0)}\!\approx\!0.01$ matches Swiss normal-day (A1 fix; was $9$) \\
+Hierarchical prior  & ---          & on (A4) & Per-route 34-day mean/std/cancel from \texttt{data/route\_priors.pkl}; falls back to global default above. \\
 \midrule
 \multicolumn{4}{l}{\textit{LCB selection (V1)}} \\
 Pessimism coefficient & $\beta_{\mathrm{lcb}}$ & 1.5 & Robust to $\beta\in[0,2]$ (Table~\ref{tab:beta}) \\
@@ -3354,7 +3400,7 @@ $|x|^2 = x^2$ and that $k\hat\sigma_i \geq 0$),
 \end{equation}
 This step is mechanically verified as
 \texttt{posterior\_chebyshev\_route}, which invokes Mathlib's
-\texttt{MeasureTheory.mul\_meas\_ge\_le\_lintegral\textsubscript{0}} for the
+\texttt{MeasureTheory.\allowbreak mul\_meas\_ge\_le\_lintegral\textsubscript{0}} for the
 underlying Markov inequality on the $\mathrm{ENNReal}$-valued
 integral, then converts to the real-valued probability via
 \texttt{ENNReal.toReal}.
