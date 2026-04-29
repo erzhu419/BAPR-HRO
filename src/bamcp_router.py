@@ -67,7 +67,7 @@ class BAMCPRouter:
         post.observe_no_cancel()
         self.total_observations += 1
 
-    def observe_cancel(self, route: str):
+    def observe_cancel(self, route: str, kind: str = "true"):
         post = self._get_posterior(route)
         post.observe_cancel()
         self.total_observations += 1

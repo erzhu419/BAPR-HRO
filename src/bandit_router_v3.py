@@ -50,9 +50,11 @@ class BanditRouterV3(BanditRouterV2):
         cancel_penalty_weight: float = 60,
         topo_threshold: int = 2,  # min routes for full β
         seed: int = 42,
+        route_priors_override: Optional[dict] = None,
     ):
         super().__init__(graph, n_estimators, beta_base, beta_ood,
-                         cancel_penalty_weight, seed)
+                         cancel_penalty_weight, seed,
+                         route_priors_override=route_priors_override)
         self.topo_threshold = topo_threshold
 
         # Pre-compute per-stop topology features
@@ -165,10 +167,14 @@ class BanditRouterV3(BanditRouterV2):
             std_penalty = beta * belief.posterior_std
             cancel_penalty = (self.cancel_penalty_weight * belief.cancel_rate * gate
                               if belief.n_attempts > 0 else 0.0)
-            # A7 (GPT review): layered risk penalties.
+            # A7 (GPT review): layered risk penalties (P0 #1 R3
+            # fix: prob_le takes absolute clock minute, not duration).
             infeasibility_penalty = 60.0 * (1.0 - label.feasibility)
             if label.dest_arrival is not None:
-                p_on_time = label.dest_arrival.prob_le(120)
+                deadline = getattr(self, 'journey_deadline', None)
+                if deadline is None:
+                    deadline = current_time + 120
+                p_on_time = label.dest_arrival.prob_le(deadline)
                 timeout_penalty = 60.0 * (1.0 - p_on_time)
             else:
                 timeout_penalty = 0.0

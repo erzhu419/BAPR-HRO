@@ -58,8 +58,12 @@ class SWRouteBeliefState:
         self._push(delay, self._delay_window, self.window_size)
 
     def observe_cancel(self):
+        # P1 R3 review: only push to cancel window. Earlier code
+        # pushed True (=1.0 in numpy) into the delay window, which
+        # compressed cancellation events into a 1-min delay sample
+        # and pulled window_mean / window_std down, weakening the
+        # cancel penalty.
         self._push(True, self._cancel_window, self.window_size)
-        self._push(True, self._delay_window, self.window_size)  # counts as attempt
 
     def observe_no_cancel(self):
         self._push(False, self._cancel_window, self.window_size)
@@ -142,7 +146,7 @@ class SWLCBRouter:
         b.observe_no_cancel()
         self.total_observations += 1
 
-    def observe_cancel(self, route: str):
+    def observe_cancel(self, route: str, kind: str = 'true'):
         b = self._get_belief(route)
         b.observe_cancel()
         self.total_observations += 1

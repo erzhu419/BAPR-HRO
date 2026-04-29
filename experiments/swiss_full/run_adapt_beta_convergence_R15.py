@@ -64,13 +64,21 @@ def run_convergence(g, s1, s2, normal_by_name, disrupted_by_name,
 
             _regime_dist_cache.clear()
             rng = np.random.default_rng(seed + j)
-            adapt_router.begin_journey()
-            current_beta = adapt_router.current_beta
+            # P0 #4 R3 review: simulate_bandit_journey() already
+            # calls begin_journey() / end_journey() on
+            # AdaptiveBetaBanditRouter. Calling them again here
+            # caused (i) the recorded current_beta to be the *first*
+            # sample, while the simulator drew a fresh one for the
+            # actual run, and (ii) the EXP3 weights to be updated
+            # twice per journey. Read current_beta from the router
+            # *after* the simulator's begin_journey by capturing it
+            # from the post-simulation state (the simulator does not
+            # resample after end_journey).
             res_a = simulate_bandit_journey(
                 adapt_router.graph, adapt_router, s1, s2,
                 490 + int(rng.integers(0, 10)), sched_j, rng, 120)
+            current_beta = adapt_router.current_beta
             tt_a = res_a.arrival_time - res_a.departure_time
-            adapt_router.end_journey(tt_a)
 
             rng2 = np.random.default_rng(seed + j)
             static_r = StaticRouter(copy.deepcopy(g))

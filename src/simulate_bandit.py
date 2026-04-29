@@ -103,7 +103,7 @@ def simulate_bandit_journey(
                 if o.route not in relevant_routes:
                     continue
                 if o.actual_delay > 25:
-                    router.observe_cancel(o.route)
+                    router.observe_cancel(o.route, kind='true')
                 else:
                     router.observe_delay(o.route, o.actual_delay)
         if not labels:
@@ -123,7 +123,7 @@ def simulate_bandit_journey(
             # Skip known-canceled routes at this stop
             if c.route in canceled_at_stop:
                 # TS picked a canceled route — update posterior and retry
-                router.observe_cancel(c.route)
+                router.observe_cancel(c.route, kind='true')
                 current_time += 1
                 continue
         else:
@@ -150,7 +150,7 @@ def simulate_bandit_journey(
             # Canceled
             canceled_at_stop.add(c.route)
             if is_bandit:
-                router.observe_cancel(c.route)
+                router.observe_cancel(c.route, kind='true')
             events.append(JourneyEvent(
                 current_time, current_stop, "cancel",
                 route=c.route,
@@ -162,9 +162,13 @@ def simulate_bandit_journey(
         if actual_dep < current_time:
             continue  # already left
         if actual_dep > current_time + 12:
-            # Too long to wait — try another option
+            # P0 #2 R3 review: this is a passenger-side patience
+            # timeout, not a delay observation. Writing the delay
+            # into the Normal-Gamma posterior here (as the earlier
+            # code did) compresses the cancel signal into the
+            # delay distribution. Use late_no_show instead.
             if is_bandit:
-                router.observe_delay(c.route, delay)
+                router.observe_cancel(c.route, kind='late_no_show')
             current_time += 2
             continue
 

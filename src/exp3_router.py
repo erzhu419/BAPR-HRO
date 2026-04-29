@@ -114,7 +114,7 @@ class EXP3Router:
         self._update_weight(route, delay, prob)
         self.total_observations += 1
 
-    def observe_cancel(self, route: str):
+    def observe_cancel(self, route: str, kind: str = "true"):
         """Update weights with cancellation (maximum cost)."""
         self._known_routes.add(route)
         weights = self._all_weights()

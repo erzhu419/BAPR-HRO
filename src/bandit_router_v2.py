@@ -56,6 +56,10 @@ class RouteEnsembleBelief:
     # V2 over-pessimistic on normal days (reviewer R-final concern #2).
     prior_var: float = 2.0
     prior_n: float = 2.0
+    # P1 R3 review: V2 also takes a historical cancel prior (Beta).
+    # Defaults match V1 (Beta(1, 99) ≈ 1% cold-start cancel rate).
+    cancel_alpha: float = 1.0
+    cancel_beta: float = 99.0
 
     def __post_init__(self):
         if len(self._means) == 0:
@@ -103,13 +107,13 @@ class RouteEnsembleBelief:
 
     @property
     def cancel_rate(self) -> float:
-        if self.n_attempts == 0:
-            return 0.0
-        # Tightened cancel prior Beta(1, 99) → 1% (was Beta(1, 9) → 10%
-        # which was 20× higher than Swiss-normal-day reality and added
-        # ~6 min spurious cancel-penalty at cold start).
-        alpha = 1 + self.n_cancels
-        beta = 99 + (self.n_attempts - self.n_cancels)
+        # P1 R3 review: now uses the route-level Beta prior parameters
+        # (cancel_alpha, cancel_beta) so V2/V3 honor the A4 historical
+        # cancel rate the same way V1 does. The earlier hardcoded
+        # Beta(1, 99) ignored historical cancel info even when
+        # route_priors_override supplied it.
+        alpha = self.cancel_alpha + self.n_cancels
+        beta = self.cancel_beta + (self.n_attempts - self.n_cancels)
         return alpha / (alpha + beta)
 
     def update_delay(self, delay: float, rng: np.random.Generator):
@@ -134,9 +138,23 @@ class RouteEnsembleBelief:
 
         self.n_attempts += 1
 
-    def update_cancel(self):
+    def update_cancel(self, kind: str = 'true'):
+        # P0 #2 R3 review: typed cancel counters mirroring V1.
+        # 'true' = simulator/GTFS-RT cancel signal; 'late_no_show'
+        # = patience-window timeout; 'feed_missing' = inferred from
+        # absent update.
         self.n_cancels += 1
         self.n_attempts += 1
+        if not hasattr(self, 'n_true_cancels'):
+            self.n_true_cancels = 0
+            self.n_late_no_shows = 0
+            self.n_feed_missing = 0
+        if kind == 'late_no_show':
+            self.n_late_no_shows += 1
+        elif kind == 'feed_missing':
+            self.n_feed_missing += 1
+        else:
+            self.n_true_cancels += 1
 
     def sample_ts(self, scheduled_arrival: float, rng: np.random.Generator) -> float:
         """Thompson Sampling: sample from a random estimator."""
@@ -165,6 +183,7 @@ class BanditRouterV2:
         beta_ood: float = 1.0,
         cancel_penalty_weight: float = 60,
         seed: int = 42,
+        route_priors_override: Optional[dict] = None,
     ):
         self.graph = graph
         self.n_estimators = n_estimators
@@ -176,17 +195,22 @@ class BanditRouterV2:
         self.cached_result: Optional[HyperpathResult] = None
         self.route_beliefs: dict[str, RouteEnsembleBelief] = {}
         self.total_observations: int = 0
-        # A4: hierarchical route priors (shared across instances)
-        if not hasattr(type(self), '_route_priors_cache'):
-            type(self)._route_priors_cache = None
-        if type(self)._route_priors_cache is None:
-            try:
-                import pickle
-                with open('data/route_priors.pkl', 'rb') as f:
-                    type(self)._route_priors_cache = pickle.load(f)
-            except Exception:
-                type(self)._route_priors_cache = {}
-        self._route_priors = type(self)._route_priors_cache
+        # A4: hierarchical route priors. route_priors_override (e.g. for
+        # leave-one-day-out evaluation) takes precedence over the
+        # class-level cache.
+        if route_priors_override is not None:
+            self._route_priors = route_priors_override
+        else:
+            if not hasattr(type(self), '_route_priors_cache'):
+                type(self)._route_priors_cache = None
+            if type(self)._route_priors_cache is None:
+                try:
+                    import pickle
+                    with open('data/route_priors.pkl', 'rb') as f:
+                        type(self)._route_priors_cache = pickle.load(f)
+                except Exception:
+                    type(self)._route_priors_cache = {}
+            self._route_priors = type(self)._route_priors_cache
 
     def _get_belief(self, route: str) -> RouteEnsembleBelief:
         if route not in self.route_beliefs:
@@ -201,20 +225,34 @@ class BanditRouterV2:
             else:
                 hist_mean = float(p['mean'])
                 hist_var = max(float(p['std']) ** 2, 0.5)
+                # P1 R3 review: also seed the cancel-rate Beta prior
+                # from historical cancel rate (was hardcoded Beta(1, 99)
+                # in V2/V3, ignoring A4's per-route cancel prior).
+                p_cxl = max(min(float(p.get('cancel_rate', 0.0)), 0.5),
+                            1e-4)
+                pseudo_n = 100.0
+                ca = max(p_cxl * pseudo_n, 1.0)
+                cb = max(pseudo_n - ca, 1.0)
                 # Tiny per-estimator jitter
                 jitter = self.rng.normal(0, 0.1, self.n_estimators)
                 belief = RouteEnsembleBelief(
                     n_estimators=self.n_estimators,
                     prior_mean=hist_mean,
                     prior_var=hist_var,
+                    cancel_alpha=ca,
+                    cancel_beta=cb,
                 )
                 belief.__post_init__()
                 belief._means = belief._means + jitter
                 self.route_beliefs[route] = belief
         return self.route_beliefs[route]
 
-    def route(self, s_source: int, s_dest: int, t_source: int) -> HyperpathResult:
+    def route(self, s_source: int, s_dest: int, t_source: int,
+              max_time: int = 120) -> HyperpathResult:
         self.cached_result = topocsa(self.graph, s_source, s_dest, t_source)
+        # P0 #1 R3 review: store the journey deadline so A7's
+        # prob_le() compares against an absolute clock time.
+        self.journey_deadline = t_source + max_time
         return self.cached_result
 
     def observe_delay(self, route: str, delay: float):
@@ -222,9 +260,9 @@ class BanditRouterV2:
         belief.update_delay(delay, self.rng)
         self.total_observations += 1
 
-    def observe_cancel(self, route: str):
+    def observe_cancel(self, route: str, kind: str = 'true'):
         belief = self._get_belief(route)
-        belief.update_cancel()
+        belief.update_cancel(kind=kind)
         self.total_observations += 1
 
     def _compute_dynamic_beta(self, routes: list[str]) -> float:
@@ -321,10 +359,14 @@ class BanditRouterV2:
             cancel_penalty = (self.cancel_penalty_weight * belief.cancel_rate
                               if belief.n_attempts > 0 else 0.0)
             # A7 (GPT review): layered risk penalties from the hyperpath
-            # label. See bandit_router.py for rationale.
+            # label. See bandit_router.py for rationale and the P0 #1
+            # R3 review fix on the absolute-deadline issue.
             infeasibility_penalty = 60.0 * (1.0 - label.feasibility)
             if label.dest_arrival is not None:
-                p_on_time = label.dest_arrival.prob_le(120)
+                deadline = getattr(self, 'journey_deadline', None)
+                if deadline is None:
+                    deadline = current_time + 120
+                p_on_time = label.dest_arrival.prob_le(deadline)
                 timeout_penalty = 60.0 * (1.0 - p_on_time)
             else:
                 timeout_penalty = 0.0

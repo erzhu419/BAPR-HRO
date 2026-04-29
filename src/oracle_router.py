@@ -61,7 +61,7 @@ class OracleRouter:
     def observe_delay(self, route: str, delay: float):
         self.total_observations += 1  # Oracle ignores observations (knows truth)
 
-    def observe_cancel(self, route: str):
+    def observe_cancel(self, route: str, kind: str = "true"):
         self.total_observations += 1
 
     def _true_expected_delay(self, route: str, current_time: int) -> float:

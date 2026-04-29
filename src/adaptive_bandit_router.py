@@ -56,9 +56,11 @@ class AdaptiveBetaBanditRouter:
         beta_grid: list[float] | None = None,
         eta: float = 0.1,
         share_meta_state: bool = True,
+        route_priors_override: Optional[dict] = None,
     ):
         self.graph = graph
-        self._inner = BanditRouter(graph)
+        self._inner = BanditRouter(graph,
+                                   route_priors_override=route_priors_override)
         self.beta_grid = beta_grid or [-2.0, -1.0, -0.5, 0.0, 0.5, 1.0, 1.5, 2.0, 3.0]
         self.n_betas = len(self.beta_grid)
         self.eta = eta
@@ -151,8 +153,8 @@ class AdaptiveBetaBanditRouter:
     def observe_delay(self, route: str, delay: float):
         self._inner.observe_delay(route, delay)
 
-    def observe_cancel(self, route: str):
-        self._inner.observe_cancel(route)
+    def observe_cancel(self, route: str, kind: str = 'true'):
+        self._inner.observe_cancel(route, kind=kind)
 
     def begin_journey(self):
         """Call at start of each journey to sample β."""

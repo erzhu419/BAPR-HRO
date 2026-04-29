@@ -181,7 +181,7 @@ class PosteriorSamplingRouter:
         post.observe_no_cancel()
         self.total_observations += 1
 
-    def observe_cancel(self, route: str):
+    def observe_cancel(self, route: str, kind: str = "true"):
         """Update posterior with cancellation."""
         post = self._get_posterior(route)
         post.observe_cancel()

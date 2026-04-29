@@ -184,15 +184,22 @@ class BanditRouter:
                  max_time: int = 120,
                  infeasibility_weight: float = 60.0,
                  timeout_weight: float = 60.0,
-                 use_hierarchical_prior: bool = True):
+                 use_hierarchical_prior: bool = True,
+                 route_priors_override: Optional[dict] = None):
         self.graph = graph
         self.cached_result: Optional[HyperpathResult] = None
         # Per-route belief states
         self.route_beliefs: dict[str, RouteBeliefState] = {}
         self.total_observations: int = 0
         self.use_hierarchical_prior = use_hierarchical_prior
-        self._route_priors = (self._load_route_priors()
-                              if use_hierarchical_prior else {})
+        # If route_priors_override is given (e.g. for LOO evaluation
+        # where each evaluation day uses a prior trained on the other
+        # 33 days), use it instead of the lazily-loaded class cache.
+        if route_priors_override is not None:
+            self._route_priors = route_priors_override
+        else:
+            self._route_priors = (self._load_route_priors()
+                                  if use_hierarchical_prior else {})
         # Disruption gating: scales β by an observed regime signal.
         # If observed cancel rate ≪ cancel_threshold AND observed mean
         # delay ≪ delay_threshold, the day looks normal and we shrink
@@ -242,8 +249,18 @@ class BanditRouter:
         return self.route_beliefs[route]
 
     def route(self, s_source: int, s_dest: int, t_source: int) -> HyperpathResult:
-        """Initial route computation (same as static)."""
+        """Initial route computation (same as static).
+
+        Also stores the journey's absolute deadline so A7's
+        ``prob_le(deadline)`` evaluates the *correct* on-time
+        probability (P0 #1 R3 review fix). Earlier code used
+        ``prob_le(max_time)`` which evaluated ``Pr[arrival≤120]``
+        --- equivalent to "arrived before 02:00" since arrival PMFs
+        are absolute clock minutes, so the term collapsed to a
+        constant 60 min penalty for every candidate.
+        """
         self.cached_result = topocsa(self.graph, s_source, s_dest, t_source)
+        self.journey_deadline = t_source + self.max_time
         return self.cached_result
 
     def observe_delay(self, route: str, delay: float):
@@ -252,10 +269,19 @@ class BanditRouter:
         belief.update_delay(delay)
         self.total_observations += 1
 
-    def observe_cancel(self, route: str):
-        """Feed a cancellation observation."""
+    def observe_cancel(self, route: str, kind: str = 'true'):
+        """Feed a cancellation observation.
+
+        ``kind`` distinguishes (per A3 typed counters):
+        - ``'true'`` (default): GTFS-RT cancel signal or simulator
+          cancel sentinel.
+        - ``'late_no_show'``: passenger-side patience timeout
+          without a cancel signal.
+        - ``'feed_missing'``: missing GTFS-RT update; weaker
+          evidence about reliability.
+        """
         belief = self._get_belief(route)
-        belief.update_cancel()
+        belief.update_cancel(kind=kind)
         self.total_observations += 1
 
     def _disruption_factor(self) -> float:
@@ -363,7 +389,18 @@ class BanditRouter:
             # changing conditional mean.
             infeasibility_penalty = self.infeasibility_weight * (1.0 - label.feasibility)
             if label.dest_arrival is not None:
-                p_on_time = label.dest_arrival.prob_le(self.max_time)
+                # P0 #1 R3 review: prob_le takes an *absolute* clock
+                # minute, not a duration. Use the stored journey_deadline
+                # = t_source + max_time. Earlier code used max_time
+                # directly, which asked "is arrival ≤ 120?" → almost
+                # never true for a 08:00 journey, so the penalty was a
+                # constant for every candidate.
+                deadline = getattr(self, 'journey_deadline', None)
+                if deadline is None:
+                    # Cold call (route() not yet invoked): fall back to a
+                    # local estimate from the current scoring window.
+                    deadline = current_time + self.max_time
+                p_on_time = label.dest_arrival.prob_le(deadline)
                 timeout_penalty = self.timeout_weight * (1.0 - p_on_time)
             else:
                 timeout_penalty = 0.0
