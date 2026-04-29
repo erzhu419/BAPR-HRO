@@ -104,8 +104,8 @@ Empirically, on synthetic transit networks under corridor disruption,
 LCB-V2 reduces mean travel time by $12\%$ and P95 by $28\%$ on the
 small network, and matches the Oracle within $0.4$\,min on the
 large network; PS-SSP, BAMCP, and EXP3 all \emph{worsen} mean
-travel time substantially under disruption (PS-SSP $+23\%$,
-BAMCP-60 $+31\%$, EXP3 $+80\%$ on the large disrupted instance,
+travel time substantially under disruption (PS-SSP $+30\%$,
+BAMCP-60 $+37\%$, EXP3 $+85\%$ on the large disrupted instance,
 even with a $4{\times}$ rollout-budget sweep ruling out compute
 budget for BAMCP). On a 35-day
 cross-day Swiss benchmark (35\,days $\times$ 18\,viable ODs
@@ -2109,29 +2109,33 @@ perfect-information upper bound.}
 \cmidrule(lr){3-4}\cmidrule(lr){5-6}\cmidrule(lr){7-8}\cmidrule(lr){9-10}\cmidrule(lr){11-12}
 Net & Scen & Mean & P95 & Mean & P95 & Mean & P95 & Mean & P95 & Mean & P95 \\
 \midrule
-\multirow{2}{*}{Large} & Norm & 73.3 & 95 & \textbf{72.6} & \textbf{90} & 72.6 & 90 & 73.5 & 90 & 72.6 & 90 \\
-& Disr & 73.8 & 98 & \textbf{72.6} & \textbf{92} & 73.8 & 99 & 78.3 & 104 & 73.0 & 94 \\
+\multirow{2}{*}{Large} & Norm & 73.3 & 95 & \textbf{72.6} & \textbf{90} & 74.8 & 101 & 76.7 & 98 & 72.6 & 90 \\
+& Disr & 73.8 & 98 & \textbf{73.7} & \textbf{100} & 95.4 & 180 & 99.2 & 180 & 73.0 & 94 \\
 \midrule
 \multirow{2}{*}{Small} & Norm & 64.4 & 79 & 64.3 & 84 & 64.3 & 84 & 64.8 & 84 & \textbf{64.1} & \textbf{84} \\
-& Disr & 78.4 & 120 & \textbf{69.0} & \textbf{87} & 69.4 & 93 & 68.8 & 84 & 67.6 & 85 \\
+& Disr & 78.4 & 120 & \textbf{69.5} & \textbf{93} & 70.0 & 96 & 68.9 & 85 & 67.6 & 85 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Table~\ref{tab:main} shows the primary comparison under the R15
+Table~\ref{tab:main} shows the primary comparison under the R16
 algorithm. On the small network's disrupted scenario LCB-V2 reduces
-mean travel time from $78.4$ to $69.0$\,min ($-12.0\%$) and P95 from
-$120$ to $87$\,min ($-27.5\%$); SW-LCB tracks LCB-V2 closely
-($68.8$\,min). On the large network's disrupted scenario the Static
-baseline is itself relatively healthy under R15's
+mean travel time from $78.4$ to $69.5$\,min ($-11.4\%$) and P95 from
+$120$ to $93$\,min ($-22.5\%$); SW-LCB tracks LCB-V2 closely
+($68.9$\,min). On the large network's disrupted scenario the Static
+baseline is itself relatively healthy under the simulator's
 disruption-recoverable schedule (\,$73.8$\,min, no timeouts\,) and
-LCB-V2 gives a smaller absolute gain ($72.6$\,min, $-1.6\%$;
-P95 $-6.1\%$); DRO with the static $\beta=1.5$ ties Static. The
-Oracle is $73.0$ on large disrupted, so LCB-V2 is within
-$0.4$\,min of optimal and the remaining slack is genuinely tied
-to the cost of initial uncertainty rather than a tractable
-algorithmic improvement. Under normal conditions, all online
-methods perform within $1$\,min of Static.
+LCB-V2 gives a smaller absolute gain ($73.7$\,min, $-0.1\%$;
+within Oracle $73.0$); the round-3 typed-cancellation fix
+(\S\ref{sec:method-r15-score}, P0 \#2) means patience timeouts no
+longer compress the cancel signal into the delay posterior, which
+exposes a real over-correction by the static-$\beta$ DRO baseline
+on the large network ($95.4$\,min, $+29.3\%$ over Static); SW-LCB
+inherits the same instability ($99.2$\,min). LCB-V2's V2 cold-start
+fix (Proposition~\ref{prop:ensdro}) and the dynamic $\beta(s)$
+together absorb the larger cancel mass without over-penalising,
+keeping V2 within $0.7$\,min of Oracle. Under normal conditions,
+all online methods perform within $1$--$3$\,min of Static.
 
 \begin{figure}[t]
 \centering
@@ -2157,14 +2161,14 @@ The exploration-based methods (PS-SSP, BAMCP, EXP3) substantially
 Method & Mean & P95 & Mean & P95 \\
 \midrule
 Static       & 73.3 & 95 & 73.8 & 98 \\
-LCB-V1       & 72.6 & 90 & 75.8 & 100 \\
-LCB-V2       & \textbf{72.6} & \textbf{90} & \textbf{72.6} & \textbf{92} \\
-DRO          & 72.6 & 90 & 73.8 & 99 \\
-PS-SSP       & 73.3 & 92 & 91.1 & 168 \\
-BAMCP-60     & 77.3 & 105 & 96.6 & 139 \\
+LCB-V1       & 72.6 & 90 & 75.8 & 105 \\
+LCB-V2       & \textbf{72.6} & \textbf{90} & \textbf{73.7} & \textbf{100} \\
+DRO          & 74.8 & 101 & 95.4 & 180 \\
+PS-SSP       & 77.7 & 104 & 96.0 & 180 \\
+BAMCP-60     & 81.4 & 105 & 101.0 & 151 \\
 \midrule
-SW-LCB~\cite{garivier2011,luo2024}     & 73.5 & 90 & 78.3 & 104 \\
-EXP3~\cite{kocak2014,chen2024}        & 107.6 & 151 & 132.5 & 180 \\
+SW-LCB~\cite{garivier2011,luo2024}     & 76.7 & 98 & 99.2 & 180 \\
+EXP3~\cite{kocak2014,chen2024}        & 107.0 & 151 & 136.7 & 180 \\
 \midrule
 Oracle (upper bound) & 72.6 & 90 & 73.0 & 94 \\
 \bottomrule
@@ -2174,17 +2178,20 @@ Oracle (upper bound) & 72.6 & 90 & 73.0 & 94 \\
 Table~\ref{tab:extended} reveals three distinct behavioral clusters.
 \emph{Exploration-prone} methods (PS-SSP, BAMCP, EXP3) tie or trail
 Static under normal conditions but degrade severely under disruption:
-PS-SSP reaches $91.1$\,min (vs.\ Static $73.8$, $+23\%$ worse),
-BAMCP-60 reaches $96.6$\,min ($+31\%$ worse, and Table~\ref{tab:bamcp_sweep}
+PS-SSP reaches $96.0$\,min (vs.\ Static $73.8$, $+30\%$ worse),
+BAMCP-60 reaches $101.0$\,min ($+37\%$ worse, and Table~\ref{tab:bamcp_sweep}
 shows that quadrupling the rollout budget does not fix this), and
-EXP3 reaches $132.5$\,min ($+80\%$ worse, with timeouts in 8\% of
-journeys). \emph{Pessimism-based} methods (LCB-V2, V3-Topo, DRO)
-match or beat Static in both regimes. The LCB family clusters tightly
-around the Oracle ($72.6$ vs.\ Oracle $73.0$ on disrupted), so the
-remaining slack is genuinely Bayesian uncertainty cost rather than
-algorithmic suboptimality. SW-LCB tracks LCB-V2 on the small network
-but the sliding-window discarding hurts more on the large network's
-disrupted regime ($+6\%$ vs Static, vs LCB-V2's $-2\%$).
+EXP3 reaches $136.7$\,min ($+85\%$ worse, with timeouts in 10\% of
+journeys). \emph{Pessimism-based} methods cluster: LCB-V2 stays
+within $0.7$\,min of Oracle ($73.7$ vs.\ Oracle $73.0$ on
+disrupted), but \emph{static-$\beta$} variants (DRO at $95.4$,
+SW-LCB at $99.2$) over-correct under the new typed-cancellation
+accounting. This split between LCB-V2's dynamic $\beta(s)$ and
+DRO's fixed $\beta=1.5$ is the dominant new finding from R16:
+under correct cancel accounting, fixed-$\beta$ pessimism on the
+large network is no longer competitive with Oracle, while
+$\beta(s)$ (V2/V3) and the Adaptive-$\beta$ EXP3 meta-bandit
+remain within $2$--$3$\,min of optimal.
 
 The explanation for exploration-prone failures lies in the
 \emph{single-shot irreversibility} of transit decisions:
@@ -2212,10 +2219,10 @@ meta-bandit over a 9-value $\beta$ grid.}
 \toprule
 Scenario          & Static & V1-LCB & V2-LCB & DRO & Adapt-$\beta$ \\
 \midrule
-no\_disruption    & 69.8 & 68.2 ($+2.2\%$) & 68.3 ($+2.2\%$) & 68.4 ($+2.0\%$) & \textbf{68.2} ($+2.2\%$) \\
-disrupted\_402    & 95.8 & 93.3 ($+2.6\%$) & 91.3 ($+4.7\%$) & \textbf{89.2} ($+7.0\%$) & 93.3 ($+2.6\%$) \\
-rush\_hour        & 107.8 & 105.5 ($+2.2\%$) & 105.6 ($+2.0\%$) & 105.6 ($+2.0\%$) & \textbf{105.4} ($+2.2\%$) \\
-multi\_shift      & 114.6 & 97.8 ($+14.6\%$) & 96.2 ($+16.1\%$) & \textbf{95.1} ($+17.0\%$) & 98.1 ($+14.4\%$) \\
+no\_disruption    & 69.8 & 68.3 ($+2.2\%$) & 68.3 ($+2.2\%$) & 68.4 ($+2.0\%$) & \textbf{68.3} ($+2.2\%$) \\
+disrupted\_402    & 95.8 & 94.3 ($+1.6\%$) & 92.1 ($+3.9\%$) & \textbf{89.2} ($+6.9\%$) & 94.3 ($+1.6\%$) \\
+rush\_hour        & 107.8 & 105.3 ($+2.2\%$) & 105.3 ($+2.2\%$) & 105.5 ($+2.1\%$) & \textbf{105.3} ($+2.3\%$) \\
+multi\_shift      & 114.6 & 98.3 ($+14.2\%$) & 95.6 ($+16.6\%$) & \textbf{95.1} ($+17.0\%$) & 98.5 ($+14.0\%$) \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -2279,17 +2286,17 @@ Method        & Mean (min) & Timeouts & vs.\ Static \\
 \midrule
 Static        & 98.3 & 23/30 & --- \\
 V1-LCB        & 97.5 & 22/30 & $+0.8\%$ \\
-V2-LCB        & 87.7 & 19/30 & $+10.8\%$ \\
-V3-Topo       & 87.7 & 19/30 & $+10.8\%$ \\
-\textbf{DRO}  & \textbf{78.6} & \textbf{16/30} & $\bm{+20.0\%}$ \\
+V2-LCB        & 84.9 & 18/30 & $+13.7\%$ \\
+V3-Topo       & 84.9 & 18/30 & $+13.7\%$ \\
+\textbf{DRO}  & \textbf{75.8} & \textbf{15/30} & $\bm{+22.9\%}$ \\
 Adaptive-$\beta$ & 97.5 & 22/30 & $+0.8\%$ \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 This single-OD table serves two purposes. First, \textbf{DRO reproduces
-its headline $\bm{+20\%}$ improvement} ($98.3\!\to\!78.6$\,min,
-$23\!\to\!16$ timeouts), closely matching the $-19.2\%$ result reported
+its headline $\bm{+22.9\%}$ improvement} ($98.3\!\to\!75.8$\,min,
+$23\!\to\!15$ timeouts), closely matching the $-19.2\%$ result reported
 in the companion software release and the $+17\%$ DRO synthetic
 improvement on \texttt{multi\_shift} in Table~\ref{tab:synth_repro}.
 DRO's fixed $\beta=1.5$ on the Wasserstein ball is large enough to
@@ -2299,11 +2306,12 @@ Second, \textbf{the V2 cold-start failure flagged in earlier drafts is
 fixed}. In an earlier configuration of V2, the bootstrap ensemble's
 disagreement $\hat\sigma_{\mathrm{ens}}$ was zero with no observations,
 so the dynamic $\beta(s)$ produced no penalty and V2 collapsed to
-Static (mean $98.4$, $23/30$ timeouts on this same OD). The R15 fix
-(Section~\ref{sec:method}, \emph{V2 cold start}: replace
+Static (mean $98.4$, $23/30$ timeouts on this same OD). The R15/R16
+fix (Section~\ref{sec:method}, \emph{V2 cold start}: replace
 $\hat\sigma_{\mathrm{ens}}$ with the posterior~$\sigma$, which is
-non-zero at cold start) restores V2 to mean $87.7$, $19/30$
-timeouts ($+10.8\%$ over Static).
+non-zero at cold start; and the round-3 deadline correction so the
+A7 timeout penalty actually fires) restores V2 to mean $84.9$,
+$18/30$ timeouts ($+13.7\%$ over Static).
 
 V1-LCB and Adaptive-$\beta$ in the table tie Static at $+0.8\%$ on
 this single OD, and this is an \emph{intentional consequence} of the
@@ -2640,7 +2648,7 @@ Adaptive-$\beta$ wins by $4.5\%$ on cell-mean $\overline{E[\mathrm{total}]}$.}
 \caption{DRO sensitivity to $\beta$ on the Swiss focused OD
 (Sternen Oerlikon $\to$ Sihlpost/HB), normal-day regime, R15
 configuration ($N{=}20$, $t_{\max}{=}120$\,min). The mean is
-flat over $\beta\in[0.5, 2]$ at $79$--$84$\,min, well below
+flat over $\beta\in[0.5, 2]$ at $74.8$--$79.8$\,min, well below
 Static ($98.3$\,min). Negative $\beta$ (anti-pessimism) is
 worst, $\beta\!\geq\!2$ saturates --- the policy is robust
 to substantial mis-tuning. This sweep is on the Swiss real
@@ -2655,11 +2663,11 @@ comparable quantity.}
 \toprule
 $\beta$ & Mean & P95 & $\beta$ & Mean & P95 \\
 \midrule
-$-1.0$ & 101.5 & 120 & $1.5$ & 83.9 & 120 \\
-$-0.5$ & 96.5 & 120 & $2.0$ & \textbf{79.0} & 120 \\
-$0.0$ & 92.3 & 120 & $3.0$ & 83.2 & 120 \\
-$0.5$ & 84.0 & 120 & $5.0$ & 79.0 & 120 \\
-$1.0$ & 83.9 & 120 & Static & 98.3 & 120 \\
+$-1.0$ & 97.4 & 120 & $1.5$ & 79.7 & 120 \\
+$-0.5$ & 92.4 & 120 & $2.0$ & \textbf{74.8} & 120 \\
+$0.0$ & 88.1 & 120 & $3.0$ & 79.0 & 120 \\
+$0.5$ & 79.8 & 120 & $5.0$ & 79.0 & 120 \\
+$1.0$ & 79.7 & 120 & Static & 98.3 & 120 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -3016,7 +3024,7 @@ not a principled CVaR bound.
 \section{Conclusion}
 \label{sec:conclusion}
 
-We formalized adaptive transit routing as a Bayesian Adaptive SSP-MDP and derived an LCB hyperpath selection policy that is \emph{exactly equal} (with an explicit attainment witness) to the worst-case expected arrival on a Wasserstein ball whose radius is the posterior or empirical-ensemble uncertainty. The development is formally verified in 5{,}322 lines of Lean~4 code (zero \texttt{sorry}, zero \texttt{axiom} beyond Mathlib's standard kernel) and includes a real $\gamma$-contractive robust Bellman operator with rectangular Wasserstein and discrete-mixture ambiguity, an adversarial $\forall$-algorithm $\exists$-trajectory minimax lower bound, a Bayes-risk Chebyshev link from the Normal-Gamma posterior to the per-step gap, an end-to-end high-probability LCB bound under the actual product posterior $\Pi := \mathrm{Measure.pi}\,(\pi_{d,r})$ with explicit $P(\mathrm{Good}) \geq 1 - DK/k^2$ certificate (Theorem~\ref{thm:lcb_high_prob}), and a real cumulative Hedge regret bound $\mathrm{regret} \leq \log K / \eta + \eta T$ via the player-loss-retaining potential argument. On synthetic networks under R15, LCB-V2 reduces small-network disrupted mean by $12\%$ and P95 by $28\%$, and matches Oracle within $0.4$\,min on the large network; PS-SSP, BAMCP, and EXP3 all worsen mean travel time substantially under disruption ($+23\%$ to $+80\%$ on the large disrupted instance). On real GTFS-RT data from Z\"urich (SBB, 35 days, 687 stops), DRO reproduces $+20\%$ improvement on a high-information OD on a normal day, and the V2 cold-start failure flagged in earlier drafts is fixed (V2 mean: $98.4\!\to\!87.7$\,min after replacing the ensemble disagreement with the posterior~$\sigma$ at cold start). Across the full 35-day cross-day benchmark ($28{,}350$ journeys per method, all $35$~days $\times$ $18$ viable ODs $\times$ $45$ trials, R16 algorithm), V2-LCB reduces cell-mean $\overline{E[\mathrm{total}]}$ by $5.8\%$ ($49.34\!\to\!46.47$\,min, paired bootstrap CI $[-3.23,-2.53]$) and V1-LCB / Adaptive-$\beta$ by $5.2\%$ ($49.34\!\to\!46.76$\,min, paired bootstrap CI $[-2.95,-2.26]$, $35/35$ days strictly better, sign-test $p\!<\!10^{-10}$). All three Pareto-improve reach rate ($+2.8$\,pp, $78.2\%\!\to\!81.0\%$) and cell-mean conditional travel time ($-9$ to $-11$\,min, $44.3\!\to\!33.7$--$35.3$\,min). On the worst single disrupted day V1-LCB cuts cell-mean $\overline{E[\mathrm{total}]}$ by $10.0\%$ ($71.15\!\to\!64.01$\,min). A component ablation isolates layered risk penalties read from the hyperpath's StopLabel feasibility and destination-arrival PMF as the single dominant fix (A2: V1 sign change from $+3.7\%$ to $-3.5\%$); the round-3 fix to the A7 timeout-deadline computation (P0 \#1) on top of A2 contributes the additional $\!\sim\!1$\,pp from R15 to R16. On the synthetic large network the LCB family is within $0.4$\,min of Oracle. A neural surrogate provides $224{\times}$ acceleration of initial hyperpath computation (a compute claim, not a decision-equivalence claim).
+We formalized adaptive transit routing as a Bayesian Adaptive SSP-MDP and derived an LCB hyperpath selection policy that is \emph{exactly equal} (with an explicit attainment witness) to the worst-case expected arrival on a Wasserstein ball whose radius is the posterior or empirical-ensemble uncertainty. The development is formally verified in 5{,}322 lines of Lean~4 code (zero \texttt{sorry}, zero \texttt{axiom} beyond Mathlib's standard kernel) and includes a real $\gamma$-contractive robust Bellman operator with rectangular Wasserstein and discrete-mixture ambiguity, an adversarial $\forall$-algorithm $\exists$-trajectory minimax lower bound, a Bayes-risk Chebyshev link from the Normal-Gamma posterior to the per-step gap, an end-to-end high-probability LCB bound under the actual product posterior $\Pi := \mathrm{Measure.pi}\,(\pi_{d,r})$ with explicit $P(\mathrm{Good}) \geq 1 - DK/k^2$ certificate (Theorem~\ref{thm:lcb_high_prob}), and a real cumulative Hedge regret bound $\mathrm{regret} \leq \log K / \eta + \eta T$ via the player-loss-retaining potential argument. On synthetic networks under R16, LCB-V2 reduces small-network disrupted mean by $11\%$ and P95 by $23\%$, and matches Oracle within $0.7$\,min on the large network; PS-SSP, BAMCP, and EXP3 all worsen mean travel time substantially under disruption ($+30\%$ to $+85\%$ on the large disrupted instance). Static-$\beta$ DRO and SW-LCB also over-correct on the large network ($+29\%$, $+34\%$ respectively) under the corrected typed-cancellation accounting; only LCB-V2's dynamic $\beta(s)$ stays close to Oracle. On real GTFS-RT data from Z\"urich (SBB, 35 days, 687 stops), DRO reproduces $+22.9\%$ improvement on a high-information OD on a normal day, and the V2 cold-start failure flagged in earlier drafts is fixed (V2 mean: $98.4\!\to\!84.9$\,min after replacing the ensemble disagreement with the posterior~$\sigma$ at cold start and applying the round-3 A7 deadline correction). Across the full 35-day cross-day benchmark ($28{,}350$ journeys per method, all $35$~days $\times$ $18$ viable ODs $\times$ $45$ trials, R16 algorithm), V2-LCB reduces cell-mean $\overline{E[\mathrm{total}]}$ by $5.8\%$ ($49.34\!\to\!46.47$\,min, paired bootstrap CI $[-3.23,-2.53]$) and V1-LCB / Adaptive-$\beta$ by $5.2\%$ ($49.34\!\to\!46.76$\,min, paired bootstrap CI $[-2.95,-2.26]$, $35/35$ days strictly better, sign-test $p\!<\!10^{-10}$). All three Pareto-improve reach rate ($+2.8$\,pp, $78.2\%\!\to\!81.0\%$) and cell-mean conditional travel time ($-9$ to $-11$\,min, $44.3\!\to\!33.7$--$35.3$\,min). On the worst single disrupted day V1-LCB cuts cell-mean $\overline{E[\mathrm{total}]}$ by $10.0\%$ ($71.15\!\to\!64.01$\,min). A component ablation isolates layered risk penalties read from the hyperpath's StopLabel feasibility and destination-arrival PMF as the single dominant fix (A2: V1 sign change from $+3.7\%$ to $-3.5\%$); the round-3 fix to the A7 timeout-deadline computation (P0 \#1) on top of A2 contributes the additional $\!\sim\!1$\,pp from R15 to R16. On the synthetic large network LCB-V2 is within $0.7$\,min of Oracle while static-$\beta$ DRO over-corrects to $95.4$\,min; this is the most striking change from R15 to R16 and is attributable to the round-3 typed-cancellation fix. A neural surrogate provides $224{\times}$ acceleration of initial hyperpath computation (a compute claim, not a decision-equivalence claim).
 
 The central insight is that stochastic hyperpaths are \emph{structurally robust but ranking-fragile}: the right alternatives are already present; their ranking needs real-time updating through online learning rather than full re-optimization. For single-shot risk-sensitive sequential decisions, deterministic pessimism outperforms stochastic exploration. Cross-domain multi-seed evaluation (8 seeds, 95\% CIs, Section~\ref{sec:cross_domain}) supports the principle as transferable but not transit-specific: LCB substantially helps on daily commitment decisions (Flow-LCB and V1-LCB at $-6.6$ to $-6.7\%$ cost on UC, six of seven learning methods CI-disjoint from Static), breaks even on noisy candidate ranking (VRP, all CIs heavily overlapping Static), and \emph{also} substantially helps on SDN under multi-seed evaluation (V1-LCB and Hybrid each at $\!\sim\!-61\%$ vs.\ Static, where Static is highly seed-volatile and pessimism keeps the worst-seed tail bounded). React-UCB, the SDN-specific contextual baseline, remains the column best at $-74\%$; the LCB family transfers to SDN but is not the SDN-specific best. Theorem~\ref{thm:rho}'s irrecoverability hypothesis is best read as a sufficient condition for the LCB family to help, not as a necessary one. Adaptive-$\beta$'s EXP3 meta-bandit closely tracks the fixed-$\beta$ family in all three domains; its safety-net role is in regimes where the right $\beta$ is unknown a priori, rather than in rescuing a structural mismatch.
 
