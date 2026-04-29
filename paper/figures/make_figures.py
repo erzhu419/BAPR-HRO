@@ -140,47 +140,71 @@ def plot_computation():
 
 # ---------------------------------------------------------------- P2 (1)
 def plot_reach_rate():
-    """Reach rate + conditional mean on Swiss multi v2."""
-    with open(os.path.join(RESULTS, "swiss_multi_od_v2.json")) as f:
+    """R15: Cell-mean E[total] by method + per-day breakdown.
+
+    Source: swiss_multi_day.json (35 days × 18 ODs × 45 trials).
+    """
+    with open(os.path.join(RESULTS, "swiss_multi_day.json")) as f:
         d = json.load(f)
-    summary = d["summary"]
     methods = ["Static", "V1-LCB", "V2-LCB", "V3-Topo", "DRO", "Adaptive-β"]
+
+    # Compute cell-mean E[total] per method
+    cell_etot = {m: [] for m in methods}
+    per_day_etot = {m: {} for m in methods}
+    for date, day in d["per_day"].items():
+        if not isinstance(day, dict) or "results" not in day:
+            continue
+        for m in methods:
+            day_cells = []
+            for od, res in day["results"].items():
+                t = np.asarray(res.get(m, {}).get("trials", []))
+                if t.size == 0:
+                    continue
+                r = (t < 120).mean()
+                c = t[t < 120].mean() if (t < 120).any() else 120
+                e = r * c + (1 - r) * 120
+                cell_etot[m].append(e)
+                day_cells.append(e)
+            if day_cells:
+                per_day_etot[m][date] = float(np.mean(day_cells))
+
     fig, axes = plt.subplots(1, 2, figsize=(7.5, 2.8))
 
-    # Left: reach rate (normal vs disrupted)
+    # Left: bar plot of cell-mean E[total]
     x = np.arange(len(methods))
-    w = 0.38
-    normal_r = [summary["normal"][m]["avg_reach_rate"] * 100 for m in methods]
-    disrupt_r = [summary["disrupted"][m]["avg_reach_rate"] * 100 for m in methods]
-    axes[0].bar(x - w/2, normal_r, w, label="Normal day", color="#4c72b0", edgecolor="black", linewidth=0.4)
-    axes[0].bar(x + w/2, disrupt_r, w, label="Disrupted day", color="#dd8452", edgecolor="black", linewidth=0.4)
+    means = [float(np.mean(cell_etot[m])) for m in methods]
+    bars = axes[0].bar(x, means, color=[COLORS.get(m, "#888") for m in methods],
+                       edgecolor="black", linewidth=0.4)
     axes[0].set_xticks(x)
     axes[0].set_xticklabels(methods, rotation=20, ha="right")
-    axes[0].set_ylabel("Reach rate (%)")
-    axes[0].set_title("Swiss multi-OD reach rate (17 viable ODs)")
-    axes[0].axhline(100, color="grey", linestyle="--", linewidth=0.5)
-    axes[0].legend(loc="lower left")
+    axes[0].set_ylabel(r"Cell-mean $\overline{E[\mathrm{total}]}$ (min)")
+    axes[0].set_title("Swiss 35-day cell-mean E[total] (18 viable ODs)")
+    axes[0].axhline(means[0], color="grey", linestyle="--", linewidth=0.5,
+                    label=f"Static = {means[0]:.2f}")
     axes[0].grid(alpha=0.3, linestyle=":", axis="y")
-    # annotate disrupted bars
-    for i, v in enumerate(disrupt_r):
-        axes[0].text(i + w/2, v + 1, f"{v:.0f}", ha="center", fontsize=7)
-
-    # Right: conditional mean travel time, disrupted only
-    cond = [summary["disrupted"][m]["avg_mean_reached"] for m in methods]
-    bars = axes[1].bar(x, cond, color=[COLORS[m] for m in methods],
-                       edgecolor="black", linewidth=0.4)
-    axes[1].set_xticks(x)
-    axes[1].set_xticklabels(methods, rotation=20, ha="right")
-    axes[1].set_ylabel("Conditional mean travel time (min)")
-    axes[1].set_title("Disrupted-day travel time (completions only)")
-    axes[1].axhline(cond[0], color="grey", linestyle="--", linewidth=0.5,
-                    label=f"Static = {cond[0]:.1f}")
-    axes[1].grid(alpha=0.3, linestyle=":", axis="y")
-    axes[1].legend(loc="lower right")
-    for bar, v in zip(bars, cond):
-        axes[1].text(bar.get_x() + bar.get_width()/2, v + 0.3, f"{v:.1f}",
+    axes[0].legend(loc="upper right", fontsize=7)
+    for bar, v in zip(bars, means):
+        axes[0].text(bar.get_x() + bar.get_width()/2, v + 0.15, f"{v:.2f}",
                      ha="center", fontsize=7)
-    axes[1].set_ylim(28, 35)
+    ymin = min(means) - 0.5
+    ymax = max(means) + 1.0
+    axes[0].set_ylim(ymin, ymax)
+
+    # Right: per-day E[total] sorted by Static miss rate
+    dates = sorted(per_day_etot["Static"].keys(),
+                   key=lambda dt: -per_day_etot["Static"][dt])
+    static_static = [per_day_etot["Static"][dt] for dt in dates]
+    plot_methods = ["Static", "V1-LCB", "Adaptive-β", "DRO"]
+    for m in plot_methods:
+        ys = [per_day_etot[m].get(dt, np.nan) for dt in dates]
+        axes[1].plot(range(len(dates)), ys, marker=".", markersize=3,
+                     linewidth=0.9, label=m,
+                     color=COLORS.get(m, "#888"))
+    axes[1].set_xlabel("Day index (sorted by Static $\overline{E[\mathrm{total}]}$, hardest first)")
+    axes[1].set_ylabel(r"$\overline{E[\mathrm{total}]}$ (min)")
+    axes[1].set_title("Per-day cell-mean E[total]")
+    axes[1].grid(alpha=0.3, linestyle=":")
+    axes[1].legend(fontsize=7, loc="upper right")
 
     plt.tight_layout()
     out = os.path.join(OUT, "fig_reach_rate.pdf")
