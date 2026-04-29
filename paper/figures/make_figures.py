@@ -276,15 +276,20 @@ def plot_ablation():
 
 # ---------------------------------------------------------------- P2 (4)
 def plot_per_od_heatmap():
-    """Per-OD reach-rate heatmap (rows=ODs, cols=methods, disrupted)."""
-    with open(os.path.join(RESULTS, "swiss_multi_od_v2.json")) as f:
+    """Per-OD reach-rate heatmap on Oct 29 (sourced from R15 35-day data)."""
+    with open(os.path.join(RESULTS, "swiss_multi_day.json")) as f:
         d = json.load(f)
     methods = ["Static", "V1-LCB", "V2-LCB", "V3-Topo", "DRO", "Adaptive-β"]
-    od_keys = list(d["disrupted"].keys())
+    oct29 = d["per_day"].get("2023-10-29", {}).get("results", {})
+    od_keys = list(oct29.keys())
     M = np.zeros((len(od_keys), len(methods)))
     for i, k in enumerate(od_keys):
         for j, m in enumerate(methods):
-            M[i, j] = d["disrupted"][k][m]["reach_rate"] * 100
+            trials = oct29[k].get(m, {}).get("trials", [])
+            if trials:
+                M[i, j] = (np.asarray(trials) < 120).mean() * 100
+            else:
+                M[i, j] = 0
 
     # sort ODs by average reach rate
     avg = M.mean(axis=1)
