@@ -192,8 +192,11 @@ hyperpath alternatives, not a global-policy DRO optimality claim
 (Section~\ref{sec:method}).
 \item \textbf{Lean~4 formalization of the abstract mathematical core.}
 The $W_1$ pseudometric, the Kantorovich--Rubinstein inequality with
-explicit translation witness, a robust-Bellman $\gamma$-contraction with
-rectangular-Wasserstein and discrete-mixture ambiguity, the LCB
+explicit translation witness, a robust-Bellman framework giving
+$\gamma$-contraction for the discrete-mixture ambiguity and a
+$\gamma(1+\varepsilon)$ Lipschitz bound for the Wasserstein ball
+of radius $\varepsilon$ (a contraction iff $\varepsilon\!<\!(1{-}\gamma)/\gamma$),
+the LCB
 high-probability bound under the actual product posterior, an
 adversarial $\forall$-algorithm $\exists$-trajectory minimax lower
 bound, and a deterministic Hedge regret bound are all formalized in
@@ -404,8 +407,10 @@ generative modeling, and DRO, yet had no machine-checked formalization
 prior to this work.
 Our 1{,}565-line Wasserstein/DRO development (coupling theory,
 $W_1$ pseudometric, gluing lemma, weak Kantorovich--Rubinstein
-inequality, DRO upper bound, real $\sup$ equality, robust Bellman
-$\gamma$-contraction) fills this gap. An additional 3{,}757 lines
+inequality, DRO upper bound, real $\sup$ equality, robust-Bellman
+$\gamma$-contraction for discrete-mixture ambiguity and
+$\gamma(1+\varepsilon)$ Lipschitz bound for the Wasserstein ball)
+fills this gap. An additional 3{,}757 lines
 verify the transit-specific theory: per-stop and cumulative LCB
 gap with high-probability bound under the actual product posterior
 (BAPRHRO + BAPRHRO\_V2, 1{,}585 lines); irrecoverability ($\rho > 0$
@@ -594,24 +599,39 @@ and radius $\varepsilon_r := \beta(s)\hat\sigma_{\mathrm{ens},r}$:
 \end{proposition}
 
 \begin{proof}[Proof sketch]
-The upper bound follows from Theorem~\ref{thm:dro} applied with
+The upper bound ($\leq$) follows from Theorem~\ref{thm:dro} applied with
 $\hat{P} = \hat{P}_{\mathrm{ens},r}$ and $\varepsilon = \varepsilon_r$.
-For the lower bound, the \emph{shifted empirical measure}
+For the lower bound ($\geq$), the \emph{shifted empirical measure}
 $\hat{P}^{\star}_{\mathrm{ens},r} := \tfrac{1}{K}\sum_k \delta_{\mu^{(r)}_k + \varepsilon_r}$
 is a valid witness:
 (i) $W_1(\hat{P}^{\star}_{\mathrm{ens},r}, \hat{P}_{\mathrm{ens},r}) \leq \varepsilon_r$
 via the atom-to-atom coupling $\mu^{(r)}_k \leftrightarrow \mu^{(r)}_k + \varepsilon_r$;
 (ii) the shifted ensemble has mean $\hat\mu_{\mathrm{ens},r} + \varepsilon_r$
 and the \emph{same} ensemble std $\hat\sigma_{\mathrm{ens},r}$ (translation
-invariance). The argmin identity
+invariance). Combining the two directions yields equality. The argmin
+identity
 $\arg\min_r \mathrm{LCB}_{\mathrm{ens}}(r) = \arg\min_r \mathrm{DRO}_{\mathrm{ens}}(r)$
 follows immediately.
 \end{proof}
 
-Proposition~\ref{prop:ensdro} is formalized in Lean~4 as
-\texttt{ensemble\_lcb\_equals\_\allowbreak empirical\_dro} and
-\texttt{ensemble\_argmin\_\allowbreak equals\_\allowbreak empirical\_\allowbreak dro\_\allowbreak argmin} in
-\texttt{BAPRHRO\_V2.lean}. Concretely, V2 inherits V1's distribution-free
+\paragraph{What Lean verifies vs.\ what is prose.} The Lean development
+formalizes the \emph{witness construction} for the lower bound: the
+explicit $W_1$-distance bound on the shifted-empirical measure
+(\texttt{ensemble\_W1\_translation\_le}) and the value-shift identity
+under the translation push-forward. The matching \emph{upper bound}
+($\leq$) is the abstract Kantorovich--Rubinstein inequality (Theorem
+\ref{thm:dro}, \texttt{dro\_upper\_bound}). Combining the two gives the
+prose-level equality of Proposition~\ref{prop:ensdro}; we have not yet
+formalized this combination as a single \texttt{ensemble\_lcb\_equals\_
+empirical\_dro} theorem in Lean. The argmin identity used in the LCB-V2
+selection rule does not require the iSup equality and is supported by
+the lower-bound witness alone (any $\beta(s)\geq 0$ ranking by
+$\hat\mu_{\mathrm{ens},r}+\varepsilon_r$ matches the witness ranking).
+The Lean artefact thus certifies the \emph{operational} content of
+Proposition~\ref{prop:ensdro} (the witness bound and the argmin
+preservation); the iSup equality is established at the prose level by
+combining two formally-verified building blocks rather than by a single
+Lean theorem. Concretely, V2 inherits V1's distribution-free
 DRO guarantee \emph{without} the parametric Normal-Gamma assumption
 (Assumption~\ref{asm:prior}): the Wasserstein ball is centered on the
 bootstrap empirical measure, and its radius contracts at the ensemble
@@ -1098,52 +1118,65 @@ a hook for production deployments where feed-quality differs from
 the SBB GTFS-RT archive.
 \end{remark}
 
-\begin{theorem}[DRO-Bellman contraction]\label{thm:bellman}
+\begin{theorem}[Robust Bellman: discrete-mixture contraction; Wasserstein Lipschitz bound]\label{thm:bellman}
 Let $T$ be the standard Bellman operator on the BA-SSP-MDP,
-$\gamma$-contractive in $\ell^\infty(S)$.
-Define the robust Bellman operator:
+$\gamma$-contractive in $\ell^\infty(\mathcal S)$. Define the
+\emph{robust} Bellman operator with ambiguity functional $\Phi$ as
 \[
-T_\varepsilon(V)(s) = \min_{a\in\mathcal{A}}\Bigl\{
-  c(s,a) + \sup_{P:\,W_1(P,\hat{P})\leq\varepsilon}\mathbb{E}_P[V(s')]\Bigr\}.
+T_\Phi(V)(s) \;=\; \min_{a\in\mathcal{A}}\Bigl\{
+  c(s,a) + \gamma\,\Phi\bigl(V(\cdot \mid s,a)\bigr)\Bigr\}.
 \]
-Then $T_\varepsilon$ is also $\gamma$-contractive:
-$\|T_\varepsilon V - T_\varepsilon U\|_\infty \leq \gamma \|V - U\|_\infty$.
+Two concrete instances appear in this paper.
+\begin{itemize}[leftmargin=1.2em,itemsep=0.15em]
+\item[\textbf{(a)}] \emph{Discrete-mixture ambiguity}
+$\Phi^{\mathrm{mix}}(V) := \sup_{i\in[K]} \mathbb{E}_{P_i}[V]$ over a finite
+mixture of posterior modes. $T_{\Phi^{\mathrm{mix}}}$ is
+$\gamma$-contractive in $\ell^\infty$:
+$\|T_{\Phi^{\mathrm{mix}}}V - T_{\Phi^{\mathrm{mix}}}U\|_\infty \leq \gamma\|V-U\|_\infty$.
+\item[\textbf{(b)}] \emph{Wasserstein ball ambiguity}
+$\Phi^{W_1}_\varepsilon(V) := \sup_{P\,:\,W_1(P,\hat P)\leq\varepsilon}
+\mathbb{E}_P[V]$ for a fixed $\varepsilon\!\geq\!0$.
+$T_{\Phi^{W_1}_\varepsilon}$ is $\gamma(1+\varepsilon)$-Lipschitz in
+$\ell^\infty$, so it is a contraction iff $\gamma(1+\varepsilon)<1$,
+i.e.\ $\varepsilon < (1-\gamma)/\gamma$.
+\end{itemize}
 \end{theorem}
 
 \begin{proof}
-Fix any $s \in \mathcal{S}$ and $V, U \in \mathcal{B}(\mathcal{S})$.
+Fix any $s \in \mathcal{S}$ and $V, U$.
 
-\noindent\textbf{Step 1 (Robust expectation is non-expansive).}
-For any distribution $P$ in the Wasserstein ball and any $s' \in \mathcal{S}$:
-\[
-\mathbb{E}_P[V(s')] - \mathbb{E}_P[U(s')]
-= \mathbb{E}_P\bigl[V(s') - U(s')\bigr]
-\;\leq\; \|V - U\|_\infty.
-\]
-The same bound holds with $V$ and $U$ swapped, so for any Wasserstein ball:
-\begin{equation}
-\Bigl|\sup_{P:\,W_1\leq\varepsilon}\mathbb{E}_P[V(s')]
-      - \sup_{P:\,W_1\leq\varepsilon}\mathbb{E}_P[U(s')]\Bigr|
-\;\leq\; \|V - U\|_\infty.
-\label{eq:robust_nonexpansive}
-\end{equation}
+\noindent\textbf{Case (a): discrete-mixture ambiguity.}
+For each $P_i$, $|\mathbb{E}_{P_i}[V] - \mathbb{E}_{P_i}[U]| \leq \|V-U\|_\infty$;
+since $|\sup_i x_i - \sup_i y_i| \leq \sup_i |x_i - y_i|$ over a finite
+index set,
+$|\Phi^{\mathrm{mix}}(V) - \Phi^{\mathrm{mix}}(U)| \leq \|V-U\|_\infty$.
+Combining with $|\min_a f(a) - \min_a g(a)| \leq \max_a |f(a)-g(a)|$
+gives $\|T_{\Phi^{\mathrm{mix}}}V - T_{\Phi^{\mathrm{mix}}}U\|_\infty \leq
+\gamma\|V-U\|_\infty$.
 
-\noindent\textbf{Step 2 (Contraction of $T_\varepsilon$).}
-Let $F_V(a) = c(s,a) + \gamma\sup_{P:\,W_1\leq\varepsilon}\mathbb{E}_P[V(s')]$
-and $F_U(a)$ analogously; then $T_\varepsilon(V)(s) = \min_a F_V(a)$.
-Using $|\min_a f - \min_a g| \leq \max_a |f(a)-g(a)|$
-and \eqref{eq:robust_nonexpansive}:
-\begin{align*}
-&|T_\varepsilon(V)(s) - T_\varepsilon(U)(s)| \\
-&\quad\leq \max_a |F_V(a) - F_U(a)| \\
-&\quad= \gamma\max_a \bigl|\sup_P\mathbb{E}_P[V(s')]
-   - \sup_P\mathbb{E}_P[U(s')]\bigr| \\
-&\quad\leq \gamma\|V - U\|_\infty.
-\end{align*}
-Taking the supremum over $s$:
-$\|T_\varepsilon V - T_\varepsilon U\|_\infty \leq \gamma\|V-U\|_\infty$.
-The DRO radius $\varepsilon$ shifts the fixed point toward more pessimistic
-policies but does not enter the contraction factor.
+\noindent\textbf{Case (b): Wasserstein ball ambiguity.}
+Let $V^* = \sup V$, $V_* = \inf V$. By the Kantorovich--Rubinstein duality
+(Theorem~\ref{thm:dro}) and the elementary bound
+$\sup V - \inf V \leq \|V\|_\infty$, for any $\varepsilon\!\geq\!0$,
+$\Phi^{W_1}_\varepsilon(V) \leq \mathbb{E}_{\hat P}[V] + \varepsilon\,\sup V$
+and $\Phi^{W_1}_\varepsilon(V) \geq \mathbb{E}_{\hat P}[V] + \varepsilon\,\inf V$
+(taking the witness measure that pushes mass to the extremum within the
+ball). Subtracting these for $V$ and $U$ and using the elementary
+inequalities yields
+$|\Phi^{W_1}_\varepsilon(V) - \Phi^{W_1}_\varepsilon(U)| \leq
+(1+\varepsilon)\|V-U\|_\infty$,
+so $T_{\Phi^{W_1}_\varepsilon}$ is $\gamma(1+\varepsilon)$-Lipschitz on
+$\ell^\infty$ with the same min-over-actions step as case (a). Banach's
+contraction principle then yields a unique fixed point provided
+$\gamma(1+\varepsilon) < 1$; for larger $\varepsilon$ the operator can
+fail to contract and the fixed point may not be unique without
+additional structure (e.g., a 1-Lipschitz value function or a
+contractive feasibility set).
+
+The DRO radius $\varepsilon$ shifts the fixed point toward more
+pessimistic policies; in case (a) it does not enter the contraction
+factor, while in case (b) it appears as $(1+\varepsilon)$ on the
+Lipschitz constant.
 \end{proof}
 
 \subsection{LCB Suboptimality and Posterior Contraction}
@@ -1691,9 +1724,9 @@ File & Lines & Key results \\
 Coupling.lean & 94 & Definitions: coupling, product coupling, non-emptiness of $\Gamma(\mu,\nu)$ \\
 Distance.lean & 378 & $W_1$ non-negativity, self-distance, symmetry, triangle inequality via the gluing lemma (Thm.~\ref{thm:w1_metric}) \\
 DRO.lean & 670 & Weak Kantorovich--Rubinstein inequality (Thm.~\ref{thm:dro}); explicit translation-witness with full $W_1$-distance bound \texttt{w1\_translation\_le}; \texttt{lcb\_equals\_dro\_attained} chains both directions for the affine arrival case; real $\sup$ equality \texttt{dro\_iSup\_real\_equality} \\
-DROBellman.lean & 423 & Real $\gamma$-contractive robust Bellman \texttt{robustBellmanOp\_contraction} via the abstract \texttt{NonExpansiveAmbiguity} property; concrete instances for the discrete posterior-gated mixture (\texttt{mixture\_robust\_bellman\_contraction}, the redesigned BAPR's framework) and the Wasserstein ball (\texttt{wasserstein\_robust\_bellman\_lipBound}) \\
+DROBellman.lean & 423 & Abstract robust Bellman operator parameterised by an ambiguity functional; \texttt{robustBellmanOp\_contraction} establishes $\gamma$-contraction whenever the functional is non-expansive in the value function (\texttt{NonExpansiveAmbiguity}). Two concrete instances: \emph{discrete posterior-gated mixture} satisfies the non-expansive hypothesis and yields $\gamma$-contraction (\texttt{mixture\_robust\_bellman\_contraction}, the redesigned BAPR's framework); \emph{Wasserstein ball with radius $\varepsilon$} only yields a $\gamma(1+\varepsilon)$ Lipschitz bound (\texttt{wasserstein\_robust\_bellman\_lipBound}), which is a contraction iff $\varepsilon\!<\!(1-\gamma)/\gamma$. The Wasserstein instance is therefore \emph{not} a $\gamma$-contraction in $\ell^\infty$ for general $\varepsilon$. \\
 BAPRHRO.lean & 1{,}125 & Per-stop gap (Lem.~\ref{lem:perstep}); LCB suboptimality (Thm.~\ref{thm:lcb_bound}); posterior contraction (Lem.~\ref{lem:contraction}); per-route Chebyshev on the actual Normal-Gamma posterior \texttt{posterior\_chebyshev\_route}; product-posterior joint bad-event bound \texttt{posterior\_product\_joint\_bad\_event\_bound} (using $\mathrm{Measure.pi}$, $\mathrm{measurePreserving\_eval}$, $\mathrm{measure\_iUnion\_fintype\_le}$); textbook $P(\mathrm{Good}) \geq 1 - DK/k^2$ corollary \texttt{posterior\_product\_good\_event\_probability\_lower\_bound}; high-probability LCB bound under product posterior \texttt{posterior\_product\_high\_prob\_lcb\_bound} (Thm.~\ref{thm:lcb_high_prob}) \\
-BAPRHRO\_V2.lean & 460 & Ensemble LCB bound; dynamic $\beta$; ensemble $=$ empirical DRO (Prop.~\ref{prop:ensdro}) with explicit empirical measure and verified push-forward identity \texttt{ensemble\_W1\_translation\_le} \\
+BAPRHRO\_V2.lean & 460 & Ensemble LCB bound; dynamic $\beta$; the witness construction for Prop.~\ref{prop:ensdro}: explicit shifted-empirical measure with \texttt{ensemble\_W1\_translation\_le} (the $\geq$ direction). The matching $\leq$ direction comes from the abstract Kantorovich--Rubinstein bound \texttt{dro\_upper\_bound} (Thm.~\ref{thm:dro}); the iSup equality of Prop.~\ref{prop:ensdro} is the prose combination of these two Lean lemmas, not a separate Lean theorem. \\
 Irrecoverability.lean & 218 & Optimal pessimism sign (Thm.~\ref{thm:rho}) via \texttt{optimal\_beta\_sign\_matches\_rho} \\
 IrrecoverabilityBridge.lean & 270 & Environment structure $\Rightarrow$ $\rho > 0$ (bridge theorem) \\
 EXP3Regret.lean & 876 & Real cumulative Hedge regret bound \texttt{hedge\_regret\_real\_bound}: $\mathrm{regret} \leq \log K / \eta + \eta T$ via potential-function method (player-loss-retaining per-round bound, exponential telescoping, log-inversion); piecewise-EXP3 extension parameterized by a \texttt{StationaryRegretCertificate} structure (no axioms) \\
@@ -1742,7 +1775,8 @@ LCB$\,=\,$DRO equivalence (Cor.~\ref{cor:lcb_dro}) &
 Translation-witness $W_1$ bound &
   \texttt{w1\_translation\_le} &
   \texttt{Wasserstein/DRO.lean} \\
-Robust Bellman $\gamma$-contraction &
+Robust Bellman, mixture: $\gamma$-contraction;\newline
+Wasserstein: $\gamma(1+\varepsilon)$-Lipschitz (Thm.~\ref{thm:bellman}) &
   \texttt{robustBellmanOp\_contraction},\newline
   \texttt{mixture\_robust\_bellman\_\allowbreak contraction},\newline
   \texttt{wasserstein\_robust\_bellman\_\allowbreak lipBound} &
@@ -1784,10 +1818,10 @@ Minimax regret lower bound (Thm.~\ref{thm:lower}) &
 Regret sandwich (Cor.~\ref{cor:sandwich}) &
   \texttt{regret\_sandwich} &
   \texttt{BAPR-HRO/LowerBound.lean} \\
-Ensemble = empirical DRO (Prop.~\ref{prop:ensdro}) &
-  \texttt{ensemble\_lcb\_equals\_\allowbreak empirical\_dro},\newline
+Ensemble = empirical DRO,\newline witness construction (Prop.~\ref{prop:ensdro}, $\geq$) &
   \texttt{ensemble\_W1\_\allowbreak translation\_le} &
   \texttt{BAPR-HRO/\allowbreak BAPRHRO\_V2.lean} \\
+\multicolumn{2}{l}{\quad upper bound ($\leq$) reuses Thm.~\ref{thm:dro}} & \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -3094,7 +3128,7 @@ not a principled CVaR bound.
 \section{Conclusion}
 \label{sec:conclusion}
 
-We formalized adaptive transit routing as a Bayesian Adaptive SSP-MDP and derived an LCB hyperpath selection policy that is \emph{exactly equal} (with an explicit attainment witness) to the worst-case expected arrival on a Wasserstein ball whose radius is the posterior or empirical-ensemble uncertainty. The development is formally verified in 5{,}322 lines of Lean~4 code (zero \texttt{sorry}, zero project-level \texttt{axiom} declarations beyond Mathlib's standard kernel) and includes a real $\gamma$-contractive robust Bellman operator with rectangular Wasserstein and discrete-mixture ambiguity, an adversarial $\forall$-algorithm $\exists$-trajectory minimax lower bound, a Bayes-risk Chebyshev link from the Normal-Gamma posterior to the per-step gap, an end-to-end high-probability LCB bound under the actual product posterior $\Pi := \mathrm{Measure.pi}\,(\pi_{d,r})$ with explicit $P(\mathrm{Good}) \geq 1 - DK/k^2$ certificate (Theorem~\ref{thm:lcb_high_prob}), and a real cumulative Hedge regret bound $\mathrm{regret} \leq \log K / \eta + \eta T$ via the player-loss-retaining potential argument. On synthetic networks under R16, LCB-V2 reduces small-network disrupted mean by $11\%$ and P95 by $23\%$, and matches Oracle within $0.7$\,min on the large network; PS-SSP, BAMCP, and EXP3 all worsen mean travel time substantially under disruption ($+30\%$ to $+85\%$ on the large disrupted instance). Static-$\beta$ DRO and SW-LCB also over-correct on the large network ($+29\%$, $+34\%$ respectively) under the corrected typed-cancellation accounting; only LCB-V2's dynamic $\beta(s)$ stays close to Oracle. On real GTFS-RT data from Z\"urich (SBB, 35 days, 687 stops), DRO reproduces $+22.9\%$ improvement on a high-information OD on a normal day, and the V2 cold-start failure flagged in earlier drafts is fixed (V2 mean: $98.4\!\to\!84.9$\,min after replacing the ensemble disagreement with the posterior~$\sigma$ at cold start and applying the round-3 A7 deadline correction). Across the full 35-day cross-day benchmark ($28{,}350$ journeys per method, all $35$~days $\times$ $18$ viable ODs $\times$ $45$ trials, R16 algorithm), V2-LCB reduces cell-mean $\overline{E[\mathrm{total}]}$ by $5.8\%$ ($49.34\!\to\!46.47$\,min, paired bootstrap CI $[-3.23,-2.53]$) and V1-LCB / Adaptive-$\beta$ by $5.2\%$ ($49.34\!\to\!46.76$\,min, paired bootstrap CI $[-2.95,-2.26]$, $35/35$ days strictly better, sign-test $p\!<\!10^{-10}$). All three Pareto-improve reach rate ($+2.8$\,pp, $78.2\%\!\to\!81.0\%$) and cell-mean conditional travel time ($-9$ to $-11$\,min, $44.3\!\to\!33.7$--$35.3$\,min). On the worst single disrupted day V1-LCB cuts cell-mean $\overline{E[\mathrm{total}]}$ by $10.0\%$ ($71.15\!\to\!64.01$\,min). A component ablation isolates layered risk penalties read from the hyperpath's StopLabel feasibility and destination-arrival PMF as the single dominant fix (A2: V1 sign change from $+3.7\%$ to $-3.5\%$); the round-3 fix to the A7 timeout-deadline computation (P0 \#1) on top of A2 contributes the additional $\!\sim\!1$\,pp from R15 to R16. On the synthetic large network LCB-V2 is within $0.7$\,min of Oracle while static-$\beta$ DRO over-corrects to $95.4$\,min; this is the most striking change from R15 to R16 and is attributable to the round-3 typed-cancellation fix. A neural surrogate provides $224{\times}$ acceleration of initial hyperpath computation (a compute claim, not a decision-equivalence claim).
+We formalized adaptive transit routing as a Bayesian Adaptive SSP-MDP and derived an LCB hyperpath selection policy that is \emph{exactly equal} (with an explicit attainment witness) to the worst-case expected arrival on a Wasserstein ball whose radius is the posterior or empirical-ensemble uncertainty. The development is formally verified in 5{,}322 lines of Lean~4 code (zero \texttt{sorry}, zero project-level \texttt{axiom} declarations beyond Mathlib's standard kernel) and includes a robust Bellman operator framework that gives $\gamma$-contraction for the discrete-mixture ambiguity and a $\gamma(1+\varepsilon)$-Lipschitz bound for the Wasserstein ball of radius $\varepsilon$ (a contraction iff $\varepsilon\!<\!(1-\gamma)/\gamma$), an adversarial $\forall$-algorithm $\exists$-trajectory minimax lower bound, a Bayes-risk Chebyshev link from the Normal-Gamma posterior to the per-step gap, an end-to-end high-probability LCB bound under the actual product posterior $\Pi := \mathrm{Measure.pi}\,(\pi_{d,r})$ with explicit $P(\mathrm{Good}) \geq 1 - DK/k^2$ certificate (Theorem~\ref{thm:lcb_high_prob}), and a real cumulative Hedge regret bound $\mathrm{regret} \leq \log K / \eta + \eta T$ via the player-loss-retaining potential argument. On synthetic networks under R16, LCB-V2 reduces small-network disrupted mean by $11\%$ and P95 by $23\%$, and matches Oracle within $0.7$\,min on the large network; PS-SSP, BAMCP, and EXP3 all worsen mean travel time substantially under disruption ($+30\%$ to $+85\%$ on the large disrupted instance). Static-$\beta$ DRO and SW-LCB also over-correct on the large network ($+29\%$, $+34\%$ respectively) under the corrected typed-cancellation accounting; only LCB-V2's dynamic $\beta(s)$ stays close to Oracle. On real GTFS-RT data from Z\"urich (SBB, 35 days, 687 stops), DRO reproduces $+22.9\%$ improvement on a high-information OD on a normal day, and the V2 cold-start failure flagged in earlier drafts is fixed (V2 mean: $98.4\!\to\!84.9$\,min after replacing the ensemble disagreement with the posterior~$\sigma$ at cold start and applying the round-3 A7 deadline correction). Across the full 35-day cross-day benchmark ($28{,}350$ journeys per method, all $35$~days $\times$ $18$ viable ODs $\times$ $45$ trials, R16 algorithm), V2-LCB reduces cell-mean $\overline{E[\mathrm{total}]}$ by $5.8\%$ ($49.34\!\to\!46.47$\,min, paired bootstrap CI $[-3.23,-2.53]$) and V1-LCB / Adaptive-$\beta$ by $5.2\%$ ($49.34\!\to\!46.76$\,min, paired bootstrap CI $[-2.95,-2.26]$, $35/35$ days strictly better, sign-test $p\!<\!10^{-10}$). All three Pareto-improve reach rate ($+2.8$\,pp, $78.2\%\!\to\!81.0\%$) and cell-mean conditional travel time ($-9$ to $-11$\,min, $44.3\!\to\!33.7$--$35.3$\,min). On the worst single disrupted day V1-LCB cuts cell-mean $\overline{E[\mathrm{total}]}$ by $10.0\%$ ($71.15\!\to\!64.01$\,min). A component ablation isolates layered risk penalties read from the hyperpath's StopLabel feasibility and destination-arrival PMF as the single dominant fix (A2: V1 sign change from $+3.7\%$ to $-3.5\%$); the round-3 fix to the A7 timeout-deadline computation (P0 \#1) on top of A2 contributes the additional $\!\sim\!1$\,pp from R15 to R16. On the synthetic large network LCB-V2 is within $0.7$\,min of Oracle while static-$\beta$ DRO over-corrects to $95.4$\,min; this is the most striking change from R15 to R16 and is attributable to the round-3 typed-cancellation fix. A neural surrogate provides $224{\times}$ acceleration of initial hyperpath computation (a compute claim, not a decision-equivalence claim).
 
 The central insight is that stochastic hyperpaths are \emph{structurally robust but ranking-fragile}: the right alternatives are already present; their ranking needs real-time updating through online learning rather than full re-optimization. For single-shot risk-sensitive sequential decisions, deterministic pessimism outperforms stochastic exploration. Cross-domain multi-seed evaluation (8 seeds, 95\% CIs, Section~\ref{sec:cross_domain}) supports the principle as transferable but not transit-specific: LCB substantially helps on daily commitment decisions (Flow-LCB and V1-LCB at $-6.6$ to $-6.7\%$ cost on UC, six of seven learning methods CI-disjoint from Static), breaks even on noisy candidate ranking (VRP, all CIs heavily overlapping Static), and \emph{also} substantially helps on SDN under multi-seed evaluation (V1-LCB and Hybrid each at $\!\sim\!-61\%$ vs.\ Static, where Static is highly seed-volatile and pessimism keeps the worst-seed tail bounded). React-UCB, the SDN-specific contextual baseline, remains the column best at $-74\%$; the LCB family transfers to SDN but is not the SDN-specific best. Theorem~\ref{thm:rho}'s irrecoverability hypothesis is best read as a sufficient condition for the LCB family to help, not as a necessary one. Adaptive-$\beta$'s EXP3 meta-bandit closely tracks the fixed-$\beta$ family in all three domains; its safety-net role is in regimes where the right $\beta$ is unknown a priori, rather than in rescuing a structural mismatch.
 
