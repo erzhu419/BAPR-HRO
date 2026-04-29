@@ -931,6 +931,37 @@ adopted, and our experiments do not assume the embedding is the
 true generating model.
 \end{remark}
 
+\begin{remark}[Scope of Cor.~\ref{cor:lcb_dro} for the R15 layered score]
+\label{rem:r15-score-scope}
+Section~\ref{sec:swiss-results} reports the R15 deployed score
+$\mathrm{score}(c) = \mu_{\text{dest}}(c) + \delta(c) + \beta\hat\sigma_{r(c)}
++ \gamma_0\,\hat p_{\mathrm{cxl},r(c)} + 60(1{-}\phi(c)) +
+60(1{-}P_{\text{ontime}}(c))$, where the last two terms
+(``A7 layered risk penalties'') are read from the
+hyperpath's StopLabel \texttt{feasibility} $\phi$ and
+destination-arrival PMF $P_{\text{ontime}}$. Corollary
+\ref{cor:lcb_dro} establishes the per-candidate identity
+$\mathbb{E}_{\hat P}[\mathrm{arr}(c)] +
+\beta\hat\sigma_{r(c)} + \gamma_0\hat p_{\mathrm{cxl},r(c)}
+= \sup_{P:\,W_1(P,\hat P)\leq\varepsilon_c}\mathbb{E}_P[\mathrm{arr}(c)]$
+\emph{for the first four terms only}; the two A7 terms are
+hyperpath-structural penalties that fall outside the DRO scope
+because $\phi$ and $P_{\text{ontime}}$ are properties of the
+hyperpath label rather than of the per-candidate delay
+distribution $\hat P_c$. They are bounded ($0 \leq 60(1-\phi),
+60(1-P_{\text{ontime}}) \leq 60$) and monotone in their respective
+arguments, so adding them to the DRO LCB cannot break the per-step
+suboptimality bound of Theorem~\ref{thm:lcb_bound} (the bound stays
+of order $O(\sigma_{\max})$, with at most an additive
+$120$\,min slack on a single decision that is itself bounded by
+$t_{\max}$). The Lean development verifies the four-term identity;
+the two A7 penalties are an empirical engineering enhancement and
+are explicitly outside the formal-verification scope. We surface
+this distinction here rather than in passing because
+\emph{which} part of the score has a DRO interpretation matters
+for reviewers who reproduce the equivalence claim.
+\end{remark}
+
 \begin{remark}[Typed cancellation in real GTFS-RT data]
 \label{rem:typed-cancel}
 GTFS-RT cancellation events are noisy: a missing position update can
@@ -1076,6 +1107,16 @@ relative to the Bayes-optimal policy $\pi^*$ satisfies:
 \;\leq\; 2D(1+\beta)\,\sigma_{\max}.
 \label{eq:lcb_bound}
 \end{equation}
+The bound is stated for the four-term LCB score
+$\hat\mu + \beta\hat\sigma + \gamma_0\hat p_{\mathrm{cxl}}$
+on which Cor.~\ref{cor:lcb_dro} holds. The R15 deployed score
+adds two bounded structural penalties from the hyperpath label
+($60(1{-}\phi) + 60(1{-}P_{\text{ontime}})$, each in $[0, 60]$);
+because these penalties are bounded by a constant $C_{\mathrm{A7}}
+= 120$ that does not grow with $\sigma_{\max}$, replacing the
+DRO LCB with the R15 layered score adds at most $D \cdot C_{\mathrm{A7}}$
+to the per-journey excess cost --- a constant that does not affect
+the asymptotic $O(\sigma_{\max})$ rate.
 \end{theorem}
 
 \begin{proof}
@@ -1328,6 +1369,18 @@ For $K = 5$ routes and $T = 6$ stops, $R_T \leq \sqrt{60\ln 5} \approx 9.8$\,min
 per journey---exceeding the typical improvement over static routing (3--5\,min).
 This explains why adversarial bandits are structurally mismatched to
 single-shot transit routing: their per-episode exploration budget is exhausted.
+The bound also describes the regret of an EXP3 instance scoped to
+\emph{a single journey}; in our deployment Adaptive-$\beta$ uses a
+\emph{cross-journey persistent} EXP3 meta-bandit (A8,
+\texttt{adaptive\_bandit\_router.\_shared\_log\_weights}) over the
+$\beta$-grid rather than over per-stop arms, so the relevant $T$ is
+the cumulative number of journeys $J$ rather than the stop-count of
+a single journey. The Hedge regret bound in Lean
+(\texttt{Hedge.regret\_bound\_real}, 876 lines) is stated in terms
+of an abstract round count and applies verbatim once $T$ is read as
+$J$, which is the regime in which Adaptive-$\beta$ pools observations
+across days and OD pairs and has enough samples to learn the optimal
+$\beta$ (\S\ref{sec:swiss-multi-day}).
 \end{theorem}
 
 \begin{proof}
@@ -1689,6 +1742,54 @@ the BA-SSP-MDP boundary; for those, the paper's prose proofs and the
 empirical validation are the relevant evidence. We treat Lean as a
 \emph{certificate} that the chain from assumptions to numbered
 conclusions is sound, not as a substitute for the prose exposition.
+
+\paragraph{R15 algorithm changes vs.\ formal proofs.}
+The R15 algorithm (\S\ref{sec:swiss-results},
+Appendix~\ref{app:a1a10}) introduces ten engineering items A1--A10
+on top of the LCB family proven in this section. We summarize how
+each item interacts with the formal development:
+\begin{itemize}[leftmargin=1.5em,itemsep=0.15em]
+\item \textbf{A1 (tightened priors $\sigma_0^2{=}2$, Beta$(1,99)$),
+A4 (per-route historical prior).} Both change the prior
+\emph{instantiation}; the Normal-Gamma posterior algebra
+(Appendix~\ref{app:ng}) and the posterior contraction rate
+$O(1/\sqrt n)$ that drives Theorems~\ref{thm:lcb_bound} and
+\ref{thm:lcb_high_prob} are insensitive to the prior choice
+(only the constant in front of $\sqrt n$ changes). The Lean proofs
+remain valid verbatim under R15 priors.
+\item \textbf{A2 (bilinear gate), A3 (typed cancel counters), A5
+(adaptive top-$k$).} These are pre-/post-processing steps
+\emph{around} the LCB scoring rule; they do not enter the score
+expression that Cor.~\ref{cor:lcb_dro} certifies.
+\item \textbf{A7 (layered risk penalties, the dominant fix).}
+This is the one substantive scope change: the deployed score adds
+two hyperpath-structural penalties $60(1{-}\phi) + 60(1{-}P_{\text{ontime}})$
+on top of the four-term DRO LCB. As stated in
+Remark~\ref{rem:r15-score-scope} and the addendum to
+Theorem~\ref{thm:lcb_bound}, the DRO equivalence and the
+$O(\sigma_{\max})$ excess-cost rate apply to the
+\emph{four-term} LCB; the two A7 penalties are bounded
+($\leq 60$ each) and add at most a constant per-stop slack
+$C_{\mathrm{A7}} = 120$\,min, which does not break the rate.
+The Lean development does not formalize these structural
+penalties.
+\item \textbf{A8 (cross-journey persistent EXP3 state).} Adapts
+$T$ in the Hedge regret bound (Theorem~\ref{thm:exp3} addendum)
+from per-journey stop count to cumulative journeys $J$. The
+abstract Lean statement $\mathrm{regret}\leq \log K/\eta + \eta T$
+is parametric in $T$ and applies in either reading.
+\item \textbf{A6 (skipped), A9 (= timeout penalty in A7), A10
+(ablation table).} A6 was not implemented; A9 and A10 do not
+introduce new theorems.
+\end{itemize}
+The net effect: the R15 algorithm changes do \emph{not} require
+re-proving any of the verified theorems. Cor.~\ref{cor:lcb_dro}
+applies to the four-term DRO LCB (i.e., excluding A7's two
+hyperpath-structural penalties); Theorems
+\ref{thm:lcb_bound}--\ref{thm:lcb_high_prob} apply to the same
+four-term core with an additive constant $C_{\mathrm{A7}}$ on the
+suboptimality side; Theorem~\ref{thm:exp3} applies to A8 with
+$T$ read as cumulative journeys.
 
 %% ================================================================
 \section{Why Hyperpath Recomputation Fails}
