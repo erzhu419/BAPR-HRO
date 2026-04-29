@@ -2428,13 +2428,39 @@ Adaptive-$\beta$ & $-2.59$ & $[-2.91,-2.25]$ & $69\%$ & $35/35$ & $<10^{-10}$ \\
 
 For V1-LCB, V2-LCB, and Adaptive-$\beta$ the 95\% CI excludes zero
 and the sign test rejects equality on every one of the $35$~days
-($p<10^{-4}$). V3-Topo wins on $31/35$ days. Adaptive-$\beta$ wins on
-$66.7\%$ of all $630$~cells. The DRO row is informative in the
-opposite direction: under the static $\beta=1.5$ chosen on the
-focused OD, DRO is $+3.43$\,min worse than Static across cells
-($95\%$ CI $[+2.80,+4.10]$) and beats Static on only $1/35$ days
---- this is the over-correction that motivated the Adaptive-$\beta$
-meta-bandit.
+($p<10^{-10}$). V3-Topo wins on $25/35$ days ($p=0.017$).
+Adaptive-$\beta$ wins on $69\%$ of all $630$~cells. The DRO row is
+informative in the opposite direction: under the static $\beta=1.5$
+chosen on the focused OD, DRO is $+6.36$\,min worse than Static
+across cells ($95\%$ CI $[+5.38, +7.43]$) and beats Static on
+$0/35$ days --- this is the over-correction that motivated the
+Adaptive-$\beta$ meta-bandit.
+
+\paragraph{Leave-one-day-out audit of A4 (round-6 reviewer ask).}
+Round-6 review flagged that A4's per-route historical prior is
+built from \emph{all} 34 normal days in the same archive used to
+evaluate, raising a data-leakage concern: the prior used to score
+day~$d$'s connections includes day~$d$'s own statistics. We
+audited this by rebuilding the prior in a leave-one-day-out
+(LOO) regime --- for each evaluation date $d$, the per-route
+prior uses only the other $34-1=33$ normal days
+(\texttt{build\_route\_priors\_loo.py} +
+\texttt{run\_multi\_day\_loo.py}, $5{,}713$\,s wall on $18$
+workers). The LOO cell-mean $\overline{E[\mathrm{total}]}$
+matches the non-LOO numbers in Table~\ref{tab:swiss_multi}
+within $\pm 0.02$\,min for every method (V1-LCB $46.75$ vs
+$46.76$, V2-LCB $46.49$ vs $46.47$, V3-Topo $48.26$ vs $48.27$,
+DRO $55.70$ vs $55.70$, Adaptive-$\beta$ $46.75$ vs $46.76$).
+The paired $95\%$ CI and per-day sign test are unchanged at
+this precision. Dropping any single day from a $34$-day
+empirical prior shifts the per-route mean by at most
+$\frac{1}{34}\!\approx\!3\%$ relative to its prior pseudo-mass,
+and on the cross-day $\overline{E[\mathrm{total}]}$ this
+$3\%$ prior-mass shift is well below the experimental noise
+floor. We therefore report the non-LOO numbers in the main
+tables; the LOO data file
+\texttt{swiss\_multi\_day\_loo.json} is included in the
+artefact bundle for verification.
 
 \begin{figure}[t]
 \centering
