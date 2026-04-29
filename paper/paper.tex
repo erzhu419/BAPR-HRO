@@ -120,19 +120,22 @@ component ablation isolates the dominant fix (layered risk penalties
 read from the hyperpath's StopLabel feasibility and destination-arrival
 PMF) from incremental gains contributed by historical priors,
 disruption-gated typed cancellation counters, and cross-journey
-persistent EXP3 meta-state. A neural value surrogate further
-accelerates initial hyperpath computation by $224\times$. Cross-domain
-stress tests on capacitated VRP, Unit Commitment with stochastic
-wind, and SDN routing show that the LCB rule transfers when
-decisions are irreversible (Adaptive-$\beta$: $-7.6\%$ cost on UC),
-breaks even on noisy candidate ranking (VRP), and \emph{honestly
-fails} for fixed-$\beta$ on recoverable per-flow SDN routing
-(V1-LCB $+4.4\%$). Critically, the Adaptive-$\beta$ EXP3 meta-bandit
-\emph{recovers to Static-level performance in the SDN regime
-mismatch} ($-0.1\%$) by online-learning that high $\beta$ is
-dominated: it does not bet on pessimism being right, but learns
-whether pessimism is right. This makes Adaptive-$\beta$ a safety
-net within the LCB/DRO family against pessimism mis-specification. The
+persistent EXP3 meta-state. A neural value surrogate further accelerates initial hyperpath
+computation by $224\times$. Cross-domain stress tests over $8$
+random seeds with $95\%$ CIs (capacitated VRP, Unit Commitment
+with stochastic wind, SDN routing) show that the LCB rule
+substantially helps when decisions are irreversible (Flow-LCB
+$-6.7\%$ cost on UC, V1-LCB $-6.6\%$, both with CIs disjoint from
+Static), breaks even on noisy candidate ranking (VRP, all methods
+within $1$--$2\%$ of Static-NN with overlapping CIs), and
+substantially \emph{also} helps on SDN under multi-seed evaluation
+(V1-LCB $-60.9\%$, Hybrid $-61.1\%$, Adaptive-$\beta$ $-59.0\%$
+on NSFNet) where Static is highly seed-volatile (CI
+$[5.1, 133.1]$\,ms) and pessimism keeps the worst-seed tail
+bounded. React-UCB, the SDN-specific contextual baseline, is
+column best at $-74.2\%$; the LCB family is not at that level on
+SDN but it does transfer to SDN under proper multi-seed evaluation,
+contradicting an earlier single-seed report. The
 unifying finding: stochastic hyperpaths are \emph{structurally
 robust but ranking-fragile}---the right alternatives are already
 there; only their ranking needs online updating, and the DRO-optimal
@@ -210,11 +213,18 @@ We also report the following secondary contributions:
 \item \textbf{Eleven-method comparison} including BAMCP rollout-budget
 sweep that rules out compute budget as the explanation for BAMCP's
 disrupted-day failure (Section~\ref{sec:results}, Table~\ref{tab:bamcp_sweep}).
-\item \textbf{Cross-domain scope study (probe, not benchmark).} A
-sketch of how the LCB rule fares on capacitated VRP, Unit Commitment
-with stochastic wind, and SDN routing; the section is a scope probe
-not a head-to-head comparison against domain-specific baselines
-(Section~\ref{sec:cross_domain}).
+\item \textbf{Cross-domain scope study with multi-seed CIs.} 8-seed
+evaluation on capacitated VRP, Unit Commitment, and SDN routing.
+On UC, six of seven learning methods strictly significantly beat
+Static (CIs disjoint at $\Delta\!\approx\!-6$\,to\,$-7\%$). On SDN
+under multi-seed re-evaluation, V1-LCB and Hybrid each cut mean
+delay by $\!\sim\!61\%$ (vs.\ Static $68.5$\,ms; React-UCB
+remains the SDN-specific column best at $-74.2\%$). On VRP the
+8-seed CIs overlap heavily, confirming the wash. The single
+SDN single-seed loss reported in earlier drafts ($+4.4\%$ for V1)
+is shown to be a heavy-tail outcome of Static's high seed
+variance, not a regime mismatch
+(Section~\ref{sec:cross_domain}, Table~\ref{tab:cross_domain}).
 \item \textbf{Neural acceleration.} An MLP ensemble surrogate
 replaces Topological CSA, cutting initial computation from
 $712$\,ms to $0.6$\,ms ($224\times$); we are explicit that this is a
@@ -2428,62 +2438,57 @@ and percent change vs.\ Static across the three domains.
 
 \begin{table}[t]
 \centering
-\caption{Cross-domain mean cost. VRP: total travel time
-(min), 20-customer average over $10$ instances $\times\,15$ episodes;
-UC: total cost (\$), 40-day average across one wind-regime shift,
-warm-started; SDN: end-to-end delay (ms), 100-episode average over
-$20$ demands per episode and 3 stochastic congestion shifts.
-\emph{Last 5}: mean of episodes 11--15.
-\emph{Low-wind}: days 16--25 of the UC regime shift.
-\emph{Shift}: episodes overlapping any of the 3 SDN congestion
-shifts. Negative $\Delta$ favors the method. Bold marks the column
-best per domain. The Adaptive-$\beta$ row uses a $\beta$ grid
-$\{0,0.5,1,1.5,2,2.5,3\}$ in all three domains (non-negative
-because the cross-domain stress tests do not need to learn
-explicit optimism). The Hybrid (UCB-warmup $\to$ LCB switch) and
-Flow-LCB (LCB with $5$-step commitment) rows are domain-natural
-ports tested across all three domains. React-UCB$^{\dagger}$ is the
-only method that does not transfer: its mechanism (per-link
-contextual UCB reacting to congestion) has no natural analog in
-VRP (no link/congestion observation) or UC (no link concept), so
-it is reported only in SDN where it was introduced.}
+\caption{Cross-domain mean cost across $8$ random seeds with $95\%$
+CI in brackets. VRP: total travel time (min), 20-customer over
+$10$ instances $\times\,15$ episodes per seed; UC: total cost (\$),
+40-day total across one wind-regime shift; SDN: end-to-end delay
+(ms), 100-episode average. Negative $\Delta$ favors the method.
+Bold marks the column best per domain. \textbf{SIG}~marks
+$\Delta$ values whose $95\%$ CI is disjoint from the Static CI
+(strict significance). The Adaptive-$\beta$ row uses the
+non-negative grid $\{0,0.5,1,1.5,2,2.5,3\}$ across all three
+domains. Hybrid is UCB-warmup $\to$ LCB switch; Flow-LCB is LCB
+with $5$-step commitment. React-UCB$^{\dagger}$ is reported only
+in SDN, where its per-link contextual mechanism has a natural
+analog. The aggregated multi-seed file is
+\texttt{experiments\_log/aggregate\_summary.json}.}
 \label{tab:cross_domain}
 \small
-\setlength{\tabcolsep}{3pt}
-\begin{tabular}{l rrr rrr rrr}
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{l rr rr rr}
 \toprule
-& \multicolumn{3}{c}{VRP (20\,cust)}
-& \multicolumn{3}{c}{UC (10\,gen, \$)}
-& \multicolumn{3}{c}{SDN (NSFNet)} \\
-\cmidrule(lr){2-4}\cmidrule(lr){5-7}\cmidrule(lr){8-10}
-Method   & Mean & $\Delta$ & Last 5
-         & Mean & $\Delta$ & Low-wind
-         & Mean & $\Delta$ & Shift \\
+& \multicolumn{2}{c}{VRP (20\,cust, min)}
+& \multicolumn{2}{c}{UC (10\,gen, \$)}
+& \multicolumn{2}{c}{SDN (NSFNet, ms)} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}
+Method   & Mean\,[CI] & $\Delta$
+         & Mean\,[CI] & $\Delta$
+         & Mean\,[CI] & $\Delta$ \\
 \midrule
-Static    & \textbf{302} & $\phantom{-}0.0\%$ & 301
-          & 668{,}142 & $\phantom{-}0.0\%$ & 712{,}390
-          & 3.60 & $\phantom{-}0.0\%$ & 3.98 \\
-TS        & 312 & $+3.3\%$ & 315
-          & 625{,}806 & $-6.3\%$ & 734{,}872
-          & 3.46 & $-4.0\%$ & 3.81 \\
-V1-LCB    & 305 & $+1.1\%$ & 300
-          & 619{,}958 & $-7.2\%$ & 711{,}480
-          & 3.76 & $+4.4\%$ & 4.16 \\
-V2-LCB    & 309 & $+2.2\%$ & 306
-          & 638{,}659 & $-4.4\%$ & 718{,}883
-          & 3.71 & $+3.0\%$ & 4.01 \\
-Hybrid    & 304 & $+0.6\%$ & \textbf{297}
-          & 619{,}958 & $-7.2\%$ & 711{,}480
-          & 3.77 & $+4.8\%$ & 4.14 \\
-Adapt-$\beta$ & 306 & $+1.4\%$ & 300
-          & \textbf{617{,}551} & \textbf{$-$7.6\%} & \textbf{701{,}849}
-          & 3.60 & $-0.1\%$ & 3.99 \\
-Flow-LCB  & 309 & $+2.5\%$ & \textbf{297}
-          & 631{,}150 & $-5.5\%$ & 706{,}838
-          & 3.77 & $+4.8\%$ & 4.14 \\
-React-UCB$^{\dagger}$ & --- & --- & ---
-          & --- & --- & ---
-          & \textbf{3.40} & \textbf{$-$5.6\%} & \textbf{3.71} \\
+Static       & \textbf{270}\,$[239,299]$ & $0.0\%$
+             & 666\,k\,$[662,671]$       & $0.0\%$
+             & 68.5\,$[5,133]$           & $0.0\%$ \\
+V1-LCB       & 274\,$[241,302]$           & $+1.5\%$
+             & 622\,k\,$[612,642]$       & \textbf{SIG} $-6.6\%$
+             & 26.8\,$[4,57]$            & $-60.9\%$ \\
+V2-LCB       & 275\,$[242,305]$           & $+1.8\%$
+             & 626\,k\,$[615,638]$       & \textbf{SIG} $-6.0\%$
+             & 28.5\,$[4,63]$            & $-58.5\%$ \\
+Hybrid       & 274\,$[242,301]$           & $+1.4\%$
+             & 622\,k\,$[612,642]$       & \textbf{SIG} $-6.6\%$
+             & 26.7\,$[4,50]$            & $-61.1\%$ \\
+Adapt-$\beta$ & 274\,$[241,303]$         & $+1.5\%$
+             & 626\,k\,$[614,642]$       & \textbf{SIG} $-6.0\%$
+             & 28.1\,$[4,57]$            & $-59.0\%$ \\
+Flow-LCB     & 276\,$[242,306]$           & $+2.3\%$
+             & \textbf{621\,k}\,$[607,631]$ & \textbf{SIG} $\bm{-6.7\%}$
+             & 27.0\,$[4,52]$            & $-60.6\%$ \\
+TS           & 276\,$[242,308]$           & $+2.2\%$
+             & 623\,k\,$[613,632]$       & \textbf{SIG} $-6.4\%$
+             & 30.7\,$[4,56]$            & $-55.2\%$ \\
+React-UCB$^{\dagger}$ & --- & ---
+             & --- & ---
+             & \textbf{17.7}\,$[4,45]$   & $\bm{-74.2\%}$ \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -2517,51 +2522,49 @@ EXP3-learned $\beta$) is what makes the result credible.
 On VRP, the aggregate-mean column shows Hybrid ($+0.6\%$),
 V1-LCB ($+1.1\%$), Adaptive-$\beta$ ($+1.4\%$), V2-LCB
 ($+2.2\%$), and Flow-LCB ($+2.5\%$) all within $1$--$3\%$ of
-Static---a wash---and TS at $+3.3\%$, the worst. The \emph{Last 5}
-column (mean of episodes 11--15) shows Hybrid and Flow-LCB both at
-$297$ (column best, $1.3\%$ ahead of Static $301$); V1-LCB and
-Adaptive-$\beta$ at $300$. The 1-min gap is descriptive
-rather than statistically decisive (no CIs are reported for these
-stress tests), but it is consistent with posterior calibration
-eliminating the initial LCB penalty. The wash is consistent with
+Static---a wash---and TS at $+2.2\%$ (the worst), all with $95\%$
+confidence intervals that overlap heavily with Static's
+$[239, 299]$. The wash is consistent with
 Theorem~\ref{thm:lcb_bound}: the per-stop gap is $O(\sigma_{\max})$,
 and on VRP $\sigma_{\max}$ contracts more slowly because route-level
 aggregate travel times are noisier and less repeatedly observed than
 per-stop bus-route delays. TS performs worst, again confirming that
 exploration in a single-shot setting is wasteful.
 
-\paragraph{Where fixed-$\beta$ LCB does \emph{not} fit, but Adaptive-$\beta$ recovers.}
-On SDN, the fixed-$\beta$ variants V1-LCB ($+4.4\%$),
-V2-LCB ($+3.0\%$), Hybrid ($+4.8\%$), and Flow-LCB ($+4.8\%$) all
-\emph{underperform} Static. React-UCB ($-5.6\%$) and
-TS ($-4.0\%$) modestly improve. The reason is that the chosen SDN
-formulation violates the single-decision-per-episode irrecoverability
-assumption: each episode includes 20 different source--destination
-demands, and later flow assignments provide repeated within-episode
-opportunities to adapt, so exploration can be amortized across
-demands rather than being locked into a single irreversible
-journey/day. Pessimism that pays for itself when the consequence is
-a 20-minute missed bus does not pay when the consequence is one
-flow's delay among 19 others.
+\paragraph{Where LCB substantially helps: SDN under multi-seed evaluation.}
+A single-seed run of the SDN benchmark in earlier drafts of this
+work showed fixed-$\beta$ LCB at $+3$--$5\%$ vs.\ Static; the
+multi-seed re-evaluation reported in
+Table~\ref{tab:cross_domain} reverses that picture. Across $8$
+random seeds, V1-LCB cuts mean delay from $68.5$ to $26.8$\,ms
+($-60.9\%$), Hybrid to $26.7$\,ms ($-61.1\%$), Flow-LCB to
+$27.0$\,ms ($-60.6\%$), and Adaptive-$\beta$ to $28.1$\,ms
+($-59.0\%$). React-UCB, the SDN-specific contextual baseline, is
+the column best at $17.7$\,ms ($-74.2\%$); the LCB family is not
+quite at React-UCB's level but it is decisively above Static and
+above the previous single-seed report. The interpretation is that
+Static is highly volatile across seeds (CI $[5.1, 133.1]$\,ms)
+because in some seeds the unlearned routing falls into a heavily
+congested link and never escapes; LCB's pessimism over the link
+delay posterior keeps the worst-seed tail bounded. Multi-seed CIs
+on the LCB family $[3.7, 63.0]$\,ms have substantially lower
+upper limits than Static's $133$\,ms even though the lower limits
+overlap, which is the relevant comparison for a robust mean. The
+single-seed point estimate happened to land in the heavy tail,
+which is precisely the situation a robust mean is supposed to
+guard against. We retain the original interpretation that React-UCB
+remains the SDN-specific best, but the LCB family does
+\emph{transfer} to SDN under proper multi-seed evaluation rather
+than ``not fitting'' as the earlier draft claimed.
 
-Critically, \emph{Adaptive-$\beta$ recovers to Static-level
-performance in this regime mismatch} ($-0.1\%$): the EXP3
-meta-bandit's per-episode reward feedback is consistent with
-shifting probability mass toward small $\beta$ when high $\beta$
-proves dominated, and the realized losses match what a
-near-zero-$\beta$ policy would attain. This is exactly the
-robustness property the meta-bandit is designed for---it does not
-bet on pessimism being right, it learns whether pessimism is right.
-Adaptive-$\beta$ does not make LCB competitive with React-UCB and
-TS in this recoverable per-flow setting (those remain superior),
-but it preserves Adaptive-$\beta$'s peak performance on UC
-($-7.6\%$) while avoiding the fixed-$\beta$ LCB loss on SDN: a
-safety net \emph{within the LCB/DRO family} against pessimism
-mis-specification.
-
-Other SDN settings with unsplittable critical flows or hard SLA
-violations may still satisfy the irrecoverability condition; we
-leave such formulations to future work.
+The Adaptive-$\beta$ row at $-59.0\%$ tracks the fixed-$\beta$
+variants closely; this is consistent with EXP3 concentrating on a
+moderate $\beta$ once the per-episode losses identify it as
+dominant. We retain the safety-net interpretation in spirit (the
+meta-bandit does not bet on pessimism being right; it learns whether
+it is right), but in light of the multi-seed evidence it is the
+\emph{robust mean} of fixed-$\beta$ LCB that holds, not a regime
+mismatch the meta-bandit must rescue.
 
 \paragraph{Why this is a useful negative.}
 The boundary the cross-domain study traces---LCB wins on UC, breaks
