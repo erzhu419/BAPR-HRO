@@ -56,15 +56,6 @@
 % an mbox-based text rendering so $\mathtt{Foo}$ does not allocate a new slot.
 \renewcommand{\mathtt}[1]{\mbox{\ttfamily #1}}
 
-% Keep table captions short and put audit/protocol details in a uniform note
-% under the table body.
-\newcommand{\TableNote}[2][0.92\textwidth]{%
-  \par\smallskip
-  \begin{minipage}{#1}\scriptsize\raggedright
-  \emph{Note.} #2
-  \end{minipage}%
-}
-
 % Suppress the red ATTENTION sidebar that informs4.cls puts next to the abstract
 % on page 1 (boilerplate informing readers the template is not a publication).
 \makeatletter
@@ -179,13 +170,13 @@ recomputed hyperpath drops fallbacks that the optimizer's new
 disruption-aware view treats as low-probability, losing the very
 alternatives that would have saved time.
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=0.72\textwidth]{fig_concept_ranking.pdf}
-\caption{A disruption changes the ranking, not the alternative set.
+\begin{figure}
+\FIGURE
+{\includegraphics[width=0.72\textwidth]{fig_concept_ranking.pdf}}
+{A disruption changes the ranking, not the alternative set.
 The hyperpath still contains useful fallbacks; the online decision is
-which fallback to rank first.}
-\label{fig:concept_ranking}
+which fallback to rank first.\label{fig:concept_ranking}}
+{}
 \end{figure}
 
 Our approach keeps the hyperpath structure and re-ranks its
@@ -1503,12 +1494,10 @@ Before presenting our main results, we document a negative finding. A natural ad
 
 We implemented this strategy as a router adapter that switches the per-route delay distributions to their post-disruption posteriors when a cancellation observation arrives, and reruns the topological connection-scan algorithm from the current stop. Table~\ref{tab:recompute_audit} compares \emph{Static}, \emph{BOCD$+$recompute}, and the proposed \emph{keep structure $+$ re-rank} (V1-LCB under R16) on the same 35-day Swiss cross-day panel used elsewhere in the paper.
 
-\begin{table}[htbp]
-\centering
-\caption{Hyperpath recomputation audit on the 35-day Z\"urich panel.}
-\label{tab:recompute_audit}
-\scriptsize
-\begin{tabular}{lrrl}
+\begin{table}
+\TABLE
+{Hyperpath recomputation audit on the 35-day Z\"urich panel.\label{tab:recompute_audit}}
+{\begin{tabular}{lrrl}
 \toprule
 Strategy & $\overline{E[\mathrm{total}]}$ (min) & Reach & Failure mode \\
 \midrule
@@ -1516,8 +1505,8 @@ Static hyperpath           & $50.59$ & $77.1\%$ & stale ranking; canceled routes
 BOCD$+$recompute           & $50.66$ & $77.2\%$ & drops feasible fallbacks through disrupted corridor \\
 Keep structure $+$ re-rank & \textbf{47.44} & \textbf{80.5\%} & --- (proposed) \\
 \bottomrule
-\end{tabular}
-\TableNote{Audit-budget configuration: $35$~days $\times$ $18$ ODs
+\end{tabular}}
+{Audit-budget configuration: $35$~days $\times$ $18$ ODs
 $\times$ $15$ trials per cell ($9{,}450$ journeys per method), single
 Monte Carlo seed.}
 \end{table}
@@ -1584,13 +1573,11 @@ Each method below picks one connection per stop from the
 hyperpath; the implementation labels are used to identify methods
 in the result tables.
 
-\begin{table}[htbp]
-\centering
-\caption{Plain-language role and implementation label for the
-methods compared in the experiments.}
-\label{tab:methods_overview}
-\scriptsize
-\begin{tabular}{p{6.0cm} l}
+\begin{table}
+\TABLE
+{Plain-language role and implementation label for the
+methods compared in the experiments.\label{tab:methods_overview}}
+{\scriptsize\begin{tabular}{p{6.0cm} l}
 \toprule
 Plain-language role & Label \\
 \midrule
@@ -1610,7 +1597,8 @@ Bayes-adaptive Monte-Carlo planner with 60 rollouts~\cite{guez2012} & BAMCP-60 \
 Sliding-window pessimistic score~\cite{garivier2011,luo2024} & SW-LCB \\
 Adversarial-bandit route learner (EXP3-IX)~\cite{kocak2014,chen2024} & EXP3 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
+{}
 \end{table}
 
 Concrete hyperparameters: LCB-V1 uses fixed $\beta{=}1.5$,
@@ -1675,12 +1663,10 @@ core, we run a controlled retrofit on the same 35-day Swiss
 panel: \emph{Static$+$A7} and \emph{SW-LCB$+$A7} consume
 exactly the same two penalties as LCB-V1 (Table~\ref{tab:baseline_a7_audit}).
 
-\begin{table}[htbp]
-\centering
-\caption{Baseline$+$A7 controlled retrofit on the 35-day Z\"urich panel.}
-\label{tab:baseline_a7_audit}
-\scriptsize
-\begin{tabular}{lrrrr}
+\begin{table}
+\TABLE
+{Baseline$+$A7 controlled retrofit on the 35-day Z\"urich panel.\label{tab:baseline_a7_audit}}
+{\scriptsize\begin{tabular}{lrrrr}
 \toprule
 Method & $\overline{E[\mathrm{total}]}$ (min) & Reach & $\Delta$ vs.\ Static & Days $<$~Static \\
 \midrule
@@ -1690,8 +1676,8 @@ SW-LCB          & $58.28$ & $68.0\%$ & $+15.2\%$, $-9.1$\,pp & $0/35$ \\
 SW-LCB$+$A7     & $49.29$ & $79.1\%$ & $-2.6\%$, $+2.0$\,pp & $29/35$ \\
 LCB-V1 (R16)    & \textbf{47.44} & \textbf{80.5\%} & $-6.2\%$, $+3.4$\,pp & $\mathbf{35/35}$ \\
 \bottomrule
-\end{tabular}
-\TableNote{Audit-budget configuration: $35$ days $\times$ $18$ ODs
+\end{tabular}}
+{Audit-budget configuration: $35$ days $\times$ $18$ ODs
 $\times$ $15$ trials per cell ($9{,}450$ journeys per method), single
 seed. $+$A7 adds the same two hyperpath-structural penalties used by
 LCB-V1. ``Days $<$ Static'' counts days whose per-day cell mean is
@@ -1738,11 +1724,10 @@ $45$-trial main-paper protocol.
 
 \subsection{Main Comparison}
 
-\begin{table}[t]
-\centering
-\caption{Synthetic-network travel-time comparison.}
-\label{tab:main}
-\begin{tabular}{ll rrrrrrrr rr}
+\begin{table}
+\TABLE
+{Synthetic-network travel-time comparison.\label{tab:main}}
+{\begin{tabular}{ll rrrrrrrr rr}
 \toprule
 & & \multicolumn{2}{c}{Static} & \multicolumn{2}{c}{LCB-V2} & \multicolumn{2}{c}{DRO} & \multicolumn{2}{c}{SW-LCB} & \multicolumn{2}{c}{Oracle} \\
 \cmidrule(lr){3-4}\cmidrule(lr){5-6}\cmidrule(lr){7-8}\cmidrule(lr){9-10}\cmidrule(lr){11-12}
@@ -1754,8 +1739,8 @@ Network & Scenario & Mean & 95th & Mean & 95th & Mean & 95th & Mean & 95th & Mea
 \multirow{2}{*}{Small} & Normal & 64.4 & 79 & 64.3 & 84 & 64.3 & 84 & 64.8 & 84 & \textbf{64.1} & \textbf{84} \\
 & Disrupted & 78.4 & 120 & \textbf{69.5} & \textbf{93} & 70.0 & 96 & 68.9 & 85 & 67.6 & 85 \\
 \bottomrule
-\end{tabular}
-\TableNote{Entries are mean and 95th-percentile travel time per cell;
+\end{tabular}}
+{Entries are mean and 95th-percentile travel time per cell;
 best values are in \textbf{bold}. Small network: $N{=}100$,
 $t_{\max}{=}120$; large network: $N{=}50$, $t_{\max}{=}180$. Oracle
 is the perfect-information upper bound. The LCB$=$DRO identity is per
@@ -1782,30 +1767,29 @@ together absorb the larger cancel mass without over-penalising,
 keeping V2 within $0.7$\,min of Oracle. Under normal conditions,
 all online methods perform within $1$--$3$\,min of Static.
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=\textwidth]{fig_dist_cdf.pdf}
-\caption{Travel-time distribution and empirical CDFs on the
+\begin{figure}
+\FIGURE
+{\includegraphics[width=\textwidth]{fig_dist_cdf.pdf}}
+{Travel-time distribution and empirical CDFs on the
 small-network synthetic benchmark. (a) Travel-time histogram
 under route-402 disruption. (b) Empirical CDF, no-disruption
 regime. (c) Empirical CDF, route-402 disruption. LCB-V2 with
 dynamic $\beta(s)$ shortens the long tail without the
 over-correction suffered by fixed-$\beta$ DRO; Adaptive-$\beta$
 tracks LCB-V2 closely. All five methods are shown in every panel
-for direct comparison.}
-\label{fig:dist}
+for direct comparison.\label{fig:dist}}
+{}
 \end{figure}
 
 \subsection{Why LCB Outperforms Theoretically Stronger Methods}
 
-\begin{table}[t]
-\centering
-\caption{Extended comparison including PS-SSP and BAMCP, large
+\begin{table}
+\TABLE
+{Extended comparison including PS-SSP and BAMCP, large
 network, R16 algorithm. $N{=}50$ per cell, $t_{\max}{=}180$\,min.
 The exploration-based methods (PS-SSP, BAMCP, EXP3) substantially
-\emph{worsen} mean travel time under disruption.}
-\label{tab:extended}
-\begin{tabular}{l rr rr}
+\emph{worsen} mean travel time under disruption.\label{tab:extended}}
+{\begin{tabular}{l rr rr}
 \toprule
 & \multicolumn{2}{c}{Normal} & \multicolumn{2}{c}{Disrupted} \\
 \cmidrule(lr){2-3}\cmidrule(lr){4-5}
@@ -1823,7 +1807,8 @@ EXP3~\cite{kocak2014,chen2024}        & 107.0 & 151 & 136.7 & 180 \\
 \midrule
 Oracle (upper bound) & 72.6 & 90 & 73.0 & 94 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
+{}
 \end{table}
 
 Table~\ref{tab:extended} reveals three distinct behavioral clusters.
@@ -1880,14 +1865,13 @@ cancellation) and a \emph{safe} alternative (line~14, $+3.5$\,min, $3\%$
 cancellation). Table~\ref{tab:swiss_focused} reports $N{=}30$ journeys
 per cell, $t_{\max}{=}120$\,min, on the Oct~2 normal day.
 
-\begin{table}[t]
-\centering
-\caption{Swiss real data, single OD (Sternen Oerlikon $\to$ Sihlpost/HB),
+\begin{table}
+\TABLE
+{Swiss real data, single OD (Sternen Oerlikon $\to$ Sihlpost/HB),
 Oct~2 normal day. $N{=}30$, $t_{\max}{=}120$\,min. R16 historical-prior
 configuration: each route's prior is seeded from its $34$-day Swiss
-empirical mean / std / cancel rate (Appendix~\ref{app:a1a10}, A4).}
-\label{tab:swiss_focused}
-\begin{tabular}{l rrr}
+empirical mean / std / cancel rate (Appendix~\ref{app:a1a10}, A4).\label{tab:swiss_focused}}
+{\begin{tabular}{l rrr}
 \toprule
 Method        & Mean (min) & Timeouts & vs.\ Static \\
 \midrule
@@ -1898,7 +1882,8 @@ V3-Topo       & 84.9 & 18/30 & $+13.7\%$ \\
 \textbf{DRO}  & \textbf{75.8} & \textbf{15/30} & $\bm{+22.9\%}$ \\
 Adaptive-$\beta$ & 97.5 & 22/30 & $+0.8\%$ \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
+{}
 \end{table}
 
 This single-OD table serves two purposes. First, \textbf{DRO reproduces
@@ -1980,11 +1965,10 @@ benchmark'' rather than ``city-wide superiority of LCB''. A
 random-origin / random-OD multi-panel robustness check is left as
 future work and would strengthen the empirical case if positive.
 
-\begin{table}[!t]
-\centering
-\caption{Swiss real data, 35-day cross-day evaluation.}
-\label{tab:swiss_multi}
-\begin{tabular}{l rrr}
+\begin{table}
+\TABLE
+{Swiss real data, 35-day cross-day evaluation.\label{tab:swiss_multi}}
+{\begin{tabular}{l rrr}
 \toprule
 Method        & Reach rate & Mean time, completed (min) & $\overline{E[\mathrm{total}]}$ (min) \\
 \midrule
@@ -1995,8 +1979,8 @@ V3-Topo           & 79.8\% & 39.4 & 48.27 ($-2.2\%$) \\
 DRO               & 70.7\% & 35.5 & 55.70 ($+12.9\%$) \\
 Adaptive-$\beta$  & 81.0\% & 35.3 & 46.76 ($-5.2\%$) \\
 \bottomrule
-\end{tabular}
-\TableNote{The table aggregates $35{\times}18{=}630$ cells of $45$
+\end{tabular}}
+{The table aggregates $35{\times}18{=}630$ cells of $45$
 trials each ($28{,}350$ journeys per method), with
 $t_{\max}{=}120$ min. $\overline{E[\mathrm{total}]}$ is the cell mean
 of $r_i c_i+(1-r_i)120$ and is the metric used for the paired
@@ -2032,16 +2016,15 @@ seed pool, same observation feed). $95\%$ percentile bootstrap CIs
 ($1{,}000$ resamples) and a non-parametric per-day sign test give
 substantially tighter inference than the original cross-OD CIs.
 
-\begin{table}[t]
-\centering
-\caption{Paired analysis of the 35-day cross-day Swiss data
+\begin{table}
+\TABLE
+{Paired analysis of the 35-day cross-day Swiss data
 (630 (day, OD) cells). $\Delta E[\mathrm{total}]$ is the per-cell paired
 difference (method $-$ Static), in minutes; $95\%$ CIs are
 percentile bootstraps over the cell distribution. Sign test counts
 days on which the method's daily-average $E[\mathrm{total}]$ is
-strictly less than Static's; null is $P_{\mathrm{better}}=0.5$.}
-\label{tab:swiss_paired}
-\begin{tabular}{l rrrl r}
+strictly less than Static's; null is $P_{\mathrm{better}}=0.5$.\label{tab:swiss_paired}}
+{\begin{tabular}{l rrrl r}
 \toprule
 Method & $\Delta E[\mathrm{total}]$ & 95\% CI & Cells better & Days better & Sign-test $p$ \\
 \midrule
@@ -2051,7 +2034,8 @@ V3-Topo          & $-1.07$ & $[-1.33,-0.82]$ & $58\%$ & $25/35$ & $0.017$ \\
 DRO              & $+6.36$ & $[+5.38,+7.43]$ & $14\%$ & $0/35$  & $<10^{-10}$ \\
 Adaptive-$\beta$ & $-2.59$ & $[-2.91,-2.25]$ & $69\%$ & $35/35$ & $<10^{-10}$ \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
+{}
 \end{table}
 
 The deployed gain in this table is the cumulative effect of the
@@ -2105,17 +2089,17 @@ tables; the LOO data file
 \texttt{swiss\_multi\_day\_loo.json} is included in the
 artefact bundle for verification.
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=0.99\columnwidth]{fig_reach_rate.pdf}
-\caption{Swiss 35-day cross-day evaluation, 18 viable Paradeplatz-origin
+\begin{figure}
+\FIGURE
+{\includegraphics[width=0.99\columnwidth]{fig_reach_rate.pdf}}
+{Swiss 35-day cross-day evaluation, 18 viable Paradeplatz-origin
 ODs, $45$ journeys per cell. Left: cell-mean $\overline{E[\mathrm{total}]}$
 by method (lower is better). V2-LCB at $46.47$\,min saves
 $2.87$\,min/cell ($-5.8\%$) over Static $49.34$\,min. Right: per-day
 breakdown, sorted by Static miss rate; on the most disrupted day
 (Oct~29, $43\%$ Static miss) V1-LCB cuts $\overline{E[\mathrm{total}]}$
-from $71.15$ to $64.01$\,min ($-10.0\%$).}
-\label{fig:reach_rate}
+from $71.15$ to $64.01$\,min ($-10.0\%$).\label{fig:reach_rate}}
+{}
 \end{figure}
 
 \paragraph{Disrupted-day breakdown.} Table~\ref{tab:swiss_oct29}
@@ -2130,14 +2114,13 @@ V2 and V3-Topo trail by $0.5$--$2.6$\,pp on reach. DRO's fixed
 $\beta=1.5$ over-penalizes here ($48.3\%$ reach), validating the
 case for the adaptive-$\beta$ meta-bandit.
 
-\begin{table}[t]
-\centering
-\caption{Oct~29 disrupted day only ($47$ routes cancelled), R16
+\begin{table}
+\TABLE
+{Oct~29 disrupted day only ($47$ routes cancelled), R16
 algorithm. Cell-mean reach, cell-cond, and
 $\overline{E[\mathrm{total}]}$ across the $18$ viable ODs;
-bracketed values are reductions vs.\ Static.}
-\label{tab:swiss_oct29}
-\begin{tabular}{l rrr}
+bracketed values are reductions vs.\ Static.\label{tab:swiss_oct29}}
+{\begin{tabular}{l rrr}
 \toprule
 Method        & Reach rate & Mean (completed) & $\overline{E[\mathrm{total}]}$ \\
 \midrule
@@ -2148,7 +2131,8 @@ V3-Topo           & 62.6\% & \textbf{46.5} & 66.57 ($-4.58$, $-6.4\%$) \\
 DRO               & 48.3\% & 49.5 & 77.25 ($+6.10$, $+8.6\%$) \\
 Adaptive-$\beta$  & 65.1\% & 49.5 & 64.01 ($-7.14$, $-10.0\%$) \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
+{}
 \end{table}
 
 \paragraph{Component ablation.} Reaching the deployed
@@ -2179,13 +2163,10 @@ persistent EXP3 meta-state. The dominant fix is A2: A1 alone is
 and the incremental gain from A1$\to$A2 is the largest single step
 in the table.
 
-\begin{table}[t]
-\centering
-\caption{Component ablation on the 35-day Swiss benchmark.}
-\label{tab:swiss_ablation}
-\scriptsize
-\setlength{\tabcolsep}{3pt}
-\begin{tabular}{l cc}
+\begin{table}
+\TABLE
+{Component ablation on the 35-day Swiss benchmark.\label{tab:swiss_ablation}}
+{\scriptsize\setlength{\tabcolsep}{3pt}\begin{tabular}{l cc}
 \toprule
 Configuration             & V1-LCB & V2-LCB \\
 \midrule
@@ -2200,8 +2181,8 @@ A3 (all-on, A1--A10)      & \textbf{47.44} ($\bm{-6.2\%}$) & 47.14 ($-6.8\%$) \\
 \multicolumn{3}{l}{\emph{R16 reference column (no row toggles): V3-Topo $49.69$ ($-1.8\%$);}} \\
 \multicolumn{3}{l}{\emph{fixed-$\beta$ DRO $56.44$ ($+11.6\%$); Adaptive-$\beta$ $47.44$ ($-6.2\%$).}} \\
 \bottomrule
-\end{tabular}
-\TableNote{Entries are cell-mean $\overline{E[\mathrm{total}]}$ in
+\end{tabular}}
+{Entries are cell-mean $\overline{E[\mathrm{total}]}$ in
 minutes; percentages are relative to Static. A2 is the largest step:
 adding the two hyperpath-structural risk terms and the V2 cold-start
 correction flips V1/V2 from worse-than-Static to better-than-Static.
@@ -2222,18 +2203,18 @@ worst-case hedge. This heterogeneity is intrinsic to the
 Averaged across a representative OD set and $35$~days, the rescues
 dominate ($31/35$ days net-improved by Adaptive-$\beta$).
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=0.95\columnwidth]{fig_per_od_heatmap.pdf}
-\caption{Per-OD reach rate on the most disrupted day (Oct~29). Rows are
+\begin{figure}
+\FIGURE
+{\includegraphics[width=0.95\columnwidth]{fig_per_od_heatmap.pdf}}
+{Per-OD reach rate on the most disrupted day (Oct~29). Rows are
 ODs sorted by mean reach rate across methods; columns are methods.
 Adaptive methods strongly help on the lower-half ODs where the
 Static-preferred routes are themselves disrupted, with mild
 over-correction on a few ODs whose Static hyperpath already routes
 through safe lines. Many ODs remain unreachable in $120$\,min for
 all methods, reflecting structural disconnection of the disrupted
-graph rather than algorithm quality.}
-\label{fig:per_od}
+graph rather than algorithm quality.\label{fig:per_od}}
+{}
 \end{figure}
 
 \subsection{Sensitivity and Adaptive-$\beta$ Convergence (Summary)}
@@ -2359,10 +2340,10 @@ sub-network used in the real-data evaluation
 Oct~29, 2023 highlighted. The conceptual keep-structure/re-rank
 figure appears in the introduction (Figure~\ref{fig:concept_ranking}).
 
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.78\textwidth]{fig_zurich_network.pdf}
-\caption{Z\"urich GTFS sub-network used in the real-data
+\begin{figure}
+\FIGURE
+{\includegraphics[width=0.78\textwidth]{fig_zurich_network.pdf}}
+{Z\"urich GTFS sub-network used in the real-data
 evaluation, overlaid on OpenStreetMap (\textcopyright OSM contributors).
 \textbf{Red:} tram lines $\{2,3,4,5,6,23\}$ that were 100\% cancelled
 on Oct~29, 2023. \textbf{Orange:} line 7, heavily affected
@@ -2371,8 +2352,8 @@ tram lines (8, 9, 10, 11, 13, 14, 17). \textbf{Light grey:} S-Bahn /
 regional rail. Stops are shown as small dots. The blue diamond marks
 Paradeplatz (origin of the 18-OD multi-OD experiment); the gold stars
 mark Sternen Oerlikon and Sihlpost/HB (the focused-OD endpoints in
-Section~\ref{sec:swiss-results}).}
-\label{fig:zurich_network}
+Section~\ref{sec:swiss-results}).\label{fig:zurich_network}}
+{}
 \end{figure}
 
 \clearpage
@@ -2427,13 +2408,10 @@ radius $\varepsilon \to 0$ as observations accumulate.
 Table~\ref{tab:params} lists all hyperparameters used in the experiments
 of Section~\ref{sec:results}, with the rationale for each default value.
 
-\begin{table}[htbp]
-\centering
-\caption{Hyperparameter settings for all methods.}
-\label{tab:params}
-\scriptsize
-\setlength{\tabcolsep}{3pt}
-\begin{tabular}{l l l p{6.0cm}}
+\begin{table}
+\TABLE
+{Hyperparameter settings for all methods.\label{tab:params}}
+{\scriptsize\setlength{\tabcolsep}{3pt}\begin{tabular}{l l l p{6.0cm}}
 \toprule
 \textbf{Parameter} & \textbf{Symbol} & \textbf{Default} & \textbf{Rationale} \\
 \midrule
@@ -2475,7 +2453,8 @@ Random seed           & ---         & 42      & Fixed for reproducibility \\
 Departure window      & ---         & $[480, 500]$ & 8:00--8:20\,AM \\
 Timeout               & $t_{\max}$  & 120\,min (small) & 180\,min (large) \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
+{}
 \end{table}
 
 \section{Scope, Limitations, and Relationship to BAPR}
@@ -2565,12 +2544,10 @@ shifts).
 
 \subsection{Verification Summary}
 
-\begin{table}[!htbp]
-\centering
-\caption{Lean verification summary.}
-\label{tab:lean}
-\scriptsize
-\begin{tabular}{lrp{8.4cm}}
+\begin{table}
+\TABLE
+{Lean verification summary.\label{tab:lean}}
+{\scriptsize\begin{tabular}{lrp{8.4cm}}
 \toprule
 File & Lines & Key results \\
 \midrule
@@ -2589,8 +2566,8 @@ Architecture.lean & 201 & Component interface contracts \\
 \midrule
 \textbf{Total} & \textbf{5{,}322} & \textbf{0 \texttt{sorry}, 0 \texttt{axiom}} \\
 \bottomrule
-\end{tabular}
-\TableNote{All 12 files compile with zero \texttt{sorry} and zero
+\end{tabular}}
+{All 12 files compile with zero \texttt{sorry} and zero
 project-level \texttt{axiom} declarations beyond Mathlib's standard
 kernel. Repository commit hash is withheld for anonymous review.}
 \end{table}
@@ -2815,20 +2792,17 @@ $\sum_d\bigl(\mathrm{arr}(c_{\mathrm{LCB},d})-\mathrm{arr}(c^*_d)\bigr)
 \subsection{Information-Access Parity and BAMCP Rollout Sweep}
 \label{ec:fairness_bamcp}
 
-\begin{table}[t]
-\centering
-\caption{Information-access parity across methods. ``\checkmark''
+\begin{table}
+\TABLE
+{Information-access parity across methods. ``\checkmark''
 means the method ingests the signal; ``$-$'' means it does not.
 The four-term DRO LCB core ($\hat\mu, \hat\sigma, \hat
 p_{\mathrm{cxl}}$) is symmetric across all learning methods. The
 two A7 hyperpath-structural features (StopLabel feasibility $\phi$
 and destination-arrival on-time probability $P_{\mathrm{ontime}}$)
 are consumed only by the LCB family; they could be retrofitted into
-the baselines (see text), but were not in the reported numbers.}
-\label{tab:fairness}
-\scriptsize
-\setlength{\tabcolsep}{3pt}
-\begin{tabular}{l ccccc cc}
+the baselines (see text), but were not in the reported numbers.\label{tab:fairness}}
+{\scriptsize\setlength{\tabcolsep}{3pt}\begin{tabular}{l ccccc cc}
 \toprule
 & \multicolumn{5}{c}{Shared protocol} & \multicolumn{2}{c}{A7 features} \\
 \cmidrule(lr){2-6}\cmidrule(lr){7-8}
@@ -2847,7 +2821,8 @@ PS-SSP   & \checkmark & \checkmark & \checkmark & posterior sample & \checkmark
 BAMCP-60/120/240 & \checkmark & \checkmark & \checkmark & rollout
          & rollout & $-$ & $-$ \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
+{}
 \end{table}
 
 Hyperparameters were tuned on the small synthetic network and frozen
@@ -2872,14 +2847,13 @@ cancelled route are still drawn from the prior, paying real penalty
 each time. The single-shot irrecoverability lower bound (Theorem
 \ref{thm:rho}) gives the structural reason.
 
-\begin{table}[t]
-\centering
-\caption{BAMCP rollout-budget sweep (mean travel time, $N{=}50$ journeys
+\begin{table}
+\TABLE
+{BAMCP rollout-budget sweep (mean travel time, $N{=}50$ journeys
 per cell). On the large disrupted instance, $4{\times}$ rollouts do
 not rescue BAMCP --- the failure is structural (Theorem~\ref{thm:rho}),
-not a compute-budget artefact.}
-\label{tab:bamcp_sweep}
-\begin{tabular}{l rrrr}
+not a compute-budget artefact.\label{tab:bamcp_sweep}}
+{\begin{tabular}{l rrrr}
 \toprule
                  & \multicolumn{2}{c}{Small network} & \multicolumn{2}{c}{Large network} \\
 \cmidrule(lr){2-3}\cmidrule(lr){4-5}
@@ -2890,7 +2864,8 @@ BAMCP-60         & 65.6 & 71.9 ($-7\%$) & 77.3 ($+5\%$) & 101.6 ($+38\%$) \\
 BAMCP-120        & 64.1 & \textbf{69.4} ($-10\%$) & 74.0 & 94.2 ($+28\%$) \\
 BAMCP-240        & \textbf{63.4} & 70.7 ($-9\%$) & 73.7 & 101.3 ($+38\%$) \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
+{}
 \end{table}
 
 \subsection{Synthetic Reproduction: V1 / V2 / DRO / Adaptive-$\beta$}
@@ -2900,14 +2875,13 @@ To compare all proposed variants on a matched synthetic testbed, we run
 a separate $4$-scenario sweep on the small network (Table~\ref{tab:synth_repro}).
 Each cell is $N{=}100$ journeys, $t_{\max}{=}180$\,min.
 
-\begin{table}[t]
-\centering
-\caption{Synthetic four-scenario sweep (small network), R16
+\begin{table}
+\TABLE
+{Synthetic four-scenario sweep (small network), R16
 configuration. Mean travel time (min) and improvement over Static;
 $N{=}100$, $t_{\max}{=}180$\,min. Adaptive-$\beta$ uses EXP3
-meta-bandit over a 9-value $\beta$ grid.}
-\label{tab:synth_repro}
-\begin{tabular}{l rrrrr}
+meta-bandit over a 9-value $\beta$ grid.\label{tab:synth_repro}}
+{\begin{tabular}{l rrrrr}
 \toprule
 Scenario          & Static & V1-LCB & V2-LCB & DRO & Adapt-$\beta$ \\
 \midrule
@@ -2916,7 +2890,8 @@ disrupted\_402    & 95.8 & 94.3 ($+1.6\%$) & 92.1 ($+3.9\%$) & \textbf{89.2} ($+
 rush\_hour        & 107.8 & 105.3 ($+2.2\%$) & 105.3 ($+2.2\%$) & 105.5 ($+2.1\%$) & \textbf{105.3} ($+2.3\%$) \\
 multi\_shift      & 114.6 & 98.3 ($+14.2\%$) & 95.6 ($+16.6\%$) & \textbf{95.1} ($+17.0\%$) & 98.5 ($+14.0\%$) \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
+{}
 \end{table}
 
 Three observations:
@@ -2951,17 +2926,17 @@ risk-neutral) when that is empirically best.
 \subsection{Sensitivity and Adaptive-$\beta$ Convergence}
 \label{ec:sensitivity}
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=0.99\columnwidth]{fig_ablation.pdf}
-\caption{Sensitivity of mean travel time on the Swiss real network to
+\begin{figure}
+\FIGURE
+{\includegraphics[width=0.99\columnwidth]{fig_ablation.pdf}}
+{Sensitivity of mean travel time on the Swiss real network to
 the three core hyperparameters. \emph{Left:} pessimism $\beta$.
 \emph{Center:} cancel penalty $\gamma$ (min). \emph{Right:} ensemble
 size $K$ (V2). The disrupted-day curve flattens at the $t_{\max}{=}120$
 cap; on the normal day the optima are $\beta\!\approx\!2$,
 $\gamma\!=\!300$, $K\!\geq\!3$, with broad plateaus around each
-optimum --- the policy is robust to substantial mis-tuning.}
-\label{fig:ablation}
+optimum --- the policy is robust to substantial mis-tuning.\label{fig:ablation}}
+{}
 \end{figure}
 
 LCB is robust across $\beta \in [0, 2]$ (Table~\ref{tab:beta} and
@@ -2969,10 +2944,10 @@ Figure~\ref{fig:ablation}, left), degrading only at $\beta{=}3$ (excess
 conservatism). The cancel penalty $\gamma \hat{p}_{\mathrm{cancel}}$
 dominates under disruptions, making $\beta$ less critical.
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=0.99\columnwidth]{fig_adapt_beta.pdf}
-\caption{Adaptive-$\beta$ EXP3 weights over $50$ sequential journeys on
+\begin{figure}
+\FIGURE
+{\includegraphics[width=0.99\columnwidth]{fig_adapt_beta.pdf}}
+{Adaptive-$\beta$ EXP3 weights over $50$ sequential journeys on
 the Swiss focused OD, R16 configuration with cross-journey persistent
 meta-state (A8) reset at each scenario boundary. Each panel is one
 regime; vertical strata are the EXP3 weight on each
@@ -2990,13 +2965,13 @@ meta-bandit cannot extract a learning signal because every $\beta$
 yields the same observed cost. The 35-day cross-day Swiss benchmark
 (Section~\ref{sec:swiss-multi-day}) is the regime where Adaptive-$\beta$
 \emph{can} extract signal across days and OD pairs, and there
-Adaptive-$\beta$ wins by $4.5\%$ on cell-mean $\overline{E[\mathrm{total}]}$.}
-\label{fig:adapt_beta}
+Adaptive-$\beta$ wins by $4.5\%$ on cell-mean $\overline{E[\mathrm{total}]}$.\label{fig:adapt_beta}}
+{}
 \end{figure}
 
-\begin{table}[t]
-\centering
-\caption{DRO sensitivity to $\beta$ on the Swiss focused OD
+\begin{table}
+\TABLE
+{DRO sensitivity to $\beta$ on the Swiss focused OD
 (Sternen Oerlikon $\to$ Sihlpost/HB), normal-day regime, R16
 configuration ($N{=}20$, $t_{\max}{=}120$\,min). The mean is
 flat over $\beta\in[0.5, 2]$ at $74.8$--$79.8$\,min, well below
@@ -3008,9 +2983,8 @@ the synthetic large network with a different N, seed pool, and
 disruption span, so the Static reference differs (Static $98.3$
 here, Static $73.8$ on the synthetic large/disrupted cell of
 Table~\ref{tab:main}). Within-table $\beta$ trends are the
-comparable quantity.}
-\label{tab:beta}
-\begin{tabular}{lrr|lrr}
+comparable quantity.\label{tab:beta}}
+{\begin{tabular}{lrr|lrr}
 \toprule
 $\beta$ & Mean & P95 & $\beta$ & Mean & P95 \\
 \midrule
@@ -3020,7 +2994,8 @@ $0.0$ & 88.1 & 120 & $3.0$ & 79.0 & 120 \\
 $0.5$ & 79.8 & 120 & $5.0$ & 79.0 & 120 \\
 $1.0$ & 79.7 & 120 & Static & 98.3 & 120 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
+{}
 \end{table}
 
 %% ================================================================
@@ -3090,9 +3065,9 @@ candidate set.
 Table~\ref{tab:cross_domain} summarizes mean cost (lower is better)
 and percent change vs.\ Static across the three domains.
 
-\begin{table}[t]
-\centering
-\caption{Cross-domain mean cost across $8$ random seeds with $95\%$
+\begin{table}
+\TABLE
+{Cross-domain mean cost across $8$ random seeds with $95\%$
 CI in brackets. VRP: total travel time (min), 20-customer over
 $10$ instances $\times\,15$ episodes per seed; UC: total cost (\$),
 40-day total across one wind-regime shift; SDN: end-to-end delay
@@ -3105,11 +3080,8 @@ domains. Hybrid is UCB-warmup $\to$ LCB switch; Flow-LCB is LCB
 with $5$-step commitment. React-UCB$^{\dagger}$ is reported only
 in SDN, where its per-link contextual mechanism has a natural
 analog. The aggregated multi-seed file is
-\texttt{experiments\_log/aggregate\_summary.json}.}
-\label{tab:cross_domain}
-\scriptsize
-\setlength{\tabcolsep}{2.5pt}
-\begin{tabular}{l rr rr rr}
+\texttt{experiments\_log/aggregate\_summary.json}.\label{tab:cross_domain}}
+{\scriptsize\setlength{\tabcolsep}{2.5pt}\begin{tabular}{l rr rr rr}
 \toprule
 & \multicolumn{2}{c}{VRP (20\,cust, min)}
 & \multicolumn{2}{c}{UC (10\,gen, \$)}
@@ -3144,7 +3116,8 @@ React-UCB$^{\dagger}$ & --- & ---
              & --- & ---
              & \textbf{17.7}\,$[4,45]$   & $\bm{-74.2\%}$ \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
+{}
 \end{table}
 
 The pattern across domains lines up exactly with the
@@ -3262,11 +3235,10 @@ of the underlying decision rule, not a transit-specific artifact.
 
 The initial hyperpath computation via Topological CSA is the computational bottleneck. Following \citet{cappart2020}, we train an ensemble of $K{=}5$ MLPs to predict $\mathbb{E}[T_{\mathrm{dest}}(s)]$ from stop features, using Durner's exact solutions as training labels.
 
-\begin{table}[t]
-\centering
-\caption{Computation time per journey (typical 6 stops).}
-\label{tab:timing}
-\begin{tabular}{lrrr}
+\begin{table}
+\TABLE
+{Computation time per journey (typical 6 stops).\label{tab:timing}}
+{\begin{tabular}{lrrr}
 \toprule
 Method & Init & Per-stop & Total \\
 \midrule
@@ -3275,14 +3247,15 @@ Durner + LCB & 712\,ms & 4\,$\mu$s & 712\,ms \\
 Durner + BAMCP-60 & 712\,ms & 21\,ms & 838\,ms \\
 V-hat + LCB & \textbf{0.58\,ms} & 4\,$\mu$s & \textbf{0.6\,ms} \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
+{}
 \end{table}
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=0.35\textwidth]{fig_computation.pdf}
-\caption{Computation time (log scale).}
-\label{fig:comp}
+\begin{figure}
+\FIGURE
+{\includegraphics[width=0.35\textwidth]{fig_computation.pdf}}
+{Computation time (log scale).\label{fig:comp}}
+{}
 \end{figure}
 
 The neural ensemble achieves MAE~=~6.7\,min, Pearson $r{=}0.999$, and $224{\times}$ speedup. Combined with LCB (4\,$\mu$s per decision), total per-journey computation is under 1\,ms.
@@ -3477,14 +3450,12 @@ Table~\ref{tab:a1a10} maps each item to its implementation. A6
 (per-route GP smoothing) was skipped to keep the cold-start cost
 bounded.
 
-\begin{table}[!htbp]
-\centering
-\caption{A1--A10 algorithm-engineering review and component mapping
+\begin{table}
+\TABLE
+{A1--A10 algorithm-engineering review and component mapping
 to the V1/V2/V3/Adaptive-$\beta$ codebase. Each item lists the
-empirical effect observed in the 35-day benchmark.}
-\label{tab:a1a10}
-\scriptsize
-\begin{tabular}{l p{3.4cm} p{5.6cm}}
+empirical effect observed in the 35-day benchmark.\label{tab:a1a10}}
+{\scriptsize\begin{tabular}{l p{3.4cm} p{5.6cm}}
 \toprule
 ID & Item & Implementation \& observed effect \\
 \midrule
@@ -3529,7 +3500,8 @@ A10 & Component ablation     & The four-row table that motivates A7
 as the dominant fix and reports the $\!\sim\!2.5$\,min gain on
 disrupted days from A1--A8 jointly (Table~\ref{tab:swiss_ablation}). \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
+{}
 \end{table}
 
 The headline reading of the ablation: A7~$+$~the V2 cold-start fix
@@ -3549,13 +3521,9 @@ $80\%$-effect rule is a useful guide for a minimal port.
 %% ================================================================
 \ACKNOWLEDGMENT{Acknowledgments withheld for double-anonymous review.}
 
-%% Endnotes (Operations Research does not allow footnotes; any
-%% subsidiary material has been moved into the main text).
-\begingroup
-  \parindent 0pt \parskip 0.0ex
-  \def\enotesize{\normalsize}
-  \theendnotes
-\endgroup
+%% Operations Research does not allow footnotes; any subsidiary
+%% material has been moved into the main text. No endnotes are used,
+%% so the \theendnotes block is omitted.
 
 \bibliographystyle{informs2014}
 \begin{thebibliography}{40}
