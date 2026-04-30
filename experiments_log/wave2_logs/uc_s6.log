@@ -1,0 +1,26 @@
+
+================================================================================
+  UC: 10gen, 6sched, 40days, VOLL=$500
+  Wind regimes: normal(d1-15) → LOW_WIND(d16-25) → normal(d26-40)
+  Warm-start: S0=$672,426 ... S5=$608,874
+================================================================================
+
+Method         Normal  LowWind    Recov      Mean     Δ%
+-------------------------------------------------------
+Static         648004   706111   650896    663615  +0.0%
+TS             583887   712844   586814    617224  -7.0%
+V1-LCB         583887   718175   590646    619994  -6.6%
+V2-LCB         583887   696880   586814    613233  -7.6%
+Hybrid         583887   718175   590646    619994  -6.6%
+Adapt-β        583887   697745   586814    613449  -7.6%
+Flow-LCB       583887   698281   620005    626030  -5.7%
+
+Schedule picks (S0=safe ... S5=aggressive):
+  Static    : normal=S0(15/15) LOW=S0(10/10) recov=S0(15/15) 
+  TS        : normal=S5(15/15) LOW=S5(8/10) recov=S5(15/15) 
+  V1-LCB    : normal=S5(15/15) LOW=S5(7/10) recov=S5(15/15) 
+  V2-LCB    : normal=S5(15/15) LOW=S5(6/10) recov=S2(15/15) 
+  Hybrid    : normal=S5(15/15) LOW=S5(7/10) recov=S5(15/15) 
+  Adapt-β   : normal=S5(15/15) LOW=S5(7/10) recov=S5(15/15) 
+  Flow-LCB  : normal=S5(15/15) LOW=S5(5/10) recov=S3(15/15) 
+Saved /home/erzhu419/mine_code/BAPR-HRO/experiments_log/multiseed/uc_seed6.json

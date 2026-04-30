@@ -167,8 +167,8 @@ class BanditRouterV3(BanditRouterV2):
             std_penalty = beta * belief.posterior_std
             cancel_penalty = (self.cancel_penalty_weight * belief.cancel_rate * gate
                               if belief.n_attempts > 0 else 0.0)
-            # A7 (GPT review): layered risk penalties (P0 #1 R3
-            # fix: prob_le takes absolute clock minute, not duration).
+            # A7 (implementation note): layered risk penalties.
+            # prob_le takes an absolute clock minute, not a duration.
             infeasibility_penalty = 60.0 * (1.0 - label.feasibility)
             if label.dest_arrival is not None:
                 deadline = getattr(self, 'journey_deadline', None)

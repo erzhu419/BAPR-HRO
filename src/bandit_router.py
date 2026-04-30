@@ -45,7 +45,7 @@ class RouteBeliefState:
     delay_sq_sum: float = 0.0
     n_cancels: int = 0
     n_attempts: int = 0
-    # A3 (GPT review): typed cancel counters. true_cancels are signal
+    # A3 (implementation note): typed cancel counters. true_cancels are signal
     # cancellations confirmed by GTFS-RT (delay > 30 min sentinel);
     # late_no_shows are passenger-side timeouts (waited past patience).
     # In current data we cannot distinguish "feed_missing"; we collapse
@@ -60,8 +60,8 @@ class RouteBeliefState:
     # ~15× too pessimistic and effectively added a uniform 13.5-min
     # uncertainty tax to every candidate connection at cold start, which
     # biased V1 toward already-ridden routes regardless of the
-    # hyperpath's nominal ordering. The reviewer flagged this as
-    # over-pessimism in the GTFS-RT setting.
+    # hyperpath's nominal ordering — over-pessimism in the
+    # GTFS-RT setting.
     prior_mean: float = 1.0    # expect ~1 min delay (matches Swiss)
     prior_var: float = 2.0     # std=1.4 (matches Swiss real-data)
     prior_n: float = 2.0       # weak prior (2 pseudo-observations)
@@ -109,7 +109,7 @@ class RouteBeliefState:
     def update_cancel(self, kind: str = 'true'):
         """Update with a cancellation observation.
 
-        A3 (GPT review): kind ∈ {'true', 'late_no_show', 'feed_missing'}.
+        A3 (implementation note): kind ∈ {'true', 'late_no_show', 'feed_missing'}.
         For backward compat, default 'true'. Caller can pass kind to
         track sub-types.
         """
@@ -159,7 +159,7 @@ class BanditRouter:
     No regime detection. No hyperpath recomputation. Just learning.
     """
 
-    # A4 (GPT-5.5 review): hierarchical prior. Lazy-loaded once per
+    # A4 (implementation note): hierarchical prior. Lazy-loaded once per
     # process from data/route_priors.pkl. Each route gets a prior
     # initialized to its historical mean/std/cancel rate (averaged
     # across the 34 normal days), instead of the uniform global prior.
@@ -205,11 +205,11 @@ class BanditRouter:
         # delay ≪ delay_threshold, the day looks normal and we shrink
         # β toward 0 (V1 reduces to Static). If either signal exceeds
         # threshold, β ramps to its full value. This addresses the
-        # reviewer's concern that fixed-β LCB hurts on normal days.
+        # the design concern that fixed-β LCB hurts on normal days.
         self.disruption_gate = disruption_gate
         self.cancel_threshold = cancel_threshold
         self.delay_threshold = delay_threshold
-        # A7 (GPT-5.5 review): layered risk score. Use the hyperpath's
+        # A7 (implementation note): layered risk score. Use the hyperpath's
         # built-in `feasibility` and `dest_arrival` PMF to penalize
         # candidates that have a high probability of being infeasible
         # (user already gone past) or arriving past the timeout window.
@@ -253,7 +253,7 @@ class BanditRouter:
 
         Also stores the journey's absolute deadline so A7's
         ``prob_le(deadline)`` evaluates the *correct* on-time
-        probability (P0 #1 R3 review fix). Earlier code used
+        probability (correctness fix). Earlier code used
         ``prob_le(max_time)`` which evaluated ``Pr[arrival≤120]``
         --- equivalent to "arrived before 02:00" since arrival PMFs
         are absolute clock minutes, so the term collapsed to a
@@ -287,7 +287,7 @@ class BanditRouter:
     def _disruption_factor(self) -> float:
         """Compute disruption signal in [0, 1] from accumulated observations.
 
-        A2 (GPT review): use bilinear combine instead of max — both
+        A2 (implementation note): use bilinear combine instead of max — both
         cancel_rate and mean delay contribute multiplicatively, so a
         moderate cancel rate AND a moderate delay together can trigger
         full β even when neither alone saturates the threshold. Pure max
@@ -349,7 +349,7 @@ class BanditRouter:
         gate = self._disruption_factor()
         beta_eff = beta * gate
 
-        # A5 (GPT review): adaptive top-k and lookahead. On normal day
+        # A5 (implementation note): adaptive top-k and lookahead. On normal day
         # gate≈0, top-k stays at the caller's value (default 5) and
         # lookahead is the canonical 25 minutes. On disrupted day,
         # widen both: top-k expands to 5+3=8 to give the LCB more
@@ -389,7 +389,7 @@ class BanditRouter:
             # changing conditional mean.
             infeasibility_penalty = self.infeasibility_weight * (1.0 - label.feasibility)
             if label.dest_arrival is not None:
-                # P0 #1 R3 review: prob_le takes an *absolute* clock
+                # correctness fix: prob_le takes an *absolute* clock
                 # minute, not a duration. Use the stored journey_deadline
                 # = t_source + max_time. Earlier code used max_time
                 # directly, which asked "is arrival ≤ 120?" → almost

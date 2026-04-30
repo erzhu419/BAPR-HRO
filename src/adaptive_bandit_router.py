@@ -26,7 +26,7 @@ class AdaptiveBetaBanditRouter:
     Inherits all belief tracking from BanditRouter.
     Adds: meta-bandit over β grid, updated after each journey.
 
-    A8 (GPT-5.5 review): cross-journey persistent meta-policy. With a
+    A8 (implementation note): cross-journey persistent meta-policy. With a
     single short journey (~6 stops) the EXP3 inner loop has too few
     samples to learn a useful β. We share the meta-bandit state across
     all journeys via a class-level table, so weights accumulate across

@@ -162,7 +162,7 @@ def simulate_bandit_journey(
         if actual_dep < current_time:
             continue  # already left
         if actual_dep > current_time + 12:
-            # P0 #2 R3 review: this is a passenger-side patience
+            # correctness fix: this is a passenger-side patience
             # timeout, not a delay observation. Writing the delay
             # into the Normal-Gamma posterior here (as the earlier
             # code did) compresses the cancel signal into the

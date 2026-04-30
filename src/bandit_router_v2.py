@@ -53,10 +53,10 @@ class RouteEnsembleBelief:
     prior_mean: float = 1.0
     # Tightened to Swiss real-data scale: std ≈ 1.4 min vs old 5 min.
     # Old prior_var=25 inflated cold-start std_penalty by 5×, making
-    # V2 over-pessimistic on normal days (reviewer R-final concern #2).
+    # V2 over-pessimistic on normal days (calibration fix).
     prior_var: float = 2.0
     prior_n: float = 2.0
-    # P1 R3 review: V2 also takes a historical cancel prior (Beta).
+    # design note: V2 also takes a historical cancel prior (Beta).
     # Defaults match V1 (Beta(1, 99) ≈ 1% cold-start cancel rate).
     cancel_alpha: float = 1.0
     cancel_beta: float = 99.0
@@ -107,7 +107,7 @@ class RouteEnsembleBelief:
 
     @property
     def cancel_rate(self) -> float:
-        # P1 R3 review: now uses the route-level Beta prior parameters
+        # design note: now uses the route-level Beta prior parameters
         # (cancel_alpha, cancel_beta) so V2/V3 honor the A4 historical
         # cancel rate the same way V1 does. The earlier hardcoded
         # Beta(1, 99) ignored historical cancel info even when
@@ -139,7 +139,7 @@ class RouteEnsembleBelief:
         self.n_attempts += 1
 
     def update_cancel(self, kind: str = 'true'):
-        # P0 #2 R3 review: typed cancel counters mirroring V1.
+        # correctness fix: typed cancel counters mirroring V1.
         # 'true' = simulator/GTFS-RT cancel signal; 'late_no_show'
         # = patience-window timeout; 'feed_missing' = inferred from
         # absent update.
@@ -184,6 +184,10 @@ class BanditRouterV2:
         cancel_penalty_weight: float = 60,
         seed: int = 42,
         route_priors_override: Optional[dict] = None,
+        infeasibility_weight: float = 60.0,
+        timeout_weight: float = 60.0,
+        use_hierarchical_prior: bool = True,
+        use_legacy_cold_start: bool = False,
     ):
         self.graph = graph
         self.n_estimators = n_estimators
@@ -191,6 +195,16 @@ class BanditRouterV2:
         self.beta_ood = beta_ood
         self.cancel_penalty_weight = cancel_penalty_weight
         self.rng = np.random.default_rng(seed)
+        # Component-ablation toggles (for the R16 development-history
+        # audit). Defaults reproduce the deployed R16 configuration; set
+        # use_legacy_cold_start=True to recover the pre-fix V2 behavior
+        # in which std_penalty=beta*ensemble_std (zero at cold start),
+        # set infeasibility_weight=timeout_weight=0 to disable A7,
+        # and set use_hierarchical_prior=False to disable A4.
+        self.infeasibility_weight = float(infeasibility_weight)
+        self.timeout_weight = float(timeout_weight)
+        self.use_hierarchical_prior = bool(use_hierarchical_prior)
+        self.use_legacy_cold_start = bool(use_legacy_cold_start)
 
         self.cached_result: Optional[HyperpathResult] = None
         self.route_beliefs: dict[str, RouteEnsembleBelief] = {}
@@ -218,14 +232,14 @@ class BanditRouterV2:
             # mean (with a small per-estimator jitter to break the
             # cold-start ensemble_std=0 symmetry that previously
             # collapsed V2 to argmin nominal_arrival).
-            p = self._route_priors.get(route)
+            p = self._route_priors.get(route) if self.use_hierarchical_prior else None
             if p is None:
                 self.route_beliefs[route] = RouteEnsembleBelief(
                     n_estimators=self.n_estimators)
             else:
                 hist_mean = float(p['mean'])
                 hist_var = max(float(p['std']) ** 2, 0.5)
-                # P1 R3 review: also seed the cancel-rate Beta prior
+                # design note: also seed the cancel-rate Beta prior
                 # from historical cancel rate (was hardcoded Beta(1, 99)
                 # in V2/V3, ignoring A4's per-route cancel prior).
                 p_cxl = max(min(float(p.get('cancel_rate', 0.0)), 0.5),
@@ -250,7 +264,7 @@ class BanditRouterV2:
     def route(self, s_source: int, s_dest: int, t_source: int,
               max_time: int = 120) -> HyperpathResult:
         self.cached_result = topocsa(self.graph, s_source, s_dest, t_source)
-        # P0 #1 R3 review: store the journey deadline so A7's
+        # correctness fix: store the journey deadline so A7's
         # prob_le() compares against an absolute clock time.
         self.journey_deadline = t_source + max_time
         return self.cached_result
@@ -352,22 +366,26 @@ class BanditRouterV2:
             # "argmin nominal_dest_arrival" = Static. posterior_std correctly
             # carries the prior aleatoric uncertainty until the first
             # observations diversify the ensemble.
-            std_penalty = beta * belief.posterior_std
+            if self.use_legacy_cold_start:
+                # Pre-fix behavior: ensemble_std is identically zero at
+                # cold start, so std_penalty=0 and V2 collapses to
+                # nominal-mean ranking before any observations.
+                std_penalty = beta * belief.ensemble_std
+            else:
+                std_penalty = beta * belief.posterior_std
             # Only apply cancel penalty after observing this route at
             # least once: pre-observation, the Beta prior gives a uniform
             # cross-route penalty that biases nothing but inflates scores.
             cancel_penalty = (self.cancel_penalty_weight * belief.cancel_rate
                               if belief.n_attempts > 0 else 0.0)
-            # A7 (GPT review): layered risk penalties from the hyperpath
-            # label. See bandit_router.py for rationale and the P0 #1
-            # R3 review fix on the absolute-deadline issue.
-            infeasibility_penalty = 60.0 * (1.0 - label.feasibility)
-            if label.dest_arrival is not None:
+            # A7 layered risk penalties from the hyperpath label.
+            infeasibility_penalty = self.infeasibility_weight * (1.0 - label.feasibility)
+            if label.dest_arrival is not None and self.timeout_weight > 0.0:
                 deadline = getattr(self, 'journey_deadline', None)
                 if deadline is None:
                     deadline = current_time + 120
                 p_on_time = label.dest_arrival.prob_le(deadline)
-                timeout_penalty = 60.0 * (1.0 - p_on_time)
+                timeout_penalty = self.timeout_weight * (1.0 - p_on_time)
             else:
                 timeout_penalty = 0.0
 
