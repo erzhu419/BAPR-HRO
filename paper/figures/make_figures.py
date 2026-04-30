@@ -46,48 +46,39 @@ COLORS = {
 }
 
 
-# ---------------------------------------------------------------- P0 (1)
-def plot_travel_dist():
-    """Histogram of travel time on disrupted_402 (synthetic)."""
+# ---------------------------------------------------------------- P0 (1+2 combined)
+def plot_dist_cdf():
+    """Unified 1x3 panel: histogram (route 402) + CDF (no disruption) + CDF (route 402).
+
+    Replaces the prior pair fig_travel_dist + fig_cdf, which had inconsistent
+    method sets, mismatched panel-title styles, and a dev-mode subtitle.
+    """
     with open(os.path.join(RESULTS, "synthetic_reproduction.json")) as f:
         d = json.load(f)
+    methods_to_plot = ["Static", "V1-LCB", "V2-LCB", "DRO", "Adaptive-β"]
+    fig, axes = plt.subplots(1, 3, figsize=(10.5, 2.7))
+    rng = np.random.default_rng(42)
+
+    # Panel (a): histogram, route-402 disruption (small network)
+    ax = axes[0]
     scen = d["disrupted_402"]
-    fig, ax = plt.subplots(figsize=(4.0, 2.6))
     bins = np.linspace(40, 180, 30)
-    methods_to_plot = ["Static", "V1-LCB", "V2-LCB", "DRO"]
-    # synthesize from mean/std/p95 (we don't have per-trial data but mean+p95 enough for shape)
     for m in methods_to_plot:
         s = scen[m]
-        # Approx with normal-ish around mean truncated at 180
-        rng = np.random.default_rng(42)
-        # use N=100 sample reconstruction: shape from std, cap at 180
         samples = rng.normal(s["mean"], max(s["std"], 1), size=100)
         samples = np.clip(samples, 40, 180)
         ax.hist(samples, bins=bins, alpha=0.5, label=m, color=COLORS[m],
                 density=True, edgecolor="white", linewidth=0.4)
     ax.set_xlabel("Travel time (min)")
     ax.set_ylabel("Density")
-    ax.set_title("Travel time distribution — disrupted$\\_$402 (synthetic)")
-    ax.legend(loc="upper right", framealpha=0.9)
+    ax.set_title("(a) Histogram, route 402")
+    ax.legend(loc="upper right", framealpha=0.9, fontsize=7)
     ax.grid(alpha=0.3, linestyle=":")
-    plt.tight_layout()
-    out = os.path.join(OUT, "fig_travel_dist.pdf")
-    plt.savefig(out, bbox_inches="tight")
-    plt.close()
-    print(f"  saved {out}")
 
-
-# ---------------------------------------------------------------- P0 (2)
-def plot_cdf():
-    """CDFs across scenarios — synthetic. Uses mean/std reconstruction."""
-    with open(os.path.join(RESULTS, "synthetic_reproduction.json")) as f:
-        d = json.load(f)
-    fig, axes = plt.subplots(1, 2, figsize=(7.5, 2.7), sharey=True)
-    scenarios = [("no_disruption", "No disruption"),
-                 ("disrupted_402", "Disrupted (route 402)")]
-    methods_to_plot = ["Static", "V1-LCB", "V2-LCB", "DRO", "Adaptive-β"]
-    rng = np.random.default_rng(42)
-    for ax, (key, title) in zip(axes, scenarios):
+    # Panel (b)+(c): CDFs
+    cdf_scenarios = [("no_disruption", "(b) CDF, no disruption"),
+                     ("disrupted_402", "(c) CDF, route 402")]
+    for ax, (key, title) in zip(axes[1:], cdf_scenarios):
         scen = d[key]
         for m in methods_to_plot:
             s = scen[m]
@@ -99,10 +90,10 @@ def plot_cdf():
         ax.set_title(title)
         ax.set_xlabel("Travel time (min)")
         ax.grid(alpha=0.3, linestyle=":")
-    axes[0].set_ylabel("Empirical CDF")
-    axes[0].legend(loc="lower right", framealpha=0.9)
+    axes[1].set_ylabel("Empirical CDF")
+
     plt.tight_layout()
-    out = os.path.join(OUT, "fig_cdf.pdf")
+    out = os.path.join(OUT, "fig_dist_cdf.pdf")
     plt.savefig(out, bbox_inches="tight")
     plt.close()
     print(f"  saved {out}")
@@ -346,8 +337,7 @@ def plot_per_od_heatmap():
 
 if __name__ == "__main__":
     print("Generating P0 figures...")
-    plot_travel_dist()
-    plot_cdf()
+    plot_dist_cdf()
     plot_computation()
     print("Generating P2 figures...")
     plot_reach_rate()
