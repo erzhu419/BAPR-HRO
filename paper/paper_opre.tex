@@ -38,10 +38,6 @@
 \TheoremsNumberedThrough
 \ECRepeatTheorems
 
-% Make plain \cite{key} render parenthetically as (Author Year). The few
-% textual citations needed in prose are written explicitly with \citet{}.
-\let\cite=\citep
-
 % theorem/lemma/corollary/proposition/definition/assumption/remark are
 % pre-defined by informs4.cls via \TheoremsNumberedThrough.
 
@@ -300,7 +296,7 @@ stationary and estimated offline.
 When a corridor disruption occurs, the PMFs become stale, but the hyperpath
 \emph{structure}---which routes pass through which stops---remains valid.
 Only the \emph{ranking} is wrong.
-Deployed GTFS-RT systems~\cite{gtfsrt2023} (Google Maps, SBB, DB) respond
+Deployed GTFS-RT systems~\citep{gtfsrt2023} (Google Maps, SBB, DB) respond
 to disruptions by recomputing routes from scratch, discarding the fallback
 structure.
 Section~\ref{sec:recomp} shows this recomputation is actively harmful:
@@ -311,9 +307,9 @@ dropping alternatives that happen to be unaffected.
 
 Multi-armed bandit algorithms balance exploration against exploitation by
 trying suboptimal arms often enough to identify the best one.
-Sliding-window UCB~\cite{garivier2011} and EXP3-IX~\cite{kocak2014} extend
+Sliding-window UCB~\citep{garivier2011} and EXP3-IX~\citep{kocak2014} extend
 this to non-stationary settings, achieving $O(\sqrt{KT\ln K})$ regret
-over $T$ rounds~\cite{lai1985,chen2024}.
+over $T$ rounds~\citep{lai1985,chen2024}.
 The implicit contract is that exploration cost is recoverable: bad pulls
 are compensated by information gained for future pulls.
 
@@ -329,8 +325,8 @@ empirically (Section~\ref{sec:results}).
 
 \subsection{Bayesian RL Explores by Design---the Wrong Design Here}
 
-BAMCP~\cite{guez2012} and Posterior Sampling (PSRL)~\cite{osband2017}
-approximate the PSPACE-hard Bayes-adaptive MDP~\cite{duff2002} by
+BAMCP~\citep{guez2012} and Posterior Sampling (PSRL)~\citep{osband2017}
+approximate the PSPACE-hard Bayes-adaptive MDP~\citep{duff2002} by
 planning or sampling in the belief-augmented state space.
 Both achieve near-Bayes-optimal regret---\emph{across episodes}.
 The mechanism is explicit exploration: PSRL draws an optimistic MDP from
@@ -343,7 +339,7 @@ minutes long, these methods are worse than doing nothing:
 on the synthetic large-network disrupted scenario PS-SSP reaches
 $96.0$\,min and BAMCP-60 reaches $101.0$\,min vs.\ Static $73.8$\,min
 (Table~\ref{tab:extended}).
-Risk-averse BAMDP variants~\cite{rigter2021,lin2022} address this by
+Risk-averse BAMDP variants~\citep{rigter2021,lin2022} address this by
 optimizing CVaR rather than expected return, but at the cost of
 solving a full belief-state MDP.
 Our LCB policy achieves the same pessimistic effect---penalizing high
@@ -352,8 +348,8 @@ enumeration.
 
 \subsection{Single-Shot SSP: Regret Is the Wrong Metric}
 
-The SSP-MDP~\cite{bertsekas1991} and its online learning variants
-~\cite{rosenberg2020,cohen2021} optimize cumulative regret across
+The SSP-MDP~\citep{bertsekas1991} and its online learning variants
+~\citep{rosenberg2020,cohen2021} optimize cumulative regret across
 $T$ episodes: $\tilde{O}(B^*\!\sqrt{SAT})$.
 This metric assumes the same instance is solved repeatedly, so that
 information from episode~$k$ helps in episode~$k{+}1$.
@@ -370,13 +366,13 @@ separate per-journey upper bound for LCB
 
 \subsection{DRO Gives Pessimism a Principled Radius}
 
-Wasserstein DRO~\cite{blanchet2019,esfahani2018} hedges against
+Wasserstein DRO~\citep{blanchet2019,esfahani2018} hedges against
 all distributions within a $W_1$-ball of the empirical measure.
 The appeal is automatic calibration: the ball radius shrinks as
 $O(n^{-1/2})$ with data, so the policy transitions from robust
 to near-optimal without manual tuning.
-Robust MDPs~\cite{nilim2005,iyengar2005} apply this to transition
-kernels; CVaR-MDPs~\cite{chow2015} optimize the tail.
+Robust MDPs~\citep{nilim2005,iyengar2005} apply this to transition
+kernels; CVaR-MDPs~\citep{chow2015} optimize the tail.
 
 Our key insight is that the conjugate Normal-Gamma posterior
 \emph{already} supplies the DRO radius.
@@ -398,25 +394,25 @@ below.
 
 The \emph{stochastic on-time arrival} (SOTA) problem maximizes the
 probability of arriving by a deadline rather than minimizing
-expected travel time~\cite{nikolova2006,fan2005}; it is closely
+expected travel time~\citep{nikolova2006,fan2005}; it is closely
 related to the reach-rate metric we report (\S\ref{sec:swiss-results})
 and is more directly aligned with passenger-side preferences than
 expected-time minimization, but does not by itself adapt online to
 real-time observations. \emph{Robust shortest path} formulations
-under interval~\cite{karasan2001,bertsimas2003} or budgeted
-uncertainty~\cite{bertsimas2004} optimize a worst-case path under
+under interval~\citep{karasan2001,bertsimas2003} or budgeted
+uncertainty~\citep{bertsimas2004} optimize a worst-case path under
 delay sets specified by the modeler; they share the
 distributionally robust spirit of LCB but assume the uncertainty set
 is given offline. \emph{Risk-aware transit assignment}, including
-expected-shortfall and CVaR formulations~\cite{chow2015,fan2005},
+expected-shortfall and CVaR formulations~\citep{chow2015,fan2005},
 addresses the catastrophic-regime case where mean-time objectives
 under-weight tail outcomes; our limitations note
 (\S\ref{sec:discussion} \emph{Limitations}) flags CVaR-at-1 as a
 natural complement to the present mean-time DRO formulation.
 The closest neighbor in spirit is the \emph{adaptive} robust SSP
 literature: Pflug and Pichler's distributionally robust dynamic
-programming~\cite{pflug2014} and Yu and Xu's robust MDP with
-moment constraints~\cite{yu2016} both target sequential
+programming~\citep{pflug2014} and Yu and Xu's robust MDP with
+moment constraints~\citep{yu2016} both target sequential
 decision-making under ambiguity, but neither plugs into the
 hyperpath structure or admits the per-candidate scalar identity
 of Corollary~\ref{cor:lcb_dro}. The contribution of this paper is
@@ -427,7 +423,7 @@ identity is tight, and to validate this on real GTFS-RT data.
 
 \subsection{Formal Verification}
 
-The Wasserstein distance appears in optimal transport~\cite{villani2009},
+The Wasserstein distance appears in optimal transport~\citep{villani2009},
 generative modeling, and DRO, yet had no machine-checked formalization
 prior to this work.
 Our 1{,}565-line Wasserstein/DRO development (coupling theory,
@@ -454,11 +450,11 @@ All 5{,}322 lines compile with zero \texttt{sorry} and zero
 
 A transit network is a directed graph $G = (\mathcal{S}, \mathcal{C})$ where $\mathcal{S}$ is the set of stops and $\mathcal{C}$ the set of connections. Each connection $c \in \mathcal{C}$ has departure/arrival stops, scheduled times, route identifier $r(c)$, and stochastic delay distribution $P_{\mathrm{delay}}(\cdot | r(c), \bm{\theta}_r)$ parameterized by unknown $\bm{\theta}_r$.
 
-A \emph{hyperpath} $H$ from source to destination assigns to each stop a ranked list of stop labels $\{(c_i, T_{\mathrm{dest}}^i, \mathbb{P}_{\mathrm{feas}}^i)\}$, where $T_{\mathrm{dest}}^i$ is the PMF of destination arrival time via $c_i$ and $\mathbb{P}_{\mathrm{feas}}^i$ is the probability the passenger is present when $c_i$ departs~\cite{durner2024}.
+A \emph{hyperpath} $H$ from source to destination assigns to each stop a ranked list of stop labels $\{(c_i, T_{\mathrm{dest}}^i, \mathbb{P}_{\mathrm{feas}}^i)\}$, where $T_{\mathrm{dest}}^i$ is the PMF of destination arrival time via $c_i$ and $\mathbb{P}_{\mathrm{feas}}^i$ is the probability the passenger is present when $c_i$ departs~\citep{durner2024}.
 
 \subsection{SSP-MDP Formulation}
 
-We model the passenger's journey as a Stochastic Shortest Path MDP~\cite{bertsekas1991}:
+We model the passenger's journey as a Stochastic Shortest Path MDP~\citep{bertsekas1991}:
 \begin{itemize}
     \item \textbf{State}: $s_t = (\text{stop}_t, \text{time}_t) \in \mathcal{S} \times \mathbb{R}$
     \item \textbf{Action}: $a_t$: board connection $c$ from the hyperpath
@@ -499,7 +495,7 @@ the posterior hyperparameters update in closed form:
                + \frac{\kappa_0 n(\bar{d}_n - \mu_0)^2}{2(\kappa_0+n)}.
                \label{eq:ng_beta}
 \end{align}
-These can be computed \emph{online} via Welford's one-pass algorithm~\cite{welford1962}
+These can be computed \emph{online} via Welford's one-pass algorithm~\citep{welford1962}
 in $O(1)$ time and $O(1)$ space per observation.
 The posterior standard deviation of the delay mean is
 $\hat\sigma_r = \sqrt{\beta_n / (\alpha_n\kappa_n)}$,
@@ -516,7 +512,7 @@ with posterior mean
 $\hat{p}_{\mathrm{cancel},r} = \alpha_c^{(n_b)}/(\alpha_c^{(n_b)} + \beta_c^{(n_b)})$.
 A cancellation is an \emph{implicit} event in GTFS-RT (no delay message is sent);
 the Beta posterior handles this naturally by incrementing $\alpha_c$ each time
-a bus is observed missing~\cite{adams2007}.
+a bus is observed missing~\citep{adams2007}.
 
 %% ================================================================
 \section{Method: LCB Selection and DRO Equivalence}
@@ -1590,12 +1586,12 @@ Wasserstein robust score (fixed pessimism) & DRO \\
 Online pessimism-tuning wrapper around LCB-V1 & Adaptive-$\beta$ \\
 \midrule
 \multicolumn{2}{l}{\emph{Classic Bayesian-RL baselines.}} \\
-Posterior-sampling transit planner~\cite{osband2017} & PS-SSP \\
-Bayes-adaptive Monte-Carlo planner with 60 rollouts~\cite{guez2012} & BAMCP-60 \\
+Posterior-sampling transit planner~\citep{osband2017} & PS-SSP \\
+Bayes-adaptive Monte-Carlo planner with 60 rollouts~\citep{guez2012} & BAMCP-60 \\
 \midrule
 \multicolumn{2}{l}{\emph{Non-stationary bandit baselines.}} \\
-Sliding-window pessimistic score~\cite{garivier2011,luo2024} & SW-LCB \\
-Adversarial-bandit route learner (EXP3-IX)~\cite{kocak2014,chen2024} & EXP3 \\
+Sliding-window pessimistic score~\citep{garivier2011,luo2024} & SW-LCB \\
+Adversarial-bandit route learner (EXP3-IX)~\citep{kocak2014,chen2024} & EXP3 \\
 \bottomrule
 \end{tabular}}
 {}
@@ -1802,8 +1798,8 @@ DRO          & 74.8 & 101 & 95.4 & 180 \\
 PS-SSP       & 77.7 & 104 & 96.0 & 180 \\
 BAMCP-60     & 81.4 & 105 & 101.0 & 151 \\
 \midrule
-SW-LCB~\cite{garivier2011,luo2024}     & 76.7 & 98 & 99.2 & 180 \\
-EXP3~\cite{kocak2014,chen2024}        & 107.0 & 151 & 136.7 & 180 \\
+SW-LCB~\citep{garivier2011,luo2024}     & 76.7 & 98 & 99.2 & 180 \\
+EXP3~\citep{kocak2014,chen2024}        & 107.0 & 151 & 136.7 & 180 \\
 \midrule
 Oracle (upper bound) & 72.6 & 90 & 73.0 & 94 \\
 \bottomrule
@@ -2234,7 +2230,7 @@ in EC.\ref{ec:supp_results}.
 The finding that hyperpath recomputation is counter-productive highlights a design strength of Durner's formulation: the hyperpath is not merely an expected-optimal path but a pre-computed contingency plan including alternatives through diverse corridors. Discarding this structure via re-optimization destroys the hedging property.
 
 \paragraph{Single-shot vs.\ multi-episode.}
-The dominant paradigm in Bayesian RL---Thompson Sampling and its variants---optimizes cumulative regret across episodes. Transit routing is single-episode: exploration cost is irrecoverable. This aligns with CVaR-BAMDP~\cite{rigter2021}, where risk-aversion replaces exploration incentives. LCB's empirical superiority over PS-SSP and BAMCP supports this prediction.
+The dominant paradigm in Bayesian RL---Thompson Sampling and its variants---optimizes cumulative regret across episodes. Transit routing is single-episode: exploration cost is irrecoverable. This aligns with CVaR-BAMDP~\citep{rigter2021}, where risk-aversion replaces exploration incentives. LCB's empirical superiority over PS-SSP and BAMCP supports this prediction.
 
 \paragraph{Cancellation as a silent signal.}
 Bus cancellations are ``silent'' in GTFS-RT: no delay observation is generated. BOCD on delay streams fails to detect them. The Bayesian cancel rate posterior handles this naturally: each no-show updates the posterior, and LCB penalizes accordingly.
@@ -2494,7 +2490,7 @@ posteriors would sharpen the per-route prior but do not change the
 Wasserstein-DRO equivalence.
 
 \textbf{Relationship to BAPR: a unified DRO framework.}
-The companion paper BAPR~\cite{bapr2025} addresses
+The companion paper BAPR~\citep{bapr2025} addresses
 \emph{multi-episode piecewise-stationary} RL (locomotion control with
 regime switches) using an adaptive-conservatism rule
 $\beta_{\mathrm{eff}} = \beta_{\mathrm{base}} - \lambda_w c_{\mathrm{pen}}$,
