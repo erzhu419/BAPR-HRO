@@ -1,0 +1,130 @@
+<PARSED TEXT FOR PAGE: 1 / 3>
+
+                     Referee Report on OPRE-2026-05-3065
+   “Re-Ranking Stochastic Transit Hyperpaths Under Disruption:
+            A Wasserstein-Robust Scoring Approach”
+
+
+Summary
+This paper studies stochastic public transit routing under real-time disruptions. Its central pro-
+posal is to retain a precomputed stochastic hyperpath while dynamically re-ranking the available
+connections using updated delay and cancellation information. The proposed Bayesian scoring
+rule combines Normal-Gamma delay posteriors with Beta cancellation posteriors. Under an affine
+arrival-cost model, the authors interpret the resulting pessimistic score through Wasserstein distri-
+butionally robust optimization (DRO). The paper further presents theoretical guarantees, claims
+machine-checked formal verification in Lean 4, and evaluates the algorithms on synthetic networks
+and GTFS-Realtime data from Zurich.
+   Despite the problem’s practical relevance, I have substantial reservations about the paper’s
+mathematical validity, methodological novelty, and empirical conclusions. Several central theoret-
+ical statements are false as written, while others rely on assumptions that are not established for
+the implemented transit model. Moreover, the claimed Wasserstein equivalence holds under sub-
+stantially narrower conditions than the presentation suggests and, under those conditions, reduces
+to an established identity. These issues undermine the theoretical justification and positioning of
+the contribution. I therefore recommend rejection.
+
+
+Major Concerns
+  1. The posterior scale is incorrectly identified as the posterior standard deviation. Section 3.3
+                               br2 = βn /(αn κn ) as the posterior variance of the delay mean. This
+     and Assumption 2 identify σ
+     identification is incorrect: under the stated Normal-Gamma model, the posterior variance is
+                                          1                   βn
+                         Var(µr | D) =      E[τr−1 | D] =            ,   αn > 1.
+                                         κn               (αn − 1)κn
+
+     The paper’s expression therefore does not equal the posterior variance. This distinction di-
+     rectly affects Theorem 5: the stated Chebyshev certificate is not justified for the uncertainty
+     measure used by the algorithm. The definition of posterior uncertainty and all probability
+     bounds that depend on it must be corrected consistently.
+  2. Corollary 1 is false under its stated assumptions; its intended affine specialization is a known
+     Wasserstein-DRO identity. Assumption 3 imposes a 1-Lipschitz condition, whereas Corollary
+
+
+                                                  1
+
+
+<PARSED TEXT FOR PAGE: 2 / 3>
+
+  1 asserts an exact LCB–DRO identity under that condition alone. The lower-bound argument
+  invokes f (x + ε) = f (x) + ε, an equality that requires a unit-slope affine cost and a feasi-
+  ble translation. Neither requirement follows from Assumption 3. Lipschitz continuity alone
+  therefore does not justify the claimed equality.
+  With unrestricted support and an affine loss f (x) = a⊤ x + b, the standard formula is
+
+                                    sup        EP [f ] = EPb [f ] + ε∥a∥∗ ,
+                                 W1 (P,Pb)≤ε
+
+
+  where Pb has a finite first moment and ∥a∥∗ denotes the dual norm of the transport norm.
+  This affine identity is an established result rather than a new DRO theorem. For empirical
+  nominal distributions, it follows directly as a special case of Theorem 6.3 and Proposition
+  6.5 of [1]. The identity does not require a Normal-Gamma posterior, and substituting ε =
+  βb
+   σr +γ0 pbcxl,r does not constitute a new Wasserstein optimization result. Corollary 1 thus faces
+  two distinct problems: it is false under the stated 1-Lipschitz assumption, and its intended
+  affine specialization, with the necessary translation-feasibility conditions, is already known.
+  The interpretation of the ambiguity radius is also incorrect. If the true cancellation probability
+  is pr > 0, posterior consistency gives pbcxl,r → pr . Consequently, even if σ
+                                                                              br → 0, the radius
+  satisfies ε → γ0 pr > 0 for γ0 > 0. The assertion following equation (12) that the entire
+  radius vanishes is therefore false in this setting. Separately, the algebraic identity provides no
+  confidence guarantee that the chosen Wasserstein ball contains the true distribution.
+3. Theorem 3 states an incorrect necessary condition for robust Bellman contraction. Theorem
+  3(b) asserts that contraction holds “iff” γ(1 + ε) < 1. However, for any fixed, nonempty set
+  P of probability measures independent of the value function, and for bounded value functions
+  V and U ,
+                     sup EP [V ] − sup EP [U ] ≤ sup |EP [V − U ]| ≤ ∥V − U ∥∞ .
+                    P ∈P          P ∈P                 P ∈P
+
+  Consequently, under this fixed-ambiguity-set formulation, the discounted robust Bellman oper-
+  ator is γ-Lipschitz in the sup norm for every Wasserstein radius. For 0 ≤ γ < 1, it is therefore a
+  contraction irrespective of the proposed radius threshold, contradicting the claimed necessity.
+  The proof in Appendix F contains a further, explicit error: it uses Φε (V ) ≥ EPb [V ] + ε inf V .
+  Setting V ≡ 1 reduces this inequality to 1 ≥ 1 + ε, which is false for every ε > 0.
+4. The guarantees for total journey cost are not proved. Lemma 1 assumes that each estimated
+  candidate mean cost differs from its true expected arrival cost by at most σmax . Theorem 4
+  relies on this lemma, yet the Normal-Gamma model in Assumption 2 does not establish the
+  required estimation-error bound. The proof also does not explain how cancellation risk enters
+  the quantities controlled by Lemma 1. The stated assumptions therefore do not supply the
+  premises needed for the claimed guarantee.
+  Equation (18) sums differences in final arrival times across stops and identifies the result with
+
+                                                   2
+
+
+<PARSED TEXT FOR PAGE: 3 / 3>
+
+     the difference in total journey cost. Yet arr(c) denotes destination arrival time, whereas the
+     cost in Section 3.2 is the travel time to the next stop. The first equality in (18) therefore
+     requires a valid decomposition showing why these per-stop destination-arrival gaps sum to
+     total excess cost, including when the two policies visit different stops. The comparison policy
+     must also be specified: if the optimal policy is not restricted to the same hyperpath, an
+     excluded route may remain superior even with perfect estimates.
+  5. The arguments do not establish the general claims about pessimism or the algorithm-specific
+     regret guarantees. Theorem 6 assumes cost(k) = µk +ρσk , but the irreversibility of a boarding
+     decision does not imply ρ > 0. An uncertain route can still be faster than a certain alternative;
+     irreversibility alone does not justify a positive uncertainty penalty. Theorem 7 likewise treats
+     a large regret upper bound as evidence of poor performance. A loose upper bound, however,
+     does not establish large actual regret, which may be substantially smaller.
+                                              √
+     Theorem 8 establishes an inequality for c/T + v/T , but it does not connect that expression
+     to the actual per-journey regret of the Adaptive-β algorithm. This missing link prevents the
+     inequality from serving as an algorithm-specific regret guarantee. Furthermore, if c and v are
+     allowed to grow with T , the inequality alone does not establish the claimed O(1/T ) decay of
+     squared regret; the dependence of these quantities on T must be controlled explicitly.
+   Finally, the exposition falls below the standard expected for publication in OR. Numerous
+passages read as formulaic rather than carefully reasoned, and the mathematical inconsistencies
+documented above raise substantive concerns about the level of authorial validation. The paper
+requires a thorough check of the definitions, assumptions, theorem statements, and proofs.
+
+
+References
+[1] P. Mohajerin Esfahani and D. Kuhn. Data-driven distributionally robust optimization using
+   the Wasserstein metric: Performance guarantees and tractable reformulations. Mathematical
+   Programming, 171:115–166, 2018.
+
+
+
+
+                                                 3
+

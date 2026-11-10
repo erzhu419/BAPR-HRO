@@ -1,0 +1,101 @@
+<PARSED TEXT FOR PAGE: 1 / 2>
+
+                   Reviewer Report for
+     Re-Ranking Stochastic Transit Hyperpaths Under
+    Disruption: A Wasserstein-Robust Scoring Approach
+                                     Operations Research
+
+
+
+Summary
+This paper studies transit routing under disruptions. The authors retain a precomputed stochastic
+hyperpath and re-rank its candidate connections using a score based on Bayesian estimates of delays
+and cancellations. They develop a Wasserstein DRO interpretation of this score’s posterior risk,
+present a Lean formalization of the supporting analysis, and evaluate the approach against static
+and adaptive routing baselines through simulation experiments.
+
+
+Recommendation
+I would like to thank the authors for an interesting paper. The studied subject is of interest to our
+community. I also believe including Lean formalization of the proofs is a great initiative. I wish
+more papers would adopt this approach. However, the paper has multiple significant shortcomings
+that cannot be addressed in a reasonable review period. Even if the shortcomings were addressed,
+I believe the novelty does not meet the high bar of Operations Research. I would like to therefore
+recommend a rejection. Some of my concerns are enumerated below.
+
+
+Concerns
+  1. I believe there are several mistakes in the theorem statements and proofs. For example, the
+     condition stated as necessary and sufficient in Theorem 3(b) is sufficient but not necessary:
+     for 0 ≤ γ < 1, the robust Bellman operator is γ-contractive for all ε ≥ 0. Moreover, its proof
+     has a mistake in the inequality ΦεW1 (V ) ≥ EP̂ [V ] + ε · inf{V }. To see this, take V as a positive
+     constant and fix any ε > 0. The stated inequality implies 0 ≥ ε · V > 0.
+  2. The Wasserstein DRO equivalence of the scoring function is not surprising and should not be
+     presented as a key methodological contribution. For the loss function studied in this paper,
+     any score consisting of the nominal expected cost plus a nonnegative penalty admits this
+     Wasserstein DRO interpretation by choosing the ambiguity radius ε equal to that penalty
+     (including trivial/meaningless penalty functions).
+  3. The radius ε lacks a statistical calibration. As discussed in the previous item, it is set equal
+     to the chosen score penalty, without establishing that the resulting ambiguity set contains the
+     true (unknown) distribution with a prescribed confidence level. Consequently, the equivalence
+     alone does not provide an out-of-sample guarantee with high probability. It only recasts the
+     proposed score as a DRO objective.
+  4. The presentation is difficult to follow. There are many small independent subsections that are
+     not linked well. The order of the sections is also somewhat confusing: for example, Section 5.2
+     introduces the Wasserstein DRO equivalence, which is revisited again in Section 6.3.
+
+
+                                                   1
+
+
+<PARSED TEXT FOR PAGE: 2 / 2>
+
+  5. There is a strong emphasis on introducing Lean formalization. An Operations Research paper
+     is already expected to have correct proofs, hence Lean code can only be valuable supplementary
+     material. However, the paper discusses details of the Lean code in many places. This distracts
+     the reader from the main transportation problem. This emphasis also gives attention to
+     well-known results, including the pseudometric properties of W1 and the weak Kantorovich–
+     Rubinstein inequality, which are standard background results rather than new contributions
+     specific to the proposed model.
+  6. The Bayesian modeling choices appear to be motivated primarily by computational convenience
+     due to conjugacy. There is insufficient justification of their suitability for the transit domain
+     studied in this paper. The connection between the resulting posterior uncertainty and the
+     DRO formulation also needs a clearer statistical interpretation.
+  7. There is too much going on at once in the presentation, and the role of the different frame-
+     works and technical details is often not clear. Several sections move directly into a collection
+     of subsections without first explaining the section’s purpose or how its components fit to-
+     gether. Some subsections consist of only two sentences, further fragmenting the discussion and
+     making the progression of the argument difficult to follow. The manuscript moves rapidly be-
+     tween stochastic hyperpaths, Bayesian inference, DRO, MDPs, online learning, computational
+     complexity, formal verification, and neural surrogates. It is often unclear which ingredients
+     define the proposed method, which provide an interpretation of it, which concern competing
+     approaches, and which are ancillary extensions. The breadth of fields invoked also makes
+     it difficult to identify the substantive contribution made within or between them. Technical
+     terminology and abbreviations accumulate before the central argument has been adequately
+     developed: planning trees, “Stuttgart-style” algorithms, PSPACE-hardness, EXP3, sliding-
+     window methods, pessimism and optimism, VaR/CVaR, among others. Terms such as “SBB”
+     and “cell-mean” also need explanation on first use. Meanwhile, details of other papers, such
+     as the number of forward simulations used by a competing method, interrupt the exposition
+     without making their relevance clear. A more focused narrative would help establish the deci-
+     sion problem, explain the proposed approach, and identify its novelty before introducing these
+     frameworks and secondary details.
+  8. The manuscript only cites foundational papers in (D)RO and robust MDPs. Several relevant
+     papers are not cited. Some examples: Yang (2021), Wiesemann et al. (2013), Shapiro et al.
+     (2023), Wozabal (2014).
+
+
+References
+Shapiro, A., Zhou, E., and Lin, Y. (2023). Bayesian Distributionally Robust Optimization.
+  SIAM Journal on Optimization, 33(2):1279–1304.
+
+Wiesemann, W., Kuhn, D., and Rustem, B. (2013). Robust Markov Decision Processes.
+ Mathematics of Operations Research, 38(1):153–183.
+Wozabal, D. (2014). Robustifying Convex Risk Measures for Linear Portfolios: A Nonparametric
+ Approach. Operations Research, 62(6):1302–1315.
+
+Yang, I. (2021). Wasserstein Distributionally Robust Stochastic Control: A Data-Driven Approach.
+  IEEE Transactions on Automatic Control, 66(8):3863–3870.
+
+
+                                                 2
+
