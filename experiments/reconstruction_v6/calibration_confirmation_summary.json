@@ -1,0 +1,1435 @@
+{
+  "protocol": {
+    "training_dates": [
+      "2023-10-01",
+      "2023-10-02"
+    ],
+    "calibration_dates": [
+      "2023-10-03",
+      "2023-10-04",
+      "2023-10-05",
+      "2023-10-06",
+      "2023-10-07",
+      "2023-10-08",
+      "2023-10-09",
+      "2023-10-10",
+      "2023-10-11"
+    ],
+    "development_dates": [
+      "2023-10-12",
+      "2023-10-25",
+      "2023-10-27"
+    ],
+    "actual_label_confirmation_dates": [
+      "2023-10-18",
+      "2023-10-23",
+      "2023-10-24"
+    ],
+    "previous_actuals_status": "These dates occur in archived RT-prior date lists, not prior actual-label scoring/source joins in V5. Existing public forecasts are allowed received inputs; no confirmation actuals are opened before model and envelopes are frozen.",
+    "methods": [
+      "frozen_shrunk_relative",
+      "heteroskedastic_student_t3"
+    ],
+    "new_model": "outgoing route prior mean + beta*incoming route-centered residual; scale sigma0+sigma1*abs(incoming residual), df fixed3. beta in[0,1], sigma0>=1second, sigma1>=0; three deterministic training-only starts, minimum date-balanced negative log likelihood.",
+    "observable_groups": {
+      "ordinary": "incoming measured arrival delay<=180seconds",
+      "late": "incoming measured arrival delay>180seconds"
+    },
+    "interval_target": "For each date take max across present groups of empirical ceil(.9*n)-th standardized central90 nonconformity. Largest of9 date scores (clipped below at0) is one common envelope factor. Under exchangeable date blocks, joint event: every present observable group has>=90% endpoint coverage on the next date, probability>=90%. No arbitrary individual/date-conditional guarantee.",
+    "interval_standardization": "Half the uncalibrated central90 interval width; interval only, does not alter CDF/boarding probability.",
+    "menu": "Primary timetable-selected different-trip pairs +/-300seconds around planned incoming arrival+GTFS transfer. Actual-current menu secondary. Unknown outgoing status remains selected/censored.",
+    "patience_seconds": 720,
+    "freeze": "No new date, group boundary, degrees of freedom, start count or model parameter is selected by development or confirmation scores. First candidate is completed and all results retained.",
+    "joint_interface": "Finite-chain departure marginal replacement by likelihood-ratio emission; clock means, sampling and conditional continuation must use the resulting same joint law. No scalar failure probability swap."
+  },
+  "factors": {
+    "fixed_schedule": {
+      "evolving_incoming": 0.8416666666666667,
+      "shrunk_relative": 1.1560859338082332,
+      "student": 0.6715281320903127
+    },
+    "actual_current": {
+      "evolving_incoming": 0.76,
+      "shrunk_relative": 1.0094441916441237,
+      "student": 0.6246570704815219
+    }
+  },
+  "confirmation": {
+    "2023-10-18": {
+      "fixed_schedule": {
+        "evolving_incoming": {
+          "raw": {
+            "n": 2887,
+            "observed_operating": 2884,
+            "known_catch": 2887,
+            "coverage": 0.9791955617198336,
+            "covered": 2824,
+            "width_seconds": 359.77115117891816,
+            "interval_score": 384.41747572815535,
+            "mae_seconds": 49.88760147092364,
+            "brier": 0.0664642083380525,
+            "signed_catch_error": 0.014713551460721204
+          },
+          "group_envelope": {
+            "n": 2887,
+            "observed_operating": 2884,
+            "known_catch": 2887,
+            "coverage": 0.9958391123439667,
+            "covered": 2872,
+            "width_seconds": 662.5785367545076,
+            "interval_score": 673.7626560332872,
+            "mae_seconds": 49.88760147092364,
+            "brier": 0.0664642083380525,
+            "signed_catch_error": 0.014713551460721204
+          },
+          "observable_groups": {
+            "ordinary": {
+              "n": 2836,
+              "observed_operating": 2833,
+              "known_catch": 2836,
+              "coverage": 0.9957642075538299,
+              "covered": 2821,
+              "width_seconds": 663.5070596540769,
+              "interval_score": 674.8925167666785,
+              "mae_seconds": 50.08611281174627,
+              "brier": 0.06647142368703314,
+              "signed_catch_error": 0.013325914553948418
+            },
+            "late": {
+              "n": 51,
+              "observed_operating": 51,
+              "known_catch": 51,
+              "coverage": 1.0,
+              "covered": 51,
+              "width_seconds": 611.0,
+              "interval_score": 611.0,
+              "mae_seconds": 38.860491107188295,
+              "brier": 0.06606297834375677,
+              "signed_catch_error": 0.09187704690400775
+            }
+          },
+          "selected": {
+            "n": 472,
+            "observed_operating": 472,
+            "known_catch": 472,
+            "coverage": 0.9936440677966102,
+            "covered": 469,
+            "width_seconds": 600.7266949152543,
+            "interval_score": 616.3305084745763,
+            "mae_seconds": 48.078160150478254,
+            "brier": 0.02540054379441036,
+            "signed_catch_error": -0.00376336850334276
+          },
+          "v5_original_envelope": {
+            "n": 2887,
+            "observed_operating": 2884,
+            "known_catch": 2887,
+            "coverage": 0.9958391123439667,
+            "covered": 2872,
+            "width_seconds": 495.77115117891816,
+            "interval_score": 507.7753120665742,
+            "mae_seconds": 49.88760147092364,
+            "brier": 0.0664642083380525,
+            "signed_catch_error": 0.014713551460721204
+          },
+          "all_present_groups_meet_90": true
+        },
+        "shrunk_relative": {
+          "raw": {
+            "n": 2887,
+            "observed_operating": 2884,
+            "known_catch": 2887,
+            "coverage": 0.9622052704576977,
+            "covered": 2775,
+            "width_seconds": 255.3641919510436,
+            "interval_score": 287.04850093048105,
+            "mae_seconds": 45.10675030254139,
+            "brier": 0.0509630072282061,
+            "signed_catch_error": 0.0030898901871542483
+          },
+          "group_envelope": {
+            "n": 2887,
+            "observed_operating": 2884,
+            "known_catch": 2887,
+            "coverage": 0.9958391123439667,
+            "covered": 2872,
+            "width_seconds": 550.5871422639509,
+            "interval_score": 553.2260600913353,
+            "mae_seconds": 45.10675030254139,
+            "brier": 0.0509630072282061,
+            "signed_catch_error": 0.0030898901871542483
+          },
+          "observable_groups": {
+            "ordinary": {
+              "n": 2836,
+              "observed_operating": 2833,
+              "known_catch": 2836,
+              "coverage": 0.9957642075538299,
+              "covered": 2821,
+              "width_seconds": 551.0651533522793,
+              "interval_score": 553.7515772895108,
+              "mae_seconds": 44.8256795104221,
+              "brier": 0.050388272547843546,
+              "signed_catch_error": 0.0006694738289589109
+            },
+            "late": {
+              "n": 51,
+              "observed_operating": 51,
+              "known_catch": 51,
+              "coverage": 1.0,
+              "covered": 51,
+              "width_seconds": 524.0340949456207,
+              "interval_score": 524.0340949456207,
+              "mae_seconds": 60.71995724516812,
+              "brier": 0.08292276317934746,
+              "signed_catch_error": 0.1376840233605262
+            }
+          },
+          "selected": {
+            "n": 472,
+            "observed_operating": 472,
+            "known_catch": 472,
+            "coverage": 0.9978813559322034,
+            "covered": 471,
+            "width_seconds": 499.49556834899363,
+            "interval_score": 499.6067430232006,
+            "mae_seconds": 42.58596489454511,
+            "brier": 0.01886074357291925,
+            "signed_catch_error": -0.002349413336885046
+          },
+          "v5_original_envelope": {
+            "n": 2887,
+            "observed_operating": 2884,
+            "known_catch": 2887,
+            "coverage": 0.9927184466019418,
+            "covered": 2863,
+            "width_seconds": 396.02196607399935,
+            "interval_score": 406.2757412602075,
+            "mae_seconds": 45.10675030254139,
+            "brier": 0.0509630072282061,
+            "signed_catch_error": 0.0030898901871542483
+          },
+          "all_present_groups_meet_90": true
+        },
+        "student": {
+          "raw": {
+            "n": 2887,
+            "observed_operating": 2884,
+            "known_catch": 2887,
+            "coverage": 0.9660194174757282,
+            "covered": 2786,
+            "width_seconds": 238.34886985304277,
+            "interval_score": 276.518983655409,
+            "mae_seconds": 46.94116054881296,
+            "brier": 0.05819468069868511,
+            "signed_catch_error": 0.014688355240693405
+          },
+          "group_envelope": {
+            "n": 2887,
+            "observed_operating": 2884,
+            "known_catch": 2887,
+            "coverage": 0.9934119278779473,
+            "covered": 2865,
+            "width_seconds": 398.4068412112937,
+            "interval_score": 410.07739391268296,
+            "mae_seconds": 46.94116054881296,
+            "brier": 0.05819468069868511,
+            "signed_catch_error": 0.014688355240693405
+          },
+          "observable_groups": {
+            "ordinary": {
+              "n": 2836,
+              "observed_operating": 2833,
+              "known_catch": 2836,
+              "coverage": 0.9932933286268972,
+              "covered": 2814,
+              "width_seconds": 396.33920866758206,
+              "interval_score": 408.21985603461576,
+              "mae_seconds": 46.23247889745027,
+              "brier": 0.05706804032398085,
+              "signed_catch_error": 0.011710900345027465
+            },
+            "late": {
+              "n": 51,
+              "observed_operating": 51,
+              "known_catch": 51,
+              "coverage": 1.0,
+              "covered": 51,
+              "width_seconds": 513.2618019237442,
+              "interval_score": 513.2618019237442,
+              "mae_seconds": 86.30773149607714,
+              "brier": 0.12084472192733743,
+              "signed_catch_error": 0.1802582000271366
+            }
+          },
+          "selected": {
+            "n": 472,
+            "observed_operating": 472,
+            "known_catch": 472,
+            "coverage": 0.9936440677966102,
+            "covered": 469,
+            "width_seconds": 399.0777808269596,
+            "interval_score": 412.6705757738771,
+            "mae_seconds": 49.65234912257804,
+            "brier": 0.021354008780819608,
+            "signed_catch_error": -0.005951557473282236
+          },
+          "all_present_groups_meet_90": true
+        }
+      },
+      "actual_current": {
+        "evolving_incoming": {
+          "raw": {
+            "n": 2642,
+            "observed_operating": 2640,
+            "known_catch": 2642,
+            "coverage": 0.9810606060606061,
+            "covered": 2590,
+            "width_seconds": 359.8636363636364,
+            "interval_score": 381.8484848484849,
+            "mae_seconds": 49.97928654609231,
+            "brier": 0.07101368553504836,
+            "signed_catch_error": 0.0124251540580763
+          },
+          "group_envelope": {
+            "n": 2642,
+            "observed_operating": 2640,
+            "known_catch": 2642,
+            "coverage": 0.9962121212121212,
+            "covered": 2630,
+            "width_seconds": 633.3599999999996,
+            "interval_score": 643.8615151515146,
+            "mae_seconds": 49.97928654609231,
+            "brier": 0.07101368553504836,
+            "signed_catch_error": 0.0124251540580763
+          },
+          "observable_groups": {
+            "ordinary": {
+              "n": 2595,
+              "observed_operating": 2593,
+              "known_catch": 2595,
+              "coverage": 0.9961434631700733,
+              "covered": 2583,
+              "width_seconds": 634.170150404936,
+              "interval_score": 644.8620131122246,
+              "mae_seconds": 49.95872234290138,
+              "brier": 0.07100033585251037,
+              "signed_catch_error": 0.011092550396409422
+            },
+            "late": {
+              "n": 47,
+              "observed_operating": 47,
+              "known_catch": 47,
+              "coverage": 1.0,
+              "covered": 47,
+              "width_seconds": 588.6638297872342,
+              "interval_score": 588.6638297872342,
+              "mae_seconds": 51.11381801149826,
+              "brier": 0.07175075843262411,
+              "signed_catch_error": 0.08600188814372617
+            }
+          },
+          "selected": {
+            "n": 472,
+            "observed_operating": 472,
+            "known_catch": 472,
+            "coverage": 0.9957627118644068,
+            "covered": 470,
+            "width_seconds": 566.7050847457622,
+            "interval_score": 576.7305084745758,
+            "mae_seconds": 46.79414626068945,
+            "brier": 0.02068123020455294,
+            "signed_catch_error": -0.004719809789247072
+          },
+          "v5_original_envelope": {
+            "n": 2642,
+            "observed_operating": 2640,
+            "known_catch": 2642,
+            "coverage": 0.9962121212121212,
+            "covered": 2630,
+            "width_seconds": 495.8636363636364,
+            "interval_score": 506.5681818181818,
+            "mae_seconds": 49.97928654609231,
+            "brier": 0.07101368553504836,
+            "signed_catch_error": 0.0124251540580763
+          },
+          "all_present_groups_meet_90": true
+        },
+        "shrunk_relative": {
+          "raw": {
+            "n": 2642,
+            "observed_operating": 2640,
+            "known_catch": 2642,
+            "coverage": 0.9598484848484848,
+            "covered": 2534,
+            "width_seconds": 253.7435452724075,
+            "interval_score": 286.16517557374823,
+            "mae_seconds": 45.34602506505233,
+            "brier": 0.05447937525178693,
+            "signed_catch_error": 0.0005151586325821595
+          },
+          "group_envelope": {
+            "n": 2642,
+            "observed_operating": 2640,
+            "known_catch": 2642,
+            "coverage": 0.9958333333333333,
+            "covered": 2629,
+            "width_seconds": 509.8834932148271,
+            "interval_score": 513.6053316348167,
+            "mae_seconds": 45.34602506505233,
+            "brier": 0.05447937525178693,
+            "signed_catch_error": 0.0005151586325821595
+          },
+          "observable_groups": {
+            "ordinary": {
+              "n": 2595,
+              "observed_operating": 2593,
+              "known_catch": 2595,
+              "coverage": 0.9957578094870806,
+              "covered": 2582,
+              "width_seconds": 510.71486270327296,
+              "interval_score": 514.5041621358887,
+              "mae_seconds": 44.84418882069742,
+              "brier": 0.053844750832679276,
+              "signed_catch_error": -0.001918299833936459
+            },
+            "late": {
+              "n": 47,
+              "observed_operating": 47,
+              "known_catch": 47,
+              "coverage": 1.0,
+              "covered": 47,
+              "width_seconds": 464.01666165015007,
+              "interval_score": 464.01666165015007,
+              "mae_seconds": 73.03243743978221,
+              "brier": 0.08951874477485812,
+              "signed_catch_error": 0.13487313141164206
+            }
+          },
+          "selected": {
+            "n": 472,
+            "observed_operating": 472,
+            "known_catch": 472,
+            "coverage": 0.9957627118644068,
+            "covered": 470,
+            "width_seconds": 464.47372557271865,
+            "interval_score": 465.27284197395363,
+            "mae_seconds": 43.27550667280303,
+            "brier": 0.016190624374685995,
+            "signed_catch_error": -0.0058979180534134215
+          },
+          "v5_original_envelope": {
+            "n": 2642,
+            "observed_operating": 2640,
+            "known_catch": 2642,
+            "coverage": 0.9920454545454546,
+            "covered": 2619,
+            "width_seconds": 388.98940318831404,
+            "interval_score": 399.09158795943506,
+            "mae_seconds": 45.34602506505233,
+            "brier": 0.05447937525178693,
+            "signed_catch_error": 0.0005151586325821595
+          },
+          "all_present_groups_meet_90": true
+        },
+        "student": {
+          "raw": {
+            "n": 2642,
+            "observed_operating": 2640,
+            "known_catch": 2642,
+            "coverage": 0.9655303030303031,
+            "covered": 2549,
+            "width_seconds": 238.33914459487795,
+            "interval_score": 275.1112508000636,
+            "mae_seconds": 47.14891916669696,
+            "brier": 0.06247752469896782,
+            "signed_catch_error": 0.014989382795832075
+          },
+          "group_envelope": {
+            "n": 2642,
+            "observed_operating": 2640,
+            "known_catch": 2642,
+            "coverage": 0.9928030303030303,
+            "covered": 2621,
+            "width_seconds": 387.21937643858627,
+            "interval_score": 398.70132132474805,
+            "mae_seconds": 47.14891916669696,
+            "brier": 0.06247752469896782,
+            "signed_catch_error": 0.014989382795832075
+          },
+          "observable_groups": {
+            "ordinary": {
+              "n": 2595,
+              "observed_operating": 2593,
+              "known_catch": 2595,
+              "coverage": 0.9926725800231392,
+              "covered": 2574,
+              "width_seconds": 385.20088199865415,
+              "interval_score": 396.89094543847955,
+              "mae_seconds": 46.175938554571644,
+              "brier": 0.061239662972472006,
+              "signed_catch_error": 0.01201663792723818
+            },
+            "late": {
+              "n": 47,
+              "observed_operating": 47,
+              "known_catch": 47,
+              "coverage": 1.0,
+              "covered": 47,
+              "width_seconds": 498.5801441565421,
+              "interval_score": 498.5801441565421,
+              "mae_seconds": 100.82846655480193,
+              "brier": 0.13082329449166208,
+              "signed_catch_error": 0.17912284947670762
+            }
+          },
+          "selected": {
+            "n": 472,
+            "observed_operating": 472,
+            "known_catch": 472,
+            "coverage": 0.9915254237288136,
+            "covered": 468,
+            "width_seconds": 387.96872369601095,
+            "interval_score": 401.1892561170197,
+            "mae_seconds": 48.052846005353345,
+            "brier": 0.018083056497433976,
+            "signed_catch_error": -0.00938084263001795
+          },
+          "all_present_groups_meet_90": true
+        }
+      }
+    },
+    "2023-10-23": {
+      "fixed_schedule": {
+        "evolving_incoming": {
+          "raw": {
+            "n": 2900,
+            "observed_operating": 2900,
+            "known_catch": 2900,
+            "coverage": 0.9537931034482758,
+            "covered": 2766,
+            "width_seconds": 359.64827586206894,
+            "interval_score": 403.5103448275862,
+            "mae_seconds": 54.25317202365807,
+            "brier": 0.06436042148461162,
+            "signed_catch_error": -0.007968302172940075
+          },
+          "group_envelope": {
+            "n": 2900,
+            "observed_operating": 2900,
+            "known_catch": 2900,
+            "coverage": 0.9937931034482759,
+            "covered": 2882,
+            "width_seconds": 662.3522413793104,
+            "interval_score": 668.7660344827586,
+            "mae_seconds": 54.25317202365807,
+            "brier": 0.06436042148461162,
+            "signed_catch_error": -0.007968302172940075
+          },
+          "observable_groups": {
+            "ordinary": {
+              "n": 2750,
+              "observed_operating": 2750,
+              "known_catch": 2750,
+              "coverage": 0.9941818181818182,
+              "covered": 2734,
+              "width_seconds": 663.7232727272727,
+              "interval_score": 669.9378181818182,
+              "mae_seconds": 54.3082549516945,
+              "brier": 0.06468620430991033,
+              "signed_catch_error": -0.008005319318340061
+            },
+            "late": {
+              "n": 150,
+              "observed_operating": 150,
+              "known_catch": 150,
+              "coverage": 0.9866666666666667,
+              "covered": 148,
+              "width_seconds": 637.2166666666667,
+              "interval_score": 647.2833333333333,
+              "mae_seconds": 53.24331834299012,
+              "brier": 0.058387736354135335,
+              "signed_catch_error": -0.007289654507273674
+            }
+          },
+          "selected": {
+            "n": 473,
+            "observed_operating": 473,
+            "known_catch": 473,
+            "coverage": 0.9809725158562368,
+            "covered": 464,
+            "width_seconds": 610.6701902748414,
+            "interval_score": 634.5919661733615,
+            "mae_seconds": 55.497840661027034,
+            "brier": 0.021504459557606836,
+            "signed_catch_error": -0.017183016951040207
+          },
+          "v5_original_envelope": {
+            "n": 2900,
+            "observed_operating": 2900,
+            "known_catch": 2900,
+            "coverage": 0.9927586206896551,
+            "covered": 2879,
+            "width_seconds": 495.64827586206894,
+            "interval_score": 501.6758620689655,
+            "mae_seconds": 54.25317202365807,
+            "brier": 0.06436042148461162,
+            "signed_catch_error": -0.007968302172940075
+          },
+          "all_present_groups_meet_90": true
+        },
+        "shrunk_relative": {
+          "raw": {
+            "n": 2900,
+            "observed_operating": 2900,
+            "known_catch": 2900,
+            "coverage": 0.9431034482758621,
+            "covered": 2735,
+            "width_seconds": 255.26334836147532,
+            "interval_score": 314.1653261131768,
+            "mae_seconds": 50.25812801338247,
+            "brier": 0.051998397299666654,
+            "signed_catch_error": -0.017997925732075874
+          },
+          "group_envelope": {
+            "n": 2900,
+            "observed_operating": 2900,
+            "known_catch": 2900,
+            "coverage": 0.9937931034482759,
+            "covered": 2882,
+            "width_seconds": 550.369714818968,
+            "interval_score": 558.032284933809,
+            "mae_seconds": 50.25812801338247,
+            "brier": 0.051998397299666654,
+            "signed_catch_error": -0.017997925732075874
+          },
+          "observable_groups": {
+            "ordinary": {
+              "n": 2750,
+              "observed_operating": 2750,
+              "known_catch": 2750,
+              "coverage": 0.9934545454545455,
+              "covered": 2732,
+              "width_seconds": 551.4977525024076,
+              "interval_score": 559.5782809871491,
+              "mae_seconds": 49.81396304163673,
+              "brier": 0.052557805787864946,
+              "signed_catch_error": -0.02091165348767429
+            },
+            "late": {
+              "n": 150,
+              "observed_operating": 150,
+              "known_catch": 150,
+              "coverage": 1.0,
+              "covered": 150,
+              "width_seconds": 529.6890239559086,
+              "interval_score": 529.6890239559086,
+              "mae_seconds": 58.401152495387215,
+              "brier": 0.04174257501603125,
+              "signed_catch_error": 0.035420416453895195
+            }
+          },
+          "selected": {
+            "n": 473,
+            "observed_operating": 473,
+            "known_catch": 473,
+            "coverage": 0.9957716701902748,
+            "covered": 471,
+            "width_seconds": 503.67355896334595,
+            "interval_score": 509.0600569098049,
+            "mae_seconds": 51.638797562939835,
+            "brier": 0.015267847715482778,
+            "signed_catch_error": -0.00793396561932909
+          },
+          "v5_original_envelope": {
+            "n": 2900,
+            "observed_operating": 2900,
+            "known_catch": 2900,
+            "coverage": 0.9855172413793103,
+            "covered": 2858,
+            "width_seconds": 395.921122484431,
+            "interval_score": 415.3888628773658,
+            "mae_seconds": 50.25812801338247,
+            "brier": 0.051998397299666654,
+            "signed_catch_error": -0.017997925732075874
+          },
+          "all_present_groups_meet_90": true
+        },
+        "student": {
+          "raw": {
+            "n": 2900,
+            "observed_operating": 2900,
+            "known_catch": 2900,
+            "coverage": 0.9372413793103448,
+            "covered": 2718,
+            "width_seconds": 241.14143418702048,
+            "interval_score": 317.12677461335454,
+            "mae_seconds": 52.99797930450269,
+            "brier": 0.05517387584478752,
+            "signed_catch_error": -0.004357653395351594
+          },
+          "group_envelope": {
+            "n": 2900,
+            "observed_operating": 2900,
+            "known_catch": 2900,
+            "coverage": 0.983448275862069,
+            "covered": 2852,
+            "width_seconds": 403.0746910562095,
+            "interval_score": 426.4799227115459,
+            "mae_seconds": 52.99797930450269,
+            "brier": 0.05517387584478752,
+            "signed_catch_error": -0.004357653395351594
+          },
+          "observable_groups": {
+            "ordinary": {
+              "n": 2750,
+              "observed_operating": 2750,
+              "known_catch": 2750,
+              "coverage": 0.9825454545454545,
+              "covered": 2702,
+              "width_seconds": 397.79111062552585,
+              "interval_score": 422.4729912802442,
+              "mae_seconds": 51.7214725699686,
+              "brier": 0.0541550805806474,
+              "signed_catch_error": -0.009280118590304077
+            },
+            "late": {
+              "n": 150,
+              "observed_operating": 150,
+              "known_catch": 150,
+              "coverage": 1.0,
+              "covered": 150,
+              "width_seconds": 499.9403322854093,
+              "interval_score": 499.9403322854093,
+              "mae_seconds": 76.40060277096107,
+              "brier": 0.07385178902068981,
+              "signed_catch_error": 0.08588754184544393
+            }
+          },
+          "selected": {
+            "n": 473,
+            "observed_operating": 473,
+            "known_catch": 473,
+            "coverage": 0.9788583509513742,
+            "covered": 463,
+            "width_seconds": 403.147993384596,
+            "interval_score": 438.9647299711718,
+            "mae_seconds": 56.77586453007058,
+            "brier": 0.018271241759524163,
+            "signed_catch_error": -0.009542257675728402
+          },
+          "all_present_groups_meet_90": true
+        }
+      },
+      "actual_current": {
+        "evolving_incoming": {
+          "raw": {
+            "n": 2677,
+            "observed_operating": 2677,
+            "known_catch": 2677,
+            "coverage": 0.9533059394844976,
+            "covered": 2552,
+            "width_seconds": 361.4120283899888,
+            "interval_score": 409.08479641389613,
+            "mae_seconds": 54.66828838541299,
+            "brier": 0.06960988886826407,
+            "signed_catch_error": -0.012078198265673341
+          },
+          "group_envelope": {
+            "n": 2677,
+            "observed_operating": 2677,
+            "known_catch": 2677,
+            "coverage": 0.9887934254762795,
+            "covered": 2647,
+            "width_seconds": 636.0851699663798,
+            "interval_score": 644.760552857676,
+            "mae_seconds": 54.66828838541299,
+            "brier": 0.06960988886826407,
+            "signed_catch_error": -0.012078198265673341
+          },
+          "observable_groups": {
+            "ordinary": {
+              "n": 2540,
+              "observed_operating": 2540,
+              "known_catch": 2540,
+              "coverage": 0.9893700787401575,
+              "covered": 2513,
+              "width_seconds": 637.7159055118107,
+              "interval_score": 645.8891338582672,
+              "mae_seconds": 54.59432866092746,
+              "brier": 0.069162596792353,
+              "signed_catch_error": -0.012103771541771792
+            },
+            "late": {
+              "n": 137,
+              "observed_operating": 137,
+              "known_catch": 137,
+              "coverage": 0.9781021897810219,
+              "covered": 134,
+              "width_seconds": 605.8510948905104,
+              "interval_score": 623.8364963503644,
+              "mae_seconds": 56.03951247441468,
+              "brier": 0.0779027492537686,
+              "signed_catch_error": -0.011604065993483076
+            }
+          },
+          "selected": {
+            "n": 473,
+            "observed_operating": 473,
+            "known_catch": 473,
+            "coverage": 0.9746300211416491,
+            "covered": 461,
+            "width_seconds": 563.0511627906972,
+            "interval_score": 595.194926004228,
+            "mae_seconds": 56.57405944485717,
+            "brier": 0.022149803329238823,
+            "signed_catch_error": -0.008861394019365242
+          },
+          "v5_original_envelope": {
+            "n": 2677,
+            "observed_operating": 2677,
+            "known_catch": 2677,
+            "coverage": 0.9921553978333956,
+            "covered": 2656,
+            "width_seconds": 497.4120283899888,
+            "interval_score": 505.89166977960406,
+            "mae_seconds": 54.66828838541299,
+            "brier": 0.06960988886826407,
+            "signed_catch_error": -0.012078198265673341
+          },
+          "all_present_groups_meet_90": true
+        },
+        "shrunk_relative": {
+          "raw": {
+            "n": 2677,
+            "observed_operating": 2677,
+            "known_catch": 2677,
+            "coverage": 0.9413522599925289,
+            "covered": 2520,
+            "width_seconds": 255.327432633375,
+            "interval_score": 319.5864396347848,
+            "mae_seconds": 51.361182795064046,
+            "brier": 0.05698402796178262,
+            "signed_catch_error": -0.02118905341648944
+          },
+          "group_envelope": {
+            "n": 2677,
+            "observed_operating": 2677,
+            "known_catch": 2677,
+            "coverage": 0.9917818453492716,
+            "covered": 2655,
+            "width_seconds": 513.0662264725416,
+            "interval_score": 525.8012352247829,
+            "mae_seconds": 51.361182795064046,
+            "brier": 0.05698402796178262,
+            "signed_catch_error": -0.02118905341648944
+          },
+          "observable_groups": {
+            "ordinary": {
+              "n": 2540,
+              "observed_operating": 2540,
+              "known_catch": 2540,
+              "coverage": 0.9921259842519685,
+              "covered": 2520,
+              "width_seconds": 514.8905765804818,
+              "interval_score": 526.2532197674966,
+              "mae_seconds": 50.66749462765457,
+              "brier": 0.056462894786451126,
+              "signed_catch_error": -0.024947086035387023
+            },
+            "late": {
+              "n": 137,
+              "observed_operating": 137,
+              "known_catch": 137,
+              "coverage": 0.9854014598540146,
+              "covered": 135,
+              "width_seconds": 479.2425091428477,
+              "interval_score": 517.4213758197275,
+              "mae_seconds": 64.22226268718133,
+              "brier": 0.0666459131102643,
+              "signed_catch_error": 0.048485419955772324
+            }
+          },
+          "selected": {
+            "n": 473,
+            "observed_operating": 473,
+            "known_catch": 473,
+            "coverage": 0.9873150105708245,
+            "covered": 467,
+            "width_seconds": 467.9115808571505,
+            "interval_score": 495.8122931993277,
+            "mae_seconds": 53.790274379289826,
+            "brier": 0.018948161686649628,
+            "signed_catch_error": -0.005267845503458373
+          },
+          "v5_original_envelope": {
+            "n": 2677,
+            "observed_operating": 2677,
+            "known_catch": 2677,
+            "coverage": 0.9843107956667911,
+            "covered": 2635,
+            "width_seconds": 390.57329054928135,
+            "interval_score": 414.1343100160036,
+            "mae_seconds": 51.361182795064046,
+            "brier": 0.05698402796178262,
+            "signed_catch_error": -0.02118905341648944
+          },
+          "all_present_groups_meet_90": true
+        },
+        "student": {
+          "raw": {
+            "n": 2677,
+            "observed_operating": 2677,
+            "known_catch": 2677,
+            "coverage": 0.9346283152782966,
+            "covered": 2502,
+            "width_seconds": 241.4043526907861,
+            "interval_score": 320.77873453970574,
+            "mae_seconds": 53.7569255956125,
+            "brier": 0.06041076045804241,
+            "signed_catch_error": -0.005027404020866391
+          },
+          "group_envelope": {
+            "n": 2677,
+            "observed_operating": 2677,
+            "known_catch": 2677,
+            "coverage": 0.9816959282779231,
+            "covered": 2628,
+            "width_seconds": 392.1992884441004,
+            "interval_score": 419.4065119012879,
+            "mae_seconds": 53.7569255956125,
+            "brier": 0.06041076045804241,
+            "signed_catch_error": -0.005027404020866391
+          },
+          "observable_groups": {
+            "ordinary": {
+              "n": 2540,
+              "observed_operating": 2540,
+              "known_catch": 2540,
+              "coverage": 0.981496062992126,
+              "covered": 2493,
+              "width_seconds": 386.819117569609,
+              "interval_score": 414.2098347792666,
+              "mae_seconds": 52.28031854774607,
+              "brier": 0.05825113212570501,
+              "signed_catch_error": -0.0103934814946625
+            },
+            "late": {
+              "n": 137,
+              "observed_operating": 137,
+              "known_catch": 137,
+              "coverage": 0.9854014598540146,
+              "covered": 135,
+              "width_seconds": 491.9484418835771,
+              "interval_score": 515.7536643825574,
+              "mae_seconds": 81.13343582612866,
+              "brier": 0.10045058501378672,
+              "signed_catch_error": 0.0944604557122877
+            }
+          },
+          "selected": {
+            "n": 473,
+            "observed_operating": 473,
+            "known_catch": 473,
+            "coverage": 0.9788583509513742,
+            "covered": 463,
+            "width_seconds": 392.66600946027074,
+            "interval_score": 442.78618037551917,
+            "mae_seconds": 58.901688802351806,
+            "brier": 0.02041455741020807,
+            "signed_catch_error": -0.00810338208101168
+          },
+          "all_present_groups_meet_90": true
+        }
+      }
+    },
+    "2023-10-24": {
+      "fixed_schedule": {
+        "evolving_incoming": {
+          "raw": {
+            "n": 2879,
+            "observed_operating": 2846,
+            "known_catch": 2868,
+            "coverage": 0.8569922698524245,
+            "covered": 2439,
+            "width_seconds": 359.7259311314125,
+            "interval_score": 685.0597329585383,
+            "mae_seconds": 81.97084375351764,
+            "brier": 0.09581960167186336,
+            "signed_catch_error": -0.06409805439185157
+          },
+          "group_envelope": {
+            "n": 2879,
+            "observed_operating": 2846,
+            "known_catch": 2868,
+            "coverage": 0.9624033731553057,
+            "covered": 2739,
+            "width_seconds": 662.4952565003514,
+            "interval_score": 796.8294096978215,
+            "mae_seconds": 81.97084375351764,
+            "brier": 0.09581960167186336,
+            "signed_catch_error": -0.06409805439185157
+          },
+          "observable_groups": {
+            "ordinary": {
+              "n": 2158,
+              "observed_operating": 2134,
+              "known_catch": 2151,
+              "coverage": 0.9676663542642924,
+              "covered": 2065,
+              "width_seconds": 665.4336925960637,
+              "interval_score": 779.883083411434,
+              "mae_seconds": 76.68964448144185,
+              "brier": 0.08901160071413475,
+              "signed_catch_error": -0.052901819901419164
+            },
+            "late": {
+              "n": 721,
+              "observed_operating": 712,
+              "known_catch": 717,
+              "coverage": 0.9466292134831461,
+              "covered": 674,
+              "width_seconds": 653.688202247191,
+              "interval_score": 847.620786516854,
+              "mae_seconds": 97.79960674032904,
+              "brier": 0.1162436045450492,
+              "signed_catch_error": -0.0976867578631488
+            }
+          },
+          "selected": {
+            "n": 467,
+            "observed_operating": 460,
+            "known_catch": 467,
+            "coverage": 0.9586956521739131,
+            "covered": 441,
+            "width_seconds": 631.5315217391304,
+            "interval_score": 711.9336956521739,
+            "mae_seconds": 79.05151326248553,
+            "brier": 0.04734492663896903,
+            "signed_catch_error": -0.02387684289020469
+          },
+          "v5_original_envelope": {
+            "n": 2879,
+            "observed_operating": 2846,
+            "known_catch": 2868,
+            "coverage": 0.9406184118060436,
+            "covered": 2677,
+            "width_seconds": 495.7259311314125,
+            "interval_score": 689.1904427266338,
+            "mae_seconds": 81.97084375351764,
+            "brier": 0.09581960167186336,
+            "signed_catch_error": -0.06409805439185157
+          },
+          "all_present_groups_meet_90": true
+        },
+        "shrunk_relative": {
+          "raw": {
+            "n": 2879,
+            "observed_operating": 2846,
+            "known_catch": 2868,
+            "coverage": 0.8359100491918482,
+            "covered": 2379,
+            "width_seconds": 255.2150277393028,
+            "interval_score": 589.1485566064891,
+            "mae_seconds": 79.36515565624308,
+            "brier": 0.09363732090483537,
+            "signed_catch_error": -0.061397733921135206
+          },
+          "group_envelope": {
+            "n": 2879,
+            "observed_operating": 2846,
+            "known_catch": 2868,
+            "coverage": 0.9743499648629655,
+            "covered": 2773,
+            "width_seconds": 550.2655314051889,
+            "interval_score": 696.8270195078554,
+            "mae_seconds": 79.36515565624308,
+            "brier": 0.09363732090483537,
+            "signed_catch_error": -0.061397733921135206
+          },
+          "observable_groups": {
+            "ordinary": {
+              "n": 2158,
+              "observed_operating": 2134,
+              "known_catch": 2151,
+              "coverage": 0.9784442361761949,
+              "covered": 2088,
+              "width_seconds": 550.636627942613,
+              "interval_score": 671.9560700429207,
+              "mae_seconds": 74.71961747139531,
+              "brier": 0.08963638138406178,
+              "signed_catch_error": -0.06084193240906333
+            },
+            "late": {
+              "n": 721,
+              "observed_operating": 712,
+              "known_catch": 717,
+              "coverage": 0.9620786516853933,
+              "covered": 685,
+              "width_seconds": 549.1532841989202,
+              "interval_score": 771.3700056850611,
+              "mae_seconds": 93.28872094622218,
+              "brier": 0.10564013946715618,
+              "signed_catch_error": -0.06306513845735082
+            }
+          },
+          "selected": {
+            "n": 467,
+            "observed_operating": 462,
+            "known_catch": 467,
+            "coverage": 0.987012987012987,
+            "covered": 456,
+            "width_seconds": 514.3837848458164,
+            "interval_score": 520.5081501625742,
+            "mae_seconds": 72.21409574693666,
+            "brier": 0.02885922888434917,
+            "signed_catch_error": -0.006206608263276066
+          },
+          "v5_original_envelope": {
+            "n": 2879,
+            "observed_operating": 2846,
+            "known_catch": 2868,
+            "coverage": 0.9427266338721012,
+            "covered": 2683,
+            "width_seconds": 395.8728018622585,
+            "interval_score": 588.8376269064296,
+            "mae_seconds": 79.36515565624308,
+            "brier": 0.09363732090483537,
+            "signed_catch_error": -0.061397733921135206
+          },
+          "all_present_groups_meet_90": true
+        },
+        "student": {
+          "raw": {
+            "n": 2879,
+            "observed_operating": 2846,
+            "known_catch": 2868,
+            "coverage": 0.8524244553759662,
+            "covered": 2426,
+            "width_seconds": 258.80760258906656,
+            "interval_score": 607.7942734654831,
+            "mae_seconds": 82.43479101184268,
+            "brier": 0.09168312422343744,
+            "signed_catch_error": -0.03626292258498588
+          },
+          "group_envelope": {
+            "n": 2879,
+            "observed_operating": 2846,
+            "known_catch": 2868,
+            "coverage": 0.9476458186929023,
+            "covered": 2697,
+            "width_seconds": 432.60418852647433,
+            "interval_score": 632.5980163136687,
+            "mae_seconds": 82.43479101184268,
+            "brier": 0.09168312422343744,
+            "signed_catch_error": -0.03626292258498588
+          },
+          "observable_groups": {
+            "ordinary": {
+              "n": 2158,
+              "observed_operating": 2134,
+              "known_catch": 2151,
+              "coverage": 0.9414245548266167,
+              "covered": 2009,
+              "width_seconds": 402.83788358671205,
+              "interval_score": 597.128760968255,
+              "mae_seconds": 76.07346420818779,
+              "brier": 0.0877566467720265,
+              "signed_catch_error": -0.04403417012271196
+            },
+            "late": {
+              "n": 721,
+              "observed_operating": 712,
+              "known_catch": 717,
+              "coverage": 0.9662921348314607,
+              "covered": 688,
+              "width_seconds": 521.8194901296388,
+              "interval_score": 738.9061496101752,
+              "mae_seconds": 101.50090252729149,
+              "brier": 0.10346255657767026,
+              "signed_catch_error": -0.012949179971807633
+            }
+          },
+          "selected": {
+            "n": 467,
+            "observed_operating": 460,
+            "known_catch": 467,
+            "coverage": 0.95,
+            "covered": 437,
+            "width_seconds": 430.7997605522806,
+            "interval_score": 490.09540457613946,
+            "mae_seconds": 73.91051925202834,
+            "brier": 0.0361511918873663,
+            "signed_catch_error": 0.002572169219745385
+          },
+          "all_present_groups_meet_90": true
+        }
+      },
+      "actual_current": {
+        "evolving_incoming": {
+          "raw": {
+            "n": 2663,
+            "observed_operating": 2633,
+            "known_catch": 2654,
+            "coverage": 0.8556779339156856,
+            "covered": 2253,
+            "width_seconds": 361.75465248765664,
+            "interval_score": 689.3581466008355,
+            "mae_seconds": 82.46646302706141,
+            "brier": 0.10161274643054344,
+            "signed_catch_error": -0.06379777106961824
+          },
+          "group_envelope": {
+            "n": 2663,
+            "observed_operating": 2633,
+            "known_catch": 2654,
+            "coverage": 0.9567033801747057,
+            "covered": 2519,
+            "width_seconds": 636.6881883782752,
+            "interval_score": 778.3759969616403,
+            "mae_seconds": 82.46646302706141,
+            "brier": 0.10161274643054344,
+            "signed_catch_error": -0.06379777106961824
+          },
+          "observable_groups": {
+            "ordinary": {
+              "n": 1982,
+              "observed_operating": 1960,
+              "known_catch": 1977,
+              "coverage": 0.9653061224489796,
+              "covered": 1892,
+              "width_seconds": 638.7183673469383,
+              "interval_score": 743.3367346938774,
+              "mae_seconds": 75.48198732853761,
+              "brier": 0.091405768540953,
+              "signed_catch_error": -0.05342677963099146
+            },
+            "late": {
+              "n": 681,
+              "observed_operating": 673,
+              "known_catch": 677,
+              "coverage": 0.9316493313521546,
+              "covered": 627,
+              "width_seconds": 630.7756315007424,
+              "interval_score": 880.4219910846953,
+              "mae_seconds": 102.80758096035512,
+              "brier": 0.13141953415243457,
+              "signed_catch_error": -0.09408351711712953
+            }
+          },
+          "selected": {
+            "n": 463,
+            "observed_operating": 457,
+            "known_catch": 463,
+            "coverage": 0.936542669584245,
+            "covered": 428,
+            "width_seconds": 553.8800875273517,
+            "interval_score": 666.7203501094086,
+            "mae_seconds": 82.01183408558853,
+            "brier": 0.03424415405576569,
+            "signed_catch_error": 0.011712209794033214
+          },
+          "v5_original_envelope": {
+            "n": 2663,
+            "observed_operating": 2633,
+            "known_catch": 2654,
+            "coverage": 0.9377136346372958,
+            "covered": 2469,
+            "width_seconds": 497.75465248765664,
+            "interval_score": 691.2905431067223,
+            "mae_seconds": 82.46646302706141,
+            "brier": 0.10161274643054344,
+            "signed_catch_error": -0.06379777106961824
+          },
+          "all_present_groups_meet_90": true
+        },
+        "shrunk_relative": {
+          "raw": {
+            "n": 2663,
+            "observed_operating": 2633,
+            "known_catch": 2654,
+            "coverage": 0.831371059627801,
+            "covered": 2189,
+            "width_seconds": 254.75486005586978,
+            "interval_score": 588.1587857964639,
+            "mae_seconds": 80.00893297363643,
+            "brier": 0.09921579420733456,
+            "signed_catch_error": -0.055080903643632724
+          },
+          "group_envelope": {
+            "n": 2663,
+            "observed_operating": 2633,
+            "known_catch": 2654,
+            "coverage": 0.9624003038359286,
+            "covered": 2534,
+            "width_seconds": 511.9156738323793,
+            "interval_score": 666.755956262202,
+            "mae_seconds": 80.00893297363643,
+            "brier": 0.09921579420733456,
+            "signed_catch_error": -0.055080903643632724
+          },
+          "observable_groups": {
+            "ordinary": {
+              "n": 1982,
+              "observed_operating": 1960,
+              "known_catch": 1977,
+              "coverage": 0.9668367346938775,
+              "covered": 1895,
+              "width_seconds": 512.119529230666,
+              "interval_score": 625.2097361529828,
+              "mae_seconds": 73.78861128416493,
+              "brier": 0.09222086467420036,
+              "signed_catch_error": -0.06085695936003991
+            },
+            "late": {
+              "n": 681,
+              "observed_operating": 673,
+              "known_catch": 677,
+              "coverage": 0.9494799405646359,
+              "covered": 639,
+              "width_seconds": 511.32197906173724,
+              "interval_score": 787.752377382662,
+              "mae_seconds": 98.12458009304821,
+              "brier": 0.11964264160320805,
+              "signed_catch_error": -0.03821345585731514
+            }
+          },
+          "selected": {
+            "n": 463,
+            "observed_operating": 457,
+            "known_catch": 463,
+            "coverage": 0.9584245076586433,
+            "covered": 438,
+            "width_seconds": 469.68613744692897,
+            "interval_score": 592.0367704427847,
+            "mae_seconds": 77.95975453490732,
+            "brier": 0.0294879200121104,
+            "signed_catch_error": 0.015314199580323975
+          },
+          "v5_original_envelope": {
+            "n": 2663,
+            "observed_operating": 2633,
+            "known_catch": 2654,
+            "coverage": 0.9384732244587922,
+            "covered": 2471,
+            "width_seconds": 390.00071797177634,
+            "interval_score": 586.225327816302,
+            "mae_seconds": 80.00893297363643,
+            "brier": 0.09921579420733456,
+            "signed_catch_error": -0.055080903643632724
+          },
+          "all_present_groups_meet_90": true
+        },
+        "student": {
+          "raw": {
+            "n": 2663,
+            "observed_operating": 2633,
+            "known_catch": 2654,
+            "coverage": 0.8560577288264337,
+            "covered": 2254,
+            "width_seconds": 259.20488335784205,
+            "interval_score": 605.7153790186683,
+            "mae_seconds": 82.44524607149081,
+            "brier": 0.09763058126817156,
+            "signed_catch_error": -0.028353520693866804
+          },
+          "group_envelope": {
+            "n": 2663,
+            "observed_operating": 2633,
+            "known_catch": 2654,
+            "coverage": 0.9430307633877706,
+            "covered": 2483,
+            "width_seconds": 421.1190464506564,
+            "interval_score": 624.4081836906962,
+            "mae_seconds": 82.44524607149081,
+            "brier": 0.09763058126817156,
+            "signed_catch_error": -0.028353520693866804
+          },
+          "observable_groups": {
+            "ordinary": {
+              "n": 1982,
+              "observed_operating": 1960,
+              "known_catch": 1977,
+              "coverage": 0.9377551020408164,
+              "covered": 1838,
+              "width_seconds": 391.82882916888065,
+              "interval_score": 572.5987925858592,
+              "mae_seconds": 75.02861786710062,
+              "brier": 0.09002116091668232,
+              "signed_catch_error": -0.04042427039850832
+            },
+            "late": {
+              "n": 681,
+              "observed_operating": 673,
+              "known_catch": 677,
+              "coverage": 0.9583952451708767,
+              "covered": 645,
+              "width_seconds": 506.421908073659,
+              "interval_score": 775.2943747240998,
+              "mae_seconds": 104.04493593865988,
+              "brier": 0.119851887080423,
+              "signed_catch_error": 0.006895921205802737
+            }
+          },
+          "selected": {
+            "n": 463,
+            "observed_operating": 455,
+            "known_catch": 463,
+            "coverage": 0.9362637362637363,
+            "covered": 426,
+            "width_seconds": 419.2860595106925,
+            "interval_score": 539.3576132885939,
+            "mae_seconds": 78.16050448321378,
+            "brier": 0.034877036431256385,
+            "signed_catch_error": 0.01379613759565788
+          },
+          "all_present_groups_meet_90": true
+        }
+      }
+    }
+  },
+  "source_coverage": {
+    "2023-10-18": {
+      "n_scheduled_trips": 172,
+      "n_scheduled_connections": 524,
+      "endpoint_status_counts": {
+        "REAL": 1044,
+        "MISSING": 2,
+        "CANCELED": 2
+      },
+      "connection_outcome_counts": {
+        "MEASURED": 522,
+        "UNRESOLVED": 1,
+        "CANCELED": 1
+      }
+    },
+    "2023-10-23": {
+      "n_scheduled_trips": 172,
+      "n_scheduled_connections": 524,
+      "endpoint_status_counts": {
+        "REAL": 1046,
+        "MISSING": 2
+      },
+      "connection_outcome_counts": {
+        "MEASURED": 523,
+        "UNRESOLVED": 1
+      }
+    },
+    "2023-10-24": {
+      "n_scheduled_trips": 172,
+      "n_scheduled_connections": 524,
+      "endpoint_status_counts": {
+        "REAL": 1032,
+        "MISSING": 2,
+        "CANCELED": 13,
+        "PROGNOSE": 1
+      },
+      "connection_outcome_counts": {
+        "MEASURED": 516,
+        "UNRESOLVED": 2,
+        "CANCELED": 6
+      }
+    }
+  },
+  "interpretation": "Three independent actual-label date blocks after frozen model/group/envelopes. Historical public RT forecasts from these dates existed but did not fit this candidate. CDF probabilities are raw laws; date-group envelopes modify intervals only."
+}

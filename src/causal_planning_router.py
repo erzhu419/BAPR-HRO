@@ -107,8 +107,11 @@ class BudgetedPolicySearch:
         scores = {}
         if algorithm == "rollout":
             totals = dict.fromkeys(actions, 0.0)
+            completed_mass = 0.0
             # Complete every root action on a world before using that round.
             for world in self.model.scenarios:
+                if not world.probability:
+                    continue
                 round_losses = {}
                 for action in actions:
                     loss = self._simulate(world, first=action)
@@ -118,10 +121,11 @@ class BudgetedPolicySearch:
                 if len(round_losses) != len(actions):
                     break
                 rounds += 1
+                completed_mass += world.probability
                 for action, loss in round_losses.items():
-                    totals[action] += loss
+                    totals[action] += world.probability * loss
             if rounds:
-                scores = {action: total / rounds for action, total in totals.items()}
+                scores = {action: total / completed_mass for action, total in totals.items()}
         elif algorithm == "uct":
             self.tree[root] = {}
             probabilities = [world.probability for world in self.model.scenarios]

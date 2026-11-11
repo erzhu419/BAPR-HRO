@@ -1,0 +1,485 @@
+{
+  "implementation": "v6_secondary_one_second_transfer_gate_uct64",
+  "samples": 4,
+  "transition_budget_per_decision": 64,
+  "transfer_rule": "gtfs_station_max",
+  "charge_computation": false,
+  "graph_build_ms": 330.0634570186958,
+  "policy_setup_ms": 400.8410350070335,
+  "end_to_end_ms": 8280.786057992373,
+  "worker_peak_kib": 807928,
+  "date": "2023-07-27",
+  "query": 0,
+  "method": "gate_uct",
+  "od": {
+    "origin": "8591299",
+    "destination": "8502572",
+    "origin_name": "Z\u00fcrich, Paradeplatz",
+    "destination_name": "Z\u00fcrich, Goldbrunnenplatz",
+    "ready_seconds": 29100,
+    "deadline_seconds": 32700
+  },
+  "status": "arrived",
+  "loss_seconds": 839,
+  "elapsed_observed_seconds": 839,
+  "compute_ms": 7549.890157009941,
+  "planning_transitions": 384,
+  "decisions": [
+    {
+      "clock_seconds": 29100,
+      "stop": 530,
+      "current_trip": null,
+      "action": 8341,
+      "forecast": {
+        "receipts": [],
+        "updates": {}
+      },
+      "forecast_ms": 0.012267963029444218,
+      "planning_ms": 4258.592374972068,
+      "decision_total_ms": 4258.605737995822,
+      "model_transitions": 64,
+      "complete_common_rounds": 0,
+      "root_actions": 132,
+      "outcome": "board",
+      "end_seconds": 29202,
+      "gate_used": false,
+      "gate_cached": false,
+      "gate_checked": false,
+      "gate_check_ms": 0.0024230103008449078,
+      "gate_work": {},
+      "gate_rejected_certificate": null,
+      "decision_ordinal": 0,
+      "fallback_planning_ms": 4256.463163008448,
+      "execution_clock_seconds": 29100,
+      "computation_clock_ticks": 0,
+      "processing_seconds": 4.5036010219482705,
+      "source_connection": 8341
+    },
+    {
+      "clock_seconds": 29202,
+      "stop": 594,
+      "current_trip": "3779.TA.91-2-H-j23-1.14.R",
+      "action": "wait",
+      "forecast": {
+        "receipts": [],
+        "updates": {}
+      },
+      "forecast_ms": 0.009206996764987707,
+      "planning_ms": 1073.7282920163125,
+      "decision_total_ms": 1073.7387840053998,
+      "model_transitions": 64,
+      "complete_common_rounds": 0,
+      "root_actions": 34,
+      "outcome": "wait",
+      "end_seconds": 29262,
+      "gate_used": false,
+      "gate_cached": false,
+      "gate_checked": false,
+      "gate_check_ms": 0.02884003333747387,
+      "gate_work": {},
+      "gate_rejected_certificate": null,
+      "decision_ordinal": 1,
+      "fallback_planning_ms": 1070.9131699986756,
+      "execution_clock_seconds": 29202,
+      "computation_clock_ticks": 0,
+      "processing_seconds": 1.0738819250254892
+    },
+    {
+      "clock_seconds": 29262,
+      "stop": 594,
+      "current_trip": "3779.TA.91-2-H-j23-1.14.R",
+      "action": 9681,
+      "forecast": {
+        "receipts": [],
+        "updates": {}
+      },
+      "forecast_ms": 0.01066399272531271,
+      "planning_ms": 819.1770889679901,
+      "decision_total_ms": 819.1884009866044,
+      "model_transitions": 64,
+      "complete_common_rounds": 0,
+      "root_actions": 34,
+      "outcome": "board",
+      "end_seconds": 29545,
+      "gate_used": false,
+      "gate_cached": false,
+      "gate_checked": false,
+      "gate_check_ms": 0.002029002644121647,
+      "gate_work": {},
+      "gate_rejected_certificate": null,
+      "decision_ordinal": 2,
+      "fallback_planning_ms": 816.3519509835169,
+      "execution_clock_seconds": 29262,
+      "computation_clock_ticks": 0,
+      "processing_seconds": 0.8193158489884809,
+      "source_connection": 9681
+    },
+    {
+      "clock_seconds": 29545,
+      "stop": 606,
+      "current_trip": "2277.TA.91-9-I-j23-1.10.H",
+      "action": 10375,
+      "forecast": {
+        "receipts": [],
+        "updates": {}
+      },
+      "forecast_ms": 0.009270966984331608,
+      "planning_ms": 525.8908699615858,
+      "decision_total_ms": 525.9009289438836,
+      "model_transitions": 64,
+      "complete_common_rounds": 0,
+      "root_actions": 91,
+      "outcome": "board",
+      "end_seconds": 29708,
+      "gate_used": false,
+      "gate_cached": false,
+      "gate_checked": true,
+      "gate_check_ms": 4.695377021562308,
+      "gate_work": {
+        "law_queries": 1,
+        "root_joint_cells": 0,
+        "posterior_edge_cells": 38332,
+        "path_matrix_cells": 38332,
+        "window_input_cells": 0,
+        "seconds": 0.004438959003891796
+      },
+      "gate_rejected_certificate": {
+        "lower": 119.9999969798873,
+        "upper": 435.3353057809063,
+        "regret_bound": 315.335308801019,
+        "transfer_gate": 29665,
+        "success_probability": 0.9999999999999996,
+        "path": [
+          10375,
+          10611,
+          10847,
+          11306
+        ]
+      },
+      "decision_ordinal": 3,
+      "fallback_planning_ms": 518.678862019442,
+      "execution_clock_seconds": 29545,
+      "computation_clock_ticks": 0,
+      "processing_seconds": 0.5261580270016566,
+      "source_connection": 10375
+    },
+    {
+      "clock_seconds": 29708,
+      "stop": 647,
+      "current_trip": "2277.TA.91-9-I-j23-1.10.H",
+      "action": 10611,
+      "forecast": {
+        "receipts": [],
+        "updates": {}
+      },
+      "forecast_ms": 0.01108401920646429,
+      "planning_ms": 341.4842579513788,
+      "decision_total_ms": 341.4960000081919,
+      "model_transitions": 64,
+      "complete_common_rounds": 0,
+      "root_actions": 39,
+      "outcome": "board",
+      "end_seconds": 29771,
+      "gate_used": false,
+      "gate_cached": false,
+      "gate_checked": true,
+      "gate_check_ms": 4.186189966276288,
+      "gate_work": {
+        "law_queries": 1,
+        "root_joint_cells": 0,
+        "posterior_edge_cells": 29568,
+        "path_matrix_cells": 29568,
+        "window_input_cells": 0,
+        "seconds": 0.0039260489866137505
+      },
+      "gate_rejected_certificate": {
+        "lower": 119.9928686246825,
+        "upper": 260.52380848738085,
+        "regret_bound": 140.53093986269835,
+        "transfer_gate": 29828,
+        "success_probability": 1.0,
+        "path": [
+          10611,
+          10847,
+          11306
+        ]
+      },
+      "decision_ordinal": 4,
+      "fallback_planning_ms": 334.4438630156219,
+      "execution_clock_seconds": 29708,
+      "computation_clock_ticks": 0,
+      "processing_seconds": 0.3416318019735627,
+      "source_connection": 10611
+    },
+    {
+      "clock_seconds": 29771,
+      "stop": 88,
+      "current_trip": "2277.TA.91-9-I-j23-1.10.H",
+      "action": 10847,
+      "forecast": {
+        "receipts": [],
+        "updates": {}
+      },
+      "forecast_ms": 0.009130977559834719,
+      "planning_ms": 277.5339169893414,
+      "decision_total_ms": 277.5440089753829,
+      "model_transitions": 64,
+      "complete_common_rounds": 0,
+      "root_actions": 70,
+      "outcome": "board",
+      "end_seconds": 29853,
+      "gate_used": false,
+      "gate_cached": false,
+      "gate_checked": true,
+      "gate_check_ms": 3.9022709825076163,
+      "gate_work": {
+        "law_queries": 1,
+        "root_joint_cells": 0,
+        "posterior_edge_cells": 19602,
+        "path_matrix_cells": 19602,
+        "window_input_cells": 0,
+        "seconds": 0.0036483359872363508
+      },
+      "gate_rejected_certificate": {
+        "lower": 119.94084207356585,
+        "upper": 189.01243683965686,
+        "regret_bound": 69.07159476609101,
+        "transfer_gate": 29891,
+        "success_probability": 0.9999999999999999,
+        "path": [
+          10847,
+          11306
+        ]
+      },
+      "decision_ordinal": 5,
+      "fallback_planning_ms": 270.85134299704805,
+      "execution_clock_seconds": 29771,
+      "computation_clock_ticks": 0,
+      "processing_seconds": 0.2777146400185302,
+      "source_connection": 10847
+    },
+    {
+      "clock_seconds": 29853,
+      "stop": 568,
+      "current_trip": "2277.TA.91-9-I-j23-1.10.H",
+      "action": 11306,
+      "forecast": {
+        "receipts": [],
+        "updates": {}
+      },
+      "forecast_ms": 0.01059903297573328,
+      "planning_ms": 3.3101040171459317,
+      "decision_total_ms": 3.3216860028915107,
+      "model_transitions": 0,
+      "complete_common_rounds": 0,
+      "root_actions": 0,
+      "outcome": "board",
+      "end_seconds": 29939,
+      "gate_used": true,
+      "gate_cached": false,
+      "gate_checked": true,
+      "gate_check_ms": 3.2562999986112118,
+      "gate_work": {
+        "law_queries": 1,
+        "root_joint_cells": 0,
+        "posterior_edge_cells": 6806,
+        "path_matrix_cells": 6806,
+        "window_input_cells": 0,
+        "seconds": 0.0029605409945361316
+      },
+      "gate_issue_clock": 29853,
+      "gate_certificate_at_issue": {
+        "lower": 89.44479775398074,
+        "upper": 90.39834581699415,
+        "regret_bound": 0.9535480630134145,
+        "transfer_gate": 29973,
+        "success_probability": 1.0,
+        "path": [
+          11306
+        ]
+      },
+      "decision_ordinal": 6,
+      "execution_clock_seconds": 29853,
+      "computation_clock_ticks": 0,
+      "processing_seconds": 0.003576268965844065,
+      "source_connection": 11306
+    }
+  ],
+  "events": [
+    {
+      "time": 29100,
+      "stop_id": 530,
+      "event_type": "depart",
+      "route": "",
+      "details": "Initial route computed"
+    },
+    {
+      "time": 29121,
+      "stop_id": 530,
+      "event_type": "board",
+      "route": "91-2-H-j23-1",
+      "details": "connection=8341; to=594; trip=3779.TA.91-2-H-j23-1.14.R"
+    },
+    {
+      "time": 29202,
+      "stop_id": 594,
+      "event_type": "arrive",
+      "route": "91-2-H-j23-1",
+      "details": "connection=8341; delay=0.7min"
+    },
+    {
+      "time": 29468,
+      "stop_id": 594,
+      "event_type": "board",
+      "route": "91-9-I-j23-1",
+      "details": "connection=9681; to=606; trip=2277.TA.91-9-I-j23-1.10.H"
+    },
+    {
+      "time": 29545,
+      "stop_id": 606,
+      "event_type": "arrive",
+      "route": "91-9-I-j23-1",
+      "details": "connection=9681; delay=0.416667min"
+    },
+    {
+      "time": 29613,
+      "stop_id": 606,
+      "event_type": "board",
+      "route": "91-9-I-j23-1",
+      "details": "connection=10375; to=647; trip=2277.TA.91-9-I-j23-1.10.H"
+    },
+    {
+      "time": 29708,
+      "stop_id": 647,
+      "event_type": "arrive",
+      "route": "91-9-I-j23-1",
+      "details": "connection=10375; delay=0.133333min"
+    },
+    {
+      "time": 29716,
+      "stop_id": 647,
+      "event_type": "board",
+      "route": "91-9-I-j23-1",
+      "details": "connection=10611; to=88; trip=2277.TA.91-9-I-j23-1.10.H"
+    },
+    {
+      "time": 29771,
+      "stop_id": 88,
+      "event_type": "arrive",
+      "route": "91-9-I-j23-1",
+      "details": "connection=10611; delay=0.183333min"
+    },
+    {
+      "time": 29785,
+      "stop_id": 88,
+      "event_type": "board",
+      "route": "91-9-I-j23-1",
+      "details": "connection=10847; to=568; trip=2277.TA.91-9-I-j23-1.10.H"
+    },
+    {
+      "time": 29853,
+      "stop_id": 568,
+      "event_type": "arrive",
+      "route": "91-9-I-j23-1",
+      "details": "connection=10847; delay=-0.45min"
+    },
+    {
+      "time": 29865,
+      "stop_id": 568,
+      "event_type": "board",
+      "route": "91-9-I-j23-1",
+      "details": "connection=11306; to=3; trip=2277.TA.91-9-I-j23-1.10.H"
+    },
+    {
+      "time": 29939,
+      "stop_id": 3,
+      "event_type": "finish",
+      "route": "",
+      "details": "arrived"
+    }
+  ],
+  "public_actual_receipts": [
+    {
+      "stop": 530,
+      "receipt_time": 29100,
+      "event_ids": []
+    },
+    {
+      "stop": 594,
+      "receipt_time": 29202,
+      "event_ids": []
+    },
+    {
+      "stop": 594,
+      "receipt_time": 29262,
+      "event_ids": []
+    },
+    {
+      "stop": 606,
+      "receipt_time": 29545,
+      "event_ids": []
+    },
+    {
+      "stop": 647,
+      "receipt_time": 29708,
+      "event_ids": []
+    },
+    {
+      "stop": 88,
+      "receipt_time": 29771,
+      "event_ids": []
+    },
+    {
+      "stop": 568,
+      "receipt_time": 29853,
+      "event_ids": []
+    }
+  ],
+  "forecast_frames_consumed": 0,
+  "graph_connections": 27895,
+  "known_world_events": 23655,
+  "excluded_pickup_dropoff_source_ids": [],
+  "route_prior_pool_fallbacks": [
+    "91-20-F-j23-1",
+    "92-151-B-j23-1",
+    "92-317-j23-1",
+    "92-39-j23-1",
+    "92-444-A-j23-1",
+    "92-445-A-j23-1",
+    "92-485-j23-1",
+    "92-491-B-j23-1",
+    "92-73-A-j23-1",
+    "92-742-A-j23-1",
+    "92-748-j23-1",
+    "92-749-j23-1",
+    "92-752-j23-1",
+    "92-754-j23-1",
+    "92-759-j23-1",
+    "92-760-A-j23-1",
+    "92-761-A-j23-1",
+    "92-762-j23-1",
+    "92-768-j23-1",
+    "92-771-j23-1",
+    "92-772-j23-1",
+    "92-773-j23-1",
+    "92-781-j23-1",
+    "92-787-j23-1",
+    "92-99-j23-1",
+    "92-E-A-j23-1",
+    "96-165-4-j23-1",
+    "96-180-2-j23-1",
+    "96-180-8-j23-1",
+    "96-181-3-j23-1",
+    "96-182-0-j23-1",
+    "96-182-3-j23-1",
+    "96-182-4-j23-1",
+    "96-182-5-j23-1",
+    "96-182-6-j23-1",
+    "96-199-0-j23-1",
+    "96-199-1-j23-1",
+    "96-199-3-j23-1",
+    "96-199-4-j23-1"
+  ],
+  "clock": "logical",
+  "cpu_seconds": 7.812115157000001
+}

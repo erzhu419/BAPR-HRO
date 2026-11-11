@@ -61,6 +61,22 @@ def test_uct_shares_public_search_node_across_hidden_worlds():
     assert result.action == WAIT
 
 
+def test_rollout_respects_nonuniform_scenario_probabilities():
+    risky, safe = ('select', 0), ('select', 1)
+    worlds = (Scenario('usual', .9, {'cost': 0}), Scenario('rare', .1, {'cost': 10}))
+
+    def transition(world, state, action):
+        return Outcome('done', (), world.factors['cost'] if action == risky else 2, True)
+
+    model = FiniteScenarioModel(worlds, 'start', lambda s: (risky, safe) if s == 'start' else (),
+                                transition, 1)
+    planner = BudgetedPolicySearch(model, {}, lambda *_: safe, lambda *_: None,
+                                    np.random.default_rng(0), 4, 20)
+    result = planner.plan('rollout')
+    assert result.action == ExactPlanner(model).solve().action == risky
+    assert result.value == 1
+
+
 def graph_with_rows(rows):
     graph = TransitGraph()
     for sid in range(3):

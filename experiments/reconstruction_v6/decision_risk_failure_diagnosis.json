@@ -1,0 +1,153 @@
+{
+  "training_calibration_contexts": {
+    "2023-10-01": {
+      "observable_incoming_contexts": 263
+    },
+    "2023-10-02": {
+      "observable_incoming_contexts": 343
+    },
+    "2023-10-03": {
+      "observable_incoming_contexts": 343,
+      "known_canceled_next_contexts": 1,
+      "selected_known_canceled_next_contexts": 0,
+      "known_canceled_next_S2_contexts": 0
+    },
+    "2023-10-04": {
+      "observable_incoming_contexts": 343
+    },
+    "2023-10-05": {
+      "observable_incoming_contexts": 344
+    },
+    "2023-10-06": {
+      "observable_incoming_contexts": 341
+    },
+    "2023-10-07": {
+      "observable_incoming_contexts": 309
+    },
+    "2023-10-08": {
+      "observable_incoming_contexts": 309
+    },
+    "2023-10-09": {
+      "observable_incoming_contexts": 342
+    },
+    "2023-10-10": {
+      "observable_incoming_contexts": 339
+    },
+    "2023-10-11": {
+      "observable_incoming_contexts": 341
+    }
+  },
+  "failure": {
+    "date": "2023-10-27",
+    "incoming": 57,
+    "outgoing": 83,
+    "trip_id": "211.TA.91-2-B-j23-1.1.H",
+    "group": "late",
+    "time": 29071,
+    "incoming_delay_seconds": 1111,
+    "selected": true,
+    "transfer_source": "max_stated_station_buffer",
+    "transfer_seconds": 420,
+    "minimum_stated_seconds": 420,
+    "model_regret_bound": 0.0006662925403588815,
+    "model_upper": 164.92392066727916,
+    "model_lower": 164.9232543747388,
+    "gate": 29491,
+    "model_success_probability": 1.0,
+    "gate_state": "selected",
+    "risk_lower": 3180.0,
+    "risk_upper": 3180.0,
+    "outcome": "failed_canceled",
+    "zero_buffer_risk_lower": 3600.0,
+    "zero_buffer_risk_upper": 3600.0,
+    "future_status": {
+      "departure": "PROGNOSE",
+      "arrival": "CANCELED"
+    },
+    "observed_goal_arrival": null,
+    "observed_departure": null,
+    "same_actual_trip": true
+  },
+  "incoming_source": {
+    "agency_id": "11",
+    "operator_id": "85:11",
+    "route_id": "91-2-B-j23-1",
+    "route_name": "S2",
+    "trip_id": "211.TA.91-2-B-j23-1.1.H",
+    "service_id": "TA+axs20",
+    "vehicle_number": "18227",
+    "dep_stop": "8503006",
+    "arr_stop": "8503000",
+    "dep_sequence": 2,
+    "arr_sequence": 3,
+    "scheduled_departure_seconds": 27660,
+    "scheduled_arrival_seconds": 27960,
+    "pickup_allowed": true,
+    "dropoff_allowed": true,
+    "id": 57,
+    "departure": {
+      "status": "REAL",
+      "time_seconds": 28708,
+      "official_journey": "85:11:18227:002",
+      "reported_time_seconds": 28708,
+      "canceled_flag": false,
+      "reported_status": "REAL"
+    },
+    "arrival": {
+      "status": "REAL",
+      "time_seconds": 29071,
+      "official_journey": "85:11:18227:002",
+      "reported_time_seconds": 29071,
+      "canceled_flag": false,
+      "reported_status": "REAL"
+    },
+    "outcome": "MEASURED"
+  },
+  "future_source": {
+    "agency_id": "11",
+    "operator_id": "85:11",
+    "route_id": "91-2-B-j23-1",
+    "route_name": "S2",
+    "trip_id": "211.TA.91-2-B-j23-1.1.H",
+    "service_id": "TA+axs20",
+    "vehicle_number": "18227",
+    "dep_stop": "8503000",
+    "arr_stop": "8503011",
+    "dep_sequence": 3,
+    "arr_sequence": 4,
+    "scheduled_departure_seconds": 28020,
+    "scheduled_arrival_seconds": 28140,
+    "pickup_allowed": true,
+    "dropoff_allowed": true,
+    "id": 83,
+    "departure": {
+      "status": "PROGNOSE",
+      "time_seconds": null,
+      "official_journey": "85:11:18227:002",
+      "reported_time_seconds": null,
+      "canceled_flag": false,
+      "reported_status": "PROGNOSE"
+    },
+    "arrival": {
+      "status": "CANCELED",
+      "time_seconds": null,
+      "official_journey": "85:11:18227:002",
+      "reported_time_seconds": null,
+      "canceled_flag": true,
+      "reported_status": "UNBEKANNT"
+    },
+    "outcome": "UNRESOLVED"
+  },
+  "frozen_route_prior": {
+    "mean": 1.8854166666666667,
+    "std": 1.3461374140480609,
+    "cancel_rate": 0.0,
+    "n_departures": 40,
+    "status_counts": {
+      "REAL": 40
+    }
+  },
+  "cancel_parameter_effect": "q=0 omits cancellation states from the Evolving event grids; this suffix has model success_probability1. No timing bias is needed for this failure.",
+  "publication_information": "The official retrospective status supplies no cancellation publication timestamp. The frozen H contains only completed incoming dep/arr and no public notifications. The future CANCELED label cannot be exposed at time29071.",
+  "calibration_interpretation": "B is a rank-based new-date tolerance under exchangeability, allowing up to10% date miscoverage; it is not a hard limit for each calendar date. Oct27 remains a development failure and is never added to calibration."
+}

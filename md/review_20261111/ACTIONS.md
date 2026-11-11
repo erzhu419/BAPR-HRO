@@ -52,3 +52,17 @@
 - 修订线路ID生成面板、SBB回放及完整源城市数据均保留。真实输入含全部声明候选与未确定结果，铁路正常入口96趟和城市16趟均已完成。[铁路最终回放](/home/erzhu419/mine_code/BAPR-HRO/experiments/reconstruction_v4/dated_replay_final_results.json) · [城市回放](/home/erzhu419/mine_code/BAPR-HRO/experiments/reconstruction_v4/city_replay_results.json)
 - 新稿为 [重构源稿](../../paper/paper_reconstruction.tex)。旧稿、历史数字和提交 ZIP 作为版本证据保留。Lean 附录说明及全部模块的类型检查见 [理论记录](THEORY.md)。[送审版本核对](SUBMISSION_VERSION.md) 记录了冻结原件的缺口。
 - 有限场景证书及标签局部修复已完成两片段精确核对与2,000连接模板更新验证；保证适用于固定场景库及明确拓扑条件，策略树仍重新计算。适用边界与计费见 [证书记录](/home/erzhu419/mine_code/BAPR-HRO/experiments/reconstruction_v4/CANDIDATE_CERTIFICATE.md)。
+
+## 2026-11-11 V5继续复核
+
+三项后续均已落实代码、理论与匹配实验：两阶段冻结校准与六个新日期；城市按需/观测边界推断及计算计时；稀疏首动作证书、anytime搜索和同预算强基线；一致共享日模型与同marginal对照；有序转移似然和20秒CDF网格。另将已有July25完整市域实测接入Oct25回放，连接先验覆盖47.27%→88.66%，最后8条逻辑/计时轨迹均到达，名义策略平均3600→1356.5秒；归因限定为先验来源组合。273项核心、数据和校准测试通过，稿件未改。入口、完整回执与失效结果见 [V5汇总](/home/erzhu419/mine_code/BAPR-HRO/experiments/reconstruction_v5/RESULTS.md)。
+
+当前不能标作全部科学问题已经解决：校准仍有条件/日期失效，共享模型支付计算成本后未胜低成本基线，专用证书未胜低预算UCT，OR新颖性门槛未通过。这些是已执行后的否定/边界结果；没有将普通上下界框架、减少transition数或bank内零gap改写成普遍方法优势。
+
+## V6条件风险与OR结构继续执行
+
+已补同一联合后验下的条件风险/补救接口、完整网格首动作下界与固定补救积分、可实际执行的编译策略及MCT时间门。独立July28/29城市确认中，解析补救平均截断损失1448秒、整趟耗时6.371秒；UCT64为2310.5秒、26.648秒。开发集解析法仍输UCT。新OD初始损失界重叠，继续定位并修复Brunnenhof/Radiostudio站名漏匹配后，同模型/随机流配对为990对1446.75秒；原删失结果和来源修复敏感性均保留，不当新增独立日期。一般backup、macro和上下界不记作首创；最近方法及具体结构差异已核对。[V6代码、理论及匹配实验](../../experiments/reconstruction_v6/RESULTS.md)。
+
+旧25日Shrunk组覆盖修复；新增两轮铁路actual确认、选择后校准和来源敏感性均执行。另发现27日arrival-only取消使q=0模型过度自信，已修评分并以有限样本服务guard拒绝证据不足的真实风险授权。没有把拒绝授权写成风险已全面验证，也未事后将失败日期回填校准。稿件继续保持不动。
+
+原生strict TopoCSA后验边际接口及8趟回放也已完成，明确分钟量化与Python逐次重算合同；未以其运行慢证明算法级创新。337项核心、数据和校准测试通过，所有本轮实验已结束。最近先例及具体结构结果、正负确认与服务风险拒绝边界均有独立记录。

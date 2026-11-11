@@ -9,7 +9,7 @@ from __future__ import annotations
 from dataclasses import dataclass, replace
 
 from .information_planner import FiniteScenarioModel, Outcome, Scenario
-from .simulator import JourneyScenario, generate_delay_observations
+from .simulator import JourneyScenario, LazyTripScenario, generate_delay_observations
 from .transit_graph import TransitGraph
 
 
@@ -94,6 +94,8 @@ def build_committed_model(
     for _, scene in bank:
         if scene.minute != minute:
             raise ValueError("The scene bank must share a clock unit")
+        if isinstance(scene, LazyTripScenario):
+            continue
         for cid in connections:
             event = scene.events[cid]
             if not event.canceled and event.arrival < event.departure:

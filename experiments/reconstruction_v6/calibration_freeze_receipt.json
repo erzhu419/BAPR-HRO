@@ -1,0 +1,148 @@
+{
+  "protocol": {
+    "training_dates": [
+      "2023-10-01",
+      "2023-10-02"
+    ],
+    "calibration_dates": [
+      "2023-10-03",
+      "2023-10-04",
+      "2023-10-05",
+      "2023-10-06",
+      "2023-10-07",
+      "2023-10-08",
+      "2023-10-09",
+      "2023-10-10",
+      "2023-10-11"
+    ],
+    "development_dates": [
+      "2023-10-12",
+      "2023-10-25",
+      "2023-10-27"
+    ],
+    "actual_label_confirmation_dates": [
+      "2023-10-18",
+      "2023-10-23",
+      "2023-10-24"
+    ],
+    "previous_actuals_status": "These dates occur in archived RT-prior date lists, not prior actual-label scoring/source joins in V5. Existing public forecasts are allowed received inputs; no confirmation actuals are opened before model and envelopes are frozen.",
+    "methods": [
+      "frozen_shrunk_relative",
+      "heteroskedastic_student_t3"
+    ],
+    "new_model": "outgoing route prior mean + beta*incoming route-centered residual; scale sigma0+sigma1*abs(incoming residual), df fixed3. beta in[0,1], sigma0>=1second, sigma1>=0; three deterministic training-only starts, minimum date-balanced negative log likelihood.",
+    "observable_groups": {
+      "ordinary": "incoming measured arrival delay<=180seconds",
+      "late": "incoming measured arrival delay>180seconds"
+    },
+    "interval_target": "For each date take max across present groups of empirical ceil(.9*n)-th standardized central90 nonconformity. Largest of9 date scores (clipped below at0) is one common envelope factor. Under exchangeable date blocks, joint event: every present observable group has>=90% endpoint coverage on the next date, probability>=90%. No arbitrary individual/date-conditional guarantee.",
+    "interval_standardization": "Half the uncalibrated central90 interval width; interval only, does not alter CDF/boarding probability.",
+    "menu": "Primary timetable-selected different-trip pairs +/-300seconds around planned incoming arrival+GTFS transfer. Actual-current menu secondary. Unknown outgoing status remains selected/censored.",
+    "patience_seconds": 720,
+    "freeze": "No new date, group boundary, degrees of freedom, start count or model parameter is selected by development or confirmation scores. First candidate is completed and all results retained.",
+    "joint_interface": "Finite-chain departure marginal replacement by likelihood-ratio emission; clock means, sampling and conditional continuation must use the resulting same joint law. No scalar failure probability swap."
+  },
+  "fit": {
+    "protocol": {
+      "training_dates": [
+        "2023-10-01",
+        "2023-10-02"
+      ],
+      "calibration_dates": [
+        "2023-10-03",
+        "2023-10-04",
+        "2023-10-05",
+        "2023-10-06",
+        "2023-10-07",
+        "2023-10-08",
+        "2023-10-09",
+        "2023-10-10",
+        "2023-10-11"
+      ],
+      "development_dates": [
+        "2023-10-12",
+        "2023-10-25",
+        "2023-10-27"
+      ],
+      "actual_label_confirmation_dates": [
+        "2023-10-18",
+        "2023-10-23",
+        "2023-10-24"
+      ],
+      "previous_actuals_status": "These dates occur in archived RT-prior date lists, not prior actual-label scoring/source joins in V5. Existing public forecasts are allowed received inputs; no confirmation actuals are opened before model and envelopes are frozen.",
+      "methods": [
+        "frozen_shrunk_relative",
+        "heteroskedastic_student_t3"
+      ],
+      "new_model": "outgoing route prior mean + beta*incoming route-centered residual; scale sigma0+sigma1*abs(incoming residual), df fixed3. beta in[0,1], sigma0>=1second, sigma1>=0; three deterministic training-only starts, minimum date-balanced negative log likelihood.",
+      "observable_groups": {
+        "ordinary": "incoming measured arrival delay<=180seconds",
+        "late": "incoming measured arrival delay>180seconds"
+      },
+      "interval_target": "For each date take max across present groups of empirical ceil(.9*n)-th standardized central90 nonconformity. Largest of9 date scores (clipped below at0) is one common envelope factor. Under exchangeable date blocks, joint event: every present observable group has>=90% endpoint coverage on the next date, probability>=90%. No arbitrary individual/date-conditional guarantee.",
+      "interval_standardization": "Half the uncalibrated central90 interval width; interval only, does not alter CDF/boarding probability.",
+      "menu": "Primary timetable-selected different-trip pairs +/-300seconds around planned incoming arrival+GTFS transfer. Actual-current menu secondary. Unknown outgoing status remains selected/censored.",
+      "patience_seconds": 720,
+      "freeze": "No new date, group boundary, degrees of freedom, start count or model parameter is selected by development or confirmation scores. First candidate is completed and all results retained.",
+      "joint_interface": "Finite-chain departure marginal replacement by likelihood-ratio emission; clock means, sampling and conditional continuation must use the resulting same joint law. No scalar failure probability swap."
+    },
+    "beta": 0.3381224856129251,
+    "base_scale_seconds": 46.87938337787166,
+    "scale_slope": 0.08922960424596287,
+    "training_counts": {
+      "2023-10-01": 1807,
+      "2023-10-02": 2868
+    },
+    "optimizer": [
+      {
+        "success": true,
+        "objective": 4.696073572344183,
+        "parameters": [
+          0.3381224856129251,
+          3.8475779919798567,
+          0.08922960424596287
+        ],
+        "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+      },
+      {
+        "success": true,
+        "objective": 4.696073572637389,
+        "parameters": [
+          0.33810653455668654,
+          3.847561016459075,
+          0.0892318462354817
+        ],
+        "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+      },
+      {
+        "success": true,
+        "objective": 4.696073572388301,
+        "parameters": [
+          0.33812471970636643,
+          3.847584186892421,
+          0.08922247256696542
+        ],
+        "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+      }
+    ],
+    "source_text": "\"\"\"Observable conditional risk laws and same-chain marginal replacement.\"\"\"\nfrom dataclasses import dataclass\nimport math\n\nimport numpy as np\nfrom scipy.optimize import minimize\nfrom scipy.special import stdtr, stdtrit\n\nfrom .evolving_trip_belief import _ChainLaw\n\n\n@dataclass(frozen=True)\nclass StudentClockLaw:\n    location: float\n    scale: float\n    cancel_probability: float\n    df: float = 3.\n\n    @property\n    def mean(self):\n        return self.location\n\n    def cdf(self, time):\n        return float(stdtr(self.df, (time - self.location) / self.scale))\n\n    def quantile(self, probability):\n        return self.location + self.scale * float(stdtrit(self.df, probability))\n\n    def board_probability(self, ready, patience=720):\n        return (1 - self.cancel_probability) * (self.cdf(ready + patience) - self.cdf(ready))\n\n\nclass ConditionalStudentModel:\n    \"\"\"A training-only robust conditional location and surprise-dependent scale.\n\n    The prior event location remains route specific. The incoming residual is\n    first-hand observed, while the target's actual clock is never read.\n    Each training date has equal objective mass; pairs are not treated as\n    independent observations for any uncertainty statement.\n    \"\"\"\n\n    def __init__(self, marginal, training_pairs):\n        self.marginal = marginal\n        x, y, weights = [], [], []\n        self.training_counts = {}\n        for day, pairs in training_pairs.items():\n            eligible = [(a, b) for a, b in pairs\n                        if a['arrival']['status'] == b['departure']['status'] == 'REAL']\n            self.training_counts[day] = len(eligible)\n            for incoming, outgoing in eligible:\n                x.append(incoming['arrival']['time_seconds'] - marginal.prior(incoming, 'arrival').mean)\n                y.append(outgoing['departure']['time_seconds'] - marginal.prior(outgoing, 'departure').mean)\n                weights.append(1 / (len(training_pairs) * len(eligible)))\n        x, y, weights = np.asarray(x), np.asarray(y), np.asarray(weights)\n\n        def objective(parameters):\n            beta, log_scale, slope = parameters\n            base = np.exp(log_scale)\n            scale = base + slope * np.abs(x)\n            residual = (y - beta * x) / scale\n            loss = np.log(scale) + 2 * np.log1p(residual ** 2 / 3)\n            common = 1 - 4 * residual ** 2 / (3 + residual ** 2)\n            gradient = np.array([\n                np.sum(weights * (-4 * residual * x / (scale * (3 + residual ** 2)))),\n                np.sum(weights * common * base / scale),\n                np.sum(weights * common * np.abs(x) / scale)])\n            return float(weights @ loss), gradient\n\n        fits = []\n        for beta in (0., .2, 1.):\n            initial_scale = max(1., float(np.median(np.abs(y - beta * x))) / float(stdtrit(3, .75)))\n            fit = minimize(objective, (beta, np.log(initial_scale), .1), jac=True,\n                           method='L-BFGS-B', bounds=((0., 1.), (0., None), (0., None)))\n            fits.append(fit)\n        best = min(fits, key=lambda fit: fit.fun)\n        self.beta, log_scale, self.scale_slope = map(float, best.x)\n        self.base_scale = float(np.exp(log_scale))\n        self.fit_diagnostics = [{'success': bool(fit.success), 'objective': float(fit.fun),\n                                 'parameters': fit.x.tolist(), 'message': str(fit.message)} for fit in fits]\n\n    def predict(self, incoming, outgoing, observed_arrival):\n        residual = observed_arrival - self.marginal.prior(incoming, 'arrival').mean\n        target = self.marginal.prior(outgoing, 'departure')\n        return StudentClockLaw(target.mean + self.beta * residual,\n                               self.base_scale + self.scale_slope * abs(residual),\n                               target.cancel_probability)\n\n\ndef observable_group(row):\n    return 'late' if row['incoming_delay'] > 180 else 'ordinary'\n\n\ndef simultaneous_group_envelope(rows_by_date, method, groups=('ordinary', 'late')):\n    \"\"\"Date-block rank score for every present, predefined observable group.\n\n    Each group contributes its ceil(.9*n)-th score; the date score is their\n    maximum. With nine exchangeable calibration dates, their maximum covers\n    the next date score with probability at least9/10. Empty groups are\n    vacuous on that date, and counts are retained rather than inflated.\n    \"\"\"\n    scores, detail = {}, {}\n    for day, rows in rows_by_date.items():\n        group_scores = {}\n        for group in groups:\n            values = []\n            for row in rows:\n                if row['actual'] is None or observable_group(row) != group:\n                    continue\n                prediction = row['methods'][method]\n                halfwidth = (prediction['upper'] - prediction['lower']) / 2\n                values.append(max(prediction['lower'] - row['actual'],\n                                  row['actual'] - prediction['upper']) / halfwidth)\n            group_scores[group] = {'n': len(values), 'score':\n                sorted(values)[math.ceil(.9 * len(values)) - 1] if values else None}\n        scores[day] = max(value['score'] for value in group_scores.values() if value['n'])\n        detail[day] = group_scores\n    return max(0., max(scores.values())), {'date_scores': scores, 'groups_by_date': detail}\n\n\ndef retarget_event_chain(base, index, law):\n    \"\"\"Replace one event's marginal and keep its conditional complete chain.\n\n    CDF cell masses are projected onto the original event's operating grid.\n    Impossible states remain impossible. The ratio target/base is an emission\n    on the same joint chain, so all future marginals and FFBS draws change\n    consistently. Callers obtain catch probability from the returned discrete\n    chain, including boardable equality, rather than reusing continuous p.\n    \"\"\"\n    original = base.marginal(index)\n    operating = ~base.canceled[index]\n    clocks = base.times[index][operating]\n    target = np.zeros_like(original)\n    if len(clocks):\n        edges = np.r_[-np.inf, (clocks[:-1].astype(float) + clocks[1:]) / 2, np.inf]\n        cumulative = np.r_[0., [law.cdf(t) for t in edges[1:-1]], 1.]\n        target[operating] = original[operating].sum() * np.diff(cumulative)\n    # Calibrating operating-clock risk does not identify cancellation rates.\n    target[~operating] = original[~operating]\n    target[original == 0] = 0\n    if not target.sum():\n        raise ValueError('The target event law gives zero mass to the observed history support')\n    target /= target.sum()\n    ratio = np.zeros_like(original)\n    supported = original > 0\n    with np.errstate(divide='ignore'):\n        ratio[supported] = np.log(target[supported]) - np.log(original[supported])\n    emissions = list(base.emissions)\n    emissions[index] = emissions[index] + ratio\n    updated = _ChainLaw(base.times, base.initial, base._transition, emissions,\n                        base.canceled, base.stochastic)\n    return updated, target\n"
+  },
+  "envelopes": {
+    "fixed_schedule": {
+      "evolving_incoming": 0.8416666666666667,
+      "shrunk_relative": 1.1560859338082332,
+      "student": 0.6715281320903127
+    },
+    "actual_current": {
+      "evolving_incoming": 0.76,
+      "shrunk_relative": 1.0094441916441237,
+      "student": 0.6246570704815219
+    }
+  },
+  "new_actuals_opened": false,
+  "frozen_sources": {
+    "model": "\"\"\"Observable conditional risk laws and same-chain marginal replacement.\"\"\"\nfrom dataclasses import dataclass\nimport math\n\nimport numpy as np\nfrom scipy.optimize import minimize\nfrom scipy.special import stdtr, stdtrit\n\nfrom .evolving_trip_belief import _ChainLaw\n\n\n@dataclass(frozen=True)\nclass StudentClockLaw:\n    location: float\n    scale: float\n    cancel_probability: float\n    df: float = 3.\n\n    @property\n    def mean(self):\n        return self.location\n\n    def cdf(self, time):\n        return float(stdtr(self.df, (time - self.location) / self.scale))\n\n    def quantile(self, probability):\n        return self.location + self.scale * float(stdtrit(self.df, probability))\n\n    def board_probability(self, ready, patience=720):\n        return (1 - self.cancel_probability) * (self.cdf(ready + patience) - self.cdf(ready))\n\n\nclass ConditionalStudentModel:\n    \"\"\"A training-only robust conditional location and surprise-dependent scale.\n\n    The prior event location remains route specific. The incoming residual is\n    first-hand observed, while the target's actual clock is never read.\n    Each training date has equal objective mass; pairs are not treated as\n    independent observations for any uncertainty statement.\n    \"\"\"\n\n    def __init__(self, marginal, training_pairs):\n        self.marginal = marginal\n        x, y, weights = [], [], []\n        self.training_counts = {}\n        for day, pairs in training_pairs.items():\n            eligible = [(a, b) for a, b in pairs\n                        if a['arrival']['status'] == b['departure']['status'] == 'REAL']\n            self.training_counts[day] = len(eligible)\n            for incoming, outgoing in eligible:\n                x.append(incoming['arrival']['time_seconds'] - marginal.prior(incoming, 'arrival').mean)\n                y.append(outgoing['departure']['time_seconds'] - marginal.prior(outgoing, 'departure').mean)\n                weights.append(1 / (len(training_pairs) * len(eligible)))\n        x, y, weights = np.asarray(x), np.asarray(y), np.asarray(weights)\n\n        def objective(parameters):\n            beta, log_scale, slope = parameters\n            base = np.exp(log_scale)\n            scale = base + slope * np.abs(x)\n            residual = (y - beta * x) / scale\n            loss = np.log(scale) + 2 * np.log1p(residual ** 2 / 3)\n            common = 1 - 4 * residual ** 2 / (3 + residual ** 2)\n            gradient = np.array([\n                np.sum(weights * (-4 * residual * x / (scale * (3 + residual ** 2)))),\n                np.sum(weights * common * base / scale),\n                np.sum(weights * common * np.abs(x) / scale)])\n            return float(weights @ loss), gradient\n\n        fits = []\n        for beta in (0., .2, 1.):\n            initial_scale = max(1., float(np.median(np.abs(y - beta * x))) / float(stdtrit(3, .75)))\n            fit = minimize(objective, (beta, np.log(initial_scale), .1), jac=True,\n                           method='L-BFGS-B', bounds=((0., 1.), (0., None), (0., None)))\n            fits.append(fit)\n        best = min(fits, key=lambda fit: fit.fun)\n        self.beta, log_scale, self.scale_slope = map(float, best.x)\n        self.base_scale = float(np.exp(log_scale))\n        self.fit_diagnostics = [{'success': bool(fit.success), 'objective': float(fit.fun),\n                                 'parameters': fit.x.tolist(), 'message': str(fit.message)} for fit in fits]\n\n    def predict(self, incoming, outgoing, observed_arrival):\n        residual = observed_arrival - self.marginal.prior(incoming, 'arrival').mean\n        target = self.marginal.prior(outgoing, 'departure')\n        return StudentClockLaw(target.mean + self.beta * residual,\n                               self.base_scale + self.scale_slope * abs(residual),\n                               target.cancel_probability)\n\n\ndef observable_group(row):\n    return 'late' if row['incoming_delay'] > 180 else 'ordinary'\n\n\ndef simultaneous_group_envelope(rows_by_date, method, groups=('ordinary', 'late')):\n    \"\"\"Date-block rank score for every present, predefined observable group.\n\n    Each group contributes its ceil(.9*n)-th score; the date score is their\n    maximum. With nine exchangeable calibration dates, their maximum covers\n    the next date score with probability at least9/10. Empty groups are\n    vacuous on that date, and counts are retained rather than inflated.\n    \"\"\"\n    scores, detail = {}, {}\n    for day, rows in rows_by_date.items():\n        group_scores = {}\n        for group in groups:\n            values = []\n            for row in rows:\n                if row['actual'] is None or observable_group(row) != group:\n                    continue\n                prediction = row['methods'][method]\n                halfwidth = (prediction['upper'] - prediction['lower']) / 2\n                values.append(max(prediction['lower'] - row['actual'],\n                                  row['actual'] - prediction['upper']) / halfwidth)\n            group_scores[group] = {'n': len(values), 'score':\n                sorted(values)[math.ceil(.9 * len(values)) - 1] if values else None}\n        scores[day] = max(value['score'] for value in group_scores.values() if value['n'])\n        detail[day] = group_scores\n    return max(0., max(scores.values())), {'date_scores': scores, 'groups_by_date': detail}\n\n\ndef retarget_event_chain(base, index, law):\n    \"\"\"Replace one event's marginal and keep its conditional complete chain.\n\n    CDF cell masses are projected onto the original event's operating grid.\n    Impossible states remain impossible. The ratio target/base is an emission\n    on the same joint chain, so all future marginals and FFBS draws change\n    consistently. Callers obtain catch probability from the returned discrete\n    chain, including boardable equality, rather than reusing continuous p.\n    \"\"\"\n    original = base.marginal(index)\n    operating = ~base.canceled[index]\n    clocks = base.times[index][operating]\n    target = np.zeros_like(original)\n    if len(clocks):\n        edges = np.r_[-np.inf, (clocks[:-1].astype(float) + clocks[1:]) / 2, np.inf]\n        cumulative = np.r_[0., [law.cdf(t) for t in edges[1:-1]], 1.]\n        target[operating] = original[operating].sum() * np.diff(cumulative)\n    # Calibrating operating-clock risk does not identify cancellation rates.\n    target[~operating] = original[~operating]\n    target[original == 0] = 0\n    if not target.sum():\n        raise ValueError('The target event law gives zero mass to the observed history support')\n    target /= target.sum()\n    ratio = np.zeros_like(original)\n    supported = original > 0\n    with np.errstate(divide='ignore'):\n        ratio[supported] = np.log(target[supported]) - np.log(original[supported])\n    emissions = list(base.emissions)\n    emissions[index] = emissions[index] + ratio\n    updated = _ChainLaw(base.times, base.initial, base._transition, emissions,\n                        base.canceled, base.stochastic)\n    return updated, target\n",
+    "evaluator": "\"\"\"Freeze one conditional risk candidate before reading new actual labels.\"\"\"\nimport argparse\nfrom copy import deepcopy\nimport gzip\nimport json\nfrom pathlib import Path\nimport pickle\nimport sys\n\nimport numpy as np\n\nHERE = Path(__file__).resolve().parent\nROOT = HERE.parents[1]\nV5 = ROOT / 'experiments/reconstruction_v5'\nsys.path.insert(0, str(ROOT))\nsys.path.insert(0, str(V5))\nfrom calibration_relative_run import training_pairs, select_menu\nfrom calibration_run import data_inputs, law_summary\nfrom src.conditional_risk import ConditionalStudentModel, observable_group, simultaneous_group_envelope\n\nMETHODS = ('evolving_incoming', 'shrunk_relative', 'student')\nMENUS = ('fixed_schedule', 'actual_current')\n\n\ndef read(path):\n    with gzip.open(path, 'rt') if str(path).endswith('.gz') else open(path) as handle:\n        return json.load(handle)\n\n\ndef write(path, value):\n    with gzip.open(path, 'wt') if str(path).endswith('.gz') else open(path, 'w') as handle:\n        json.dump(value, handle, indent=None if str(path).endswith('.gz') else 2, allow_nan=False)\n\n\ndef add_candidate(data, outcomes, model):\n    for day, output in outcomes.items():\n        source = {c['id']: c for c in data['dates'][day]['connections']}\n        cached = {}\n        for menu in MENUS:\n            compact = []\n            for original in output[menu]['rows']:\n                key = original['incoming'], original['outgoing']\n                if key not in cached:\n                    row = {k: v for k, v in original.items() if k not in ('methods', 'probabilities')}\n                    row['methods'] = {name: deepcopy(original['methods'][name]) for name in METHODS[:-1]}\n                    row['probabilities'] = {name: original['probabilities'][name] for name in METHODS[:-1]}\n                    law = model.predict(source[row['incoming']], source[row['outgoing']], row['clock'])\n                    row['methods']['student'] = law_summary(law, row['actual'])\n                    row['probabilities']['student'] = law.board_probability(row['ready'])\n                    cached[key] = row\n                compact.append(cached[key])\n            output[menu]['rows'] = compact\n        print('CANDIDATE', day, len(cached), flush=True)\n\n\ndef metrics(rows, method, factor=0., offset=0.):\n    operating = [row for row in rows if row['actual'] is not None]\n    covered, width, score, error = [], [], [], []\n    for row in operating:\n        prediction = row['methods'][method]\n        half = (prediction['upper'] - prediction['lower']) / 2\n        low = prediction['lower'] - factor * half - offset\n        high = prediction['upper'] + factor * half + offset\n        covered.append(low <= row['actual'] <= high)\n        width.append(high - low)\n        score.append(high - low + 20 * max(low - row['actual'], row['actual'] - high, 0))\n        error.append(abs(prediction['mean'] - row['actual']))\n    known = [row for row in rows if row['caught'] is not None]\n    probability = [row['probabilities'][method] for row in known]\n    y = [float(row['caught']) for row in known]\n    avg = lambda values: float(np.mean(values)) if len(values) else None\n    return {'n': len(rows), 'observed_operating': len(operating), 'known_catch': len(known),\n            'coverage': avg(covered), 'covered': int(sum(covered)), 'width_seconds': avg(width),\n            'interval_score': avg(score), 'mae_seconds': avg(error),\n            'brier': avg((np.asarray(probability) - y) ** 2),\n            'signed_catch_error': avg(np.asarray(probability) - y)}\n\n\ndef summarize(outcomes, factors):\n    summary = {}\n    old_offsets = read(V5 / 'calibration_relative_variants_frozen_offsets.json')['offset_seconds']\n    for day, output in outcomes.items():\n        summary[day] = {}\n        for menu in MENUS:\n            rows = output[menu]['rows']\n            group = {}\n            for method in METHODS:\n                group[method] = {'raw': metrics(rows, method),\n                    'group_envelope': metrics(rows, method, factors[menu][method]),\n                    'observable_groups': {name: metrics([r for r in rows if observable_group(r) == name],\n                                                         method, factors[menu][method])\n                                          for name in ('ordinary', 'late')},\n                    'selected': metrics(select_menu(rows, method), method, factors[menu][method])}\n                if method in old_offsets[menu]:\n                    group[method]['v5_original_envelope'] = metrics(rows, method, offset=old_offsets[menu][method])\n                group[method]['all_present_groups_meet_90'] = all(\n                    value['coverage'] is None or value['coverage'] >= .9\n                    for value in group[method]['observable_groups'].values())\n            summary[day][menu] = group\n    return summary\n\n\ndef freeze():\n    protocol = read(HERE / 'calibration_protocol.json')\n    frozen = read(V5 / 'calibration_frozen_fit.json')\n    data = data_inputs()\n    with open(V5 / 'calibration_frozen_model.pkl', 'rb') as handle:\n        marginal = pickle.load(handle)\n    pairs = training_pairs(data, protocol['training_dates'], frozen['evolving_fit'])\n    model = ConditionalStudentModel(marginal, pairs)\n    with open(HERE / 'calibration_frozen_model.pkl', 'wb') as handle:\n        pickle.dump(model, handle)\n    write(HERE / 'calibration_frozen_fit.json', {'protocol': protocol,\n        'beta': model.beta, 'base_scale_seconds': model.base_scale, 'scale_slope': model.scale_slope,\n        'training_counts': model.training_counts, 'optimizer': model.fit_diagnostics,\n        'source_text': (ROOT / 'src/conditional_risk.py').read_text()})\n    print('FIT FROZEN', model.beta, model.base_scale, model.scale_slope, flush=True)\n    original = read(V5 / 'calibration_relative_variants_results.json.gz')\n    outcomes = original['rows_by_date']\n    add_candidate(data, outcomes, model)\n    factors, details = {}, {}\n    for menu in MENUS:\n        factors[menu], details[menu] = {}, {}\n        for method in METHODS:\n            factors[menu][method], details[menu][method] = simultaneous_group_envelope(\n                {day: outcomes[day][menu]['rows'] for day in protocol['calibration_dates']}, method)\n    write(HERE / 'calibration_frozen_envelopes.json', {'factors': factors, 'details': details})\n    # This receipt is completed before any new actual source is fetched/opened.\n    write(HERE / 'calibration_freeze_receipt.json', {'protocol': protocol,\n        'fit': read(HERE / 'calibration_frozen_fit.json'), 'envelopes': factors,\n        'new_actuals_opened': False, 'frozen_sources': {\n            'model': (ROOT / 'src/conditional_risk.py').read_text(),\n            'evaluator': Path(__file__).read_text()}})\n    development = {day: outcomes[day] for day in protocol['development_dates']}\n    result = {'protocol': protocol, 'factors': factors, 'development': summarize(development, factors),\n              'rows_by_date': development}\n    write(HERE / 'calibration_development_results.json.gz', result)\n    write(HERE / 'calibration_development_summary.json', {k: v for k, v in result.items() if k != 'rows_by_date'})\n    print('ENVELOPES FROZEN', factors, flush=True)\n\n\nif __name__ == '__main__':\n    parser = argparse.ArgumentParser()\n    parser.add_argument('--freeze', action='store_true')\n    args = parser.parse_args()\n    if args.freeze:\n        freeze()\n"
+  },
+  "before_actual_tests": "6 passed: tests/test_conditional_risk_v6.py tests/test_trip_marginal_tilt.py"
+}

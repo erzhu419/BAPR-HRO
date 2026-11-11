@@ -1,0 +1,2284 @@
+{
+  "protocol": {
+    "training_dates": [
+      "2023-10-01",
+      "2023-10-02"
+    ],
+    "calibration_dates": [
+      "2023-10-03",
+      "2023-10-04",
+      "2023-10-05",
+      "2023-10-06",
+      "2023-10-07",
+      "2023-10-08",
+      "2023-10-09",
+      "2023-10-10",
+      "2023-10-11"
+    ],
+    "confirmation_dates": [
+      "2023-10-14",
+      "2023-10-17",
+      "2023-10-28"
+    ],
+    "actuals_status_before_freeze": "No actual-label source/score in V5 or first V6 calibration cohort; only old RT archives/date lists existed.",
+    "prediction_methods": [
+      "evolving_incoming",
+      "shrunk_relative",
+      "student"
+    ],
+    "groups": {
+      "ordinary": "incoming measured arrival delay<=180seconds",
+      "late": "incoming measured arrival delay>180seconds"
+    },
+    "modes": {
+      "fixed_selector": "Max raw frozen catch probability; tie scheduled time then outgoing ID. Only this selector protected.",
+      "menu_max": "Maximum nonconformity across all outgoing candidates for each incoming state. Protects any first selector within the frozen menu."
+    },
+    "service_region": "Union of CANCELED category and operating clock interval. No cancellation probability calibration is claimed.",
+    "missingness": "Unknown clock/service gives score interval[-infinity,+infinity]; calibration factor has identified lower/upper. Use upper for finite coverage; retain vacuous if infinite.",
+    "rank_target": "Each group/date contributes ceil(.9*n_incoming)-th state score; date is maximum over present groups; largest of9 calibration dates. Under exchangeable date blocks, >=90% probability that every present group has >=90% incoming states covered next date.",
+    "scope": "Counterfactual retained input states, not the adaptively visited journey-state distribution. Both menus scored separately. Input-only selector never reads outgoing truth.",
+    "no_further_selection": "Student/shrunk parameters unchanged; only this predetermined selection score is calibrated. No models, groups, dates or factors are chosen using the new three date labels."
+  },
+  "thresholds": {
+    "fixed_schedule": {
+      "evolving_incoming": {
+        "fixed_selector": {
+          "factor_lower": 0.5733333333333334,
+          "factor_upper": 0.8095238095238095,
+          "vacuous": false,
+          "date_scores": {
+            "2023-10-03": {
+              "lower": 0.5733333333333334,
+              "upper": 0.8095238095238095,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 362,
+                  "score_lower": 0.25833333333333336,
+                  "score_upper": 0.25833333333333336,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 109,
+                  "score_lower": 0.5733333333333334,
+                  "score_upper": 0.8095238095238095,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-04": {
+              "lower": -0.18666666666666668,
+              "upper": -0.18666666666666668,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 432,
+                  "score_lower": -0.18666666666666668,
+                  "score_upper": -0.18666666666666668,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 38,
+                  "score_lower": -0.36,
+                  "score_upper": -0.36,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-05": {
+              "lower": -0.06666666666666667,
+              "upper": -0.06666666666666667,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 452,
+                  "score_lower": -0.3476190476190476,
+                  "score_upper": -0.3476190476190476,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 21,
+                  "score_lower": -0.06666666666666667,
+                  "score_upper": -0.06666666666666667,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-06": {
+              "lower": -0.2740740740740741,
+              "upper": -0.2740740740740741,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 454,
+                  "score_lower": -0.2740740740740741,
+                  "score_upper": -0.2740740740740741,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 16,
+                  "score_lower": -0.38333333333333336,
+                  "score_upper": -0.38333333333333336,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-07": {
+              "lower": -0.25,
+              "upper": -0.2,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 400,
+                  "score_lower": -0.25,
+                  "score_upper": -0.2,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 4,
+                  "score_lower": -0.4666666666666667,
+                  "score_upper": -0.4666666666666667,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-08": {
+              "lower": -0.3,
+              "upper": -0.25333333333333335,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 401,
+                  "score_lower": -0.3,
+                  "score_upper": -0.25333333333333335,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 3,
+                  "score_lower": -0.38095238095238093,
+                  "score_upper": -0.38095238095238093,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-09": {
+              "lower": 0.041666666666666664,
+              "upper": 0.041666666666666664,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 449,
+                  "score_lower": -0.23333333333333334,
+                  "score_upper": -0.23333333333333334,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 22,
+                  "score_lower": 0.041666666666666664,
+                  "score_upper": 0.041666666666666664,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-10": {
+              "lower": -0.18888888888888888,
+              "upper": -0.175,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 438,
+                  "score_lower": -0.18888888888888888,
+                  "score_upper": -0.175,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 29,
+                  "score_lower": -0.24444444444444444,
+                  "score_upper": -0.24444444444444444,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-11": {
+              "lower": -0.1111111111111111,
+              "upper": -0.1111111111111111,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 446,
+                  "score_lower": -0.1111111111111111,
+                  "score_upper": -0.1111111111111111,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 26,
+                  "score_lower": -0.19333333333333333,
+                  "score_upper": -0.19333333333333333,
+                  "upper_unbounded": false
+                }
+              }
+            }
+          }
+        },
+        "menu_max": {
+          "factor_lower": 3.7,
+          "factor_upper": 5.526666666666666,
+          "vacuous": false,
+          "date_scores": {
+            "2023-10-03": {
+              "lower": 3.7,
+              "upper": 5.526666666666666,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 362,
+                  "score_lower": 1.4777777777777779,
+                  "score_upper": 1.75,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 109,
+                  "score_lower": 3.7,
+                  "score_upper": 5.526666666666666,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-04": {
+              "lower": 0.48333333333333334,
+              "upper": 0.48333333333333334,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 432,
+                  "score_lower": 0.325,
+                  "score_upper": 0.325,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 38,
+                  "score_lower": 0.48333333333333334,
+                  "score_upper": 0.48333333333333334,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-05": {
+              "lower": 0.20666666666666667,
+              "upper": 0.20666666666666667,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 452,
+                  "score_lower": 0.19166666666666668,
+                  "score_upper": 0.19166666666666668,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 21,
+                  "score_lower": 0.20666666666666667,
+                  "score_upper": 0.20666666666666667,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-06": {
+              "lower": 0.37142857142857144,
+              "upper": 0.37142857142857144,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 454,
+                  "score_lower": -0.03333333333333333,
+                  "score_upper": -0.03333333333333333,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 16,
+                  "score_lower": 0.37142857142857144,
+                  "score_upper": 0.37142857142857144,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-07": {
+              "lower": -0.12222222222222222,
+              "upper": -0.09333333333333334,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 400,
+                  "score_lower": -0.12222222222222222,
+                  "score_upper": -0.09333333333333334,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 4,
+                  "score_lower": -0.2,
+                  "score_upper": -0.2,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-08": {
+              "lower": -0.16666666666666666,
+              "upper": -0.1111111111111111,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 401,
+                  "score_lower": -0.16666666666666666,
+                  "score_upper": -0.1111111111111111,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 3,
+                  "score_lower": -0.38095238095238093,
+                  "score_upper": -0.38095238095238093,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-09": {
+              "lower": 2.0454545454545454,
+              "upper": 2.0454545454545454,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 449,
+                  "score_lower": 2.0454545454545454,
+                  "score_upper": 2.0454545454545454,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 22,
+                  "score_lower": 2.0454545454545454,
+                  "score_upper": 2.0454545454545454,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-10": {
+              "lower": 0.6083333333333333,
+              "upper": 1.3333333333333333,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 438,
+                  "score_lower": 0.6083333333333333,
+                  "score_upper": 1.3333333333333333,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 29,
+                  "score_lower": 0.4583333333333333,
+                  "score_upper": 0.4583333333333333,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-11": {
+              "lower": 0.65,
+              "upper": 0.65,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 446,
+                  "score_lower": 0.3466666666666667,
+                  "score_upper": 0.3466666666666667,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 26,
+                  "score_lower": 0.65,
+                  "score_upper": 0.65,
+                  "upper_unbounded": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "shrunk_relative": {
+        "fixed_selector": {
+          "factor_lower": 0.9343743420573882,
+          "factor_upper": 0.9343743420573882,
+          "vacuous": false,
+          "date_scores": {
+            "2023-10-03": {
+              "lower": 0.6672752373178678,
+              "upper": 0.847991183575962,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 362,
+                  "score_lower": 0.5523454357892053,
+                  "score_upper": 0.5529375257710987,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 109,
+                  "score_lower": 0.6672752373178678,
+                  "score_upper": 0.847991183575962,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-04": {
+              "lower": 0.267968429240885,
+              "upper": 0.267968429240885,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 432,
+                  "score_lower": -0.11429488153329988,
+                  "score_upper": -0.11429488153329988,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 38,
+                  "score_lower": 0.267968429240885,
+                  "score_upper": 0.267968429240885,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-05": {
+              "lower": 0.13456569078314837,
+              "upper": 0.13456569078314837,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 452,
+                  "score_lower": -0.17272415465019123,
+                  "score_upper": -0.17272415465019123,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 21,
+                  "score_lower": 0.13456569078314837,
+                  "score_upper": 0.13456569078314837,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-06": {
+              "lower": -0.0047857419980154225,
+              "upper": -0.0047857419980154225,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 454,
+                  "score_lower": -0.19284923279001648,
+                  "score_upper": -0.19284923279001648,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 16,
+                  "score_lower": -0.0047857419980154225,
+                  "score_upper": -0.0047857419980154225,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-07": {
+              "lower": 0.07059738941826847,
+              "upper": 0.07059738941826847,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 400,
+                  "score_lower": -0.18022581947871047,
+                  "score_upper": -0.1716412819092157,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 4,
+                  "score_lower": 0.07059738941826847,
+                  "score_upper": 0.07059738941826847,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-08": {
+              "lower": 0.15607064106700577,
+              "upper": 0.15607064106700577,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 401,
+                  "score_lower": -0.1690352489281916,
+                  "score_upper": -0.16486736766035182,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 3,
+                  "score_lower": 0.15607064106700577,
+                  "score_upper": 0.15607064106700577,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-09": {
+              "lower": 0.9343743420573882,
+              "upper": 0.9343743420573882,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 449,
+                  "score_lower": -0.18160752884297945,
+                  "score_upper": -0.18160752884297945,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 22,
+                  "score_lower": 0.9343743420573882,
+                  "score_upper": 0.9343743420573882,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-10": {
+              "lower": 0.06791918665057939,
+              "upper": 0.06791918665057939,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 438,
+                  "score_lower": -0.16071724289337908,
+                  "score_upper": -0.1488284264968721,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 29,
+                  "score_lower": 0.06791918665057939,
+                  "score_upper": 0.06791918665057939,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-11": {
+              "lower": 0.3855354808448106,
+              "upper": 0.3855354808448106,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 446,
+                  "score_lower": -0.15067122642668257,
+                  "score_upper": -0.15067122642668257,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 26,
+                  "score_lower": 0.3855354808448106,
+                  "score_upper": 0.3855354808448106,
+                  "upper_unbounded": false
+                }
+              }
+            }
+          }
+        },
+        "menu_max": {
+          "factor_lower": 7.012391044109572,
+          "factor_upper": 7.897667762248276,
+          "vacuous": false,
+          "date_scores": {
+            "2023-10-03": {
+              "lower": 7.012391044109572,
+              "upper": 7.897667762248276,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 362,
+                  "score_lower": 2.2010562614711766,
+                  "score_upper": 2.2921973762337946,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 109,
+                  "score_lower": 7.012391044109572,
+                  "score_upper": 7.897667762248276,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-04": {
+              "lower": 0.62944168349869,
+              "upper": 0.62944168349869,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 432,
+                  "score_lower": 0.3248463884832119,
+                  "score_upper": 0.3248463884832119,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 38,
+                  "score_lower": 0.62944168349869,
+                  "score_upper": 0.62944168349869,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-05": {
+              "lower": 0.15341901560312882,
+              "upper": 0.15341901560312882,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 452,
+                  "score_lower": 0.042217905947850215,
+                  "score_upper": 0.042217905947850215,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 21,
+                  "score_lower": 0.15341901560312882,
+                  "score_upper": 0.15341901560312882,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-06": {
+              "lower": 0.840235739679732,
+              "upper": 0.840235739679732,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 454,
+                  "score_lower": 0.09763682157876695,
+                  "score_upper": 0.09763682157876695,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 16,
+                  "score_lower": 0.840235739679732,
+                  "score_upper": 0.840235739679732,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-07": {
+              "lower": 0.410232861476861,
+              "upper": 0.410232861476861,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 400,
+                  "score_lower": -0.05844581088957378,
+                  "score_upper": -0.03551309938018228,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 4,
+                  "score_lower": 0.410232861476861,
+                  "score_upper": 0.410232861476861,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-08": {
+              "lower": 0.15607064106700577,
+              "upper": 0.15607064106700577,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 401,
+                  "score_lower": -0.03889367462029857,
+                  "score_upper": -0.02361237757840779,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 3,
+                  "score_lower": 0.15607064106700577,
+                  "score_upper": 0.15607064106700577,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-09": {
+              "lower": 1.0496793218107907,
+              "upper": 1.0496793218107907,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 449,
+                  "score_lower": 0.5123438661330991,
+                  "score_upper": 0.5189266732450456,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 22,
+                  "score_lower": 1.0496793218107907,
+                  "score_upper": 1.0496793218107907,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-10": {
+              "lower": 0.3741925534922644,
+              "upper": 0.3741925534922644,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 438,
+                  "score_lower": 0.3050153453116534,
+                  "score_upper": 0.32889681176717683,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 29,
+                  "score_lower": 0.3741925534922644,
+                  "score_upper": 0.3741925534922644,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-11": {
+              "lower": 1.6126527088481732,
+              "upper": 1.6126527088481732,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 446,
+                  "score_lower": 0.16048029560031285,
+                  "score_upper": 0.16048029560031285,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 26,
+                  "score_lower": 1.6126527088481732,
+                  "score_upper": 1.6126527088481732,
+                  "upper_unbounded": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "student": {
+        "fixed_selector": {
+          "factor_lower": 0.3678936549702882,
+          "factor_upper": 0.3678936549702882,
+          "vacuous": false,
+          "date_scores": {
+            "2023-10-03": {
+              "lower": 0.3678936549702882,
+              "upper": 0.3678936549702882,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 362,
+                  "score_lower": 0.3678936549702882,
+                  "score_upper": 0.3678936549702882,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 109,
+                  "score_lower": 0.14788495681634717,
+                  "score_upper": 0.2147079401368263,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-04": {
+              "lower": -0.02531487402193866,
+              "upper": -0.02531487402193866,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 432,
+                  "score_lower": -0.02531487402193866,
+                  "score_upper": -0.02531487402193866,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 38,
+                  "score_lower": -0.07229660015489815,
+                  "score_upper": -0.07229660015489815,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-05": {
+              "lower": 0.016330457751343307,
+              "upper": 0.016330457751343307,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 452,
+                  "score_lower": -0.17740729860976356,
+                  "score_upper": -0.17740729860976356,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 21,
+                  "score_lower": 0.016330457751343307,
+                  "score_upper": 0.016330457751343307,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-06": {
+              "lower": -0.05870072312625989,
+              "upper": -0.05870072312625989,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 454,
+                  "score_lower": -0.2201518886749733,
+                  "score_upper": -0.2201518886749733,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 16,
+                  "score_lower": -0.05870072312625989,
+                  "score_upper": -0.05870072312625989,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-07": {
+              "lower": -0.07516252572461708,
+              "upper": -0.07516252572461708,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 400,
+                  "score_lower": -0.32807711094067554,
+                  "score_upper": -0.29382489505759046,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 4,
+                  "score_lower": -0.07516252572461708,
+                  "score_upper": -0.07516252572461708,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-08": {
+              "lower": 0.07194200039169073,
+              "upper": 0.07194200039169073,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 401,
+                  "score_lower": -0.30836590549117965,
+                  "score_upper": -0.2842091290857036,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 3,
+                  "score_lower": 0.07194200039169073,
+                  "score_upper": 0.07194200039169073,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-09": {
+              "lower": 0.03799095946802148,
+              "upper": 0.03799095946802148,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 449,
+                  "score_lower": -0.2059546842531375,
+                  "score_upper": -0.2059546842531375,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 22,
+                  "score_lower": 0.03799095946802148,
+                  "score_upper": 0.03799095946802148,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-10": {
+              "lower": -0.10793744068263965,
+              "upper": -0.09721564632373082,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 438,
+                  "score_lower": -0.10793744068263965,
+                  "score_upper": -0.09721564632373082,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 29,
+                  "score_lower": -0.13282062430981426,
+                  "score_upper": -0.13282062430981426,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-11": {
+              "lower": 0.14403929267083618,
+              "upper": 0.14403929267083618,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 446,
+                  "score_lower": -0.08711113756084748,
+                  "score_upper": -0.08711113756084748,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 26,
+                  "score_lower": 0.14403929267083618,
+                  "score_upper": 0.14403929267083618,
+                  "upper_unbounded": false
+                }
+              }
+            }
+          }
+        },
+        "menu_max": {
+          "factor_lower": 3.8172275145065084,
+          "factor_upper": 4.101453770074186,
+          "vacuous": false,
+          "date_scores": {
+            "2023-10-03": {
+              "lower": 3.8172275145065084,
+              "upper": 4.101453770074186,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 362,
+                  "score_lower": 2.04656783550317,
+                  "score_upper": 2.0868058281609643,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 109,
+                  "score_lower": 3.8172275145065084,
+                  "score_upper": 4.101453770074186,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-04": {
+              "lower": 0.40274008905594644,
+              "upper": 0.40274008905594644,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 432,
+                  "score_lower": 0.40274008905594644,
+                  "score_upper": 0.40274008905594644,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 38,
+                  "score_lower": 0.1512420260686364,
+                  "score_upper": 0.1512420260686364,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-05": {
+              "lower": 0.08462658384402588,
+              "upper": 0.08462658384402588,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 452,
+                  "score_lower": 0.033090323866317536,
+                  "score_upper": 0.033090323866317536,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 21,
+                  "score_lower": 0.08462658384402588,
+                  "score_upper": 0.08462658384402588,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-06": {
+              "lower": 0.5283147634662629,
+              "upper": 0.5283147634662629,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 454,
+                  "score_lower": 0.1404993759018958,
+                  "score_upper": 0.1404993759018958,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 16,
+                  "score_lower": 0.5283147634662629,
+                  "score_upper": 0.5283147634662629,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-07": {
+              "lower": 0.11493521704843582,
+              "upper": 0.11493521704843582,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 400,
+                  "score_lower": -0.15244674738192732,
+                  "score_upper": -0.12481162544171898,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 4,
+                  "score_lower": 0.11493521704843582,
+                  "score_upper": 0.11493521704843582,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-08": {
+              "lower": 0.07194200039169073,
+              "upper": 0.07194200039169073,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 401,
+                  "score_lower": -0.12501564376988472,
+                  "score_upper": -0.055192976492953204,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 3,
+                  "score_lower": 0.07194200039169073,
+                  "score_upper": 0.07194200039169073,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-09": {
+              "lower": 0.7836712188271273,
+              "upper": 0.787135476414122,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 449,
+                  "score_lower": 0.7836712188271273,
+                  "score_upper": 0.787135476414122,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 22,
+                  "score_lower": 0.2808284938274368,
+                  "score_upper": 0.2808284938274368,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-10": {
+              "lower": 0.4658781757576431,
+              "upper": 0.49143586089984825,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 438,
+                  "score_lower": 0.4658781757576431,
+                  "score_upper": 0.49143586089984825,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 29,
+                  "score_lower": 0.11248115832573723,
+                  "score_upper": 0.11248115832573723,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-11": {
+              "lower": 0.34026269748845916,
+              "upper": 0.34026269748845916,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 446,
+                  "score_lower": 0.34026269748845916,
+                  "score_upper": 0.34026269748845916,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 26,
+                  "score_lower": 0.2784358843242186,
+                  "score_upper": 0.2784358843242186,
+                  "upper_unbounded": false
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "actual_current": {
+      "evolving_incoming": {
+        "fixed_selector": {
+          "factor_lower": 1.1,
+          "factor_upper": 1.1,
+          "vacuous": false,
+          "date_scores": {
+            "2023-10-03": {
+              "lower": 0.8095238095238095,
+              "upper": 0.8095238095238095,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 362,
+                  "score_lower": 0.38571428571428573,
+                  "score_upper": 0.38571428571428573,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 107,
+                  "score_lower": 0.8095238095238095,
+                  "score_upper": 0.8095238095238095,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-04": {
+              "lower": -0.08333333333333333,
+              "upper": -0.08333333333333333,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 433,
+                  "score_lower": -0.20476190476190476,
+                  "score_upper": -0.20476190476190476,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 39,
+                  "score_lower": -0.08333333333333333,
+                  "score_upper": -0.08333333333333333,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-05": {
+              "lower": -0.3333333333333333,
+              "upper": -0.3333333333333333,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 449,
+                  "score_lower": -0.35333333333333333,
+                  "score_upper": -0.35333333333333333,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 21,
+                  "score_lower": -0.3333333333333333,
+                  "score_upper": -0.3333333333333333,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-06": {
+              "lower": 0.18333333333333332,
+              "upper": 0.18333333333333332,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 448,
+                  "score_lower": -0.32,
+                  "score_upper": -0.32,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 16,
+                  "score_lower": 0.18333333333333332,
+                  "score_upper": 0.18333333333333332,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-07": {
+              "lower": -0.011111111111111112,
+              "upper": -0.011111111111111112,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 395,
+                  "score_lower": -0.2111111111111111,
+                  "score_upper": -0.18888888888888888,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 4,
+                  "score_lower": -0.011111111111111112,
+                  "score_upper": -0.011111111111111112,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-08": {
+              "lower": -0.25333333333333335,
+              "upper": -0.22666666666666666,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 394,
+                  "score_lower": -0.25333333333333335,
+                  "score_upper": -0.22666666666666666,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 3,
+                  "score_lower": -0.38095238095238093,
+                  "score_upper": -0.38095238095238093,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-09": {
+              "lower": 0.6523809523809524,
+              "upper": 0.6523809523809524,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 447,
+                  "score_lower": -0.21333333333333335,
+                  "score_upper": -0.21333333333333335,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 19,
+                  "score_lower": 0.6523809523809524,
+                  "score_upper": 0.6523809523809524,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-10": {
+              "lower": 1.1,
+              "upper": 1.1,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 437,
+                  "score_lower": -0.175,
+                  "score_upper": -0.17142857142857143,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 27,
+                  "score_lower": 1.1,
+                  "score_upper": 1.1,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-11": {
+              "lower": -0.08666666666666667,
+              "upper": -0.08666666666666667,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 443,
+                  "score_lower": -0.08666666666666667,
+                  "score_upper": -0.08666666666666667,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 26,
+                  "score_lower": -0.25555555555555554,
+                  "score_upper": -0.25555555555555554,
+                  "upper_unbounded": false
+                }
+              }
+            }
+          }
+        },
+        "menu_max": {
+          "factor_lower": 3.7,
+          "factor_upper": 3.7,
+          "vacuous": false,
+          "date_scores": {
+            "2023-10-03": {
+              "lower": 3.7,
+              "upper": 3.7,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 362,
+                  "score_lower": 1.3166666666666667,
+                  "score_upper": 1.3166666666666667,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 107,
+                  "score_lower": 3.7,
+                  "score_upper": 3.7,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-04": {
+              "lower": 0.38,
+              "upper": 0.38,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 433,
+                  "score_lower": 0.28,
+                  "score_upper": 0.28,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 39,
+                  "score_lower": 0.38,
+                  "score_upper": 0.38,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-05": {
+              "lower": 0.02666666666666667,
+              "upper": 0.02666666666666667,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 449,
+                  "score_lower": 0.02666666666666667,
+                  "score_upper": 0.02666666666666667,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 21,
+                  "score_lower": 0.02666666666666667,
+                  "score_upper": 0.02666666666666667,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-06": {
+              "lower": 0.18333333333333332,
+              "upper": 0.18333333333333332,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 448,
+                  "score_lower": -0.04666666666666667,
+                  "score_upper": -0.04666666666666667,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 16,
+                  "score_lower": 0.18333333333333332,
+                  "score_upper": 0.18333333333333332,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-07": {
+              "lower": -0.011111111111111112,
+              "upper": -0.011111111111111112,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 395,
+                  "score_lower": -0.125,
+                  "score_upper": -0.12222222222222222,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 4,
+                  "score_lower": -0.011111111111111112,
+                  "score_upper": -0.011111111111111112,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-08": {
+              "lower": -0.17777777777777778,
+              "upper": -0.14166666666666666,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 394,
+                  "score_lower": -0.17777777777777778,
+                  "score_upper": -0.14166666666666666,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 3,
+                  "score_lower": -0.38095238095238093,
+                  "score_upper": -0.38095238095238093,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-09": {
+              "lower": 2.433333333333333,
+              "upper": 2.433333333333333,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 447,
+                  "score_lower": 2.0454545454545454,
+                  "score_upper": 2.0454545454545454,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 19,
+                  "score_lower": 2.433333333333333,
+                  "score_upper": 2.433333333333333,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-10": {
+              "lower": 1.1,
+              "upper": 1.1,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 437,
+                  "score_lower": 0.6083333333333333,
+                  "score_upper": 0.6083333333333333,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 27,
+                  "score_lower": 1.1,
+                  "score_upper": 1.1,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-11": {
+              "lower": 0.3466666666666667,
+              "upper": 0.3466666666666667,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 443,
+                  "score_lower": 0.3466666666666667,
+                  "score_upper": 0.3466666666666667,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 26,
+                  "score_lower": 0.09333333333333334,
+                  "score_upper": 0.09333333333333334,
+                  "upper_unbounded": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "shrunk_relative": {
+        "fixed_selector": {
+          "factor_lower": 1.4052497687269578,
+          "factor_upper": 1.4052497687269578,
+          "vacuous": false,
+          "date_scores": {
+            "2023-10-03": {
+              "lower": 0.6606878683185649,
+              "upper": 0.6606878683185649,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 362,
+                  "score_lower": 0.5368055341279502,
+                  "score_upper": 0.5523454357892053,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 107,
+                  "score_lower": 0.6606878683185649,
+                  "score_upper": 0.6606878683185649,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-04": {
+              "lower": 0.267968429240885,
+              "upper": 0.267968429240885,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 433,
+                  "score_lower": -0.11429488153329988,
+                  "score_upper": -0.11429488153329988,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 39,
+                  "score_lower": 0.267968429240885,
+                  "score_upper": 0.267968429240885,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-05": {
+              "lower": 0.13456569078314837,
+              "upper": 0.13456569078314837,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 449,
+                  "score_lower": -0.1753834089307675,
+                  "score_upper": -0.1753834089307675,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 21,
+                  "score_lower": 0.13456569078314837,
+                  "score_upper": 0.13456569078314837,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-06": {
+              "lower": 0.1682532385286245,
+              "upper": 0.1682532385286245,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 448,
+                  "score_lower": -0.19621440158665482,
+                  "score_upper": -0.19621440158665482,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 16,
+                  "score_lower": 0.1682532385286245,
+                  "score_upper": 0.1682532385286245,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-07": {
+              "lower": -0.0018698955335698885,
+              "upper": -0.0018698955335698885,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 395,
+                  "score_lower": -0.1747375700875155,
+                  "score_upper": -0.1695250419942294,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 4,
+                  "score_lower": -0.0018698955335698885,
+                  "score_upper": -0.0018698955335698885,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-08": {
+              "lower": 0.15607064106700577,
+              "upper": 0.15607064106700577,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 394,
+                  "score_lower": -0.1674575128290694,
+                  "score_upper": -0.1613894806948657,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 3,
+                  "score_lower": 0.15607064106700577,
+                  "score_upper": 0.15607064106700577,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-09": {
+              "lower": 1.4052497687269578,
+              "upper": 1.4052497687269578,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 447,
+                  "score_lower": -0.18160752884297945,
+                  "score_upper": -0.18160752884297945,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 19,
+                  "score_lower": 1.4052497687269578,
+                  "score_upper": 1.4052497687269578,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-10": {
+              "lower": 0.06791918665057939,
+              "upper": 0.10857861220931989,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 437,
+                  "score_lower": -0.16167727838695556,
+                  "score_upper": -0.16071724289337908,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 27,
+                  "score_lower": 0.06791918665057939,
+                  "score_upper": 0.10857861220931989,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-11": {
+              "lower": 0.42396899899384477,
+              "upper": 0.42396899899384477,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 443,
+                  "score_lower": -0.15367135671692692,
+                  "score_upper": -0.15367135671692692,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 26,
+                  "score_lower": 0.42396899899384477,
+                  "score_upper": 0.42396899899384477,
+                  "upper_unbounded": false
+                }
+              }
+            }
+          }
+        },
+        "menu_max": {
+          "factor_lower": 3.591572109656555,
+          "factor_upper": 6.965385904424813,
+          "vacuous": false,
+          "date_scores": {
+            "2023-10-03": {
+              "lower": 3.591572109656555,
+              "upper": 6.965385904424813,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 362,
+                  "score_lower": 2.093941226432697,
+                  "score_upper": 2.154011690321238,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 107,
+                  "score_lower": 3.591572109656555,
+                  "score_upper": 6.965385904424813,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-04": {
+              "lower": 1.0428398882150702,
+              "upper": 1.0428398882150702,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 433,
+                  "score_lower": 0.2399130917524545,
+                  "score_upper": 0.2399130917524545,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 39,
+                  "score_lower": 1.0428398882150702,
+                  "score_upper": 1.0428398882150702,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-05": {
+              "lower": 0.23406488603150294,
+              "upper": 0.23406488603150294,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 449,
+                  "score_lower": 0.039465258516763135,
+                  "score_upper": 0.039465258516763135,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 21,
+                  "score_lower": 0.23406488603150294,
+                  "score_upper": 0.23406488603150294,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-06": {
+              "lower": 0.24558482642293952,
+              "upper": 0.24558482642293952,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 448,
+                  "score_lower": 0.09207818158740887,
+                  "score_upper": 0.09207818158740887,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 16,
+                  "score_lower": 0.24558482642293952,
+                  "score_upper": 0.24558482642293952,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-07": {
+              "lower": 0.1883374470692379,
+              "upper": 0.1883374470692379,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 395,
+                  "score_lower": -0.05871565570491363,
+                  "score_upper": -0.035877257153002357,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 4,
+                  "score_lower": 0.1883374470692379,
+                  "score_upper": 0.1883374470692379,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-08": {
+              "lower": 0.15607064106700577,
+              "upper": 0.15607064106700577,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 394,
+                  "score_lower": -0.04830719654664608,
+                  "score_upper": -0.032891737078738686,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 3,
+                  "score_lower": 0.15607064106700577,
+                  "score_upper": 0.15607064106700577,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-09": {
+              "lower": 1.8485523275814086,
+              "upper": 1.8485523275814086,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 447,
+                  "score_lower": 0.4652578304402102,
+                  "score_upper": 0.4652578304402102,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 19,
+                  "score_lower": 1.8485523275814086,
+                  "score_upper": 1.8485523275814086,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-10": {
+              "lower": 0.26394003397092775,
+              "upper": 0.5389780977141212,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 437,
+                  "score_lower": 0.24178454455132442,
+                  "score_upper": 0.2759978796288477,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 27,
+                  "score_lower": 0.26394003397092775,
+                  "score_upper": 0.5389780977141212,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-11": {
+              "lower": 0.5383976799508908,
+              "upper": 0.5383976799508908,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 443,
+                  "score_lower": 0.1360038339860683,
+                  "score_upper": 0.1360038339860683,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 26,
+                  "score_lower": 0.5383976799508908,
+                  "score_upper": 0.5383976799508908,
+                  "upper_unbounded": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "student": {
+        "fixed_selector": {
+          "factor_lower": 0.4243150013902951,
+          "factor_upper": 0.4243150013902951,
+          "vacuous": false,
+          "date_scores": {
+            "2023-10-03": {
+              "lower": 0.4243150013902951,
+              "upper": 0.4243150013902951,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 362,
+                  "score_lower": 0.4243150013902951,
+                  "score_upper": 0.4243150013902951,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 107,
+                  "score_lower": 0.2518497361393202,
+                  "score_upper": 0.3191881941391528,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-04": {
+              "lower": -0.0980049210506879,
+              "upper": -0.0980049210506879,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 433,
+                  "score_lower": -0.0980049210506879,
+                  "score_upper": -0.0980049210506879,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 39,
+                  "score_lower": -0.22071975416213852,
+                  "score_upper": -0.22071975416213852,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-05": {
+              "lower": -0.13813952920173678,
+              "upper": -0.13813952920173678,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 449,
+                  "score_lower": -0.19030182062071635,
+                  "score_upper": -0.19030182062071635,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 21,
+                  "score_lower": -0.13813952920173678,
+                  "score_upper": -0.13813952920173678,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-06": {
+              "lower": -0.1047218863592205,
+              "upper": -0.1047218863592205,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 448,
+                  "score_lower": -0.20238292482790318,
+                  "score_upper": -0.20238292482790318,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 16,
+                  "score_lower": -0.1047218863592205,
+                  "score_upper": -0.1047218863592205,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-07": {
+              "lower": -0.07081221942918632,
+              "upper": -0.07081221942918632,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 395,
+                  "score_lower": -0.3233440866280701,
+                  "score_upper": -0.29382489505759046,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 4,
+                  "score_lower": -0.07081221942918632,
+                  "score_upper": -0.07081221942918632,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-08": {
+              "lower": 0.07194200039169073,
+              "upper": 0.07194200039169073,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 394,
+                  "score_lower": -0.2848338092685834,
+                  "score_upper": -0.27024012039514017,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 3,
+                  "score_lower": 0.07194200039169073,
+                  "score_upper": 0.07194200039169073,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-09": {
+              "lower": 0.1995814330450995,
+              "upper": 0.1995814330450995,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 447,
+                  "score_lower": -0.20970634034943064,
+                  "score_upper": -0.20970634034943064,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 19,
+                  "score_lower": 0.1995814330450995,
+                  "score_upper": 0.1995814330450995,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-10": {
+              "lower": -0.14562508894211085,
+              "upper": -0.10192882122795031,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 437,
+                  "score_lower": -0.14562508894211085,
+                  "score_upper": -0.13088495474524134,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 27,
+                  "score_lower": -0.1861577255241252,
+                  "score_upper": -0.10192882122795031,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-11": {
+              "lower": 0.06662264694184994,
+              "upper": 0.06662264694184994,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 443,
+                  "score_lower": -0.08910262331736858,
+                  "score_upper": -0.08910262331736858,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 26,
+                  "score_lower": 0.06662264694184994,
+                  "score_upper": 0.06662264694184994,
+                  "upper_unbounded": false
+                }
+              }
+            }
+          }
+        },
+        "menu_max": {
+          "factor_lower": 3.4395011960364688,
+          "factor_upper": 3.867974094069789,
+          "vacuous": false,
+          "date_scores": {
+            "2023-10-03": {
+              "lower": 3.4395011960364688,
+              "upper": 3.867974094069789,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 362,
+                  "score_lower": 1.9985093959328188,
+                  "score_upper": 2.04656783550317,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 107,
+                  "score_lower": 3.4395011960364688,
+                  "score_upper": 3.867974094069789,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-04": {
+              "lower": 0.3433790423778578,
+              "upper": 0.3433790423778578,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 433,
+                  "score_lower": 0.3433790423778578,
+                  "score_upper": 0.3433790423778578,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 39,
+                  "score_lower": 0.1512420260686364,
+                  "score_upper": 0.1512420260686364,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-05": {
+              "lower": 0.08462658384402588,
+              "upper": 0.08462658384402588,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 449,
+                  "score_lower": 0.029918993001979335,
+                  "score_upper": 0.029918993001979335,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 21,
+                  "score_lower": 0.08462658384402588,
+                  "score_upper": 0.08462658384402588,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-06": {
+              "lower": 0.06754901969510524,
+              "upper": 0.06754901969510524,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 448,
+                  "score_lower": 0.06754901969510524,
+                  "score_upper": 0.06754901969510524,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 16,
+                  "score_lower": -0.006516206335358758,
+                  "score_upper": -0.006516206335358758,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-07": {
+              "lower": -0.060725833885375,
+              "upper": -0.060725833885375,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 395,
+                  "score_lower": -0.15208733689464643,
+                  "score_upper": -0.12691717548676512,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 4,
+                  "score_lower": -0.060725833885375,
+                  "score_upper": -0.060725833885375,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-08": {
+              "lower": 0.07194200039169073,
+              "upper": 0.07194200039169073,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 394,
+                  "score_lower": -0.14291418537318054,
+                  "score_upper": -0.08589035952143703,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 3,
+                  "score_lower": 0.07194200039169073,
+                  "score_upper": 0.07194200039169073,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-09": {
+              "lower": 0.7602375229555818,
+              "upper": 0.7602375229555818,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 447,
+                  "score_lower": 0.6434857873418067,
+                  "score_upper": 0.6434857873418067,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 19,
+                  "score_lower": 0.7602375229555818,
+                  "score_upper": 0.7602375229555818,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-10": {
+              "lower": 0.38316566701726934,
+              "upper": 0.4595479737492722,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 437,
+                  "score_lower": 0.38316566701726934,
+                  "score_upper": 0.4595479737492722,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 27,
+                  "score_lower": 0.1314017954564282,
+                  "score_upper": 0.19510277340666182,
+                  "upper_unbounded": false
+                }
+              }
+            },
+            "2023-10-11": {
+              "lower": 0.3192525007268003,
+              "upper": 0.3192525007268003,
+              "upper_unbounded": false,
+              "groups": {
+                "ordinary": {
+                  "n_incoming_states": 443,
+                  "score_lower": 0.3192525007268003,
+                  "score_upper": 0.3192525007268003,
+                  "upper_unbounded": false
+                },
+                "late": {
+                  "n_incoming_states": 26,
+                  "score_lower": 0.14403929267083618,
+                  "score_upper": 0.14403929267083618,
+                  "upper_unbounded": false
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "new_actuals_opened": true,
+  "source_text": "\"\"\"Calibrate selection-aware service/clock regions with censored score bounds.\"\"\"\nimport argparse\nfrom collections import defaultdict\nimport math\nfrom pathlib import Path\nimport pickle\nimport sys\n\nimport numpy as np\n\nHERE = Path(__file__).resolve().parent\nROOT = HERE.parents[1]\nsys.path.insert(0, str(ROOT))\nfrom experiments.reconstruction_v6.calibration_run import read, write, add_candidate, metrics, V5, METHODS, MENUS\nfrom src.conditional_risk import observable_group\n\nMODES = ('fixed_selector', 'menu_max')\n\n\ndef states(rows):\n    result = defaultdict(list)\n    for row in rows:\n        result[row['incoming']].append(row)\n    return list(result.values())\n\n\ndef select(menu, method):\n    return min(menu, key=lambda row: (-row['probabilities'][method], row['scheduled'], row['outgoing']))\n\n\ndef score_bounds(row, method):\n    # The prediction region includes CANCELED as an explicit service category.\n    # This gives clock/service coverage; it does not identify cancel probability.\n    if row['status'] == 'CANCELED':\n        return -math.inf, -math.inf\n    if row['actual'] is None:\n        return -math.inf, math.inf\n    estimate = row['methods'][method]\n    half = (estimate['upper'] - estimate['lower']) / 2\n    value = max(estimate['lower'] - row['actual'], row['actual'] - estimate['upper']) / half\n    return value, value\n\n\ndef state_score(menu, method, mode):\n    considered = [select(menu, method)] if mode == 'fixed_selector' else menu\n    scores = [score_bounds(row, method) for row in considered]\n    return max(value[0] for value in scores), max(value[1] for value in scores)\n\n\ndef thresholds(outcomes, dates):\n    result = {}\n    for name in MENUS:\n        result[name] = {}\n        for method in METHODS:\n            result[name][method] = {}\n            for mode in MODES:\n                daily = {}\n                for day in dates:\n                    records = states(outcomes[day][name]['rows'])\n                    lower, upper, groups = [], [], {}\n                    for group in ('ordinary', 'late'):\n                        selected = [menu for menu in records if observable_group(menu[0]) == group]\n                        values = [state_score(menu, method, mode) for menu in selected]\n                        if values:\n                            index = math.ceil(.9 * len(values)) - 1\n                            lo = sorted(v[0] for v in values)[index]\n                            hi = sorted(v[1] for v in values)[index]\n                            lower.append(lo); upper.append(hi)\n                            groups[group] = {'n_incoming_states': len(values),\n                                'score_lower': lo if math.isfinite(lo) else None,\n                                'score_upper': hi if math.isfinite(hi) else None,\n                                'upper_unbounded': hi == math.inf}\n                        else:\n                            groups[group] = {'n_incoming_states': 0}\n                    daily[day] = {'lower': max(lower), 'upper': max(upper), 'groups': groups}\n                low = max(0., max(value['lower'] for value in daily.values()))\n                high = max(0., max(value['upper'] for value in daily.values()))\n                result[name][method][mode] = {'factor_lower': low if math.isfinite(low) else None,\n                    'factor_upper': high if math.isfinite(high) else None, 'vacuous': high == math.inf,\n                    'date_scores': {day: {'lower': v['lower'] if math.isfinite(v['lower']) else None,\n                                         'upper': v['upper'] if math.isfinite(v['upper']) else None,\n                                         'upper_unbounded': v['upper'] == math.inf,\n                                         'groups': v['groups']} for day, v in daily.items()}}\n    return result\n\n\ndef evaluate_menu(rows, method, mode, factor):\n    records = states(rows)\n    lower, upper, widths = [], [], []\n    observed, unknown, canceled = 0, 0, 0\n    for menu in records:\n        lo, hi = state_score(menu, method, mode)\n        lower.append(hi <= factor)\n        upper.append(lo <= factor)\n        considered = [select(menu, method)] if mode == 'fixed_selector' else menu\n        observed += sum(row['actual'] is not None for row in considered)\n        unknown += sum(row['status'] != 'CANCELED' and row['actual'] is None for row in considered)\n        canceled += sum(row['status'] == 'CANCELED' for row in considered)\n        widths.append(np.mean([(row['methods'][method]['upper'] - row['methods'][method]['lower'])\n                              * (1 + factor) for row in considered]))\n    selected_rows = [select(menu, method) for menu in records]\n    return {'n_incoming_states': len(records), 'observed_operating_targets': observed,\n            'unresolved_targets': unknown, 'canceled_targets': canceled,\n            'coverage_lower': float(np.mean(lower)) if records else None,\n            'coverage_upper': float(np.mean(upper)) if records else None,\n            'state_mean_clock_width_seconds': float(np.mean(widths)) if math.isfinite(factor) and widths else None,\n            'vacuous': not math.isfinite(factor),\n            'selected_clock_metrics': metrics(selected_rows, method, factor)\n                                      if math.isfinite(factor) else None}\n\n\ndef summary(outcomes, bounds):\n    result = {}\n    for day, output in outcomes.items():\n        result[day] = {}\n        for name in MENUS:\n            result[day][name] = {}\n            for method in METHODS:\n                result[day][name][method] = {}\n                for mode in MODES:\n                    bound = bounds[name][method][mode]\n                    factor = math.inf if bound['vacuous'] else bound['factor_upper']\n                    rows = output[name]['rows']\n                    values = evaluate_menu(rows, method, mode, factor)\n                    values['observable_groups'] = {group: evaluate_menu(\n                        [row for row in rows if observable_group(row) == group], method, mode, factor)\n                        for group in ('ordinary', 'late')}\n                    values['all_present_groups_lower_at_least90'] = all(\n                        g['coverage_lower'] is None or g['coverage_lower'] >= .9\n                        for g in values['observable_groups'].values())\n                    result[day][name][method][mode] = values\n    return result\n\n\ndef freeze():\n    sys.path.insert(0, str(V5))\n    from calibration_run import data_inputs\n    protocol = read(HERE / 'calibration_protocol.json')\n    with open(HERE / 'calibration_frozen_model.pkl', 'rb') as handle:\n        model = pickle.load(handle)\n    original = read(V5 / 'calibration_relative_variants_results.json.gz')['rows_by_date']\n    add_candidate(data_inputs(), original, model)\n    bound = thresholds(original, protocol['calibration_dates'])\n    selection_protocol = {'training_dates': protocol['training_dates'],\n        'calibration_dates': protocol['calibration_dates'],\n        'confirmation_dates': ['2023-10-14', '2023-10-17', '2023-10-28'],\n        'actuals_status_before_freeze': 'No actual-label source/score in V5 or first V6 calibration cohort; only old RT archives/date lists existed.',\n        'prediction_methods': METHODS, 'groups': protocol['observable_groups'],\n        'modes': {'fixed_selector': 'Max raw frozen catch probability; tie scheduled time then outgoing ID. Only this selector protected.',\n                  'menu_max': 'Maximum nonconformity across all outgoing candidates for each incoming state. Protects any first selector within the frozen menu.'},\n        'service_region': 'Union of CANCELED category and operating clock interval. No cancellation probability calibration is claimed.',\n        'missingness': 'Unknown clock/service gives score interval[-infinity,+infinity]; calibration factor has identified lower/upper. Use upper for finite coverage; retain vacuous if infinite.',\n        'rank_target': 'Each group/date contributes ceil(.9*n_incoming)-th state score; date is maximum over present groups; largest of9 calibration dates. Under exchangeable date blocks, >=90% probability that every present group has >=90% incoming states covered next date.',\n        'scope': 'Counterfactual retained input states, not the adaptively visited journey-state distribution. Both menus scored separately. Input-only selector never reads outgoing truth.',\n        'no_further_selection': 'Student/shrunk parameters unchanged; only this predetermined selection score is calibrated. No models, groups, dates or factors are chosen using the new three date labels.'}\n    write(HERE / 'calibration_selection_protocol.json', selection_protocol)\n    write(HERE / 'calibration_selection_frozen.json', {'protocol': selection_protocol,\n        'thresholds': bound, 'new_actuals_opened': False,\n        'source_text': Path(__file__).read_text(), 'point_model_fit': read(HERE / 'calibration_frozen_fit.json')})\n    previous = {day: original[day] for day in protocol['development_dates']}\n    previous.update(read(HERE / 'calibration_confirmation_results.json.gz')['rows_by_date'])\n    write(HERE / 'calibration_selection_development_summary.json', summary(previous, bound))\n    print('SELECTION FROZEN', {name: {method: {mode: value['factor_upper'] for mode, value in modes.items()}\n        for method, modes in methods.items()} for name, methods in bound.items()}, flush=True)\n\n\nif __name__ == '__main__':\n    parser = argparse.ArgumentParser()\n    parser.add_argument('--freeze', action='store_true')\n    args = parser.parse_args()\n    if args.freeze:\n        freeze()\n",
+  "point_model_fit": {
+    "protocol": {
+      "training_dates": [
+        "2023-10-01",
+        "2023-10-02"
+      ],
+      "calibration_dates": [
+        "2023-10-03",
+        "2023-10-04",
+        "2023-10-05",
+        "2023-10-06",
+        "2023-10-07",
+        "2023-10-08",
+        "2023-10-09",
+        "2023-10-10",
+        "2023-10-11"
+      ],
+      "development_dates": [
+        "2023-10-12",
+        "2023-10-25",
+        "2023-10-27"
+      ],
+      "actual_label_confirmation_dates": [
+        "2023-10-18",
+        "2023-10-23",
+        "2023-10-24"
+      ],
+      "previous_actuals_status": "These dates occur in archived RT-prior date lists, not prior actual-label scoring/source joins in V5. Existing public forecasts are allowed received inputs; no confirmation actuals are opened before model and envelopes are frozen.",
+      "methods": [
+        "frozen_shrunk_relative",
+        "heteroskedastic_student_t3"
+      ],
+      "new_model": "outgoing route prior mean + beta*incoming route-centered residual; scale sigma0+sigma1*abs(incoming residual), df fixed3. beta in[0,1], sigma0>=1second, sigma1>=0; three deterministic training-only starts, minimum date-balanced negative log likelihood.",
+      "observable_groups": {
+        "ordinary": "incoming measured arrival delay<=180seconds",
+        "late": "incoming measured arrival delay>180seconds"
+      },
+      "interval_target": "For each date take max across present groups of empirical ceil(.9*n)-th standardized central90 nonconformity. Largest of9 date scores (clipped below at0) is one common envelope factor. Under exchangeable date blocks, joint event: every present observable group has>=90% endpoint coverage on the next date, probability>=90%. No arbitrary individual/date-conditional guarantee.",
+      "interval_standardization": "Half the uncalibrated central90 interval width; interval only, does not alter CDF/boarding probability.",
+      "menu": "Primary timetable-selected different-trip pairs +/-300seconds around planned incoming arrival+GTFS transfer. Actual-current menu secondary. Unknown outgoing status remains selected/censored.",
+      "patience_seconds": 720,
+      "freeze": "No new date, group boundary, degrees of freedom, start count or model parameter is selected by development or confirmation scores. First candidate is completed and all results retained.",
+      "joint_interface": "Finite-chain departure marginal replacement by likelihood-ratio emission; clock means, sampling and conditional continuation must use the resulting same joint law. No scalar failure probability swap."
+    },
+    "beta": 0.3381224856129251,
+    "base_scale_seconds": 46.87938337787166,
+    "scale_slope": 0.08922960424596287,
+    "training_counts": {
+      "2023-10-01": 1807,
+      "2023-10-02": 2868
+    },
+    "optimizer": [
+      {
+        "success": true,
+        "objective": 4.696073572344183,
+        "parameters": [
+          0.3381224856129251,
+          3.8475779919798567,
+          0.08922960424596287
+        ],
+        "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+      },
+      {
+        "success": true,
+        "objective": 4.696073572637389,
+        "parameters": [
+          0.33810653455668654,
+          3.847561016459075,
+          0.0892318462354817
+        ],
+        "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+      },
+      {
+        "success": true,
+        "objective": 4.696073572388301,
+        "parameters": [
+          0.33812471970636643,
+          3.847584186892421,
+          0.08922247256696542
+        ],
+        "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH"
+      }
+    ],
+    "source_text": "\"\"\"Observable conditional risk laws and same-chain marginal replacement.\"\"\"\nfrom dataclasses import dataclass\nimport math\n\nimport numpy as np\nfrom scipy.optimize import minimize\nfrom scipy.special import stdtr, stdtrit\n\nfrom .evolving_trip_belief import _ChainLaw\n\n\n@dataclass(frozen=True)\nclass StudentClockLaw:\n    location: float\n    scale: float\n    cancel_probability: float\n    df: float = 3.\n\n    @property\n    def mean(self):\n        return self.location\n\n    def cdf(self, time):\n        return float(stdtr(self.df, (time - self.location) / self.scale))\n\n    def quantile(self, probability):\n        return self.location + self.scale * float(stdtrit(self.df, probability))\n\n    def board_probability(self, ready, patience=720):\n        return (1 - self.cancel_probability) * (self.cdf(ready + patience) - self.cdf(ready))\n\n\nclass ConditionalStudentModel:\n    \"\"\"A training-only robust conditional location and surprise-dependent scale.\n\n    The prior event location remains route specific. The incoming residual is\n    first-hand observed, while the target's actual clock is never read.\n    Each training date has equal objective mass; pairs are not treated as\n    independent observations for any uncertainty statement.\n    \"\"\"\n\n    def __init__(self, marginal, training_pairs):\n        self.marginal = marginal\n        x, y, weights = [], [], []\n        self.training_counts = {}\n        for day, pairs in training_pairs.items():\n            eligible = [(a, b) for a, b in pairs\n                        if a['arrival']['status'] == b['departure']['status'] == 'REAL']\n            self.training_counts[day] = len(eligible)\n            for incoming, outgoing in eligible:\n                x.append(incoming['arrival']['time_seconds'] - marginal.prior(incoming, 'arrival').mean)\n                y.append(outgoing['departure']['time_seconds'] - marginal.prior(outgoing, 'departure').mean)\n                weights.append(1 / (len(training_pairs) * len(eligible)))\n        x, y, weights = np.asarray(x), np.asarray(y), np.asarray(weights)\n\n        def objective(parameters):\n            beta, log_scale, slope = parameters\n            base = np.exp(log_scale)\n            scale = base + slope * np.abs(x)\n            residual = (y - beta * x) / scale\n            loss = np.log(scale) + 2 * np.log1p(residual ** 2 / 3)\n            common = 1 - 4 * residual ** 2 / (3 + residual ** 2)\n            gradient = np.array([\n                np.sum(weights * (-4 * residual * x / (scale * (3 + residual ** 2)))),\n                np.sum(weights * common * base / scale),\n                np.sum(weights * common * np.abs(x) / scale)])\n            return float(weights @ loss), gradient\n\n        fits = []\n        for beta in (0., .2, 1.):\n            initial_scale = max(1., float(np.median(np.abs(y - beta * x))) / float(stdtrit(3, .75)))\n            fit = minimize(objective, (beta, np.log(initial_scale), .1), jac=True,\n                           method='L-BFGS-B', bounds=((0., 1.), (0., None), (0., None)))\n            fits.append(fit)\n        best = min(fits, key=lambda fit: fit.fun)\n        self.beta, log_scale, self.scale_slope = map(float, best.x)\n        self.base_scale = float(np.exp(log_scale))\n        self.fit_diagnostics = [{'success': bool(fit.success), 'objective': float(fit.fun),\n                                 'parameters': fit.x.tolist(), 'message': str(fit.message)} for fit in fits]\n\n    def predict(self, incoming, outgoing, observed_arrival):\n        residual = observed_arrival - self.marginal.prior(incoming, 'arrival').mean\n        target = self.marginal.prior(outgoing, 'departure')\n        return StudentClockLaw(target.mean + self.beta * residual,\n                               self.base_scale + self.scale_slope * abs(residual),\n                               target.cancel_probability)\n\n\ndef observable_group(row):\n    return 'late' if row['incoming_delay'] > 180 else 'ordinary'\n\n\ndef simultaneous_group_envelope(rows_by_date, method, groups=('ordinary', 'late')):\n    \"\"\"Date-block rank score for every present, predefined observable group.\n\n    Each group contributes its ceil(.9*n)-th score; the date score is their\n    maximum. With nine exchangeable calibration dates, their maximum covers\n    the next date score with probability at least9/10. Empty groups are\n    vacuous on that date, and counts are retained rather than inflated.\n    \"\"\"\n    scores, detail = {}, {}\n    for day, rows in rows_by_date.items():\n        group_scores = {}\n        for group in groups:\n            values = []\n            for row in rows:\n                if row['actual'] is None or observable_group(row) != group:\n                    continue\n                prediction = row['methods'][method]\n                halfwidth = (prediction['upper'] - prediction['lower']) / 2\n                values.append(max(prediction['lower'] - row['actual'],\n                                  row['actual'] - prediction['upper']) / halfwidth)\n            group_scores[group] = {'n': len(values), 'score':\n                sorted(values)[math.ceil(.9 * len(values)) - 1] if values else None}\n        scores[day] = max(value['score'] for value in group_scores.values() if value['n'])\n        detail[day] = group_scores\n    return max(0., max(scores.values())), {'date_scores': scores, 'groups_by_date': detail}\n\n\ndef retarget_event_chain(base, index, law):\n    \"\"\"Replace one event's marginal and keep its conditional complete chain.\n\n    CDF cell masses are projected onto the original event's operating grid.\n    Impossible states remain impossible. The ratio target/base is an emission\n    on the same joint chain, so all future marginals and FFBS draws change\n    consistently. Callers obtain catch probability from the returned discrete\n    chain, including boardable equality, rather than reusing continuous p.\n    \"\"\"\n    original = base.marginal(index)\n    operating = ~base.canceled[index]\n    clocks = base.times[index][operating]\n    target = np.zeros_like(original)\n    if len(clocks):\n        edges = np.r_[-np.inf, (clocks[:-1].astype(float) + clocks[1:]) / 2, np.inf]\n        cumulative = np.r_[0., [law.cdf(t) for t in edges[1:-1]], 1.]\n        target[operating] = original[operating].sum() * np.diff(cumulative)\n    # Calibrating operating-clock risk does not identify cancellation rates.\n    target[~operating] = original[~operating]\n    target[original == 0] = 0\n    if not target.sum():\n        raise ValueError('The target event law gives zero mass to the observed history support')\n    target /= target.sum()\n    ratio = np.zeros_like(original)\n    supported = original > 0\n    with np.errstate(divide='ignore'):\n        ratio[supported] = np.log(target[supported]) - np.log(original[supported])\n    emissions = list(base.emissions)\n    emissions[index] = emissions[index] + ratio\n    updated = _ChainLaw(base.times, base.initial, base._transition, emissions,\n                        base.canceled, base.stochastic)\n    return updated, target\n"
+  }
+}

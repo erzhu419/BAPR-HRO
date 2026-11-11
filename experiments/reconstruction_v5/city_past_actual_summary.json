@@ -1,0 +1,159 @@
+{
+  "scope": "Previously observed October25, two fixed OD; a prior-source diagnostic, not independent confirmation.",
+  "input_audit": "experiments/reconstruction_v5/city_past_actual_input_audit.json",
+  "unchanged": "Full October day record, graph, actual world, stop/OD mapping, station transfers, forecast receipts, sampler count and nominal algorithm; no download.",
+  "attribution": "Four nominal pairs isolate the prior source package: old small-city-template GTFS-RT predictions/statuses plus declared increments versus July25 complete-city actual moments. Source cohort, prediction/realization, seasonal lag and cancellation assumptions all belong to this package. UCT64 is reported without attributing an old UCT512 difference.",
+  "cancellation": "July performed-service source cannot identify true city cancellation rates; q=0 remains an assumption.",
+  "timing": "Two workers per panel; charged clocks pay actual processing wall time, which depends on concurrent host load.",
+  "audit": {
+    "messages": 0,
+    "decisions": 106,
+    "board_arrival_events": 200,
+    "polls": 106,
+    "new_rows": 8
+  },
+  "outputs": [
+    {
+      "clock": "logical",
+      "result": "experiments/reconstruction_v5/city_past_actual_logical_results.json",
+      "protocol": "experiments/reconstruction_v5/city_past_actual_logical_results_protocol.json.gz"
+    },
+    {
+      "clock": "charged",
+      "result": "experiments/reconstruction_v5/city_past_actual_charged_results.json",
+      "protocol": "experiments/reconstruction_v5/city_past_actual_charged_results_protocol.json.gz"
+    }
+  ],
+  "nominal_pairs": [
+    {
+      "clock": "logical",
+      "query": 0,
+      "old_status": "timeout",
+      "status": "arrived",
+      "old_loss_seconds": 3600,
+      "loss_seconds": 723,
+      "delta_seconds": -2877,
+      "old_labeled_budget": 512,
+      "new_labeled_budget": 64,
+      "both_actual_planning_transitions": 0
+    },
+    {
+      "clock": "logical",
+      "query": 1,
+      "old_status": "timeout",
+      "status": "arrived",
+      "old_loss_seconds": 3600,
+      "loss_seconds": 1990,
+      "delta_seconds": -1610,
+      "old_labeled_budget": 512,
+      "new_labeled_budget": 64,
+      "both_actual_planning_transitions": 0
+    },
+    {
+      "clock": "charged",
+      "query": 0,
+      "old_status": "timeout",
+      "status": "arrived",
+      "old_loss_seconds": 3600,
+      "loss_seconds": 723,
+      "delta_seconds": -2877,
+      "old_labeled_budget": 512,
+      "new_labeled_budget": 64,
+      "both_actual_planning_transitions": 0
+    },
+    {
+      "clock": "charged",
+      "query": 1,
+      "old_status": "timeout",
+      "status": "arrived",
+      "old_loss_seconds": 3600,
+      "loss_seconds": 1990,
+      "delta_seconds": -1610,
+      "old_labeled_budget": 512,
+      "new_labeled_budget": 64,
+      "both_actual_planning_transitions": 0
+    }
+  ],
+  "summary": {
+    "logical": {
+      "trained_nominal": {
+        "n": 2,
+        "statuses": {
+          "arrived": 2
+        },
+        "uncensored_mean_loss_seconds": 1356.5,
+        "mean_compute_ms": 4705.293891514884,
+        "mean_end_to_end_ms": 5272.167640039697,
+        "mean_graph_build_ms": 214.1718465136364,
+        "mean_policy_setup_ms": 352.7104645036161,
+        "decision_p50_p95_p99_ms": [
+          15.668589010601863,
+          2044.6611100051086,
+          4418.524625740247
+        ],
+        "largest_worker_peak_kib": 617768,
+        "mean_loss_lower_seconds": 1356.5,
+        "mean_loss_upper_seconds": 1356.5
+      },
+      "evolving_uct": {
+        "n": 2,
+        "statuses": {
+          "arrived": 2
+        },
+        "uncensored_mean_loss_seconds": 1783.5,
+        "mean_compute_ms": 28162.91062248638,
+        "mean_end_to_end_ms": 28708.61799447448,
+        "mean_graph_build_ms": 205.36805648589507,
+        "mean_policy_setup_ms": 340.35129999392666,
+        "decision_p50_p95_p99_ms": [
+          1090.916559973266,
+          5811.1365177843245,
+          10476.901083432595
+        ],
+        "largest_worker_peak_kib": 681792,
+        "mean_loss_lower_seconds": 1783.5,
+        "mean_loss_upper_seconds": 1783.5
+      }
+    },
+    "charged": {
+      "trained_nominal": {
+        "n": 2,
+        "statuses": {
+          "arrived": 2
+        },
+        "uncensored_mean_loss_seconds": 1356.5,
+        "mean_compute_ms": 5332.21515751211,
+        "mean_end_to_end_ms": 5908.135435049189,
+        "mean_graph_build_ms": 217.58920152205974,
+        "mean_policy_setup_ms": 358.3428864949383,
+        "decision_p50_p95_p99_ms": [
+          19.193176995031536,
+          2161.082757258555,
+          4802.651660502306
+        ],
+        "largest_worker_peak_kib": 617716,
+        "mean_loss_lower_seconds": 1356.5,
+        "mean_loss_upper_seconds": 1356.5
+      },
+      "evolving_uct": {
+        "n": 2,
+        "statuses": {
+          "arrived": 2
+        },
+        "uncensored_mean_loss_seconds": 1783.5,
+        "mean_compute_ms": 31897.68317452399,
+        "mean_end_to_end_ms": 32491.787837498123,
+        "mean_graph_build_ms": 202.43801648030058,
+        "mean_policy_setup_ms": 391.6787874768488,
+        "decision_p50_p95_p99_ms": [
+          943.601717997808,
+          6724.511619802797,
+          13043.092138281778
+        ],
+        "largest_worker_peak_kib": 682320,
+        "mean_loss_lower_seconds": 1783.5,
+        "mean_loss_upper_seconds": 1783.5
+      }
+    }
+  }
+}

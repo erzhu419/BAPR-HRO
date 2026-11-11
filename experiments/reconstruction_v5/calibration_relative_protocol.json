@@ -1,0 +1,35 @@
+{
+  "parameter_training_dates": [
+    "2023-10-01",
+    "2023-10-02"
+  ],
+  "calibration_dates": [
+    "2023-10-03",
+    "2023-10-04",
+    "2023-10-05",
+    "2023-10-06",
+    "2023-10-07",
+    "2023-10-08",
+    "2023-10-09",
+    "2023-10-10",
+    "2023-10-11"
+  ],
+  "development_dates": [
+    "2023-10-12",
+    "2023-10-25",
+    "2023-10-27"
+  ],
+  "scheduled_pair_window_seconds": 300,
+  "patience_seconds": 720,
+  "route_pair_pseudocount": 20,
+  "kernel_sd_seconds": 17.320508075688775,
+  "methods": [
+    "evolving_incoming",
+    "evolving_public_incoming",
+    "frozen_public_mixture",
+    "relative_incoming"
+  ],
+  "selection": "Primary pairs use scheduled incoming arrival + GTFS station transfer and different-trip departures within +/-300 seconds, before inspecting outcomes. Secondary pairs center the same menu window on the actual traveler-ready time. Unresolved outcomes remain menu candidates.",
+  "information": "Only the supplied incoming measured arrival and numeric forecasts received by that time. No other same-day actual endpoint is observed by the predictor.",
+  "theory": "A shared additive day location with equal incoming/outgoing loadings cancels in the relative delay. Relative residual exchangeability across selected date blocks is still required. The residual includes minus the incoming idiosyncratic error, so cancellation does not establish coverage conditional on every particular incoming delay."
+}

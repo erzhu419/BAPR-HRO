@@ -1,0 +1,156 @@
+{
+  "scope": "Cold initial public UCT64 query; actual endpoint comparisons computed only after action.",
+  "duration_model": "cdf20",
+  "fit": "ordered_duration_training_fit.json",
+  "date": "2023-07-27",
+  "query": 0,
+  "timing": {
+    "wall_seconds": 6.257020381977782,
+    "cpu_seconds": 5.841864373
+  },
+  "selected": 10182,
+  "planning": {
+    "connection": 10182,
+    "stop": 530,
+    "time": 29100,
+    "planning_ms": 6237.037173006684,
+    "work": 64,
+    "value": 1500.0,
+    "completed_rollouts": 9,
+    "root_actions": 132,
+    "scored_root_actions": 9,
+    "complete_common_rounds": 0,
+    "tree_nodes": 11,
+    "menu_size": 27895
+  },
+  "posterior_and_bank": [
+    {
+      "connection": 7588,
+      "trip": "2319.TA.91-9-I-j23-1.10.H",
+      "route": "91-9-I-j23-1",
+      "ready": 29100,
+      "scheduled_departure": 28920,
+      "model_mean_departure": 28877.235869356973,
+      "model_departure_q05_q50_q95": [
+        28640,
+        28880,
+        29140
+      ],
+      "posterior_board_probability": 0.08816714532959545,
+      "posterior_all_worlds_catch_probability": 6.0426455183535416e-05,
+      "bank_departures": [
+        28900,
+        28900,
+        28940,
+        29120
+      ],
+      "bank_caught": 1,
+      "bank_catch_fraction": 0.25,
+      "bank_worlds": 4,
+      "actual_departure": 28897,
+      "actual_caught": false
+    },
+    {
+      "connection": 8341,
+      "trip": "3779.TA.91-2-H-j23-1.14.R",
+      "route": "91-2-H-j23-1",
+      "ready": 29100,
+      "scheduled_departure": 29100,
+      "model_mean_departure": 29196.232929625803,
+      "model_departure_q05_q50_q95": [
+        29000,
+        29200,
+        29380
+      ],
+      "posterior_board_probability": 0.8225298605736227,
+      "posterior_all_worlds_catch_probability": 0.4577271707532179,
+      "bank_departures": [
+        29020,
+        29280,
+        29140,
+        29400
+      ],
+      "bank_caught": 3,
+      "bank_catch_fraction": 0.75,
+      "bank_worlds": 4,
+      "actual_departure": 29121,
+      "actual_caught": true
+    }
+  ],
+  "trip_comparison": [
+    {
+      "trip": "2319.TA.91-9-I-j23-1.10.H",
+      "route": "91-9-I-j23-1",
+      "slots": 64,
+      "zero_dwell_count": 22,
+      "route_prior_mean_delay": 6.062749003984063,
+      "model_first_delay": 6.062749003984209,
+      "observed_first_delay": 61,
+      "model_last_delay": -26.733650094618497,
+      "observed_last_delay": 7,
+      "zero_dwell_mean_kernel_duration": 12.022075842216742,
+      "zero_dwell_raw_duration_target": -111.01801875688552,
+      "slot_comparison": [
+        {
+          "slot": 0,
+          "connection": 94,
+          "event": "departure",
+          "scheduled": 27000,
+          "model_delay": 6.062749003984209,
+          "observed_delay": 61
+        },
+        {
+          "slot": 63,
+          "connection": 10613,
+          "event": "arrival",
+          "scheduled": 29760,
+          "model_delay": -26.733650094618497,
+          "observed_delay": 7,
+          "transition": "travel",
+          "scheduled_duration": 60,
+          "raw_duration_target": 58.513525757977476,
+          "kernel_expected_duration": 60.58366749600641,
+          "kernel_bias_vs_raw_target": 2.070141738028937,
+          "nominal_increment": 60.792713988579635
+        }
+      ]
+    },
+    {
+      "trip": "3779.TA.91-2-H-j23-1.14.R",
+      "route": "91-2-H-j23-1",
+      "slots": 60,
+      "zero_dwell_count": 21,
+      "route_prior_mean_delay": 29.429,
+      "model_first_delay": 29.428999988573196,
+      "observed_first_delay": 30,
+      "model_last_delay": -0.7504882852590526,
+      "observed_last_delay": 72,
+      "zero_dwell_mean_kernel_duration": 12.022075842216742,
+      "zero_dwell_raw_duration_target": -111.01801875688552,
+      "slot_comparison": [
+        {
+          "slot": 0,
+          "connection": 5058,
+          "event": "departure",
+          "scheduled": 28260,
+          "model_delay": 29.428999988573196,
+          "observed_delay": 30
+        },
+        {
+          "slot": 59,
+          "connection": 14089,
+          "event": "arrival",
+          "scheduled": 30660,
+          "model_delay": -0.7504882852590526,
+          "observed_delay": 72,
+          "transition": "travel",
+          "scheduled_duration": 60,
+          "raw_duration_target": 58.513525757977476,
+          "kernel_expected_duration": 60.58366749600641,
+          "kernel_bias_vs_raw_target": 2.070141738028937,
+          "nominal_increment": 60.77569013320317
+        }
+      ]
+    }
+  ]
+}

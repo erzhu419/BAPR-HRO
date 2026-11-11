@@ -1,0 +1,1674 @@
+{
+  "input": "experiments/reconstruction_data_audit/city_vbz_dated_replay_v2.json.gz",
+  "train_dates": [
+    "2023-07-25"
+  ],
+  "candidate_selection": "One grid fit chosen by declared training objective; no held-out loss used.",
+  "continuous_zero_atom": "1498 exact-zero dwells exist. All three continuous optimizations converge to the same finite interior fit; the continuous density is a misspecified reference, not a zero-atom generative model.",
+  "grid_observation_likelihood": "For y between a=60*floor(y/60) and b=a+60, maximize (1-f)*log p(a|d)+f*log p(b|d), f=(y-a)/60. p(k|d) is the row-normalized Gaussian potential on k=0,60,120,... . This is expected randomized-coarsening log likelihood.",
+  "integration": "Upper integration limit includes observed maximum and extends 12 sigma beyond the Gaussian location. Only location and scale are fitted; no held-out tuning.",
+  "deployment_limit": "Not exact adaptive-grid HMM maximum likelihood: finite delay boundaries, known absolute anchors and full chain conditioning change transition rows. Cold 60-second lattice cannot match the observed zero-dwell mean and variance simultaneously.",
+  "zero_dwell_grid_minimum_sd_at_observed_mean": 25.33604797422209,
+  "zero_dwell_actual_sd": 10.185550932932728,
+  "baseline_training": {
+    "train_dates": [
+      "2023-07-25"
+    ],
+    "route_priors": {
+      "91-14-E-j23-1": {
+        "mean": 0.4922145328719723,
+        "std": 1.0278085575493494,
+        "cancel_rate": 0.0,
+        "n_departures": 867,
+        "status_counts": {
+          "REAL": 867
+        }
+      },
+      "pooled": {
+        "mean": 0.7097473424528432,
+        "std": 1.0566053361806906,
+        "cancel_rate": 0.0,
+        "n_departures": 24051,
+        "status_counts": {
+          "REAL": 24051
+        }
+      },
+      "92-89-j23-1": {
+        "mean": 1.0096625057790107,
+        "std": 0.8741201384661783,
+        "cancel_rate": 0.0,
+        "n_departures": 721,
+        "status_counts": {
+          "REAL": 721
+        }
+      },
+      "92-307-A-j23-1": {
+        "mean": 1.351794871794872,
+        "std": 0.8292264085006568,
+        "cancel_rate": 0.0,
+        "n_departures": 65,
+        "status_counts": {
+          "REAL": 65
+        }
+      },
+      "92-75-B-j23-1": {
+        "mean": 0.44668338907469346,
+        "std": 0.6714326987226414,
+        "cancel_rate": 0.0,
+        "n_departures": 598,
+        "status_counts": {
+          "REAL": 598
+        }
+      },
+      "92-80-A-j23-1": {
+        "mean": 0.7282507964089198,
+        "std": 0.8503186403788773,
+        "cancel_rate": 0.0,
+        "n_departures": 1151,
+        "status_counts": {
+          "REAL": 1151
+        }
+      },
+      "91-3-J-j23-1": {
+        "mean": 0.4013993003498251,
+        "std": 0.5559123327635851,
+        "cancel_rate": 0.0,
+        "n_departures": 667,
+        "status_counts": {
+          "REAL": 667
+        }
+      },
+      "91-4-F-j23-1": {
+        "mean": 0.3791782729805014,
+        "std": 0.7677111226141262,
+        "cancel_rate": 0.0,
+        "n_departures": 718,
+        "status_counts": {
+          "REAL": 718
+        }
+      },
+      "92-66-B-j23-1": {
+        "mean": 0.8871317829457364,
+        "std": 0.6577424318563179,
+        "cancel_rate": 0.0,
+        "n_departures": 215,
+        "status_counts": {
+          "REAL": 215
+        }
+      },
+      "92-69-j23-1": {
+        "mean": 0.6774928774928775,
+        "std": 0.5944596860387913,
+        "cancel_rate": 0.0,
+        "n_departures": 234,
+        "status_counts": {
+          "REAL": 234
+        }
+      },
+      "92-67-j23-1": {
+        "mean": 1.0795340501792114,
+        "std": 1.0855623158311327,
+        "cancel_rate": 0.0,
+        "n_departures": 465,
+        "status_counts": {
+          "REAL": 465
+        }
+      },
+      "91-13-B-j23-1": {
+        "mean": 0.42952875054042366,
+        "std": 0.9411682112236259,
+        "cancel_rate": 0.0,
+        "n_departures": 771,
+        "status_counts": {
+          "REAL": 771
+        }
+      },
+      "92-72-B-j23-1": {
+        "mean": 0.7311064228785749,
+        "std": 1.0687904290238563,
+        "cancel_rate": 0.0,
+        "n_departures": 711,
+        "status_counts": {
+          "REAL": 711
+        }
+      },
+      "92-91-j23-1": {
+        "mean": 1.4981481481481482,
+        "std": 1.0910616123285262,
+        "cancel_rate": 0.0,
+        "n_departures": 63,
+        "status_counts": {
+          "REAL": 63
+        }
+      },
+      "92-83-A-j23-1": {
+        "mean": 0.60799859055673,
+        "std": 0.7559365158343019,
+        "cancel_rate": 0.0,
+        "n_departures": 473,
+        "status_counts": {
+          "REAL": 473
+        }
+      },
+      "91-2-H-j23-1": {
+        "mean": 0.4904833333333333,
+        "std": 0.770699710760726,
+        "cancel_rate": 0.0,
+        "n_departures": 1000,
+        "status_counts": {
+          "REAL": 1000
+        }
+      },
+      "92-910-j23-1": {
+        "mean": 0.6626302083333333,
+        "std": 0.6676254371765911,
+        "cancel_rate": 0.0,
+        "n_departures": 128,
+        "status_counts": {
+          "REAL": 128
+        }
+      },
+      "92-302-C-j23-1": {
+        "mean": 1.163123993558776,
+        "std": 0.9850319994359416,
+        "cancel_rate": 0.0,
+        "n_departures": 207,
+        "status_counts": {
+          "REAL": 207
+        }
+      },
+      "91-8-H-j23-1": {
+        "mean": 0.9131805157593123,
+        "std": 1.2058268574993076,
+        "cancel_rate": 0.0,
+        "n_departures": 698,
+        "status_counts": {
+          "REAL": 698
+        }
+      },
+      "91-10-E-j23-1": {
+        "mean": 0.5107332368547998,
+        "std": 0.9516901339307112,
+        "cancel_rate": 0.0,
+        "n_departures": 691,
+        "status_counts": {
+          "REAL": 691
+        }
+      },
+      "92-46-D-j23-1": {
+        "mean": 1.207669616519174,
+        "std": 1.0329447886530958,
+        "cancel_rate": 0.0,
+        "n_departures": 678,
+        "status_counts": {
+          "REAL": 678
+        }
+      },
+      "92-40-C-j23-1": {
+        "mean": 0.576984126984127,
+        "std": 0.7752179974574837,
+        "cancel_rate": 0.0,
+        "n_departures": 273,
+        "status_counts": {
+          "REAL": 273
+        }
+      },
+      "91-7-G-j23-1": {
+        "mean": 0.24670900692840644,
+        "std": 0.6396777245047496,
+        "cancel_rate": 0.0,
+        "n_departures": 866,
+        "status_counts": {
+          "REAL": 866
+        }
+      },
+      "91-15-E-j23-1": {
+        "mean": 0.3600098619329388,
+        "std": 0.6372150069303499,
+        "cancel_rate": 0.0,
+        "n_departures": 338,
+        "status_counts": {
+          "REAL": 338
+        }
+      },
+      "92-304-E-j23-1": {
+        "mean": 0.8758149316508937,
+        "std": 0.8567255684955097,
+        "cancel_rate": 0.0,
+        "n_departures": 317,
+        "status_counts": {
+          "REAL": 317
+        }
+      },
+      "92-35-B-j23-1": {
+        "mean": 0.38002070393374743,
+        "std": 0.5,
+        "cancel_rate": 0.0,
+        "n_departures": 161,
+        "status_counts": {
+          "REAL": 161
+        }
+      },
+      "91-5-H-j23-1": {
+        "mean": 0.15429118773946363,
+        "std": 0.6803862076663703,
+        "cancel_rate": 0.0,
+        "n_departures": 435,
+        "status_counts": {
+          "REAL": 435
+        }
+      },
+      "91-11-C-j23-1": {
+        "mean": 0.484975845410628,
+        "std": 0.8486758256001848,
+        "cancel_rate": 0.0,
+        "n_departures": 1035,
+        "status_counts": {
+          "REAL": 1035
+        }
+      },
+      "92-701-B-j23-1": {
+        "mean": 0.47528735632183916,
+        "std": 1.0320034145750407,
+        "cancel_rate": 0.0,
+        "n_departures": 116,
+        "status_counts": {
+          "REAL": 116
+        }
+      },
+      "92-751-j23-1": {
+        "mean": 0.8737442922374429,
+        "std": 0.8136624353269889,
+        "cancel_rate": 0.0,
+        "n_departures": 146,
+        "status_counts": {
+          "REAL": 146
+        }
+      },
+      "92-78-A-j23-1": {
+        "mean": 0.6077727952167413,
+        "std": 0.5999558796245548,
+        "cancel_rate": 0.0,
+        "n_departures": 223,
+        "status_counts": {
+          "REAL": 223
+        }
+      },
+      "92-32-G-j23-1": {
+        "mean": 1.7097402597402598,
+        "std": 1.6620209074342482,
+        "cancel_rate": 0.0,
+        "n_departures": 770,
+        "status_counts": {
+          "REAL": 770
+        }
+      },
+      "91-9-I-j23-1": {
+        "mean": 0.10104581673306771,
+        "std": 0.6528326957702506,
+        "cancel_rate": 0.0,
+        "n_departures": 1004,
+        "status_counts": {
+          "REAL": 1004
+        }
+      },
+      "92-745-j23-1": {
+        "mean": 0.18524305555555554,
+        "std": 0.9883987640876141,
+        "cancel_rate": 0.0,
+        "n_departures": 96,
+        "status_counts": {
+          "REAL": 96
+        }
+      },
+      "92-31-G-j23-1": {
+        "mean": 1.2484364925854288,
+        "std": 1.7245418741167493,
+        "cancel_rate": 0.0,
+        "n_departures": 1034,
+        "status_counts": {
+          "REAL": 1034
+        }
+      },
+      "91-6-K-j23-1": {
+        "mean": 0.2707080828323313,
+        "std": 0.6596329263181895,
+        "cancel_rate": 0.0,
+        "n_departures": 499,
+        "status_counts": {
+          "REAL": 499
+        }
+      },
+      "92-33-E-j23-1": {
+        "mean": 0.8555555555555555,
+        "std": 1.0586182224108889,
+        "cancel_rate": 0.0,
+        "n_departures": 1116,
+        "status_counts": {
+          "REAL": 1116
+        }
+      },
+      "92-912-j23-1": {
+        "mean": 1.0294202898550726,
+        "std": 1.224744536972654,
+        "cancel_rate": 0.0,
+        "n_departures": 230,
+        "status_counts": {
+          "REAL": 230
+        }
+      },
+      "92-77-j23-1": {
+        "mean": 1.1871549893842888,
+        "std": 0.8145176730265331,
+        "cancel_rate": 0.0,
+        "n_departures": 157,
+        "status_counts": {
+          "REAL": 157
+        }
+      },
+      "92-916-j23-1": {
+        "mean": 0.8412280701754388,
+        "std": 0.7628588287215362,
+        "cancel_rate": 0.0,
+        "n_departures": 171,
+        "status_counts": {
+          "REAL": 171
+        }
+      },
+      "91-17-E-j23-1": {
+        "mean": 0.48108974358974355,
+        "std": 0.8972438935326897,
+        "cancel_rate": 0.0,
+        "n_departures": 936,
+        "status_counts": {
+          "REAL": 936
+        }
+      },
+      "92-13-D-j23-1": {
+        "mean": 0.6501996007984031,
+        "std": 0.7929244405425322,
+        "cancel_rate": 0.0,
+        "n_departures": 334,
+        "status_counts": {
+          "REAL": 334
+        }
+      },
+      "92-703-B-j23-1": {
+        "mean": 0.813211382113821,
+        "std": 0.969622400888125,
+        "cancel_rate": 0.0,
+        "n_departures": 82,
+        "status_counts": {
+          "REAL": 82
+        }
+      },
+      "92-64-C-j23-1": {
+        "mean": 1.1666666666666667,
+        "std": 0.7689696763485746,
+        "cancel_rate": 0.0,
+        "n_departures": 82,
+        "status_counts": {
+          "REAL": 82
+        }
+      },
+      "92-61-C-j23-1": {
+        "mean": 1.1083109919571046,
+        "std": 1.7194174948782208,
+        "cancel_rate": 0.0,
+        "n_departures": 373,
+        "status_counts": {
+          "REAL": 373
+        }
+      },
+      "92-165-A-j23-1": {
+        "mean": 0.6213395638629282,
+        "std": 0.7860702977097216,
+        "cancel_rate": 0.0,
+        "n_departures": 107,
+        "status_counts": {
+          "REAL": 107
+        }
+      },
+      "92-161-A-j23-1": {
+        "mean": 1.2048309178743961,
+        "std": 0.9974246283733077,
+        "cancel_rate": 0.0,
+        "n_departures": 138,
+        "status_counts": {
+          "REAL": 138
+        }
+      },
+      "92-62-C-j23-1": {
+        "mean": 1.1053264604810997,
+        "std": 1.3319812654804095,
+        "cancel_rate": 0.0,
+        "n_departures": 388,
+        "status_counts": {
+          "REAL": 388
+        }
+      },
+      "91-12-C-j23-1": {
+        "mean": 0.6695970695970697,
+        "std": 0.5905885467413707,
+        "cancel_rate": 0.0,
+        "n_departures": 182,
+        "status_counts": {
+          "REAL": 182
+        }
+      },
+      "92-76-A-j23-1": {
+        "mean": 1.3741477272727272,
+        "std": 1.2637910564002495,
+        "cancel_rate": 0.0,
+        "n_departures": 352,
+        "status_counts": {
+          "REAL": 352
+        }
+      },
+      "92-94-j23-1": {
+        "mean": 1.221086556169429,
+        "std": 1.1717458960597344,
+        "cancel_rate": 0.0,
+        "n_departures": 181,
+        "status_counts": {
+          "REAL": 181
+        }
+      },
+      "92-919-j23-1": {
+        "mean": 0.966421568627451,
+        "std": 0.5,
+        "cancel_rate": 0.0,
+        "n_departures": 68,
+        "status_counts": {
+          "REAL": 68
+        }
+      },
+      "92-38-D-j23-1": {
+        "mean": 1.1722846441947565,
+        "std": 0.6046683959329314,
+        "cancel_rate": 0.0,
+        "n_departures": 89,
+        "status_counts": {
+          "REAL": 89
+        }
+      },
+      "92-70-B-j23-1": {
+        "mean": 0.5283236994219653,
+        "std": 0.7611221665277472,
+        "cancel_rate": 0.0,
+        "n_departures": 173,
+        "status_counts": {
+          "REAL": 173
+        }
+      },
+      "92-79-A-j23-1": {
+        "mean": 1.117632850241546,
+        "std": 0.9066487461729402,
+        "cancel_rate": 0.0,
+        "n_departures": 69,
+        "status_counts": {
+          "REAL": 69
+        }
+      },
+      "92-743-j23-1": {
+        "mean": 0.5245283018867924,
+        "std": 0.7915010006971966,
+        "cancel_rate": 0.0,
+        "n_departures": 53,
+        "status_counts": {
+          "REAL": 53
+        }
+      },
+      "92-704-B-j23-1": {
+        "mean": 0.6684444444444444,
+        "std": 0.9684335321398364,
+        "cancel_rate": 0.0,
+        "n_departures": 75,
+        "status_counts": {
+          "REAL": 75
+        }
+      },
+      "92-37-D-j23-1": {
+        "mean": 0.4445736434108527,
+        "std": 0.5,
+        "cancel_rate": 0.0,
+        "n_departures": 43,
+        "status_counts": {
+          "REAL": 43
+        }
+      },
+      "92-163-A-j23-1": {
+        "mean": 1.9735632183908047,
+        "std": 1.201559628575541,
+        "cancel_rate": 0.0,
+        "n_departures": 29,
+        "status_counts": {
+          "REAL": 29
+        }
+      },
+      "92-185-j23-1": {
+        "mean": 0.7456790123456791,
+        "std": 0.939231721240841,
+        "cancel_rate": 0.0,
+        "n_departures": 135,
+        "status_counts": {
+          "REAL": 135
+        }
+      },
+      "92-162-A-j23-1": {
+        "mean": 1.1055555555555556,
+        "std": 1.0331989159885913,
+        "cancel_rate": 0.0,
+        "n_departures": 18,
+        "status_counts": {
+          "REAL": 18
+        }
+      },
+      "92-744-j23-1": {
+        "mean": 0.7097222222222221,
+        "std": 0.8598590808317889,
+        "cancel_rate": 0.0,
+        "n_departures": 36,
+        "status_counts": {
+          "REAL": 36
+        }
+      }
+    },
+    "increments": {
+      "travel_drift": 0.046282898839965066,
+      "travel_sd": 0.4858061585744962,
+      "dwell_drift": -0.019219887128742834,
+      "dwell_sd": 0.460899906519036,
+      "gap_drift": -0.03416666666666667,
+      "gap_sd": 0.5026174544875611
+    },
+    "travel_count": 24051,
+    "dwell_count": 22031,
+    "gap_count": 40,
+    "units": "Route delay and running/dwell residual increments in minutes.",
+    "floors_minutes": {
+      "route_std": 0.5,
+      "increment_sd": 0.016666666666666666
+    },
+    "forecast_sd_rule": "Route training departure spread times 60 seconds, with 30-second floor. This bandwidth is not fitted to held-out forecast errors."
+  },
+  "candidate_training": {
+    "train_dates": [
+      "2023-07-25"
+    ],
+    "route_priors": {
+      "91-14-E-j23-1": {
+        "mean": 0.4922145328719723,
+        "std": 1.0278085575493494,
+        "cancel_rate": 0.0,
+        "n_departures": 867,
+        "status_counts": {
+          "REAL": 867
+        }
+      },
+      "pooled": {
+        "mean": 0.7097473424528432,
+        "std": 1.0566053361806906,
+        "cancel_rate": 0.0,
+        "n_departures": 24051,
+        "status_counts": {
+          "REAL": 24051
+        }
+      },
+      "92-89-j23-1": {
+        "mean": 1.0096625057790107,
+        "std": 0.8741201384661783,
+        "cancel_rate": 0.0,
+        "n_departures": 721,
+        "status_counts": {
+          "REAL": 721
+        }
+      },
+      "92-307-A-j23-1": {
+        "mean": 1.351794871794872,
+        "std": 0.8292264085006568,
+        "cancel_rate": 0.0,
+        "n_departures": 65,
+        "status_counts": {
+          "REAL": 65
+        }
+      },
+      "92-75-B-j23-1": {
+        "mean": 0.44668338907469346,
+        "std": 0.6714326987226414,
+        "cancel_rate": 0.0,
+        "n_departures": 598,
+        "status_counts": {
+          "REAL": 598
+        }
+      },
+      "92-80-A-j23-1": {
+        "mean": 0.7282507964089198,
+        "std": 0.8503186403788773,
+        "cancel_rate": 0.0,
+        "n_departures": 1151,
+        "status_counts": {
+          "REAL": 1151
+        }
+      },
+      "91-3-J-j23-1": {
+        "mean": 0.4013993003498251,
+        "std": 0.5559123327635851,
+        "cancel_rate": 0.0,
+        "n_departures": 667,
+        "status_counts": {
+          "REAL": 667
+        }
+      },
+      "91-4-F-j23-1": {
+        "mean": 0.3791782729805014,
+        "std": 0.7677111226141262,
+        "cancel_rate": 0.0,
+        "n_departures": 718,
+        "status_counts": {
+          "REAL": 718
+        }
+      },
+      "92-66-B-j23-1": {
+        "mean": 0.8871317829457364,
+        "std": 0.6577424318563179,
+        "cancel_rate": 0.0,
+        "n_departures": 215,
+        "status_counts": {
+          "REAL": 215
+        }
+      },
+      "92-69-j23-1": {
+        "mean": 0.6774928774928775,
+        "std": 0.5944596860387913,
+        "cancel_rate": 0.0,
+        "n_departures": 234,
+        "status_counts": {
+          "REAL": 234
+        }
+      },
+      "92-67-j23-1": {
+        "mean": 1.0795340501792114,
+        "std": 1.0855623158311327,
+        "cancel_rate": 0.0,
+        "n_departures": 465,
+        "status_counts": {
+          "REAL": 465
+        }
+      },
+      "91-13-B-j23-1": {
+        "mean": 0.42952875054042366,
+        "std": 0.9411682112236259,
+        "cancel_rate": 0.0,
+        "n_departures": 771,
+        "status_counts": {
+          "REAL": 771
+        }
+      },
+      "92-72-B-j23-1": {
+        "mean": 0.7311064228785749,
+        "std": 1.0687904290238563,
+        "cancel_rate": 0.0,
+        "n_departures": 711,
+        "status_counts": {
+          "REAL": 711
+        }
+      },
+      "92-91-j23-1": {
+        "mean": 1.4981481481481482,
+        "std": 1.0910616123285262,
+        "cancel_rate": 0.0,
+        "n_departures": 63,
+        "status_counts": {
+          "REAL": 63
+        }
+      },
+      "92-83-A-j23-1": {
+        "mean": 0.60799859055673,
+        "std": 0.7559365158343019,
+        "cancel_rate": 0.0,
+        "n_departures": 473,
+        "status_counts": {
+          "REAL": 473
+        }
+      },
+      "91-2-H-j23-1": {
+        "mean": 0.4904833333333333,
+        "std": 0.770699710760726,
+        "cancel_rate": 0.0,
+        "n_departures": 1000,
+        "status_counts": {
+          "REAL": 1000
+        }
+      },
+      "92-910-j23-1": {
+        "mean": 0.6626302083333333,
+        "std": 0.6676254371765911,
+        "cancel_rate": 0.0,
+        "n_departures": 128,
+        "status_counts": {
+          "REAL": 128
+        }
+      },
+      "92-302-C-j23-1": {
+        "mean": 1.163123993558776,
+        "std": 0.9850319994359416,
+        "cancel_rate": 0.0,
+        "n_departures": 207,
+        "status_counts": {
+          "REAL": 207
+        }
+      },
+      "91-8-H-j23-1": {
+        "mean": 0.9131805157593123,
+        "std": 1.2058268574993076,
+        "cancel_rate": 0.0,
+        "n_departures": 698,
+        "status_counts": {
+          "REAL": 698
+        }
+      },
+      "91-10-E-j23-1": {
+        "mean": 0.5107332368547998,
+        "std": 0.9516901339307112,
+        "cancel_rate": 0.0,
+        "n_departures": 691,
+        "status_counts": {
+          "REAL": 691
+        }
+      },
+      "92-46-D-j23-1": {
+        "mean": 1.207669616519174,
+        "std": 1.0329447886530958,
+        "cancel_rate": 0.0,
+        "n_departures": 678,
+        "status_counts": {
+          "REAL": 678
+        }
+      },
+      "92-40-C-j23-1": {
+        "mean": 0.576984126984127,
+        "std": 0.7752179974574837,
+        "cancel_rate": 0.0,
+        "n_departures": 273,
+        "status_counts": {
+          "REAL": 273
+        }
+      },
+      "91-7-G-j23-1": {
+        "mean": 0.24670900692840644,
+        "std": 0.6396777245047496,
+        "cancel_rate": 0.0,
+        "n_departures": 866,
+        "status_counts": {
+          "REAL": 866
+        }
+      },
+      "91-15-E-j23-1": {
+        "mean": 0.3600098619329388,
+        "std": 0.6372150069303499,
+        "cancel_rate": 0.0,
+        "n_departures": 338,
+        "status_counts": {
+          "REAL": 338
+        }
+      },
+      "92-304-E-j23-1": {
+        "mean": 0.8758149316508937,
+        "std": 0.8567255684955097,
+        "cancel_rate": 0.0,
+        "n_departures": 317,
+        "status_counts": {
+          "REAL": 317
+        }
+      },
+      "92-35-B-j23-1": {
+        "mean": 0.38002070393374743,
+        "std": 0.5,
+        "cancel_rate": 0.0,
+        "n_departures": 161,
+        "status_counts": {
+          "REAL": 161
+        }
+      },
+      "91-5-H-j23-1": {
+        "mean": 0.15429118773946363,
+        "std": 0.6803862076663703,
+        "cancel_rate": 0.0,
+        "n_departures": 435,
+        "status_counts": {
+          "REAL": 435
+        }
+      },
+      "91-11-C-j23-1": {
+        "mean": 0.484975845410628,
+        "std": 0.8486758256001848,
+        "cancel_rate": 0.0,
+        "n_departures": 1035,
+        "status_counts": {
+          "REAL": 1035
+        }
+      },
+      "92-701-B-j23-1": {
+        "mean": 0.47528735632183916,
+        "std": 1.0320034145750407,
+        "cancel_rate": 0.0,
+        "n_departures": 116,
+        "status_counts": {
+          "REAL": 116
+        }
+      },
+      "92-751-j23-1": {
+        "mean": 0.8737442922374429,
+        "std": 0.8136624353269889,
+        "cancel_rate": 0.0,
+        "n_departures": 146,
+        "status_counts": {
+          "REAL": 146
+        }
+      },
+      "92-78-A-j23-1": {
+        "mean": 0.6077727952167413,
+        "std": 0.5999558796245548,
+        "cancel_rate": 0.0,
+        "n_departures": 223,
+        "status_counts": {
+          "REAL": 223
+        }
+      },
+      "92-32-G-j23-1": {
+        "mean": 1.7097402597402598,
+        "std": 1.6620209074342482,
+        "cancel_rate": 0.0,
+        "n_departures": 770,
+        "status_counts": {
+          "REAL": 770
+        }
+      },
+      "91-9-I-j23-1": {
+        "mean": 0.10104581673306771,
+        "std": 0.6528326957702506,
+        "cancel_rate": 0.0,
+        "n_departures": 1004,
+        "status_counts": {
+          "REAL": 1004
+        }
+      },
+      "92-745-j23-1": {
+        "mean": 0.18524305555555554,
+        "std": 0.9883987640876141,
+        "cancel_rate": 0.0,
+        "n_departures": 96,
+        "status_counts": {
+          "REAL": 96
+        }
+      },
+      "92-31-G-j23-1": {
+        "mean": 1.2484364925854288,
+        "std": 1.7245418741167493,
+        "cancel_rate": 0.0,
+        "n_departures": 1034,
+        "status_counts": {
+          "REAL": 1034
+        }
+      },
+      "91-6-K-j23-1": {
+        "mean": 0.2707080828323313,
+        "std": 0.6596329263181895,
+        "cancel_rate": 0.0,
+        "n_departures": 499,
+        "status_counts": {
+          "REAL": 499
+        }
+      },
+      "92-33-E-j23-1": {
+        "mean": 0.8555555555555555,
+        "std": 1.0586182224108889,
+        "cancel_rate": 0.0,
+        "n_departures": 1116,
+        "status_counts": {
+          "REAL": 1116
+        }
+      },
+      "92-912-j23-1": {
+        "mean": 1.0294202898550726,
+        "std": 1.224744536972654,
+        "cancel_rate": 0.0,
+        "n_departures": 230,
+        "status_counts": {
+          "REAL": 230
+        }
+      },
+      "92-77-j23-1": {
+        "mean": 1.1871549893842888,
+        "std": 0.8145176730265331,
+        "cancel_rate": 0.0,
+        "n_departures": 157,
+        "status_counts": {
+          "REAL": 157
+        }
+      },
+      "92-916-j23-1": {
+        "mean": 0.8412280701754388,
+        "std": 0.7628588287215362,
+        "cancel_rate": 0.0,
+        "n_departures": 171,
+        "status_counts": {
+          "REAL": 171
+        }
+      },
+      "91-17-E-j23-1": {
+        "mean": 0.48108974358974355,
+        "std": 0.8972438935326897,
+        "cancel_rate": 0.0,
+        "n_departures": 936,
+        "status_counts": {
+          "REAL": 936
+        }
+      },
+      "92-13-D-j23-1": {
+        "mean": 0.6501996007984031,
+        "std": 0.7929244405425322,
+        "cancel_rate": 0.0,
+        "n_departures": 334,
+        "status_counts": {
+          "REAL": 334
+        }
+      },
+      "92-703-B-j23-1": {
+        "mean": 0.813211382113821,
+        "std": 0.969622400888125,
+        "cancel_rate": 0.0,
+        "n_departures": 82,
+        "status_counts": {
+          "REAL": 82
+        }
+      },
+      "92-64-C-j23-1": {
+        "mean": 1.1666666666666667,
+        "std": 0.7689696763485746,
+        "cancel_rate": 0.0,
+        "n_departures": 82,
+        "status_counts": {
+          "REAL": 82
+        }
+      },
+      "92-61-C-j23-1": {
+        "mean": 1.1083109919571046,
+        "std": 1.7194174948782208,
+        "cancel_rate": 0.0,
+        "n_departures": 373,
+        "status_counts": {
+          "REAL": 373
+        }
+      },
+      "92-165-A-j23-1": {
+        "mean": 0.6213395638629282,
+        "std": 0.7860702977097216,
+        "cancel_rate": 0.0,
+        "n_departures": 107,
+        "status_counts": {
+          "REAL": 107
+        }
+      },
+      "92-161-A-j23-1": {
+        "mean": 1.2048309178743961,
+        "std": 0.9974246283733077,
+        "cancel_rate": 0.0,
+        "n_departures": 138,
+        "status_counts": {
+          "REAL": 138
+        }
+      },
+      "92-62-C-j23-1": {
+        "mean": 1.1053264604810997,
+        "std": 1.3319812654804095,
+        "cancel_rate": 0.0,
+        "n_departures": 388,
+        "status_counts": {
+          "REAL": 388
+        }
+      },
+      "91-12-C-j23-1": {
+        "mean": 0.6695970695970697,
+        "std": 0.5905885467413707,
+        "cancel_rate": 0.0,
+        "n_departures": 182,
+        "status_counts": {
+          "REAL": 182
+        }
+      },
+      "92-76-A-j23-1": {
+        "mean": 1.3741477272727272,
+        "std": 1.2637910564002495,
+        "cancel_rate": 0.0,
+        "n_departures": 352,
+        "status_counts": {
+          "REAL": 352
+        }
+      },
+      "92-94-j23-1": {
+        "mean": 1.221086556169429,
+        "std": 1.1717458960597344,
+        "cancel_rate": 0.0,
+        "n_departures": 181,
+        "status_counts": {
+          "REAL": 181
+        }
+      },
+      "92-919-j23-1": {
+        "mean": 0.966421568627451,
+        "std": 0.5,
+        "cancel_rate": 0.0,
+        "n_departures": 68,
+        "status_counts": {
+          "REAL": 68
+        }
+      },
+      "92-38-D-j23-1": {
+        "mean": 1.1722846441947565,
+        "std": 0.6046683959329314,
+        "cancel_rate": 0.0,
+        "n_departures": 89,
+        "status_counts": {
+          "REAL": 89
+        }
+      },
+      "92-70-B-j23-1": {
+        "mean": 0.5283236994219653,
+        "std": 0.7611221665277472,
+        "cancel_rate": 0.0,
+        "n_departures": 173,
+        "status_counts": {
+          "REAL": 173
+        }
+      },
+      "92-79-A-j23-1": {
+        "mean": 1.117632850241546,
+        "std": 0.9066487461729402,
+        "cancel_rate": 0.0,
+        "n_departures": 69,
+        "status_counts": {
+          "REAL": 69
+        }
+      },
+      "92-743-j23-1": {
+        "mean": 0.5245283018867924,
+        "std": 0.7915010006971966,
+        "cancel_rate": 0.0,
+        "n_departures": 53,
+        "status_counts": {
+          "REAL": 53
+        }
+      },
+      "92-704-B-j23-1": {
+        "mean": 0.6684444444444444,
+        "std": 0.9684335321398364,
+        "cancel_rate": 0.0,
+        "n_departures": 75,
+        "status_counts": {
+          "REAL": 75
+        }
+      },
+      "92-37-D-j23-1": {
+        "mean": 0.4445736434108527,
+        "std": 0.5,
+        "cancel_rate": 0.0,
+        "n_departures": 43,
+        "status_counts": {
+          "REAL": 43
+        }
+      },
+      "92-163-A-j23-1": {
+        "mean": 1.9735632183908047,
+        "std": 1.201559628575541,
+        "cancel_rate": 0.0,
+        "n_departures": 29,
+        "status_counts": {
+          "REAL": 29
+        }
+      },
+      "92-185-j23-1": {
+        "mean": 0.7456790123456791,
+        "std": 0.939231721240841,
+        "cancel_rate": 0.0,
+        "n_departures": 135,
+        "status_counts": {
+          "REAL": 135
+        }
+      },
+      "92-162-A-j23-1": {
+        "mean": 1.1055555555555556,
+        "std": 1.0331989159885913,
+        "cancel_rate": 0.0,
+        "n_departures": 18,
+        "status_counts": {
+          "REAL": 18
+        }
+      },
+      "92-744-j23-1": {
+        "mean": 0.7097222222222221,
+        "std": 0.8598590808317889,
+        "cancel_rate": 0.0,
+        "n_departures": 36,
+        "status_counts": {
+          "REAL": 36
+        }
+      }
+    },
+    "increments": {
+      "travel_drift": 0.0129050747980289,
+      "travel_sd": 0.6520626038839354,
+      "dwell_drift": -1.648674146166927,
+      "dwell_sd": 1.152041773961982,
+      "gap_drift": -0.03438531632856292,
+      "gap_sd": 0.6643562424003784
+    },
+    "travel_count": 24051,
+    "dwell_count": 22031,
+    "gap_count": 40,
+    "units": "Route delay and running/dwell residual increments in minutes.",
+    "floors_minutes": {
+      "route_std": 0.5,
+      "increment_sd": 0.016666666666666666
+    },
+    "forecast_sd_rule": "Route training departure spread times 60 seconds, with 30-second floor. This bandwidth is not fitted to held-out forecast errors.",
+    "increment_source": "July25 only, expected categorical log likelihood after mean-preserving randomized coarsening onto nonnegative 60-second duration grid."
+  },
+  "fits": {
+    "travel": {
+      "continuous": {
+        "location_seconds": -1.4864742420225212,
+        "scale_seconds": 30.87531800922684,
+        "mean_negative_log_likelihood": 4.704420211379812,
+        "converged": true,
+        "gradient": [
+          1.0958929113784468e-09,
+          6.031896766290908e-08
+        ],
+        "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+        "objective": "continuous",
+        "timestamp_resolution_seconds": 1.0,
+        "n": 24051,
+        "actual_zero_count": 0,
+        "starts": [
+          {
+            "location_seconds": -1.4864742420225212,
+            "scale_seconds": 30.87531800922684,
+            "mean_negative_log_likelihood": 4.704420211379812,
+            "converged": true,
+            "gradient": [
+              1.0958929113784468e-09,
+              6.031896766290908e-08
+            ],
+            "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+          },
+          {
+            "location_seconds": -1.4864422308384977,
+            "scale_seconds": 30.875309747043033,
+            "mean_negative_log_likelihood": 4.704420211380247,
+            "converged": true,
+            "gradient": [
+              2.63178536922245e-08,
+              -2.5656999822959913e-08
+            ],
+            "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+          },
+          {
+            "location_seconds": -1.4864746861662923,
+            "scale_seconds": 30.87531850418385,
+            "mean_negative_log_likelihood": 4.704420211379814,
+            "converged": true,
+            "gradient": [
+              8.733998591461954e-10,
+              8.071576708232978e-08
+            ],
+            "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+          }
+        ]
+      },
+      "grid": {
+        "location_seconds": 0.774304487881734,
+        "scale_seconds": 39.123756233036126,
+        "mean_negative_log_likelihood": 0.9254820464035147,
+        "converged": true,
+        "gradient": [
+          2.5326874902666367e-10,
+          -9.680688473068244e-10
+        ],
+        "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+        "objective": "grid",
+        "timestamp_resolution_seconds": 1.0,
+        "n": 24051,
+        "actual_zero_count": 0,
+        "starts": [
+          {
+            "location_seconds": 0.7743048731445439,
+            "scale_seconds": 39.12375511478654,
+            "mean_negative_log_likelihood": 0.9254820464035154,
+            "converged": true,
+            "gradient": [
+              3.418573747701757e-10,
+              -4.935431796582179e-08
+            ],
+            "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+          },
+          {
+            "location_seconds": 0.774304487881734,
+            "scale_seconds": 39.123756233036126,
+            "mean_negative_log_likelihood": 0.9254820464035147,
+            "converged": true,
+            "gradient": [
+              2.5326874902666367e-10,
+              -9.680688473068244e-10
+            ],
+            "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+          },
+          {
+            "location_seconds": 0.7743142447001131,
+            "scale_seconds": 39.123753759143504,
+            "mean_negative_log_likelihood": 0.925482046403546,
+            "converged": true,
+            "gradient": [
+              5.712726780638421e-09,
+              -6.466476132338528e-08
+            ],
+            "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+          }
+        ]
+      },
+      "negative_observed_duration_count": 0,
+      "grid_fitted_mean_residual_score_seconds": 3.8767044759770145e-07
+    },
+    "dwell": {
+      "continuous": {
+        "location_seconds": -111.01801875688552,
+        "scale_seconds": 42.19224973969692,
+        "mean_negative_log_likelihood": 3.6919853191861365,
+        "converged": true,
+        "gradient": [
+          -4.184931946471558e-13,
+          -1.538301188728718e-10
+        ],
+        "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+        "objective": "continuous",
+        "timestamp_resolution_seconds": 1.0,
+        "n": 22031,
+        "actual_zero_count": 1498,
+        "starts": [
+          {
+            "location_seconds": -111.01801538029132,
+            "scale_seconds": 42.19224987042567,
+            "mean_negative_log_likelihood": 3.6919853191861374,
+            "converged": true,
+            "gradient": [
+              2.501430550849749e-10,
+              5.601262310356136e-08
+            ],
+            "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+          },
+          {
+            "location_seconds": -111.0180318413198,
+            "scale_seconds": 42.192251814406376,
+            "mean_negative_log_likelihood": 3.691985319186138,
+            "converged": true,
+            "gradient": [
+              -1.3590098182213665e-10,
+              -1.9236849008046373e-08
+            ],
+            "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+          },
+          {
+            "location_seconds": -111.01801875688552,
+            "scale_seconds": 42.19224973969692,
+            "mean_negative_log_likelihood": 3.6919853191861365,
+            "converged": true,
+            "gradient": [
+              -4.184931946471558e-13,
+              -1.538301188728718e-10
+            ],
+            "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+          }
+        ]
+      },
+      "grid": {
+        "location_seconds": -98.92044877001562,
+        "scale_seconds": 69.12250643771891,
+        "mean_negative_log_likelihood": 0.6056475434369342,
+        "converged": true,
+        "gradient": [
+          1.6968139601105578e-11,
+          4.581768742184522e-09
+        ],
+        "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+        "objective": "grid",
+        "timestamp_resolution_seconds": 1.0,
+        "n": 22031,
+        "actual_zero_count": 1498,
+        "starts": [
+          {
+            "location_seconds": -98.91904461378037,
+            "scale_seconds": 69.12212223650297,
+            "mean_negative_log_likelihood": 0.6056475434397429,
+            "converged": true,
+            "gradient": [
+              3.845874200944898e-09,
+              -3.939294845878294e-08
+            ],
+            "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+          },
+          {
+            "location_seconds": -98.92044877001562,
+            "scale_seconds": 69.12250643771891,
+            "mean_negative_log_likelihood": 0.6056475434369342,
+            "converged": true,
+            "gradient": [
+              1.6968139601105578e-11,
+              4.581768742184522e-09
+            ],
+            "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+          },
+          {
+            "location_seconds": -98.92045710488841,
+            "scale_seconds": 69.12250816431057,
+            "mean_negative_log_likelihood": 0.6056475434369342,
+            "converged": true,
+            "gradient": [
+              -7.847289144449828e-11,
+              -1.3590008229869e-08
+            ],
+            "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+          }
+        ]
+      },
+      "negative_observed_duration_count": 0,
+      "grid_fitted_mean_residual_score_seconds": 8.107241398924319e-08
+    },
+    "gap": {
+      "continuous": {
+        "location_seconds": -2.051580230953383,
+        "scale_seconds": 30.16013754405718,
+        "mean_negative_log_likelihood": 4.825344528007403,
+        "converged": true,
+        "gradient": [
+          6.43693431889858e-14,
+          -2.2311155145615658e-09
+        ],
+        "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+        "objective": "continuous",
+        "timestamp_resolution_seconds": 1.0,
+        "n": 40,
+        "actual_zero_count": 0,
+        "starts": [
+          {
+            "location_seconds": -2.051580230953383,
+            "scale_seconds": 30.16013754405718,
+            "mean_negative_log_likelihood": 4.825344528007403,
+            "converged": true,
+            "gradient": [
+              6.43693431889858e-14,
+              -2.2311155145615658e-09
+            ],
+            "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+          },
+          {
+            "location_seconds": -2.0515799997269886,
+            "scale_seconds": 30.160137773825813,
+            "mean_negative_log_likelihood": 4.825344528007403,
+            "converged": true,
+            "gradient": [
+              2.5442515975970803e-10,
+              1.2986565500749946e-08
+            ],
+            "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+          },
+          {
+            "location_seconds": -2.0515802864863013,
+            "scale_seconds": 30.160137559525907,
+            "mean_negative_log_likelihood": 4.825344528007403,
+            "converged": true,
+            "gradient": [
+              -6.095834635677644e-11,
+              -1.2086274869815838e-09
+            ],
+            "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+          }
+        ]
+      },
+      "grid": {
+        "location_seconds": -2.0631189797137752,
+        "scale_seconds": 39.8613745440227,
+        "mean_negative_log_likelihood": 1.0074419087401563,
+        "converged": true,
+        "gradient": [
+          1.429692935682327e-09,
+          3.145385385483479e-08
+        ],
+        "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+        "objective": "grid",
+        "timestamp_resolution_seconds": 1.0,
+        "n": 40,
+        "actual_zero_count": 0,
+        "starts": [
+          {
+            "location_seconds": -2.0631817552705596,
+            "scale_seconds": 39.86137554711154,
+            "mean_negative_log_likelihood": 1.0074419087412994,
+            "converged": true,
+            "gradient": [
+              -3.7853790425234755e-08,
+              8.971239495725314e-08
+            ],
+            "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+          },
+          {
+            "location_seconds": -2.0631254431134263,
+            "scale_seconds": 39.861373177093995,
+            "mean_negative_log_likelihood": 1.0074419087401594,
+            "converged": true,
+            "gradient": [
+              -2.611362094243687e-09,
+              -3.8982334693571374e-08
+            ],
+            "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+          },
+          {
+            "location_seconds": -2.0631189797137752,
+            "scale_seconds": 39.8613745440227,
+            "mean_negative_log_likelihood": 1.0074419087401563,
+            "converged": true,
+            "gradient": [
+              1.429692935682327e-09,
+              3.145385385483479e-08
+            ],
+            "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+          }
+        ]
+      },
+      "negative_observed_duration_count": 0,
+      "grid_fitted_mean_residual_score_seconds": 2.271680827448108e-06
+    }
+  },
+  "duration_bins": [
+    {
+      "kind": "travel",
+      "scheduled_seconds": 0.0,
+      "n": 2570,
+      "actual_mean": 45.480933852140076,
+      "actual_sd": 13.00340520740019,
+      "actual_zero_count": 0,
+      "continuous_fit_continuous_mean": 24.102519393686723,
+      "continuous_fit_grid_mean": 7.310937649004267,
+      "grid_fit_grid_mean": 15.246206306215463,
+      "grid_fit_grid_sd": 27.110646204084656
+    },
+    {
+      "kind": "travel",
+      "scheduled_seconds": 60.0,
+      "n": 17451,
+      "actual_mean": 62.47126239184001,
+      "actual_sd": 21.282137214031266,
+      "actual_zero_count": 0,
+      "continuous_fit_continuous_mean": 60.619287663550296,
+      "continuous_fit_grid_mean": 58.73555384535067,
+      "grid_fit_grid_mean": 61.4039323689789,
+      "grid_fit_grid_sd": 38.07557135450796
+    },
+    {
+      "kind": "travel",
+      "scheduled_seconds": 120.0,
+      "n": 3707,
+      "actual_mean": 95.65713514971675,
+      "actual_sd": 29.927424211391664,
+      "actual_zero_count": 0,
+      "continuous_fit_continuous_mean": 118.52130894959735,
+      "continuous_fit_grid_mean": 118.67800235738338,
+      "grid_fit_grid_mean": 120.77098285766738,
+      "grid_fit_grid_sd": 38.969637934100135
+    },
+    {
+      "kind": "travel",
+      "scheduled_seconds": 180.0,
+      "n": 253,
+      "actual_mean": 171.62450592885375,
+      "actual_sd": 61.79173640542075,
+      "actual_zero_count": 0,
+      "continuous_fit_continuous_mean": 178.51352643651427,
+      "continuous_fit_grid_mean": 178.67799480664542,
+      "grid_fit_grid_mean": 180.76842710208257,
+      "grid_fit_grid_sd": 38.975289736876995
+    },
+    {
+      "kind": "travel",
+      "scheduled_seconds": 240.0,
+      "n": 27,
+      "actual_mean": 260.48148148148147,
+      "actual_sd": 64.58320523019289,
+      "actual_zero_count": 0,
+      "continuous_fit_continuous_mean": 238.51352575797884,
+      "continuous_fit_grid_mean": 238.6779948066253,
+      "grid_fit_grid_mean": 240.76842622340953,
+      "grid_fit_grid_sd": 38.97529237974321
+    },
+    {
+      "kind": "travel",
+      "scheduled_seconds": 300.0,
+      "n": 30,
+      "actual_mean": 292.6333333333333,
+      "actual_sd": 53.21997327653928,
+      "actual_zero_count": 0,
+      "continuous_fit_continuous_mean": 298.5135257579775,
+      "continuous_fit_grid_mean": 298.6779948066252,
+      "grid_fit_grid_mean": 300.7684262233825,
+      "grid_fit_grid_sd": 38.97529237984552
+    },
+    {
+      "kind": "travel",
+      "scheduled_seconds": 360.0,
+      "n": 13,
+      "actual_mean": 267.9230769230769,
+      "actual_sd": 53.49688925314549,
+      "actual_zero_count": 0,
+      "continuous_fit_continuous_mean": 358.5135257579775,
+      "continuous_fit_grid_mean": 358.6779948066253,
+      "grid_fit_grid_mean": 360.76842622338256,
+      "grid_fit_grid_sd": 38.97529237984552
+    },
+    {
+      "kind": "dwell",
+      "scheduled_seconds": 0.0,
+      "n": 16135,
+      "actual_mean": 13.934986055159591,
+      "actual_sd": 10.185550932932728,
+      "actual_zero_count": 1213,
+      "continuous_fit_continuous_mean": 13.139804078601344,
+      "continuous_fit_grid_mean": 0.5143285004406333,
+      "grid_fit_grid_mean": 11.707936883789916,
+      "grid_fit_grid_sd": 26.261284700318047
+    },
+    {
+      "kind": "dwell",
+      "scheduled_seconds": 60.0,
+      "n": 5802,
+      "actual_mean": 17.597380213719408,
+      "actual_sd": 15.360369956980641,
+      "actual_zero_count": 285,
+      "continuous_fit_continuous_mean": 20.502453061206012,
+      "continuous_fit_grid_mean": 3.7327736629934134,
+      "grid_fit_grid_mean": 24.292786442754533,
+      "grid_fit_grid_sd": 37.22208147753109
+    },
+    {
+      "kind": "dwell",
+      "scheduled_seconds": 120.0,
+      "n": 76,
+      "actual_mean": 73.69736842105263,
+      "actual_sd": 27.357775637131656,
+      "actual_zero_count": 0,
+      "continuous_fit_continuous_mean": 37.14459680225258,
+      "continuous_fit_grid_mean": 21.935426333765147,
+      "grid_fit_grid_mean": 48.45512436960132,
+      "grid_fit_grid_sd": 50.32845992830998
+    },
+    {
+      "kind": "dwell",
+      "scheduled_seconds": 180.0,
+      "n": 9,
+      "actual_mean": 132.33333333333334,
+      "actual_sd": 34.224747381585345,
+      "actual_zero_count": 0,
+      "continuous_fit_continuous_mean": 73.64263128853429,
+      "continuous_fit_grid_mean": 69.65688250763183,
+      "grid_fit_grid_mean": 88.617384186784,
+      "grid_fit_grid_sd": 61.86772134489205
+    },
+    {
+      "kind": "dwell",
+      "scheduled_seconds": 240.0,
+      "n": 9,
+      "actual_mean": 209.0,
+      "actual_sd": 33.31332732973063,
+      "actual_zero_count": 0,
+      "continuous_fit_continuous_mean": 129.13949729656488,
+      "continuous_fit_grid_mean": 128.9693362950297,
+      "grid_fit_grid_mean": 142.17192394705634,
+      "grid_fit_grid_sd": 67.66074724120044
+    },
+    {
+      "kind": "gap",
+      "scheduled_seconds": 120.0,
+      "n": 11,
+      "actual_mean": 160.0909090909091,
+      "actual_sd": 11.988286293898007,
+      "actual_zero_count": 0,
+      "continuous_fit_continuous_mean": 117.95416542981222,
+      "continuous_fit_grid_mean": 118.2218544560905,
+      "grid_fit_grid_mean": 117.95365088824573,
+      "grid_fit_grid_sd": 39.73890567498925
+    },
+    {
+      "kind": "gap",
+      "scheduled_seconds": 180.0,
+      "n": 21,
+      "actual_mean": 157.95238095238096,
+      "actual_sd": 13.726846100065202,
+      "actual_zero_count": 0,
+      "continuous_fit_continuous_mean": 177.94842010104912,
+      "continuous_fit_grid_mean": 178.22185060453603,
+      "grid_fit_grid_mean": 177.9486190356649,
+      "grid_fit_grid_sd": 39.74960857971318
+    },
+    {
+      "kind": "gap",
+      "scheduled_seconds": 240.0,
+      "n": 8,
+      "actual_mean": 232.5,
+      "actual_sd": 18.26882590644511,
+      "actual_zero_count": 0,
+      "continuous_fit_continuous_mean": 237.94841976904698,
+      "continuous_fit_grid_mean": 238.2218506045304,
+      "grid_fit_grid_mean": 237.9486164184459,
+      "grid_fit_grid_sd": 39.749616194689644
+    }
+  ]
+}

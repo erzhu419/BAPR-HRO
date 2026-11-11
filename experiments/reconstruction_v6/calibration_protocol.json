@@ -1,0 +1,43 @@
+{
+  "training_dates": [
+    "2023-10-01",
+    "2023-10-02"
+  ],
+  "calibration_dates": [
+    "2023-10-03",
+    "2023-10-04",
+    "2023-10-05",
+    "2023-10-06",
+    "2023-10-07",
+    "2023-10-08",
+    "2023-10-09",
+    "2023-10-10",
+    "2023-10-11"
+  ],
+  "development_dates": [
+    "2023-10-12",
+    "2023-10-25",
+    "2023-10-27"
+  ],
+  "actual_label_confirmation_dates": [
+    "2023-10-18",
+    "2023-10-23",
+    "2023-10-24"
+  ],
+  "previous_actuals_status": "These dates occur in archived RT-prior date lists, not prior actual-label scoring/source joins in V5. Existing public forecasts are allowed received inputs; no confirmation actuals are opened before model and envelopes are frozen.",
+  "methods": [
+    "frozen_shrunk_relative",
+    "heteroskedastic_student_t3"
+  ],
+  "new_model": "outgoing route prior mean + beta*incoming route-centered residual; scale sigma0+sigma1*abs(incoming residual), df fixed3. beta in[0,1], sigma0>=1second, sigma1>=0; three deterministic training-only starts, minimum date-balanced negative log likelihood.",
+  "observable_groups": {
+    "ordinary": "incoming measured arrival delay<=180seconds",
+    "late": "incoming measured arrival delay>180seconds"
+  },
+  "interval_target": "For each date take max across present groups of empirical ceil(.9*n)-th standardized central90 nonconformity. Largest of9 date scores (clipped below at0) is one common envelope factor. Under exchangeable date blocks, joint event: every present observable group has>=90% endpoint coverage on the next date, probability>=90%. No arbitrary individual/date-conditional guarantee.",
+  "interval_standardization": "Half the uncalibrated central90 interval width; interval only, does not alter CDF/boarding probability.",
+  "menu": "Primary timetable-selected different-trip pairs +/-300seconds around planned incoming arrival+GTFS transfer. Actual-current menu secondary. Unknown outgoing status remains selected/censored.",
+  "patience_seconds": 720,
+  "freeze": "No new date, group boundary, degrees of freedom, start count or model parameter is selected by development or confirmation scores. First candidate is completed and all results retained.",
+  "joint_interface": "Finite-chain departure marginal replacement by likelihood-ratio emission; clock means, sampling and conditional continuation must use the resulting same joint law. No scalar failure probability swap."
+}

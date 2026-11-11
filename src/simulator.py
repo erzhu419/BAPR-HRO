@@ -158,6 +158,22 @@ class JourneyScenario:
         return self.events[connection.id]
 
 
+@dataclass(frozen=True)
+class LazyTripScenario(JourneyScenario):
+    """Internal ordered-trip sampler with immutable, deferred event values.
+
+    Its mapping owns fixed draws for every trip before policy execution. The
+    trip generator guarantees ordered clocks when those draws are evaluated.
+    """
+
+    def __post_init__(self):
+        if self.minute < 1:
+            raise ValueError("A minute must contain at least one clock tick")
+        object.__setattr__(self, 'events', MappingProxyType(self.events))
+        if self.publications is not None:
+            object.__setattr__(self, 'publications', MappingProxyType(dict(self.publications)))
+
+
 def generate_delay_observations(
     graph: TransitGraph,
     current_stop: int,
@@ -176,6 +192,8 @@ def generate_delay_observations(
     """
     if scenario is None:
         scenario = JourneyScenario.sample(graph, RegimeSchedule([(0, regime)]), rng)
+    if scenario.publications is not None and not scenario.publications:
+        return []
     observations = []
     pending = []
     for c in graph.get_connections_from(current_stop):

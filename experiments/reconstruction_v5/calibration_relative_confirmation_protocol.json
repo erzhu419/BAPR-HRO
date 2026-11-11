@@ -1,0 +1,19 @@
+{
+  "confirmation_dates": ["2023-10-16", "2023-10-20", "2023-10-31"],
+  "parameter_training_dates": ["2023-10-01", "2023-10-02"],
+  "calibration_dates": ["2023-10-03", "2023-10-04", "2023-10-05", "2023-10-06", "2023-10-07", "2023-10-08", "2023-10-09", "2023-10-10", "2023-10-11"],
+  "frozen_fit": "calibration_relative_variants_frozen_fit.json",
+  "frozen_models": "calibration_relative_variants_frozen.pkl",
+  "frozen_offsets": "calibration_relative_variants_frozen_offsets.json",
+  "controls": ["evolving_incoming", "evolving_public_incoming", "frozen_public_mixture", "relative_incoming"],
+  "new_candidates": ["shrunk_relative", "heavy_tail_day"],
+  "primary_menu": "Different-trip departures within +/-300 seconds of scheduled incoming arrival plus GTFS station transfer; fixed by the timetable before actual outcomes.",
+  "secondary_menu": "The same +/-300-second window centered on traveler-ready time after the observed incoming arrival.",
+  "information": "Only the rider-known incoming arrival and RT receipts at or before that clock. All methods receive the same information; the conditional candidates use the observed arrival, while the frozen original mixture remains unchanged.",
+  "source": "Existing official national SBB daily archive, remotely range-read at most 1 MiB per date and filtered to the fixed 16 station cohort. Only small compressed event subsets and audit receipts are copied locally.",
+  "missingness": "Every scheduled action remains a candidate. Unknown outgoing outcomes remain eligible during action selection; scoring censors them afterward. Clock intervals condition on observed operating REAL departures; explicit cancellation contributes to binary boarding scores.",
+  "metrics": ["coverage", "mean_width_seconds", "interval_score", "MAE_seconds", "Brier", "signed_probability_error", "incoming_delay_strata", "greedy_selected_action_scores", "censor_counts"],
+  "decision_rule": "Evaluate every frozen model and both frozen menu-specific interval offsets. No fitting, weight selection, scale changes, interval widening or further date search follows the confirmation readout.",
+  "statistical_unit": "Date. Pairs share arrivals, trips and outcomes and are not treated as independent replications.",
+  "scope": "Local incoming-known transfer prediction. Marginal or local-pair laws do not replace the coherent joint trip belief or establish journey-policy value improvement."
+}

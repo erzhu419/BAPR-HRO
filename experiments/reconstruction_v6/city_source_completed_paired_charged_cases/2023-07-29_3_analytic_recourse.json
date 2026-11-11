@@ -1,0 +1,203 @@
+{
+  "implementation": "v6_literal_locked_city_confirmation",
+  "samples": 4,
+  "transition_budget_per_decision": null,
+  "transfer_rule": "gtfs_station_max",
+  "charge_computation": true,
+  "graph_build_ms": 57.36167897703126,
+  "policy_setup_ms": 423.8892399589531,
+  "end_to_end_ms": 629.873965983279,
+  "worker_peak_kib": 977404,
+  "date": "2023-07-29",
+  "query": 3,
+  "method": "analytic_recourse",
+  "od": {
+    "origin": "8591190",
+    "destination": "8502572",
+    "origin_name": "Z\u00fcrich, Heuried",
+    "destination_name": "Z\u00fcrich, Goldbrunnenplatz",
+    "ready_seconds": 29100,
+    "deadline_seconds": 32700
+  },
+  "status": "arrived",
+  "loss_seconds": 289,
+  "elapsed_observed_seconds": 289,
+  "compute_ms": 148.63064500968903,
+  "planning_transitions": 0,
+  "decisions": [
+    {
+      "clock_seconds": 29100,
+      "stop": 427,
+      "current_trip": null,
+      "action": 5525,
+      "forecast": {
+        "receipts": [],
+        "updates": {}
+      },
+      "forecast_ms": 0.010723946616053581,
+      "planning_ms": 135.16417297068983,
+      "decision_total_ms": 135.17578894970939,
+      "model_transitions": 0,
+      "complete_common_rounds": 0,
+      "root_actions": 17,
+      "outcome": "board",
+      "end_seconds": 29326,
+      "compiled": false,
+      "value": 315.4510245922504,
+      "primary": [
+        5525,
+        5693
+      ],
+      "rescue": [
+        7039,
+        7196
+      ],
+      "full_model_lower": 60,
+      "full_model_gap": 255.4510245922504,
+      "globally_removed": 15,
+      "family_screened": 0,
+      "itinerary_evaluations": 1,
+      "analytic_work": {
+        "law_queries": 16,
+        "root_joint_cells": 83300,
+        "posterior_edge_cells": 98000,
+        "path_matrix_cells": 58800,
+        "window_input_cells": 284,
+        "seconds": 0.0031193469185382128
+      },
+      "execution_clock_seconds": 29101,
+      "computation_clock_ticks": 1,
+      "processing_seconds": 0.1482723940280266,
+      "source_connection": 5525
+    },
+    {
+      "clock_seconds": 29326,
+      "stop": 614,
+      "current_trip": "4407.TA.91-9-I-j23-1.19.R",
+      "action": 5693,
+      "forecast": {
+        "receipts": [],
+        "updates": {}
+      },
+      "forecast_ms": 0.007931026630103588,
+      "planning_ms": 0.006338988896459341,
+      "decision_total_ms": 0.014549994375556707,
+      "model_transitions": 0,
+      "complete_common_rounds": 0,
+      "root_actions": 0,
+      "outcome": "board",
+      "end_seconds": 29389,
+      "compiled": true,
+      "value": null,
+      "execution_clock_seconds": 29326,
+      "computation_clock_ticks": 0,
+      "processing_seconds": 7.199402898550034e-05,
+      "source_connection": 5693
+    }
+  ],
+  "events": [
+    {
+      "time": 29100,
+      "stop_id": 427,
+      "event_type": "depart",
+      "route": "",
+      "details": "Initial route computed"
+    },
+    {
+      "time": 29101,
+      "stop_id": 427,
+      "event_type": "compute",
+      "route": "",
+      "details": "decision_clock=29100; seconds=0.148272; preissued_stay=False"
+    },
+    {
+      "time": 29288,
+      "stop_id": 427,
+      "event_type": "board",
+      "route": "91-9-I-j23-1",
+      "details": "connection=5525; to=614; trip=4407.TA.91-9-I-j23-1.19.R"
+    },
+    {
+      "time": 29326,
+      "stop_id": 614,
+      "event_type": "arrive",
+      "route": "91-9-I-j23-1",
+      "details": "connection=5525; delay=-0.233333min"
+    },
+    {
+      "time": 29326,
+      "stop_id": 614,
+      "event_type": "compute",
+      "route": "",
+      "details": "decision_clock=29326; seconds=0.000072; preissued_stay=True"
+    },
+    {
+      "time": 29342,
+      "stop_id": 614,
+      "event_type": "board",
+      "route": "91-9-I-j23-1",
+      "details": "connection=5693; to=3; trip=4407.TA.91-9-I-j23-1.19.R"
+    },
+    {
+      "time": 29389,
+      "stop_id": 3,
+      "event_type": "finish",
+      "route": "",
+      "details": "arrived"
+    }
+  ],
+  "public_actual_receipts": [
+    {
+      "stop": 427,
+      "receipt_time": 29100,
+      "event_ids": []
+    },
+    {
+      "stop": 614,
+      "receipt_time": 29326,
+      "event_ids": []
+    }
+  ],
+  "forecast_frames_consumed": 0,
+  "graph_connections": 18959,
+  "known_world_events": 16092,
+  "excluded_pickup_dropoff_source_ids": [],
+  "route_prior_pool_fallbacks": [
+    "91-20-F-j23-1",
+    "92-151-B-j23-1",
+    "92-184-j23-1",
+    "92-317-j23-1",
+    "92-39-j23-1",
+    "92-444-A-j23-1",
+    "92-485-j23-1",
+    "92-491-B-j23-1",
+    "92-73-A-j23-1",
+    "92-742-A-j23-1",
+    "92-748-j23-1",
+    "92-752-j23-1",
+    "92-754-j23-1",
+    "92-759-j23-1",
+    "92-760-A-j23-1",
+    "92-762-j23-1",
+    "92-768-j23-1",
+    "92-771-j23-1",
+    "92-772-j23-1",
+    "92-781-j23-1",
+    "92-787-j23-1",
+    "92-99-j23-1",
+    "96-165-4-j23-1",
+    "96-180-2-j23-1",
+    "96-180-8-j23-1",
+    "96-182-3-j23-1",
+    "96-182-5-j23-1",
+    "96-182-6-j23-1",
+    "96-199-0-j23-1",
+    "96-199-1-j23-1",
+    "96-199-3-j23-1",
+    "96-199-4-j23-1"
+  ],
+  "clock": "charged",
+  "cpu_seconds": 0.609998013000002,
+  "candidate_itinerary_limit": 8,
+  "random_stream_query_index": 1
+}

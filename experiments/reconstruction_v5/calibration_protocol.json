@@ -1,0 +1,19 @@
+{
+  "parameter_training_dates": ["2023-10-01", "2023-10-02"],
+  "calibration_dates": ["2023-10-03", "2023-10-04", "2023-10-05", "2023-10-06", "2023-10-07", "2023-10-08", "2023-10-09", "2023-10-10", "2023-10-11"],
+  "heldout_dates": ["2023-10-12", "2023-10-25", "2023-10-27"],
+  "confirmation_dates": ["2023-10-13", "2023-10-26", "2023-10-30"],
+  "endpoint_cutoff_before_schedule_seconds": 300,
+  "peer_forecast_schedule_window_seconds": [-900, 2700],
+  "route_shrinkage_pseudocount": 20,
+  "peer_shrinkage_pseudocount": 20,
+  "kernel_sd_seconds": 17.320508075688775,
+  "nominal_miscoverage": 0.1,
+  "transfer_critical_scheduled_margin_seconds": 300,
+  "transfer_patience_seconds": 720,
+  "source_information": "Only sampled GTFS-RT receipts at or before the prediction clock. Peer summaries contain at most one current departure forecast per other trip. Actual endpoints are used for training before calibration and scoring after a prediction.",
+  "methods": ["evolving_prior", "evolving_public_forecasts", "route_empirical", "public_peer_mixture"],
+  "distribution_model": "Smoothed empirical route/event-kind delay and issued-forecast error laws, with route counts shrunk toward the corresponding pooled event-kind law. Public peer shift changes location. The convex own-forecast mixture weight is fitted on the parameter-training dates only.",
+  "interval_calibration": "Each calibration day contributes its empirical 90th-percentile endpoint interval nonconformity. The rank-nine day quantile supplies a nonnegative additive envelope correction for each fixed model.",
+  "selection": "No method, parameter or interval target is selected by performance on the three already examined held-out dates. Their readout is a development reevaluation. A further untouched date is required for an independent benefit claim."
+}

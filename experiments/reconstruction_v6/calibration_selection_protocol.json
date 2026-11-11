@@ -1,0 +1,41 @@
+{
+  "training_dates": [
+    "2023-10-01",
+    "2023-10-02"
+  ],
+  "calibration_dates": [
+    "2023-10-03",
+    "2023-10-04",
+    "2023-10-05",
+    "2023-10-06",
+    "2023-10-07",
+    "2023-10-08",
+    "2023-10-09",
+    "2023-10-10",
+    "2023-10-11"
+  ],
+  "confirmation_dates": [
+    "2023-10-14",
+    "2023-10-17",
+    "2023-10-28"
+  ],
+  "actuals_status_before_freeze": "No actual-label source/score in V5 or first V6 calibration cohort; only old RT archives/date lists existed.",
+  "prediction_methods": [
+    "evolving_incoming",
+    "shrunk_relative",
+    "student"
+  ],
+  "groups": {
+    "ordinary": "incoming measured arrival delay<=180seconds",
+    "late": "incoming measured arrival delay>180seconds"
+  },
+  "modes": {
+    "fixed_selector": "Max raw frozen catch probability; tie scheduled time then outgoing ID. Only this selector protected.",
+    "menu_max": "Maximum nonconformity across all outgoing candidates for each incoming state. Protects any first selector within the frozen menu."
+  },
+  "service_region": "Union of CANCELED category and operating clock interval. No cancellation probability calibration is claimed.",
+  "missingness": "Unknown clock/service gives score interval[-infinity,+infinity]; calibration factor has identified lower/upper. Use upper for finite coverage; retain vacuous if infinite.",
+  "rank_target": "Each group/date contributes ceil(.9*n_incoming)-th state score; date is maximum over present groups; largest of9 calibration dates. Under exchangeable date blocks, >=90% probability that every present group has >=90% incoming states covered next date.",
+  "scope": "Counterfactual retained input states, not the adaptively visited journey-state distribution. Both menus scored separately. Input-only selector never reads outgoing truth.",
+  "no_further_selection": "Student/shrunk parameters unchanged; only this predetermined selection score is calibrated. No models, groups, dates or factors are chosen using the new three date labels."
+}

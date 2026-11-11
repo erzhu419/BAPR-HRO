@@ -1,0 +1,1674 @@
+{
+  "protocol": {
+    "parameter_training_dates": [
+      "2023-10-01",
+      "2023-10-02"
+    ],
+    "calibration_dates": [
+      "2023-10-03",
+      "2023-10-04",
+      "2023-10-05",
+      "2023-10-06",
+      "2023-10-07",
+      "2023-10-08",
+      "2023-10-09",
+      "2023-10-10",
+      "2023-10-11"
+    ],
+    "development_dates": [
+      "2023-10-12",
+      "2023-10-25",
+      "2023-10-27"
+    ],
+    "scheduled_pair_window_seconds": 300,
+    "patience_seconds": 720,
+    "route_pair_pseudocount": 20,
+    "kernel_sd_seconds": 17.320508075688775,
+    "methods": [
+      "evolving_incoming",
+      "evolving_public_incoming",
+      "frozen_public_mixture",
+      "relative_incoming"
+    ],
+    "selection": "Primary pairs use scheduled incoming arrival + GTFS station transfer and different-trip departures within +/-300 seconds, before inspecting outcomes. Secondary pairs center the same menu window on the actual traveler-ready time. Unresolved outcomes remain menu candidates.",
+    "information": "Only the supplied incoming measured arrival and numeric forecasts received by that time. No other same-day actual endpoint is observed by the predictor.",
+    "theory": "A shared additive day location with equal incoming/outgoing loadings cancels in the relative delay. Relative residual exchangeability across selected date blocks is still required. The residual includes minus the incoming idiosyncratic error, so cancellation does not establish coverage conditional on every particular incoming delay."
+  },
+  "offset_seconds": {
+    "fixed_schedule": {
+      "evolving_incoming": 68.0,
+      "evolving_public_incoming": 128.0,
+      "frozen_public_mixture": 54.78784374731913,
+      "relative_incoming": 127.40021386387889
+    },
+    "actual_current": {
+      "evolving_incoming": 68.0,
+      "evolving_public_incoming": 128.0,
+      "frozen_public_mixture": 41.60806698477609,
+      "relative_incoming": 124.3438258993956
+    }
+  },
+  "development": {
+    "2023-10-12": {
+      "menu_comparison": {
+        "fixed_known_incoming_pairs": 2900,
+        "actual_current_pairs": 2643,
+        "intersection": 2480,
+        "added_by_actual_clock": 163,
+        "removed_by_actual_clock": 420
+      },
+      "fixed_schedule": {
+        "coverage_counts": {
+          "planned_pairs": 2900,
+          "REAL": 2900
+        },
+        "methods": {
+          "evolving_incoming": {
+            "raw": {
+              "interval": {
+                "n": 2900,
+                "covered": 2793,
+                "coverage": 0.963103448275862,
+                "below": 4,
+                "above": 103,
+                "mean_width_seconds": 359.64827586206894,
+                "mean_interval_score": 411.7793103448276,
+                "mae_seconds": 54.091730808978376,
+                "signed_mean_error_seconds": 8.841482100068221
+              },
+              "probability": {
+                "n": 2900,
+                "brier": 0.06861885820716865,
+                "mean_predicted": 0.564268156268145,
+                "actual_caught_fraction": 0.5575862068965517,
+                "signed_error": 0.00668194937159325
+              }
+            },
+            "date_calibrated": {
+              "interval": {
+                "n": 2900,
+                "covered": 2853,
+                "coverage": 0.9837931034482759,
+                "below": 0,
+                "above": 47,
+                "mean_width_seconds": 495.64827586206894,
+                "mean_interval_score": 519.351724137931,
+                "mae_seconds": 54.091730808978376,
+                "signed_mean_error_seconds": 8.841482100068221
+              },
+              "probability": {
+                "n": 2900,
+                "brier": 0.06861885820716865,
+                "mean_predicted": 0.564268156268145,
+                "actual_caught_fraction": 0.5575862068965517,
+                "signed_error": 0.00668194937159325
+              }
+            },
+            "greedy_probability_selected": {
+              "n": 473,
+              "unresolved_selected": 0,
+              "interval": {
+                "n": 473,
+                "covered": 461,
+                "coverage": 0.9746300211416491,
+                "below": 0,
+                "above": 12,
+                "mean_width_seconds": 465.30232558139534,
+                "mean_interval_score": 495.95771670190277,
+                "mae_seconds": 55.23359151053331,
+                "signed_mean_error_seconds": -2.1731102872658368
+              },
+              "probability": {
+                "n": 473,
+                "brier": 0.026249352450920846,
+                "mean_predicted": 0.854336529809466,
+                "actual_caught_fraction": 0.8668076109936576,
+                "signed_error": -0.012471081184191537
+              }
+            }
+          },
+          "evolving_public_incoming": {
+            "raw": {
+              "interval": {
+                "n": 2900,
+                "covered": 2607,
+                "coverage": 0.8989655172413793,
+                "below": 36,
+                "above": 257,
+                "mean_width_seconds": 304.15862068965515,
+                "mean_interval_score": 397.29655172413794,
+                "mae_seconds": 53.3366364054713,
+                "signed_mean_error_seconds": -3.5084971279774053
+              },
+              "probability": {
+                "n": 2900,
+                "brier": 0.06663371773446977,
+                "mean_predicted": 0.5483745109325088,
+                "actual_caught_fraction": 0.5575862068965517,
+                "signed_error": -0.009211695964042917
+              }
+            },
+            "date_calibrated": {
+              "interval": {
+                "n": 2900,
+                "covered": 2873,
+                "coverage": 0.9906896551724138,
+                "below": 0,
+                "above": 27,
+                "mean_width_seconds": 560.1586206896552,
+                "mean_interval_score": 569.9448275862069,
+                "mae_seconds": 53.3366364054713,
+                "signed_mean_error_seconds": -3.5084971279774053
+              },
+              "probability": {
+                "n": 2900,
+                "brier": 0.06663371773446977,
+                "mean_predicted": 0.5483745109325088,
+                "actual_caught_fraction": 0.5575862068965517,
+                "signed_error": -0.009211695964042917
+              }
+            },
+            "greedy_probability_selected": {
+              "n": 473,
+              "unresolved_selected": 0,
+              "interval": {
+                "n": 473,
+                "covered": 471,
+                "coverage": 0.9957716701902748,
+                "below": 0,
+                "above": 2,
+                "mean_width_seconds": 504.62579281183935,
+                "mean_interval_score": 507.41649048625794,
+                "mae_seconds": 50.328840299735035,
+                "signed_mean_error_seconds": -9.909188269113502
+              },
+              "probability": {
+                "n": 473,
+                "brier": 0.023132951661001853,
+                "mean_predicted": 0.8568013135993665,
+                "actual_caught_fraction": 0.86892177589852,
+                "signed_error": -0.012120462299153539
+              }
+            }
+          },
+          "frozen_public_mixture": {
+            "raw": {
+              "interval": {
+                "n": 2900,
+                "covered": 2792,
+                "coverage": 0.9627586206896551,
+                "below": 3,
+                "above": 105,
+                "mean_width_seconds": 254.20773976328726,
+                "mean_interval_score": 313.5332591197791,
+                "mae_seconds": 51.0049143833092,
+                "signed_mean_error_seconds": 0.0642292359410592
+              },
+              "probability": {
+                "n": 2900,
+                "brier": 0.05701835072450259,
+                "mean_predicted": 0.5486432500372743,
+                "actual_caught_fraction": 0.5575862068965517,
+                "signed_error": -0.008942956859277465
+              }
+            },
+            "date_calibrated": {
+              "interval": {
+                "n": 2900,
+                "covered": 2837,
+                "coverage": 0.9782758620689656,
+                "below": 0,
+                "above": 63,
+                "mean_width_seconds": 363.78342725792544,
+                "mean_interval_score": 388.79286366245594,
+                "mae_seconds": 51.0049143833092,
+                "signed_mean_error_seconds": 0.0642292359410592
+              },
+              "probability": {
+                "n": 2900,
+                "brier": 0.05701835072450259,
+                "mean_predicted": 0.5486432500372743,
+                "actual_caught_fraction": 0.5575862068965517,
+                "signed_error": -0.008942956859277465
+              }
+            },
+            "greedy_probability_selected": {
+              "n": 473,
+              "unresolved_selected": 0,
+              "interval": {
+                "n": 473,
+                "covered": 460,
+                "coverage": 0.9725158562367865,
+                "below": 0,
+                "above": 13,
+                "mean_width_seconds": 361.5385206186542,
+                "mean_interval_score": 390.5632943986818,
+                "mae_seconds": 52.91653139295702,
+                "signed_mean_error_seconds": -2.999629105506156
+              },
+              "probability": {
+                "n": 473,
+                "brier": 0.019909567626656233,
+                "mean_predicted": 0.8603879263563878,
+                "actual_caught_fraction": 0.86892177589852,
+                "signed_error": -0.00853384954213227
+              }
+            }
+          },
+          "relative_incoming": {
+            "raw": {
+              "interval": {
+                "n": 2900,
+                "covered": 2586,
+                "coverage": 0.8917241379310344,
+                "below": 156,
+                "above": 158,
+                "mean_width_seconds": 339.79675979362804,
+                "mean_interval_score": 469.4834807344711,
+                "mae_seconds": 68.73027985628683,
+                "signed_mean_error_seconds": 4.499746953543766
+              },
+              "probability": {
+                "n": 2900,
+                "brier": 0.07839668811870344,
+                "mean_predicted": 0.554326127588898,
+                "actual_caught_fraction": 0.5575862068965517,
+                "signed_error": -0.003260079307653771
+              }
+            },
+            "date_calibrated": {
+              "interval": {
+                "n": 2900,
+                "covered": 2859,
+                "coverage": 0.9858620689655172,
+                "below": 18,
+                "above": 23,
+                "mean_width_seconds": 594.5971875213858,
+                "mean_interval_score": 608.8795916098359,
+                "mae_seconds": 68.73027985628683,
+                "signed_mean_error_seconds": 4.499746953543766
+              },
+              "probability": {
+                "n": 2900,
+                "brier": 0.07839668811870344,
+                "mean_predicted": 0.554326127588898,
+                "actual_caught_fraction": 0.5575862068965517,
+                "signed_error": -0.003260079307653771
+              }
+            },
+            "greedy_probability_selected": {
+              "n": 473,
+              "unresolved_selected": 0,
+              "interval": {
+                "n": 473,
+                "covered": 468,
+                "coverage": 0.9894291754756871,
+                "below": 2,
+                "above": 3,
+                "mean_width_seconds": 571.7748179569786,
+                "mean_interval_score": 581.7370047965823,
+                "mae_seconds": 68.41473170928494,
+                "signed_mean_error_seconds": -1.3565822372431178
+              },
+              "probability": {
+                "n": 473,
+                "brier": 0.030379014768604145,
+                "mean_predicted": 0.8567292429644255,
+                "actual_caught_fraction": 0.8668076109936576,
+                "signed_error": -0.010078368029231875
+              }
+            }
+          }
+        }
+      },
+      "actual_current": {
+        "coverage_counts": {
+          "planned_pairs": 2643,
+          "REAL": 2643
+        },
+        "methods": {
+          "evolving_incoming": {
+            "raw": {
+              "interval": {
+                "n": 2643,
+                "covered": 2547,
+                "coverage": 0.963677639046538,
+                "below": 2,
+                "above": 94,
+                "mean_width_seconds": 361.04426787741204,
+                "mean_interval_score": 412.8111993946273,
+                "mae_seconds": 53.99506804626531,
+                "signed_mean_error_seconds": 10.190846097223314
+              },
+              "probability": {
+                "n": 2643,
+                "brier": 0.07333319828266968,
+                "mean_predicted": 0.6636414570708565,
+                "actual_caught_fraction": 0.6598562239878926,
+                "signed_error": 0.0037852330829639532
+              }
+            },
+            "date_calibrated": {
+              "interval": {
+                "n": 2643,
+                "covered": 2600,
+                "coverage": 0.9837306091562619,
+                "below": 0,
+                "above": 43,
+                "mean_width_seconds": 497.04426787741204,
+                "mean_interval_score": 520.752175558078,
+                "mae_seconds": 53.99506804626531,
+                "signed_mean_error_seconds": 10.190846097223314
+              },
+              "probability": {
+                "n": 2643,
+                "brier": 0.07333319828266968,
+                "mean_predicted": 0.6636414570708565,
+                "actual_caught_fraction": 0.6598562239878926,
+                "signed_error": 0.0037852330829639532
+              }
+            },
+            "greedy_probability_selected": {
+              "n": 469,
+              "unresolved_selected": 0,
+              "interval": {
+                "n": 469,
+                "covered": 457,
+                "coverage": 0.9744136460554371,
+                "below": 0,
+                "above": 12,
+                "mean_width_seconds": 458.0042643923241,
+                "mean_interval_score": 480.9466950959488,
+                "mae_seconds": 52.40889617751271,
+                "signed_mean_error_seconds": -1.2551590499481504
+              },
+              "probability": {
+                "n": 469,
+                "brier": 0.01870097509001776,
+                "mean_predicted": 0.8905591377156059,
+                "actual_caught_fraction": 0.8976545842217484,
+                "signed_error": -0.0070954465061425385
+              }
+            }
+          },
+          "evolving_public_incoming": {
+            "raw": {
+              "interval": {
+                "n": 2643,
+                "covered": 2385,
+                "coverage": 0.9023836549375709,
+                "below": 31,
+                "above": 227,
+                "mean_width_seconds": 306.24290578887627,
+                "mean_interval_score": 397.37419598940596,
+                "mae_seconds": 53.25203288171926,
+                "signed_mean_error_seconds": -2.0388696201418526
+              },
+              "probability": {
+                "n": 2643,
+                "brier": 0.07144791423828906,
+                "mean_predicted": 0.6479098928340883,
+                "actual_caught_fraction": 0.6598562239878926,
+                "signed_error": -0.011946331153804187
+              }
+            },
+            "date_calibrated": {
+              "interval": {
+                "n": 2643,
+                "covered": 2618,
+                "coverage": 0.9905410518350359,
+                "below": 0,
+                "above": 25,
+                "mean_width_seconds": 562.2429057888763,
+                "mean_interval_score": 571.9894059780553,
+                "mae_seconds": 53.25203288171926,
+                "signed_mean_error_seconds": -2.0388696201418526
+              },
+              "probability": {
+                "n": 2643,
+                "brier": 0.07144791423828906,
+                "mean_predicted": 0.6479098928340883,
+                "actual_caught_fraction": 0.6598562239878926,
+                "signed_error": -0.011946331153804187
+              }
+            },
+            "greedy_probability_selected": {
+              "n": 469,
+              "unresolved_selected": 0,
+              "interval": {
+                "n": 469,
+                "covered": 467,
+                "coverage": 0.9957356076759062,
+                "below": 0,
+                "above": 2,
+                "mean_width_seconds": 494.9765458422175,
+                "mean_interval_score": 496.7675906183369,
+                "mae_seconds": 48.19308437879311,
+                "signed_mean_error_seconds": -8.404296799884541
+              },
+              "probability": {
+                "n": 469,
+                "brier": 0.017994948101951343,
+                "mean_predicted": 0.8925489409063712,
+                "actual_caught_fraction": 0.8976545842217484,
+                "signed_error": -0.005105643315377184
+              }
+            }
+          },
+          "frozen_public_mixture": {
+            "raw": {
+              "interval": {
+                "n": 2643,
+                "covered": 2550,
+                "coverage": 0.9648127128263337,
+                "below": 3,
+                "above": 90,
+                "mean_width_seconds": 254.6443715503171,
+                "mean_interval_score": 311.9544658575151,
+                "mae_seconds": 50.67450096196652,
+                "signed_mean_error_seconds": 1.365865569240398
+              },
+              "probability": {
+                "n": 2643,
+                "brier": 0.06105971423414893,
+                "mean_predicted": 0.6483186786920216,
+                "actual_caught_fraction": 0.6598562239878926,
+                "signed_error": -0.011537545295870968
+              }
+            },
+            "date_calibrated": {
+              "interval": {
+                "n": 2643,
+                "covered": 2574,
+                "coverage": 0.9738933030646992,
+                "below": 0,
+                "above": 69,
+                "mean_width_seconds": 337.8605055198677,
+                "mean_interval_score": 368.2021280018296,
+                "mae_seconds": 50.67450096196652,
+                "signed_mean_error_seconds": 1.365865569240398
+              },
+              "probability": {
+                "n": 2643,
+                "brier": 0.06105971423414893,
+                "mean_predicted": 0.6483186786920216,
+                "actual_caught_fraction": 0.6598562239878926,
+                "signed_error": -0.011537545295870968
+              }
+            },
+            "greedy_probability_selected": {
+              "n": 469,
+              "unresolved_selected": 0,
+              "interval": {
+                "n": 469,
+                "covered": 454,
+                "coverage": 0.9680170575692963,
+                "below": 0,
+                "above": 15,
+                "mean_width_seconds": 334.7694352646109,
+                "mean_interval_score": 369.20914389872314,
+                "mae_seconds": 52.9964397106746,
+                "signed_mean_error_seconds": -2.9491683204815886
+              },
+              "probability": {
+                "n": 469,
+                "brier": 0.015601454896749653,
+                "mean_predicted": 0.8931322181598483,
+                "actual_caught_fraction": 0.8976545842217484,
+                "signed_error": -0.004522366061900228
+              }
+            }
+          },
+          "relative_incoming": {
+            "raw": {
+              "interval": {
+                "n": 2643,
+                "covered": 2359,
+                "coverage": 0.8925463488460084,
+                "below": 140,
+                "above": 144,
+                "mean_width_seconds": 338.3003107750802,
+                "mean_interval_score": 462.2081915397503,
+                "mae_seconds": 68.43429360867019,
+                "signed_mean_error_seconds": 5.40063313535136
+              },
+              "probability": {
+                "n": 2643,
+                "brier": 0.08328657484464543,
+                "mean_predicted": 0.6497602987285546,
+                "actual_caught_fraction": 0.6598562239878926,
+                "signed_error": -0.010095925259337973
+              }
+            },
+            "date_calibrated": {
+              "interval": {
+                "n": 2643,
+                "covered": 2613,
+                "coverage": 0.9886492622020431,
+                "below": 9,
+                "above": 21,
+                "mean_width_seconds": 586.9879625738714,
+                "mean_interval_score": 598.6654816575028,
+                "mae_seconds": 68.43429360867019,
+                "signed_mean_error_seconds": 5.40063313535136
+              },
+              "probability": {
+                "n": 2643,
+                "brier": 0.08328657484464543,
+                "mean_predicted": 0.6497602987285546,
+                "actual_caught_fraction": 0.6598562239878926,
+                "signed_error": -0.010095925259337973
+              }
+            },
+            "greedy_probability_selected": {
+              "n": 469,
+              "unresolved_selected": 0,
+              "interval": {
+                "n": 469,
+                "covered": 465,
+                "coverage": 0.9914712153518124,
+                "below": 2,
+                "above": 2,
+                "mean_width_seconds": 561.9042481582536,
+                "mean_interval_score": 567.9266582419402,
+                "mae_seconds": 65.40773102026367,
+                "signed_mean_error_seconds": 0.5236060609580652
+              },
+              "probability": {
+                "n": 469,
+                "brier": 0.02336401778979737,
+                "mean_predicted": 0.8795646733638496,
+                "actual_caught_fraction": 0.8955223880597015,
+                "signed_error": -0.01595771469585187
+              }
+            }
+          }
+        }
+      }
+    },
+    "2023-10-25": {
+      "menu_comparison": {
+        "fixed_known_incoming_pairs": 2829,
+        "actual_current_pairs": 2658,
+        "intersection": 2031,
+        "added_by_actual_clock": 627,
+        "removed_by_actual_clock": 798
+      },
+      "fixed_schedule": {
+        "coverage_counts": {
+          "planned_pairs": 2900,
+          "PROGNOSE": 33,
+          "REAL": 2765,
+          "CANCELED": 31,
+          "unobserved_incoming": 71
+        },
+        "methods": {
+          "evolving_incoming": {
+            "raw": {
+              "interval": {
+                "n": 2765,
+                "covered": 2094,
+                "coverage": 0.7573236889692586,
+                "below": 0,
+                "above": 671,
+                "mean_width_seconds": 364.05786618444847,
+                "mean_interval_score": 1075.4358047016274,
+                "mae_seconds": 122.3705176419513,
+                "signed_mean_error_seconds": -102.03768636087048
+              },
+              "probability": {
+                "n": 2796,
+                "brier": 0.13211348694333586,
+                "mean_predicted": 0.4137716290504843,
+                "actual_caught_fraction": 0.5300429184549357,
+                "signed_error": -0.11627128940445122
+              }
+            },
+            "date_calibrated": {
+              "interval": {
+                "n": 2765,
+                "covered": 2380,
+                "coverage": 0.8607594936708861,
+                "below": 0,
+                "above": 385,
+                "mean_width_seconds": 500.05786618444847,
+                "mean_interval_score": 969.0632911392405,
+                "mae_seconds": 122.3705176419513,
+                "signed_mean_error_seconds": -102.03768636087048
+              },
+              "probability": {
+                "n": 2796,
+                "brier": 0.13211348694333586,
+                "mean_predicted": 0.4137716290504843,
+                "actual_caught_fraction": 0.5300429184549357,
+                "signed_error": -0.11627128940445122
+              }
+            },
+            "greedy_probability_selected": {
+              "n": 461,
+              "unresolved_selected": 6,
+              "interval": {
+                "n": 445,
+                "covered": 376,
+                "coverage": 0.8449438202247191,
+                "below": 0,
+                "above": 69,
+                "mean_width_seconds": 501.5280898876405,
+                "mean_interval_score": 989.3033707865169,
+                "mae_seconds": 133.42332721803717,
+                "signed_mean_error_seconds": -116.8930110099073
+              },
+              "probability": {
+                "n": 455,
+                "brier": 0.09685742657244134,
+                "mean_predicted": 0.7522003511454108,
+                "actual_caught_fraction": 0.8197802197802198,
+                "signed_error": -0.06757986863480883
+              }
+            }
+          },
+          "evolving_public_incoming": {
+            "raw": {
+              "interval": {
+                "n": 2765,
+                "covered": 1754,
+                "coverage": 0.6343580470162749,
+                "below": 16,
+                "above": 995,
+                "mean_width_seconds": 302.9511754068716,
+                "mean_interval_score": 1154.488245931284,
+                "mae_seconds": 124.05151272134236,
+                "signed_mean_error_seconds": -109.0758709248837
+              },
+              "probability": {
+                "n": 2796,
+                "brier": 0.13800932893980528,
+                "mean_predicted": 0.4034322995469039,
+                "actual_caught_fraction": 0.5300429184549357,
+                "signed_error": -0.12661061890803174
+              }
+            },
+            "date_calibrated": {
+              "interval": {
+                "n": 2765,
+                "covered": 2542,
+                "coverage": 0.9193490054249548,
+                "below": 0,
+                "above": 223,
+                "mean_width_seconds": 558.9511754068716,
+                "mean_interval_score": 913.9095840867993,
+                "mae_seconds": 124.05151272134236,
+                "signed_mean_error_seconds": -109.0758709248837
+              },
+              "probability": {
+                "n": 2796,
+                "brier": 0.13800932893980528,
+                "mean_predicted": 0.4034322995469039,
+                "actual_caught_fraction": 0.5300429184549357,
+                "signed_error": -0.12661061890803174
+              }
+            },
+            "greedy_probability_selected": {
+              "n": 461,
+              "unresolved_selected": 4,
+              "interval": {
+                "n": 449,
+                "covered": 406,
+                "coverage": 0.9042316258351893,
+                "below": 0,
+                "above": 43,
+                "mean_width_seconds": 527.4031180400891,
+                "mean_interval_score": 859.2071269487751,
+                "mae_seconds": 130.8292549105169,
+                "signed_mean_error_seconds": -119.79371384017956
+              },
+              "probability": {
+                "n": 457,
+                "brier": 0.08661849902640407,
+                "mean_predicted": 0.7620822400351751,
+                "actual_caught_fraction": 0.8315098468271335,
+                "signed_error": -0.06942760679195843
+              }
+            }
+          },
+          "frozen_public_mixture": {
+            "raw": {
+              "interval": {
+                "n": 2765,
+                "covered": 2141,
+                "coverage": 0.7743218806509946,
+                "below": 3,
+                "above": 621,
+                "mean_width_seconds": 257.9625816396,
+                "mean_interval_score": 954.7501811827344,
+                "mae_seconds": 120.52567456426152,
+                "signed_mean_error_seconds": -103.6431642804721
+              },
+              "probability": {
+                "n": 2796,
+                "brier": 0.1384884331480225,
+                "mean_predicted": 0.40479837645619066,
+                "actual_caught_fraction": 0.5300429184549357,
+                "signed_error": -0.125244541998745
+              }
+            },
+            "date_calibrated": {
+              "interval": {
+                "n": 2765,
+                "covered": 2382,
+                "coverage": 0.8614828209764919,
+                "below": 0,
+                "above": 383,
+                "mean_width_seconds": 367.5382691342382,
+                "mean_interval_score": 875.5964798753978,
+                "mae_seconds": 120.52567456426152,
+                "signed_mean_error_seconds": -103.6431642804721
+              },
+              "probability": {
+                "n": 2796,
+                "brier": 0.1384884331480225,
+                "mean_predicted": 0.40479837645619066,
+                "actual_caught_fraction": 0.5300429184549357,
+                "signed_error": -0.125244541998745
+              }
+            },
+            "greedy_probability_selected": {
+              "n": 461,
+              "unresolved_selected": 7,
+              "interval": {
+                "n": 450,
+                "covered": 364,
+                "coverage": 0.8088888888888889,
+                "below": 0,
+                "above": 86,
+                "mean_width_seconds": 365.63187540780405,
+                "mean_interval_score": 1055.7125855149882,
+                "mae_seconds": 143.98638592885027,
+                "signed_mean_error_seconds": -127.45634953367042
+              },
+              "probability": {
+                "n": 454,
+                "brier": 0.0990244876564222,
+                "mean_predicted": 0.7681949026440247,
+                "actual_caught_fraction": 0.8281938325991189,
+                "signed_error": -0.05999892995509432
+              }
+            }
+          },
+          "relative_incoming": {
+            "raw": {
+              "interval": {
+                "n": 2765,
+                "covered": 1989,
+                "coverage": 0.7193490054249548,
+                "below": 398,
+                "above": 378,
+                "mean_width_seconds": 340.05300545030883,
+                "mean_interval_score": 1303.7538893386675,
+                "mae_seconds": 139.57908695115376,
+                "signed_mean_error_seconds": 7.644221724171099
+              },
+              "probability": {
+                "n": 2796,
+                "brier": 0.14113463523939435,
+                "mean_predicted": 0.5550179360632479,
+                "actual_caught_fraction": 0.5300429184549357,
+                "signed_error": 0.024975017608312312
+              }
+            },
+            "date_calibrated": {
+              "interval": {
+                "n": 2765,
+                "covered": 2515,
+                "coverage": 0.9095840867992767,
+                "below": 121,
+                "above": 129,
+                "mean_width_seconds": 594.8534331780667,
+                "mean_interval_score": 1140.1165010974275,
+                "mae_seconds": 139.57908695115376,
+                "signed_mean_error_seconds": 7.644221724171099
+              },
+              "probability": {
+                "n": 2796,
+                "brier": 0.14113463523939435,
+                "mean_predicted": 0.5550179360632479,
+                "actual_caught_fraction": 0.5300429184549357,
+                "signed_error": 0.024975017608312312
+              }
+            },
+            "greedy_probability_selected": {
+              "n": 461,
+              "unresolved_selected": 3,
+              "interval": {
+                "n": 455,
+                "covered": 416,
+                "coverage": 0.9142857142857143,
+                "below": 20,
+                "above": 19,
+                "mean_width_seconds": 570.4342230559155,
+                "mean_interval_score": 1091.1565893271538,
+                "mae_seconds": 134.15980146487806,
+                "signed_mean_error_seconds": 1.6728215602312508
+              },
+              "probability": {
+                "n": 458,
+                "brier": 0.07329149658797657,
+                "mean_predicted": 0.8585734889794805,
+                "actual_caught_fraction": 0.8384279475982532,
+                "signed_error": 0.020145541381227264
+              }
+            }
+          }
+        }
+      },
+      "actual_current": {
+        "coverage_counts": {
+          "planned_pairs": 2658,
+          "REAL": 2592,
+          "CANCELED": 32,
+          "PROGNOSE": 34
+        },
+        "methods": {
+          "evolving_incoming": {
+            "raw": {
+              "interval": {
+                "n": 2592,
+                "covered": 1970,
+                "coverage": 0.7600308641975309,
+                "below": 0,
+                "above": 622,
+                "mean_width_seconds": 367.31481481481484,
+                "mean_interval_score": 1044.4753086419753,
+                "mae_seconds": 120.76064236897633,
+                "signed_mean_error_seconds": -101.06147616461836
+              },
+              "probability": {
+                "n": 2624,
+                "brier": 0.13556180220539948,
+                "mean_predicted": 0.652520078676874,
+                "actual_caught_fraction": 0.7679115853658537,
+                "signed_error": -0.11539150668897968
+              }
+            },
+            "date_calibrated": {
+              "interval": {
+                "n": 2592,
+                "covered": 2236,
+                "coverage": 0.8626543209876543,
+                "below": 0,
+                "above": 356,
+                "mean_width_seconds": 503.31481481481484,
+                "mean_interval_score": 940.1898148148148,
+                "mae_seconds": 120.76064236897633,
+                "signed_mean_error_seconds": -101.06147616461836
+              },
+              "probability": {
+                "n": 2624,
+                "brier": 0.13556180220539948,
+                "mean_predicted": 0.652520078676874,
+                "actual_caught_fraction": 0.7679115853658537,
+                "signed_error": -0.11539150668897968
+              }
+            },
+            "greedy_probability_selected": {
+              "n": 454,
+              "unresolved_selected": 8,
+              "interval": {
+                "n": 438,
+                "covered": 359,
+                "coverage": 0.819634703196347,
+                "below": 0,
+                "above": 79,
+                "mean_width_seconds": 461.6164383561644,
+                "mean_interval_score": 949.4703196347032,
+                "mae_seconds": 130.5960977959894,
+                "signed_mean_error_seconds": -114.1094342556169
+              },
+              "probability": {
+                "n": 446,
+                "brier": 0.06631353899248676,
+                "mean_predicted": 0.9236397061781326,
+                "actual_caught_fraction": 0.9192825112107623,
+                "signed_error": 0.0043571949673702455
+              }
+            }
+          },
+          "evolving_public_incoming": {
+            "raw": {
+              "interval": {
+                "n": 2592,
+                "covered": 1646,
+                "coverage": 0.6350308641975309,
+                "below": 15,
+                "above": 931,
+                "mean_width_seconds": 306.0416666666667,
+                "mean_interval_score": 1136.3194444444443,
+                "mae_seconds": 124.1279608924099,
+                "signed_mean_error_seconds": -109.03750643737655
+              },
+              "probability": {
+                "n": 2624,
+                "brier": 0.14245163768275734,
+                "mean_predicted": 0.6440105039903801,
+                "actual_caught_fraction": 0.7679115853658537,
+                "signed_error": -0.12390108137547355
+              }
+            },
+            "date_calibrated": {
+              "interval": {
+                "n": 2592,
+                "covered": 2388,
+                "coverage": 0.9212962962962963,
+                "below": 0,
+                "above": 204,
+                "mean_width_seconds": 562.0416666666666,
+                "mean_interval_score": 890.5679012345679,
+                "mae_seconds": 124.1279608924099,
+                "signed_mean_error_seconds": -109.03750643737655
+              },
+              "probability": {
+                "n": 2624,
+                "brier": 0.14245163768275734,
+                "mean_predicted": 0.6440105039903801,
+                "actual_caught_fraction": 0.7679115853658537,
+                "signed_error": -0.12390108137547355
+              }
+            },
+            "greedy_probability_selected": {
+              "n": 454,
+              "unresolved_selected": 2,
+              "interval": {
+                "n": 447,
+                "covered": 397,
+                "coverage": 0.8881431767337807,
+                "below": 0,
+                "above": 50,
+                "mean_width_seconds": 487.2751677852349,
+                "mean_interval_score": 797.2527964205816,
+                "mae_seconds": 123.2167218931448,
+                "signed_mean_error_seconds": -110.50169154360307
+              },
+              "probability": {
+                "n": 452,
+                "brier": 0.04889319957737587,
+                "mean_predicted": 0.9275401472305482,
+                "actual_caught_fraction": 0.9380530973451328,
+                "signed_error": -0.010512950114584543
+              }
+            }
+          },
+          "frozen_public_mixture": {
+            "raw": {
+              "interval": {
+                "n": 2592,
+                "covered": 1979,
+                "coverage": 0.7635030864197531,
+                "below": 4,
+                "above": 609,
+                "mean_width_seconds": 257.9614517196579,
+                "mean_interval_score": 936.4628882206698,
+                "mae_seconds": 120.21384757943476,
+                "signed_mean_error_seconds": -102.87695186468974
+              },
+              "probability": {
+                "n": 2624,
+                "brier": 0.14351782233391006,
+                "mean_predicted": 0.6474037542980847,
+                "actual_caught_fraction": 0.7679115853658537,
+                "signed_error": -0.12050783106776897
+              }
+            },
+            "date_calibrated": {
+              "interval": {
+                "n": 2592,
+                "covered": 2184,
+                "coverage": 0.8425925925925926,
+                "below": 0,
+                "above": 408,
+                "mean_width_seconds": 341.17758568920834,
+                "mean_interval_score": 862.4086351327387,
+                "mae_seconds": 120.21384757943476,
+                "signed_mean_error_seconds": -102.87695186468974
+              },
+              "probability": {
+                "n": 2624,
+                "brier": 0.14351782233391006,
+                "mean_predicted": 0.6474037542980847,
+                "actual_caught_fraction": 0.7679115853658537,
+                "signed_error": -0.12050783106776897
+              }
+            },
+            "greedy_probability_selected": {
+              "n": 454,
+              "unresolved_selected": 3,
+              "interval": {
+                "n": 450,
+                "covered": 354,
+                "coverage": 0.7866666666666666,
+                "below": 0,
+                "above": 96,
+                "mean_width_seconds": 335.36413716751736,
+                "mean_interval_score": 1162.2097526688628,
+                "mae_seconds": 152.4930922786592,
+                "signed_mean_error_seconds": -135.30398016436325
+              },
+              "probability": {
+                "n": 451,
+                "brier": 0.07107810601303088,
+                "mean_predicted": 0.9270280906851678,
+                "actual_caught_fraction": 0.917960088691796,
+                "signed_error": 0.009068001993371976
+              }
+            }
+          },
+          "relative_incoming": {
+            "raw": {
+              "interval": {
+                "n": 2592,
+                "covered": 1845,
+                "coverage": 0.7118055555555556,
+                "below": 400,
+                "above": 347,
+                "mean_width_seconds": 337.99443148607105,
+                "mean_interval_score": 1219.9731714361933,
+                "mae_seconds": 136.54373847834142,
+                "signed_mean_error_seconds": 8.769767364419334
+              },
+              "probability": {
+                "n": 2624,
+                "brier": 0.14237119141242618,
+                "mean_predicted": 0.7549837405704027,
+                "actual_caught_fraction": 0.7679115853658537,
+                "signed_error": -0.012927844795450954
+              }
+            },
+            "date_calibrated": {
+              "interval": {
+                "n": 2592,
+                "covered": 2368,
+                "coverage": 0.9135802469135802,
+                "below": 111,
+                "above": 113,
+                "mean_width_seconds": 586.6820832848622,
+                "mean_interval_score": 1058.4133716604863,
+                "mae_seconds": 136.54373847834142,
+                "signed_mean_error_seconds": 8.769767364419334
+              },
+              "probability": {
+                "n": 2624,
+                "brier": 0.14237119141242618,
+                "mean_predicted": 0.7549837405704027,
+                "actual_caught_fraction": 0.7679115853658537,
+                "signed_error": -0.012927844795450954
+              }
+            },
+            "greedy_probability_selected": {
+              "n": 454,
+              "unresolved_selected": 2,
+              "interval": {
+                "n": 452,
+                "covered": 414,
+                "coverage": 0.915929203539823,
+                "below": 16,
+                "above": 22,
+                "mean_width_seconds": 554.4849244014522,
+                "mean_interval_score": 1109.632917965239,
+                "mae_seconds": 138.2359229242029,
+                "signed_mean_error_seconds": -4.815666194230925
+              },
+              "probability": {
+                "n": 452,
+                "brier": 0.058273876597917794,
+                "mean_predicted": 0.9217259168155986,
+                "actual_caught_fraction": 0.918141592920354,
+                "signed_error": 0.003584323895244632
+              }
+            }
+          }
+        }
+      }
+    },
+    "2023-10-27": {
+      "menu_comparison": {
+        "fixed_known_incoming_pairs": 2875,
+        "actual_current_pairs": 2694,
+        "intersection": 2153,
+        "added_by_actual_clock": 541,
+        "removed_by_actual_clock": 722
+      },
+      "fixed_schedule": {
+        "coverage_counts": {
+          "planned_pairs": 2900,
+          "REAL": 2856,
+          "PROGNOSE": 16,
+          "unobserved_incoming": 25,
+          "CANCELED": 3
+        },
+        "methods": {
+          "evolving_incoming": {
+            "raw": {
+              "interval": {
+                "n": 2856,
+                "covered": 2286,
+                "coverage": 0.8004201680672269,
+                "below": 9,
+                "above": 561,
+                "mean_width_seconds": 359.390756302521,
+                "mean_interval_score": 652.9271708683474,
+                "mae_seconds": 92.40595304629095,
+                "signed_mean_error_seconds": -64.22364761424649
+              },
+              "probability": {
+                "n": 2859,
+                "brier": 0.11188068434130338,
+                "mean_predicted": 0.4359642843601088,
+                "actual_caught_fraction": 0.540398740818468,
+                "signed_error": -0.10443445645835923
+              }
+            },
+            "date_calibrated": {
+              "interval": {
+                "n": 2856,
+                "covered": 2613,
+                "coverage": 0.9149159663865546,
+                "below": 0,
+                "above": 243,
+                "mean_width_seconds": 495.390756302521,
+                "mean_interval_score": 598.9621848739496,
+                "mae_seconds": 92.40595304629095,
+                "signed_mean_error_seconds": -64.22364761424649
+              },
+              "probability": {
+                "n": 2859,
+                "brier": 0.11188068434130338,
+                "mean_predicted": 0.4359642843601088,
+                "actual_caught_fraction": 0.540398740818468,
+                "signed_error": -0.10443445645835923
+              }
+            },
+            "greedy_probability_selected": {
+              "n": 466,
+              "unresolved_selected": 2,
+              "interval": {
+                "n": 462,
+                "covered": 417,
+                "coverage": 0.9025974025974026,
+                "below": 0,
+                "above": 45,
+                "mean_width_seconds": 486.90909090909093,
+                "mean_interval_score": 580.5454545454545,
+                "mae_seconds": 89.89656133478738,
+                "signed_mean_error_seconds": -66.45393636638345
+              },
+              "probability": {
+                "n": 464,
+                "brier": 0.049664269258213385,
+                "mean_predicted": 0.7818671379901301,
+                "actual_caught_fraction": 0.8469827586206896,
+                "signed_error": -0.06511562063055949
+              }
+            }
+          },
+          "evolving_public_incoming": {
+            "raw": {
+              "interval": {
+                "n": 2856,
+                "covered": 1420,
+                "coverage": 0.49719887955182074,
+                "below": 15,
+                "above": 1421,
+                "mean_width_seconds": 139.8109243697479,
+                "mean_interval_score": 974.4957983193277,
+                "mae_seconds": 89.14720807659165,
+                "signed_mean_error_seconds": -83.31890387777243
+              },
+              "probability": {
+                "n": 2859,
+                "brier": 0.12442910758392815,
+                "mean_predicted": 0.4023424655172583,
+                "actual_caught_fraction": 0.540398740818468,
+                "signed_error": -0.13805627530120976
+              }
+            },
+            "date_calibrated": {
+              "interval": {
+                "n": 2856,
+                "covered": 2523,
+                "coverage": 0.8834033613445378,
+                "below": 0,
+                "above": 333,
+                "mean_width_seconds": 395.8109243697479,
+                "mean_interval_score": 504.55742296918766,
+                "mae_seconds": 89.14720807659165,
+                "signed_mean_error_seconds": -83.31890387777243
+              },
+              "probability": {
+                "n": 2859,
+                "brier": 0.12442910758392815,
+                "mean_predicted": 0.4023424655172583,
+                "actual_caught_fraction": 0.540398740818468,
+                "signed_error": -0.13805627530120976
+              }
+            },
+            "greedy_probability_selected": {
+              "n": 466,
+              "unresolved_selected": 6,
+              "interval": {
+                "n": 458,
+                "covered": 399,
+                "coverage": 0.87117903930131,
+                "below": 0,
+                "above": 59,
+                "mean_width_seconds": 390.8034934497817,
+                "mean_interval_score": 526.0436681222708,
+                "mae_seconds": 97.27580281473506,
+                "signed_mean_error_seconds": -92.15788516222561
+              },
+              "probability": {
+                "n": 460,
+                "brier": 0.047553800493148446,
+                "mean_predicted": 0.7903604362815261,
+                "actual_caught_fraction": 0.8456521739130435,
+                "signed_error": -0.055291737631517304
+              }
+            }
+          },
+          "frozen_public_mixture": {
+            "raw": {
+              "interval": {
+                "n": 2856,
+                "covered": 2395,
+                "coverage": 0.8385854341736695,
+                "below": 0,
+                "above": 461,
+                "mean_width_seconds": 272.0242224300981,
+                "mean_interval_score": 461.01433729222066,
+                "mae_seconds": 85.5514466458525,
+                "signed_mean_error_seconds": -70.903719307041
+              },
+              "probability": {
+                "n": 2859,
+                "brier": 0.10698091412210532,
+                "mean_predicted": 0.42026268226638025,
+                "actual_caught_fraction": 0.540398740818468,
+                "signed_error": -0.12013605855208781
+              }
+            },
+            "date_calibrated": {
+              "interval": {
+                "n": 2856,
+                "covered": 2673,
+                "coverage": 0.9359243697478992,
+                "below": 0,
+                "above": 183,
+                "mean_width_seconds": 381.5999099247364,
+                "mean_interval_score": 445.4397310776082,
+                "mae_seconds": 85.5514466458525,
+                "signed_mean_error_seconds": -70.903719307041
+              },
+              "probability": {
+                "n": 2859,
+                "brier": 0.10698091412210532,
+                "mean_predicted": 0.42026268226638025,
+                "actual_caught_fraction": 0.540398740818468,
+                "signed_error": -0.12013605855208781
+              }
+            },
+            "greedy_probability_selected": {
+              "n": 466,
+              "unresolved_selected": 2,
+              "interval": {
+                "n": 462,
+                "covered": 426,
+                "coverage": 0.922077922077922,
+                "below": 0,
+                "above": 36,
+                "mean_width_seconds": 377.64988983950457,
+                "mean_interval_score": 453.2538424987169,
+                "mae_seconds": 90.62654446427126,
+                "signed_mean_error_seconds": -76.64830793290507
+              },
+              "probability": {
+                "n": 464,
+                "brier": 0.04711475361070207,
+                "mean_predicted": 0.7907512827209799,
+                "actual_caught_fraction": 0.853448275862069,
+                "signed_error": -0.06269699314108901
+              }
+            }
+          },
+          "relative_incoming": {
+            "raw": {
+              "interval": {
+                "n": 2856,
+                "covered": 2208,
+                "coverage": 0.773109243697479,
+                "below": 384,
+                "above": 264,
+                "mean_width_seconds": 340.2349533563604,
+                "mean_interval_score": 744.4261352074074,
+                "mae_seconds": 106.01127530153884,
+                "signed_mean_error_seconds": 20.417020520626856
+              },
+              "probability": {
+                "n": 2859,
+                "brier": 0.11758661306470346,
+                "mean_predicted": 0.5550342689325733,
+                "actual_caught_fraction": 0.540398740818468,
+                "signed_error": 0.014635528114105364
+              }
+            },
+            "date_calibrated": {
+              "interval": {
+                "n": 2856,
+                "covered": 2752,
+                "coverage": 0.9635854341736695,
+                "below": 64,
+                "above": 40,
+                "mean_width_seconds": 595.0353810841182,
+                "mean_interval_score": 713.1413097014852,
+                "mae_seconds": 106.01127530153884,
+                "signed_mean_error_seconds": 20.417020520626856
+              },
+              "probability": {
+                "n": 2859,
+                "brier": 0.11758661306470346,
+                "mean_predicted": 0.5550342689325733,
+                "actual_caught_fraction": 0.540398740818468,
+                "signed_error": 0.014635528114105364
+              }
+            },
+            "greedy_probability_selected": {
+              "n": 466,
+              "unresolved_selected": 1,
+              "interval": {
+                "n": 463,
+                "covered": 444,
+                "coverage": 0.958963282937365,
+                "below": 14,
+                "above": 5,
+                "mean_width_seconds": 571.5595397456797,
+                "mean_interval_score": 650.829504406747,
+                "mae_seconds": 98.47144947021877,
+                "signed_mean_error_seconds": 14.289609802412782
+              },
+              "probability": {
+                "n": 465,
+                "brier": 0.061100763441119726,
+                "mean_predicted": 0.8571837110680743,
+                "actual_caught_fraction": 0.8344086021505376,
+                "signed_error": 0.02277510891753682
+              }
+            }
+          }
+        }
+      },
+      "actual_current": {
+        "coverage_counts": {
+          "planned_pairs": 2694,
+          "REAL": 2677,
+          "PROGNOSE": 11,
+          "CANCELED": 6
+        },
+        "methods": {
+          "evolving_incoming": {
+            "raw": {
+              "interval": {
+                "n": 2677,
+                "covered": 2162,
+                "coverage": 0.80762047067613,
+                "below": 9,
+                "above": 506,
+                "mean_width_seconds": 362.7119910347404,
+                "mean_interval_score": 631.5875980575271,
+                "mae_seconds": 90.46802922361273,
+                "signed_mean_error_seconds": -61.14337786360026
+              },
+              "probability": {
+                "n": 2683,
+                "brier": 0.11111449598208165,
+                "mean_predicted": 0.647800190645832,
+                "actual_caught_fraction": 0.7584793142005218,
+                "signed_error": -0.11067912355468978
+              }
+            },
+            "date_calibrated": {
+              "interval": {
+                "n": 2677,
+                "covered": 2464,
+                "coverage": 0.9204333208815839,
+                "below": 0,
+                "above": 213,
+                "mean_width_seconds": 498.7119910347404,
+                "mean_interval_score": 583.7101232723197,
+                "mae_seconds": 90.46802922361273,
+                "signed_mean_error_seconds": -61.14337786360026
+              },
+              "probability": {
+                "n": 2683,
+                "brier": 0.11111449598208165,
+                "mean_predicted": 0.647800190645832,
+                "actual_caught_fraction": 0.7584793142005218,
+                "signed_error": -0.11067912355468978
+              }
+            },
+            "greedy_probability_selected": {
+              "n": 464,
+              "unresolved_selected": 2,
+              "interval": {
+                "n": 458,
+                "covered": 405,
+                "coverage": 0.8842794759825328,
+                "below": 0,
+                "above": 53,
+                "mean_width_seconds": 452.7685589519651,
+                "mean_interval_score": 551.4585152838428,
+                "mae_seconds": 88.2647208773963,
+                "signed_mean_error_seconds": -67.89486240335145
+              },
+              "probability": {
+                "n": 462,
+                "brier": 0.026689002365720922,
+                "mean_predicted": 0.9071428808563241,
+                "actual_caught_fraction": 0.9155844155844156,
+                "signed_error": -0.00844153472809157
+              }
+            }
+          },
+          "evolving_public_incoming": {
+            "raw": {
+              "interval": {
+                "n": 2677,
+                "covered": 1284,
+                "coverage": 0.47964138961524094,
+                "below": 13,
+                "above": 1380,
+                "mean_width_seconds": 142.05453866268212,
+                "mean_interval_score": 1030.2502801643632,
+                "mae_seconds": 92.87383637726796,
+                "signed_mean_error_seconds": -87.69727291216951
+              },
+              "probability": {
+                "n": 2683,
+                "brier": 0.12528824684241152,
+                "mean_predicted": 0.6191565954741686,
+                "actual_caught_fraction": 0.7584793142005218,
+                "signed_error": -0.13932271872635324
+              }
+            },
+            "date_calibrated": {
+              "interval": {
+                "n": 2677,
+                "covered": 2321,
+                "coverage": 0.8670153156518491,
+                "below": 0,
+                "above": 356,
+                "mean_width_seconds": 398.0545386626821,
+                "mean_interval_score": 521.2222637280538,
+                "mae_seconds": 92.87383637726796,
+                "signed_mean_error_seconds": -87.69727291216951
+              },
+              "probability": {
+                "n": 2683,
+                "brier": 0.12528824684241152,
+                "mean_predicted": 0.6191565954741686,
+                "actual_caught_fraction": 0.7584793142005218,
+                "signed_error": -0.13932271872635324
+              }
+            },
+            "greedy_probability_selected": {
+              "n": 464,
+              "unresolved_selected": 1,
+              "interval": {
+                "n": 460,
+                "covered": 389,
+                "coverage": 0.8456521739130435,
+                "below": 0,
+                "above": 71,
+                "mean_width_seconds": 382.1304347826087,
+                "mean_interval_score": 524.5217391304348,
+                "mae_seconds": 98.90284541010244,
+                "signed_mean_error_seconds": -94.2420159294206
+              },
+              "probability": {
+                "n": 463,
+                "brier": 0.024632398934140744,
+                "mean_predicted": 0.9028920344523422,
+                "actual_caught_fraction": 0.91792656587473,
+                "signed_error": -0.015034531422387698
+              }
+            }
+          },
+          "frozen_public_mixture": {
+            "raw": {
+              "interval": {
+                "n": 2677,
+                "covered": 2198,
+                "coverage": 0.8210683601045947,
+                "below": 0,
+                "above": 479,
+                "mean_width_seconds": 269.74607957398604,
+                "mean_interval_score": 465.22676995672236,
+                "mae_seconds": 85.88752676571522,
+                "signed_mean_error_seconds": -70.54262242052084
+              },
+              "probability": {
+                "n": 2683,
+                "brier": 0.10653104622984282,
+                "mean_predicted": 0.6346221363017895,
+                "actual_caught_fraction": 0.7584793142005218,
+                "signed_error": -0.12385717789873224
+              }
+            },
+            "date_calibrated": {
+              "interval": {
+                "n": 2677,
+                "covered": 2391,
+                "coverage": 0.8931639895405304,
+                "below": 0,
+                "above": 286,
+                "mean_width_seconds": 352.9622135435366,
+                "mean_interval_score": 431.13217964180427,
+                "mae_seconds": 85.88752676571522,
+                "signed_mean_error_seconds": -70.54262242052084
+              },
+              "probability": {
+                "n": 2683,
+                "brier": 0.10653104622984282,
+                "mean_predicted": 0.6346221363017895,
+                "actual_caught_fraction": 0.7584793142005218,
+                "signed_error": -0.12385717789873224
+              }
+            },
+            "greedy_probability_selected": {
+              "n": 464,
+              "unresolved_selected": 0,
+              "interval": {
+                "n": 461,
+                "covered": 400,
+                "coverage": 0.8676789587852495,
+                "below": 0,
+                "above": 61,
+                "mean_width_seconds": 344.4992204844859,
+                "mean_interval_score": 444.68677379656765,
+                "mae_seconds": 92.50967369356918,
+                "signed_mean_error_seconds": -75.93200920374393
+              },
+              "probability": {
+                "n": 464,
+                "brier": 0.02201197883685774,
+                "mean_predicted": 0.9020041283014766,
+                "actual_caught_fraction": 0.9181034482758621,
+                "signed_error": -0.01609931997438547
+              }
+            }
+          },
+          "relative_incoming": {
+            "raw": {
+              "interval": {
+                "n": 2677,
+                "covered": 2052,
+                "coverage": 0.7665296974224879,
+                "below": 389,
+                "above": 236,
+                "mean_width_seconds": 339.0940489268851,
+                "mean_interval_score": 783.6474764065246,
+                "mae_seconds": 109.25144394468565,
+                "signed_mean_error_seconds": 27.796130906666022
+              },
+              "probability": {
+                "n": 2683,
+                "brier": 0.11559974624189565,
+                "mean_predicted": 0.7472042594753129,
+                "actual_caught_fraction": 0.7584793142005218,
+                "signed_error": -0.011275054725208856
+              }
+            },
+            "date_calibrated": {
+              "interval": {
+                "n": 2677,
+                "covered": 2548,
+                "coverage": 0.9518117295480015,
+                "below": 90,
+                "above": 39,
+                "mean_width_seconds": 587.7817007256763,
+                "mean_interval_score": 726.1330977449286,
+                "mae_seconds": 109.25144394468565,
+                "signed_mean_error_seconds": 27.796130906666022
+              },
+              "probability": {
+                "n": 2683,
+                "brier": 0.11559974624189565,
+                "mean_predicted": 0.7472042594753129,
+                "actual_caught_fraction": 0.7584793142005218,
+                "signed_error": -0.011275054725208856
+              }
+            },
+            "greedy_probability_selected": {
+              "n": 464,
+              "unresolved_selected": 1,
+              "interval": {
+                "n": 459,
+                "covered": 432,
+                "coverage": 0.9411764705882353,
+                "below": 19,
+                "above": 8,
+                "mean_width_seconds": 557.6109782113142,
+                "mean_interval_score": 637.2441032118893,
+                "mae_seconds": 101.56526829550381,
+                "signed_mean_error_seconds": 19.832582358562952
+              },
+              "probability": {
+                "n": 463,
+                "brier": 0.041576251538388495,
+                "mean_predicted": 0.9052794852309383,
+                "actual_caught_fraction": 0.8984881209503239,
+                "signed_error": 0.006791364280614314
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import numpy as np
+import math
+from time import perf_counter
 from typing import Optional
 
 from .transit_graph import TransitGraph
@@ -24,6 +26,7 @@ def simulate_bandit_journey(
     rng: np.random.Generator,
     max_time: int = 180,
     scenario: Optional[JourneyScenario] = None,
+    charge_computation: bool = False,
 ) -> JourneyResult:
     """Run one policy without redrawing vehicles or exposing future realizations.
 
@@ -32,6 +35,8 @@ def simulate_bandit_journey(
     Each trip contributes at most one outcome to a route's posterior per
     journey. A waiting timeout is recorded separately from cancellation.
     Timetable and journey times use the scenario's clock ticks.
+    With charge_computation, decision processing advances that same clock,
+    rounded up to its tick resolution. A selected vehicle can then be missed.
     """
     if scenario is None:
         scenario = JourneyScenario.sample(
@@ -43,6 +48,7 @@ def simulate_bandit_journey(
         'observe_delay', 'observe_cancel', 'select_connection'))
     if isinstance(router, AdaptiveBetaBanditRouter):
         router.begin_journey()
+    decision_started = perf_counter()
     initial = router.route(s_source, s_dest, t_depart)
     hyperpath = initial if is_online else initial.hyperpath
     current_stop, current_time = s_source, t_depart
@@ -71,6 +77,7 @@ def simulate_bandit_journey(
             router.observe_delay(connection.route, delay / minute if minute != 1 else delay)
 
     while current_stop != s_dest and current_time < deadline:
+        decision_clock = current_time
         seen_before = set(seen_events)
         observations = generate_delay_observations(
             graph, current_stop, current_time,
@@ -94,6 +101,8 @@ def simulate_bandit_journey(
         if hasattr(router, 'set_information_context'):
             router.set_information_context(current_stop, current_time, current_trip, last_arrival,
                                            unavailable_ids, seen_events, learned_trips)
+        precommitted = (router.precommitted_connection(current_stop, current_time, current_trip)
+                        if hasattr(router, 'precommitted_connection') else None)
         hyperpath = getattr(router, 'cached_result', None) or hyperpath
         labels = hyperpath.stop_labels.get(current_stop, [])
         if (not labels and isinstance(router, MatchedRouter)
@@ -121,11 +130,7 @@ def simulate_bandit_journey(
                 selected = router.select_connection(current_stop, current_time, rng, top_k=5)
             finally:
                 hyperpath.stop_labels[current_stop] = original_labels
-            if selected is None:
-                current_time = min(deadline, current_time + minute)
-                continue
-            label, _score = selected
-            c = graph.connections[label.connection_id]
+            c = None if selected is None else graph.connections[selected[0].connection_id]
         else:
             c = next((graph.connections[label.connection_id]
                       for label in reversed(labels)
@@ -134,24 +139,38 @@ def simulate_bandit_journey(
                            or graph.connections[label.connection_id].trip_id == current_trip)
                       and current_time - minute <= graph.connections[label.connection_id].dep_time
                       <= current_time + 25 * minute), None)
-            if c is None:
-                current_time = min(deadline, current_time + minute)
-                continue
+        elapsed = perf_counter() - decision_started
+        issued_stay = c is not None and c.id == precommitted
+        if charge_computation:
+            if not issued_stay:
+                current_time = min(deadline, current_time + math.ceil(elapsed * minute / 60))
+            events.append(JourneyEvent(current_time, current_stop, 'compute',
+                                       details=f'decision_clock={decision_clock}; seconds={elapsed:.6f}; preissued_stay={issued_stay}'))
+        if hasattr(router, 'observe_computation_elapsed'):
+            router.observe_computation_elapsed(decision_clock, current_time, elapsed)
+        if c is None:
+            current_time = min(deadline, current_time + minute)
+            decision_started = perf_counter()
+            continue
 
         if c.id in unavailable_ids:
             # A selector that recomputed its cache will see the exclusion on
             # its next invocation, without spending fictitious waiting time.
             current_time = min(deadline, current_time + minute)
+            decision_started = perf_counter()
             continue
         if not c.pickup_allowed and c.trip_id != current_trip:
             current_time = min(deadline, current_time + minute)
+            decision_started = perf_counter()
             continue
         same_trip = current_trip is not None and c.trip_id == current_trip
         action_started = current_time
 
         def report_outcome(kind):
+            nonlocal decision_started
             if hasattr(router, 'observe_attempt_outcome'):
                 router.observe_attempt_outcome(c.id, kind, action_started, current_time)
+            decision_started = perf_counter()
 
         ready = last_arrival + (0 if current_trip is None or same_trip
                                else graph.stops[current_stop].min_transfer_time)

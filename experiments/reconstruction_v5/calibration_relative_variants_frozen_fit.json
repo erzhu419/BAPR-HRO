@@ -1,0 +1,40 @@
+{
+  "training_dates": [
+    "2023-10-01",
+    "2023-10-02"
+  ],
+  "calibration_dates": [
+    "2023-10-03",
+    "2023-10-04",
+    "2023-10-05",
+    "2023-10-06",
+    "2023-10-07",
+    "2023-10-08",
+    "2023-10-09",
+    "2023-10-10",
+    "2023-10-11"
+  ],
+  "development_dates": [
+    "2023-10-12",
+    "2023-10-25",
+    "2023-10-27"
+  ],
+  "future_confirmation_dates": [
+    "2023-10-16",
+    "2023-10-20",
+    "2023-10-31"
+  ],
+  "new_methods": [
+    "shrunk_relative",
+    "heavy_tail_day"
+  ],
+  "shrunk_coefficient": 0.19894590214640712,
+  "cauchy_scale_seconds": 43.52903486620926,
+  "delta_step_seconds": 7.5,
+  "density_interpolation_seconds": 1.0,
+  "kernel_seconds": 17.320508075688775,
+  "route_pseudocount": 20,
+  "definition": "Shrinkage uses zero-intercept constrained training-pair regression of centered outgoing on incoming delay and the corresponding empirical residual law. Heavy-tail uses independent route-centered incoming/outgoing role-noise KDEs plus a common zero-location Cauchy day effect; the incoming residual updates the day-effect posterior. Cauchy scale is the unscaled MAD of training-pair incoming residuals about their training median. No development value selects a parameter.",
+  "numerics": "Base delta support [-300,3840] seconds, extended using the observed incoming residual and the fixed training-noise extrema plus nine kernel standard deviations. Exact anchor is included. Prior cell masses are Cauchy CDF differences. Likelihood and outgoing CDF use one-second tables. Outside-support unnormalized likelihood mass is bounded using the Gaussian nine-sigma density. Grid evidence is numerical, so its ratio is a diagnostic rather than a certified posterior bound.",
+  "local_joint_assumption": "Given delta and route roles, centered incoming/outgoing noises are independent with the earlier KDE laws. The predictor conditions only on the rider-known incoming arrival. Arbitrary route-specific day loadings, serial day drift, and selection on unobserved outcomes are outside this local joint law. Canceled service remains a separate earlier route marginal."
+}

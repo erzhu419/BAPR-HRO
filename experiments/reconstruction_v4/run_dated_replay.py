@@ -34,14 +34,15 @@ DATA_PATH = ROOT / 'experiments/reconstruction_data_audit/dated_replay_v2.json.g
 FORECAST_PATH = ROOT / 'experiments/reconstruction_data_audit/dated_public_forecasts.json.gz'
 
 
-def freeze_replay_inputs(output, *, data, forecasts, training, settings, sources):
+def freeze_replay_inputs(output, *, data, forecasts, training, settings, sources,
+                         implementation=IMPLEMENTATION):
     code_paths = {str(ROOT / path) for path in (
         'src/evolving_trip_belief.py', 'src/committed_transit.py', 'src/causal_planning_router.py',
         'src/continuation_router.py', 'src/simulate_bandit.py', 'src/transit_graph.py', 'src/simulator.py',
         'experiments/reconstruction_v4/run_dated_replay.py')}
     code_paths.update(str(Path(source) if Path(source).is_absolute() else ROOT / source)
                       for source in sources if str(source).endswith('.py'))
-    protocol = {'implementation': IMPLEMENTATION, 'data': data, 'forecasts': forecasts,
+    protocol = {'implementation': implementation, 'data': data, 'forecasts': forecasts,
                 'training': training, 'settings': settings, 'sources': sources,
                 'source_text': {path: Path(path).read_text() for path in sorted(code_paths)},
                 'libraries': {'numpy': np.__version__, 'scipy': scipy.__version__}}
@@ -257,9 +258,18 @@ class ReplayRouter(CausalPlanningRouter):
         if self.replay_decisions and self.replay_decisions[-1]['action'] == cid:
             self.replay_decisions[-1].update(outcome=kind, end_seconds=time)
 
+    def observe_computation_elapsed(self, clock, execution_clock, elapsed_seconds):
+        decision = self.replay_decisions[-1]
+        decision.update(execution_clock_seconds=execution_clock,
+                        computation_clock_ticks=execution_clock - clock,
+                        processing_seconds=elapsed_seconds)
+        if decision['action'] == 'wait':
+            decision['end_seconds'] = min(execution_clock + self.minute, self.journey_deadline)
+
 
 def run_one(spec, data, forecasts, fit, samples, budget, transfer_rule='assumed120',
-            retain_no_pickup=False, algorithm_override=None):
+            retain_no_pickup=False, algorithm_override=None, *, belief_type=EvolvingTripBelief,
+            router_type=ReplayRouter, charge_computation=False):
     day, qi, method = spec
     end_to_end_started = perf_counter()
     graph, world, stop_ids, source_map, rows, omitted = dated_graph(data, day, transfer_rule, retain_no_pickup)
@@ -270,8 +280,8 @@ def run_one(spec, data, forecasts, fit, samples, budget, transfer_rule='assumed1
     pooled = fit['route_priors']['pooled']
     priors = {c.route: fit['route_priors'].get(c.route, pooled) for c in graph.connections}
     belief = (ScheduledClock(graph) if method == 'schedule_nominal' else
-              EvolvingTripBelief(graph, minute=60, public_occurrences=False, **fit['increments']))
-    router = ReplayRouter(graph, priors, event_belief=belief, menu='full',
+              belief_type(graph, minute=60, public_occurrences=False, **fit['increments']))
+    router = router_type(graph, priors, event_belief=belief, menu='full',
                           algorithm=algorithm_override or ('nominal' if method.endswith('nominal') else 'rollout'),
                           samples=samples, work_budget=budget, max_time=cap,
                           seed=int(day.replace('-', '')) + qi * 1000,
@@ -284,13 +294,15 @@ def run_one(spec, data, forecasts, fit, samples, budget, transfer_rule='assumed1
     started = perf_counter()
     result = simulate_bandit_journey(graph, router, stop_ids[query['origin']], stop_ids[query['destination']],
                                       query['ready_seconds'], RegimeSchedule([(0, 'measured')]),
-                                      np.random.default_rng(8000 + qi), max_time=cap, scenario=world)
+                                      np.random.default_rng(8000 + qi), max_time=cap, scenario=world,
+                                      charge_computation=charge_computation)
     end = result.events[-1].details
     for decision in router.replay_decisions:
         if isinstance(decision['action'], int):
             decision['source_connection'] = rows[decision['action']]['id']
     return {'implementation': IMPLEMENTATION, 'samples': samples, 'transition_budget_per_decision': budget,
-            'transfer_rule': transfer_rule, 'graph_build_ms': graph_ms, 'policy_setup_ms': setup_ms,
+            'transfer_rule': transfer_rule, 'charge_computation': charge_computation,
+            'graph_build_ms': graph_ms, 'policy_setup_ms': setup_ms,
             'end_to_end_ms': (perf_counter() - end_to_end_started) * 1000,
             'worker_peak_kib': resource.getrusage(resource.RUSAGE_SELF).ru_maxrss,
             'date': day, 'query': qi, 'method': method, 'od': query, 'status': end,

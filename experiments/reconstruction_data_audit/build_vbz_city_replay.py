@@ -14,6 +14,7 @@ from experiments.reconstruction_data_audit.build_vbz_replay_sample import (
 )
 
 STOP_NAME_ALIASES = {
+    'Zürich, Brunnenhof': '8591307',
     'Zürich, Bahnhof Altstetten': '8591056',
     'Zürich, Bahnhof Wiedikon': '8573710',
     'Zürich, Bahnhof Hardbrücke': '8591060',

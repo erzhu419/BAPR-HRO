@@ -149,9 +149,9 @@ def test_shared_transition_kernels_keep_distinct_trip_evidence_private():
     belief = EvolvingTripBelief(network, public_occurrences=False)
     first = belief._law('trip', PARAMETERS)
     second = belief._law('second-trip', PARAMETERS)
-    reusable_kernel_count = len(belief._transition_cache)
     assert first.transitions[0] is second.transitions[0]
     assert not first.transitions[0].flags.writeable
+    reusable_kernel_count = len(belief._transition_cache)
     branch = belief.copy()
     before = belief.mean_events(PARAMETERS)
     branch.observe_connection_event(0, 'arrival', 37)

@@ -1,0 +1,364 @@
+{
+  "protocol": {
+    "parameter_training_dates": [
+      "2023-10-01",
+      "2023-10-02"
+    ],
+    "calibration_dates": [
+      "2023-10-03",
+      "2023-10-04",
+      "2023-10-05",
+      "2023-10-06",
+      "2023-10-07",
+      "2023-10-08",
+      "2023-10-09",
+      "2023-10-10",
+      "2023-10-11"
+    ],
+    "heldout_dates": [
+      "2023-10-12",
+      "2023-10-25",
+      "2023-10-27"
+    ],
+    "confirmation_dates": [
+      "2023-10-13",
+      "2023-10-26",
+      "2023-10-30"
+    ],
+    "endpoint_cutoff_before_schedule_seconds": 300,
+    "peer_forecast_schedule_window_seconds": [
+      -900,
+      2700
+    ],
+    "route_shrinkage_pseudocount": 20,
+    "peer_shrinkage_pseudocount": 20,
+    "kernel_sd_seconds": 17.320508075688775,
+    "nominal_miscoverage": 0.1,
+    "transfer_critical_scheduled_margin_seconds": 300,
+    "transfer_patience_seconds": 720,
+    "source_information": "Only sampled GTFS-RT receipts at or before the prediction clock. Peer summaries contain at most one current departure forecast per other trip. Actual endpoints are used for training before calibration and scoring after a prediction.",
+    "methods": [
+      "evolving_prior",
+      "evolving_public_forecasts",
+      "route_empirical",
+      "public_peer_mixture"
+    ],
+    "distribution_model": "Smoothed empirical route/event-kind delay and issued-forecast error laws, with route counts shrunk toward the corresponding pooled event-kind law. Public peer shift changes location. The convex own-forecast mixture weight is fitted on the parameter-training dates only.",
+    "interval_calibration": "Each calibration day contributes its empirical 90th-percentile endpoint interval nonconformity. The rank-nine day quantile supplies a nonnegative additive envelope correction for each fixed model.",
+    "selection": "No method, parameter or interval target is selected by performance on the three already examined held-out dates. Their readout is a development reevaluation. A further untouched date is required for an independent benefit claim."
+  },
+  "evolving_fit": {
+    "train_dates": [
+      "2023-10-01",
+      "2023-10-02"
+    ],
+    "route_priors": {
+      "91-6-D-j23-1": {
+        "mean": 2.240441176470588,
+        "std": 3.3717072004974273,
+        "cancel_rate": 0.0,
+        "n_departures": 68,
+        "status_counts": {
+          "REAL": 68
+        }
+      },
+      "pooled": {
+        "mean": 1.5213633040935672,
+        "std": 1.5657892841743064,
+        "cancel_rate": 0.002188183807439825,
+        "n_departures": 912,
+        "status_counts": {
+          "REAL": 912,
+          "CANCELED": 2
+        }
+      },
+      "91-8-C-j23-1": {
+        "mean": 1.488617886178862,
+        "std": 1.4526279289823285,
+        "cancel_rate": 0.0,
+        "n_departures": 82,
+        "status_counts": {
+          "REAL": 82
+        }
+      },
+      "91-9-D-j23-1": {
+        "mean": 1.1924479166666666,
+        "std": 1.2327522902403718,
+        "cancel_rate": 0.0,
+        "n_departures": 64,
+        "status_counts": {
+          "REAL": 64
+        }
+      },
+      "91-15-C-j23-1": {
+        "mean": 1.5413333333333332,
+        "std": 1.7043807607978265,
+        "cancel_rate": 0.0,
+        "n_departures": 50,
+        "status_counts": {
+          "REAL": 50
+        }
+      },
+      "91-11-A-j23-1": {
+        "mean": 1.3640873015873018,
+        "std": 1.0352149217323785,
+        "cancel_rate": 0.0,
+        "n_departures": 84,
+        "status_counts": {
+          "REAL": 84
+        }
+      },
+      "91-16-A-j23-1": {
+        "mean": 1.3658536585365855,
+        "std": 1.10691624193525,
+        "cancel_rate": 0.0,
+        "n_departures": 82,
+        "status_counts": {
+          "REAL": 82
+        }
+      },
+      "91-5-C-j23-1": {
+        "mean": 1.0306666666666666,
+        "std": 1.027788132079975,
+        "cancel_rate": 0.0,
+        "n_departures": 50,
+        "status_counts": {
+          "REAL": 50
+        }
+      },
+      "91-7-C-j23-1": {
+        "mean": 1.2305555555555556,
+        "std": 0.9496120877937215,
+        "cancel_rate": 0.0,
+        "n_departures": 48,
+        "status_counts": {
+          "REAL": 48
+        }
+      },
+      "91-12-j23-1": {
+        "mean": 1.4177083333333331,
+        "std": 1.1507827763152736,
+        "cancel_rate": 0.0,
+        "n_departures": 80,
+        "status_counts": {
+          "REAL": 80
+        }
+      },
+      "91-2-B-j23-1": {
+        "mean": 1.8854166666666667,
+        "std": 1.3461374140480609,
+        "cancel_rate": 0.0,
+        "n_departures": 40,
+        "status_counts": {
+          "REAL": 40
+        }
+      },
+      "91-3-D-j23-1": {
+        "mean": 1.455,
+        "std": 1.281879046122874,
+        "cancel_rate": 0.0,
+        "n_departures": 50,
+        "status_counts": {
+          "REAL": 50
+        }
+      },
+      "91-75-j23-1": {
+        "mean": 1.4249999999999998,
+        "std": 0.9182183836103479,
+        "cancel_rate": 0.0,
+        "n_departures": 8,
+        "status_counts": {
+          "REAL": 8
+        }
+      },
+      "91-14-C-j23-1": {
+        "mean": 1.1911111111111115,
+        "std": 0.9270995525006543,
+        "cancel_rate": 0.0625,
+        "n_departures": 30,
+        "status_counts": {
+          "REAL": 30,
+          "CANCELED": 2
+        }
+      },
+      "91-36-A-j23-1": {
+        "mean": 1.5166666666666666,
+        "std": 1.2309732486487628,
+        "cancel_rate": 0.0,
+        "n_departures": 32,
+        "status_counts": {
+          "REAL": 32
+        }
+      },
+      "91-13-j23-1": {
+        "mean": 1.40625,
+        "std": 0.7839287409154823,
+        "cancel_rate": 0.0,
+        "n_departures": 16,
+        "status_counts": {
+          "REAL": 16
+        }
+      },
+      "91-81-A-j23-1": {
+        "mean": 1.2055555555555555,
+        "std": 0.6944666663111224,
+        "cancel_rate": 0.0,
+        "n_departures": 3,
+        "status_counts": {
+          "REAL": 3
+        }
+      },
+      "91-5-A-j23-1": {
+        "mean": 1.3000000000000003,
+        "std": 1.0905801572397507,
+        "cancel_rate": 0.0,
+        "n_departures": 7,
+        "status_counts": {
+          "REAL": 7
+        }
+      },
+      "91-1L-Y-j23-1": {
+        "mean": 1.1520833333333333,
+        "std": 0.9929067001877758,
+        "cancel_rate": 0.0,
+        "n_departures": 8,
+        "status_counts": {
+          "REAL": 8
+        }
+      },
+      "91-1-D-j23-1": {
+        "mean": 1.851388888888889,
+        "std": 0.7688814125359059,
+        "cancel_rate": 0.0,
+        "n_departures": 12,
+        "status_counts": {
+          "REAL": 12
+        }
+      },
+      "91-8-E-j23-1": {
+        "mean": 0.8222222222222223,
+        "std": 0.5,
+        "cancel_rate": 0.0,
+        "n_departures": 3,
+        "status_counts": {
+          "REAL": 3
+        }
+      },
+      "91-20-D-j23-1": {
+        "mean": 2.341666666666667,
+        "std": 0.969894037740435,
+        "cancel_rate": 0.0,
+        "n_departures": 8,
+        "status_counts": {
+          "REAL": 8
+        }
+      },
+      "91-1P-Y-j23-1": {
+        "mean": 0.31666666666666665,
+        "std": 0.5,
+        "cancel_rate": 0.0,
+        "n_departures": 1,
+        "status_counts": {
+          "REAL": 1
+        }
+      },
+      "91-24-j23-1": {
+        "mean": 2.303658536585366,
+        "std": 1.7125137714126784,
+        "cancel_rate": 0.0,
+        "n_departures": 41,
+        "status_counts": {
+          "REAL": 41
+        }
+      },
+      "91-21-E-j23-1": {
+        "mean": 4.283333333333333,
+        "std": 2.562388208943628,
+        "cancel_rate": 0.0,
+        "n_departures": 8,
+        "status_counts": {
+          "REAL": 8
+        }
+      },
+      "91-19-A-j23-1": {
+        "mean": 1.3083333333333333,
+        "std": 0.8801830617673929,
+        "cancel_rate": 0.0,
+        "n_departures": 24,
+        "status_counts": {
+          "REAL": 24
+        }
+      },
+      "91-1G-Y-j23-1": {
+        "mean": 1.45,
+        "std": 0.5,
+        "cancel_rate": 0.0,
+        "n_departures": 1,
+        "status_counts": {
+          "REAL": 1
+        }
+      },
+      "91-23-B-j23-1": {
+        "mean": 2.4388888888888887,
+        "std": 1.5130502264149466,
+        "cancel_rate": 0.0,
+        "n_departures": 3,
+        "status_counts": {
+          "REAL": 3
+        }
+      },
+      "91-42-j23-1": {
+        "mean": 0.8777777777777779,
+        "std": 0.5681896744686932,
+        "cancel_rate": 0.0,
+        "n_departures": 6,
+        "status_counts": {
+          "REAL": 6
+        }
+      },
+      "91-35-B-j23-1": {
+        "mean": 0.9916666666666667,
+        "std": 0.5,
+        "cancel_rate": 0.0,
+        "n_departures": 2,
+        "status_counts": {
+          "REAL": 2
+        }
+      },
+      "91-35-Y-j23-1": {
+        "mean": 0.95,
+        "std": 0.5,
+        "cancel_rate": 0.0,
+        "n_departures": 1,
+        "status_counts": {
+          "REAL": 1
+        }
+      }
+    },
+    "increments": {
+      "travel_drift": -0.48815789473684207,
+      "travel_sd": 0.7696012317856166,
+      "dwell_drift": 0.4696919691969197,
+      "dwell_sd": 0.702419998656049,
+      "gap_drift": 0.5625,
+      "gap_sd": 3.1033108439929835
+    },
+    "travel_count": 912,
+    "dwell_count": 606,
+    "gap_count": 8,
+    "units": "Route delay and running/dwell residual increments in minutes.",
+    "floors_minutes": {
+      "route_std": 0.5,
+      "increment_sd": 0.016666666666666666
+    },
+    "forecast_sd_rule": "Route training departure spread times 60 seconds, with 30-second floor. This bandwidth is not fitted to held-out forecast errors."
+  },
+  "public_mixture_weights": {
+    "departure": 0.3824147843477924,
+    "arrival": 0.3235990649087083
+  },
+  "weight_fit_counts": {
+    "departure": 169,
+    "arrival": 165
+  }
+}

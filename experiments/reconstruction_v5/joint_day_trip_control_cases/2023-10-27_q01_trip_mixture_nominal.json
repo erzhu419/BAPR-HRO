@@ -1,0 +1,146 @@
+{
+  "implementation": "dated_active_seconds_poll_history_v6",
+  "samples": 4,
+  "transition_budget_per_decision": 512,
+  "transfer_rule": "gtfs_station_max",
+  "charge_computation": false,
+  "graph_build_ms": 1.7714049899950624,
+  "policy_setup_ms": 42.65788401244208,
+  "end_to_end_ms": 1246.2172659579664,
+  "worker_peak_kib": 194856,
+  "date": "2023-10-27",
+  "query": 1,
+  "method": "trip_mixture_nominal",
+  "od": {
+    "origin": "8503003",
+    "destination": "8503020",
+    "ready_seconds": 29100,
+    "deadline_seconds": 32700
+  },
+  "status": "arrived",
+  "loss_seconds": 800,
+  "elapsed_observed_seconds": 800,
+  "compute_ms": 1201.7970539745875,
+  "planning_transitions": 0,
+  "decisions": [
+    {
+      "clock_seconds": 29100,
+      "stop": 2,
+      "current_trip": null,
+      "action": 181,
+      "forecast": {
+        "receipts": [],
+        "updates": {}
+      },
+      "forecast_ms": 0.00817800173535943,
+      "planning_ms": 1124.4801339926198,
+      "decision_total_ms": 1124.4890270172618,
+      "model_transitions": 0,
+      "complete_common_rounds": null,
+      "root_actions": null,
+      "outcome": "board",
+      "end_seconds": 29642,
+      "execution_clock_seconds": 29100,
+      "computation_clock_ticks": 0,
+      "processing_seconds": 1.1247833200031891,
+      "source_connection": 182
+    },
+    {
+      "clock_seconds": 29642,
+      "stop": 0,
+      "current_trip": "435.TA.91-12-j23-1.110.H",
+      "action": 205,
+      "forecast": {
+        "receipts": [],
+        "updates": {}
+      },
+      "forecast_ms": 0.009390001650899649,
+      "planning_ms": 75.53017500322312,
+      "decision_total_ms": 75.54060401162133,
+      "model_transitions": 0,
+      "complete_common_rounds": null,
+      "root_actions": null,
+      "outcome": "board",
+      "end_seconds": 29900,
+      "execution_clock_seconds": 29642,
+      "computation_clock_ticks": 0,
+      "processing_seconds": 0.07586745795561001,
+      "source_connection": 206
+    }
+  ],
+  "events": [
+    {
+      "time": 29100,
+      "stop_id": 2,
+      "event_type": "depart",
+      "route": "",
+      "details": "Initial route computed"
+    },
+    {
+      "time": 29518,
+      "stop_id": 2,
+      "event_type": "board",
+      "route": "91-12-j23-1",
+      "details": "connection=181; to=0; trip=435.TA.91-12-j23-1.110.H"
+    },
+    {
+      "time": 29642,
+      "stop_id": 0,
+      "event_type": "arrive",
+      "route": "91-12-j23-1",
+      "details": "connection=181; delay=2.03333min"
+    },
+    {
+      "time": 29704,
+      "stop_id": 0,
+      "event_type": "board",
+      "route": "91-12-j23-1",
+      "details": "connection=205; to=10; trip=435.TA.91-12-j23-1.110.H"
+    },
+    {
+      "time": 29900,
+      "stop_id": 10,
+      "event_type": "finish",
+      "route": "",
+      "details": "arrived"
+    }
+  ],
+  "public_actual_receipts": [
+    {
+      "stop": 2,
+      "receipt_time": 29100,
+      "event_ids": []
+    },
+    {
+      "stop": 0,
+      "receipt_time": 29642,
+      "event_ids": []
+    }
+  ],
+  "forecast_frames_consumed": 0,
+  "graph_connections": 522,
+  "known_world_events": 519,
+  "excluded_pickup_dropoff_source_ids": [
+    12,
+    226
+  ],
+  "route_prior_pool_fallbacks": [],
+  "cohort": "previously_observed_development",
+  "delta_grid_seconds": [
+    -360,
+    -300,
+    -240,
+    -180,
+    -120,
+    -60,
+    0,
+    60,
+    120,
+    180,
+    240,
+    300,
+    360
+  ],
+  "day_scale_seconds": 43.52903486620926,
+  "joint_day_implementation": "v2_raw_operating_mass_per_trip_offsets"
+}

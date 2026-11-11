@@ -1,0 +1,176 @@
+{
+  "implementation": "v6_literal_locked_city_confirmation",
+  "samples": 4,
+  "transition_budget_per_decision": 64,
+  "transfer_rule": "gtfs_station_max",
+  "charge_computation": true,
+  "graph_build_ms": 238.3750129956752,
+  "policy_setup_ms": 273.87609996367246,
+  "end_to_end_ms": 1436.657690035645,
+  "worker_peak_kib": 765312,
+  "date": "2023-07-29",
+  "query": 1,
+  "method": "evolving_uct",
+  "od": {
+    "origin": "8591190",
+    "destination": "8502572",
+    "origin_name": "Z\u00fcrich, Heuried",
+    "destination_name": "Z\u00fcrich, Goldbrunnenplatz",
+    "ready_seconds": 29100,
+    "deadline_seconds": 32700
+  },
+  "status": "arrived",
+  "loss_seconds": 572,
+  "elapsed_observed_seconds": 572,
+  "compute_ms": 924.4275719975121,
+  "planning_transitions": 128,
+  "decisions": [
+    {
+      "clock_seconds": 29100,
+      "stop": 427,
+      "current_trip": null,
+      "action": 6149,
+      "forecast": {
+        "receipts": [],
+        "updates": {}
+      },
+      "forecast_ms": 0.013311975635588169,
+      "planning_ms": 747.098210034892,
+      "decision_total_ms": 747.112539014779,
+      "model_transitions": 64,
+      "complete_common_rounds": 0,
+      "root_actions": 17,
+      "outcome": "board",
+      "end_seconds": 29609,
+      "execution_clock_seconds": 29101,
+      "computation_clock_ticks": 1,
+      "processing_seconds": 0.759608763968572,
+      "source_connection": 6149
+    },
+    {
+      "clock_seconds": 29609,
+      "stop": 614,
+      "current_trip": "2541.TA.91-14-E-j23-1.12.R",
+      "action": 6288,
+      "forecast": {
+        "receipts": [],
+        "updates": {}
+      },
+      "forecast_ms": 0.008004019036889076,
+      "planning_ms": 163.96057704696432,
+      "decision_total_ms": 163.96931902272627,
+      "model_transitions": 64,
+      "complete_common_rounds": 0,
+      "root_actions": 25,
+      "outcome": "board",
+      "end_seconds": 29672,
+      "execution_clock_seconds": 29610,
+      "computation_clock_ticks": 1,
+      "processing_seconds": 0.164038669958245,
+      "source_connection": 6288
+    }
+  ],
+  "events": [
+    {
+      "time": 29100,
+      "stop_id": 427,
+      "event_type": "depart",
+      "route": "",
+      "details": "Initial route computed"
+    },
+    {
+      "time": 29101,
+      "stop_id": 427,
+      "event_type": "compute",
+      "route": "",
+      "details": "decision_clock=29100; seconds=0.759609; preissued_stay=False"
+    },
+    {
+      "time": 29573,
+      "stop_id": 427,
+      "event_type": "board",
+      "route": "91-14-E-j23-1",
+      "details": "connection=6149; to=614; trip=2541.TA.91-14-E-j23-1.12.R"
+    },
+    {
+      "time": 29609,
+      "stop_id": 614,
+      "event_type": "arrive",
+      "route": "91-14-E-j23-1",
+      "details": "connection=6149; delay=0.483333min"
+    },
+    {
+      "time": 29610,
+      "stop_id": 614,
+      "event_type": "compute",
+      "route": "",
+      "details": "decision_clock=29609; seconds=0.164039; preissued_stay=False"
+    },
+    {
+      "time": 29621,
+      "stop_id": 614,
+      "event_type": "board",
+      "route": "91-14-E-j23-1",
+      "details": "connection=6288; to=3; trip=2541.TA.91-14-E-j23-1.12.R"
+    },
+    {
+      "time": 29672,
+      "stop_id": 3,
+      "event_type": "finish",
+      "route": "",
+      "details": "arrived"
+    }
+  ],
+  "public_actual_receipts": [
+    {
+      "stop": 427,
+      "receipt_time": 29100,
+      "event_ids": []
+    },
+    {
+      "stop": 614,
+      "receipt_time": 29609,
+      "event_ids": []
+    }
+  ],
+  "forecast_frames_consumed": 0,
+  "graph_connections": 18959,
+  "known_world_events": 15975,
+  "excluded_pickup_dropoff_source_ids": [],
+  "route_prior_pool_fallbacks": [
+    "91-20-F-j23-1",
+    "92-151-B-j23-1",
+    "92-184-j23-1",
+    "92-317-j23-1",
+    "92-39-j23-1",
+    "92-444-A-j23-1",
+    "92-485-j23-1",
+    "92-491-B-j23-1",
+    "92-73-A-j23-1",
+    "92-742-A-j23-1",
+    "92-748-j23-1",
+    "92-752-j23-1",
+    "92-754-j23-1",
+    "92-759-j23-1",
+    "92-760-A-j23-1",
+    "92-762-j23-1",
+    "92-768-j23-1",
+    "92-771-j23-1",
+    "92-772-j23-1",
+    "92-781-j23-1",
+    "92-787-j23-1",
+    "92-99-j23-1",
+    "96-165-4-j23-1",
+    "96-180-2-j23-1",
+    "96-180-8-j23-1",
+    "96-182-3-j23-1",
+    "96-182-5-j23-1",
+    "96-182-6-j23-1",
+    "96-199-0-j23-1",
+    "96-199-1-j23-1",
+    "96-199-3-j23-1",
+    "96-199-4-j23-1"
+  ],
+  "clock": "charged",
+  "cpu_seconds": 1.376209903000003
+}
