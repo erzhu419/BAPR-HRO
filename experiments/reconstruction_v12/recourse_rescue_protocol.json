@@ -1,0 +1,33 @@
+{
+  "created_utc": "2026-11-11T14:00:39.608438+00:00",
+  "cases": [
+    [
+      "2023-07-26",
+      0,
+      1
+    ],
+    [
+      "2023-07-26",
+      0,
+      2
+    ],
+    [
+      "2023-07-27",
+      0,
+      1
+    ]
+  ],
+  "rationale": "The initial family used the V10 rescue as a direct route and omitted its successful failure-contingent mechanism. Restore that existing baseline, preserving all initial outputs.",
+  "family": "Reload every initial frozen tail unchanged; append the full archived V10 fixed-primary rescue with primary sliced by prefix length, failure_index shifted by prefix length, departures and rescue unchanged, first_action_now=False. No new nominal routing.",
+  "controls": "Integrated unchanged family must match initial values; appended fixed candidate must match V10 fixed-primary upper, not V10 best across different root actions. Absolute tolerance1e-7.",
+  "policy": "Same prefix and frozen grid. Choose minimum conditional expected tail upper after arrival. Cap prefix failure at the root deadline loss.",
+  "observed_diagnostic": "After integration, update a fresh posterior using existing public prefix departure/arrival receipts and choose among the same frozen tails. This also handles observed off-grid seconds without reverting to candidate0; it does not renew the root certificate.",
+  "execution": "All three already-declared roots once. No sample or performance replay. If a fixed-control equality fails, save that result and stop.",
+  "inputs": [
+    "experiments/reconstruction_data_audit/city_vbz_dated_replay_v2.json.gz",
+    "experiments/reconstruction_v4/city_replay_results.json",
+    "experiments/reconstruction_v12/recourse_results.json",
+    "experiments/reconstruction_v12/transfer_inventory.json",
+    "experiments/reconstruction_v10/tail_rescue_results.json"
+  ]
+}

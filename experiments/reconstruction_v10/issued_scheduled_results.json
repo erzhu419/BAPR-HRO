@@ -1,0 +1,5328 @@
+{
+  "protocol": {
+    "source": "experiments/reconstruction_data_audit/city_vbz_dated_replay_v2.json.gz",
+    "methods": [
+      "scheduled_off64",
+      "scheduled_terminal64",
+      "scheduled_middle64"
+    ],
+    "samples": 128,
+    "tolerance": 60,
+    "alpha_per_journey": 0.05,
+    "mode": "charged",
+    "alpha_rule": "6 alpha / (pi * k)^2, conditional fresh tape per probabilistic check",
+    "contract": "Shared no-feed commitment with preissued policy; accepted gate retains incumbent. Fallback computes on same snapshot and publishes after measured wall time, using public revalidation.",
+    "scheduling": "The scheduled arms bypass a worker if the same public incumbent has an irrevocable attempt due now.",
+    "unresolved": "If an actually attempted connection is unresolved, retain elapsed/deadline loss interval.",
+    "training_dates": [
+      "2023-07-25"
+    ]
+  },
+  "fit_seconds": 0.7870765849993404,
+  "rows": [
+    {
+      "date": "2023-07-26",
+      "query": 0,
+      "cpu": 0,
+      "graph_seconds": 0.1130804709991935,
+      "kernel_seconds": 0.0,
+      "method": "scheduled_off64",
+      "clock": "charged",
+      "loss_lower": 1491,
+      "loss_upper": 1491,
+      "status": "arrived",
+      "missing_connection": null,
+      "setup_seconds": 5.531160888999693,
+      "initial_plan": [
+        8341,
+        8780,
+        9383,
+        9627,
+        9857,
+        10330
+      ],
+      "worker_seconds": 0.0013398069995673723,
+      "worker_cpu_seconds": 0.0012357050000000314,
+      "actual_seconds": 5.535198447999392,
+      "actual_cpu_seconds": 4.6068789489999995,
+      "decisions": [
+        {
+          "clock": 29100,
+          "ready_at": 29101,
+          "wall_seconds": 4.0300000364368316e-05,
+          "cpu_seconds": 3.5186999999936575e-05,
+          "active_first": 8341,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 2.0080005924683064e-06,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29185,
+          "ready_at": 29186,
+          "wall_seconds": 0.00041495599998597754,
+          "cpu_seconds": 0.0003838290000004463,
+          "active_first": 8780,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0004014430005554459,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29306,
+          "ready_at": 29307,
+          "wall_seconds": 0.00012046800020470982,
+          "cpu_seconds": 0.000111030000000234,
+          "active_first": 9383,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00011088300016126595,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30146,
+          "ready_at": 30147,
+          "wall_seconds": 0.00018902099964179797,
+          "cpu_seconds": 0.00017421999999989168,
+          "active_first": 12845,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0001767450003171689,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30308,
+          "ready_at": 30309,
+          "wall_seconds": 0.00027126099939778214,
+          "cpu_seconds": 0.0002508059999994927,
+          "active_first": 13088,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0002587790004326962,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30405,
+          "ready_at": 30406,
+          "wall_seconds": 0.0001564920003147563,
+          "cpu_seconds": 0.00014490499999997297,
+          "active_first": 13296,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00014457500037678983,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30502,
+          "ready_at": 30503,
+          "wall_seconds": 0.00014730899965798017,
+          "cpu_seconds": 0.00013572800000005714,
+          "active_first": 13741,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00013593400035460945,
+          "scheduled_skip": true,
+          "publication": "closed_during_compute"
+        }
+      ],
+      "actions": [
+        {
+          "clock": 29100,
+          "next_clock": 29185,
+          "stop": 530,
+          "next_stop": 594,
+          "connection": 8341,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8341,
+              29115
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29185,
+          "next_clock": 29306,
+          "stop": 594,
+          "next_stop": 606,
+          "connection": 8780,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8780,
+              29213
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29306,
+          "next_clock": 30146,
+          "stop": 606,
+          "next_stop": 606,
+          "connection": 9383,
+          "caught": false,
+          "feedback": [
+            [
+              "wait_late",
+              9383,
+              30146
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30146,
+          "next_clock": 30308,
+          "stop": 606,
+          "next_stop": 647,
+          "connection": 12845,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12845,
+              30248
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30308,
+          "next_clock": 30405,
+          "stop": 647,
+          "next_stop": 88,
+          "connection": 13088,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13088,
+              30333
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30405,
+          "next_clock": 30502,
+          "stop": 88,
+          "next_stop": 568,
+          "connection": 13296,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13296,
+              30427
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30502,
+          "next_clock": 30591,
+          "stop": 568,
+          "next_stop": 3,
+          "connection": 13741,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13741,
+              30520
+            ]
+          ],
+          "while_computing": true
+        }
+      ]
+    },
+    {
+      "date": "2023-07-26",
+      "query": 0,
+      "cpu": 0,
+      "graph_seconds": 0.1130804709991935,
+      "kernel_seconds": 0.0,
+      "method": "scheduled_terminal64",
+      "clock": "charged",
+      "loss_lower": 1491,
+      "loss_upper": 1491,
+      "status": "arrived",
+      "missing_connection": null,
+      "setup_seconds": 4.813284069000474,
+      "initial_plan": [
+        8341,
+        8780,
+        9383,
+        9627,
+        9857,
+        10330
+      ],
+      "worker_seconds": 0.0014735060003658873,
+      "worker_cpu_seconds": 0.0013592189999975801,
+      "actual_seconds": 4.816956296000171,
+      "actual_cpu_seconds": 4.011477789000001,
+      "decisions": [
+        {
+          "clock": 29100,
+          "ready_at": 29101,
+          "wall_seconds": 2.0752999262185767e-05,
+          "cpu_seconds": 1.7011999998928218e-05,
+          "active_first": 8341,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 1.1610000001383014e-06,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29185,
+          "ready_at": 29186,
+          "wall_seconds": 0.00041458700070506893,
+          "cpu_seconds": 0.00038282600000094646,
+          "active_first": 8780,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00040118299966707127,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29306,
+          "ready_at": 29307,
+          "wall_seconds": 0.00017947000014828518,
+          "cpu_seconds": 0.00016630499999870096,
+          "active_first": 9383,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00016648800010443665,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30146,
+          "ready_at": 30147,
+          "wall_seconds": 0.00018394099970464595,
+          "cpu_seconds": 0.00016925100000086957,
+          "active_first": 12845,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0001720019999993383,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30308,
+          "ready_at": 30309,
+          "wall_seconds": 0.0002794229994833586,
+          "cpu_seconds": 0.0002579699999998297,
+          "active_first": 13088,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00026610500026436057,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30405,
+          "ready_at": 30406,
+          "wall_seconds": 0.00019782400067924755,
+          "cpu_seconds": 0.00018317799999856277,
+          "active_first": 13296,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00018594900029711425,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30502,
+          "ready_at": 30503,
+          "wall_seconds": 0.00019750800038309535,
+          "cpu_seconds": 0.0001826769999997424,
+          "active_first": 13741,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00018627500048751244,
+          "scheduled_skip": true,
+          "publication": "closed_during_compute"
+        }
+      ],
+      "actions": [
+        {
+          "clock": 29100,
+          "next_clock": 29185,
+          "stop": 530,
+          "next_stop": 594,
+          "connection": 8341,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8341,
+              29115
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29185,
+          "next_clock": 29306,
+          "stop": 594,
+          "next_stop": 606,
+          "connection": 8780,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8780,
+              29213
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29306,
+          "next_clock": 30146,
+          "stop": 606,
+          "next_stop": 606,
+          "connection": 9383,
+          "caught": false,
+          "feedback": [
+            [
+              "wait_late",
+              9383,
+              30146
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30146,
+          "next_clock": 30308,
+          "stop": 606,
+          "next_stop": 647,
+          "connection": 12845,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12845,
+              30248
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30308,
+          "next_clock": 30405,
+          "stop": 647,
+          "next_stop": 88,
+          "connection": 13088,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13088,
+              30333
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30405,
+          "next_clock": 30502,
+          "stop": 88,
+          "next_stop": 568,
+          "connection": 13296,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13296,
+              30427
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30502,
+          "next_clock": 30591,
+          "stop": 568,
+          "next_stop": 3,
+          "connection": 13741,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13741,
+              30520
+            ]
+          ],
+          "while_computing": true
+        }
+      ]
+    },
+    {
+      "date": "2023-07-26",
+      "query": 0,
+      "cpu": 0,
+      "graph_seconds": 0.1130804709991935,
+      "kernel_seconds": 0.4635186019995672,
+      "method": "scheduled_middle64",
+      "clock": "charged",
+      "loss_lower": 1491,
+      "loss_upper": 1491,
+      "status": "arrived",
+      "missing_connection": null,
+      "setup_seconds": 3.3024332439999853,
+      "initial_plan": [
+        8341,
+        8780,
+        9383,
+        9627,
+        9857,
+        10330
+      ],
+      "worker_seconds": 0.0011715829978129477,
+      "worker_cpu_seconds": 0.001080088000001922,
+      "actual_seconds": 3.305280529999436,
+      "actual_cpu_seconds": 3.040552379000001,
+      "decisions": [
+        {
+          "clock": 29100,
+          "ready_at": 29101,
+          "wall_seconds": 1.6334999600076117e-05,
+          "cpu_seconds": 1.3295000000468349e-05,
+          "active_first": 8341,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 1.0969997674692422e-06,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29185,
+          "ready_at": 29186,
+          "wall_seconds": 0.0003759909996006172,
+          "cpu_seconds": 0.000347269000000594,
+          "active_first": 8780,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0003664500000013504,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29306,
+          "ready_at": 29307,
+          "wall_seconds": 0.00015782700029376429,
+          "cpu_seconds": 0.00014597600000065825,
+          "active_first": 9383,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00015016399993328378,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30146,
+          "ready_at": 30147,
+          "wall_seconds": 0.0001434559999324847,
+          "cpu_seconds": 0.00013249200000053918,
+          "active_first": 12845,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0001367049999316805,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30308,
+          "ready_at": 30309,
+          "wall_seconds": 0.00020832999962294707,
+          "cpu_seconds": 0.0001924849999994649,
+          "active_first": 13088,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00020170999960100744,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30405,
+          "ready_at": 30406,
+          "wall_seconds": 0.00012957399940205505,
+          "cpu_seconds": 0.00011973700000034171,
+          "active_first": 13296,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00012426600005710497,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30502,
+          "ready_at": 30503,
+          "wall_seconds": 0.00014006999936100328,
+          "cpu_seconds": 0.00012883399999985556,
+          "active_first": 13741,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00013133300035406137,
+          "scheduled_skip": true,
+          "publication": "closed_during_compute"
+        }
+      ],
+      "actions": [
+        {
+          "clock": 29100,
+          "next_clock": 29185,
+          "stop": 530,
+          "next_stop": 594,
+          "connection": 8341,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8341,
+              29115
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29185,
+          "next_clock": 29306,
+          "stop": 594,
+          "next_stop": 606,
+          "connection": 8780,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8780,
+              29213
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29306,
+          "next_clock": 30146,
+          "stop": 606,
+          "next_stop": 606,
+          "connection": 9383,
+          "caught": false,
+          "feedback": [
+            [
+              "wait_late",
+              9383,
+              30146
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30146,
+          "next_clock": 30308,
+          "stop": 606,
+          "next_stop": 647,
+          "connection": 12845,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12845,
+              30248
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30308,
+          "next_clock": 30405,
+          "stop": 647,
+          "next_stop": 88,
+          "connection": 13088,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13088,
+              30333
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30405,
+          "next_clock": 30502,
+          "stop": 88,
+          "next_stop": 568,
+          "connection": 13296,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13296,
+              30427
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30502,
+          "next_clock": 30591,
+          "stop": 568,
+          "next_stop": 3,
+          "connection": 13741,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13741,
+              30520
+            ]
+          ],
+          "while_computing": true
+        }
+      ]
+    },
+    {
+      "date": "2023-07-26",
+      "query": 1,
+      "cpu": 10,
+      "graph_seconds": 0.15915334799956327,
+      "kernel_seconds": 0.596550623999974,
+      "method": "scheduled_middle64",
+      "clock": "charged",
+      "loss_lower": 1886,
+      "loss_upper": 1886,
+      "status": "arrived",
+      "missing_connection": null,
+      "setup_seconds": 8.790665900999556,
+      "initial_plan": [
+        8315,
+        8538,
+        8759,
+        9224,
+        9704,
+        9938,
+        10407,
+        10879,
+        11339,
+        11788,
+        12230,
+        12695,
+        12918,
+        13372,
+        13588,
+        13816,
+        14288,
+        14501,
+        14737,
+        14955
+      ],
+      "worker_seconds": 0.0053454349990715855,
+      "worker_cpu_seconds": 0.004937986000005168,
+      "actual_seconds": 8.800031581999974,
+      "actual_cpu_seconds": 8.122965999,
+      "decisions": [
+        {
+          "clock": 29100,
+          "ready_at": 29101,
+          "wall_seconds": 6.666499939456116e-05,
+          "cpu_seconds": 6.0064000001247564e-05,
+          "active_first": 8315,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 1.5630002963007428e-06,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29142,
+          "ready_at": 29143,
+          "wall_seconds": 0.0006195959995238809,
+          "cpu_seconds": 0.0005721560000004899,
+          "active_first": 8538,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0006104240001150174,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29213,
+          "ready_at": 29214,
+          "wall_seconds": 0.0003196259995092987,
+          "cpu_seconds": 0.00029579099999921254,
+          "active_first": 8759,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00030927100033295574,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29326,
+          "ready_at": 29327,
+          "wall_seconds": 0.00026651799998944625,
+          "cpu_seconds": 0.0002462170000008257,
+          "active_first": 9224,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00025747699964995263,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29458,
+          "ready_at": 29459,
+          "wall_seconds": 0.00025247300072805956,
+          "cpu_seconds": 0.00023319299999968734,
+          "active_first": 9704,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0002446150001560454,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29529,
+          "ready_at": 29530,
+          "wall_seconds": 0.00024690499958524015,
+          "cpu_seconds": 0.00022811300000036283,
+          "active_first": 9938,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0002396869995209272,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29594,
+          "ready_at": 29595,
+          "wall_seconds": 0.00026889499986282317,
+          "cpu_seconds": 0.00024899199999950383,
+          "active_first": 10407,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0002580740001576487,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29762,
+          "ready_at": 29763,
+          "wall_seconds": 0.00025407999964954797,
+          "cpu_seconds": 0.00023483500000054391,
+          "active_first": 10879,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0002456239999446552,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29855,
+          "ready_at": 29856,
+          "wall_seconds": 0.0002500199998394237,
+          "cpu_seconds": 0.00023099799999926063,
+          "active_first": 11339,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00024148899956344394,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29938,
+          "ready_at": 29939,
+          "wall_seconds": 0.0002488800000719493,
+          "cpu_seconds": 0.0002299659999991377,
+          "active_first": 11788,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00024148899956344394,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30103,
+          "ready_at": 30104,
+          "wall_seconds": 0.00027410399979999056,
+          "cpu_seconds": 0.00025382199999945954,
+          "active_first": 12230,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00026329399952373933,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30287,
+          "ready_at": 30288,
+          "wall_seconds": 0.0002713699996093055,
+          "cpu_seconds": 0.0002498440000007207,
+          "active_first": 12695,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00025959300000977237,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30372,
+          "ready_at": 30373,
+          "wall_seconds": 0.00024970499998744344,
+          "cpu_seconds": 0.00023069800000108387,
+          "active_first": 12918,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00024220500017690938,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30446,
+          "ready_at": 30447,
+          "wall_seconds": 0.0002467200001774472,
+          "cpu_seconds": 0.00022793199999959768,
+          "active_first": 13372,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0002393830000073649,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30534,
+          "ready_at": 30535,
+          "wall_seconds": 0.00024373599990212824,
+          "cpu_seconds": 0.0002251370000010411,
+          "active_first": 13588,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0002375920003032661,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30603,
+          "ready_at": 30604,
+          "wall_seconds": 0.0002458850003677071,
+          "cpu_seconds": 0.00022700000000064335,
+          "active_first": 13816,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00023923200024000835,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30681,
+          "ready_at": 30682,
+          "wall_seconds": 0.00027311699977872195,
+          "cpu_seconds": 0.0002529390000010068,
+          "active_first": 14288,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00026306700056011323,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30772,
+          "ready_at": 30773,
+          "wall_seconds": 0.0002547630001572543,
+          "cpu_seconds": 0.00023538700000003132,
+          "active_first": 14501,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00024681800005055266,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30847,
+          "ready_at": 30848,
+          "wall_seconds": 0.0002458630006003659,
+          "cpu_seconds": 0.00022716000000144732,
+          "active_first": 14737,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00023861200043029385,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30903,
+          "ready_at": 30904,
+          "wall_seconds": 0.00024651400053699035,
+          "cpu_seconds": 0.00022774199999986422,
+          "active_first": 14955,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00023985999996511964,
+          "scheduled_skip": true,
+          "publication": "closed_during_compute"
+        }
+      ],
+      "actions": [
+        {
+          "clock": 29100,
+          "next_clock": 29142,
+          "stop": 427,
+          "next_stop": 614,
+          "connection": 8315,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8315,
+              29104
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29142,
+          "next_clock": 29213,
+          "stop": 614,
+          "next_stop": 3,
+          "connection": 8538,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8538,
+              29157
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29213,
+          "next_clock": 29326,
+          "stop": 3,
+          "next_stop": 568,
+          "connection": 8759,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8759,
+              29230
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29326,
+          "next_clock": 29458,
+          "stop": 568,
+          "next_stop": 88,
+          "connection": 9224,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9224,
+              29391
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29458,
+          "next_clock": 29529,
+          "stop": 88,
+          "next_stop": 647,
+          "connection": 9704,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9704,
+              29475
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29529,
+          "next_clock": 29594,
+          "stop": 647,
+          "next_stop": 606,
+          "connection": 9938,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9938,
+              29540
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29594,
+          "next_clock": 29762,
+          "stop": 606,
+          "next_stop": 592,
+          "connection": 10407,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10407,
+              29643
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29762,
+          "next_clock": 29855,
+          "stop": 592,
+          "next_stop": 495,
+          "connection": 10879,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10879,
+              29786
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29855,
+          "next_clock": 29938,
+          "stop": 495,
+          "next_stop": 164,
+          "connection": 11339,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              11339,
+              29875
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29938,
+          "next_clock": 30103,
+          "stop": 164,
+          "next_stop": 165,
+          "connection": 11788,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              11788,
+              29991
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30103,
+          "next_clock": 30287,
+          "stop": 165,
+          "next_stop": 604,
+          "connection": 12230,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12230,
+              30158
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30287,
+          "next_clock": 30372,
+          "stop": 604,
+          "next_stop": 319,
+          "connection": 12695,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12695,
+              30302
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30372,
+          "next_clock": 30446,
+          "stop": 319,
+          "next_stop": 470,
+          "connection": 12918,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12918,
+              30387
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30446,
+          "next_clock": 30534,
+          "stop": 470,
+          "next_stop": 563,
+          "connection": 13372,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13372,
+              30460
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30534,
+          "next_clock": 30603,
+          "stop": 563,
+          "next_stop": 406,
+          "connection": 13588,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13588,
+              30547
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30603,
+          "next_clock": 30681,
+          "stop": 406,
+          "next_stop": 509,
+          "connection": 13816,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13816,
+              30614
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30681,
+          "next_clock": 30772,
+          "stop": 509,
+          "next_stop": 430,
+          "connection": 14288,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14288,
+              30700
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30772,
+          "next_clock": 30847,
+          "stop": 430,
+          "next_stop": 321,
+          "connection": 14501,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14501,
+              30783
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30847,
+          "next_clock": 30903,
+          "stop": 321,
+          "next_stop": 560,
+          "connection": 14737,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14737,
+              30861
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30903,
+          "next_clock": 30986,
+          "stop": 560,
+          "next_stop": 607,
+          "connection": 14955,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14955,
+              30916
+            ]
+          ],
+          "while_computing": true
+        }
+      ]
+    },
+    {
+      "date": "2023-07-26",
+      "query": 1,
+      "cpu": 10,
+      "graph_seconds": 0.15915334799956327,
+      "kernel_seconds": 0.0,
+      "method": "scheduled_terminal64",
+      "clock": "charged",
+      "loss_lower": 1886,
+      "loss_upper": 1886,
+      "status": "arrived",
+      "missing_connection": null,
+      "setup_seconds": 4.913116474000162,
+      "initial_plan": [
+        8315,
+        8538,
+        8759,
+        9224,
+        9704,
+        9938,
+        10407,
+        10879,
+        11339,
+        11788,
+        12230,
+        12695,
+        12918,
+        13372,
+        13588,
+        13816,
+        14288,
+        14501,
+        14737,
+        14955
+      ],
+      "worker_seconds": 0.005200455997510289,
+      "worker_cpu_seconds": 0.0048019079999956915,
+      "actual_seconds": 4.922221042000274,
+      "actual_cpu_seconds": 4.542494687,
+      "decisions": [
+        {
+          "clock": 29100,
+          "ready_at": 29101,
+          "wall_seconds": 1.5194999832601752e-05,
+          "cpu_seconds": 1.2122999999419903e-05,
+          "active_first": 8315,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 7.159997039707378e-07,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29142,
+          "ready_at": 29143,
+          "wall_seconds": 0.0005742700004702783,
+          "cpu_seconds": 0.0005304259999991956,
+          "active_first": 8538,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.000565359000574972,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29213,
+          "ready_at": 29214,
+          "wall_seconds": 0.00027196600058232434,
+          "cpu_seconds": 0.0002513369999999071,
+          "active_first": 8759,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00026460699973540613,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29326,
+          "ready_at": 29327,
+          "wall_seconds": 0.0002982870000778348,
+          "cpu_seconds": 0.0002761729999996021,
+          "active_first": 9224,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00028781299988622777,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29458,
+          "ready_at": 29459,
+          "wall_seconds": 0.00027929299994866597,
+          "cpu_seconds": 0.0002574580000000992,
+          "active_first": 9704,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00026843900013773236,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29529,
+          "ready_at": 29530,
+          "wall_seconds": 0.00025520799954392714,
+          "cpu_seconds": 0.00023572799999982408,
+          "active_first": 9938,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00024724099966988433,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29594,
+          "ready_at": 29595,
+          "wall_seconds": 0.00023980599962669658,
+          "cpu_seconds": 0.00022152000000019711,
+          "active_first": 10407,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00023329400028160308,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29762,
+          "ready_at": 29763,
+          "wall_seconds": 0.00025274400013586273,
+          "cpu_seconds": 0.00023358299999998167,
+          "active_first": 10879,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00024644899986014934,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29855,
+          "ready_at": 29856,
+          "wall_seconds": 0.0002526789994590217,
+          "cpu_seconds": 0.0002330219999997496,
+          "active_first": 11339,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00024314999973285012,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29938,
+          "ready_at": 29939,
+          "wall_seconds": 0.0002517459997761762,
+          "cpu_seconds": 0.00023191000000011286,
+          "active_first": 11788,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00024170600045181345,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30103,
+          "ready_at": 30104,
+          "wall_seconds": 0.00024514599954272853,
+          "cpu_seconds": 0.00022637900000077593,
+          "active_first": 12230,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00023787400004948722,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30287,
+          "ready_at": 30288,
+          "wall_seconds": 0.00024560199926781934,
+          "cpu_seconds": 0.00022681999999996094,
+          "active_first": 12695,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00023893799971119734,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30372,
+          "ready_at": 30373,
+          "wall_seconds": 0.0002653999999893131,
+          "cpu_seconds": 0.0002458669999985119,
+          "active_first": 12918,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00025472000015724916,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30446,
+          "ready_at": 30447,
+          "wall_seconds": 0.0002478710002833395,
+          "cpu_seconds": 0.0002289639999997206,
+          "active_first": 13372,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00023943699943629326,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30534,
+          "ready_at": 30535,
+          "wall_seconds": 0.00024231399947893806,
+          "cpu_seconds": 0.0002239349999992868,
+          "active_first": 13588,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00023559500004921574,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30603,
+          "ready_at": 30604,
+          "wall_seconds": 0.00025168100000882987,
+          "cpu_seconds": 0.000231879999999407,
+          "active_first": 13816,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0002422699999442557,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30681,
+          "ready_at": 30682,
+          "wall_seconds": 0.0002551319994381629,
+          "cpu_seconds": 0.0002357869999993767,
+          "active_first": 14288,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00024782699983916245,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30772,
+          "ready_at": 30773,
+          "wall_seconds": 0.00026610500026436057,
+          "cpu_seconds": 0.00024631700000021794,
+          "active_first": 14501,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0002555660003054072,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30847,
+          "ready_at": 30848,
+          "wall_seconds": 0.00024852199931046925,
+          "cpu_seconds": 0.00022955600000074128,
+          "active_first": 14737,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00024030600070545916,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30903,
+          "ready_at": 30904,
+          "wall_seconds": 0.00024148900047293864,
+          "cpu_seconds": 0.00022312299999960317,
+          "active_first": 14955,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0002345100001548417,
+          "scheduled_skip": true,
+          "publication": "closed_during_compute"
+        }
+      ],
+      "actions": [
+        {
+          "clock": 29100,
+          "next_clock": 29142,
+          "stop": 427,
+          "next_stop": 614,
+          "connection": 8315,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8315,
+              29104
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29142,
+          "next_clock": 29213,
+          "stop": 614,
+          "next_stop": 3,
+          "connection": 8538,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8538,
+              29157
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29213,
+          "next_clock": 29326,
+          "stop": 3,
+          "next_stop": 568,
+          "connection": 8759,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8759,
+              29230
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29326,
+          "next_clock": 29458,
+          "stop": 568,
+          "next_stop": 88,
+          "connection": 9224,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9224,
+              29391
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29458,
+          "next_clock": 29529,
+          "stop": 88,
+          "next_stop": 647,
+          "connection": 9704,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9704,
+              29475
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29529,
+          "next_clock": 29594,
+          "stop": 647,
+          "next_stop": 606,
+          "connection": 9938,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9938,
+              29540
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29594,
+          "next_clock": 29762,
+          "stop": 606,
+          "next_stop": 592,
+          "connection": 10407,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10407,
+              29643
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29762,
+          "next_clock": 29855,
+          "stop": 592,
+          "next_stop": 495,
+          "connection": 10879,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10879,
+              29786
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29855,
+          "next_clock": 29938,
+          "stop": 495,
+          "next_stop": 164,
+          "connection": 11339,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              11339,
+              29875
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29938,
+          "next_clock": 30103,
+          "stop": 164,
+          "next_stop": 165,
+          "connection": 11788,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              11788,
+              29991
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30103,
+          "next_clock": 30287,
+          "stop": 165,
+          "next_stop": 604,
+          "connection": 12230,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12230,
+              30158
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30287,
+          "next_clock": 30372,
+          "stop": 604,
+          "next_stop": 319,
+          "connection": 12695,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12695,
+              30302
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30372,
+          "next_clock": 30446,
+          "stop": 319,
+          "next_stop": 470,
+          "connection": 12918,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12918,
+              30387
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30446,
+          "next_clock": 30534,
+          "stop": 470,
+          "next_stop": 563,
+          "connection": 13372,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13372,
+              30460
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30534,
+          "next_clock": 30603,
+          "stop": 563,
+          "next_stop": 406,
+          "connection": 13588,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13588,
+              30547
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30603,
+          "next_clock": 30681,
+          "stop": 406,
+          "next_stop": 509,
+          "connection": 13816,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13816,
+              30614
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30681,
+          "next_clock": 30772,
+          "stop": 509,
+          "next_stop": 430,
+          "connection": 14288,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14288,
+              30700
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30772,
+          "next_clock": 30847,
+          "stop": 430,
+          "next_stop": 321,
+          "connection": 14501,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14501,
+              30783
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30847,
+          "next_clock": 30903,
+          "stop": 321,
+          "next_stop": 560,
+          "connection": 14737,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14737,
+              30861
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30903,
+          "next_clock": 30986,
+          "stop": 560,
+          "next_stop": 607,
+          "connection": 14955,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14955,
+              30916
+            ]
+          ],
+          "while_computing": true
+        }
+      ]
+    },
+    {
+      "date": "2023-07-26",
+      "query": 1,
+      "cpu": 10,
+      "graph_seconds": 0.15915334799956327,
+      "kernel_seconds": 0.0,
+      "method": "scheduled_off64",
+      "clock": "charged",
+      "loss_lower": 1886,
+      "loss_upper": 1886,
+      "status": "arrived",
+      "missing_connection": null,
+      "setup_seconds": 5.102147263000006,
+      "initial_plan": [
+        8315,
+        8538,
+        8759,
+        9224,
+        9704,
+        9938,
+        10407,
+        10879,
+        11339,
+        11788,
+        12230,
+        12695,
+        12918,
+        13372,
+        13588,
+        13816,
+        14288,
+        14501,
+        14737,
+        14955
+      ],
+      "worker_seconds": 0.005227295998338377,
+      "worker_cpu_seconds": 0.004940994999998338,
+      "actual_seconds": 5.111353536000024,
+      "actual_cpu_seconds": 4.848590345,
+      "decisions": [
+        {
+          "clock": 29100,
+          "ready_at": 29101,
+          "wall_seconds": 1.6384000446123537e-05,
+          "cpu_seconds": 1.3395999999943342e-05,
+          "active_first": 8315,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 9.679997674538754e-07,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29142,
+          "ready_at": 29143,
+          "wall_seconds": 0.0005823339997732546,
+          "cpu_seconds": 0.0005609440000000632,
+          "active_first": 8538,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0005732049994549016,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29213,
+          "ready_at": 29214,
+          "wall_seconds": 0.0002759550006885547,
+          "cpu_seconds": 0.00026527300000012133,
+          "active_first": 8759,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.000265421000221977,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29326,
+          "ready_at": 29327,
+          "wall_seconds": 0.00026328799958719173,
+          "cpu_seconds": 0.00025346099999978833,
+          "active_first": 9224,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00025395000011485536,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29458,
+          "ready_at": 29459,
+          "wall_seconds": 0.00024331300028279657,
+          "cpu_seconds": 0.00023434499999908098,
+          "active_first": 9704,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0002356730001338292,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29529,
+          "ready_at": 29530,
+          "wall_seconds": 0.00023594399954163237,
+          "cpu_seconds": 0.00022736100000031456,
+          "active_first": 9938,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00022960399928706465,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29594,
+          "ready_at": 29595,
+          "wall_seconds": 0.00026248599988321075,
+          "cpu_seconds": 0.0002534599999997056,
+          "active_first": 10407,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00025241000003006775,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29762,
+          "ready_at": 29763,
+          "wall_seconds": 0.0002431880002404796,
+          "cpu_seconds": 0.00023410400000045684,
+          "active_first": 10879,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00023453799985873047,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29855,
+          "ready_at": 29856,
+          "wall_seconds": 0.00023671399958402617,
+          "cpu_seconds": 0.00022813300000024128,
+          "active_first": 11339,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00022996899951976957,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29938,
+          "ready_at": 29939,
+          "wall_seconds": 0.000236890999985917,
+          "cpu_seconds": 0.00022815299999834338,
+          "active_first": 11788,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0002302290004081442,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30103,
+          "ready_at": 30104,
+          "wall_seconds": 0.00037262999921949813,
+          "cpu_seconds": 0.00026830999999916116,
+          "active_first": 12230,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00036238800021237694,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30287,
+          "ready_at": 30288,
+          "wall_seconds": 0.00025090100007219007,
+          "cpu_seconds": 0.0002409270000001129,
+          "active_first": 12695,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00024041899996518623,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30372,
+          "ready_at": 30373,
+          "wall_seconds": 0.0002744549992712564,
+          "cpu_seconds": 0.00026271899999841253,
+          "active_first": 12918,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0002640269995026756,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30446,
+          "ready_at": 30447,
+          "wall_seconds": 0.00023778600007062778,
+          "cpu_seconds": 0.00022904400000101077,
+          "active_first": 13372,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00022997900032351026,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30534,
+          "ready_at": 30535,
+          "wall_seconds": 0.00023672399947827216,
+          "cpu_seconds": 0.00022804299999990008,
+          "active_first": 13588,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0002298539993716986,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30603,
+          "ready_at": 30604,
+          "wall_seconds": 0.0002704799999264651,
+          "cpu_seconds": 0.0002610549999992884,
+          "active_first": 13816,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0002597069997136714,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30681,
+          "ready_at": 30682,
+          "wall_seconds": 0.0002401589999863063,
+          "cpu_seconds": 0.0002313489999998808,
+          "active_first": 14288,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00023196700021799188,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30772,
+          "ready_at": 30773,
+          "wall_seconds": 0.0002595089999886113,
+          "cpu_seconds": 0.00025055500000092934,
+          "active_first": 14501,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0002487780002411455,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30847,
+          "ready_at": 30848,
+          "wall_seconds": 0.0002391380003246013,
+          "cpu_seconds": 0.000230438000002664,
+          "active_first": 14737,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00023163399964687414,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30903,
+          "ready_at": 30904,
+          "wall_seconds": 0.0002490169999873615,
+          "cpu_seconds": 0.00023992499999891947,
+          "active_first": 14955,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00024154399943654425,
+          "scheduled_skip": true,
+          "publication": "closed_during_compute"
+        }
+      ],
+      "actions": [
+        {
+          "clock": 29100,
+          "next_clock": 29142,
+          "stop": 427,
+          "next_stop": 614,
+          "connection": 8315,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8315,
+              29104
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29142,
+          "next_clock": 29213,
+          "stop": 614,
+          "next_stop": 3,
+          "connection": 8538,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8538,
+              29157
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29213,
+          "next_clock": 29326,
+          "stop": 3,
+          "next_stop": 568,
+          "connection": 8759,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8759,
+              29230
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29326,
+          "next_clock": 29458,
+          "stop": 568,
+          "next_stop": 88,
+          "connection": 9224,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9224,
+              29391
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29458,
+          "next_clock": 29529,
+          "stop": 88,
+          "next_stop": 647,
+          "connection": 9704,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9704,
+              29475
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29529,
+          "next_clock": 29594,
+          "stop": 647,
+          "next_stop": 606,
+          "connection": 9938,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9938,
+              29540
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29594,
+          "next_clock": 29762,
+          "stop": 606,
+          "next_stop": 592,
+          "connection": 10407,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10407,
+              29643
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29762,
+          "next_clock": 29855,
+          "stop": 592,
+          "next_stop": 495,
+          "connection": 10879,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10879,
+              29786
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29855,
+          "next_clock": 29938,
+          "stop": 495,
+          "next_stop": 164,
+          "connection": 11339,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              11339,
+              29875
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29938,
+          "next_clock": 30103,
+          "stop": 164,
+          "next_stop": 165,
+          "connection": 11788,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              11788,
+              29991
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30103,
+          "next_clock": 30287,
+          "stop": 165,
+          "next_stop": 604,
+          "connection": 12230,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12230,
+              30158
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30287,
+          "next_clock": 30372,
+          "stop": 604,
+          "next_stop": 319,
+          "connection": 12695,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12695,
+              30302
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30372,
+          "next_clock": 30446,
+          "stop": 319,
+          "next_stop": 470,
+          "connection": 12918,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12918,
+              30387
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30446,
+          "next_clock": 30534,
+          "stop": 470,
+          "next_stop": 563,
+          "connection": 13372,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13372,
+              30460
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30534,
+          "next_clock": 30603,
+          "stop": 563,
+          "next_stop": 406,
+          "connection": 13588,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13588,
+              30547
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30603,
+          "next_clock": 30681,
+          "stop": 406,
+          "next_stop": 509,
+          "connection": 13816,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13816,
+              30614
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30681,
+          "next_clock": 30772,
+          "stop": 509,
+          "next_stop": 430,
+          "connection": 14288,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14288,
+              30700
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30772,
+          "next_clock": 30847,
+          "stop": 430,
+          "next_stop": 321,
+          "connection": 14501,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14501,
+              30783
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30847,
+          "next_clock": 30903,
+          "stop": 321,
+          "next_stop": 560,
+          "connection": 14737,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14737,
+              30861
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30903,
+          "next_clock": 30986,
+          "stop": 560,
+          "next_stop": 607,
+          "connection": 14955,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14955,
+              30916
+            ]
+          ],
+          "while_computing": true
+        }
+      ]
+    },
+    {
+      "date": "2023-07-27",
+      "query": 0,
+      "cpu": 14,
+      "graph_seconds": 0.08574726100050611,
+      "kernel_seconds": 0.0,
+      "method": "scheduled_off64",
+      "clock": "charged",
+      "loss_lower": 1524,
+      "loss_upper": 1524,
+      "status": "arrived",
+      "missing_connection": null,
+      "setup_seconds": 5.289088028000151,
+      "initial_plan": [
+        8341,
+        8780,
+        9383,
+        9627,
+        9857,
+        10330
+      ],
+      "worker_seconds": 0.0012582970011862926,
+      "worker_cpu_seconds": 0.0011597180000002538,
+      "actual_seconds": 5.292703912000434,
+      "actual_cpu_seconds": 4.885474345,
+      "decisions": [
+        {
+          "clock": 29100,
+          "ready_at": 29101,
+          "wall_seconds": 7.658600043214392e-05,
+          "cpu_seconds": 6.843999999972539e-05,
+          "active_first": 8341,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 2.8220001695444807e-06,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29202,
+          "ready_at": 29203,
+          "wall_seconds": 0.00043423300030553946,
+          "cpu_seconds": 0.00040109000000043693,
+          "active_first": 8780,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0004226519995427225,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29297,
+          "ready_at": 29298,
+          "wall_seconds": 0.00011333699967508437,
+          "cpu_seconds": 0.00010473800000010414,
+          "active_first": 9383,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00010340500011807308,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30137,
+          "ready_at": 30138,
+          "wall_seconds": 0.0001712100001896033,
+          "cpu_seconds": 0.00015826000000007667,
+          "active_first": 12845,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.000163091000104032,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30342,
+          "ready_at": 30343,
+          "wall_seconds": 0.0002065170001515071,
+          "cpu_seconds": 0.00019076199999989996,
+          "active_first": 13088,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00019815999985439703,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30438,
+          "ready_at": 30439,
+          "wall_seconds": 0.0001147700004366925,
+          "cpu_seconds": 0.00010612099999995905,
+          "active_first": 13296,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00010661800024536205,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30513,
+          "ready_at": 30514,
+          "wall_seconds": 0.00014164399999572197,
+          "cpu_seconds": 0.0001303070000000517,
+          "active_first": 13741,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0001320490000580321,
+          "scheduled_skip": true,
+          "publication": "closed_during_compute"
+        }
+      ],
+      "actions": [
+        {
+          "clock": 29100,
+          "next_clock": 29202,
+          "stop": 530,
+          "next_stop": 594,
+          "connection": 8341,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8341,
+              29121
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29202,
+          "next_clock": 29297,
+          "stop": 594,
+          "next_stop": 606,
+          "connection": 8780,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8780,
+              29214
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29297,
+          "next_clock": 30137,
+          "stop": 606,
+          "next_stop": 606,
+          "connection": 9383,
+          "caught": false,
+          "feedback": [
+            [
+              "wait_late",
+              9383,
+              30137
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30137,
+          "next_clock": 30342,
+          "stop": 606,
+          "next_stop": 647,
+          "connection": 12845,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12845,
+              30280
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30342,
+          "next_clock": 30438,
+          "stop": 647,
+          "next_stop": 88,
+          "connection": 13088,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13088,
+              30356
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30438,
+          "next_clock": 30513,
+          "stop": 88,
+          "next_stop": 568,
+          "connection": 13296,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13296,
+              30452
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30513,
+          "next_clock": 30624,
+          "stop": 568,
+          "next_stop": 3,
+          "connection": 13741,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13741,
+              30540
+            ]
+          ],
+          "while_computing": true
+        }
+      ]
+    },
+    {
+      "date": "2023-07-27",
+      "query": 0,
+      "cpu": 14,
+      "graph_seconds": 0.08574726100050611,
+      "kernel_seconds": 0.0,
+      "method": "scheduled_terminal64",
+      "clock": "charged",
+      "loss_lower": 1524,
+      "loss_upper": 1524,
+      "status": "arrived",
+      "missing_connection": null,
+      "setup_seconds": 4.014062139000089,
+      "initial_plan": [
+        8341,
+        8780,
+        9383,
+        9627,
+        9857,
+        10330
+      ],
+      "worker_seconds": 0.0014538039995386498,
+      "worker_cpu_seconds": 0.0013404910000005543,
+      "actual_seconds": 4.017745056999956,
+      "actual_cpu_seconds": 3.70861791,
+      "decisions": [
+        {
+          "clock": 29100,
+          "ready_at": 29101,
+          "wall_seconds": 2.003600002353778e-05,
+          "cpu_seconds": 1.5809999998950275e-05,
+          "active_first": 8341,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 9.55000359681435e-07,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29202,
+          "ready_at": 29203,
+          "wall_seconds": 0.0005535710006370209,
+          "cpu_seconds": 0.0005121110000008144,
+          "active_first": 8780,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0005375509999794303,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29297,
+          "ready_at": 29298,
+          "wall_seconds": 0.00020374999985506292,
+          "cpu_seconds": 0.00018864799999995796,
+          "active_first": 9383,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0001904639993881574,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30137,
+          "ready_at": 30138,
+          "wall_seconds": 0.0001854169995567645,
+          "cpu_seconds": 0.0001706829999985615,
+          "active_first": 12845,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00017290300002059666,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30342,
+          "ready_at": 30343,
+          "wall_seconds": 0.00023697300002822885,
+          "cpu_seconds": 0.0002191650000007428,
+          "active_first": 13088,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00022656500004814006,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30438,
+          "ready_at": 30439,
+          "wall_seconds": 0.00012471099944377784,
+          "cpu_seconds": 0.0001152490000002615,
+          "active_first": 13296,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00011624600028881105,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30513,
+          "ready_at": 30514,
+          "wall_seconds": 0.000129345999994257,
+          "cpu_seconds": 0.00011882500000126583,
+          "active_first": 13741,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00011829699997178977,
+          "scheduled_skip": true,
+          "publication": "closed_during_compute"
+        }
+      ],
+      "actions": [
+        {
+          "clock": 29100,
+          "next_clock": 29202,
+          "stop": 530,
+          "next_stop": 594,
+          "connection": 8341,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8341,
+              29121
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29202,
+          "next_clock": 29297,
+          "stop": 594,
+          "next_stop": 606,
+          "connection": 8780,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8780,
+              29214
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29297,
+          "next_clock": 30137,
+          "stop": 606,
+          "next_stop": 606,
+          "connection": 9383,
+          "caught": false,
+          "feedback": [
+            [
+              "wait_late",
+              9383,
+              30137
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30137,
+          "next_clock": 30342,
+          "stop": 606,
+          "next_stop": 647,
+          "connection": 12845,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12845,
+              30280
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30342,
+          "next_clock": 30438,
+          "stop": 647,
+          "next_stop": 88,
+          "connection": 13088,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13088,
+              30356
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30438,
+          "next_clock": 30513,
+          "stop": 88,
+          "next_stop": 568,
+          "connection": 13296,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13296,
+              30452
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30513,
+          "next_clock": 30624,
+          "stop": 568,
+          "next_stop": 3,
+          "connection": 13741,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13741,
+              30540
+            ]
+          ],
+          "while_computing": true
+        }
+      ]
+    },
+    {
+      "date": "2023-07-27",
+      "query": 0,
+      "cpu": 14,
+      "graph_seconds": 0.08574726100050611,
+      "kernel_seconds": 0.5267391090001183,
+      "method": "scheduled_middle64",
+      "clock": "charged",
+      "loss_lower": 1524,
+      "loss_upper": 1524,
+      "status": "arrived",
+      "missing_connection": null,
+      "setup_seconds": 3.259287484000197,
+      "initial_plan": [
+        8341,
+        8780,
+        9383,
+        9627,
+        9857,
+        10330
+      ],
+      "worker_seconds": 0.0011691199979395606,
+      "worker_cpu_seconds": 0.0010771420000050824,
+      "actual_seconds": 3.2621221040008095,
+      "actual_cpu_seconds": 3.0111531760000005,
+      "decisions": [
+        {
+          "clock": 29100,
+          "ready_at": 29101,
+          "wall_seconds": 1.5173999599937815e-05,
+          "cpu_seconds": 1.2113000000368856e-05,
+          "active_first": 8341,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 9.769992175279185e-07,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29202,
+          "ready_at": 29203,
+          "wall_seconds": 0.00038483599928440526,
+          "cpu_seconds": 0.0003550530000016039,
+          "active_first": 8780,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0003744390005522291,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29297,
+          "ready_at": 29298,
+          "wall_seconds": 0.00015540700042038225,
+          "cpu_seconds": 0.00014373200000150632,
+          "active_first": 9383,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00014785199982725317,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30137,
+          "ready_at": 30138,
+          "wall_seconds": 0.0001467889997002203,
+          "cpu_seconds": 0.00013557699999999784,
+          "active_first": 12845,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00013993900029163342,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30342,
+          "ready_at": 30343,
+          "wall_seconds": 0.0002290069996888633,
+          "cpu_seconds": 0.00021124100000058377,
+          "active_first": 13088,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00021854399983567419,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30438,
+          "ready_at": 30439,
+          "wall_seconds": 0.00012413599961291766,
+          "cpu_seconds": 0.00011428700000060132,
+          "active_first": 13296,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00011463899954833323,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30513,
+          "ready_at": 30514,
+          "wall_seconds": 0.00011377099963283399,
+          "cpu_seconds": 0.00010513900000042042,
+          "active_first": 13741,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00010665099944162648,
+          "scheduled_skip": true,
+          "publication": "closed_during_compute"
+        }
+      ],
+      "actions": [
+        {
+          "clock": 29100,
+          "next_clock": 29202,
+          "stop": 530,
+          "next_stop": 594,
+          "connection": 8341,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8341,
+              29121
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29202,
+          "next_clock": 29297,
+          "stop": 594,
+          "next_stop": 606,
+          "connection": 8780,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8780,
+              29214
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29297,
+          "next_clock": 30137,
+          "stop": 606,
+          "next_stop": 606,
+          "connection": 9383,
+          "caught": false,
+          "feedback": [
+            [
+              "wait_late",
+              9383,
+              30137
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30137,
+          "next_clock": 30342,
+          "stop": 606,
+          "next_stop": 647,
+          "connection": 12845,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12845,
+              30280
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30342,
+          "next_clock": 30438,
+          "stop": 647,
+          "next_stop": 88,
+          "connection": 13088,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13088,
+              30356
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30438,
+          "next_clock": 30513,
+          "stop": 88,
+          "next_stop": 568,
+          "connection": 13296,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13296,
+              30452
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30513,
+          "next_clock": 30624,
+          "stop": 568,
+          "next_stop": 3,
+          "connection": 13741,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13741,
+              30540
+            ]
+          ],
+          "while_computing": true
+        }
+      ]
+    },
+    {
+      "date": "2023-07-27",
+      "query": 1,
+      "cpu": 22,
+      "graph_seconds": 0.07966687599946454,
+      "kernel_seconds": 0.6402242940002907,
+      "method": "scheduled_middle64",
+      "clock": "charged",
+      "loss_lower": 1823,
+      "loss_upper": 1823,
+      "status": "arrived",
+      "missing_connection": null,
+      "setup_seconds": 8.396480954999788,
+      "initial_plan": [
+        8315,
+        8538,
+        8759,
+        9224,
+        9704,
+        9938,
+        10407,
+        10879,
+        11339,
+        11788,
+        12230,
+        12695,
+        12918,
+        13372,
+        13588,
+        13816,
+        14288,
+        14501,
+        14737,
+        14955
+      ],
+      "worker_seconds": 0.006476551002378983,
+      "worker_cpu_seconds": 0.005984021999998035,
+      "actual_seconds": 8.407447371999297,
+      "actual_cpu_seconds": 7.76053675,
+      "decisions": [
+        {
+          "clock": 29100,
+          "ready_at": 29101,
+          "wall_seconds": 4.0160000025935005e-05,
+          "cpu_seconds": 3.493699999879141e-05,
+          "active_first": 8315,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 1.5300001905416138e-06,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29160,
+          "ready_at": 29161,
+          "wall_seconds": 0.0013526799993996974,
+          "cpu_seconds": 0.0012502009999995067,
+          "active_first": 8538,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0013336419997358462,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29223,
+          "ready_at": 29224,
+          "wall_seconds": 0.0005942949992459035,
+          "cpu_seconds": 0.0005496320000002441,
+          "active_first": 8759,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0005777540000053705,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29323,
+          "ready_at": 29324,
+          "wall_seconds": 0.0003172169999743346,
+          "cpu_seconds": 0.0002936270000013508,
+          "active_first": 9224,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0003057329995499458,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29446,
+          "ready_at": 29447,
+          "wall_seconds": 0.00028080199990654364,
+          "cpu_seconds": 0.0002599730000003575,
+          "active_first": 9704,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.000269664999905217,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29517,
+          "ready_at": 29518,
+          "wall_seconds": 0.0002577799996288377,
+          "cpu_seconds": 0.00023816200000048582,
+          "active_first": 9938,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0002487290003045928,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29598,
+          "ready_at": 29599,
+          "wall_seconds": 0.00025184300011460437,
+          "cpu_seconds": 0.00023267099999912944,
+          "active_first": 10407,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00024338900038856082,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29758,
+          "ready_at": 29759,
+          "wall_seconds": 0.0002809750003507361,
+          "cpu_seconds": 0.00025945299999996507,
+          "active_first": 10879,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0002680369998415699,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29843,
+          "ready_at": 29844,
+          "wall_seconds": 0.00026099299975612666,
+          "cpu_seconds": 0.00024108699999914052,
+          "active_first": 11339,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0002519190002203686,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29933,
+          "ready_at": 29934,
+          "wall_seconds": 0.0002526360003685113,
+          "cpu_seconds": 0.00023336299999954235,
+          "active_first": 11788,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0002443650000714115,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30061,
+          "ready_at": 30062,
+          "wall_seconds": 0.00025022600038937526,
+          "cpu_seconds": 0.00023112899999944148,
+          "active_first": 12230,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00024236799981736112,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30208,
+          "ready_at": 30209,
+          "wall_seconds": 0.00025388300036865985,
+          "cpu_seconds": 0.00023441499999954374,
+          "active_first": 12695,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00024587400002928916,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30292,
+          "ready_at": 30293,
+          "wall_seconds": 0.0002782400006253738,
+          "cpu_seconds": 0.0002577390000002566,
+          "active_first": 12918,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0002668110000740853,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30360,
+          "ready_at": 30361,
+          "wall_seconds": 0.00025160400036838837,
+          "cpu_seconds": 0.00023238100000000372,
+          "active_first": 13372,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00024286700045195175,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30447,
+          "ready_at": 30448,
+          "wall_seconds": 0.00025009599994518794,
+          "cpu_seconds": 0.00023104799999984493,
+          "active_first": 13588,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00024220500017690938,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30531,
+          "ready_at": 30532,
+          "wall_seconds": 0.00028181100060464814,
+          "cpu_seconds": 0.0002609749999997746,
+          "active_first": 13816,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0002599300005385885,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30604,
+          "ready_at": 30605,
+          "wall_seconds": 0.0002577919995019329,
+          "cpu_seconds": 0.00023816200000048582,
+          "active_first": 14288,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00024739299988141283,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30684,
+          "ready_at": 30685,
+          "wall_seconds": 0.00026199200055998517,
+          "cpu_seconds": 0.00024161799999866673,
+          "active_first": 14501,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0002515180003683781,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30761,
+          "ready_at": 30762,
+          "wall_seconds": 0.00025265700060117524,
+          "cpu_seconds": 0.000233472999999762,
+          "active_first": 14737,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.000244821000705997,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30822,
+          "ready_at": 30823,
+          "wall_seconds": 0.0002488690006430261,
+          "cpu_seconds": 0.00022997600000174145,
+          "active_first": 14955,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00024146700070559746,
+          "scheduled_skip": true,
+          "publication": "closed_during_compute"
+        }
+      ],
+      "actions": [
+        {
+          "clock": 29100,
+          "next_clock": 29160,
+          "stop": 427,
+          "next_stop": 614,
+          "connection": 8315,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8315,
+              29126
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29160,
+          "next_clock": 29223,
+          "stop": 614,
+          "next_stop": 3,
+          "connection": 8538,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8538,
+              29175
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29223,
+          "next_clock": 29323,
+          "stop": 3,
+          "next_stop": 568,
+          "connection": 8759,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8759,
+              29240
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29323,
+          "next_clock": 29446,
+          "stop": 568,
+          "next_stop": 88,
+          "connection": 9224,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9224,
+              29341
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29446,
+          "next_clock": 29517,
+          "stop": 88,
+          "next_stop": 647,
+          "connection": 9704,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9704,
+              29464
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29517,
+          "next_clock": 29598,
+          "stop": 647,
+          "next_stop": 606,
+          "connection": 9938,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9938,
+              29530
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29598,
+          "next_clock": 29758,
+          "stop": 606,
+          "next_stop": 592,
+          "connection": 10407,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10407,
+              29669
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29758,
+          "next_clock": 29843,
+          "stop": 592,
+          "next_stop": 495,
+          "connection": 10879,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10879,
+              29774
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29843,
+          "next_clock": 29933,
+          "stop": 495,
+          "next_stop": 164,
+          "connection": 11339,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              11339,
+              29857
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29933,
+          "next_clock": 30061,
+          "stop": 164,
+          "next_stop": 165,
+          "connection": 11788,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              11788,
+              29956
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30061,
+          "next_clock": 30208,
+          "stop": 165,
+          "next_stop": 604,
+          "connection": 12230,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12230,
+              30093
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30208,
+          "next_clock": 30292,
+          "stop": 604,
+          "next_stop": 319,
+          "connection": 12695,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12695,
+              30218
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30292,
+          "next_clock": 30360,
+          "stop": 319,
+          "next_stop": 470,
+          "connection": 12918,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12918,
+              30302
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30360,
+          "next_clock": 30447,
+          "stop": 470,
+          "next_stop": 563,
+          "connection": 13372,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13372,
+              30372
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30447,
+          "next_clock": 30531,
+          "stop": 563,
+          "next_stop": 406,
+          "connection": 13588,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13588,
+              30464
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30531,
+          "next_clock": 30604,
+          "stop": 406,
+          "next_stop": 509,
+          "connection": 13816,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13816,
+              30548
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30604,
+          "next_clock": 30684,
+          "stop": 509,
+          "next_stop": 430,
+          "connection": 14288,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14288,
+              30619
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30684,
+          "next_clock": 30761,
+          "stop": 430,
+          "next_stop": 321,
+          "connection": 14501,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14501,
+              30697
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30761,
+          "next_clock": 30822,
+          "stop": 321,
+          "next_stop": 560,
+          "connection": 14737,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14737,
+              30780
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30822,
+          "next_clock": 30923,
+          "stop": 560,
+          "next_stop": 607,
+          "connection": 14955,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14955,
+              30836
+            ]
+          ],
+          "while_computing": true
+        }
+      ]
+    },
+    {
+      "date": "2023-07-27",
+      "query": 1,
+      "cpu": 22,
+      "graph_seconds": 0.07966687599946454,
+      "kernel_seconds": 0.0,
+      "method": "scheduled_terminal64",
+      "clock": "charged",
+      "loss_lower": 1823,
+      "loss_upper": 1823,
+      "status": "arrived",
+      "missing_connection": null,
+      "setup_seconds": 5.59353306399953,
+      "initial_plan": [
+        8315,
+        8538,
+        8759,
+        9224,
+        9704,
+        9938,
+        10407,
+        10879,
+        11339,
+        11788,
+        12230,
+        12695,
+        12918,
+        13372,
+        13588,
+        13816,
+        14288,
+        14501,
+        14737,
+        14955
+      ],
+      "worker_seconds": 0.006641523002144822,
+      "worker_cpu_seconds": 0.006132620000000699,
+      "actual_seconds": 5.60475134599983,
+      "actual_cpu_seconds": 5.1735266530000015,
+      "decisions": [
+        {
+          "clock": 29100,
+          "ready_at": 29101,
+          "wall_seconds": 1.7192999621329363e-05,
+          "cpu_seconds": 1.410700000015197e-05,
+          "active_first": 8315,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 9.440000212634914e-07,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29160,
+          "ready_at": 29161,
+          "wall_seconds": 0.0011696290002873866,
+          "cpu_seconds": 0.0010809399999995861,
+          "active_first": 8538,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0011544659992068773,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29223,
+          "ready_at": 29224,
+          "wall_seconds": 0.0004863209996983642,
+          "cpu_seconds": 0.0004495730000009246,
+          "active_first": 8759,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0004755100007969304,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29323,
+          "ready_at": 29324,
+          "wall_seconds": 0.0003391090003788122,
+          "cpu_seconds": 0.0003130729999991644,
+          "active_first": 9224,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0003244780000386527,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29446,
+          "ready_at": 29447,
+          "wall_seconds": 0.0002882369999497314,
+          "cpu_seconds": 0.0002665749999994915,
+          "active_first": 9704,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0002765040007943753,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29517,
+          "ready_at": 29518,
+          "wall_seconds": 0.0002955959998871549,
+          "cpu_seconds": 0.0002731080000000219,
+          "active_first": 9938,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0002856859991879901,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29598,
+          "ready_at": 29599,
+          "wall_seconds": 0.00026165500003116904,
+          "cpu_seconds": 0.00024191900000047895,
+          "active_first": 10407,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0002528530003473861,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29758,
+          "ready_at": 29759,
+          "wall_seconds": 0.0002789780000966857,
+          "cpu_seconds": 0.00025712799999944025,
+          "active_first": 10879,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00026693099971453194,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29843,
+          "ready_at": 29844,
+          "wall_seconds": 0.00030406200039578835,
+          "cpu_seconds": 0.00028053199999966694,
+          "active_first": 11339,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00029327299944270635,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29933,
+          "ready_at": 29934,
+          "wall_seconds": 0.0003388270006325911,
+          "cpu_seconds": 0.0003127630000001602,
+          "active_first": 11788,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0003286680002929643,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30061,
+          "ready_at": 30062,
+          "wall_seconds": 0.0002560760003689211,
+          "cpu_seconds": 0.00023642800000089892,
+          "active_first": 12230,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0002469909995852504,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30208,
+          "ready_at": 30209,
+          "wall_seconds": 0.0002863259996956913,
+          "cpu_seconds": 0.0002638810000004099,
+          "active_first": 12695,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00027499499992700294,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30292,
+          "ready_at": 30293,
+          "wall_seconds": 0.00027669900009641424,
+          "cpu_seconds": 0.0002560559999995604,
+          "active_first": 12918,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00026542199975665426,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30360,
+          "ready_at": 30361,
+          "wall_seconds": 0.000325390000398329,
+          "cpu_seconds": 0.00030011900000026515,
+          "active_first": 13372,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00031359100012195995,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30447,
+          "ready_at": 30448,
+          "wall_seconds": 0.000290797999696224,
+          "cpu_seconds": 0.00026869899999937275,
+          "active_first": 13588,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0002817349995893892,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30531,
+          "ready_at": 30532,
+          "wall_seconds": 0.00027746900013880804,
+          "cpu_seconds": 0.0002557450000004735,
+          "active_first": 13816,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0002664200001163408,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30604,
+          "ready_at": 30605,
+          "wall_seconds": 0.0003029330000572372,
+          "cpu_seconds": 0.00027990100000074847,
+          "active_first": 14288,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0002936850005426095,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30684,
+          "ready_at": 30685,
+          "wall_seconds": 0.00029659400024684146,
+          "cpu_seconds": 0.00027343800000068086,
+          "active_first": 14501,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.000285479000012856,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30761,
+          "ready_at": 30762,
+          "wall_seconds": 0.00026754900045489194,
+          "cpu_seconds": 0.0002471990000003643,
+          "active_first": 14737,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0002588870002000476,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30822,
+          "ready_at": 30823,
+          "wall_seconds": 0.0002820820000124513,
+          "cpu_seconds": 0.00026143599999883804,
+          "active_first": 14955,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0002666910004336387,
+          "scheduled_skip": true,
+          "publication": "closed_during_compute"
+        }
+      ],
+      "actions": [
+        {
+          "clock": 29100,
+          "next_clock": 29160,
+          "stop": 427,
+          "next_stop": 614,
+          "connection": 8315,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8315,
+              29126
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29160,
+          "next_clock": 29223,
+          "stop": 614,
+          "next_stop": 3,
+          "connection": 8538,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8538,
+              29175
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29223,
+          "next_clock": 29323,
+          "stop": 3,
+          "next_stop": 568,
+          "connection": 8759,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8759,
+              29240
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29323,
+          "next_clock": 29446,
+          "stop": 568,
+          "next_stop": 88,
+          "connection": 9224,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9224,
+              29341
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29446,
+          "next_clock": 29517,
+          "stop": 88,
+          "next_stop": 647,
+          "connection": 9704,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9704,
+              29464
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29517,
+          "next_clock": 29598,
+          "stop": 647,
+          "next_stop": 606,
+          "connection": 9938,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9938,
+              29530
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29598,
+          "next_clock": 29758,
+          "stop": 606,
+          "next_stop": 592,
+          "connection": 10407,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10407,
+              29669
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29758,
+          "next_clock": 29843,
+          "stop": 592,
+          "next_stop": 495,
+          "connection": 10879,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10879,
+              29774
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29843,
+          "next_clock": 29933,
+          "stop": 495,
+          "next_stop": 164,
+          "connection": 11339,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              11339,
+              29857
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29933,
+          "next_clock": 30061,
+          "stop": 164,
+          "next_stop": 165,
+          "connection": 11788,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              11788,
+              29956
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30061,
+          "next_clock": 30208,
+          "stop": 165,
+          "next_stop": 604,
+          "connection": 12230,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12230,
+              30093
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30208,
+          "next_clock": 30292,
+          "stop": 604,
+          "next_stop": 319,
+          "connection": 12695,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12695,
+              30218
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30292,
+          "next_clock": 30360,
+          "stop": 319,
+          "next_stop": 470,
+          "connection": 12918,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12918,
+              30302
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30360,
+          "next_clock": 30447,
+          "stop": 470,
+          "next_stop": 563,
+          "connection": 13372,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13372,
+              30372
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30447,
+          "next_clock": 30531,
+          "stop": 563,
+          "next_stop": 406,
+          "connection": 13588,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13588,
+              30464
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30531,
+          "next_clock": 30604,
+          "stop": 406,
+          "next_stop": 509,
+          "connection": 13816,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13816,
+              30548
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30604,
+          "next_clock": 30684,
+          "stop": 509,
+          "next_stop": 430,
+          "connection": 14288,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14288,
+              30619
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30684,
+          "next_clock": 30761,
+          "stop": 430,
+          "next_stop": 321,
+          "connection": 14501,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14501,
+              30697
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30761,
+          "next_clock": 30822,
+          "stop": 321,
+          "next_stop": 560,
+          "connection": 14737,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14737,
+              30780
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30822,
+          "next_clock": 30923,
+          "stop": 560,
+          "next_stop": 607,
+          "connection": 14955,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14955,
+              30836
+            ]
+          ],
+          "while_computing": true
+        }
+      ]
+    },
+    {
+      "date": "2023-07-27",
+      "query": 1,
+      "cpu": 22,
+      "graph_seconds": 0.07966687599946454,
+      "kernel_seconds": 0.0,
+      "method": "scheduled_off64",
+      "clock": "charged",
+      "loss_lower": 1823,
+      "loss_upper": 1823,
+      "status": "arrived",
+      "missing_connection": null,
+      "setup_seconds": 4.7051486630007275,
+      "initial_plan": [
+        8315,
+        8538,
+        8759,
+        9224,
+        9704,
+        9938,
+        10407,
+        10879,
+        11339,
+        11788,
+        12230,
+        12695,
+        12918,
+        13372,
+        13588,
+        13816,
+        14288,
+        14501,
+        14737,
+        14955
+      ],
+      "worker_seconds": 0.0055343649992209976,
+      "worker_cpu_seconds": 0.005331641000001497,
+      "actual_seconds": 4.714410809000583,
+      "actual_cpu_seconds": 4.531500883,
+      "decisions": [
+        {
+          "clock": 29100,
+          "ready_at": 29101,
+          "wall_seconds": 1.5789999451953918e-05,
+          "cpu_seconds": 1.3055000000150585e-05,
+          "active_first": 8315,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 6.770005711587146e-07,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29160,
+          "ready_at": 29161,
+          "wall_seconds": 0.0009434929997951258,
+          "cpu_seconds": 0.0009098160000000632,
+          "active_first": 8538,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0009292129998357268,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29223,
+          "ready_at": 29224,
+          "wall_seconds": 0.0003265089999331394,
+          "cpu_seconds": 0.00031452699999690026,
+          "active_first": 8759,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00031688099988969043,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29323,
+          "ready_at": 29324,
+          "wall_seconds": 0.000274601000455732,
+          "cpu_seconds": 0.000264001000001457,
+          "active_first": 9224,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0002648170002430561,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29446,
+          "ready_at": 29447,
+          "wall_seconds": 0.00028482200013968395,
+          "cpu_seconds": 0.0002742900000001214,
+          "active_first": 9704,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0002773910000541946,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29517,
+          "ready_at": 29518,
+          "wall_seconds": 0.000285946999611042,
+          "cpu_seconds": 0.00027611399999827313,
+          "active_first": 9938,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0002763399998002569,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29598,
+          "ready_at": 29599,
+          "wall_seconds": 0.00025800000003073364,
+          "cpu_seconds": 0.00024856099999936987,
+          "active_first": 10407,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0002502759998606052,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29758,
+          "ready_at": 29759,
+          "wall_seconds": 0.00023723399954178603,
+          "cpu_seconds": 0.00022845400000193195,
+          "active_first": 10879,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00023003099977358943,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29843,
+          "ready_at": 29844,
+          "wall_seconds": 0.00023328899987973273,
+          "cpu_seconds": 0.00022486599999993473,
+          "active_first": 11339,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00022695100051350892,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29933,
+          "ready_at": 29934,
+          "wall_seconds": 0.00023164399954112014,
+          "cpu_seconds": 0.00022320300000089333,
+          "active_first": 11788,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0002249730005132733,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30061,
+          "ready_at": 30062,
+          "wall_seconds": 0.00025747900053829653,
+          "cpu_seconds": 0.0002487910000006366,
+          "active_first": 12230,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0002478200003679376,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30208,
+          "ready_at": 30209,
+          "wall_seconds": 0.0002810019996104529,
+          "cpu_seconds": 0.00027114399999916827,
+          "active_first": 12695,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00027120799950353103,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30292,
+          "ready_at": 30293,
+          "wall_seconds": 0.00025152499983960297,
+          "cpu_seconds": 0.00024280099999884897,
+          "active_first": 12918,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00023150899960455718,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30360,
+          "ready_at": 30361,
+          "wall_seconds": 0.00024016999941522954,
+          "cpu_seconds": 0.0002313390000026061,
+          "active_first": 13372,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00023185300051409286,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30447,
+          "ready_at": 30448,
+          "wall_seconds": 0.00023554800009151222,
+          "cpu_seconds": 0.0002269099999985258,
+          "active_first": 13588,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0002286059998368728,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30531,
+          "ready_at": 30532,
+          "wall_seconds": 0.00024384300013480242,
+          "cpu_seconds": 0.00023422399999972754,
+          "active_first": 13816,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0002337260002605035,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30604,
+          "ready_at": 30605,
+          "wall_seconds": 0.0002369110006839037,
+          "cpu_seconds": 0.0002283130000009237,
+          "active_first": 14288,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00022943800013308646,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30684,
+          "ready_at": 30685,
+          "wall_seconds": 0.00023607799994351808,
+          "cpu_seconds": 0.00022737100000114197,
+          "active_first": 14501,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00022847000036563259,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30761,
+          "ready_at": 30762,
+          "wall_seconds": 0.00023118700028135208,
+          "cpu_seconds": 0.00022281200000051626,
+          "active_first": 14737,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00022476399954030057,
+          "scheduled_skip": true,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30822,
+          "ready_at": 30823,
+          "wall_seconds": 0.0002292930003022775,
+          "cpu_seconds": 0.00022104900000030625,
+          "active_first": 14955,
+          "gate": null,
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00022308899951895,
+          "scheduled_skip": true,
+          "publication": "closed_during_compute"
+        }
+      ],
+      "actions": [
+        {
+          "clock": 29100,
+          "next_clock": 29160,
+          "stop": 427,
+          "next_stop": 614,
+          "connection": 8315,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8315,
+              29126
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29160,
+          "next_clock": 29223,
+          "stop": 614,
+          "next_stop": 3,
+          "connection": 8538,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8538,
+              29175
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29223,
+          "next_clock": 29323,
+          "stop": 3,
+          "next_stop": 568,
+          "connection": 8759,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8759,
+              29240
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29323,
+          "next_clock": 29446,
+          "stop": 568,
+          "next_stop": 88,
+          "connection": 9224,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9224,
+              29341
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29446,
+          "next_clock": 29517,
+          "stop": 88,
+          "next_stop": 647,
+          "connection": 9704,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9704,
+              29464
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29517,
+          "next_clock": 29598,
+          "stop": 647,
+          "next_stop": 606,
+          "connection": 9938,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9938,
+              29530
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29598,
+          "next_clock": 29758,
+          "stop": 606,
+          "next_stop": 592,
+          "connection": 10407,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10407,
+              29669
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29758,
+          "next_clock": 29843,
+          "stop": 592,
+          "next_stop": 495,
+          "connection": 10879,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10879,
+              29774
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29843,
+          "next_clock": 29933,
+          "stop": 495,
+          "next_stop": 164,
+          "connection": 11339,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              11339,
+              29857
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29933,
+          "next_clock": 30061,
+          "stop": 164,
+          "next_stop": 165,
+          "connection": 11788,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              11788,
+              29956
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30061,
+          "next_clock": 30208,
+          "stop": 165,
+          "next_stop": 604,
+          "connection": 12230,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12230,
+              30093
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30208,
+          "next_clock": 30292,
+          "stop": 604,
+          "next_stop": 319,
+          "connection": 12695,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12695,
+              30218
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30292,
+          "next_clock": 30360,
+          "stop": 319,
+          "next_stop": 470,
+          "connection": 12918,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12918,
+              30302
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30360,
+          "next_clock": 30447,
+          "stop": 470,
+          "next_stop": 563,
+          "connection": 13372,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13372,
+              30372
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30447,
+          "next_clock": 30531,
+          "stop": 563,
+          "next_stop": 406,
+          "connection": 13588,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13588,
+              30464
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30531,
+          "next_clock": 30604,
+          "stop": 406,
+          "next_stop": 509,
+          "connection": 13816,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13816,
+              30548
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30604,
+          "next_clock": 30684,
+          "stop": 509,
+          "next_stop": 430,
+          "connection": 14288,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14288,
+              30619
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30684,
+          "next_clock": 30761,
+          "stop": 430,
+          "next_stop": 321,
+          "connection": 14501,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14501,
+              30697
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30761,
+          "next_clock": 30822,
+          "stop": 321,
+          "next_stop": 560,
+          "connection": 14737,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14737,
+              30780
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30822,
+          "next_clock": 30923,
+          "stop": 560,
+          "next_stop": 607,
+          "connection": 14955,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14955,
+              30836
+            ]
+          ],
+          "while_computing": true
+        }
+      ]
+    }
+  ]
+}

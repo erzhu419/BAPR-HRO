@@ -14,7 +14,7 @@ from .trip_belief import TripBelief
 
 
 def nominal_action(graph, state, destination, nominal, menu, deadline, lookahead, root_boardings=None,
-                   minute=1):
+                   minute=1, connection_candidates=None):
     """First executable action of a nominal path within the frozen menu.
 
     Waiting can bring a departure into lookahead or commitment range. With
@@ -31,7 +31,9 @@ def nominal_action(graph, state, destination, nominal, menu, deadline, lookahead
             continue
         if stop == destination:
             return WAIT if first == WAIT or first is None else ("select", first)
-        for c in graph.get_connections_from(stop):
+        departures = (graph.get_connections_from(stop) if connection_candidates is None
+                      else connection_candidates(stop, time))
+        for c in departures:
             same_trip = trip is not None and trip == c.trip_id
             if c.id in state.unavailable_ids or (c.id not in menu and not same_trip):
                 continue

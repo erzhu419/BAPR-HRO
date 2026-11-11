@@ -1,0 +1,5228 @@
+{
+  "protocol": {
+    "source": "experiments/reconstruction_data_audit/city_vbz_dated_replay_v2.json.gz",
+    "methods": [
+      "middle64",
+      "middle128"
+    ],
+    "samples": 128,
+    "tolerance": 60,
+    "alpha_per_journey": 0.05,
+    "mode": "charged",
+    "alpha_rule": "6 alpha / (pi * k)^2, conditional fresh tape per probabilistic check",
+    "contract": "Shared no-feed commitment with preissued policy; accepted gate retains incumbent. Fallback computes on same snapshot and publishes after measured wall time, using public revalidation.",
+    "scheduling": "The scheduled arms bypass a worker if the same public incumbent has an irrevocable attempt due now.",
+    "unresolved": "If an actually attempted connection is unresolved, retain elapsed/deadline loss interval.",
+    "training_dates": [
+      "2023-07-25"
+    ]
+  },
+  "fit_seconds": 0.7665481280000677,
+  "rows": [
+    {
+      "date": "2023-07-26",
+      "query": 0,
+      "cpu": 4,
+      "graph_seconds": 0.1216648539993912,
+      "kernel_seconds": 0.5046941890013841,
+      "method": "middle64",
+      "clock": "charged",
+      "loss_lower": 1491,
+      "loss_upper": 1491,
+      "status": "arrived",
+      "missing_connection": null,
+      "setup_seconds": 4.39804704099879,
+      "initial_plan": [
+        8341,
+        8780,
+        9383,
+        9627,
+        9857,
+        10330
+      ],
+      "worker_seconds": 10.12206218099891,
+      "worker_cpu_seconds": 9.599489793,
+      "actual_seconds": 14.524087783998766,
+      "actual_cpu_seconds": 13.81156984,
+      "decisions": [
+        {
+          "clock": 29100,
+          "ready_at": 29103,
+          "wall_seconds": 2.529389916000582,
+          "cpu_seconds": 2.4348683949999996,
+          "active_first": 8341,
+          "gate": null,
+          "search_seconds": 2.5287615670004016,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 3.6370001907926053e-06,
+          "gate_seconds": 0.0005376850003813161,
+          "proposed_first": 8341,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29185,
+          "ready_at": 29188,
+          "wall_seconds": 2.8823726270002226,
+          "cpu_seconds": 2.8737396980000005,
+          "active_first": 8780,
+          "gate": {
+            "upper": 952.3165267182293,
+            "witness_seconds": 0.005193606999455369,
+            "kind": "middle",
+            "lower": 667.2192808779073,
+            "accepted": false,
+            "alpha": 0.03039635509270134,
+            "worlds": 128,
+            "oracle_mean": 695.9375,
+            "cutoff": 30318,
+            "trips": 1187,
+            "connections": 12934,
+            "corridor_seconds": 0.5690444009997009,
+            "template_seconds": 0.047882846998618334,
+            "draw_seconds": 1.862948829000743,
+            "scan_seconds": 0.01883520000046701
+          },
+          "search_seconds": 0.37694113200086576,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0004883569999947213,
+          "gate_seconds": 2.504910960000416,
+          "proposed_first": 8780,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29306,
+          "ready_at": 29308,
+          "wall_seconds": 1.8392625079995923,
+          "cpu_seconds": 1.6900452269999988,
+          "active_first": 9383,
+          "gate": {
+            "upper": 866.9021594007356,
+            "witness_seconds": 0.001495853999585961,
+            "kind": "middle",
+            "lower": 547.0265433447785,
+            "accepted": false,
+            "alpha": 0.007599088773175335,
+            "worlds": 128,
+            "oracle_mean": 578.6875,
+            "cutoff": 30353,
+            "trips": 1187,
+            "connections": 12933,
+            "corridor_seconds": 0.10606616500081145,
+            "template_seconds": 0.033143838998512365,
+            "draw_seconds": 1.2797847359997832,
+            "scan_seconds": 0.01972787100021378
+          },
+          "search_seconds": 0.3934125430005224,
+          "candidate_seconds": 0.004268661001333385,
+          "transitions": 64,
+          "posterior_update_seconds": 0.00028310599918768276,
+          "gate_seconds": 1.4412303019998944,
+          "proposed_first": 10375,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30146,
+          "ready_at": 30147,
+          "wall_seconds": 0.33443820499996946,
+          "cpu_seconds": 0.30291063399999985,
+          "active_first": 12845,
+          "gate": null,
+          "search_seconds": 0.3304571240005316,
+          "candidate_seconds": 0.003551388001142186,
+          "transitions": 64,
+          "posterior_update_seconds": 0.00027324099937686697,
+          "gate_seconds": 0.00012348899872449692,
+          "proposed_first": 11986,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30308,
+          "ready_at": 30310,
+          "wall_seconds": 1.1725812679997034,
+          "cpu_seconds": 1.0625342500000006,
+          "active_first": 13088,
+          "gate": {
+            "upper": 260.4180072050699,
+            "witness_seconds": 0.0031302350016630953,
+            "terminal_lower": 119.96571569741357,
+            "terminal_seconds": 0.00043651600026350934,
+            "kind": "middle",
+            "lower": 248.0010478341719,
+            "accepted": true,
+            "alpha": 0.0033773727880779263,
+            "worlds": 128,
+            "oracle_mean": 263.71875,
+            "cutoff": 30749,
+            "trips": 601,
+            "connections": 5646,
+            "corridor_seconds": 0.09255922299962549,
+            "template_seconds": 0.04505743699883169,
+            "draw_seconds": 1.0168180159998883,
+            "scan_seconds": 0.012774033000823692
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0003721649991348386,
+          "gate_seconds": 1.172183082000629,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30405,
+          "ready_at": 30407,
+          "wall_seconds": 1.3591897070000414,
+          "cpu_seconds": 1.2310010610000006,
+          "active_first": 13296,
+          "gate": {
+            "upper": 181.91515060218444,
+            "witness_seconds": 0.0039198449994728435,
+            "terminal_lower": 119.96367305001445,
+            "terminal_seconds": 0.00039595899943378754,
+            "kind": "middle",
+            "lower": 173.74509716103785,
+            "accepted": true,
+            "alpha": 0.0018997721932938337,
+            "worlds": 128,
+            "oracle_mean": 185.109375,
+            "cutoff": 30767,
+            "trips": 572,
+            "connections": 5298,
+            "corridor_seconds": 0.16731602199979534,
+            "template_seconds": 0.0636309479996271,
+            "draw_seconds": 1.1094267610005772,
+            "scan_seconds": 0.011777115001677885
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0010636280003382126,
+          "gate_seconds": 1.358097854999869,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30502,
+          "ready_at": 30503,
+          "wall_seconds": 0.004827949998798431,
+          "cpu_seconds": 0.00439052800000006,
+          "active_first": 13741,
+          "gate": {
+            "upper": 75.41995915544112,
+            "witness_seconds": 0.003024390000064159,
+            "terminal_lower": 74.94860973051584,
+            "terminal_seconds": 0.00028438400113373064,
+            "kind": "terminal",
+            "lower": 74.94860973051584,
+            "accepted": true,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.001134557998739183,
+          "gate_seconds": 0.0036681649999081856,
+          "publication": "closed_during_compute"
+        }
+      ],
+      "actions": [
+        {
+          "clock": 29100,
+          "next_clock": 29185,
+          "stop": 530,
+          "next_stop": 594,
+          "connection": 8341,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8341,
+              29115
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29185,
+          "next_clock": 29306,
+          "stop": 594,
+          "next_stop": 606,
+          "connection": 8780,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8780,
+              29213
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29306,
+          "next_clock": 30146,
+          "stop": 606,
+          "next_stop": 606,
+          "connection": 9383,
+          "caught": false,
+          "feedback": [
+            [
+              "wait_late",
+              9383,
+              30146
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30146,
+          "next_clock": 30308,
+          "stop": 606,
+          "next_stop": 647,
+          "connection": 12845,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12845,
+              30248
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30308,
+          "next_clock": 30405,
+          "stop": 647,
+          "next_stop": 88,
+          "connection": 13088,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13088,
+              30333
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30405,
+          "next_clock": 30502,
+          "stop": 88,
+          "next_stop": 568,
+          "connection": 13296,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13296,
+              30427
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30502,
+          "next_clock": 30591,
+          "stop": 568,
+          "next_stop": 3,
+          "connection": 13741,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13741,
+              30520
+            ]
+          ],
+          "while_computing": true
+        }
+      ]
+    },
+    {
+      "date": "2023-07-26",
+      "query": 0,
+      "cpu": 4,
+      "graph_seconds": 0.1216648539993912,
+      "kernel_seconds": 0.5046941890013841,
+      "method": "middle128",
+      "clock": "charged",
+      "loss_lower": 1491,
+      "loss_upper": 1491,
+      "status": "arrived",
+      "missing_connection": null,
+      "setup_seconds": 3.511167369000759,
+      "initial_plan": [
+        8341,
+        8780,
+        9383,
+        9627,
+        9857,
+        10330
+      ],
+      "worker_seconds": 11.13572138499876,
+      "worker_cpu_seconds": 10.630129299999993,
+      "actual_seconds": 14.649377666000873,
+      "actual_cpu_seconds": 13.924527063,
+      "decisions": [
+        {
+          "clock": 29100,
+          "ready_at": 29103,
+          "wall_seconds": 2.8628025550005987,
+          "cpu_seconds": 2.6517290869999997,
+          "active_first": 8341,
+          "gate": null,
+          "search_seconds": 2.8625711139993655,
+          "candidate_seconds": 0.0,
+          "transitions": 128,
+          "posterior_update_seconds": 1.503000021330081e-06,
+          "gate_seconds": 0.00018606800040288363,
+          "proposed_first": 8341,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29185,
+          "ready_at": 29189,
+          "wall_seconds": 3.1201952139999776,
+          "cpu_seconds": 3.0097669590000002,
+          "active_first": 8780,
+          "gate": {
+            "upper": 952.3165267182293,
+            "witness_seconds": 0.003974641998865991,
+            "kind": "middle",
+            "lower": 667.2192808779073,
+            "accepted": false,
+            "alpha": 0.03039635509270134,
+            "worlds": 128,
+            "oracle_mean": 695.9375,
+            "cutoff": 30318,
+            "trips": 1187,
+            "connections": 12934,
+            "corridor_seconds": 0.2535319079997862,
+            "template_seconds": 0.06817767500069749,
+            "draw_seconds": 1.7880604940000921,
+            "scan_seconds": 0.019849624999551452
+          },
+          "search_seconds": 0.984452919999967,
+          "candidate_seconds": 0.0,
+          "transitions": 128,
+          "posterior_update_seconds": 0.0005020149983465672,
+          "gate_seconds": 2.1351950539992686,
+          "proposed_first": 8780,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29306,
+          "ready_at": 29309,
+          "wall_seconds": 2.495169056999657,
+          "cpu_seconds": 2.407766980999998,
+          "active_first": 9383,
+          "gate": {
+            "upper": 866.9021594007356,
+            "witness_seconds": 0.0018768669997371035,
+            "kind": "middle",
+            "lower": 547.0265433447785,
+            "accepted": false,
+            "alpha": 0.007599088773175335,
+            "worlds": 128,
+            "oracle_mean": 578.6875,
+            "cutoff": 30353,
+            "trips": 1187,
+            "connections": 12933,
+            "corridor_seconds": 0.15455768999891006,
+            "template_seconds": 0.054072464001365006,
+            "draw_seconds": 1.5228714340009901,
+            "scan_seconds": 0.017991107999478118
+          },
+          "search_seconds": 0.7381019269996614,
+          "candidate_seconds": 0.003427857000133372,
+          "transitions": 128,
+          "posterior_update_seconds": 0.0010587840006337501,
+          "gate_seconds": 1.7525277380009356,
+          "proposed_first": 10375,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30146,
+          "ready_at": 30147,
+          "wall_seconds": 0.6101057880005101,
+          "cpu_seconds": 0.588868644999998,
+          "active_first": 12845,
+          "gate": null,
+          "search_seconds": 0.606190176000382,
+          "candidate_seconds": 0.0035336089986230945,
+          "transitions": 128,
+          "posterior_update_seconds": 0.0002332479998585768,
+          "gate_seconds": 0.00011616200026765,
+          "proposed_first": 11986,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30308,
+          "ready_at": 30310,
+          "wall_seconds": 1.0376076409993402,
+          "cpu_seconds": 1.0000694269999997,
+          "active_first": 13088,
+          "gate": {
+            "upper": 260.4180072050699,
+            "witness_seconds": 0.002727959999901941,
+            "terminal_lower": 119.96571569741357,
+            "terminal_seconds": 0.00032630300120217726,
+            "kind": "middle",
+            "lower": 248.0010478341719,
+            "accepted": true,
+            "alpha": 0.0033773727880779263,
+            "worlds": 128,
+            "oracle_mean": 263.71875,
+            "cutoff": 30749,
+            "trips": 601,
+            "connections": 5646,
+            "corridor_seconds": 0.08388370900138398,
+            "template_seconds": 0.04100053700130957,
+            "draw_seconds": 0.8966654629984987,
+            "scan_seconds": 0.011691956999129616
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00033460800113971345,
+          "gate_seconds": 1.0372483000010106,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30405,
+          "ready_at": 30407,
+          "wall_seconds": 1.0061129440000514,
+          "cpu_seconds": 0.968334303999999,
+          "active_first": 13296,
+          "gate": {
+            "upper": 181.91515060218444,
+            "witness_seconds": 0.0036666150008386467,
+            "terminal_lower": 119.96367305001445,
+            "terminal_seconds": 0.0005256630010990193,
+            "kind": "middle",
+            "lower": 173.74509716103785,
+            "accepted": true,
+            "alpha": 0.0018997721932938337,
+            "worlds": 128,
+            "oracle_mean": 185.109375,
+            "cutoff": 30767,
+            "trips": 572,
+            "connections": 5298,
+            "corridor_seconds": 0.09349565099910251,
+            "template_seconds": 0.040563470998677076,
+            "draw_seconds": 0.8565167109991307,
+            "scan_seconds": 0.00934568400043645
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0008589430017309496,
+          "gate_seconds": 1.005229116000919,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30502,
+          "ready_at": 30503,
+          "wall_seconds": 0.003728185998625122,
+          "cpu_seconds": 0.003593896999998236,
+          "active_first": 13741,
+          "gate": {
+            "upper": 75.41995915544112,
+            "witness_seconds": 0.002277207999213715,
+            "terminal_lower": 74.94860973051584,
+            "terminal_seconds": 0.0002311469997948734,
+            "kind": "terminal",
+            "lower": 74.94860973051584,
+            "accepted": true,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.000915783000891679,
+          "gate_seconds": 0.002792952998788678,
+          "publication": "closed_during_compute"
+        }
+      ],
+      "actions": [
+        {
+          "clock": 29100,
+          "next_clock": 29185,
+          "stop": 530,
+          "next_stop": 594,
+          "connection": 8341,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8341,
+              29115
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29185,
+          "next_clock": 29306,
+          "stop": 594,
+          "next_stop": 606,
+          "connection": 8780,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8780,
+              29213
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29306,
+          "next_clock": 30146,
+          "stop": 606,
+          "next_stop": 606,
+          "connection": 9383,
+          "caught": false,
+          "feedback": [
+            [
+              "wait_late",
+              9383,
+              30146
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30146,
+          "next_clock": 30308,
+          "stop": 606,
+          "next_stop": 647,
+          "connection": 12845,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12845,
+              30248
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30308,
+          "next_clock": 30405,
+          "stop": 647,
+          "next_stop": 88,
+          "connection": 13088,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13088,
+              30333
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30405,
+          "next_clock": 30502,
+          "stop": 88,
+          "next_stop": 568,
+          "connection": 13296,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13296,
+              30427
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30502,
+          "next_clock": 30591,
+          "stop": 568,
+          "next_stop": 3,
+          "connection": 13741,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13741,
+              30520
+            ]
+          ],
+          "while_computing": true
+        }
+      ]
+    },
+    {
+      "date": "2023-07-26",
+      "query": 1,
+      "cpu": 8,
+      "graph_seconds": 0.1388287740010128,
+      "kernel_seconds": 0.5298730810009147,
+      "method": "middle128",
+      "clock": "charged",
+      "loss_lower": 1886,
+      "loss_upper": 1886,
+      "status": "arrived",
+      "missing_connection": null,
+      "setup_seconds": 7.720475608000925,
+      "initial_plan": [
+        8315,
+        8538,
+        8759,
+        9224,
+        9704,
+        9938,
+        10407,
+        10879,
+        11339,
+        11788,
+        12230,
+        12695,
+        12918,
+        13372,
+        13588,
+        13816,
+        14288,
+        14501,
+        14737,
+        14955
+      ],
+      "worker_seconds": 55.31893398599641,
+      "worker_cpu_seconds": 53.09577895300001,
+      "actual_seconds": 63.04899216500053,
+      "actual_cpu_seconds": 60.541918998,
+      "decisions": [
+        {
+          "clock": 29100,
+          "ready_at": 29104,
+          "wall_seconds": 3.9373817079995206,
+          "cpu_seconds": 3.7392375550000008,
+          "active_first": 8315,
+          "gate": null,
+          "search_seconds": 3.936881210998763,
+          "candidate_seconds": 0.0,
+          "transitions": 128,
+          "posterior_update_seconds": 3.2160005503101274e-06,
+          "gate_seconds": 0.00044147600056021474,
+          "proposed_first": 8315,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29142,
+          "ready_at": 29149,
+          "wall_seconds": 6.243523705999905,
+          "cpu_seconds": 5.828941671000001,
+          "active_first": 8538,
+          "gate": {
+            "upper": 1826.2865299983964,
+            "witness_seconds": 0.00995365199923981,
+            "terminal_lower": 0.0,
+            "terminal_seconds": 4.184600038570352e-05,
+            "kind": "middle",
+            "lower": 1726.7690840497962,
+            "accepted": false,
+            "alpha": 0.03039635509270134,
+            "worlds": 128,
+            "oracle_mean": 1778.0625,
+            "cutoff": 31149,
+            "trips": 1383,
+            "connections": 16039,
+            "corridor_seconds": 0.29427248499996495,
+            "template_seconds": 0.0491240020000987,
+            "draw_seconds": 2.510709071000747,
+            "scan_seconds": 0.053716286000053515
+          },
+          "search_seconds": 3.3220645080000395,
+          "candidate_seconds": 0.0,
+          "transitions": 128,
+          "posterior_update_seconds": 0.0007108589998097159,
+          "gate_seconds": 2.9207093820004957,
+          "proposed_first": 8538,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29213,
+          "ready_at": 29218,
+          "wall_seconds": 4.845154931999787,
+          "cpu_seconds": 4.677835435999999,
+          "active_first": 8759,
+          "gate": {
+            "upper": 1732.1447680897377,
+            "witness_seconds": 0.009154370000032941,
+            "terminal_lower": 0.0,
+            "terminal_seconds": 2.568800118751824e-05,
+            "kind": "middle",
+            "lower": 1640.659101748497,
+            "accepted": false,
+            "alpha": 0.007599088773175335,
+            "worlds": 128,
+            "oracle_mean": 1707.421875,
+            "cutoff": 31126,
+            "trips": 1369,
+            "connections": 15803,
+            "corridor_seconds": 0.12494845399851329,
+            "template_seconds": 0.03340887299964379,
+            "draw_seconds": 1.5416638139995484,
+            "scan_seconds": 0.03407172900006117
+          },
+          "search_seconds": 3.1002713140005653,
+          "candidate_seconds": 0.0,
+          "transitions": 128,
+          "posterior_update_seconds": 0.00046822500007692724,
+          "gate_seconds": 1.7443653589998576,
+          "proposed_first": 8759,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29326,
+          "ready_at": 29331,
+          "wall_seconds": 4.594955987000503,
+          "cpu_seconds": 4.433966073000001,
+          "active_first": 9224,
+          "gate": {
+            "upper": 1636.8539346371144,
+            "witness_seconds": 0.009506375999990269,
+            "terminal_lower": 0.0,
+            "terminal_seconds": 4.904500019620173e-05,
+            "kind": "middle",
+            "lower": 1555.0146295211562,
+            "accepted": false,
+            "alpha": 0.0033773727880779263,
+            "worlds": 128,
+            "oracle_mean": 1628.8515625,
+            "cutoff": 31143,
+            "trips": 1383,
+            "connections": 16037,
+            "corridor_seconds": 0.1453610700009449,
+            "template_seconds": 0.03501684199909505,
+            "draw_seconds": 1.9734533449991432,
+            "scan_seconds": 0.034056593000059365
+          },
+          "search_seconds": 2.3957400559993403,
+          "candidate_seconds": 0.0,
+          "transitions": 128,
+          "posterior_update_seconds": 0.000518912998813903,
+          "gate_seconds": 2.198654349998833,
+          "proposed_first": 9224,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29458,
+          "ready_at": 29464,
+          "wall_seconds": 5.289332247000857,
+          "cpu_seconds": 5.097235669000003,
+          "active_first": 9704,
+          "gate": {
+            "upper": 1524.2997611180106,
+            "witness_seconds": 0.009888955999485916,
+            "terminal_lower": 119.99999999999963,
+            "terminal_seconds": 0.0020765589997608913,
+            "kind": "middle",
+            "lower": 1452.5993235502392,
+            "accepted": false,
+            "alpha": 0.0018997721932938337,
+            "worlds": 128,
+            "oracle_mean": 1528.5,
+            "cutoff": 31163,
+            "trips": 1383,
+            "connections": 16036,
+            "corridor_seconds": 0.1314052490015456,
+            "template_seconds": 0.03526869100096519,
+            "draw_seconds": 1.861604931000329,
+            "scan_seconds": 0.030976525000369293
+          },
+          "search_seconds": 3.2163998509986413,
+          "candidate_seconds": 0.0,
+          "transitions": 128,
+          "posterior_update_seconds": 0.0004964109994034516,
+          "gate_seconds": 2.0723973349995504,
+          "proposed_first": 9704,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29529,
+          "ready_at": 29533,
+          "wall_seconds": 3.468348603000777,
+          "cpu_seconds": 3.343112427000001,
+          "active_first": 9938,
+          "gate": {
+            "upper": 1432.4176947569435,
+            "witness_seconds": 0.009821003999604727,
+            "terminal_lower": 119.99999999996334,
+            "terminal_seconds": 0.002002047000132734,
+            "kind": "middle",
+            "lower": 1351.0072317074628,
+            "accepted": false,
+            "alpha": 0.0012158542037080534,
+            "worlds": 128,
+            "oracle_mean": 1426.2890625,
+            "cutoff": 31142,
+            "trips": 1383,
+            "connections": 16035,
+            "corridor_seconds": 0.1377337260000786,
+            "template_seconds": 0.03485206400000607,
+            "draw_seconds": 1.4819310999992013,
+            "scan_seconds": 0.02856291199896077
+          },
+          "search_seconds": 1.770993598998757,
+          "candidate_seconds": 0.0,
+          "transitions": 128,
+          "posterior_update_seconds": 0.001269551999939722,
+          "gate_seconds": 1.6960408650011232,
+          "proposed_first": 9938,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29594,
+          "ready_at": 29598,
+          "wall_seconds": 3.4190482340000017,
+          "cpu_seconds": 3.296084779999994,
+          "active_first": 10407,
+          "gate": {
+            "upper": 1358.0449935878537,
+            "witness_seconds": 0.00987612799872295,
+            "terminal_lower": 119.99999999999454,
+            "terminal_seconds": 0.0019288370003778255,
+            "kind": "middle",
+            "lower": 1285.2421862151168,
+            "accepted": false,
+            "alpha": 0.0008443431970194816,
+            "worlds": 128,
+            "oracle_mean": 1360.953125,
+            "cutoff": 31133,
+            "trips": 1369,
+            "connections": 15799,
+            "corridor_seconds": 0.1513217669998994,
+            "template_seconds": 0.034490522999476525,
+            "draw_seconds": 1.42846290000125,
+            "scan_seconds": 0.027129787000376382
+          },
+          "search_seconds": 1.7630576609990385,
+          "candidate_seconds": 0.0,
+          "transitions": 128,
+          "posterior_update_seconds": 0.0016165220004040748,
+          "gate_seconds": 1.6543289490000461,
+          "proposed_first": 10407,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29762,
+          "ready_at": 29766,
+          "wall_seconds": 3.056576775999929,
+          "cpu_seconds": 2.946659013999998,
+          "active_first": 10879,
+          "gate": {
+            "upper": 1180.7273748931275,
+            "witness_seconds": 0.011654653000732651,
+            "terminal_lower": 119.99999999999991,
+            "terminal_seconds": 0.0022162840014061658,
+            "kind": "middle",
+            "lower": 1112.2215778365135,
+            "accepted": false,
+            "alpha": 0.0006203337774020681,
+            "worlds": 128,
+            "oracle_mean": 1180.171875,
+            "cutoff": 31123,
+            "trips": 1369,
+            "connections": 15798,
+            "corridor_seconds": 0.15755963000083284,
+            "template_seconds": 0.04120150999915495,
+            "draw_seconds": 1.4369115449990204,
+            "scan_seconds": 0.02409090000037395
+          },
+          "search_seconds": 1.3809625989997585,
+          "candidate_seconds": 0.0,
+          "transitions": 128,
+          "posterior_update_seconds": 0.0008122719991661143,
+          "gate_seconds": 1.6747552960005123,
+          "proposed_first": 10879,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29855,
+          "ready_at": 29859,
+          "wall_seconds": 3.142475448999903,
+          "cpu_seconds": 3.0328164380000047,
+          "active_first": 11339,
+          "gate": {
+            "upper": 1083.5567199215734,
+            "witness_seconds": 0.009338780999314622,
+            "terminal_lower": 119.99999999992161,
+            "terminal_seconds": 0.0016061610003816895,
+            "kind": "middle",
+            "lower": 1017.4747327458608,
+            "accepted": false,
+            "alpha": 0.00047494304832345843,
+            "worlds": 128,
+            "oracle_mean": 1081.90625,
+            "cutoff": 31119,
+            "trips": 1369,
+            "connections": 15797,
+            "corridor_seconds": 0.1340242730002501,
+            "template_seconds": 0.03561792700020305,
+            "draw_seconds": 1.4572050549995765,
+            "scan_seconds": 0.02354418100003386
+          },
+          "search_seconds": 1.4787417669995193,
+          "candidate_seconds": 0.0,
+          "transitions": 128,
+          "posterior_update_seconds": 0.0010510109987080796,
+          "gate_seconds": 1.6626259179993212,
+          "proposed_first": 11339,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29938,
+          "ready_at": 29941,
+          "wall_seconds": 2.7147638499991444,
+          "cpu_seconds": 2.620218775000005,
+          "active_first": 11788,
+          "gate": {
+            "upper": 996.1576941474655,
+            "witness_seconds": 0.009211114998834091,
+            "terminal_lower": 119.99999999996984,
+            "terminal_seconds": 0.0015324030009651324,
+            "kind": "middle",
+            "lower": 930.4974149061454,
+            "accepted": false,
+            "alpha": 0.0003752636431197696,
+            "worlds": 128,
+            "oracle_mean": 991.3203125,
+            "cutoff": 31115,
+            "trips": 1369,
+            "connections": 15796,
+            "corridor_seconds": 0.1326170419997652,
+            "template_seconds": 0.03479125700141594,
+            "draw_seconds": 1.448755538000114,
+            "scan_seconds": 0.022213653999642702
+          },
+          "search_seconds": 1.0629928859998472,
+          "candidate_seconds": 0.0,
+          "transitions": 128,
+          "posterior_update_seconds": 0.0014659230000688694,
+          "gate_seconds": 1.6502635969991388,
+          "proposed_first": 11788,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30103,
+          "ready_at": 30105,
+          "wall_seconds": 1.5795856540007662,
+          "cpu_seconds": 1.5246199930000017,
+          "active_first": 12230,
+          "gate": {
+            "upper": 826.16631380832,
+            "witness_seconds": 0.008972133000497706,
+            "terminal_lower": 119.9999999990993,
+            "terminal_seconds": 0.0012863409992860397,
+            "kind": "middle",
+            "lower": 772.8773662622552,
+            "accepted": true,
+            "alpha": 0.00030396355092701335,
+            "worlds": 128,
+            "oracle_mean": 825.234375,
+            "cutoff": 31110,
+            "trips": 1369,
+            "connections": 15795,
+            "corridor_seconds": 0.1187313529990206,
+            "template_seconds": 0.0316060209988791,
+            "draw_seconds": 1.3980791719986883,
+            "scan_seconds": 0.019074784000622458
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.000745208999433089,
+          "gate_seconds": 1.5788175280013093,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30287,
+          "ready_at": 30289,
+          "wall_seconds": 1.5784484159994463,
+          "cpu_seconds": 1.5236549789999998,
+          "active_first": 12695,
+          "gate": {
+            "upper": 650.31627726374,
+            "witness_seconds": 0.008340690001205076,
+            "terminal_lower": 119.9999999999506,
+            "terminal_seconds": 0.0011361639990354888,
+            "kind": "middle",
+            "lower": 603.1756200724849,
+            "accepted": true,
+            "alpha": 0.0002512095462206723,
+            "worlds": 128,
+            "oracle_mean": 645.3984375,
+            "cutoff": 31118,
+            "trips": 1359,
+            "connections": 15781,
+            "corridor_seconds": 0.1232278290008253,
+            "template_seconds": 0.031361464998553856,
+            "draw_seconds": 1.3946393189999071,
+            "scan_seconds": 0.017143600000053993
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.001466452000386198,
+          "gate_seconds": 1.5769562229997973,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30372,
+          "ready_at": 30374,
+          "wall_seconds": 1.6086195859988948,
+          "cpu_seconds": 1.5525962290000024,
+          "active_first": 12918,
+          "gate": {
+            "upper": 581.7463723938527,
+            "witness_seconds": 0.008402624000154901,
+            "terminal_lower": 119.99999999943783,
+            "terminal_seconds": 0.0011107150003226707,
+            "kind": "middle",
+            "lower": 540.9306038908835,
+            "accepted": true,
+            "alpha": 0.0002110857992548704,
+            "worlds": 128,
+            "oracle_mean": 580.4609375,
+            "cutoff": 31134,
+            "trips": 1358,
+            "connections": 15770,
+            "corridor_seconds": 0.13487119599994912,
+            "template_seconds": 0.03205024199996842,
+            "draw_seconds": 1.4146618510003464,
+            "scan_seconds": 0.014889739999489393
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.001508508999904734,
+          "gate_seconds": 1.6070840609991137,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30446,
+          "ready_at": 30448,
+          "wall_seconds": 1.619360714999857,
+          "cpu_seconds": 1.5630839369999947,
+          "active_first": 13372,
+          "gate": {
+            "upper": 517.027235460177,
+            "witness_seconds": 0.007563307999589597,
+            "terminal_lower": 119.99999999998626,
+            "terminal_seconds": 0.0010458710003149463,
+            "kind": "middle",
+            "lower": 478.95546841071337,
+            "accepted": true,
+            "alpha": 0.00017986008930592504,
+            "worlds": 128,
+            "oracle_mean": 514.078125,
+            "cutoff": 31144,
+            "trips": 1322,
+            "connections": 15559,
+            "corridor_seconds": 0.12724967900066986,
+            "template_seconds": 0.033754783999029314,
+            "draw_seconds": 1.4317525999995269,
+            "scan_seconds": 0.015191465001407778
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.001708698999209446,
+          "gate_seconds": 1.6176289440008986,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30534,
+          "ready_at": 30536,
+          "wall_seconds": 1.581011704998673,
+          "cpu_seconds": 1.5260451930000016,
+          "active_first": 13588,
+          "gate": {
+            "upper": 423.93366526947307,
+            "witness_seconds": 0.007247913999890443,
+            "terminal_lower": 119.99999978133908,
+            "terminal_seconds": 0.000946119998843642,
+            "kind": "middle",
+            "lower": 388.6104000805062,
+            "accepted": true,
+            "alpha": 0.00015508344435051703,
+            "worlds": 128,
+            "oracle_mean": 417.7734375,
+            "cutoff": 31138,
+            "trips": 1298,
+            "connections": 15193,
+            "corridor_seconds": 0.1375801459998911,
+            "template_seconds": 0.03852403099881485,
+            "draw_seconds": 1.3798875610009418,
+            "scan_seconds": 0.013748113000474405
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0019377709995751502,
+          "gate_seconds": 1.579046732000279,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30603,
+          "ready_at": 30605,
+          "wall_seconds": 1.8950253790007991,
+          "cpu_seconds": 1.8290059399999947,
+          "active_first": 13816,
+          "gate": {
+            "upper": 356.87766413600207,
+            "witness_seconds": 0.006709063000016613,
+            "terminal_lower": 119.99999766832164,
+            "terminal_seconds": 0.000727478000044357,
+            "kind": "middle",
+            "lower": 329.3573670803744,
+            "accepted": true,
+            "alpha": 0.0001350949115231171,
+            "worlds": 128,
+            "oracle_mean": 355.0390625,
+            "cutoff": 31140,
+            "trips": 982,
+            "connections": 12684,
+            "corridor_seconds": 0.12083362199882686,
+            "template_seconds": 0.033003204998749425,
+            "draw_seconds": 1.7088064919989847,
+            "scan_seconds": 0.021642155999870738
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.001863364999735495,
+          "gate_seconds": 1.8931339499995374,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30681,
+          "ready_at": 30684,
+          "wall_seconds": 2.5526403280000522,
+          "cpu_seconds": 2.4626389169999996,
+          "active_first": 14288,
+          "gate": {
+            "upper": 284.8619138303211,
+            "witness_seconds": 0.009963364998839097,
+            "terminal_lower": 119.99998312212027,
+            "terminal_seconds": 0.001160579000497819,
+            "kind": "middle",
+            "lower": 262.4393721358938,
+            "accepted": true,
+            "alpha": 0.00011873576208086461,
+            "worlds": 128,
+            "oracle_mean": 283.9921875,
+            "cutoff": 31146,
+            "trips": 639,
+            "connections": 6353,
+            "corridor_seconds": 0.21995875199900183,
+            "template_seconds": 0.06931143100155168,
+            "draw_seconds": 2.222498514000108,
+            "scan_seconds": 0.02488637500027835
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0017420770000171615,
+          "gate_seconds": 2.5508319359996676,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30772,
+          "ready_at": 30775,
+          "wall_seconds": 2.173363822999818,
+          "cpu_seconds": 2.079537066999997,
+          "active_first": 14501,
+          "gate": {
+            "upper": 191.38720886550755,
+            "witness_seconds": 0.016457288000310655,
+            "terminal_lower": 119.95024588227653,
+            "terminal_seconds": 0.0015658960001019295,
+            "kind": "middle",
+            "lower": 177.61586041626288,
+            "accepted": true,
+            "alpha": 0.00010517769928270359,
+            "worlds": 128,
+            "oracle_mean": 193.2109375,
+            "cutoff": 31144,
+            "trips": 444,
+            "connections": 3525,
+            "corridor_seconds": 0.23324662300001364,
+            "template_seconds": 0.06516463899970404,
+            "draw_seconds": 1.8404347710002185,
+            "scan_seconds": 0.012000876000456628
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.002289670001118793,
+          "gate_seconds": 2.1709581909999542,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30847,
+          "ready_at": 30848,
+          "wall_seconds": 0.011238318998948671,
+          "cpu_seconds": 0.010756313000001683,
+          "active_first": 14737,
+          "gate": {
+            "upper": 118.83327379411139,
+            "witness_seconds": 0.007688746998610441,
+            "terminal_lower": 110.41374251887318,
+            "terminal_seconds": 0.0009323909998784075,
+            "kind": "terminal",
+            "lower": 110.41374251887318,
+            "accepted": true,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0019293960012873868,
+          "gate_seconds": 0.009258789999876171,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30903,
+          "ready_at": 30904,
+          "wall_seconds": 0.008078568998826086,
+          "cpu_seconds": 0.007732547000003365,
+          "active_first": 14955,
+          "gate": {
+            "upper": 61.46019256276327,
+            "witness_seconds": 0.005692140000974177,
+            "terminal_lower": 61.400238164504216,
+            "terminal_seconds": 0.0001874249992397381,
+            "kind": "terminal",
+            "lower": 61.400238164504216,
+            "accepted": true,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0017072390000976156,
+          "gate_seconds": 0.006337048000204959,
+          "publication": "closed_during_compute"
+        }
+      ],
+      "actions": [
+        {
+          "clock": 29100,
+          "next_clock": 29142,
+          "stop": 427,
+          "next_stop": 614,
+          "connection": 8315,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8315,
+              29104
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29142,
+          "next_clock": 29213,
+          "stop": 614,
+          "next_stop": 3,
+          "connection": 8538,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8538,
+              29157
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29213,
+          "next_clock": 29326,
+          "stop": 3,
+          "next_stop": 568,
+          "connection": 8759,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8759,
+              29230
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29326,
+          "next_clock": 29458,
+          "stop": 568,
+          "next_stop": 88,
+          "connection": 9224,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9224,
+              29391
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29458,
+          "next_clock": 29529,
+          "stop": 88,
+          "next_stop": 647,
+          "connection": 9704,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9704,
+              29475
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29529,
+          "next_clock": 29594,
+          "stop": 647,
+          "next_stop": 606,
+          "connection": 9938,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9938,
+              29540
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29594,
+          "next_clock": 29762,
+          "stop": 606,
+          "next_stop": 592,
+          "connection": 10407,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10407,
+              29643
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29762,
+          "next_clock": 29855,
+          "stop": 592,
+          "next_stop": 495,
+          "connection": 10879,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10879,
+              29786
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29855,
+          "next_clock": 29938,
+          "stop": 495,
+          "next_stop": 164,
+          "connection": 11339,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              11339,
+              29875
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29938,
+          "next_clock": 30103,
+          "stop": 164,
+          "next_stop": 165,
+          "connection": 11788,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              11788,
+              29991
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30103,
+          "next_clock": 30287,
+          "stop": 165,
+          "next_stop": 604,
+          "connection": 12230,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12230,
+              30158
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30287,
+          "next_clock": 30372,
+          "stop": 604,
+          "next_stop": 319,
+          "connection": 12695,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12695,
+              30302
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30372,
+          "next_clock": 30446,
+          "stop": 319,
+          "next_stop": 470,
+          "connection": 12918,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12918,
+              30387
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30446,
+          "next_clock": 30534,
+          "stop": 470,
+          "next_stop": 563,
+          "connection": 13372,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13372,
+              30460
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30534,
+          "next_clock": 30603,
+          "stop": 563,
+          "next_stop": 406,
+          "connection": 13588,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13588,
+              30547
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30603,
+          "next_clock": 30681,
+          "stop": 406,
+          "next_stop": 509,
+          "connection": 13816,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13816,
+              30614
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30681,
+          "next_clock": 30772,
+          "stop": 509,
+          "next_stop": 430,
+          "connection": 14288,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14288,
+              30700
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30772,
+          "next_clock": 30847,
+          "stop": 430,
+          "next_stop": 321,
+          "connection": 14501,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14501,
+              30783
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30847,
+          "next_clock": 30903,
+          "stop": 321,
+          "next_stop": 560,
+          "connection": 14737,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14737,
+              30861
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30903,
+          "next_clock": 30986,
+          "stop": 560,
+          "next_stop": 607,
+          "connection": 14955,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14955,
+              30916
+            ]
+          ],
+          "while_computing": true
+        }
+      ]
+    },
+    {
+      "date": "2023-07-26",
+      "query": 1,
+      "cpu": 8,
+      "graph_seconds": 0.1388287740010128,
+      "kernel_seconds": 0.5298730810009147,
+      "method": "middle64",
+      "clock": "charged",
+      "loss_lower": 1886,
+      "loss_upper": 1886,
+      "status": "arrived",
+      "missing_connection": null,
+      "setup_seconds": 6.65666578300079,
+      "initial_plan": [
+        8315,
+        8538,
+        8759,
+        9224,
+        9704,
+        9938,
+        10407,
+        10879,
+        11339,
+        11788,
+        12230,
+        12695,
+        12918,
+        13372,
+        13588,
+        13816,
+        14288,
+        14501,
+        14737,
+        14955
+      ],
+      "worker_seconds": 48.33080236800015,
+      "worker_cpu_seconds": 45.82264468599999,
+      "actual_seconds": 54.99503072100015,
+      "actual_cpu_seconds": 52.208699591,
+      "decisions": [
+        {
+          "clock": 29100,
+          "ready_at": 29103,
+          "wall_seconds": 2.626448850998713,
+          "cpu_seconds": 2.5332838979999934,
+          "active_first": 8315,
+          "gate": null,
+          "search_seconds": 2.626245497000127,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 8.09999619377777e-07,
+          "gate_seconds": 0.0001624689994059736,
+          "proposed_first": 8315,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29142,
+          "ready_at": 29148,
+          "wall_seconds": 5.153378705999785,
+          "cpu_seconds": 4.969645826999994,
+          "active_first": 8538,
+          "gate": {
+            "upper": 1826.2865299983964,
+            "witness_seconds": 0.011453438000899041,
+            "terminal_lower": 0.0,
+            "terminal_seconds": 5.182300083106384e-05,
+            "kind": "middle",
+            "lower": 1726.7690840497962,
+            "accepted": false,
+            "alpha": 0.03039635509270134,
+            "worlds": 128,
+            "oracle_mean": 1778.0625,
+            "cutoff": 31149,
+            "trips": 1383,
+            "connections": 16039,
+            "corridor_seconds": 0.27858221199858235,
+            "template_seconds": 0.04296056700150075,
+            "draw_seconds": 2.2351727550012583,
+            "scan_seconds": 0.05025089199989452
+          },
+          "search_seconds": 2.5321086439998908,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0008117029992718017,
+          "gate_seconds": 2.6203973649990076,
+          "proposed_first": 8538,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29213,
+          "ready_at": 29219,
+          "wall_seconds": 5.133489315001498,
+          "cpu_seconds": 4.897993295999996,
+          "active_first": 8759,
+          "gate": {
+            "upper": 1732.1447680897377,
+            "witness_seconds": 0.010759339998912765,
+            "terminal_lower": 0.0,
+            "terminal_seconds": 5.092699939268641e-05,
+            "kind": "middle",
+            "lower": 1640.659101748497,
+            "accepted": false,
+            "alpha": 0.007599088773175335,
+            "worlds": 128,
+            "oracle_mean": 1707.421875,
+            "cutoff": 31126,
+            "trips": 1369,
+            "connections": 15803,
+            "corridor_seconds": 0.22393652199934877,
+            "template_seconds": 0.0479854940003861,
+            "draw_seconds": 2.5269500089998473,
+            "scan_seconds": 0.05426146500030882
+          },
+          "search_seconds": 2.2650595619998057,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.001975729999685427,
+          "gate_seconds": 2.8663513639985467,
+          "proposed_first": 8759,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29326,
+          "ready_at": 29330,
+          "wall_seconds": 3.7629223139992973,
+          "cpu_seconds": 3.5479281319999956,
+          "active_first": 9224,
+          "gate": {
+            "upper": 1636.8539346371144,
+            "witness_seconds": 0.010031432999312528,
+            "terminal_lower": 0.0,
+            "terminal_seconds": 4.1403000068385154e-05,
+            "kind": "middle",
+            "lower": 1555.0146295211562,
+            "accepted": false,
+            "alpha": 0.0033773727880779263,
+            "worlds": 128,
+            "oracle_mean": 1628.8515625,
+            "cutoff": 31143,
+            "trips": 1383,
+            "connections": 16037,
+            "corridor_seconds": 0.1738082529991516,
+            "template_seconds": 0.05223505100002512,
+            "draw_seconds": 1.7099253619999217,
+            "scan_seconds": 0.03611197000100219
+          },
+          "search_seconds": 1.7789421649995347,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0004686249994847458,
+          "gate_seconds": 1.9834624000013719,
+          "proposed_first": 9224,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29458,
+          "ready_at": 29463,
+          "wall_seconds": 4.143006410000453,
+          "cpu_seconds": 3.8929915080000086,
+          "active_first": 9704,
+          "gate": {
+            "upper": 1524.2997611180106,
+            "witness_seconds": 0.014890065998770297,
+            "terminal_lower": 119.99999999999963,
+            "terminal_seconds": 0.0028266150002309587,
+            "kind": "middle",
+            "lower": 1452.5993235502392,
+            "accepted": false,
+            "alpha": 0.0018997721932938337,
+            "worlds": 128,
+            "oracle_mean": 1528.5,
+            "cutoff": 31163,
+            "trips": 1383,
+            "connections": 16036,
+            "corridor_seconds": 0.17781971000113117,
+            "template_seconds": 0.045017385000392096,
+            "draw_seconds": 1.548474477000127,
+            "scan_seconds": 0.03133548799996788
+          },
+          "search_seconds": 2.320713168999646,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0005327090002538171,
+          "gate_seconds": 1.821705127000314,
+          "proposed_first": 9704,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29529,
+          "ready_at": 29534,
+          "wall_seconds": 4.899065845000223,
+          "cpu_seconds": 4.560569357000006,
+          "active_first": 9938,
+          "gate": {
+            "upper": 1432.4176947569435,
+            "witness_seconds": 0.013063832000625553,
+            "terminal_lower": 119.99999999996334,
+            "terminal_seconds": 0.0025388159992871806,
+            "kind": "middle",
+            "lower": 1351.0072317074628,
+            "accepted": false,
+            "alpha": 0.0012158542037080534,
+            "worlds": 128,
+            "oracle_mean": 1426.2890625,
+            "cutoff": 31142,
+            "trips": 1383,
+            "connections": 16035,
+            "corridor_seconds": 0.24807121099911456,
+            "template_seconds": 0.06577574599941727,
+            "draw_seconds": 2.751789258998542,
+            "scan_seconds": 0.04049532399949385
+          },
+          "search_seconds": 1.7744715389999328,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0013701770003535785,
+          "gate_seconds": 3.123162219999358,
+          "proposed_first": 9938,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29594,
+          "ready_at": 29599,
+          "wall_seconds": 4.299044544000935,
+          "cpu_seconds": 3.8853953109999964,
+          "active_first": 10407,
+          "gate": {
+            "upper": 1358.0449935878537,
+            "witness_seconds": 0.012611561000085203,
+            "terminal_lower": 119.99999999999454,
+            "terminal_seconds": 0.0023219890008476796,
+            "kind": "middle",
+            "lower": 1285.2421862151168,
+            "accepted": false,
+            "alpha": 0.0008443431970194816,
+            "worlds": 128,
+            "oracle_mean": 1360.953125,
+            "cutoff": 31133,
+            "trips": 1369,
+            "connections": 15799,
+            "corridor_seconds": 0.2519493109994073,
+            "template_seconds": 0.06242900400138751,
+            "draw_seconds": 3.009968428999855,
+            "scan_seconds": 0.030120639999950072
+          },
+          "search_seconds": 0.9265797660009412,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0014485140000033425,
+          "gate_seconds": 3.3709690410014446,
+          "proposed_first": 10407,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29762,
+          "ready_at": 29765,
+          "wall_seconds": 2.350896403000661,
+          "cpu_seconds": 2.216232462999997,
+          "active_first": 10879,
+          "gate": {
+            "upper": 1180.7273748931275,
+            "witness_seconds": 0.009756329000083497,
+            "terminal_lower": 119.99999999999991,
+            "terminal_seconds": 0.0017781070000637555,
+            "kind": "middle",
+            "lower": 1112.2215778365135,
+            "accepted": false,
+            "alpha": 0.0006203337774020681,
+            "worlds": 128,
+            "oracle_mean": 1180.171875,
+            "cutoff": 31123,
+            "trips": 1369,
+            "connections": 15798,
+            "corridor_seconds": 0.1332918719999725,
+            "template_seconds": 0.03754697299882537,
+            "draw_seconds": 1.468142216999695,
+            "scan_seconds": 0.023354853999990155
+          },
+          "search_seconds": 0.6750761139992392,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.000718424000297091,
+          "gate_seconds": 1.6750591439995333,
+          "proposed_first": 10879,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29855,
+          "ready_at": 29858,
+          "wall_seconds": 2.5652669190003508,
+          "cpu_seconds": 2.4515786069999876,
+          "active_first": 11339,
+          "gate": {
+            "upper": 1083.5567199215734,
+            "witness_seconds": 0.010900478999246843,
+            "terminal_lower": 119.99999999992161,
+            "terminal_seconds": 0.0015519509997830028,
+            "kind": "middle",
+            "lower": 1017.4747327458608,
+            "accepted": false,
+            "alpha": 0.00047494304832345843,
+            "worlds": 128,
+            "oracle_mean": 1081.90625,
+            "cutoff": 31119,
+            "trips": 1369,
+            "connections": 15797,
+            "corridor_seconds": 0.14171468600034132,
+            "template_seconds": 0.03975759499917331,
+            "draw_seconds": 1.5074810219994106,
+            "scan_seconds": 0.022526404000018374
+          },
+          "search_seconds": 0.8391131910011609,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0010770030003186548,
+          "gate_seconds": 1.7250390459994378,
+          "proposed_first": 11339,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29938,
+          "ready_at": 29941,
+          "wall_seconds": 2.1373556639991875,
+          "cpu_seconds": 2.0486886890000022,
+          "active_first": 11788,
+          "gate": {
+            "upper": 996.1576941474655,
+            "witness_seconds": 0.00955393700132845,
+            "terminal_lower": 119.99999999996984,
+            "terminal_seconds": 0.0013272520009195432,
+            "kind": "middle",
+            "lower": 930.4974149061454,
+            "accepted": false,
+            "alpha": 0.0003752636431197696,
+            "worlds": 128,
+            "oracle_mean": 991.3203125,
+            "cutoff": 31115,
+            "trips": 1369,
+            "connections": 15796,
+            "corridor_seconds": 0.12481112000023131,
+            "template_seconds": 0.037691862000428955,
+            "draw_seconds": 1.443722362000699,
+            "scan_seconds": 0.02199321999978565
+          },
+          "search_seconds": 0.49614834199928737,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0010035660016001202,
+          "gate_seconds": 1.6401625710004737,
+          "proposed_first": 11788,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30103,
+          "ready_at": 30105,
+          "wall_seconds": 1.6118176969994238,
+          "cpu_seconds": 1.5459534299999973,
+          "active_first": 12230,
+          "gate": {
+            "upper": 826.16631380832,
+            "witness_seconds": 0.008898991998648853,
+            "terminal_lower": 119.9999999990993,
+            "terminal_seconds": 0.0013905920004617656,
+            "kind": "middle",
+            "lower": 772.8773662622552,
+            "accepted": true,
+            "alpha": 0.00030396355092701335,
+            "worlds": 128,
+            "oracle_mean": 825.234375,
+            "cutoff": 31110,
+            "trips": 1369,
+            "connections": 15795,
+            "corridor_seconds": 0.1278492550009105,
+            "template_seconds": 0.03542892900077277,
+            "draw_seconds": 1.416369370999746,
+            "scan_seconds": 0.01982068100005563
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0009422290004295064,
+          "gate_seconds": 1.6108505539996258,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30287,
+          "ready_at": 30289,
+          "wall_seconds": 1.6422976199992263,
+          "cpu_seconds": 1.5745733420000079,
+          "active_first": 12695,
+          "gate": {
+            "upper": 650.31627726374,
+            "witness_seconds": 0.00863186999958998,
+            "terminal_lower": 119.9999999999506,
+            "terminal_seconds": 0.0012187199990876252,
+            "kind": "middle",
+            "lower": 603.1756200724849,
+            "accepted": true,
+            "alpha": 0.0002512095462206723,
+            "worlds": 128,
+            "oracle_mean": 645.3984375,
+            "cutoff": 31118,
+            "trips": 1359,
+            "connections": 15781,
+            "corridor_seconds": 0.1207822149990534,
+            "template_seconds": 0.03764469899942924,
+            "draw_seconds": 1.4551017750000028,
+            "scan_seconds": 0.016342577000614256
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.001354334999632556,
+          "gate_seconds": 1.640912662998744,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30372,
+          "ready_at": 30374,
+          "wall_seconds": 1.6011478830005217,
+          "cpu_seconds": 1.5394579640000075,
+          "active_first": 12918,
+          "gate": {
+            "upper": 581.7463723938527,
+            "witness_seconds": 0.008105255999907968,
+            "terminal_lower": 119.99999999943783,
+            "terminal_seconds": 0.0010660759999154834,
+            "kind": "middle",
+            "lower": 540.9306038908835,
+            "accepted": true,
+            "alpha": 0.0002110857992548704,
+            "worlds": 128,
+            "oracle_mean": 580.4609375,
+            "cutoff": 31134,
+            "trips": 1358,
+            "connections": 15770,
+            "corridor_seconds": 0.12637331500081928,
+            "template_seconds": 0.036293228000431554,
+            "draw_seconds": 1.4113081229988893,
+            "scan_seconds": 0.01504141300029005
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0016640630001347745,
+          "gate_seconds": 1.5994556540008489,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30446,
+          "ready_at": 30448,
+          "wall_seconds": 1.608178690999921,
+          "cpu_seconds": 1.546023673999997,
+          "active_first": 13372,
+          "gate": {
+            "upper": 517.027235460177,
+            "witness_seconds": 0.007606093000504188,
+            "terminal_lower": 119.99999999998626,
+            "terminal_seconds": 0.0009364599991386058,
+            "kind": "middle",
+            "lower": 478.95546841071337,
+            "accepted": true,
+            "alpha": 0.00017986008930592504,
+            "worlds": 128,
+            "oracle_mean": 514.078125,
+            "cutoff": 31144,
+            "trips": 1322,
+            "connections": 15559,
+            "corridor_seconds": 0.1283273110002483,
+            "template_seconds": 0.03715819599892711,
+            "draw_seconds": 1.4159428129987646,
+            "scan_seconds": 0.015491384001506958
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0016701130007277243,
+          "gate_seconds": 1.6064843680014746,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30534,
+          "ready_at": 30536,
+          "wall_seconds": 1.5404117369998858,
+          "cpu_seconds": 1.4897639429999998,
+          "active_first": 13588,
+          "gate": {
+            "upper": 423.93366526947307,
+            "witness_seconds": 0.007066792999466998,
+            "terminal_lower": 119.99999978133908,
+            "terminal_seconds": 0.0008430380003119353,
+            "kind": "middle",
+            "lower": 388.6104000805062,
+            "accepted": true,
+            "alpha": 0.00015508344435051703,
+            "worlds": 128,
+            "oracle_mean": 417.7734375,
+            "cutoff": 31138,
+            "trips": 1298,
+            "connections": 15193,
+            "corridor_seconds": 0.10849560600036057,
+            "template_seconds": 0.032325181000487646,
+            "draw_seconds": 1.3756912310000189,
+            "scan_seconds": 0.013597021001260146
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0012460709986044094,
+          "gate_seconds": 1.5391403789999458,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30603,
+          "ready_at": 30605,
+          "wall_seconds": 1.3694143220000115,
+          "cpu_seconds": 1.3118444210000035,
+          "active_first": 13816,
+          "gate": {
+            "upper": 356.87766413600207,
+            "witness_seconds": 0.006395927999619744,
+            "terminal_lower": 119.99999766832164,
+            "terminal_seconds": 0.0006389790014509344,
+            "kind": "middle",
+            "lower": 329.3573670803744,
+            "accepted": true,
+            "alpha": 0.0001350949115231171,
+            "worlds": 128,
+            "oracle_mean": 355.0390625,
+            "cutoff": 31140,
+            "trips": 982,
+            "connections": 12684,
+            "corridor_seconds": 0.10916035800073587,
+            "template_seconds": 0.034270283998921514,
+            "draw_seconds": 1.2031250700001692,
+            "scan_seconds": 0.012879518999397987
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0017971079996641492,
+          "gate_seconds": 1.3675893049985461,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30681,
+          "ready_at": 30683,
+          "wall_seconds": 1.0905653329991765,
+          "cpu_seconds": 1.0408094670000025,
+          "active_first": 14288,
+          "gate": {
+            "upper": 284.8619138303211,
+            "witness_seconds": 0.00608498099973076,
+            "terminal_lower": 119.99998312212027,
+            "terminal_seconds": 0.0006165710001369007,
+            "kind": "middle",
+            "lower": 262.4393721358938,
+            "accepted": true,
+            "alpha": 0.00011873576208086461,
+            "worlds": 128,
+            "oracle_mean": 283.9921875,
+            "cutoff": 31146,
+            "trips": 639,
+            "connections": 6353,
+            "corridor_seconds": 0.0939747640004498,
+            "template_seconds": 0.03906936000021233,
+            "draw_seconds": 0.9374271409997164,
+            "scan_seconds": 0.010607431999233086
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0017046820012183161,
+          "gate_seconds": 1.088836421000451,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30772,
+          "ready_at": 30773,
+          "wall_seconds": 0.786415869000848,
+          "cpu_seconds": 0.760548397000008,
+          "active_first": 14501,
+          "gate": {
+            "upper": 191.38720886550755,
+            "witness_seconds": 0.00480313899970497,
+            "terminal_lower": 119.95024588227653,
+            "terminal_seconds": 0.0003385250001883833,
+            "kind": "middle",
+            "lower": 177.61586041626288,
+            "accepted": true,
+            "alpha": 0.00010517769928270359,
+            "worlds": 128,
+            "oracle_mean": 193.2109375,
+            "cutoff": 31144,
+            "trips": 444,
+            "connections": 3525,
+            "corridor_seconds": 0.07325197399950412,
+            "template_seconds": 0.034732189000351354,
+            "draw_seconds": 0.6605138499999157,
+            "scan_seconds": 0.009919484000420198
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0018389599990769057,
+          "gate_seconds": 0.7845513829997799,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30847,
+          "ready_at": 30848,
+          "wall_seconds": 0.005789883000034024,
+          "cpu_seconds": 0.005601223999988747,
+          "active_first": 14737,
+          "gate": {
+            "upper": 118.83327379411139,
+            "witness_seconds": 0.0038141779987199698,
+            "terminal_lower": 110.41374251887318,
+            "terminal_seconds": 0.00024749700060056057,
+            "kind": "terminal",
+            "lower": 110.41374251887318,
+            "accepted": true,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0015011300001788186,
+          "gate_seconds": 0.0042748500000016065,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30903,
+          "ready_at": 30904,
+          "wall_seconds": 0.003888361999997869,
+          "cpu_seconds": 0.0037617360000012923,
+          "active_first": 14955,
+          "gate": {
+            "upper": 61.46019256276327,
+            "witness_seconds": 0.002717716999541153,
+            "terminal_lower": 61.400238164504216,
+            "terminal_seconds": 7.455600098182913e-05,
+            "kind": "terminal",
+            "lower": 61.400238164504216,
+            "accepted": true,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.000981978000709205,
+          "gate_seconds": 0.002897100999689428,
+          "publication": "closed_during_compute"
+        }
+      ],
+      "actions": [
+        {
+          "clock": 29100,
+          "next_clock": 29142,
+          "stop": 427,
+          "next_stop": 614,
+          "connection": 8315,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8315,
+              29104
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29142,
+          "next_clock": 29213,
+          "stop": 614,
+          "next_stop": 3,
+          "connection": 8538,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8538,
+              29157
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29213,
+          "next_clock": 29326,
+          "stop": 3,
+          "next_stop": 568,
+          "connection": 8759,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8759,
+              29230
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29326,
+          "next_clock": 29458,
+          "stop": 568,
+          "next_stop": 88,
+          "connection": 9224,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9224,
+              29391
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29458,
+          "next_clock": 29529,
+          "stop": 88,
+          "next_stop": 647,
+          "connection": 9704,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9704,
+              29475
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29529,
+          "next_clock": 29594,
+          "stop": 647,
+          "next_stop": 606,
+          "connection": 9938,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9938,
+              29540
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29594,
+          "next_clock": 29762,
+          "stop": 606,
+          "next_stop": 592,
+          "connection": 10407,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10407,
+              29643
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29762,
+          "next_clock": 29855,
+          "stop": 592,
+          "next_stop": 495,
+          "connection": 10879,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10879,
+              29786
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29855,
+          "next_clock": 29938,
+          "stop": 495,
+          "next_stop": 164,
+          "connection": 11339,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              11339,
+              29875
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29938,
+          "next_clock": 30103,
+          "stop": 164,
+          "next_stop": 165,
+          "connection": 11788,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              11788,
+              29991
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30103,
+          "next_clock": 30287,
+          "stop": 165,
+          "next_stop": 604,
+          "connection": 12230,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12230,
+              30158
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30287,
+          "next_clock": 30372,
+          "stop": 604,
+          "next_stop": 319,
+          "connection": 12695,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12695,
+              30302
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30372,
+          "next_clock": 30446,
+          "stop": 319,
+          "next_stop": 470,
+          "connection": 12918,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12918,
+              30387
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30446,
+          "next_clock": 30534,
+          "stop": 470,
+          "next_stop": 563,
+          "connection": 13372,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13372,
+              30460
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30534,
+          "next_clock": 30603,
+          "stop": 563,
+          "next_stop": 406,
+          "connection": 13588,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13588,
+              30547
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30603,
+          "next_clock": 30681,
+          "stop": 406,
+          "next_stop": 509,
+          "connection": 13816,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13816,
+              30614
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30681,
+          "next_clock": 30772,
+          "stop": 509,
+          "next_stop": 430,
+          "connection": 14288,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14288,
+              30700
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30772,
+          "next_clock": 30847,
+          "stop": 430,
+          "next_stop": 321,
+          "connection": 14501,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14501,
+              30783
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30847,
+          "next_clock": 30903,
+          "stop": 321,
+          "next_stop": 560,
+          "connection": 14737,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14737,
+              30861
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30903,
+          "next_clock": 30986,
+          "stop": 560,
+          "next_stop": 607,
+          "connection": 14955,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14955,
+              30916
+            ]
+          ],
+          "while_computing": true
+        }
+      ]
+    },
+    {
+      "date": "2023-07-27",
+      "query": 0,
+      "cpu": 16,
+      "graph_seconds": 0.1329564150000806,
+      "kernel_seconds": 0.5244811590000609,
+      "method": "middle64",
+      "clock": "charged",
+      "loss_lower": 1524,
+      "loss_upper": 1524,
+      "status": "arrived",
+      "missing_connection": null,
+      "setup_seconds": 4.811964180000359,
+      "initial_plan": [
+        8341,
+        8780,
+        9383,
+        9627,
+        9857,
+        10330
+      ],
+      "worker_seconds": 9.446366661000866,
+      "worker_cpu_seconds": 8.942975105999999,
+      "actual_seconds": 14.261468684999272,
+      "actual_cpu_seconds": 13.475218199999999,
+      "decisions": [
+        {
+          "clock": 29100,
+          "ready_at": 29102,
+          "wall_seconds": 1.3201739129999623,
+          "cpu_seconds": 1.3198290989999997,
+          "active_first": 8341,
+          "gate": null,
+          "search_seconds": 1.3195464630007336,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 6.42400118522346e-06,
+          "gate_seconds": 0.0005289840009936597,
+          "proposed_first": 8341,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29202,
+          "ready_at": 29206,
+          "wall_seconds": 3.1119434619995445,
+          "cpu_seconds": 3.0775875799999994,
+          "active_first": 8780,
+          "gate": {
+            "upper": 949.9339393302005,
+            "witness_seconds": 0.0074594589987100335,
+            "kind": "middle",
+            "lower": 664.4674045080319,
+            "accepted": false,
+            "alpha": 0.03039635509270134,
+            "worlds": 128,
+            "oracle_mean": 692.0625,
+            "cutoff": 30332,
+            "trips": 1187,
+            "connections": 12934,
+            "corridor_seconds": 0.32168594599897915,
+            "template_seconds": 0.040391069998804596,
+            "draw_seconds": 1.8813133010007732,
+            "scan_seconds": 0.0189288410001609
+          },
+          "search_seconds": 0.8407388749983511,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.00038416299867094494,
+          "gate_seconds": 2.270793600999241,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29297,
+          "ready_at": 29299,
+          "wall_seconds": 1.9366229470015242,
+          "cpu_seconds": 1.7561986540000003,
+          "active_first": 9383,
+          "gate": {
+            "upper": 875.9021594007356,
+            "witness_seconds": 0.0018387389991403325,
+            "kind": "middle",
+            "lower": 549.7537216025812,
+            "accepted": false,
+            "alpha": 0.007599088773175335,
+            "worlds": 128,
+            "oracle_mean": 580.65625,
+            "cutoff": 30353,
+            "trips": 1187,
+            "connections": 12933,
+            "corridor_seconds": 0.1259068709987332,
+            "template_seconds": 0.03679550600099901,
+            "draw_seconds": 1.2815844349988765,
+            "scan_seconds": 0.01911046900022484
+          },
+          "search_seconds": 0.4304255850001937,
+          "candidate_seconds": 0.03956481699970027,
+          "transitions": 64,
+          "posterior_update_seconds": 0.00031446000139112584,
+          "gate_seconds": 1.4662697369985835,
+          "proposed_first": 10398,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30137,
+          "ready_at": 30138,
+          "wall_seconds": 0.360771145000399,
+          "cpu_seconds": 0.3263353700000007,
+          "active_first": 12845,
+          "gate": null,
+          "search_seconds": 0.3602317940003559,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0003324009994685184,
+          "gate_seconds": 0.00016777099881437607,
+          "proposed_first": 12845,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30342,
+          "ready_at": 30344,
+          "wall_seconds": 1.4652228180002567,
+          "cpu_seconds": 1.3294219619999996,
+          "active_first": 13088,
+          "gate": {
+            "upper": 253.23517296058208,
+            "witness_seconds": 0.0038377109995053615,
+            "terminal_lower": 119.98716391436288,
+            "terminal_seconds": 0.0006655079996562563,
+            "kind": "middle",
+            "lower": 234.02555816818494,
+            "accepted": true,
+            "alpha": 0.0033773727880779263,
+            "worlds": 128,
+            "oracle_mean": 246.90625,
+            "cutoff": 30776,
+            "trips": 601,
+            "connections": 5646,
+            "corridor_seconds": 0.15146145700055058,
+            "template_seconds": 0.05436246399949596,
+            "draw_seconds": 1.239767106000727,
+            "scan_seconds": 0.012977456999578862
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0003651770002761623,
+          "gate_seconds": 1.4648295260012674,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30438,
+          "ready_at": 30440,
+          "wall_seconds": 1.2478997059988615,
+          "cpu_seconds": 1.1302082129999995,
+          "active_first": 13296,
+          "gate": {
+            "upper": 181.87325230785882,
+            "witness_seconds": 0.003553568998540868,
+            "terminal_lower": 119.76136047227688,
+            "terminal_seconds": 0.0006215350003913045,
+            "kind": "middle",
+            "lower": 173.383463328355,
+            "accepted": true,
+            "alpha": 0.0018997721932938337,
+            "worlds": 128,
+            "oracle_mean": 186.15625,
+            "cutoff": 30800,
+            "trips": 580,
+            "connections": 5392,
+            "corridor_seconds": 0.10290555999927165,
+            "template_seconds": 0.04337138200025947,
+            "draw_seconds": 1.0845782400010648,
+            "scan_seconds": 0.01086792299975059
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0005687890006811358,
+          "gate_seconds": 1.2472533079999266,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30513,
+          "ready_at": 30514,
+          "wall_seconds": 0.0037326700003177393,
+          "cpu_seconds": 0.003394227999999444,
+          "active_first": 13741,
+          "gate": {
+            "upper": 78.67104754443835,
+            "witness_seconds": 0.002641093000420369,
+            "terminal_lower": 78.16665130730078,
+            "terminal_seconds": 0.0003281799999967916,
+            "kind": "terminal",
+            "lower": 78.16665130730078,
+            "accepted": true,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00048778499876789283,
+          "gate_seconds": 0.003230161000828957,
+          "publication": "closed_during_compute"
+        }
+      ],
+      "actions": [
+        {
+          "clock": 29100,
+          "next_clock": 29202,
+          "stop": 530,
+          "next_stop": 594,
+          "connection": 8341,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8341,
+              29121
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29202,
+          "next_clock": 29297,
+          "stop": 594,
+          "next_stop": 606,
+          "connection": 8780,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8780,
+              29214
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29297,
+          "next_clock": 30137,
+          "stop": 606,
+          "next_stop": 606,
+          "connection": 9383,
+          "caught": false,
+          "feedback": [
+            [
+              "wait_late",
+              9383,
+              30137
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30137,
+          "next_clock": 30342,
+          "stop": 606,
+          "next_stop": 647,
+          "connection": 12845,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12845,
+              30280
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30342,
+          "next_clock": 30438,
+          "stop": 647,
+          "next_stop": 88,
+          "connection": 13088,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13088,
+              30356
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30438,
+          "next_clock": 30513,
+          "stop": 88,
+          "next_stop": 568,
+          "connection": 13296,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13296,
+              30452
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30513,
+          "next_clock": 30624,
+          "stop": 568,
+          "next_stop": 3,
+          "connection": 13741,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13741,
+              30540
+            ]
+          ],
+          "while_computing": true
+        }
+      ]
+    },
+    {
+      "date": "2023-07-27",
+      "query": 0,
+      "cpu": 16,
+      "graph_seconds": 0.1329564150000806,
+      "kernel_seconds": 0.5244811590000609,
+      "method": "middle128",
+      "clock": "charged",
+      "loss_lower": 1524,
+      "loss_upper": 1524,
+      "status": "arrived",
+      "missing_connection": null,
+      "setup_seconds": 3.2342778669990366,
+      "initial_plan": [
+        8341,
+        8780,
+        9383,
+        9627,
+        9857,
+        10330
+      ],
+      "worker_seconds": 10.22356679999939,
+      "worker_cpu_seconds": 9.865933311000003,
+      "actual_seconds": 13.459957645000031,
+      "actual_cpu_seconds": 12.975407845,
+      "decisions": [
+        {
+          "clock": 29100,
+          "ready_at": 29102,
+          "wall_seconds": 1.5172358759991766,
+          "cpu_seconds": 1.4650340359999987,
+          "active_first": 8341,
+          "gate": null,
+          "search_seconds": 1.5170493610003177,
+          "candidate_seconds": 0.0,
+          "transitions": 128,
+          "posterior_update_seconds": 1.2330001482041553e-06,
+          "gate_seconds": 0.0001416020004398888,
+          "proposed_first": 8341,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29202,
+          "ready_at": 29206,
+          "wall_seconds": 3.3067446640015987,
+          "cpu_seconds": 3.1916561029999997,
+          "active_first": 8780,
+          "gate": {
+            "upper": 949.9339393302005,
+            "witness_seconds": 0.0039608050010429,
+            "kind": "middle",
+            "lower": 664.4674045080319,
+            "accepted": false,
+            "alpha": 0.03039635509270134,
+            "worlds": 128,
+            "oracle_mean": 692.0625,
+            "cutoff": 30332,
+            "trips": 1187,
+            "connections": 12934,
+            "corridor_seconds": 0.2190069919997768,
+            "template_seconds": 0.039674908000961295,
+            "draw_seconds": 1.8599635310001759,
+            "scan_seconds": 0.02260235100038699
+          },
+          "search_seconds": 1.1534222490008688,
+          "candidate_seconds": 0.006190113999764435,
+          "transitions": 128,
+          "posterior_update_seconds": 0.0003091870003117947,
+          "gate_seconds": 2.1467783779989986,
+          "proposed_first": 9681,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29297,
+          "ready_at": 29300,
+          "wall_seconds": 2.8069906430009723,
+          "cpu_seconds": 2.709315568000001,
+          "active_first": 9383,
+          "gate": {
+            "upper": 875.9021594007356,
+            "witness_seconds": 0.0015066880005178973,
+            "kind": "middle",
+            "lower": 549.7537216025812,
+            "accepted": false,
+            "alpha": 0.007599088773175335,
+            "worlds": 128,
+            "oracle_mean": 580.65625,
+            "cutoff": 30353,
+            "trips": 1187,
+            "connections": 12933,
+            "corridor_seconds": 0.1356194849995518,
+            "template_seconds": 0.04561156499948993,
+            "draw_seconds": 1.7111599879990536,
+            "scan_seconds": 0.018101021998518263
+          },
+          "search_seconds": 0.8593930919996637,
+          "candidate_seconds": 0.034294928000235814,
+          "transitions": 128,
+          "posterior_update_seconds": 0.0002806739994412055,
+          "gate_seconds": 1.912985495000612,
+          "proposed_first": 10398,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30137,
+          "ready_at": 30138,
+          "wall_seconds": 0.5163011109998479,
+          "cpu_seconds": 0.498316556999999,
+          "active_first": 12845,
+          "gate": null,
+          "search_seconds": 0.5159565190006106,
+          "candidate_seconds": 0.0,
+          "transitions": 128,
+          "posterior_update_seconds": 0.00020066400065843482,
+          "gate_seconds": 0.00011733400060620625,
+          "proposed_first": 12845,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30342,
+          "ready_at": 30344,
+          "wall_seconds": 1.1089349909998418,
+          "cpu_seconds": 1.0692820260000033,
+          "active_first": 13088,
+          "gate": {
+            "upper": 253.23517296058208,
+            "witness_seconds": 0.002712722000069334,
+            "terminal_lower": 119.98716391436288,
+            "terminal_seconds": 0.00027956200028711464,
+            "kind": "middle",
+            "lower": 234.02555816818494,
+            "accepted": true,
+            "alpha": 0.0033773727880779263,
+            "worlds": 128,
+            "oracle_mean": 246.90625,
+            "cutoff": 30776,
+            "trips": 601,
+            "connections": 5646,
+            "corridor_seconds": 0.07367219300067518,
+            "template_seconds": 0.03397278700140305,
+            "draw_seconds": 0.9875104129987449,
+            "scan_seconds": 0.00963970100019651
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00019616000099631492,
+          "gate_seconds": 1.1087193969997315,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30438,
+          "ready_at": 30439,
+          "wall_seconds": 0.9636670049985696,
+          "cpu_seconds": 0.9287682369999999,
+          "active_first": 13296,
+          "gate": {
+            "upper": 181.87325230785882,
+            "witness_seconds": 0.0025459750013396842,
+            "terminal_lower": 119.76136047227688,
+            "terminal_seconds": 0.00030738500026927795,
+            "kind": "middle",
+            "lower": 173.383463328355,
+            "accepted": true,
+            "alpha": 0.0018997721932938337,
+            "worlds": 128,
+            "oracle_mean": 186.15625,
+            "cutoff": 30800,
+            "trips": 580,
+            "connections": 5392,
+            "corridor_seconds": 0.08115738100059389,
+            "template_seconds": 0.040812403000018094,
+            "draw_seconds": 0.8279625190007209,
+            "scan_seconds": 0.009375621999424766
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00046201300028769765,
+          "gate_seconds": 0.9631817270001193,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30513,
+          "ready_at": 30514,
+          "wall_seconds": 0.0036925099993823096,
+          "cpu_seconds": 0.0035607840000011493,
+          "active_first": 13741,
+          "gate": {
+            "upper": 78.67104754443835,
+            "witness_seconds": 0.0026154139995924197,
+            "terminal_lower": 78.16665130730078,
+            "terminal_seconds": 0.00023071999930834863,
+            "kind": "terminal",
+            "lower": 78.16665130730078,
+            "accepted": true,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0005765160003647907,
+          "gate_seconds": 0.003100338999502128,
+          "publication": "closed_during_compute"
+        }
+      ],
+      "actions": [
+        {
+          "clock": 29100,
+          "next_clock": 29202,
+          "stop": 530,
+          "next_stop": 594,
+          "connection": 8341,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8341,
+              29121
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29202,
+          "next_clock": 29297,
+          "stop": 594,
+          "next_stop": 606,
+          "connection": 8780,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8780,
+              29214
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29297,
+          "next_clock": 30137,
+          "stop": 606,
+          "next_stop": 606,
+          "connection": 9383,
+          "caught": false,
+          "feedback": [
+            [
+              "wait_late",
+              9383,
+              30137
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30137,
+          "next_clock": 30342,
+          "stop": 606,
+          "next_stop": 647,
+          "connection": 12845,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12845,
+              30280
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30342,
+          "next_clock": 30438,
+          "stop": 647,
+          "next_stop": 88,
+          "connection": 13088,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13088,
+              30356
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30438,
+          "next_clock": 30513,
+          "stop": 88,
+          "next_stop": 568,
+          "connection": 13296,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13296,
+              30452
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30513,
+          "next_clock": 30624,
+          "stop": 568,
+          "next_stop": 3,
+          "connection": 13741,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13741,
+              30540
+            ]
+          ],
+          "while_computing": true
+        }
+      ]
+    },
+    {
+      "date": "2023-07-27",
+      "query": 1,
+      "cpu": 24,
+      "graph_seconds": 0.09226784400016186,
+      "kernel_seconds": 0.5115104979995522,
+      "method": "middle128",
+      "clock": "charged",
+      "loss_lower": 1823,
+      "loss_upper": 1823,
+      "status": "arrived",
+      "missing_connection": null,
+      "setup_seconds": 7.4522830070000055,
+      "initial_plan": [
+        8315,
+        8538,
+        8759,
+        9224,
+        9704,
+        9938,
+        10407,
+        10879,
+        11339,
+        11788,
+        12230,
+        12695,
+        12918,
+        13372,
+        13588,
+        13816,
+        14288,
+        14501,
+        14737,
+        14955
+      ],
+      "worker_seconds": 54.83979009900577,
+      "worker_cpu_seconds": 52.606050073,
+      "actual_seconds": 62.30068201299946,
+      "actual_cpu_seconds": 59.783205747,
+      "decisions": [
+        {
+          "clock": 29100,
+          "ready_at": 29105,
+          "wall_seconds": 4.681109518000085,
+          "cpu_seconds": 4.348353510000001,
+          "active_first": 8315,
+          "gate": null,
+          "search_seconds": 4.68077588199958,
+          "candidate_seconds": 0.0,
+          "transitions": 128,
+          "posterior_update_seconds": 1.4739998732693493e-06,
+          "gate_seconds": 0.0002747389989963267,
+          "proposed_first": 8315,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29160,
+          "ready_at": 29166,
+          "wall_seconds": 5.392088143000365,
+          "cpu_seconds": 5.091417279,
+          "active_first": 8538,
+          "gate": {
+            "upper": 1852.5422697425286,
+            "witness_seconds": 0.012537712000266765,
+            "terminal_lower": 0.0,
+            "terminal_seconds": 0.00011214900041522924,
+            "kind": "middle",
+            "lower": 1760.423811079534,
+            "accepted": false,
+            "alpha": 0.03039635509270134,
+            "worlds": 128,
+            "oracle_mean": 1813.578125,
+            "cutoff": 31193,
+            "trips": 1383,
+            "connections": 16039,
+            "corridor_seconds": 0.3414741269989463,
+            "template_seconds": 0.051422824999463046,
+            "draw_seconds": 1.9796330079989275,
+            "scan_seconds": 0.06287935000000289
+          },
+          "search_seconds": 2.9399666970002727,
+          "candidate_seconds": 0.0,
+          "transitions": 128,
+          "posterior_update_seconds": 0.0011804929999925662,
+          "gate_seconds": 2.450855529999899,
+          "proposed_first": 8538,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29223,
+          "ready_at": 29228,
+          "wall_seconds": 4.648062443000526,
+          "cpu_seconds": 4.4865814959999994,
+          "active_first": 8759,
+          "gate": {
+            "upper": 1749.5105223024739,
+            "witness_seconds": 0.00936158699914813,
+            "terminal_lower": 0.0,
+            "terminal_seconds": 6.278600085352082e-05,
+            "kind": "middle",
+            "lower": 1656.8160988124691,
+            "accepted": false,
+            "alpha": 0.007599088773175335,
+            "worlds": 128,
+            "oracle_mean": 1724.1796875,
+            "cutoff": 31153,
+            "trips": 1383,
+            "connections": 16038,
+            "corridor_seconds": 0.14322844999878726,
+            "template_seconds": 0.0384426180007722,
+            "draw_seconds": 1.446070187001169,
+            "scan_seconds": 0.03418600100121694
+          },
+          "search_seconds": 2.9750672440004564,
+          "candidate_seconds": 0.0,
+          "transitions": 128,
+          "posterior_update_seconds": 0.00045182199937698897,
+          "gate_seconds": 1.6724552169998788,
+          "proposed_first": 8759,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29323,
+          "ready_at": 29328,
+          "wall_seconds": 4.712370989000192,
+          "cpu_seconds": 4.546242689,
+          "active_first": 9224,
+          "gate": {
+            "upper": 1643.41428574675,
+            "witness_seconds": 0.009629887999835773,
+            "terminal_lower": 0.0,
+            "terminal_seconds": 5.9186999351368286e-05,
+            "kind": "middle",
+            "lower": 1568.8996369420274,
+            "accepted": false,
+            "alpha": 0.0033773727880779263,
+            "worlds": 128,
+            "oracle_mean": 1643.171875,
+            "cutoff": 31147,
+            "trips": 1383,
+            "connections": 16037,
+            "corridor_seconds": 0.18293466000068292,
+            "template_seconds": 0.04201511599967489,
+            "draw_seconds": 1.895486847999564,
+            "scan_seconds": 0.032051805001174216
+          },
+          "search_seconds": 2.548148238000067,
+          "candidate_seconds": 0.0,
+          "transitions": 128,
+          "posterior_update_seconds": 0.0007314939994103042,
+          "gate_seconds": 2.1634495739999693,
+          "proposed_first": 9224,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29446,
+          "ready_at": 29451,
+          "wall_seconds": 4.345256717999291,
+          "cpu_seconds": 4.187601746999999,
+          "active_first": 9704,
+          "gate": {
+            "upper": 1515.6175211671039,
+            "witness_seconds": 0.00960445100099605,
+            "terminal_lower": 119.99999999999895,
+            "terminal_seconds": 0.002032587999565294,
+            "kind": "middle",
+            "lower": 1434.680071812847,
+            "accepted": false,
+            "alpha": 0.0018997721932938337,
+            "worlds": 128,
+            "oracle_mean": 1509.1328125,
+            "cutoff": 31142,
+            "trips": 1383,
+            "connections": 16036,
+            "corridor_seconds": 0.173932852998405,
+            "template_seconds": 0.04197955499876116,
+            "draw_seconds": 1.507545360000222,
+            "scan_seconds": 0.032178633999137674
+          },
+          "search_seconds": 2.5762506939991,
+          "candidate_seconds": 0.0,
+          "transitions": 128,
+          "posterior_update_seconds": 0.00046200299948395696,
+          "gate_seconds": 1.7684979290006595,
+          "proposed_first": 9704,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29517,
+          "ready_at": 29523,
+          "wall_seconds": 5.183255972000552,
+          "cpu_seconds": 4.996073122000002,
+          "active_first": 9938,
+          "gate": {
+            "upper": 1430.8884639921307,
+            "witness_seconds": 0.009531164998406894,
+            "terminal_lower": 119.9999999999664,
+            "terminal_seconds": 0.002047672000117018,
+            "kind": "middle",
+            "lower": 1352.190021624905,
+            "accepted": false,
+            "alpha": 0.0012158542037080534,
+            "worlds": 128,
+            "oracle_mean": 1427.0625,
+            "cutoff": 31128,
+            "trips": 1369,
+            "connections": 15800,
+            "corridor_seconds": 0.12830887299969618,
+            "template_seconds": 0.034206210999400355,
+            "draw_seconds": 1.7087337810007739,
+            "scan_seconds": 0.03439374000117823
+          },
+          "search_seconds": 3.264124975001323,
+          "candidate_seconds": 0.0,
+          "transitions": 128,
+          "posterior_update_seconds": 0.0007624549998581642,
+          "gate_seconds": 1.9183300029999373,
+          "proposed_first": 9938,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29598,
+          "ready_at": 29602,
+          "wall_seconds": 3.6395474950004427,
+          "cpu_seconds": 3.508648616000002,
+          "active_first": 10407,
+          "gate": {
+            "upper": 1342.8394252816674,
+            "witness_seconds": 0.009333906999017927,
+            "terminal_lower": 119.99999999999721,
+            "terminal_seconds": 0.0018461159997968934,
+            "kind": "middle",
+            "lower": 1263.2077633094705,
+            "accepted": false,
+            "alpha": 0.0008443431970194816,
+            "worlds": 128,
+            "oracle_mean": 1336.9765625,
+            "cutoff": 31121,
+            "trips": 1369,
+            "connections": 15799,
+            "corridor_seconds": 0.13035942599890404,
+            "template_seconds": 0.036495192000074894,
+            "draw_seconds": 1.407144785998753,
+            "scan_seconds": 0.02732249799919373
+          },
+          "search_seconds": 2.025266724998801,
+          "candidate_seconds": 0.0,
+          "transitions": 128,
+          "posterior_update_seconds": 0.0006407910004782025,
+          "gate_seconds": 1.61358140899938,
+          "proposed_first": 10407,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29758,
+          "ready_at": 29761,
+          "wall_seconds": 2.9312792790005915,
+          "cpu_seconds": 2.827213895,
+          "active_first": 10879,
+          "gate": {
+            "upper": 1177.8329674386584,
+            "witness_seconds": 0.009253948999685235,
+            "terminal_lower": 119.99999999999996,
+            "terminal_seconds": 0.0016521349989488954,
+            "kind": "middle",
+            "lower": 1114.7877076492587,
+            "accepted": false,
+            "alpha": 0.0006203337774020681,
+            "worlds": 128,
+            "oracle_mean": 1183.140625,
+            "cutoff": 31116,
+            "trips": 1369,
+            "connections": 15798,
+            "corridor_seconds": 0.12747183899955417,
+            "template_seconds": 0.033917976999873645,
+            "draw_seconds": 1.3678576749989588,
+            "scan_seconds": 0.024662002000695793
+          },
+          "search_seconds": 1.3643571800002974,
+          "candidate_seconds": 0.0,
+          "transitions": 128,
+          "posterior_update_seconds": 0.0009373320008307928,
+          "gate_seconds": 1.5659456720004528,
+          "proposed_first": 10879,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29843,
+          "ready_at": 29846,
+          "wall_seconds": 2.8086116970007424,
+          "cpu_seconds": 2.7109534949999983,
+          "active_first": 11339,
+          "gate": {
+            "upper": 1088.7796947114762,
+            "witness_seconds": 0.009166451998680714,
+            "terminal_lower": 119.99999999966116,
+            "terminal_seconds": 0.0015856999998504762,
+            "kind": "middle",
+            "lower": 1017.4869569078,
+            "accepted": false,
+            "alpha": 0.00047494304832345843,
+            "worlds": 128,
+            "oracle_mean": 1081.4921875,
+            "cutoff": 31112,
+            "trips": 1369,
+            "connections": 15797,
+            "corridor_seconds": 0.13810581600046135,
+            "template_seconds": 0.04044484400037618,
+            "draw_seconds": 1.3768669849996513,
+            "scan_seconds": 0.02271038400067482
+          },
+          "search_seconds": 1.2176920759993664,
+          "candidate_seconds": 0.0,
+          "transitions": 128,
+          "posterior_update_seconds": 0.0008722620004846249,
+          "gate_seconds": 1.5900032150002517,
+          "proposed_first": 11339,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29933,
+          "ready_at": 29935,
+          "wall_seconds": 1.658369249000316,
+          "cpu_seconds": 1.6007246779999988,
+          "active_first": 11788,
+          "gate": {
+            "upper": 995.8474164082184,
+            "witness_seconds": 0.01049537099970621,
+            "terminal_lower": 119.99999999994688,
+            "terminal_seconds": 0.002103115000863909,
+            "kind": "middle",
+            "lower": 938.3346980354327,
+            "accepted": true,
+            "alpha": 0.0003752636431197696,
+            "worlds": 128,
+            "oracle_mean": 999.5703125,
+            "cutoff": 31109,
+            "trips": 1369,
+            "connections": 15796,
+            "corridor_seconds": 0.15029596099884657,
+            "template_seconds": 0.03500910700131499,
+            "draw_seconds": 1.4361104800009343,
+            "scan_seconds": 0.022237360000872286
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0009950379990186775,
+          "gate_seconds": 1.6573515540003427,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30061,
+          "ready_at": 30063,
+          "wall_seconds": 1.5750244579994614,
+          "cpu_seconds": 1.520260761000003,
+          "active_first": 12230,
+          "gate": {
+            "upper": 864.6729155637706,
+            "witness_seconds": 0.008939874000134296,
+            "terminal_lower": 119.99999986638005,
+            "terminal_seconds": 0.0013990699990245048,
+            "kind": "middle",
+            "lower": 813.0574336333739,
+            "accepted": true,
+            "alpha": 0.00030396355092701335,
+            "worlds": 128,
+            "oracle_mean": 867.6796875,
+            "cutoff": 31106,
+            "trips": 1369,
+            "connections": 15795,
+            "corridor_seconds": 0.11916187399947376,
+            "template_seconds": 0.03513221599860117,
+            "draw_seconds": 1.3894758819988056,
+            "scan_seconds": 0.018945613999676425
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0009043440004461445,
+          "gate_seconds": 1.5740978410012758,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30208,
+          "ready_at": 30210,
+          "wall_seconds": 1.5747965810005553,
+          "cpu_seconds": 1.520071661000003,
+          "active_first": 12695,
+          "gate": {
+            "upper": 715.3721227919575,
+            "witness_seconds": 0.008351827000296907,
+            "terminal_lower": 119.99999994755544,
+            "terminal_seconds": 0.0012598430002981331,
+            "kind": "middle",
+            "lower": 669.2758397725556,
+            "accepted": true,
+            "alpha": 0.0002512095462206723,
+            "worlds": 128,
+            "oracle_mean": 715.4140625,
+            "cutoff": 31104,
+            "trips": 1369,
+            "connections": 15794,
+            "corridor_seconds": 0.12256398299905413,
+            "template_seconds": 0.032858454000233905,
+            "draw_seconds": 1.3900077159996727,
+            "scan_seconds": 0.017641647998971166
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0009884060000331374,
+          "gate_seconds": 1.573786585999187,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30292,
+          "ready_at": 30294,
+          "wall_seconds": 1.569155994000539,
+          "cpu_seconds": 1.514690433999995,
+          "active_first": 12918,
+          "gate": {
+            "upper": 628.4809111533668,
+            "witness_seconds": 0.007930337000289,
+            "terminal_lower": 119.99999999462985,
+            "terminal_seconds": 0.0012549749990284909,
+            "kind": "middle",
+            "lower": 584.9590417533909,
+            "accepted": true,
+            "alpha": 0.0002110857992548704,
+            "worlds": 128,
+            "oracle_mean": 626.0546875,
+            "cutoff": 31101,
+            "trips": 1359,
+            "connections": 15780,
+            "corridor_seconds": 0.1311281889993552,
+            "template_seconds": 0.0331015159990784,
+            "draw_seconds": 1.3771416640011012,
+            "scan_seconds": 0.01660206999986258
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0008525310004188213,
+          "gate_seconds": 1.5682792909992713,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30360,
+          "ready_at": 30362,
+          "wall_seconds": 1.556513781000831,
+          "cpu_seconds": 1.5025014819999996,
+          "active_first": 13372,
+          "gate": {
+            "upper": 559.0765417847397,
+            "witness_seconds": 0.007210768999357242,
+            "terminal_lower": 119.99999991187227,
+            "terminal_seconds": 0.0009743089995026821,
+            "kind": "middle",
+            "lower": 518.273365868532,
+            "accepted": true,
+            "alpha": 0.00017986008930592504,
+            "worlds": 128,
+            "oracle_mean": 555.5703125,
+            "cutoff": 31100,
+            "trips": 1359,
+            "connections": 15779,
+            "corridor_seconds": 0.1255851329988218,
+            "template_seconds": 0.03387941300024977,
+            "draw_seconds": 1.3704699219997565,
+            "scan_seconds": 0.01585214300030202
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0014748829999007285,
+          "gate_seconds": 1.5550161789997219,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30447,
+          "ready_at": 30449,
+          "wall_seconds": 1.5854144240001915,
+          "cpu_seconds": 1.530371430999999,
+          "active_first": 13588,
+          "gate": {
+            "upper": 469.3648533816636,
+            "witness_seconds": 0.007356498999797623,
+            "terminal_lower": 119.99999997748654,
+            "terminal_seconds": 0.0009359999985463219,
+            "kind": "middle",
+            "lower": 433.6100004424952,
+            "accepted": true,
+            "alpha": 0.00015508344435051703,
+            "worlds": 128,
+            "oracle_mean": 465.4453125,
+            "cutoff": 31097,
+            "trips": 1308,
+            "connections": 15326,
+            "corridor_seconds": 0.13097579600071185,
+            "template_seconds": 0.03779208000014478,
+            "draw_seconds": 1.3920876329993916,
+            "scan_seconds": 0.014258172999689123
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0008771000011620345,
+          "gate_seconds": 1.5845133389993862,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30531,
+          "ready_at": 30533,
+          "wall_seconds": 1.8199182650005241,
+          "cpu_seconds": 1.7566515310000028,
+          "active_first": 13816,
+          "gate": {
+            "upper": 383.0437792716275,
+            "witness_seconds": 0.006344505000015488,
+            "terminal_lower": 119.99999574028432,
+            "terminal_seconds": 0.0007880389985075453,
+            "kind": "middle",
+            "lower": 355.2127438665193,
+            "accepted": true,
+            "alpha": 0.0001350949115231171,
+            "worlds": 128,
+            "oracle_mean": 381.890625,
+            "cutoff": 31095,
+            "trips": 1028,
+            "connections": 13157,
+            "corridor_seconds": 0.11784893100048066,
+            "template_seconds": 0.0344135630002711,
+            "draw_seconds": 1.640909190999082,
+            "scan_seconds": 0.0170461730012903
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0012059040000167442,
+          "gate_seconds": 1.81867967800099,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30604,
+          "ready_at": 30608,
+          "wall_seconds": 3.1299381179997,
+          "cpu_seconds": 3.016241474999994,
+          "active_first": 14288,
+          "gate": {
+            "upper": 309.60616031254244,
+            "witness_seconds": 0.009903579999445355,
+            "terminal_lower": 119.99996999906396,
+            "terminal_seconds": 0.0008370680006919429,
+            "kind": "middle",
+            "lower": 284.1013531011995,
+            "accepted": true,
+            "alpha": 0.00011873576208086461,
+            "worlds": 128,
+            "oracle_mean": 306.109375,
+            "cutoff": 31094,
+            "trips": 982,
+            "connections": 12682,
+            "corridor_seconds": 0.218768929998987,
+            "template_seconds": 0.060320885000692215,
+            "draw_seconds": 2.8136660090003716,
+            "scan_seconds": 0.022362626001267927
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.001484337999499985,
+          "gate_seconds": 3.128416012999878,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30684,
+          "ready_at": 30687,
+          "wall_seconds": 2.008508382999935,
+          "cpu_seconds": 1.921763489,
+          "active_first": 14501,
+          "gate": {
+            "upper": 224.31320080182786,
+            "witness_seconds": 0.010898546001044451,
+            "terminal_lower": 119.99899660769127,
+            "terminal_seconds": 0.0010534810007811757,
+            "kind": "middle",
+            "lower": 207.21851773385424,
+            "accepted": true,
+            "alpha": 0.00010517769928270359,
+            "worlds": 128,
+            "oracle_mean": 224.53125,
+            "cutoff": 31089,
+            "trips": 440,
+            "connections": 3481,
+            "corridor_seconds": 0.17011497400017106,
+            "template_seconds": 0.06389291900086391,
+            "draw_seconds": 1.7364599640004599,
+            "scan_seconds": 0.022139294000226073
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.002040133000264177,
+          "gate_seconds": 2.006423654998798,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30761,
+          "ready_at": 30762,
+          "wall_seconds": 0.010609619001115789,
+          "cpu_seconds": 0.01015446099999906,
+          "active_first": 14737,
+          "gate": {
+            "upper": 144.58107349262082,
+            "witness_seconds": 0.008009797000340768,
+            "terminal_lower": 118.01284593607264,
+            "terminal_seconds": 0.0005401489997893805,
+            "kind": "terminal",
+            "lower": 118.01284593607264,
+            "accepted": true,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0015955070011841599,
+          "gate_seconds": 0.008984772999610868,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30822,
+          "ready_at": 30823,
+          "wall_seconds": 0.009958972999811522,
+          "cpu_seconds": 0.009532821000000524,
+          "active_first": 14955,
+          "gate": {
+            "upper": 76.07978028994421,
+            "witness_seconds": 0.0072807990000001155,
+            "terminal_lower": 75.82022737307256,
+            "terminal_seconds": 0.00024716000007174443,
+            "kind": "terminal",
+            "lower": 75.82022737307256,
+            "accepted": true,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0019268719988758676,
+          "gate_seconds": 0.007997074999366305,
+          "publication": "closed_during_compute"
+        }
+      ],
+      "actions": [
+        {
+          "clock": 29100,
+          "next_clock": 29160,
+          "stop": 427,
+          "next_stop": 614,
+          "connection": 8315,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8315,
+              29126
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29160,
+          "next_clock": 29223,
+          "stop": 614,
+          "next_stop": 3,
+          "connection": 8538,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8538,
+              29175
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29223,
+          "next_clock": 29323,
+          "stop": 3,
+          "next_stop": 568,
+          "connection": 8759,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8759,
+              29240
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29323,
+          "next_clock": 29446,
+          "stop": 568,
+          "next_stop": 88,
+          "connection": 9224,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9224,
+              29341
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29446,
+          "next_clock": 29517,
+          "stop": 88,
+          "next_stop": 647,
+          "connection": 9704,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9704,
+              29464
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29517,
+          "next_clock": 29598,
+          "stop": 647,
+          "next_stop": 606,
+          "connection": 9938,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9938,
+              29530
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29598,
+          "next_clock": 29758,
+          "stop": 606,
+          "next_stop": 592,
+          "connection": 10407,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10407,
+              29669
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29758,
+          "next_clock": 29843,
+          "stop": 592,
+          "next_stop": 495,
+          "connection": 10879,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10879,
+              29774
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29843,
+          "next_clock": 29933,
+          "stop": 495,
+          "next_stop": 164,
+          "connection": 11339,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              11339,
+              29857
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29933,
+          "next_clock": 30061,
+          "stop": 164,
+          "next_stop": 165,
+          "connection": 11788,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              11788,
+              29956
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30061,
+          "next_clock": 30208,
+          "stop": 165,
+          "next_stop": 604,
+          "connection": 12230,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12230,
+              30093
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30208,
+          "next_clock": 30292,
+          "stop": 604,
+          "next_stop": 319,
+          "connection": 12695,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12695,
+              30218
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30292,
+          "next_clock": 30360,
+          "stop": 319,
+          "next_stop": 470,
+          "connection": 12918,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12918,
+              30302
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30360,
+          "next_clock": 30447,
+          "stop": 470,
+          "next_stop": 563,
+          "connection": 13372,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13372,
+              30372
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30447,
+          "next_clock": 30531,
+          "stop": 563,
+          "next_stop": 406,
+          "connection": 13588,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13588,
+              30464
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30531,
+          "next_clock": 30604,
+          "stop": 406,
+          "next_stop": 509,
+          "connection": 13816,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13816,
+              30548
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30604,
+          "next_clock": 30684,
+          "stop": 509,
+          "next_stop": 430,
+          "connection": 14288,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14288,
+              30619
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30684,
+          "next_clock": 30761,
+          "stop": 430,
+          "next_stop": 321,
+          "connection": 14501,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14501,
+              30697
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30761,
+          "next_clock": 30822,
+          "stop": 321,
+          "next_stop": 560,
+          "connection": 14737,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14737,
+              30780
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30822,
+          "next_clock": 30923,
+          "stop": 560,
+          "next_stop": 607,
+          "connection": 14955,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14955,
+              30836
+            ]
+          ],
+          "while_computing": true
+        }
+      ]
+    },
+    {
+      "date": "2023-07-27",
+      "query": 1,
+      "cpu": 24,
+      "graph_seconds": 0.09226784400016186,
+      "kernel_seconds": 0.5115104979995522,
+      "method": "middle64",
+      "clock": "charged",
+      "loss_lower": 1823,
+      "loss_upper": 1823,
+      "status": "arrived",
+      "missing_connection": null,
+      "setup_seconds": 6.295813098999133,
+      "initial_plan": [
+        8315,
+        8538,
+        8759,
+        9224,
+        9704,
+        9938,
+        10407,
+        10879,
+        11339,
+        11788,
+        12230,
+        12695,
+        12918,
+        13372,
+        13588,
+        13816,
+        14288,
+        14501,
+        14737,
+        14955
+      ],
+      "worker_seconds": 46.79560273800416,
+      "worker_cpu_seconds": 44.74600418199999,
+      "actual_seconds": 53.09905540699947,
+      "actual_cpu_seconds": 50.782328988,
+      "decisions": [
+        {
+          "clock": 29100,
+          "ready_at": 29103,
+          "wall_seconds": 2.4406357210009446,
+          "cpu_seconds": 2.3529629770000042,
+          "active_first": 8315,
+          "gate": null,
+          "search_seconds": 2.4404499739994208,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 1.184000211651437e-06,
+          "gate_seconds": 0.00014886200006003492,
+          "proposed_first": 8315,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29160,
+          "ready_at": 29166,
+          "wall_seconds": 5.150326573999337,
+          "cpu_seconds": 4.966903615999996,
+          "active_first": 8538,
+          "gate": {
+            "upper": 1852.5422697425286,
+            "witness_seconds": 0.00886227999944822,
+            "terminal_lower": 0.0,
+            "terminal_seconds": 3.362399911566172e-05,
+            "kind": "middle",
+            "lower": 1760.423811079534,
+            "accepted": false,
+            "alpha": 0.03039635509270134,
+            "worlds": 128,
+            "oracle_mean": 1813.578125,
+            "cutoff": 31193,
+            "trips": 1383,
+            "connections": 16039,
+            "corridor_seconds": 0.26797179899949697,
+            "template_seconds": 0.04477405699981318,
+            "draw_seconds": 2.0196175790006237,
+            "scan_seconds": 0.055582888999197166
+          },
+          "search_seconds": 2.7510070990010718,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0005743820001953281,
+          "gate_seconds": 2.3986820959999022,
+          "proposed_first": 8538,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29223,
+          "ready_at": 29228,
+          "wall_seconds": 4.975444772000628,
+          "cpu_seconds": 4.794121157000006,
+          "active_first": 8759,
+          "gate": {
+            "upper": 1749.5105223024739,
+            "witness_seconds": 0.015464505000636564,
+            "terminal_lower": 0.0,
+            "terminal_seconds": 6.718899931001943e-05,
+            "kind": "middle",
+            "lower": 1656.8160988124691,
+            "accepted": false,
+            "alpha": 0.007599088773175335,
+            "worlds": 128,
+            "oracle_mean": 1724.1796875,
+            "cutoff": 31153,
+            "trips": 1383,
+            "connections": 16038,
+            "corridor_seconds": 0.24871678899944527,
+            "template_seconds": 0.053014217999589164,
+            "draw_seconds": 2.3960052210004505,
+            "scan_seconds": 0.04228726099972846
+          },
+          "search_seconds": 2.216458232998775,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0010962799988192273,
+          "gate_seconds": 2.757842274999348,
+          "proposed_first": 8759,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29323,
+          "ready_at": 29327,
+          "wall_seconds": 3.4520132359994022,
+          "cpu_seconds": 3.3125295750000134,
+          "active_first": 9224,
+          "gate": {
+            "upper": 1643.41428574675,
+            "witness_seconds": 0.009770726999704493,
+            "terminal_lower": 0.0,
+            "terminal_seconds": 4.0332000935450196e-05,
+            "kind": "middle",
+            "lower": 1568.8996369420274,
+            "accepted": false,
+            "alpha": 0.0033773727880779263,
+            "worlds": 128,
+            "oracle_mean": 1643.171875,
+            "cutoff": 31147,
+            "trips": 1383,
+            "connections": 16037,
+            "corridor_seconds": 0.14187433600091026,
+            "template_seconds": 0.05055466200064984,
+            "draw_seconds": 1.5855016450004769,
+            "scan_seconds": 0.034202064998680726
+          },
+          "search_seconds": 1.6282620329984638,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.00041899800089595374,
+          "gate_seconds": 1.8232590799998434,
+          "proposed_first": 9224,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29446,
+          "ready_at": 29450,
+          "wall_seconds": 3.653976221999983,
+          "cpu_seconds": 3.4794838199999987,
+          "active_first": 9704,
+          "gate": {
+            "upper": 1515.6175211671039,
+            "witness_seconds": 0.015796445000887616,
+            "terminal_lower": 119.99999999999895,
+            "terminal_seconds": 0.0025614309997763485,
+            "kind": "middle",
+            "lower": 1434.680071812847,
+            "accepted": false,
+            "alpha": 0.0018997721932938337,
+            "worlds": 128,
+            "oracle_mean": 1509.1328125,
+            "cutoff": 31142,
+            "trips": 1383,
+            "connections": 16036,
+            "corridor_seconds": 0.18102257899954566,
+            "template_seconds": 0.0481730890005565,
+            "draw_seconds": 1.8102524160003668,
+            "scan_seconds": 0.0317102379995049
+          },
+          "search_seconds": 1.5624521450008615,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0005953700001555262,
+          "gate_seconds": 2.090861380000206,
+          "proposed_first": 9704,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29517,
+          "ready_at": 29522,
+          "wall_seconds": 4.687627659001009,
+          "cpu_seconds": 4.4775575040000035,
+          "active_first": 9938,
+          "gate": {
+            "upper": 1430.8884639921307,
+            "witness_seconds": 0.013471190999553073,
+            "terminal_lower": 119.9999999999664,
+            "terminal_seconds": 0.0028383959997881902,
+            "kind": "middle",
+            "lower": 1352.190021624905,
+            "accepted": false,
+            "alpha": 0.0012158542037080534,
+            "worlds": 128,
+            "oracle_mean": 1427.0625,
+            "cutoff": 31128,
+            "trips": 1369,
+            "connections": 15800,
+            "corridor_seconds": 0.2052589489994716,
+            "template_seconds": 0.04920374200082733,
+            "draw_seconds": 2.4004359420014225,
+            "scan_seconds": 0.0444277360002161
+          },
+          "search_seconds": 1.968164297999465,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.001737980999678257,
+          "gate_seconds": 2.7175789550001355,
+          "proposed_first": 9938,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29598,
+          "ready_at": 29603,
+          "wall_seconds": 4.8002726409995375,
+          "cpu_seconds": 4.413319678999997,
+          "active_first": 10407,
+          "gate": {
+            "upper": 1342.8394252816674,
+            "witness_seconds": 0.015576528001474799,
+            "terminal_lower": 119.99999999999721,
+            "terminal_seconds": 0.00293001899990486,
+            "kind": "middle",
+            "lower": 1263.2077633094705,
+            "accepted": false,
+            "alpha": 0.0008443431970194816,
+            "worlds": 128,
+            "oracle_mean": 1336.9765625,
+            "cutoff": 31121,
+            "trips": 1369,
+            "connections": 15799,
+            "corridor_seconds": 0.24055276900071476,
+            "template_seconds": 0.06292020900036732,
+            "draw_seconds": 3.069661339999584,
+            "scan_seconds": 0.032314973999746144
+          },
+          "search_seconds": 1.3730110630003765,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0015981779997673584,
+          "gate_seconds": 3.425608387999091,
+          "proposed_first": 10407,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29758,
+          "ready_at": 29761,
+          "wall_seconds": 2.4365301859998,
+          "cpu_seconds": 2.274876066999994,
+          "active_first": 10879,
+          "gate": {
+            "upper": 1177.8329674386584,
+            "witness_seconds": 0.009871621001366293,
+            "terminal_lower": 119.99999999999996,
+            "terminal_seconds": 0.002013678000366781,
+            "kind": "middle",
+            "lower": 1114.7877076492587,
+            "accepted": false,
+            "alpha": 0.0006203337774020681,
+            "worlds": 128,
+            "oracle_mean": 1183.140625,
+            "cutoff": 31116,
+            "trips": 1369,
+            "connections": 15798,
+            "corridor_seconds": 0.1596848980007053,
+            "template_seconds": 0.04650570699959644,
+            "draw_seconds": 1.4928914650008664,
+            "scan_seconds": 0.02455840599941439
+          },
+          "search_seconds": 0.6992331980000017,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0004977240005246131,
+          "gate_seconds": 1.7367459270008112,
+          "proposed_first": 10879,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29843,
+          "ready_at": 29846,
+          "wall_seconds": 2.2448039459995925,
+          "cpu_seconds": 2.1635954049999953,
+          "active_first": 11339,
+          "gate": {
+            "upper": 1088.7796947114762,
+            "witness_seconds": 0.009169720000500092,
+            "terminal_lower": 119.99999999966116,
+            "terminal_seconds": 0.0015673390007577837,
+            "kind": "middle",
+            "lower": 1017.4869569078,
+            "accepted": false,
+            "alpha": 0.00047494304832345843,
+            "worlds": 128,
+            "oracle_mean": 1081.4921875,
+            "cutoff": 31112,
+            "trips": 1369,
+            "connections": 15797,
+            "corridor_seconds": 0.12064502400062338,
+            "template_seconds": 0.03462081100042269,
+            "draw_seconds": 1.4198558900006901,
+            "scan_seconds": 0.022888736000822973
+          },
+          "search_seconds": 0.6344566560001113,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0004445369995664805,
+          "gate_seconds": 1.609861869001179,
+          "proposed_first": 11339,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 29933,
+          "ready_at": 29935,
+          "wall_seconds": 1.5817185420000897,
+          "cpu_seconds": 1.5245914429999914,
+          "active_first": 11788,
+          "gate": {
+            "upper": 995.8474164082184,
+            "witness_seconds": 0.00890658699972846,
+            "terminal_lower": 119.99999999994688,
+            "terminal_seconds": 0.0016019060003600316,
+            "kind": "middle",
+            "lower": 938.3346980354327,
+            "accepted": true,
+            "alpha": 0.0003752636431197696,
+            "worlds": 128,
+            "oracle_mean": 999.5703125,
+            "cutoff": 31109,
+            "trips": 1369,
+            "connections": 15796,
+            "corridor_seconds": 0.13083275700046215,
+            "template_seconds": 0.04026624500147591,
+            "draw_seconds": 1.3767109440013883,
+            "scan_seconds": 0.02171023299888475
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0005478769999172073,
+          "gate_seconds": 1.5811472960012907,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30061,
+          "ready_at": 30063,
+          "wall_seconds": 1.5606228090000513,
+          "cpu_seconds": 1.5054496700000044,
+          "active_first": 12230,
+          "gate": {
+            "upper": 864.6729155637706,
+            "witness_seconds": 0.009471970000959118,
+            "terminal_lower": 119.99999986638005,
+            "terminal_seconds": 0.0014668309995613527,
+            "kind": "middle",
+            "lower": 813.0574336333739,
+            "accepted": true,
+            "alpha": 0.00030396355092701335,
+            "worlds": 128,
+            "oracle_mean": 867.6796875,
+            "cutoff": 31106,
+            "trips": 1369,
+            "connections": 15795,
+            "corridor_seconds": 0.10429964200011455,
+            "template_seconds": 0.03277124100168294,
+            "draw_seconds": 1.3916970120008045,
+            "scan_seconds": 0.019001615000888705
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0007594199996674433,
+          "gate_seconds": 1.5598389520000637,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30208,
+          "ready_at": 30210,
+          "wall_seconds": 1.555815606001488,
+          "cpu_seconds": 1.502023782000009,
+          "active_first": 12695,
+          "gate": {
+            "upper": 715.3721227919575,
+            "witness_seconds": 0.008244107999416883,
+            "terminal_lower": 119.99999994755544,
+            "terminal_seconds": 0.001172242000393453,
+            "kind": "middle",
+            "lower": 669.2758397725556,
+            "accepted": true,
+            "alpha": 0.0002512095462206723,
+            "worlds": 128,
+            "oracle_mean": 715.4140625,
+            "cutoff": 31104,
+            "trips": 1369,
+            "connections": 15794,
+            "corridor_seconds": 0.12011597899982007,
+            "template_seconds": 0.0345651089992316,
+            "draw_seconds": 1.3724927230014146,
+            "scan_seconds": 0.017342044999168138
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0007048069983284222,
+          "gate_seconds": 1.5550853650001955,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30292,
+          "ready_at": 30294,
+          "wall_seconds": 1.595551399001124,
+          "cpu_seconds": 1.5404520799999943,
+          "active_first": 12918,
+          "gate": {
+            "upper": 628.4809111533668,
+            "witness_seconds": 0.007793047001541709,
+            "terminal_lower": 119.99999999462985,
+            "terminal_seconds": 0.0010910430009971606,
+            "kind": "middle",
+            "lower": 584.9590417533909,
+            "accepted": true,
+            "alpha": 0.0002110857992548704,
+            "worlds": 128,
+            "oracle_mean": 626.0546875,
+            "cutoff": 31101,
+            "trips": 1359,
+            "connections": 15780,
+            "corridor_seconds": 0.1261251110008743,
+            "template_seconds": 0.03597436900054163,
+            "draw_seconds": 1.405946536000556,
+            "scan_seconds": 0.01679037999929278
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0006546969998453278,
+          "gate_seconds": 1.5948669320005138,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30360,
+          "ready_at": 30362,
+          "wall_seconds": 1.592077874000097,
+          "cpu_seconds": 1.5370506889999973,
+          "active_first": 13372,
+          "gate": {
+            "upper": 559.0765417847397,
+            "witness_seconds": 0.007472268000128679,
+            "terminal_lower": 119.99999991187227,
+            "terminal_seconds": 0.0010307119991921354,
+            "kind": "middle",
+            "lower": 518.273365868532,
+            "accepted": true,
+            "alpha": 0.00017986008930592504,
+            "worlds": 128,
+            "oracle_mean": 555.5703125,
+            "cutoff": 31100,
+            "trips": 1359,
+            "connections": 15779,
+            "corridor_seconds": 0.13197839200074668,
+            "template_seconds": 0.03828823000003467,
+            "draw_seconds": 1.3949713660003908,
+            "scan_seconds": 0.015676455999710015
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0013016410011914559,
+          "gate_seconds": 1.5907472079998115,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30447,
+          "ready_at": 30449,
+          "wall_seconds": 1.5793284010014759,
+          "cpu_seconds": 1.5271464399999957,
+          "active_first": 13588,
+          "gate": {
+            "upper": 469.3648533816636,
+            "witness_seconds": 0.006944677999854321,
+            "terminal_lower": 119.99999997748654,
+            "terminal_seconds": 0.0009369680010422599,
+            "kind": "middle",
+            "lower": 433.6100004424952,
+            "accepted": true,
+            "alpha": 0.00015508344435051703,
+            "worlds": 128,
+            "oracle_mean": 465.4453125,
+            "cutoff": 31097,
+            "trips": 1308,
+            "connections": 15326,
+            "corridor_seconds": 0.13201287999982014,
+            "template_seconds": 0.0414623329997994,
+            "draw_seconds": 1.3810091489995102,
+            "scan_seconds": 0.0145447310005693
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0011488629988889443,
+          "gate_seconds": 1.57815581900104,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30531,
+          "ready_at": 30533,
+          "wall_seconds": 1.3632406190008624,
+          "cpu_seconds": 1.3183220080000098,
+          "active_first": 13816,
+          "gate": {
+            "upper": 383.0437792716275,
+            "witness_seconds": 0.0063823060008871835,
+            "terminal_lower": 119.99999574028432,
+            "terminal_seconds": 0.000682850999510265,
+            "kind": "middle",
+            "lower": 355.2127438665193,
+            "accepted": true,
+            "alpha": 0.0001350949115231171,
+            "worlds": 128,
+            "oracle_mean": 381.890625,
+            "cutoff": 31095,
+            "trips": 1028,
+            "connections": 13157,
+            "corridor_seconds": 0.12590826000086963,
+            "template_seconds": 0.04088384200076689,
+            "draw_seconds": 1.174443407000581,
+            "scan_seconds": 0.012657340999794542
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0011446619992057094,
+          "gate_seconds": 1.3620691159994749,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30604,
+          "ready_at": 30606,
+          "wall_seconds": 1.3247735429995373,
+          "cpu_seconds": 1.2811431349999935,
+          "active_first": 14288,
+          "gate": {
+            "upper": 309.60616031254244,
+            "witness_seconds": 0.0054289290001179324,
+            "terminal_lower": 119.99996999906396,
+            "terminal_seconds": 0.0005787689988210332,
+            "kind": "middle",
+            "lower": 284.1013531011995,
+            "accepted": true,
+            "alpha": 0.00011873576208086461,
+            "worlds": 128,
+            "oracle_mean": 306.109375,
+            "cutoff": 31094,
+            "trips": 982,
+            "connections": 12682,
+            "corridor_seconds": 0.12109735700141755,
+            "template_seconds": 0.03764409300129046,
+            "draw_seconds": 1.1470770619998802,
+            "scan_seconds": 0.011216553999474854
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0008555630010960158,
+          "gate_seconds": 1.3238953759992,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30684,
+          "ready_at": 30685,
+          "wall_seconds": 0.79178179200062,
+          "cpu_seconds": 0.7657079349999947,
+          "active_first": 14501,
+          "gate": {
+            "upper": 224.31320080182786,
+            "witness_seconds": 0.004817433999050991,
+            "terminal_lower": 119.99899660769127,
+            "terminal_seconds": 0.0003923519998352276,
+            "kind": "middle",
+            "lower": 207.21851773385424,
+            "accepted": true,
+            "alpha": 0.00010517769928270359,
+            "worlds": 128,
+            "oracle_mean": 224.53125,
+            "cutoff": 31089,
+            "trips": 440,
+            "connections": 3481,
+            "corridor_seconds": 0.07623182499992254,
+            "template_seconds": 0.036013605998959974,
+            "draw_seconds": 0.6633628620002128,
+            "scan_seconds": 0.00936732700029097
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0006003590006002923,
+          "gate_seconds": 0.7911559490003128,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30761,
+          "ready_at": 30762,
+          "wall_seconds": 0.005529197998839663,
+          "cpu_seconds": 0.005349506999991149,
+          "active_first": 14737,
+          "gate": {
+            "upper": 144.58107349262082,
+            "witness_seconds": 0.003941433000363759,
+            "terminal_lower": 118.01284593607264,
+            "terminal_seconds": 0.0002453619999869261,
+            "kind": "terminal",
+            "lower": 118.01284593607264,
+            "accepted": true,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0010780209995573387,
+          "gate_seconds": 0.004434965998370899,
+          "publication": "incumbent_advanced"
+        },
+        {
+          "clock": 30822,
+          "ready_at": 30823,
+          "wall_seconds": 0.0035319979997439077,
+          "cpu_seconds": 0.0034176930000029415,
+          "active_first": 14955,
+          "gate": {
+            "upper": 76.07978028994421,
+            "witness_seconds": 0.0027448799992271233,
+            "terminal_lower": 75.82022737307256,
+            "terminal_seconds": 9.440599933441263e-05,
+            "kind": "terminal",
+            "lower": 75.82022737307256,
+            "accepted": true,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0005131220004841452,
+          "gate_seconds": 0.0030059480013733264,
+          "publication": "closed_during_compute"
+        }
+      ],
+      "actions": [
+        {
+          "clock": 29100,
+          "next_clock": 29160,
+          "stop": 427,
+          "next_stop": 614,
+          "connection": 8315,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8315,
+              29126
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29160,
+          "next_clock": 29223,
+          "stop": 614,
+          "next_stop": 3,
+          "connection": 8538,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8538,
+              29175
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29223,
+          "next_clock": 29323,
+          "stop": 3,
+          "next_stop": 568,
+          "connection": 8759,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8759,
+              29240
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29323,
+          "next_clock": 29446,
+          "stop": 568,
+          "next_stop": 88,
+          "connection": 9224,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9224,
+              29341
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29446,
+          "next_clock": 29517,
+          "stop": 88,
+          "next_stop": 647,
+          "connection": 9704,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9704,
+              29464
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29517,
+          "next_clock": 29598,
+          "stop": 647,
+          "next_stop": 606,
+          "connection": 9938,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9938,
+              29530
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29598,
+          "next_clock": 29758,
+          "stop": 606,
+          "next_stop": 592,
+          "connection": 10407,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10407,
+              29669
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29758,
+          "next_clock": 29843,
+          "stop": 592,
+          "next_stop": 495,
+          "connection": 10879,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10879,
+              29774
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29843,
+          "next_clock": 29933,
+          "stop": 495,
+          "next_stop": 164,
+          "connection": 11339,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              11339,
+              29857
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 29933,
+          "next_clock": 30061,
+          "stop": 164,
+          "next_stop": 165,
+          "connection": 11788,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              11788,
+              29956
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30061,
+          "next_clock": 30208,
+          "stop": 165,
+          "next_stop": 604,
+          "connection": 12230,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12230,
+              30093
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30208,
+          "next_clock": 30292,
+          "stop": 604,
+          "next_stop": 319,
+          "connection": 12695,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12695,
+              30218
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30292,
+          "next_clock": 30360,
+          "stop": 319,
+          "next_stop": 470,
+          "connection": 12918,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12918,
+              30302
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30360,
+          "next_clock": 30447,
+          "stop": 470,
+          "next_stop": 563,
+          "connection": 13372,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13372,
+              30372
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30447,
+          "next_clock": 30531,
+          "stop": 563,
+          "next_stop": 406,
+          "connection": 13588,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13588,
+              30464
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30531,
+          "next_clock": 30604,
+          "stop": 406,
+          "next_stop": 509,
+          "connection": 13816,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13816,
+              30548
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30604,
+          "next_clock": 30684,
+          "stop": 509,
+          "next_stop": 430,
+          "connection": 14288,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14288,
+              30619
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30684,
+          "next_clock": 30761,
+          "stop": 430,
+          "next_stop": 321,
+          "connection": 14501,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14501,
+              30697
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30761,
+          "next_clock": 30822,
+          "stop": 321,
+          "next_stop": 560,
+          "connection": 14737,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14737,
+              30780
+            ]
+          ],
+          "while_computing": true
+        },
+        {
+          "clock": 30822,
+          "next_clock": 30923,
+          "stop": 560,
+          "next_stop": 607,
+          "connection": 14955,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14955,
+              30836
+            ]
+          ],
+          "while_computing": true
+        }
+      ]
+    }
+  ]
+}

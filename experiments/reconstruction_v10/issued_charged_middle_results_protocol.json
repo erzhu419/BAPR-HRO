@@ -1,0 +1,18 @@
+{
+  "source": "experiments/reconstruction_data_audit/city_vbz_dated_replay_v2.json.gz",
+  "methods": [
+    "middle64",
+    "middle128"
+  ],
+  "samples": 128,
+  "tolerance": 60,
+  "alpha_per_journey": 0.05,
+  "mode": "charged",
+  "alpha_rule": "6 alpha / (pi * k)^2, conditional fresh tape per probabilistic check",
+  "contract": "Shared no-feed commitment with preissued policy; accepted gate retains incumbent. Fallback computes on same snapshot and publishes after measured wall time, using public revalidation.",
+  "scheduling": "The scheduled arms bypass a worker if the same public incumbent has an irrevocable attempt due now.",
+  "unresolved": "If an actually attempted connection is unresolved, retain elapsed/deadline loss interval.",
+  "training_dates": [
+    "2023-07-25"
+  ]
+}

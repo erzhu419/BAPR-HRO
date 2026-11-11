@@ -1,0 +1,3777 @@
+{
+  "protocol": {
+    "cases": [
+      [
+        "2023-07-26",
+        0,
+        1
+      ],
+      [
+        "2023-07-26",
+        0,
+        2
+      ],
+      [
+        "2023-07-27",
+        0,
+        1
+      ]
+    ],
+    "worlds": 64,
+    "tape": "Regenerate lower_run.py single64 draw with seed [20261112,int(date),query,decision], unchanged full posterior and templates; no new confirmation worlds.",
+    "family": "experiments/reconstruction_v12/recourse_rescue_results.json",
+    "fixed": "Same four saved tails, original prefix prepended, rescue index shifted by prefix length, every frozen nominal departure retained.",
+    "adaptive": "Execute original prefix, then use saved exact arrival-phase choice through BoundaryRecoursePlan.tail_for. No policy regeneration or posterior re-evaluation.",
+    "hindsight": "Minimum realized committed loss among the same four full policies, selected after seeing the complete world.",
+    "oracle": "Full temporal station-MCT scan on the same packed world; its mean must reproduce the saved lower run.",
+    "decomposition": "old-oracle = (old-best_fixed)+(best_fixed-arrival_policy)+(arrival_policy-hindsight_family)+(hindsight_family-oracle)",
+    "inference": "Paired Monte Carlo standard errors on the reused64 IID worlds; exact saved analytic expectations shown where available. No new confidence certificate.",
+    "interpretation": "First two components need not be nonnegative in each world. Last component includes frozen family, prefix, commitment and temporal-relaxation differences; neither it nor family hindsight is the full causal optimum."
+  },
+  "rows": [
+    {
+      "date": "2023-07-26",
+      "query": 0,
+      "decision": 1,
+      "worlds": 64,
+      "seed": [
+        20261112,
+        20230726,
+        0,
+        1
+      ],
+      "prefix": [
+        8780
+      ],
+      "family_size": 4,
+      "static_best_index": 3,
+      "analytic_fixed_uppers": [
+        1425.815432099916,
+        2667.0897747112604,
+        2083.792431213606,
+        1092.094809954131
+      ],
+      "analytic_replay_max_error": 4.547473508864641e-13,
+      "original_lower_oracle_mean": 717.5,
+      "values": {
+        "old_incumbent": {
+          "mean": 1610.0,
+          "standard_error": 162.43130416095468,
+          "minimum": 515.0,
+          "maximum": 3515.0,
+          "exact_expectation": 1425.815432099916,
+          "sample_minus_exact": 184.18456790008395
+        },
+        "best_fixed": {
+          "mean": 1299.6875,
+          "standard_error": 126.11859984823242,
+          "minimum": 515.0,
+          "maximum": 3515.0,
+          "exact_expectation": 1092.094809954131,
+          "sample_minus_exact": 207.59269004586895
+        },
+        "arrival_policy": {
+          "mean": 1299.6875,
+          "standard_error": 126.11859984823242,
+          "minimum": 515.0,
+          "maximum": 3515.0,
+          "exact_expectation": 1092.0772813630833,
+          "sample_minus_exact": 207.61021863691667
+        },
+        "hindsight_family": {
+          "mean": 937.8125,
+          "standard_error": 41.28363752963844,
+          "minimum": 515.0,
+          "maximum": 1715.0
+        },
+        "full_oracle": {
+          "mean": 717.5,
+          "standard_error": 15.32388425208924,
+          "minimum": 515.0,
+          "maximum": 1055.0
+        }
+      },
+      "components": {
+        "old_minus_best_fixed": {
+          "mean": 310.3125,
+          "standard_error": 91.0411473642158,
+          "minimum": 0.0,
+          "maximum": 2220.0,
+          "exact_expectation": 333.720622145785,
+          "sample_minus_exact": -23.408122145785
+        },
+        "best_fixed_minus_arrival_policy": {
+          "mean": 0.0,
+          "standard_error": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0,
+          "exact_expectation": 0.01752859104772142,
+          "sample_minus_exact": -0.01752859104772142
+        },
+        "arrival_policy_minus_hindsight_family": {
+          "mean": 361.875,
+          "standard_error": 106.0573358242741,
+          "minimum": 0.0,
+          "maximum": 2580.0
+        },
+        "hindsight_family_minus_full_oracle": {
+          "mean": 220.3125,
+          "standard_error": 37.41787883151582,
+          "minimum": 0.0,
+          "maximum": 1020.0
+        }
+      },
+      "total_gap": {
+        "mean": 892.5,
+        "standard_error": 157.57934509319423,
+        "minimum": 0.0,
+        "maximum": 2940.0
+      },
+      "arrival_policy_vs_static_different_worlds": 0,
+      "hindsight_improves_arrival_policy_worlds": 10,
+      "prefix_failure_worlds": 0,
+      "setup_seconds": 0.24936430000161636,
+      "draw_seconds": 2.5074385610005265,
+      "execution_seconds": 0.1823765769986494,
+      "rows": [
+        {
+          "world": 0,
+          "boundary_arrival": 29280,
+          "selected_tail": 3,
+          "fixed_losses": [
+            575,
+            1835,
+            1295,
+            575
+          ],
+          "arrival_policy_loss": 575,
+          "hindsight_family_loss": 575,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 575
+        },
+        {
+          "world": 1,
+          "boundary_arrival": 29340,
+          "selected_tail": 3,
+          "fixed_losses": [
+            635,
+            3515,
+            1355,
+            635
+          ],
+          "arrival_policy_loss": 635,
+          "hindsight_family_loss": 635,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 635
+        },
+        {
+          "world": 2,
+          "boundary_arrival": 29305,
+          "selected_tail": 3,
+          "fixed_losses": [
+            575,
+            2255,
+            1415,
+            575
+          ],
+          "arrival_policy_loss": 575,
+          "hindsight_family_loss": 575,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 575
+        },
+        {
+          "world": 3,
+          "boundary_arrival": 29295,
+          "selected_tail": 3,
+          "fixed_losses": [
+            695,
+            2195,
+            1295,
+            695
+          ],
+          "arrival_policy_loss": 695,
+          "hindsight_family_loss": 695,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 635
+        },
+        {
+          "world": 4,
+          "boundary_arrival": 29340,
+          "selected_tail": 3,
+          "fixed_losses": [
+            695,
+            2015,
+            1235,
+            695
+          ],
+          "arrival_policy_loss": 695,
+          "hindsight_family_loss": 695,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 695
+        },
+        {
+          "world": 5,
+          "boundary_arrival": 29340,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3515,
+            2255,
+            1235,
+            3515
+          ],
+          "arrival_policy_loss": 3515,
+          "hindsight_family_loss": 1235,
+          "hindsight_tail_indices": [
+            2
+          ],
+          "full_oracle_loss": 875
+        },
+        {
+          "world": 6,
+          "boundary_arrival": 29305,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3515,
+            2375,
+            1295,
+            3515
+          ],
+          "arrival_policy_loss": 3515,
+          "hindsight_family_loss": 1295,
+          "hindsight_tail_indices": [
+            2
+          ],
+          "full_oracle_loss": 635
+        },
+        {
+          "world": 7,
+          "boundary_arrival": 29305,
+          "selected_tail": 3,
+          "fixed_losses": [
+            695,
+            2195,
+            3515,
+            695
+          ],
+          "arrival_policy_loss": 695,
+          "hindsight_family_loss": 695,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 695
+        },
+        {
+          "world": 8,
+          "boundary_arrival": 29295,
+          "selected_tail": 3,
+          "fixed_losses": [
+            875,
+            2315,
+            1535,
+            875
+          ],
+          "arrival_policy_loss": 875,
+          "hindsight_family_loss": 875,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 755
+        },
+        {
+          "world": 9,
+          "boundary_arrival": 29295,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3515,
+            2255,
+            3515,
+            1595
+          ],
+          "arrival_policy_loss": 1595,
+          "hindsight_family_loss": 1595,
+          "hindsight_tail_indices": [
+            3
+          ],
+          "full_oracle_loss": 635
+        },
+        {
+          "world": 10,
+          "boundary_arrival": 29340,
+          "selected_tail": 3,
+          "fixed_losses": [
+            1055,
+            2315,
+            1415,
+            1055
+          ],
+          "arrival_policy_loss": 1055,
+          "hindsight_family_loss": 1055,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 935
+        },
+        {
+          "world": 11,
+          "boundary_arrival": 29295,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3515,
+            2195,
+            3515,
+            1655
+          ],
+          "arrival_policy_loss": 1655,
+          "hindsight_family_loss": 1655,
+          "hindsight_tail_indices": [
+            3
+          ],
+          "full_oracle_loss": 635
+        },
+        {
+          "world": 12,
+          "boundary_arrival": 29295,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3515,
+            3515,
+            1295,
+            1295
+          ],
+          "arrival_policy_loss": 1295,
+          "hindsight_family_loss": 1295,
+          "hindsight_tail_indices": [
+            2,
+            3
+          ],
+          "full_oracle_loss": 995
+        },
+        {
+          "world": 13,
+          "boundary_arrival": 29295,
+          "selected_tail": 3,
+          "fixed_losses": [
+            875,
+            3515,
+            3515,
+            875
+          ],
+          "arrival_policy_loss": 875,
+          "hindsight_family_loss": 875,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 815
+        },
+        {
+          "world": 14,
+          "boundary_arrival": 29305,
+          "selected_tail": 3,
+          "fixed_losses": [
+            815,
+            3515,
+            1295,
+            815
+          ],
+          "arrival_policy_loss": 815,
+          "hindsight_family_loss": 815,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 755
+        },
+        {
+          "world": 15,
+          "boundary_arrival": 29295,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3515,
+            3515,
+            3515,
+            1535
+          ],
+          "arrival_policy_loss": 1535,
+          "hindsight_family_loss": 1535,
+          "hindsight_tail_indices": [
+            3
+          ],
+          "full_oracle_loss": 935
+        },
+        {
+          "world": 16,
+          "boundary_arrival": 29305,
+          "selected_tail": 3,
+          "fixed_losses": [
+            635,
+            2255,
+            3515,
+            635
+          ],
+          "arrival_policy_loss": 635,
+          "hindsight_family_loss": 635,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 635
+        },
+        {
+          "world": 17,
+          "boundary_arrival": 29340,
+          "selected_tail": 3,
+          "fixed_losses": [
+            635,
+            2255,
+            1175,
+            635
+          ],
+          "arrival_policy_loss": 635,
+          "hindsight_family_loss": 635,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 635
+        },
+        {
+          "world": 18,
+          "boundary_arrival": 29280,
+          "selected_tail": 3,
+          "fixed_losses": [
+            515,
+            2255,
+            1475,
+            515
+          ],
+          "arrival_policy_loss": 515,
+          "hindsight_family_loss": 515,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 515
+        },
+        {
+          "world": 19,
+          "boundary_arrival": 29295,
+          "selected_tail": 3,
+          "fixed_losses": [
+            875,
+            3515,
+            3515,
+            875
+          ],
+          "arrival_policy_loss": 875,
+          "hindsight_family_loss": 875,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 875
+        },
+        {
+          "world": 20,
+          "boundary_arrival": 29280,
+          "selected_tail": 3,
+          "fixed_losses": [
+            815,
+            3515,
+            1175,
+            815
+          ],
+          "arrival_policy_loss": 815,
+          "hindsight_family_loss": 815,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 635
+        },
+        {
+          "world": 21,
+          "boundary_arrival": 29280,
+          "selected_tail": 3,
+          "fixed_losses": [
+            575,
+            2075,
+            1295,
+            575
+          ],
+          "arrival_policy_loss": 575,
+          "hindsight_family_loss": 575,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 575
+        },
+        {
+          "world": 22,
+          "boundary_arrival": 29295,
+          "selected_tail": 3,
+          "fixed_losses": [
+            635,
+            2375,
+            1115,
+            635
+          ],
+          "arrival_policy_loss": 635,
+          "hindsight_family_loss": 635,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 635
+        },
+        {
+          "world": 23,
+          "boundary_arrival": 29280,
+          "selected_tail": 3,
+          "fixed_losses": [
+            575,
+            3515,
+            935,
+            575
+          ],
+          "arrival_policy_loss": 575,
+          "hindsight_family_loss": 575,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 575
+        },
+        {
+          "world": 24,
+          "boundary_arrival": 29305,
+          "selected_tail": 3,
+          "fixed_losses": [
+            755,
+            3515,
+            1415,
+            755
+          ],
+          "arrival_policy_loss": 755,
+          "hindsight_family_loss": 755,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 635
+        },
+        {
+          "world": 25,
+          "boundary_arrival": 29340,
+          "selected_tail": 3,
+          "fixed_losses": [
+            635,
+            3515,
+            3515,
+            635
+          ],
+          "arrival_policy_loss": 635,
+          "hindsight_family_loss": 635,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 635
+        },
+        {
+          "world": 26,
+          "boundary_arrival": 29305,
+          "selected_tail": 3,
+          "fixed_losses": [
+            815,
+            2375,
+            1355,
+            815
+          ],
+          "arrival_policy_loss": 815,
+          "hindsight_family_loss": 815,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 635
+        },
+        {
+          "world": 27,
+          "boundary_arrival": 29305,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3515,
+            2315,
+            1235,
+            3515
+          ],
+          "arrival_policy_loss": 3515,
+          "hindsight_family_loss": 1235,
+          "hindsight_tail_indices": [
+            2
+          ],
+          "full_oracle_loss": 815
+        },
+        {
+          "world": 28,
+          "boundary_arrival": 29340,
+          "selected_tail": 3,
+          "fixed_losses": [
+            695,
+            2015,
+            1115,
+            695
+          ],
+          "arrival_policy_loss": 695,
+          "hindsight_family_loss": 695,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 695
+        },
+        {
+          "world": 29,
+          "boundary_arrival": 29340,
+          "selected_tail": 3,
+          "fixed_losses": [
+            695,
+            2255,
+            3515,
+            695
+          ],
+          "arrival_policy_loss": 695,
+          "hindsight_family_loss": 695,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 695
+        },
+        {
+          "world": 30,
+          "boundary_arrival": 29295,
+          "selected_tail": 3,
+          "fixed_losses": [
+            995,
+            3515,
+            1295,
+            995
+          ],
+          "arrival_policy_loss": 995,
+          "hindsight_family_loss": 995,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 695
+        },
+        {
+          "world": 31,
+          "boundary_arrival": 29305,
+          "selected_tail": 3,
+          "fixed_losses": [
+            935,
+            2315,
+            1235,
+            935
+          ],
+          "arrival_policy_loss": 935,
+          "hindsight_family_loss": 935,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 935
+        },
+        {
+          "world": 32,
+          "boundary_arrival": 29295,
+          "selected_tail": 3,
+          "fixed_losses": [
+            935,
+            2315,
+            1235,
+            935
+          ],
+          "arrival_policy_loss": 935,
+          "hindsight_family_loss": 935,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 815
+        },
+        {
+          "world": 33,
+          "boundary_arrival": 29280,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3515,
+            3515,
+            3515,
+            1535
+          ],
+          "arrival_policy_loss": 1535,
+          "hindsight_family_loss": 1535,
+          "hindsight_tail_indices": [
+            3
+          ],
+          "full_oracle_loss": 635
+        },
+        {
+          "world": 34,
+          "boundary_arrival": 29220,
+          "selected_tail": 3,
+          "fixed_losses": [
+            635,
+            3515,
+            3515,
+            635
+          ],
+          "arrival_policy_loss": 635,
+          "hindsight_family_loss": 635,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 635
+        },
+        {
+          "world": 35,
+          "boundary_arrival": 29295,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3515,
+            2255,
+            3515,
+            1715
+          ],
+          "arrival_policy_loss": 1715,
+          "hindsight_family_loss": 1715,
+          "hindsight_tail_indices": [
+            3
+          ],
+          "full_oracle_loss": 755
+        },
+        {
+          "world": 36,
+          "boundary_arrival": 29305,
+          "selected_tail": 3,
+          "fixed_losses": [
+            935,
+            2195,
+            1415,
+            935
+          ],
+          "arrival_policy_loss": 935,
+          "hindsight_family_loss": 935,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 935
+        },
+        {
+          "world": 37,
+          "boundary_arrival": 29340,
+          "selected_tail": 3,
+          "fixed_losses": [
+            755,
+            2135,
+            3515,
+            755
+          ],
+          "arrival_policy_loss": 755,
+          "hindsight_family_loss": 755,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 695
+        },
+        {
+          "world": 38,
+          "boundary_arrival": 29295,
+          "selected_tail": 3,
+          "fixed_losses": [
+            1055,
+            3515,
+            3515,
+            1055
+          ],
+          "arrival_policy_loss": 1055,
+          "hindsight_family_loss": 1055,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 815
+        },
+        {
+          "world": 39,
+          "boundary_arrival": 29305,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3515,
+            2135,
+            1235,
+            3515
+          ],
+          "arrival_policy_loss": 3515,
+          "hindsight_family_loss": 1235,
+          "hindsight_tail_indices": [
+            2
+          ],
+          "full_oracle_loss": 755
+        },
+        {
+          "world": 40,
+          "boundary_arrival": 29305,
+          "selected_tail": 3,
+          "fixed_losses": [
+            815,
+            2375,
+            1295,
+            815
+          ],
+          "arrival_policy_loss": 815,
+          "hindsight_family_loss": 815,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 635
+        },
+        {
+          "world": 41,
+          "boundary_arrival": 29295,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3515,
+            2315,
+            3515,
+            1415
+          ],
+          "arrival_policy_loss": 1415,
+          "hindsight_family_loss": 1415,
+          "hindsight_tail_indices": [
+            3
+          ],
+          "full_oracle_loss": 635
+        },
+        {
+          "world": 42,
+          "boundary_arrival": 29220,
+          "selected_tail": 3,
+          "fixed_losses": [
+            755,
+            2255,
+            1235,
+            755
+          ],
+          "arrival_policy_loss": 755,
+          "hindsight_family_loss": 755,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 695
+        },
+        {
+          "world": 43,
+          "boundary_arrival": 29340,
+          "selected_tail": 3,
+          "fixed_losses": [
+            695,
+            3515,
+            3515,
+            695
+          ],
+          "arrival_policy_loss": 695,
+          "hindsight_family_loss": 695,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 635
+        },
+        {
+          "world": 44,
+          "boundary_arrival": 29305,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3515,
+            2015,
+            1235,
+            3515
+          ],
+          "arrival_policy_loss": 3515,
+          "hindsight_family_loss": 1235,
+          "hindsight_tail_indices": [
+            2
+          ],
+          "full_oracle_loss": 695
+        },
+        {
+          "world": 45,
+          "boundary_arrival": 29280,
+          "selected_tail": 3,
+          "fixed_losses": [
+            755,
+            3515,
+            1115,
+            755
+          ],
+          "arrival_policy_loss": 755,
+          "hindsight_family_loss": 755,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 575
+        },
+        {
+          "world": 46,
+          "boundary_arrival": 29295,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3515,
+            2135,
+            3515,
+            1535
+          ],
+          "arrival_policy_loss": 1535,
+          "hindsight_family_loss": 1535,
+          "hindsight_tail_indices": [
+            3
+          ],
+          "full_oracle_loss": 1055
+        },
+        {
+          "world": 47,
+          "boundary_arrival": 29295,
+          "selected_tail": 3,
+          "fixed_losses": [
+            755,
+            2375,
+            1235,
+            755
+          ],
+          "arrival_policy_loss": 755,
+          "hindsight_family_loss": 755,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 755
+        },
+        {
+          "world": 48,
+          "boundary_arrival": 29295,
+          "selected_tail": 3,
+          "fixed_losses": [
+            695,
+            3515,
+            3515,
+            695
+          ],
+          "arrival_policy_loss": 695,
+          "hindsight_family_loss": 695,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 575
+        },
+        {
+          "world": 49,
+          "boundary_arrival": 29295,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3515,
+            2255,
+            1175,
+            3515
+          ],
+          "arrival_policy_loss": 3515,
+          "hindsight_family_loss": 1175,
+          "hindsight_tail_indices": [
+            2
+          ],
+          "full_oracle_loss": 935
+        },
+        {
+          "world": 50,
+          "boundary_arrival": 29340,
+          "selected_tail": 3,
+          "fixed_losses": [
+            695,
+            3515,
+            1295,
+            695
+          ],
+          "arrival_policy_loss": 695,
+          "hindsight_family_loss": 695,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 695
+        },
+        {
+          "world": 51,
+          "boundary_arrival": 29305,
+          "selected_tail": 3,
+          "fixed_losses": [
+            575,
+            2255,
+            1355,
+            575
+          ],
+          "arrival_policy_loss": 575,
+          "hindsight_family_loss": 575,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 575
+        },
+        {
+          "world": 52,
+          "boundary_arrival": 29305,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3515,
+            3515,
+            1175,
+            3515
+          ],
+          "arrival_policy_loss": 3515,
+          "hindsight_family_loss": 1175,
+          "hindsight_tail_indices": [
+            2
+          ],
+          "full_oracle_loss": 815
+        },
+        {
+          "world": 53,
+          "boundary_arrival": 29295,
+          "selected_tail": 3,
+          "fixed_losses": [
+            815,
+            1895,
+            3515,
+            815
+          ],
+          "arrival_policy_loss": 815,
+          "hindsight_family_loss": 815,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 815
+        },
+        {
+          "world": 54,
+          "boundary_arrival": 29305,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3515,
+            2435,
+            1175,
+            3515
+          ],
+          "arrival_policy_loss": 3515,
+          "hindsight_family_loss": 1175,
+          "hindsight_tail_indices": [
+            2
+          ],
+          "full_oracle_loss": 755
+        },
+        {
+          "world": 55,
+          "boundary_arrival": 29305,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3515,
+            2255,
+            1295,
+            3515
+          ],
+          "arrival_policy_loss": 3515,
+          "hindsight_family_loss": 1295,
+          "hindsight_tail_indices": [
+            2
+          ],
+          "full_oracle_loss": 575
+        },
+        {
+          "world": 56,
+          "boundary_arrival": 29295,
+          "selected_tail": 3,
+          "fixed_losses": [
+            935,
+            2315,
+            995,
+            935
+          ],
+          "arrival_policy_loss": 935,
+          "hindsight_family_loss": 935,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 875
+        },
+        {
+          "world": 57,
+          "boundary_arrival": 29305,
+          "selected_tail": 3,
+          "fixed_losses": [
+            575,
+            1955,
+            1235,
+            575
+          ],
+          "arrival_policy_loss": 575,
+          "hindsight_family_loss": 575,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 575
+        },
+        {
+          "world": 58,
+          "boundary_arrival": 29280,
+          "selected_tail": 3,
+          "fixed_losses": [
+            755,
+            3515,
+            1475,
+            755
+          ],
+          "arrival_policy_loss": 755,
+          "hindsight_family_loss": 755,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 755
+        },
+        {
+          "world": 59,
+          "boundary_arrival": 29295,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3515,
+            2195,
+            3515,
+            1415
+          ],
+          "arrival_policy_loss": 1415,
+          "hindsight_family_loss": 1415,
+          "hindsight_tail_indices": [
+            3
+          ],
+          "full_oracle_loss": 755
+        },
+        {
+          "world": 60,
+          "boundary_arrival": 29305,
+          "selected_tail": 3,
+          "fixed_losses": [
+            695,
+            3515,
+            3515,
+            695
+          ],
+          "arrival_policy_loss": 695,
+          "hindsight_family_loss": 695,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 695
+        },
+        {
+          "world": 61,
+          "boundary_arrival": 29280,
+          "selected_tail": 3,
+          "fixed_losses": [
+            635,
+            2195,
+            3515,
+            635
+          ],
+          "arrival_policy_loss": 635,
+          "hindsight_family_loss": 635,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 635
+        },
+        {
+          "world": 62,
+          "boundary_arrival": 29295,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3515,
+            2315,
+            3515,
+            1595
+          ],
+          "arrival_policy_loss": 1595,
+          "hindsight_family_loss": 1595,
+          "hindsight_tail_indices": [
+            3
+          ],
+          "full_oracle_loss": 695
+        },
+        {
+          "world": 63,
+          "boundary_arrival": 29305,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3515,
+            3515,
+            935,
+            3515
+          ],
+          "arrival_policy_loss": 3515,
+          "hindsight_family_loss": 935,
+          "hindsight_tail_indices": [
+            2
+          ],
+          "full_oracle_loss": 875
+        }
+      ]
+    },
+    {
+      "date": "2023-07-26",
+      "query": 0,
+      "decision": 2,
+      "worlds": 64,
+      "seed": [
+        20261112,
+        20230726,
+        0,
+        2
+      ],
+      "prefix": [
+        9488,
+        9727
+      ],
+      "family_size": 4,
+      "static_best_index": 3,
+      "analytic_fixed_uppers": [
+        957.2869477973063,
+        3098.1748630150296,
+        2289.8276470345704,
+        818.3905704357228
+      ],
+      "analytic_replay_max_error": 4.547473508864641e-13,
+      "original_lower_oracle_mean": 599.3125,
+      "values": {
+        "old_incumbent": {
+          "mean": 980.875,
+          "standard_error": 99.00819545803844,
+          "minimum": 454.0,
+          "maximum": 3394.0,
+          "exact_expectation": 957.2869477973063,
+          "sample_minus_exact": 23.58805220269369
+        },
+        "best_fixed": {
+          "mean": 818.6875,
+          "standard_error": 38.01561444938495,
+          "minimum": 454.0,
+          "maximum": 1834.0,
+          "exact_expectation": 818.3905704357228,
+          "sample_minus_exact": 0.29692956427720674
+        },
+        "arrival_policy": {
+          "mean": 818.6875,
+          "standard_error": 38.01561444938495,
+          "minimum": 454.0,
+          "maximum": 1834.0,
+          "exact_expectation": 818.3905704357221,
+          "sample_minus_exact": 0.29692956427788886
+        },
+        "hindsight_family": {
+          "mean": 818.6875,
+          "standard_error": 38.01561444938495,
+          "minimum": 454.0,
+          "maximum": 1834.0
+        },
+        "full_oracle": {
+          "mean": 599.3125,
+          "standard_error": 13.483103679102545,
+          "minimum": 394.0,
+          "maximum": 814.0
+        }
+      },
+      "components": {
+        "old_minus_best_fixed": {
+          "mean": 162.1875,
+          "standard_error": 63.775270726591195,
+          "minimum": 0.0,
+          "maximum": 1920.0,
+          "exact_expectation": 138.89637736158352,
+          "sample_minus_exact": 23.291122638416482
+        },
+        "best_fixed_minus_arrival_policy": {
+          "mean": 0.0,
+          "standard_error": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0,
+          "exact_expectation": 6.821210263296962e-13,
+          "sample_minus_exact": -6.821210263296962e-13
+        },
+        "arrival_policy_minus_hindsight_family": {
+          "mean": 0.0,
+          "standard_error": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "hindsight_family_minus_full_oracle": {
+          "mean": 219.375,
+          "standard_error": 34.646653878837995,
+          "minimum": 0.0,
+          "maximum": 1080.0
+        }
+      },
+      "total_gap": {
+        "mean": 381.5625,
+        "standard_error": 95.69638733571473,
+        "minimum": 0.0,
+        "maximum": 2820.0
+      },
+      "arrival_policy_vs_static_different_worlds": 0,
+      "hindsight_improves_arrival_policy_worlds": 0,
+      "prefix_failure_worlds": 0,
+      "setup_seconds": 0.2019602450000093,
+      "draw_seconds": 2.4734032309988834,
+      "execution_seconds": 0.17145670399986557,
+      "rows": [
+        {
+          "world": 0,
+          "boundary_arrival": 29535,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3394,
+            2914,
+            3394,
+            1774
+          ],
+          "arrival_policy_loss": 1774,
+          "hindsight_family_loss": 1774,
+          "hindsight_tail_indices": [
+            3
+          ],
+          "full_oracle_loss": 754
+        },
+        {
+          "world": 1,
+          "boundary_arrival": 29545,
+          "selected_tail": 3,
+          "fixed_losses": [
+            814,
+            2914,
+            1474,
+            814
+          ],
+          "arrival_policy_loss": 814,
+          "hindsight_family_loss": 814,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 574
+        },
+        {
+          "world": 2,
+          "boundary_arrival": 29545,
+          "selected_tail": 3,
+          "fixed_losses": [
+            814,
+            2854,
+            1474,
+            814
+          ],
+          "arrival_policy_loss": 814,
+          "hindsight_family_loss": 814,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 454
+        },
+        {
+          "world": 3,
+          "boundary_arrival": 29545,
+          "selected_tail": 3,
+          "fixed_losses": [
+            934,
+            3394,
+            3394,
+            934
+          ],
+          "arrival_policy_loss": 934,
+          "hindsight_family_loss": 934,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 454
+        },
+        {
+          "world": 4,
+          "boundary_arrival": 29546,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3394,
+            2494,
+            1474,
+            1474
+          ],
+          "arrival_policy_loss": 1474,
+          "hindsight_family_loss": 1474,
+          "hindsight_tail_indices": [
+            2,
+            3
+          ],
+          "full_oracle_loss": 574
+        },
+        {
+          "world": 5,
+          "boundary_arrival": 29640,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3394,
+            3394,
+            3394,
+            1774
+          ],
+          "arrival_policy_loss": 1774,
+          "hindsight_family_loss": 1774,
+          "hindsight_tail_indices": [
+            3
+          ],
+          "full_oracle_loss": 694
+        },
+        {
+          "world": 6,
+          "boundary_arrival": 29546,
+          "selected_tail": 3,
+          "fixed_losses": [
+            934,
+            3394,
+            1294,
+            934
+          ],
+          "arrival_policy_loss": 934,
+          "hindsight_family_loss": 934,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 754
+        },
+        {
+          "world": 7,
+          "boundary_arrival": 29545,
+          "selected_tail": 3,
+          "fixed_losses": [
+            814,
+            2614,
+            3394,
+            814
+          ],
+          "arrival_policy_loss": 814,
+          "hindsight_family_loss": 814,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 574
+        },
+        {
+          "world": 8,
+          "boundary_arrival": 29546,
+          "selected_tail": 3,
+          "fixed_losses": [
+            754,
+            3394,
+            3394,
+            754
+          ],
+          "arrival_policy_loss": 754,
+          "hindsight_family_loss": 754,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 574
+        },
+        {
+          "world": 9,
+          "boundary_arrival": 29640,
+          "selected_tail": 3,
+          "fixed_losses": [
+            694,
+            2914,
+            1654,
+            694
+          ],
+          "arrival_policy_loss": 694,
+          "hindsight_family_loss": 694,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 694
+        },
+        {
+          "world": 10,
+          "boundary_arrival": 29546,
+          "selected_tail": 3,
+          "fixed_losses": [
+            634,
+            2674,
+            1174,
+            634
+          ],
+          "arrival_policy_loss": 634,
+          "hindsight_family_loss": 634,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 454
+        },
+        {
+          "world": 11,
+          "boundary_arrival": 29580,
+          "selected_tail": 3,
+          "fixed_losses": [
+            634,
+            3394,
+            3394,
+            634
+          ],
+          "arrival_policy_loss": 634,
+          "hindsight_family_loss": 634,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 574
+        },
+        {
+          "world": 12,
+          "boundary_arrival": 29545,
+          "selected_tail": 3,
+          "fixed_losses": [
+            754,
+            3394,
+            1414,
+            754
+          ],
+          "arrival_policy_loss": 754,
+          "hindsight_family_loss": 754,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 514
+        },
+        {
+          "world": 13,
+          "boundary_arrival": 29580,
+          "selected_tail": 3,
+          "fixed_losses": [
+            754,
+            2854,
+            3394,
+            754
+          ],
+          "arrival_policy_loss": 754,
+          "hindsight_family_loss": 754,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 754
+        },
+        {
+          "world": 14,
+          "boundary_arrival": 29546,
+          "selected_tail": 3,
+          "fixed_losses": [
+            1054,
+            2794,
+            1534,
+            1054
+          ],
+          "arrival_policy_loss": 1054,
+          "hindsight_family_loss": 1054,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 814
+        },
+        {
+          "world": 15,
+          "boundary_arrival": 29545,
+          "selected_tail": 3,
+          "fixed_losses": [
+            874,
+            2734,
+            1534,
+            874
+          ],
+          "arrival_policy_loss": 874,
+          "hindsight_family_loss": 874,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 694
+        },
+        {
+          "world": 16,
+          "boundary_arrival": 29535,
+          "selected_tail": 3,
+          "fixed_losses": [
+            934,
+            3394,
+            3394,
+            934
+          ],
+          "arrival_policy_loss": 934,
+          "hindsight_family_loss": 934,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 634
+        },
+        {
+          "world": 17,
+          "boundary_arrival": 29546,
+          "selected_tail": 3,
+          "fixed_losses": [
+            754,
+            2974,
+            3394,
+            754
+          ],
+          "arrival_policy_loss": 754,
+          "hindsight_family_loss": 754,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 754
+        },
+        {
+          "world": 18,
+          "boundary_arrival": 29546,
+          "selected_tail": 3,
+          "fixed_losses": [
+            574,
+            3394,
+            1474,
+            574
+          ],
+          "arrival_policy_loss": 574,
+          "hindsight_family_loss": 574,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 514
+        },
+        {
+          "world": 19,
+          "boundary_arrival": 29535,
+          "selected_tail": 3,
+          "fixed_losses": [
+            634,
+            2854,
+            1534,
+            634
+          ],
+          "arrival_policy_loss": 634,
+          "hindsight_family_loss": 634,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 574
+        },
+        {
+          "world": 20,
+          "boundary_arrival": 29520,
+          "selected_tail": 3,
+          "fixed_losses": [
+            634,
+            3394,
+            1414,
+            634
+          ],
+          "arrival_policy_loss": 634,
+          "hindsight_family_loss": 634,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 514
+        },
+        {
+          "world": 21,
+          "boundary_arrival": 29580,
+          "selected_tail": 3,
+          "fixed_losses": [
+            814,
+            2914,
+            1594,
+            814
+          ],
+          "arrival_policy_loss": 814,
+          "hindsight_family_loss": 814,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 814
+        },
+        {
+          "world": 22,
+          "boundary_arrival": 29545,
+          "selected_tail": 3,
+          "fixed_losses": [
+            634,
+            2914,
+            1594,
+            634
+          ],
+          "arrival_policy_loss": 634,
+          "hindsight_family_loss": 634,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 574
+        },
+        {
+          "world": 23,
+          "boundary_arrival": 29546,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3394,
+            2854,
+            3394,
+            1834
+          ],
+          "arrival_policy_loss": 1834,
+          "hindsight_family_loss": 1834,
+          "hindsight_tail_indices": [
+            3
+          ],
+          "full_oracle_loss": 814
+        },
+        {
+          "world": 24,
+          "boundary_arrival": 29535,
+          "selected_tail": 3,
+          "fixed_losses": [
+            874,
+            3394,
+            3394,
+            874
+          ],
+          "arrival_policy_loss": 874,
+          "hindsight_family_loss": 874,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 514
+        },
+        {
+          "world": 25,
+          "boundary_arrival": 29545,
+          "selected_tail": 3,
+          "fixed_losses": [
+            754,
+            3394,
+            1594,
+            754
+          ],
+          "arrival_policy_loss": 754,
+          "hindsight_family_loss": 754,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 514
+        },
+        {
+          "world": 26,
+          "boundary_arrival": 29546,
+          "selected_tail": 3,
+          "fixed_losses": [
+            574,
+            2914,
+            3394,
+            574
+          ],
+          "arrival_policy_loss": 574,
+          "hindsight_family_loss": 574,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 574
+        },
+        {
+          "world": 27,
+          "boundary_arrival": 29545,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3394,
+            2554,
+            3394,
+            1654
+          ],
+          "arrival_policy_loss": 1654,
+          "hindsight_family_loss": 1654,
+          "hindsight_tail_indices": [
+            3
+          ],
+          "full_oracle_loss": 694
+        },
+        {
+          "world": 28,
+          "boundary_arrival": 29546,
+          "selected_tail": 3,
+          "fixed_losses": [
+            634,
+            2734,
+            3394,
+            634
+          ],
+          "arrival_policy_loss": 634,
+          "hindsight_family_loss": 634,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 394
+        },
+        {
+          "world": 29,
+          "boundary_arrival": 29520,
+          "selected_tail": 3,
+          "fixed_losses": [
+            634,
+            3034,
+            1354,
+            634
+          ],
+          "arrival_policy_loss": 634,
+          "hindsight_family_loss": 634,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 454
+        },
+        {
+          "world": 30,
+          "boundary_arrival": 29640,
+          "selected_tail": 3,
+          "fixed_losses": [
+            694,
+            3034,
+            3394,
+            694
+          ],
+          "arrival_policy_loss": 694,
+          "hindsight_family_loss": 694,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 574
+        },
+        {
+          "world": 31,
+          "boundary_arrival": 29535,
+          "selected_tail": 3,
+          "fixed_losses": [
+            754,
+            2794,
+            1594,
+            754
+          ],
+          "arrival_policy_loss": 754,
+          "hindsight_family_loss": 754,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 754
+        },
+        {
+          "world": 32,
+          "boundary_arrival": 29640,
+          "selected_tail": 3,
+          "fixed_losses": [
+            634,
+            3394,
+            3394,
+            634
+          ],
+          "arrival_policy_loss": 634,
+          "hindsight_family_loss": 634,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 634
+        },
+        {
+          "world": 33,
+          "boundary_arrival": 29580,
+          "selected_tail": 3,
+          "fixed_losses": [
+            454,
+            3394,
+            1654,
+            454
+          ],
+          "arrival_policy_loss": 454,
+          "hindsight_family_loss": 454,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 454
+        },
+        {
+          "world": 34,
+          "boundary_arrival": 29535,
+          "selected_tail": 3,
+          "fixed_losses": [
+            694,
+            2854,
+            1474,
+            694
+          ],
+          "arrival_policy_loss": 694,
+          "hindsight_family_loss": 694,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 634
+        },
+        {
+          "world": 35,
+          "boundary_arrival": 29535,
+          "selected_tail": 3,
+          "fixed_losses": [
+            814,
+            2914,
+            1534,
+            814
+          ],
+          "arrival_policy_loss": 814,
+          "hindsight_family_loss": 814,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 694
+        },
+        {
+          "world": 36,
+          "boundary_arrival": 29580,
+          "selected_tail": 3,
+          "fixed_losses": [
+            634,
+            3394,
+            1534,
+            634
+          ],
+          "arrival_policy_loss": 634,
+          "hindsight_family_loss": 634,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 394
+        },
+        {
+          "world": 37,
+          "boundary_arrival": 29545,
+          "selected_tail": 3,
+          "fixed_losses": [
+            754,
+            3394,
+            3394,
+            754
+          ],
+          "arrival_policy_loss": 754,
+          "hindsight_family_loss": 754,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 574
+        },
+        {
+          "world": 38,
+          "boundary_arrival": 29545,
+          "selected_tail": 3,
+          "fixed_losses": [
+            574,
+            2854,
+            1534,
+            574
+          ],
+          "arrival_policy_loss": 574,
+          "hindsight_family_loss": 574,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 574
+        },
+        {
+          "world": 39,
+          "boundary_arrival": 29546,
+          "selected_tail": 3,
+          "fixed_losses": [
+            514,
+            3394,
+            1594,
+            514
+          ],
+          "arrival_policy_loss": 514,
+          "hindsight_family_loss": 514,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 454
+        },
+        {
+          "world": 40,
+          "boundary_arrival": 29545,
+          "selected_tail": 3,
+          "fixed_losses": [
+            574,
+            3394,
+            3394,
+            574
+          ],
+          "arrival_policy_loss": 574,
+          "hindsight_family_loss": 574,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 574
+        },
+        {
+          "world": 41,
+          "boundary_arrival": 29513,
+          "selected_tail": 3,
+          "fixed_losses": [
+            514,
+            3394,
+            3394,
+            514
+          ],
+          "arrival_policy_loss": 514,
+          "hindsight_family_loss": 514,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 514
+        },
+        {
+          "world": 42,
+          "boundary_arrival": 29513,
+          "selected_tail": 3,
+          "fixed_losses": [
+            694,
+            2974,
+            3394,
+            694
+          ],
+          "arrival_policy_loss": 694,
+          "hindsight_family_loss": 694,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 574
+        },
+        {
+          "world": 43,
+          "boundary_arrival": 29640,
+          "selected_tail": 3,
+          "fixed_losses": [
+            694,
+            3394,
+            3394,
+            694
+          ],
+          "arrival_policy_loss": 694,
+          "hindsight_family_loss": 694,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 574
+        },
+        {
+          "world": 44,
+          "boundary_arrival": 29546,
+          "selected_tail": 3,
+          "fixed_losses": [
+            634,
+            2854,
+            1594,
+            634
+          ],
+          "arrival_policy_loss": 634,
+          "hindsight_family_loss": 634,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 634
+        },
+        {
+          "world": 45,
+          "boundary_arrival": 29520,
+          "selected_tail": 3,
+          "fixed_losses": [
+            814,
+            2914,
+            1654,
+            814
+          ],
+          "arrival_policy_loss": 814,
+          "hindsight_family_loss": 814,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 514
+        },
+        {
+          "world": 46,
+          "boundary_arrival": 29546,
+          "selected_tail": 3,
+          "fixed_losses": [
+            634,
+            2674,
+            1354,
+            634
+          ],
+          "arrival_policy_loss": 634,
+          "hindsight_family_loss": 634,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 454
+        },
+        {
+          "world": 47,
+          "boundary_arrival": 29535,
+          "selected_tail": 3,
+          "fixed_losses": [
+            754,
+            2794,
+            3394,
+            754
+          ],
+          "arrival_policy_loss": 754,
+          "hindsight_family_loss": 754,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 574
+        },
+        {
+          "world": 48,
+          "boundary_arrival": 29546,
+          "selected_tail": 3,
+          "fixed_losses": [
+            574,
+            2674,
+            1594,
+            574
+          ],
+          "arrival_policy_loss": 574,
+          "hindsight_family_loss": 574,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 574
+        },
+        {
+          "world": 49,
+          "boundary_arrival": 29545,
+          "selected_tail": 3,
+          "fixed_losses": [
+            634,
+            3394,
+            1534,
+            634
+          ],
+          "arrival_policy_loss": 634,
+          "hindsight_family_loss": 634,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 514
+        },
+        {
+          "world": 50,
+          "boundary_arrival": 29545,
+          "selected_tail": 3,
+          "fixed_losses": [
+            874,
+            3394,
+            1414,
+            874
+          ],
+          "arrival_policy_loss": 874,
+          "hindsight_family_loss": 874,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 754
+        },
+        {
+          "world": 51,
+          "boundary_arrival": 29546,
+          "selected_tail": 3,
+          "fixed_losses": [
+            694,
+            2914,
+            1594,
+            694
+          ],
+          "arrival_policy_loss": 694,
+          "hindsight_family_loss": 694,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 694
+        },
+        {
+          "world": 52,
+          "boundary_arrival": 29546,
+          "selected_tail": 3,
+          "fixed_losses": [
+            694,
+            3394,
+            1474,
+            694
+          ],
+          "arrival_policy_loss": 694,
+          "hindsight_family_loss": 694,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 694
+        },
+        {
+          "world": 53,
+          "boundary_arrival": 29546,
+          "selected_tail": 3,
+          "fixed_losses": [
+            754,
+            3394,
+            1474,
+            754
+          ],
+          "arrival_policy_loss": 754,
+          "hindsight_family_loss": 754,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 514
+        },
+        {
+          "world": 54,
+          "boundary_arrival": 29546,
+          "selected_tail": 3,
+          "fixed_losses": [
+            934,
+            2854,
+            1594,
+            934
+          ],
+          "arrival_policy_loss": 934,
+          "hindsight_family_loss": 934,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 574
+        },
+        {
+          "world": 55,
+          "boundary_arrival": 29535,
+          "selected_tail": 3,
+          "fixed_losses": [
+            874,
+            3394,
+            1414,
+            874
+          ],
+          "arrival_policy_loss": 874,
+          "hindsight_family_loss": 874,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 694
+        },
+        {
+          "world": 56,
+          "boundary_arrival": 29546,
+          "selected_tail": 3,
+          "fixed_losses": [
+            994,
+            2734,
+            1654,
+            994
+          ],
+          "arrival_policy_loss": 994,
+          "hindsight_family_loss": 994,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 454
+        },
+        {
+          "world": 57,
+          "boundary_arrival": 29513,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3394,
+            3394,
+            1474,
+            1474
+          ],
+          "arrival_policy_loss": 1474,
+          "hindsight_family_loss": 1474,
+          "hindsight_tail_indices": [
+            2,
+            3
+          ],
+          "full_oracle_loss": 574
+        },
+        {
+          "world": 58,
+          "boundary_arrival": 29580,
+          "selected_tail": 3,
+          "fixed_losses": [
+            994,
+            3034,
+            1594,
+            994
+          ],
+          "arrival_policy_loss": 994,
+          "hindsight_family_loss": 994,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 694
+        },
+        {
+          "world": 59,
+          "boundary_arrival": 29580,
+          "selected_tail": 3,
+          "fixed_losses": [
+            694,
+            2854,
+            3394,
+            694
+          ],
+          "arrival_policy_loss": 694,
+          "hindsight_family_loss": 694,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 694
+        },
+        {
+          "world": 60,
+          "boundary_arrival": 29535,
+          "selected_tail": 3,
+          "fixed_losses": [
+            814,
+            2914,
+            1414,
+            814
+          ],
+          "arrival_policy_loss": 814,
+          "hindsight_family_loss": 814,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 694
+        },
+        {
+          "world": 61,
+          "boundary_arrival": 29546,
+          "selected_tail": 3,
+          "fixed_losses": [
+            754,
+            2854,
+            1474,
+            754
+          ],
+          "arrival_policy_loss": 754,
+          "hindsight_family_loss": 754,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 694
+        },
+        {
+          "world": 62,
+          "boundary_arrival": 29546,
+          "selected_tail": 3,
+          "fixed_losses": [
+            754,
+            3394,
+            1474,
+            754
+          ],
+          "arrival_policy_loss": 754,
+          "hindsight_family_loss": 754,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 514
+        },
+        {
+          "world": 63,
+          "boundary_arrival": 29545,
+          "selected_tail": 3,
+          "fixed_losses": [
+            634,
+            3394,
+            1594,
+            634
+          ],
+          "arrival_policy_loss": 634,
+          "hindsight_family_loss": 634,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 634
+        }
+      ]
+    },
+    {
+      "date": "2023-07-27",
+      "query": 0,
+      "decision": 1,
+      "worlds": 64,
+      "seed": [
+        20261112,
+        20230727,
+        0,
+        1
+      ],
+      "prefix": [
+        8780
+      ],
+      "family_size": 4,
+      "static_best_index": 3,
+      "analytic_fixed_uppers": [
+        1444.908437094457,
+        2698.6039827846716,
+        2152.1035529371534,
+        1101.1202439830347
+      ],
+      "analytic_replay_max_error": 4.547473508864641e-13,
+      "original_lower_oracle_mean": 689.25,
+      "values": {
+        "old_incumbent": {
+          "mean": 1443.9375,
+          "standard_error": 156.23209718865164,
+          "minimum": 498.0,
+          "maximum": 3498.0,
+          "exact_expectation": 1444.908437094457,
+          "sample_minus_exact": -0.9709370944569855
+        },
+        "best_fixed": {
+          "mean": 1038.9375,
+          "standard_error": 91.2266818298165,
+          "minimum": 498.0,
+          "maximum": 3498.0,
+          "exact_expectation": 1101.1202439830347,
+          "sample_minus_exact": -62.1827439830347
+        },
+        "arrival_policy": {
+          "mean": 1038.9375,
+          "standard_error": 91.2266818298165,
+          "minimum": 498.0,
+          "maximum": 3498.0,
+          "exact_expectation": 1101.0101745285206,
+          "sample_minus_exact": -62.072674528520565
+        },
+        "hindsight_family": {
+          "mean": 895.5,
+          "standard_error": 45.326198668256815,
+          "minimum": 498.0,
+          "maximum": 1938.0
+        },
+        "full_oracle": {
+          "mean": 689.25,
+          "standard_error": 16.468313731006496,
+          "minimum": 438.0,
+          "maximum": 1098.0
+        }
+      },
+      "components": {
+        "old_minus_best_fixed": {
+          "mean": 405.0,
+          "standard_error": 101.60321985899013,
+          "minimum": 0.0,
+          "maximum": 2280.0,
+          "exact_expectation": 343.7881931114223,
+          "sample_minus_exact": 61.21180688857771
+        },
+        "best_fixed_minus_arrival_policy": {
+          "mean": 0.0,
+          "standard_error": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0,
+          "exact_expectation": 0.1100694545141323,
+          "sample_minus_exact": -0.1100694545141323
+        },
+        "arrival_policy_minus_hindsight_family": {
+          "mean": 143.4375,
+          "standard_error": 70.21163400111938,
+          "minimum": 0.0,
+          "maximum": 2580.0
+        },
+        "hindsight_family_minus_full_oracle": {
+          "mean": 206.25,
+          "standard_error": 38.23972784571414,
+          "minimum": 0.0,
+          "maximum": 1320.0
+        }
+      },
+      "total_gap": {
+        "mean": 754.6875,
+        "standard_error": 147.61076160620635,
+        "minimum": 0.0,
+        "maximum": 2940.0
+      },
+      "arrival_policy_vs_static_different_worlds": 0,
+      "hindsight_improves_arrival_policy_worlds": 4,
+      "prefix_failure_worlds": 0,
+      "setup_seconds": 0.24424497600011819,
+      "draw_seconds": 2.3239279259996692,
+      "execution_seconds": 0.18420599500132084,
+      "rows": [
+        {
+          "world": 0,
+          "boundary_arrival": 29340,
+          "selected_tail": 3,
+          "fixed_losses": [
+            618,
+            2298,
+            1278,
+            618
+          ],
+          "arrival_policy_loss": 618,
+          "hindsight_family_loss": 618,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 618
+        },
+        {
+          "world": 1,
+          "boundary_arrival": 29301,
+          "selected_tail": 3,
+          "fixed_losses": [
+            618,
+            2118,
+            1218,
+            618
+          ],
+          "arrival_policy_loss": 618,
+          "hindsight_family_loss": 618,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 618
+        },
+        {
+          "world": 2,
+          "boundary_arrival": 29301,
+          "selected_tail": 3,
+          "fixed_losses": [
+            678,
+            2178,
+            1518,
+            678
+          ],
+          "arrival_policy_loss": 678,
+          "hindsight_family_loss": 678,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 678
+        },
+        {
+          "world": 3,
+          "boundary_arrival": 29301,
+          "selected_tail": 3,
+          "fixed_losses": [
+            678,
+            3498,
+            1218,
+            678
+          ],
+          "arrival_policy_loss": 678,
+          "hindsight_family_loss": 678,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 678
+        },
+        {
+          "world": 4,
+          "boundary_arrival": 29340,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3498,
+            2298,
+            1218,
+            3498
+          ],
+          "arrival_policy_loss": 3498,
+          "hindsight_family_loss": 1218,
+          "hindsight_tail_indices": [
+            2
+          ],
+          "full_oracle_loss": 618
+        },
+        {
+          "world": 5,
+          "boundary_arrival": 29301,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3498,
+            2238,
+            3498,
+            1518
+          ],
+          "arrival_policy_loss": 1518,
+          "hindsight_family_loss": 1518,
+          "hindsight_tail_indices": [
+            3
+          ],
+          "full_oracle_loss": 738
+        },
+        {
+          "world": 6,
+          "boundary_arrival": 29322,
+          "selected_tail": 3,
+          "fixed_losses": [
+            738,
+            3498,
+            3498,
+            738
+          ],
+          "arrival_policy_loss": 738,
+          "hindsight_family_loss": 738,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 738
+        },
+        {
+          "world": 7,
+          "boundary_arrival": 29340,
+          "selected_tail": 3,
+          "fixed_losses": [
+            678,
+            2298,
+            3498,
+            678
+          ],
+          "arrival_policy_loss": 678,
+          "hindsight_family_loss": 678,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 618
+        },
+        {
+          "world": 8,
+          "boundary_arrival": 29340,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3498,
+            2058,
+            3498,
+            1938
+          ],
+          "arrival_policy_loss": 1938,
+          "hindsight_family_loss": 1938,
+          "hindsight_tail_indices": [
+            3
+          ],
+          "full_oracle_loss": 618
+        },
+        {
+          "world": 9,
+          "boundary_arrival": 29322,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3498,
+            3498,
+            1398,
+            3498
+          ],
+          "arrival_policy_loss": 3498,
+          "hindsight_family_loss": 1398,
+          "hindsight_tail_indices": [
+            2
+          ],
+          "full_oracle_loss": 858
+        },
+        {
+          "world": 10,
+          "boundary_arrival": 29280,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3498,
+            2238,
+            3498,
+            1578
+          ],
+          "arrival_policy_loss": 1578,
+          "hindsight_family_loss": 1578,
+          "hindsight_tail_indices": [
+            3
+          ],
+          "full_oracle_loss": 978
+        },
+        {
+          "world": 11,
+          "boundary_arrival": 29400,
+          "selected_tail": 3,
+          "fixed_losses": [
+            738,
+            2118,
+            1458,
+            738
+          ],
+          "arrival_policy_loss": 738,
+          "hindsight_family_loss": 738,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 738
+        },
+        {
+          "world": 12,
+          "boundary_arrival": 29280,
+          "selected_tail": 3,
+          "fixed_losses": [
+            738,
+            2238,
+            1278,
+            738
+          ],
+          "arrival_policy_loss": 738,
+          "hindsight_family_loss": 738,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 738
+        },
+        {
+          "world": 13,
+          "boundary_arrival": 29301,
+          "selected_tail": 3,
+          "fixed_losses": [
+            558,
+            2118,
+            3498,
+            558
+          ],
+          "arrival_policy_loss": 558,
+          "hindsight_family_loss": 558,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 558
+        },
+        {
+          "world": 14,
+          "boundary_arrival": 29340,
+          "selected_tail": 3,
+          "fixed_losses": [
+            558,
+            2298,
+            3498,
+            558
+          ],
+          "arrival_policy_loss": 558,
+          "hindsight_family_loss": 558,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 558
+        },
+        {
+          "world": 15,
+          "boundary_arrival": 29340,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3498,
+            2418,
+            1398,
+            1398
+          ],
+          "arrival_policy_loss": 1398,
+          "hindsight_family_loss": 1398,
+          "hindsight_tail_indices": [
+            2,
+            3
+          ],
+          "full_oracle_loss": 858
+        },
+        {
+          "world": 16,
+          "boundary_arrival": 29340,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3498,
+            3498,
+            3498,
+            1518
+          ],
+          "arrival_policy_loss": 1518,
+          "hindsight_family_loss": 1518,
+          "hindsight_tail_indices": [
+            3
+          ],
+          "full_oracle_loss": 858
+        },
+        {
+          "world": 17,
+          "boundary_arrival": 29340,
+          "selected_tail": 3,
+          "fixed_losses": [
+            618,
+            2118,
+            1098,
+            618
+          ],
+          "arrival_policy_loss": 618,
+          "hindsight_family_loss": 618,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 618
+        },
+        {
+          "world": 18,
+          "boundary_arrival": 29340,
+          "selected_tail": 3,
+          "fixed_losses": [
+            558,
+            2238,
+            3498,
+            558
+          ],
+          "arrival_policy_loss": 558,
+          "hindsight_family_loss": 558,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 558
+        },
+        {
+          "world": 19,
+          "boundary_arrival": 29322,
+          "selected_tail": 3,
+          "fixed_losses": [
+            498,
+            3498,
+            3498,
+            498
+          ],
+          "arrival_policy_loss": 498,
+          "hindsight_family_loss": 498,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 498
+        },
+        {
+          "world": 20,
+          "boundary_arrival": 29340,
+          "selected_tail": 3,
+          "fixed_losses": [
+            978,
+            3498,
+            3498,
+            978
+          ],
+          "arrival_policy_loss": 978,
+          "hindsight_family_loss": 978,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 858
+        },
+        {
+          "world": 21,
+          "boundary_arrival": 29301,
+          "selected_tail": 3,
+          "fixed_losses": [
+            738,
+            2118,
+            3498,
+            738
+          ],
+          "arrival_policy_loss": 738,
+          "hindsight_family_loss": 738,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 738
+        },
+        {
+          "world": 22,
+          "boundary_arrival": 29322,
+          "selected_tail": 3,
+          "fixed_losses": [
+            498,
+            3498,
+            1518,
+            498
+          ],
+          "arrival_policy_loss": 498,
+          "hindsight_family_loss": 498,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 498
+        },
+        {
+          "world": 23,
+          "boundary_arrival": 29301,
+          "selected_tail": 3,
+          "fixed_losses": [
+            618,
+            2178,
+            3498,
+            618
+          ],
+          "arrival_policy_loss": 618,
+          "hindsight_family_loss": 618,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 618
+        },
+        {
+          "world": 24,
+          "boundary_arrival": 29301,
+          "selected_tail": 3,
+          "fixed_losses": [
+            798,
+            2418,
+            1278,
+            798
+          ],
+          "arrival_policy_loss": 798,
+          "hindsight_family_loss": 798,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 618
+        },
+        {
+          "world": 25,
+          "boundary_arrival": 29280,
+          "selected_tail": 3,
+          "fixed_losses": [
+            798,
+            2178,
+            1398,
+            798
+          ],
+          "arrival_policy_loss": 798,
+          "hindsight_family_loss": 798,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 438
+        },
+        {
+          "world": 26,
+          "boundary_arrival": 29322,
+          "selected_tail": 3,
+          "fixed_losses": [
+            858,
+            3498,
+            3498,
+            858
+          ],
+          "arrival_policy_loss": 858,
+          "hindsight_family_loss": 858,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 738
+        },
+        {
+          "world": 27,
+          "boundary_arrival": 29322,
+          "selected_tail": 3,
+          "fixed_losses": [
+            798,
+            3498,
+            1338,
+            798
+          ],
+          "arrival_policy_loss": 798,
+          "hindsight_family_loss": 798,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 618
+        },
+        {
+          "world": 28,
+          "boundary_arrival": 29340,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3498,
+            2358,
+            3498,
+            1698
+          ],
+          "arrival_policy_loss": 1698,
+          "hindsight_family_loss": 1698,
+          "hindsight_tail_indices": [
+            3
+          ],
+          "full_oracle_loss": 738
+        },
+        {
+          "world": 29,
+          "boundary_arrival": 29301,
+          "selected_tail": 3,
+          "fixed_losses": [
+            798,
+            2238,
+            1278,
+            798
+          ],
+          "arrival_policy_loss": 798,
+          "hindsight_family_loss": 798,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 738
+        },
+        {
+          "world": 30,
+          "boundary_arrival": 29280,
+          "selected_tail": 3,
+          "fixed_losses": [
+            678,
+            2178,
+            1398,
+            678
+          ],
+          "arrival_policy_loss": 678,
+          "hindsight_family_loss": 678,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 678
+        },
+        {
+          "world": 31,
+          "boundary_arrival": 29322,
+          "selected_tail": 3,
+          "fixed_losses": [
+            858,
+            2178,
+            1278,
+            858
+          ],
+          "arrival_policy_loss": 858,
+          "hindsight_family_loss": 858,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 678
+        },
+        {
+          "world": 32,
+          "boundary_arrival": 29280,
+          "selected_tail": 3,
+          "fixed_losses": [
+            738,
+            2118,
+            1518,
+            738
+          ],
+          "arrival_policy_loss": 738,
+          "hindsight_family_loss": 738,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 618
+        },
+        {
+          "world": 33,
+          "boundary_arrival": 29322,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3498,
+            2298,
+            1278,
+            3498
+          ],
+          "arrival_policy_loss": 3498,
+          "hindsight_family_loss": 1278,
+          "hindsight_tail_indices": [
+            2
+          ],
+          "full_oracle_loss": 858
+        },
+        {
+          "world": 34,
+          "boundary_arrival": 29322,
+          "selected_tail": 3,
+          "fixed_losses": [
+            678,
+            3498,
+            3498,
+            678
+          ],
+          "arrival_policy_loss": 678,
+          "hindsight_family_loss": 678,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 678
+        },
+        {
+          "world": 35,
+          "boundary_arrival": 29322,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3498,
+            3498,
+            918,
+            3498
+          ],
+          "arrival_policy_loss": 3498,
+          "hindsight_family_loss": 918,
+          "hindsight_tail_indices": [
+            2
+          ],
+          "full_oracle_loss": 918
+        },
+        {
+          "world": 36,
+          "boundary_arrival": 29322,
+          "selected_tail": 3,
+          "fixed_losses": [
+            738,
+            3498,
+            3498,
+            738
+          ],
+          "arrival_policy_loss": 738,
+          "hindsight_family_loss": 738,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 738
+        },
+        {
+          "world": 37,
+          "boundary_arrival": 29340,
+          "selected_tail": 3,
+          "fixed_losses": [
+            558,
+            2298,
+            3498,
+            558
+          ],
+          "arrival_policy_loss": 558,
+          "hindsight_family_loss": 558,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 558
+        },
+        {
+          "world": 38,
+          "boundary_arrival": 29322,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3498,
+            2178,
+            3498,
+            1578
+          ],
+          "arrival_policy_loss": 1578,
+          "hindsight_family_loss": 1578,
+          "hindsight_tail_indices": [
+            3
+          ],
+          "full_oracle_loss": 978
+        },
+        {
+          "world": 39,
+          "boundary_arrival": 29322,
+          "selected_tail": 3,
+          "fixed_losses": [
+            678,
+            2118,
+            1278,
+            678
+          ],
+          "arrival_policy_loss": 678,
+          "hindsight_family_loss": 678,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 678
+        },
+        {
+          "world": 40,
+          "boundary_arrival": 29340,
+          "selected_tail": 3,
+          "fixed_losses": [
+            558,
+            3498,
+            1278,
+            558
+          ],
+          "arrival_policy_loss": 558,
+          "hindsight_family_loss": 558,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 558
+        },
+        {
+          "world": 41,
+          "boundary_arrival": 29280,
+          "selected_tail": 3,
+          "fixed_losses": [
+            618,
+            3498,
+            1218,
+            618
+          ],
+          "arrival_policy_loss": 618,
+          "hindsight_family_loss": 618,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 618
+        },
+        {
+          "world": 42,
+          "boundary_arrival": 29322,
+          "selected_tail": 3,
+          "fixed_losses": [
+            858,
+            3498,
+            3498,
+            858
+          ],
+          "arrival_policy_loss": 858,
+          "hindsight_family_loss": 858,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 858
+        },
+        {
+          "world": 43,
+          "boundary_arrival": 29322,
+          "selected_tail": 3,
+          "fixed_losses": [
+            678,
+            3498,
+            3498,
+            678
+          ],
+          "arrival_policy_loss": 678,
+          "hindsight_family_loss": 678,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 678
+        },
+        {
+          "world": 44,
+          "boundary_arrival": 29301,
+          "selected_tail": 3,
+          "fixed_losses": [
+            858,
+            2238,
+            3498,
+            858
+          ],
+          "arrival_policy_loss": 858,
+          "hindsight_family_loss": 858,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 738
+        },
+        {
+          "world": 45,
+          "boundary_arrival": 29280,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3498,
+            3498,
+            1218,
+            1218
+          ],
+          "arrival_policy_loss": 1218,
+          "hindsight_family_loss": 1218,
+          "hindsight_tail_indices": [
+            2,
+            3
+          ],
+          "full_oracle_loss": 618
+        },
+        {
+          "world": 46,
+          "boundary_arrival": 29322,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3498,
+            3498,
+            3498,
+            1398
+          ],
+          "arrival_policy_loss": 1398,
+          "hindsight_family_loss": 1398,
+          "hindsight_tail_indices": [
+            3
+          ],
+          "full_oracle_loss": 1098
+        },
+        {
+          "world": 47,
+          "boundary_arrival": 29322,
+          "selected_tail": 3,
+          "fixed_losses": [
+            858,
+            1878,
+            1218,
+            858
+          ],
+          "arrival_policy_loss": 858,
+          "hindsight_family_loss": 858,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 738
+        },
+        {
+          "world": 48,
+          "boundary_arrival": 29301,
+          "selected_tail": 3,
+          "fixed_losses": [
+            618,
+            2178,
+            3498,
+            618
+          ],
+          "arrival_policy_loss": 618,
+          "hindsight_family_loss": 618,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 618
+        },
+        {
+          "world": 49,
+          "boundary_arrival": 29340,
+          "selected_tail": 3,
+          "fixed_losses": [
+            558,
+            3498,
+            1338,
+            558
+          ],
+          "arrival_policy_loss": 558,
+          "hindsight_family_loss": 558,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 558
+        },
+        {
+          "world": 50,
+          "boundary_arrival": 29340,
+          "selected_tail": 3,
+          "fixed_losses": [
+            678,
+            2298,
+            1578,
+            678
+          ],
+          "arrival_policy_loss": 678,
+          "hindsight_family_loss": 678,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 678
+        },
+        {
+          "world": 51,
+          "boundary_arrival": 29322,
+          "selected_tail": 3,
+          "fixed_losses": [
+            618,
+            2238,
+            3498,
+            618
+          ],
+          "arrival_policy_loss": 618,
+          "hindsight_family_loss": 618,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 618
+        },
+        {
+          "world": 52,
+          "boundary_arrival": 29340,
+          "selected_tail": 3,
+          "fixed_losses": [
+            798,
+            3498,
+            1398,
+            798
+          ],
+          "arrival_policy_loss": 798,
+          "hindsight_family_loss": 798,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 678
+        },
+        {
+          "world": 53,
+          "boundary_arrival": 29340,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3498,
+            2298,
+            1398,
+            1398
+          ],
+          "arrival_policy_loss": 1398,
+          "hindsight_family_loss": 1398,
+          "hindsight_tail_indices": [
+            2,
+            3
+          ],
+          "full_oracle_loss": 558
+        },
+        {
+          "world": 54,
+          "boundary_arrival": 29280,
+          "selected_tail": 3,
+          "fixed_losses": [
+            558,
+            2298,
+            1158,
+            558
+          ],
+          "arrival_policy_loss": 558,
+          "hindsight_family_loss": 558,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 558
+        },
+        {
+          "world": 55,
+          "boundary_arrival": 29301,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3498,
+            3498,
+            3498,
+            1518
+          ],
+          "arrival_policy_loss": 1518,
+          "hindsight_family_loss": 1518,
+          "hindsight_tail_indices": [
+            3
+          ],
+          "full_oracle_loss": 978
+        },
+        {
+          "world": 56,
+          "boundary_arrival": 29322,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3498,
+            3498,
+            1218,
+            1218
+          ],
+          "arrival_policy_loss": 1218,
+          "hindsight_family_loss": 1218,
+          "hindsight_tail_indices": [
+            2,
+            3
+          ],
+          "full_oracle_loss": 678
+        },
+        {
+          "world": 57,
+          "boundary_arrival": 29340,
+          "selected_tail": 3,
+          "fixed_losses": [
+            618,
+            3498,
+            3498,
+            618
+          ],
+          "arrival_policy_loss": 618,
+          "hindsight_family_loss": 618,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 618
+        },
+        {
+          "world": 58,
+          "boundary_arrival": 29340,
+          "selected_tail": 3,
+          "fixed_losses": [
+            558,
+            2118,
+            3498,
+            558
+          ],
+          "arrival_policy_loss": 558,
+          "hindsight_family_loss": 558,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 558
+        },
+        {
+          "world": 59,
+          "boundary_arrival": 29220,
+          "selected_tail": 3,
+          "fixed_losses": [
+            858,
+            2118,
+            978,
+            858
+          ],
+          "arrival_policy_loss": 858,
+          "hindsight_family_loss": 858,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 858
+        },
+        {
+          "world": 60,
+          "boundary_arrival": 29340,
+          "selected_tail": 3,
+          "fixed_losses": [
+            978,
+            3498,
+            3498,
+            978
+          ],
+          "arrival_policy_loss": 978,
+          "hindsight_family_loss": 978,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 618
+        },
+        {
+          "world": 61,
+          "boundary_arrival": 29280,
+          "selected_tail": 3,
+          "fixed_losses": [
+            978,
+            2058,
+            1338,
+            978
+          ],
+          "arrival_policy_loss": 978,
+          "hindsight_family_loss": 978,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 558
+        },
+        {
+          "world": 62,
+          "boundary_arrival": 29340,
+          "selected_tail": 3,
+          "fixed_losses": [
+            3498,
+            3498,
+            3498,
+            1578
+          ],
+          "arrival_policy_loss": 1578,
+          "hindsight_family_loss": 1578,
+          "hindsight_tail_indices": [
+            3
+          ],
+          "full_oracle_loss": 738
+        },
+        {
+          "world": 63,
+          "boundary_arrival": 29322,
+          "selected_tail": 3,
+          "fixed_losses": [
+            618,
+            2118,
+            3498,
+            618
+          ],
+          "arrival_policy_loss": 618,
+          "hindsight_family_loss": 618,
+          "hindsight_tail_indices": [
+            0,
+            3
+          ],
+          "full_oracle_loss": 618
+        }
+      ]
+    }
+  ],
+  "shared_training_seconds": 0.8723867919998156,
+  "status": "complete"
+}

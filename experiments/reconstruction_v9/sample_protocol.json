@@ -1,0 +1,14 @@
+{
+  "roots": "The eight date/query/decision histories, witness itineraries and witness expectations in reconstruction_v8/opportunity_city_results.json, in file order.",
+  "model": "Same fitted ordered-trip HMM, received event evidence, graph, deadline, and whole-city temporal relaxation as V8. No new field observations.",
+  "draws_per_root": 32,
+  "seed": "Reuse the matching V8 SeedSequence with a 32-by-trip-slot random tape. The n=2 replay is drawn separately at the original size with the same seed. Its clocks need not equal the first two of n=32.",
+  "prefix": "The first eight of n=32 give a descriptive point estimate only.",
+  "familywise_alpha": 0.05,
+  "allocation": "Equal Bonferroni allocation across eight roots and two one-sided lower bounds per root (Hoeffding and independent nonnegative product). Compare the maximum of the two and the V8 deterministic lower to the frozen witness upper.",
+  "threshold_seconds": [1, 30, 60],
+  "checks": "Verify both original V8 world costs and paths with the reference implementation and verify packed scan costs for both original and first two n=32 worlds per root.",
+  "timing": "Measure the cold 32-world sample and scan, the 2-world lazy-reference draw and solve on a fresh context, and warm routing on the same packed n=2 worlds. Use the original witness and its separately archived time.",
+  "window_pair": "On a fresh context, skip any trip that cannot contain an operating leg during the root/deadline window under hard operating support. Sample retained chains whole, consuming every trip's original tape. Require identical retained events and all 32 losses.",
+  "transfer_pair": "On the same 32 worlds, report the point estimate using the dated graph's station transfer durations. The confidence-bound comparison remains the predeclared zero-transfer relaxation. The extra estimate diagnoses the effect of the assumed station durations."
+}

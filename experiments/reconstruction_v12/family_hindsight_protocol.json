@@ -1,0 +1,29 @@
+{
+  "cases": [
+    [
+      "2023-07-26",
+      0,
+      1
+    ],
+    [
+      "2023-07-26",
+      0,
+      2
+    ],
+    [
+      "2023-07-27",
+      0,
+      1
+    ]
+  ],
+  "worlds": 64,
+  "tape": "Regenerate lower_run.py single64 draw with seed [20261112,int(date),query,decision], unchanged full posterior and templates; no new confirmation worlds.",
+  "family": "experiments/reconstruction_v12/recourse_rescue_results.json",
+  "fixed": "Same four saved tails, original prefix prepended, rescue index shifted by prefix length, every frozen nominal departure retained.",
+  "adaptive": "Execute original prefix, then use saved exact arrival-phase choice through BoundaryRecoursePlan.tail_for. No policy regeneration or posterior re-evaluation.",
+  "hindsight": "Minimum realized committed loss among the same four full policies, selected after seeing the complete world.",
+  "oracle": "Full temporal station-MCT scan on the same packed world; its mean must reproduce the saved lower run.",
+  "decomposition": "old-oracle = (old-best_fixed)+(best_fixed-arrival_policy)+(arrival_policy-hindsight_family)+(hindsight_family-oracle)",
+  "inference": "Paired Monte Carlo standard errors on the reused64 IID worlds; exact saved analytic expectations shown where available. No new confidence certificate.",
+  "interpretation": "First two components need not be nonnegative in each world. Last component includes frozen family, prefix, commitment and temporal-relaxation differences; neither it nor family hindsight is the full causal optimum."
+}

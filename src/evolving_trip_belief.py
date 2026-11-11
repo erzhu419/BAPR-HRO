@@ -10,6 +10,7 @@ from __future__ import annotations
 from copy import copy
 from bisect import bisect_right
 from collections.abc import Mapping
+import ctypes
 from dataclasses import dataclass, field
 from functools import cached_property
 import math
@@ -18,6 +19,21 @@ import numpy as np
 
 from .simulator import LazyTripScenario, VehicleEvent
 from .trip_belief import DELAYS, NominalEvent
+
+
+_CHAIN_SAMPLER = None
+
+
+def install_chain_sampler(kernel):
+    """Use one explicitly compiled sampler for every law in this process."""
+    global _CHAIN_SAMPLER
+    i32 = np.ctypeslib.ndpointer(dtype=np.int32, flags='C_CONTIGUOUS')
+    pointers = np.ctypeslib.ndpointer(dtype=np.uintp, flags='C_CONTIGUOUS')
+    f64 = np.ctypeslib.ndpointer(dtype=np.float64, flags='C_CONTIGUOUS')
+    indices = np.ctypeslib.ndpointer(dtype=np.intp, flags='C_CONTIGUOUS')
+    kernel.chain_draw.argtypes = [ctypes.c_int, ctypes.c_int, i32, pointers, pointers, f64, indices]
+    kernel.chain_draw.restype = None
+    _CHAIN_SAMPLER = kernel
 
 
 def logsumexp(values, axis=None, keepdims=False):
@@ -150,6 +166,45 @@ class _ChainLaw:
         return self.draw_uniforms(rng.random(len(self.times))[::-1])
 
     def draw_uniforms(self, uniforms):
+        return self.draw_uniforms_batch(np.asarray(uniforms)[None, :])[0]
+
+    @cached_property
+    def sampling_arrays(self):
+        # OrderedDurationBelief's column indexing produces Fortran-order kernels.
+        # Retain canonical buffers: pointer tables alone would not own copies.
+        forward = [np.ascontiguousarray(a, dtype=np.float64) for a in self.forward]
+        transitions = [np.ascontiguousarray(a, dtype=np.float64) for a in self.transitions]
+        self._sampling_buffers = forward, transitions
+        return (np.asarray([len(t) for t in self.times], dtype=np.int32),
+                np.asarray([a.ctypes.data for a in forward], dtype=np.uintp),
+                np.asarray([a.ctypes.data for a in transitions], dtype=np.uintp))
+
+    def draw_uniforms_batch(self, uniforms):
+        """FFBS with the same supplied tape for scalar and batch consumers."""
+        n, slots = uniforms.shape
+        if _CHAIN_SAMPLER is not None:
+            result = np.empty((n, slots), dtype=np.intp)
+            _CHAIN_SAMPLER.chain_draw(n, slots, *self.sampling_arrays,
+                                     np.ascontiguousarray(uniforms, dtype=np.float64), result)
+            return result
+        if n == 1:
+            return self._draw_uniforms_python(uniforms[0])[None, :]
+        result = np.empty((n, slots), dtype=np.intp)
+        for index in range(slots - 1, -1, -1):
+            forward = self._full_forward(index)
+            if index == slots - 1:
+                weights = forward[None, :]
+                inverse = np.zeros(n, dtype=np.intp)
+            else:
+                next_state, inverse = np.unique(result[:, index + 1], return_inverse=True)
+                weights = forward + self._transition(index)[:, next_state].T
+            probabilities = np.exp(weights - logsumexp(weights, axis=1, keepdims=True))
+            cumulative = np.cumsum(probabilities, axis=1)
+            cumulative /= cumulative[:, -1:]
+            result[:, index] = np.sum(uniforms[:, index, None] >= cumulative[inverse], axis=1)
+        return result
+
+    def _draw_uniforms_python(self, uniforms):
         chosen = np.empty(len(self.times), dtype=int)
         next_index = None
         for i in range(len(chosen) - 1, -1, -1):
@@ -215,8 +270,7 @@ class _SampleBank:
             law = self.belief._law(trip, self.parameters)
             slots = self.belief._trips[trip]
             worlds = []
-            for uniforms in self.uniforms[trip]:
-                indices = law.draw_uniforms(uniforms)
+            for indices in law.draw_uniforms_batch(self.uniforms[trip]):
                 events = {}
                 for i in range(0, len(slots), 2):
                     dep, arr = slots[i:i + 2]

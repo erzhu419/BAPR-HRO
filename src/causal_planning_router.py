@@ -195,6 +195,17 @@ class CausalPlanningRouter(ContinuationRouter):
         super().observe_cancel(route, kind)
         self._valued_version = self._version
 
+    def _nominal_tail(self, parameters):
+        def tail(state, belief, actions):
+            boardings = {action[1] for action in actions if action[0] == "select"}
+            if not boardings:
+                return WAIT
+            return nominal_action(self.graph, state, self.destination, belief.mean_events(parameters),
+                                  self.menu, self.journey_deadline, self.lookahead, root_boardings=boardings,
+                                  minute=self.minute)
+
+        return tail
+
     def select_connection(self, current_stop, current_time, rng, top_k=5):
         started = perf_counter()
         state = self.information_state
@@ -215,15 +226,7 @@ class CausalPlanningRouter(ContinuationRouter):
             self.departure, self.journey_deadline, candidate_ids=self.menu, lookahead=self.lookahead,
             initial_state=state)
 
-        def tail(state, belief, actions):
-            boardings = {action[1] for action in actions if action[0] == "select"}
-            if not boardings:
-                return WAIT
-            return nominal_action(self.graph, state, self.destination, belief.mean_events(parameters),
-                                  self.menu, self.journey_deadline, self.lookahead, root_boardings=boardings,
-                                  minute=self.minute)
-
-        planner = BudgetedPolicySearch(model, self.trip_belief, tail, self._advance_belief,
+        planner = BudgetedPolicySearch(model, self.trip_belief, self._nominal_tail(parameters), self._advance_belief,
                                        private_rng, self.work_budget, self.max_time)
         result = planner.plan(self.algorithm)
         elapsed = (perf_counter() - started) * 1000

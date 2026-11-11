@@ -1,0 +1,2337 @@
+{
+  "protocol": {
+    "created_utc": "2026-11-11T13:56:17.846961+00:00",
+    "cases": [
+      {
+        "date": "2023-07-26",
+        "query": 0,
+        "decision": 1,
+        "prefix": [
+          8780
+        ]
+      },
+      {
+        "date": "2023-07-26",
+        "query": 0,
+        "decision": 2,
+        "prefix": [
+          9488,
+          9727
+        ]
+      },
+      {
+        "date": "2023-07-27",
+        "query": 0,
+        "decision": 1,
+        "prefix": [
+          8780
+        ]
+      }
+    ],
+    "quantiles": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "max_family": 7,
+    "candidates": "Original suffix first, five root-posterior success-arrival quantile nominal routes, then V10 fixed-primary rescue if contiguous from this boundary; deduplicate in that order.",
+    "menu": "Full public connection menu. Quantile routes exclude the incoming trip; root posterior means for every other trip. No actual arrival or held-out future event enters generation.",
+    "policy": "Commit the maximum initial same-trip block. On successful arrival choose the frozen tail with minimum conditional expected upper; any prefix or selected-tail failure is deadline capped.",
+    "thresholds": "All first post-boundary attempts use frozen nominal waiting thresholds (first_action_now=False), including the original suffix.",
+    "static_control": "Minimum integrated upper over the exact same frozen tail family, before observing boundary arrival.",
+    "off_grid": "Use original suffix, candidate zero, if an observed arrival is absent from the frozen finite-grid phase table.",
+    "pilot": "First declared root is the pilot and is retained as its result. Stop before later roots if candidate generation or phase evaluation exceeds 120 seconds. Stop before evaluation if phase count times family exceeds 2000; preserve the partial receipt.",
+    "scope": "Exact finite-grid feasible-policy diagnostic, not a whole-journey platform performance comparison or proof of true causal regret.",
+    "inputs": [
+      "experiments/reconstruction_data_audit/city_vbz_dated_replay_v2.json.gz",
+      "experiments/reconstruction_v4/city_replay_results.json",
+      "experiments/reconstruction_v8/opportunity_city_results.json",
+      "experiments/reconstruction_v12/transfer_inventory.json",
+      "experiments/reconstruction_v10/tail_rescue_results.json"
+    ]
+  },
+  "shared_fit_seconds": 0.9945670649995009,
+  "shared_graphs": [
+    {
+      "date": "2023-07-26",
+      "graph_and_blocks_seconds": 0.47570572899894614
+    },
+    {
+      "date": "2023-07-27",
+      "graph_and_blocks_seconds": 0.2657418430007965
+    }
+  ],
+  "rows": [
+    {
+      "date": "2023-07-26",
+      "query": 0,
+      "decision": 1,
+      "prefix": [
+        8780
+      ],
+      "root": {
+        "stop": 594,
+        "clock": 29185,
+        "current_trip": "3779.TA.91-2-H-j23-1.14.R",
+        "last_arrival": 29185,
+        "unavailable_ids": [
+          8341
+        ],
+        "learned_trips": [
+          "3779.TA.91-2-H-j23-1.14.R"
+        ],
+        "initialized": true
+      },
+      "deadline": 32700,
+      "destination": 3,
+      "setup_seconds": 0.35130496000056155,
+      "candidates": [
+        {
+          "index": 0,
+          "sources": [
+            "original_suffix",
+            "quantile_0",
+            "quantile_0.25",
+            "quantile_0.5",
+            "quantile_0.75"
+          ],
+          "plan": {
+            "primary": [
+              9383,
+              9627,
+              9857,
+              10330
+            ],
+            "failure_index": null,
+            "rescue": [],
+            "first_action_now": false,
+            "departures": [
+              [
+                9383,
+                29518
+              ],
+              [
+                9627,
+                29585
+              ],
+              [
+                9857,
+                29652
+              ],
+              [
+                10330,
+                29780
+              ]
+            ]
+          }
+        },
+        {
+          "index": 1,
+          "sources": [
+            "quantile_1"
+          ],
+          "plan": {
+            "primary": [
+              15361,
+              15573,
+              16014,
+              16235
+            ],
+            "failure_index": null,
+            "rescue": [],
+            "first_action_now": false,
+            "departures": [
+              [
+                15361,
+                31110
+              ],
+              [
+                15573,
+                31177
+              ],
+              [
+                16014,
+                31298
+              ],
+              [
+                16235,
+                31365
+              ]
+            ]
+          }
+        },
+        {
+          "index": 2,
+          "sources": [
+            "v10_rescue_as_direct_tail"
+          ],
+          "plan": {
+            "primary": [
+              11986,
+              12200,
+              12663,
+              12885
+            ],
+            "failure_index": null,
+            "rescue": [],
+            "first_action_now": false,
+            "departures": [
+              [
+                11986,
+                30210
+              ],
+              [
+                12200,
+                30277
+              ],
+              [
+                12663,
+                30398
+              ],
+              [
+                12885,
+                30465
+              ]
+            ]
+          }
+        }
+      ],
+      "generation": {
+        "seconds": 2.2485345770001004,
+        "cpu_seconds": 2.1579209880000008,
+        "successful_arrival_probability": 1.0,
+        "successful_arrival_phases": [
+          {
+            "arrival": 29185,
+            "probability": 0.0018989029579616452
+          },
+          {
+            "arrival": 29220,
+            "probability": 0.019627992372215124
+          },
+          {
+            "arrival": 29280,
+            "probability": 0.2357153556440621
+          },
+          {
+            "arrival": 29295,
+            "probability": 0.27937790740523194
+          },
+          {
+            "arrival": 29305,
+            "probability": 0.28270263833871545
+          },
+          {
+            "arrival": 29340,
+            "probability": 0.16894748951108512
+          },
+          {
+            "arrival": 29400,
+            "probability": 0.011620200659306875
+          },
+          {
+            "arrival": 29460,
+            "probability": 0.00010932252483096864
+          },
+          {
+            "arrival": 29520,
+            "probability": 1.9057159541437887e-07
+          },
+          {
+            "arrival": 29580,
+            "probability": 1.499505197177103e-11
+          },
+          {
+            "arrival": 29640,
+            "probability": 2.9156150156726154e-16
+          },
+          {
+            "arrival": 29700,
+            "probability": 2.5499405695986827e-22
+          },
+          {
+            "arrival": 29760,
+            "probability": 5.837549610992628e-29
+          },
+          {
+            "arrival": 29820,
+            "probability": 5.974888211807406e-37
+          },
+          {
+            "arrival": 29880,
+            "probability": 1.532359835576498e-45
+          },
+          {
+            "arrival": 29940,
+            "probability": 1.9242645025623557e-55
+          },
+          {
+            "arrival": 30000,
+            "probability": 5.279033323507257e-66
+          },
+          {
+            "arrival": 30060,
+            "probability": 8.456685273294336e-78
+          },
+          {
+            "arrival": 30120,
+            "probability": 2.392055223148693e-90
+          },
+          {
+            "arrival": 30180,
+            "probability": 5.023552994920873e-104
+          },
+          {
+            "arrival": 30240,
+            "probability": 1.4309350974893374e-118
+          },
+          {
+            "arrival": 30300,
+            "probability": 3.9960230714359115e-134
+          },
+          {
+            "arrival": 30360,
+            "probability": 1.1363290665424374e-150
+          },
+          {
+            "arrival": 30420,
+            "probability": 4.223397554534809e-168
+          },
+          {
+            "arrival": 30480,
+            "probability": 1.2069843256736493e-186
+          },
+          {
+            "arrival": 30540,
+            "probability": 5.896520680691339e-206
+          },
+          {
+            "arrival": 30600,
+            "probability": 1.73024833879847e-226
+          },
+          {
+            "arrival": 30660,
+            "probability": 1.0580842575785353e-247
+          },
+          {
+            "arrival": 30720,
+            "probability": 1.274139366728169e-270
+          },
+          {
+            "arrival": 30780,
+            "probability": 2.228628137833614e-295
+          },
+          {
+            "arrival": 30840,
+            "probability": 5.63e-322
+          }
+        ],
+        "attempts": [
+          {
+            "quantile": 0.0,
+            "arrival": 29185,
+            "candidate_index": 0,
+            "path": [
+              9383,
+              9627,
+              9857,
+              10330
+            ],
+            "feasible": true
+          },
+          {
+            "quantile": 0.25,
+            "arrival": 29280,
+            "candidate_index": 0,
+            "path": [
+              9383,
+              9627,
+              9857,
+              10330
+            ],
+            "feasible": true
+          },
+          {
+            "quantile": 0.5,
+            "arrival": 29295,
+            "candidate_index": 0,
+            "path": [
+              9383,
+              9627,
+              9857,
+              10330
+            ],
+            "feasible": true
+          },
+          {
+            "quantile": 0.75,
+            "arrival": 29305,
+            "candidate_index": 0,
+            "path": [
+              9383,
+              9627,
+              9857,
+              10330
+            ],
+            "feasible": true
+          },
+          {
+            "quantile": 1.0,
+            "arrival": 30840,
+            "candidate_index": 1,
+            "path": [
+              15361,
+              15573,
+              16014,
+              16235
+            ],
+            "feasible": true
+          }
+        ],
+        "sources": [
+          [
+            "original_suffix",
+            "quantile_0",
+            "quantile_0.25",
+            "quantile_0.5",
+            "quantile_0.75"
+          ],
+          [
+            "quantile_1"
+          ],
+          [
+            "v10_rescue_as_direct_tail"
+          ]
+        ],
+        "rescue_contiguous": true,
+        "phase_tail_cells": 93
+      },
+      "historical_upper_seconds": {
+        "incumbent": 1425.815432099916,
+        "v9_best": 1425.815432099916,
+        "v10_fixed_tail_rescue": 1092.094809954131,
+        "v10_best": 1092.094809954131
+      },
+      "status": "complete",
+      "exact": {
+        "upper": 1425.7540717189836,
+        "fixed_tail_uppers": [
+          1425.815432099916,
+          2667.0897747112604,
+          2083.7924312136056
+        ],
+        "prefix_success_probability": 1.0,
+        "phases": [
+          {
+            "arrival": 29185,
+            "probability": 0.0018989029579616452,
+            "conditional_uppers": [
+              921.6023804885381,
+              2667.0897747112604,
+              2083.819456152832
+            ],
+            "selected": 0
+          },
+          {
+            "arrival": 29220,
+            "probability": 0.019627992372215124,
+            "conditional_uppers": [
+              885.5541504650855,
+              2632.0897747112604,
+              2048.819456152832
+            ],
+            "selected": 0
+          },
+          {
+            "arrival": 29280,
+            "probability": 0.2357153556440621,
+            "conditional_uppers": [
+              1069.498702454308,
+              2572.0897747112604,
+              1988.8194561528321
+            ],
+            "selected": 0
+          },
+          {
+            "arrival": 29295,
+            "probability": 0.27937790740523194,
+            "conditional_uppers": [
+              1406.5294675897487,
+              2557.0897747112604,
+              1973.8194561528321
+            ],
+            "selected": 0
+          },
+          {
+            "arrival": 29305,
+            "probability": 0.28270263833871545,
+            "conditional_uppers": [
+              1396.5294675897487,
+              2547.0897747112604,
+              1963.8194561528321
+            ],
+            "selected": 0
+          },
+          {
+            "arrival": 29340,
+            "probability": 0.16894748951108512,
+            "conditional_uppers": [
+              1361.4577276035247,
+              2512.0897747112604,
+              1928.8194561528321
+            ],
+            "selected": 0
+          },
+          {
+            "arrival": 29400,
+            "probability": 0.011620200659306875,
+            "conditional_uppers": [
+              1732.519310167509,
+              2452.0897747112604,
+              1868.8194561528321
+            ],
+            "selected": 0
+          },
+          {
+            "arrival": 29460,
+            "probability": 0.00010932252483096864,
+            "conditional_uppers": [
+              2121.65218456008,
+              2392.0897747112604,
+              1562.3628328198406
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 29520,
+            "probability": 1.9057159541437887e-07,
+            "conditional_uppers": [
+              2461.2169668760985,
+              2332.0897747112604,
+              1320.262989954257
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 29580,
+            "probability": 1.499505197177103e-11,
+            "conditional_uppers": [
+              2706.2663781079423,
+              2272.0897747112604,
+              1141.1333121205937
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 29640,
+            "probability": 2.9156150156726154e-16,
+            "conditional_uppers": [
+              2847.3087413200883,
+              2212.0897747112604,
+              1011.7815801941974
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 29700,
+            "probability": 2.5499405695986827e-22,
+            "conditional_uppers": [
+              2902.4008117147355,
+              2152.0897747112604,
+              925.9661701819641
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 29760,
+            "probability": 5.837549610992628e-29,
+            "conditional_uppers": [
+              2899.987594938473,
+              2092.0897747112604,
+              871.8704836420361
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 29820,
+            "probability": 5.974888211807406e-37,
+            "conditional_uppers": [
+              2865.3192887194587,
+              2032.0897747112604,
+              853.1485200876659
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 29880,
+            "probability": 1.532359835576498e-45,
+            "conditional_uppers": [
+              2815.168908339716,
+              1972.0897747112604,
+              882.6099164220973
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 29940,
+            "probability": 1.9242645025623557e-55,
+            "conditional_uppers": [
+              2758.5707713332845,
+              1912.0897747112604,
+              975.2822762972733
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 30000,
+            "probability": 5.279033323507257e-66,
+            "conditional_uppers": [
+              2699.619001356713,
+              1852.0897747112604,
+              1137.5979008293652
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 30060,
+            "probability": 8.456685273294336e-78,
+            "conditional_uppers": [
+              2639.9082798855384,
+              1792.0897747112604,
+              1357.8136828439688
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 30120,
+            "probability": 2.392055223148693e-90,
+            "conditional_uppers": [
+              2579.9800198717626,
+              1732.0897747112604,
+              1604.9448999261945
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 30180,
+            "probability": 5.023552994920873e-104,
+            "conditional_uppers": [
+              2519.9960545153212,
+              1672.0897747112604,
+              1838.7846284448738
+            ],
+            "selected": 1
+          },
+          {
+            "arrival": 30240,
+            "probability": 1.4309350974893374e-118,
+            "conditional_uppers": [
+              2459.9992926391305,
+              1612.0897747112604,
+              2025.2400105556358
+            ],
+            "selected": 1
+          },
+          {
+            "arrival": 30300,
+            "probability": 3.9960230714359115e-134,
+            "conditional_uppers": [
+              2399.9998847128836,
+              1552.0897747112604,
+              2147.3395977716696
+            ],
+            "selected": 1
+          },
+          {
+            "arrival": 30360,
+            "probability": 1.1363290665424374e-150,
+            "conditional_uppers": [
+              2339.999982901067,
+              1355.3312250504532,
+              2206.4692270355754
+            ],
+            "selected": 1
+          },
+          {
+            "arrival": 30420,
+            "probability": 4.223397554534809e-168,
+            "conditional_uppers": [
+              2279.999997690362,
+              1196.762855098552,
+              2215.8209504412393
+            ],
+            "selected": 1
+          },
+          {
+            "arrival": 30480,
+            "probability": 1.2069843256736493e-186,
+            "conditional_uppers": [
+              2219.999999715729,
+              1074.0032939018872,
+              2191.922249856587
+            ],
+            "selected": 1
+          },
+          {
+            "arrival": 30540,
+            "probability": 5.896520680691339e-206,
+            "conditional_uppers": [
+              2159.99999996811,
+              978.5365288456774,
+              2148.8028610068955
+            ],
+            "selected": 1
+          },
+          {
+            "arrival": 30600,
+            "probability": 1.73024833879847e-226,
+            "conditional_uppers": [
+              2099.9999999967395,
+              907.3116379774187,
+              2095.922728564256
+            ],
+            "selected": 1
+          },
+          {
+            "arrival": 30660,
+            "probability": 1.0580842575785353e-247,
+            "conditional_uppers": [
+              2039.9999999996962,
+              853.832919917555,
+              2038.6418653731314
+            ],
+            "selected": 1
+          },
+          {
+            "arrival": 30720,
+            "probability": 1.274139366728169e-270,
+            "conditional_uppers": [
+              1979.9999999999743,
+              821.1276801485667,
+              1979.5854071541505
+            ],
+            "selected": 1
+          },
+          {
+            "arrival": 30780,
+            "probability": 2.228628137833614e-295,
+            "conditional_uppers": [
+              1919.999999999998,
+              817.2877827972814,
+              1919.8838090475676
+            ],
+            "selected": 1
+          },
+          {
+            "arrival": 30840,
+            "probability": 5.63e-322,
+            "conditional_uppers": [
+              1859.9999999999998,
+              850.9701308247131,
+              1859.970055959554
+            ],
+            "selected": 1
+          }
+        ],
+        "seconds": 0.0363052719985717
+      },
+      "static_best_index": 0,
+      "static_best_upper": 1425.815432099916,
+      "adaptive_upper": 1425.7540717189836,
+      "family_improvement_seconds": 0.0,
+      "arrival_information_improvement_seconds": 0.06136038093245588,
+      "improvement_vs_original_seconds": 0.06136038093245588,
+      "improvement_vs_v10_best_seconds": -333.65926176485254,
+      "prefix_failure_probability": 0.0,
+      "prefix_failure_cap": 3515,
+      "prefix_failure_expected_loss": 0.0,
+      "selected_probability_by_candidate": [
+        0.9998904868885783,
+        5.023552994920887e-104,
+        0.00010951311142172653
+      ],
+      "phase_cpu_seconds": 0.03488133300000129,
+      "candidate_plus_phase_seconds": 2.284839848998672,
+      "observed_boundary_diagnostic": {
+        "arrival": 29306,
+        "on_grid": false,
+        "selected": 0,
+        "tail": [
+          9383,
+          9627,
+          9857,
+          10330
+        ],
+        "conditional_uppers": null,
+        "source": "Previously recorded incumbent replay arrival; queried only after candidate generation and exact integration."
+      }
+    },
+    {
+      "date": "2023-07-26",
+      "query": 0,
+      "decision": 2,
+      "prefix": [
+        9488,
+        9727
+      ],
+      "root": {
+        "stop": 606,
+        "clock": 29306,
+        "current_trip": "3779.TA.91-2-H-j23-1.14.R",
+        "last_arrival": 29306,
+        "unavailable_ids": [
+          8341,
+          8780
+        ],
+        "learned_trips": [
+          "3779.TA.91-2-H-j23-1.14.R"
+        ],
+        "initialized": true
+      },
+      "deadline": 32700,
+      "destination": 3,
+      "setup_seconds": 0.3366038229996775,
+      "candidates": [
+        {
+          "index": 0,
+          "sources": [
+            "original_suffix",
+            "quantile_0",
+            "quantile_0.25",
+            "quantile_0.5",
+            "quantile_0.75"
+          ],
+          "plan": {
+            "primary": [
+              10616,
+              10853
+            ],
+            "failure_index": null,
+            "rescue": [],
+            "first_action_now": false,
+            "departures": [
+              [
+                10616,
+                29895
+              ],
+              [
+                10853,
+                29962
+              ]
+            ]
+          }
+        },
+        {
+          "index": 1,
+          "sources": [
+            "quantile_1"
+          ],
+          "plan": {
+            "primary": [
+              18878,
+              19312
+            ],
+            "failure_index": null,
+            "rescue": [],
+            "first_action_now": false,
+            "departures": [
+              [
+                18878,
+                32115
+              ],
+              [
+                19312,
+                32242
+              ]
+            ]
+          }
+        },
+        {
+          "index": 2,
+          "sources": [
+            "v10_rescue_as_direct_tail"
+          ],
+          "plan": {
+            "primary": [
+              14033,
+              14261
+            ],
+            "failure_index": null,
+            "rescue": [],
+            "first_action_now": false,
+            "departures": [
+              [
+                14033,
+                30795
+              ],
+              [
+                14261,
+                30862
+              ]
+            ]
+          }
+        }
+      ],
+      "generation": {
+        "seconds": 1.6175247950013727,
+        "cpu_seconds": 1.5492565030000005,
+        "successful_arrival_probability": 1.0,
+        "successful_arrival_phases": [
+          {
+            "arrival": 29306,
+            "probability": 8.522009027687075e-08
+          },
+          {
+            "arrival": 29340,
+            "probability": 1.0445109310612464e-05
+          },
+          {
+            "arrival": 29400,
+            "probability": 0.0005351073583626032
+          },
+          {
+            "arrival": 29460,
+            "probability": 0.007640783346984701
+          },
+          {
+            "arrival": 29513,
+            "probability": 0.0988539013312523
+          },
+          {
+            "arrival": 29520,
+            "probability": 0.1279943432051428
+          },
+          {
+            "arrival": 29535,
+            "probability": 0.17470401296531474
+          },
+          {
+            "arrival": 29545,
+            "probability": 0.1952435111945449
+          },
+          {
+            "arrival": 29546,
+            "probability": 0.19662808160462947
+          },
+          {
+            "arrival": 29580,
+            "probability": 0.16816234769707272
+          },
+          {
+            "arrival": 29640,
+            "probability": 0.02765017007564411
+          },
+          {
+            "arrival": 29700,
+            "probability": 0.0024892054242408456
+          },
+          {
+            "arrival": 29760,
+            "probability": 8.699020439024047e-05
+          },
+          {
+            "arrival": 29820,
+            "probability": 1.0114754062283725e-06
+          },
+          {
+            "arrival": 29880,
+            "probability": 3.782098206796951e-09
+          },
+          {
+            "arrival": 29940,
+            "probability": 5.512363188742238e-12
+          },
+          {
+            "arrival": 30000,
+            "probability": 2.8089443532395656e-15
+          },
+          {
+            "arrival": 30060,
+            "probability": 2.9459349965647544e-19
+          },
+          {
+            "arrival": 30120,
+            "probability": 1.1771264555242478e-23
+          },
+          {
+            "arrival": 30180,
+            "probability": 1.9268538079451125e-28
+          },
+          {
+            "arrival": 30240,
+            "probability": 1.0373502918731645e-33
+          },
+          {
+            "arrival": 30300,
+            "probability": 1.256787499295095e-39
+          },
+          {
+            "arrival": 30360,
+            "probability": 5.993314745279828e-46
+          },
+          {
+            "arrival": 30420,
+            "probability": 1.1642939907785865e-52
+          },
+          {
+            "arrival": 30480,
+            "probability": 6.685955531595077e-60
+          },
+          {
+            "arrival": 30540,
+            "probability": 9.676942764757659e-68
+          },
+          {
+            "arrival": 30600,
+            "probability": 5.521484757859626e-76
+          },
+          {
+            "arrival": 30660,
+            "probability": 1.249366369645782e-84
+          },
+          {
+            "arrival": 30720,
+            "probability": 7.605635823075706e-94
+          },
+          {
+            "arrival": 30780,
+            "probability": 1.3405256738281764e-103
+          },
+          {
+            "arrival": 30840,
+            "probability": 9.221101241536935e-114
+          },
+          {
+            "arrival": 30900,
+            "probability": 2.3639670324645804e-124
+          },
+          {
+            "arrival": 30960,
+            "probability": 1.5407385629583603e-135
+          },
+          {
+            "arrival": 31020,
+            "probability": 3.3268524179631293e-147
+          },
+          {
+            "arrival": 31080,
+            "probability": 2.786654655155187e-159
+          },
+          {
+            "arrival": 31140,
+            "probability": 7.854718449892301e-172
+          },
+          {
+            "arrival": 31200,
+            "probability": 5.6085123052172875e-185
+          },
+          {
+            "arrival": 31260,
+            "probability": 1.4763431616820436e-198
+          },
+          {
+            "arrival": 31320,
+            "probability": 1.5147862051497102e-212
+          },
+          {
+            "arrival": 31380,
+            "probability": 4.581905809118029e-227
+          },
+          {
+            "arrival": 31440,
+            "probability": 3.692364976896078e-242
+          },
+          {
+            "arrival": 31500,
+            "probability": 1.173229606373557e-257
+          },
+          {
+            "arrival": 31560,
+            "probability": 1.4681231750501442e-273
+          },
+          {
+            "arrival": 31620,
+            "probability": 4.7094815683332726e-290
+          },
+          {
+            "arrival": 31680,
+            "probability": 4.40658946595119e-307
+          }
+        ],
+        "attempts": [
+          {
+            "quantile": 0.0,
+            "arrival": 29306,
+            "candidate_index": 0,
+            "path": [
+              10616,
+              10853
+            ],
+            "feasible": true
+          },
+          {
+            "quantile": 0.25,
+            "arrival": 29535,
+            "candidate_index": 0,
+            "path": [
+              10616,
+              10853
+            ],
+            "feasible": true
+          },
+          {
+            "quantile": 0.5,
+            "arrival": 29545,
+            "candidate_index": 0,
+            "path": [
+              10616,
+              10853
+            ],
+            "feasible": true
+          },
+          {
+            "quantile": 0.75,
+            "arrival": 29546,
+            "candidate_index": 0,
+            "path": [
+              10616,
+              10853
+            ],
+            "feasible": true
+          },
+          {
+            "quantile": 1.0,
+            "arrival": 31680,
+            "candidate_index": 1,
+            "path": [
+              18878,
+              19312
+            ],
+            "feasible": true
+          }
+        ],
+        "sources": [
+          [
+            "original_suffix",
+            "quantile_0",
+            "quantile_0.25",
+            "quantile_0.5",
+            "quantile_0.75"
+          ],
+          [
+            "quantile_1"
+          ],
+          [
+            "v10_rescue_as_direct_tail"
+          ]
+        ],
+        "rescue_contiguous": true,
+        "phase_tail_cells": 135
+      },
+      "historical_upper_seconds": {
+        "incumbent": 957.2869477973063,
+        "v9_best": 844.5671205880325,
+        "v10_fixed_tail_rescue": 818.3905704357228,
+        "v10_best": 818.3905704357228
+      },
+      "status": "complete",
+      "exact": {
+        "upper": 957.2868478821683,
+        "fixed_tail_uppers": [
+          957.2869477973063,
+          3098.1748630150296,
+          2289.82764703457
+        ],
+        "prefix_success_probability": 1.0,
+        "phases": [
+          {
+            "arrival": 29306,
+            "probability": 8.522009027687075e-08,
+            "conditional_uppers": [
+              874.0461516939386,
+              3114.3135298553148,
+              2369.441168574073
+            ],
+            "selected": 0
+          },
+          {
+            "arrival": 29340,
+            "probability": 1.0445109310612464e-05,
+            "conditional_uppers": [
+              760.5952008364293,
+              3032.076547535229,
+              2097.4837171348613
+            ],
+            "selected": 0
+          },
+          {
+            "arrival": 29400,
+            "probability": 0.0005351073583626032,
+            "conditional_uppers": [
+              675.2639093207495,
+              2972.076547535229,
+              2037.4837171348613
+            ],
+            "selected": 0
+          },
+          {
+            "arrival": 29460,
+            "probability": 0.007640783346984701,
+            "conditional_uppers": [
+              631.5614145756258,
+              2912.076547535229,
+              1977.4837171348613
+            ],
+            "selected": 0
+          },
+          {
+            "arrival": 29513,
+            "probability": 0.0988539013312523,
+            "conditional_uppers": [
+              650.4324723898198,
+              2907.3135298553148,
+              2162.441168574073
+            ],
+            "selected": 0
+          },
+          {
+            "arrival": 29520,
+            "probability": 0.1279943432051428,
+            "conditional_uppers": [
+              635.9477815340347,
+              2852.076547535229,
+              1917.4837171348613
+            ],
+            "selected": 0
+          },
+          {
+            "arrival": 29535,
+            "probability": 0.17470401296531474,
+            "conditional_uppers": [
+              752.396006800237,
+              2885.3135298553148,
+              2140.441168574073
+            ],
+            "selected": 0
+          },
+          {
+            "arrival": 29545,
+            "probability": 0.1952435111945449,
+            "conditional_uppers": [
+              742.396006800237,
+              2875.3135298553148,
+              2130.441168574073
+            ],
+            "selected": 0
+          },
+          {
+            "arrival": 29546,
+            "probability": 0.19662808160462947,
+            "conditional_uppers": [
+              741.396006800237,
+              2874.3135298553148,
+              2129.441168574073
+            ],
+            "selected": 0
+          },
+          {
+            "arrival": 29580,
+            "probability": 0.16816234769707272,
+            "conditional_uppers": [
+              704.649516417885,
+              2792.076547535229,
+              1857.4837171348613
+            ],
+            "selected": 0
+          },
+          {
+            "arrival": 29640,
+            "probability": 0.02765017007564411,
+            "conditional_uppers": [
+              854.2537539257846,
+              2732.076547535229,
+              1797.4837171348613
+            ],
+            "selected": 0
+          },
+          {
+            "arrival": 29700,
+            "probability": 0.0024892054242408456,
+            "conditional_uppers": [
+              1088.6180918383498,
+              2672.076547535229,
+              1737.4837171348613
+            ],
+            "selected": 0
+          },
+          {
+            "arrival": 29760,
+            "probability": 8.699020439024047e-05,
+            "conditional_uppers": [
+              1388.9273423935692,
+              2612.076547535229,
+              1677.4837171348613
+            ],
+            "selected": 0
+          },
+          {
+            "arrival": 29820,
+            "probability": 1.0114754062283725e-06,
+            "conditional_uppers": [
+              1714.54575064235,
+              2552.076547535229,
+              1617.4837171348613
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 29880,
+            "probability": 3.782098206796951e-09,
+            "conditional_uppers": [
+              2016.251231760984,
+              2492.076547535229,
+              1557.4837171348613
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 29940,
+            "probability": 5.512363188742238e-12,
+            "conditional_uppers": [
+              2254.4009302372274,
+              2432.076547535229,
+              1497.4837171348613
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 30000,
+            "probability": 2.8089443532395656e-15,
+            "conditional_uppers": [
+              2411.045954799176,
+              2372.076547535229,
+              1437.4837171348613
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 30060,
+            "probability": 2.9459349965647544e-19,
+            "conditional_uppers": [
+              2490.2927066622174,
+              2312.076547535229,
+              1183.7207382505692
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 30120,
+            "probability": 1.1771264555242478e-23,
+            "conditional_uppers": [
+              2509.7436531988765,
+              2252.076547535229,
+              984.7394752205473
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 30180,
+            "probability": 1.9268538079451125e-28,
+            "conditional_uppers": [
+              2490.132134647661,
+              2192.076547535229,
+              836.6326881713001
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 30240,
+            "probability": 1.0373502918731645e-33,
+            "conditional_uppers": [
+              2448.488786193928,
+              2132.076547535229,
+              731.2953012462945
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 30300,
+            "probability": 1.256787499295095e-39,
+            "conditional_uppers": [
+              2395.9734770396735,
+              2072.076547535229,
+              657.2037615774275
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 30360,
+            "probability": 5.993314745279828e-46,
+            "conditional_uppers": [
+              2338.7199674209055,
+              2012.0765475352289,
+              610.5535012172054
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 30420,
+            "probability": 1.1642939907785865e-52,
+            "conditional_uppers": [
+              2279.6296392000468,
+              1952.0765475352289,
+              596.3578375443328
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 30480,
+            "probability": 6.685955531595077e-60,
+            "conditional_uppers": [
+              2219.9023264002767,
+              1892.0765475352289,
+              625.8402190701686
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 30540,
+            "probability": 9.676942764757659e-68,
+            "conditional_uppers": [
+              2159.976487975344,
+              1832.0765475352289,
+              709.8343549281392
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 30600,
+            "probability": 5.521484757859626e-76,
+            "conditional_uppers": [
+              2099.9948270825475,
+              1772.0765475352289,
+              849.9709432797067
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 30660,
+            "probability": 1.249366369645782e-84,
+            "conditional_uppers": [
+              2039.9989585620478,
+              1712.0765475352289,
+              1032.394819574075
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 30720,
+            "probability": 7.605635823075706e-94,
+            "conditional_uppers": [
+              1979.9998079373238,
+              1652.0765475352289,
+              1229.025725789402
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 30780,
+            "probability": 1.3405256738281764e-103,
+            "conditional_uppers": [
+              1919.9999675243168,
+              1592.0765475352289,
+              1406.9810550396064
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 30840,
+            "probability": 9.221101241536935e-114,
+            "conditional_uppers": [
+              1859.9999949614603,
+              1532.0765475352289,
+              1540.7436114730062
+            ],
+            "selected": 1
+          },
+          {
+            "arrival": 30900,
+            "probability": 2.3639670324645804e-124,
+            "conditional_uppers": [
+              1799.9999992823105,
+              1472.0765475352289,
+              1619.7247979108527
+            ],
+            "selected": 1
+          },
+          {
+            "arrival": 30960,
+            "probability": 1.5407385629583603e-135,
+            "conditional_uppers": [
+              1739.9999999061063,
+              1412.0765475352289,
+              1647.8315723044009
+            ],
+            "selected": 1
+          },
+          {
+            "arrival": 31020,
+            "probability": 3.3268524179631293e-147,
+            "conditional_uppers": [
+              1679.9999999887148,
+              1352.0765475352289,
+              1637.370879684223
+            ],
+            "selected": 1
+          },
+          {
+            "arrival": 31080,
+            "probability": 2.786654655155187e-159,
+            "conditional_uppers": [
+              1619.9999999987538,
+              1292.0765475352289,
+              1602.1624719598478
+            ],
+            "selected": 1
+          },
+          {
+            "arrival": 31140,
+            "probability": 7.854718449892301e-172,
+            "conditional_uppers": [
+              1559.9999999998736,
+              1232.0765475352289,
+              1553.2429811535528
+            ],
+            "selected": 1
+          },
+          {
+            "arrival": 31200,
+            "probability": 5.6085123052172875e-185,
+            "conditional_uppers": [
+              1499.9999999999882,
+              1172.0765475352289,
+              1497.6803930122053
+            ],
+            "selected": 1
+          },
+          {
+            "arrival": 31260,
+            "probability": 1.4763431616820436e-198,
+            "conditional_uppers": [
+              1439.999999999999,
+              1112.0765475352289,
+              1439.2774941597856
+            ],
+            "selected": 1
+          },
+          {
+            "arrival": 31320,
+            "probability": 1.5147862051497102e-212,
+            "conditional_uppers": [
+              1380.0,
+              1052.0765475352289,
+              1379.7955479464117
+            ],
+            "selected": 1
+          },
+          {
+            "arrival": 31380,
+            "probability": 4.581905809118029e-227,
+            "conditional_uppers": [
+              1320.0,
+              958.3328791109187,
+              1319.9473732459053
+            ],
+            "selected": 1
+          },
+          {
+            "arrival": 31440,
+            "probability": 3.692364976896078e-242,
+            "conditional_uppers": [
+              1260.0,
+              878.4014883829074,
+              1259.987663688732
+            ],
+            "selected": 1
+          },
+          {
+            "arrival": 31500,
+            "probability": 1.173229606373557e-257,
+            "conditional_uppers": [
+              1200.0,
+              808.6876881995288,
+              1199.997363907302
+            ],
+            "selected": 1
+          },
+          {
+            "arrival": 31560,
+            "probability": 1.4681231750501442e-273,
+            "conditional_uppers": [
+              1140.0,
+              746.6356766618368,
+              1139.99948609631
+            ],
+            "selected": 1
+          },
+          {
+            "arrival": 31620,
+            "probability": 4.7094815683332726e-290,
+            "conditional_uppers": [
+              1080.0,
+              689.7307268939334,
+              1079.999908547202
+            ],
+            "selected": 1
+          },
+          {
+            "arrival": 31680,
+            "probability": 4.40658946595119e-307,
+            "conditional_uppers": [
+              1020.0,
+              638.375609674636,
+              1019.9999851393775
+            ],
+            "selected": 1
+          }
+        ],
+        "seconds": 0.03315984300024866
+      },
+      "static_best_index": 0,
+      "static_best_upper": 957.2869477973063,
+      "adaptive_upper": 957.2868478821683,
+      "family_improvement_seconds": 0.0,
+      "arrival_information_improvement_seconds": 9.99151379801333e-05,
+      "improvement_vs_original_seconds": 9.99151379801333e-05,
+      "improvement_vs_v10_best_seconds": -138.89627744644554,
+      "prefix_failure_probability": 0.0,
+      "prefix_failure_cap": 3394,
+      "prefix_failure_expected_loss": 0.0,
+      "selected_probability_by_candidate": [
+        0.9999989847369802,
+        9.221101241773331e-114,
+        1.0152630196075971e-06
+      ],
+      "phase_cpu_seconds": 0.03171114999999958,
+      "candidate_plus_phase_seconds": 1.6506846380016214,
+      "observed_boundary_diagnostic": {
+        "arrival": 29575,
+        "on_grid": false,
+        "selected": 0,
+        "tail": [
+          10616,
+          10853
+        ],
+        "conditional_uppers": null,
+        "source": "Previously recorded incumbent replay arrival; queried only after candidate generation and exact integration."
+      }
+    },
+    {
+      "date": "2023-07-27",
+      "query": 0,
+      "decision": 1,
+      "prefix": [
+        8780
+      ],
+      "root": {
+        "stop": 594,
+        "clock": 29202,
+        "current_trip": "3779.TA.91-2-H-j23-1.14.R",
+        "last_arrival": 29202,
+        "unavailable_ids": [
+          8341
+        ],
+        "learned_trips": [
+          "3779.TA.91-2-H-j23-1.14.R"
+        ],
+        "initialized": true
+      },
+      "deadline": 32700,
+      "destination": 3,
+      "setup_seconds": 0.24583892500049842,
+      "candidates": [
+        {
+          "index": 0,
+          "sources": [
+            "original_suffix",
+            "quantile_0",
+            "quantile_0.25",
+            "quantile_0.5",
+            "quantile_0.75"
+          ],
+          "plan": {
+            "primary": [
+              9383,
+              9627,
+              9857,
+              10330
+            ],
+            "failure_index": null,
+            "rescue": [],
+            "first_action_now": false,
+            "departures": [
+              [
+                9383,
+                29518
+              ],
+              [
+                9627,
+                29585
+              ],
+              [
+                9857,
+                29652
+              ],
+              [
+                10330,
+                29780
+              ]
+            ]
+          }
+        },
+        {
+          "index": 1,
+          "sources": [
+            "quantile_1"
+          ],
+          "plan": {
+            "primary": [
+              15361,
+              15573,
+              16014,
+              16235
+            ],
+            "failure_index": null,
+            "rescue": [],
+            "first_action_now": false,
+            "departures": [
+              [
+                15361,
+                31110
+              ],
+              [
+                15573,
+                31177
+              ],
+              [
+                16014,
+                31298
+              ],
+              [
+                16235,
+                31365
+              ]
+            ]
+          }
+        },
+        {
+          "index": 2,
+          "sources": [
+            "v10_rescue_as_direct_tail"
+          ],
+          "plan": {
+            "primary": [
+              11986,
+              12200,
+              12663,
+              12885
+            ],
+            "failure_index": null,
+            "rescue": [],
+            "first_action_now": false,
+            "departures": [
+              [
+                11986,
+                30210
+              ],
+              [
+                12200,
+                30277
+              ],
+              [
+                12663,
+                30398
+              ],
+              [
+                12885,
+                30465
+              ]
+            ]
+          }
+        }
+      ],
+      "generation": {
+        "seconds": 1.850009398000111,
+        "cpu_seconds": 1.765584639,
+        "successful_arrival_probability": 1.0000000000000002,
+        "successful_arrival_phases": [
+          {
+            "arrival": 29202,
+            "probability": 0.0017639563027081865
+          },
+          {
+            "arrival": 29220,
+            "probability": 0.009953757183009511
+          },
+          {
+            "arrival": 29280,
+            "probability": 0.16743712363317043
+          },
+          {
+            "arrival": 29301,
+            "probability": 0.2509568726316597
+          },
+          {
+            "arrival": 29322,
+            "probability": 0.28904740405386464
+          },
+          {
+            "arrival": 29340,
+            "probability": 0.255288025242903
+          },
+          {
+            "arrival": 29400,
+            "probability": 0.02486642475470748
+          },
+          {
+            "arrival": 29460,
+            "probability": 0.000684942290444219
+          },
+          {
+            "arrival": 29520,
+            "probability": 1.493604232985368e-06
+          },
+          {
+            "arrival": 29580,
+            "probability": 3.032914831379173e-10
+          },
+          {
+            "arrival": 29640,
+            "probability": 8.445915977950579e-15
+          },
+          {
+            "arrival": 29700,
+            "probability": 1.7271973377183816e-20
+          },
+          {
+            "arrival": 29760,
+            "probability": 6.299984468287279e-27
+          },
+          {
+            "arrival": 29820,
+            "probability": 1.3300729087005318e-34
+          },
+          {
+            "arrival": 29880,
+            "probability": 6.1802122992132014e-43
+          },
+          {
+            "arrival": 29940,
+            "probability": 1.3981957227636752e-52
+          },
+          {
+            "arrival": 30000,
+            "probability": 7.956148213644865e-63
+          },
+          {
+            "arrival": 30060,
+            "probability": 2.0206350962196996e-74
+          },
+          {
+            "arrival": 30120,
+            "probability": 1.3428399514431016e-86
+          },
+          {
+            "arrival": 30180,
+            "probability": 4.0236609716849954e-100
+          },
+          {
+            "arrival": 30240,
+            "probability": 2.971762015100713e-114
+          },
+          {
+            "arrival": 30300,
+            "probability": 1.1002531740326566e-129
+          },
+          {
+            "arrival": 30360,
+            "probability": 8.633481601625707e-146
+          },
+          {
+            "arrival": 30420,
+            "probability": 4.0994376906769804e-163
+          },
+          {
+            "arrival": 30480,
+            "probability": 3.3006278625133106e-181
+          },
+          {
+            "arrival": 30540,
+            "probability": 2.0612768450188128e-200
+          },
+          {
+            "arrival": 30600,
+            "probability": 1.6651670801458133e-220
+          },
+          {
+            "arrival": 30660,
+            "probability": 1.2708104238747338e-241
+          },
+          {
+            "arrival": 30720,
+            "probability": 1.536355319670434e-264
+          },
+          {
+            "arrival": 30780,
+            "probability": 2.68743022516569e-289
+          },
+          {
+            "arrival": 30840,
+            "probability": 6.79235037e-316
+          }
+        ],
+        "attempts": [
+          {
+            "quantile": 0.0,
+            "arrival": 29202,
+            "candidate_index": 0,
+            "path": [
+              9383,
+              9627,
+              9857,
+              10330
+            ],
+            "feasible": true
+          },
+          {
+            "quantile": 0.25,
+            "arrival": 29301,
+            "candidate_index": 0,
+            "path": [
+              9383,
+              9627,
+              9857,
+              10330
+            ],
+            "feasible": true
+          },
+          {
+            "quantile": 0.5,
+            "arrival": 29322,
+            "candidate_index": 0,
+            "path": [
+              9383,
+              9627,
+              9857,
+              10330
+            ],
+            "feasible": true
+          },
+          {
+            "quantile": 0.75,
+            "arrival": 29340,
+            "candidate_index": 0,
+            "path": [
+              9383,
+              9627,
+              9857,
+              10330
+            ],
+            "feasible": true
+          },
+          {
+            "quantile": 1.0,
+            "arrival": 30840,
+            "candidate_index": 1,
+            "path": [
+              15361,
+              15573,
+              16014,
+              16235
+            ],
+            "feasible": true
+          }
+        ],
+        "sources": [
+          [
+            "original_suffix",
+            "quantile_0",
+            "quantile_0.25",
+            "quantile_0.5",
+            "quantile_0.75"
+          ],
+          [
+            "quantile_1"
+          ],
+          [
+            "v10_rescue_as_direct_tail"
+          ]
+        ],
+        "rescue_contiguous": true,
+        "phase_tail_cells": 93
+      },
+      "historical_upper_seconds": {
+        "incumbent": 1444.908437094457,
+        "v9_best": 975.05260702505,
+        "v10_fixed_tail_rescue": 1101.1202439830347,
+        "v10_best": 975.05260702505
+      },
+      "status": "complete",
+      "exact": {
+        "upper": 1444.5236515564584,
+        "fixed_tail_uppers": [
+          1444.9084370944565,
+          2698.603982784671,
+          2152.1035529371534
+        ],
+        "prefix_success_probability": 1.0000000000000002,
+        "phases": [
+          {
+            "arrival": 29202,
+            "probability": 0.0017639563027081865,
+            "conditional_uppers": [
+              904.6023804885381,
+              2816.9134091591245,
+              2360.664736142894
+            ],
+            "selected": 0
+          },
+          {
+            "arrival": 29220,
+            "probability": 0.009953757183009511,
+            "conditional_uppers": [
+              885.5541504650855,
+              2632.0897747112604,
+              2048.819456152832
+            ],
+            "selected": 0
+          },
+          {
+            "arrival": 29280,
+            "probability": 0.16743712363317043,
+            "conditional_uppers": [
+              1069.498702454308,
+              2572.0897747112604,
+              1988.8194561528321
+            ],
+            "selected": 0
+          },
+          {
+            "arrival": 29301,
+            "probability": 0.2509568726316597,
+            "conditional_uppers": [
+              1400.5294675897487,
+              2551.0897747112604,
+              1967.8194561528321
+            ],
+            "selected": 0
+          },
+          {
+            "arrival": 29322,
+            "probability": 0.28904740405386464,
+            "conditional_uppers": [
+              1379.5294675897487,
+              2696.9134091591245,
+              2240.664736142894
+            ],
+            "selected": 0
+          },
+          {
+            "arrival": 29340,
+            "probability": 0.255288025242903,
+            "conditional_uppers": [
+              1361.4577276035247,
+              2512.0897747112604,
+              1928.8194561528321
+            ],
+            "selected": 0
+          },
+          {
+            "arrival": 29400,
+            "probability": 0.02486642475470748,
+            "conditional_uppers": [
+              1732.519310167509,
+              2452.0897747112604,
+              1868.8194561528321
+            ],
+            "selected": 0
+          },
+          {
+            "arrival": 29460,
+            "probability": 0.000684942290444219,
+            "conditional_uppers": [
+              2121.65218456008,
+              2392.0897747112604,
+              1562.3628328198406
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 29520,
+            "probability": 1.493604232985368e-06,
+            "conditional_uppers": [
+              2461.2169668760985,
+              2332.0897747112604,
+              1320.262989954257
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 29580,
+            "probability": 3.032914831379173e-10,
+            "conditional_uppers": [
+              2706.2663781079423,
+              2272.0897747112604,
+              1141.1333121205937
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 29640,
+            "probability": 8.445915977950579e-15,
+            "conditional_uppers": [
+              2847.3087413200883,
+              2212.0897747112604,
+              1011.7815801941974
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 29700,
+            "probability": 1.7271973377183816e-20,
+            "conditional_uppers": [
+              2902.4008117147355,
+              2152.0897747112604,
+              925.9661701819641
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 29760,
+            "probability": 6.299984468287279e-27,
+            "conditional_uppers": [
+              2899.987594938473,
+              2092.0897747112604,
+              871.8704836420361
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 29820,
+            "probability": 1.3300729087005318e-34,
+            "conditional_uppers": [
+              2865.3192887194587,
+              2032.0897747112604,
+              853.1485200876659
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 29880,
+            "probability": 6.1802122992132014e-43,
+            "conditional_uppers": [
+              2815.168908339716,
+              1972.0897747112604,
+              882.6099164220973
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 29940,
+            "probability": 1.3981957227636752e-52,
+            "conditional_uppers": [
+              2758.5707713332845,
+              1912.0897747112604,
+              975.2822762972733
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 30000,
+            "probability": 7.956148213644865e-63,
+            "conditional_uppers": [
+              2699.619001356713,
+              1852.0897747112604,
+              1137.5979008293652
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 30060,
+            "probability": 2.0206350962196996e-74,
+            "conditional_uppers": [
+              2639.9082798855384,
+              1792.0897747112604,
+              1357.8136828439688
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 30120,
+            "probability": 1.3428399514431016e-86,
+            "conditional_uppers": [
+              2579.9800198717626,
+              1732.0897747112604,
+              1604.9448999261945
+            ],
+            "selected": 2
+          },
+          {
+            "arrival": 30180,
+            "probability": 4.0236609716849954e-100,
+            "conditional_uppers": [
+              2519.9960545153212,
+              1672.0897747112604,
+              1838.7846284448738
+            ],
+            "selected": 1
+          },
+          {
+            "arrival": 30240,
+            "probability": 2.971762015100713e-114,
+            "conditional_uppers": [
+              2459.9992926391305,
+              1612.0897747112604,
+              2025.2400105556358
+            ],
+            "selected": 1
+          },
+          {
+            "arrival": 30300,
+            "probability": 1.1002531740326566e-129,
+            "conditional_uppers": [
+              2399.9998847128836,
+              1552.0897747112604,
+              2147.3395977716696
+            ],
+            "selected": 1
+          },
+          {
+            "arrival": 30360,
+            "probability": 8.633481601625707e-146,
+            "conditional_uppers": [
+              2339.999982901067,
+              1355.3312250504532,
+              2206.4692270355754
+            ],
+            "selected": 1
+          },
+          {
+            "arrival": 30420,
+            "probability": 4.0994376906769804e-163,
+            "conditional_uppers": [
+              2279.999997690362,
+              1196.762855098552,
+              2215.8209504412393
+            ],
+            "selected": 1
+          },
+          {
+            "arrival": 30480,
+            "probability": 3.3006278625133106e-181,
+            "conditional_uppers": [
+              2219.999999715729,
+              1074.0032939018872,
+              2191.922249856587
+            ],
+            "selected": 1
+          },
+          {
+            "arrival": 30540,
+            "probability": 2.0612768450188128e-200,
+            "conditional_uppers": [
+              2159.99999996811,
+              978.5365288456774,
+              2148.8028610068955
+            ],
+            "selected": 1
+          },
+          {
+            "arrival": 30600,
+            "probability": 1.6651670801458133e-220,
+            "conditional_uppers": [
+              2099.9999999967395,
+              907.3116379774187,
+              2095.922728564256
+            ],
+            "selected": 1
+          },
+          {
+            "arrival": 30660,
+            "probability": 1.2708104238747338e-241,
+            "conditional_uppers": [
+              2039.9999999996962,
+              853.832919917555,
+              2038.6418653731314
+            ],
+            "selected": 1
+          },
+          {
+            "arrival": 30720,
+            "probability": 1.536355319670434e-264,
+            "conditional_uppers": [
+              1979.9999999999743,
+              821.1276801485667,
+              1979.5854071541505
+            ],
+            "selected": 1
+          },
+          {
+            "arrival": 30780,
+            "probability": 2.68743022516569e-289,
+            "conditional_uppers": [
+              1919.999999999998,
+              817.2877827972814,
+              1919.8838090475676
+            ],
+            "selected": 1
+          },
+          {
+            "arrival": 30840,
+            "probability": 6.79235037e-316,
+            "conditional_uppers": [
+              1859.9999999999998,
+              850.9701308247131,
+              1859.970055959554
+            ],
+            "selected": 1
+          }
+        ],
+        "seconds": 0.03577373300140607
+      },
+      "static_best_index": 0,
+      "static_best_upper": 1444.9084370944565,
+      "adaptive_upper": 1444.5236515564584,
+      "family_improvement_seconds": 4.547473508864641e-13,
+      "arrival_information_improvement_seconds": 0.3847855379981411,
+      "improvement_vs_original_seconds": 0.38478553799859583,
+      "improvement_vs_v10_best_seconds": -469.47104453140844,
+      "prefix_failure_probability": 0.0,
+      "prefix_failure_cap": 3498,
+      "prefix_failure_expected_loss": 0.0,
+      "selected_probability_by_candidate": [
+        0.999313563802023,
+        4.0236609716850253e-100,
+        0.0006864361979771335
+      ],
+      "phase_cpu_seconds": 0.0342059619999997,
+      "candidate_plus_phase_seconds": 1.8857831310015172,
+      "observed_boundary_diagnostic": {
+        "arrival": 29297,
+        "on_grid": false,
+        "selected": 0,
+        "tail": [
+          9383,
+          9627,
+          9857,
+          10330
+        ],
+        "conditional_uppers": null,
+        "source": "Previously recorded incumbent replay arrival; queried only after candidate generation and exact integration."
+      }
+    }
+  ],
+  "status": "complete"
+}

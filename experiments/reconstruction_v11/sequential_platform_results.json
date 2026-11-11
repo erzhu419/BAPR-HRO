@@ -1,0 +1,6737 @@
+{
+  "protocol": {
+    "histories": "experiments/reconstruction_v8/opportunity_city_results.json",
+    "archive": "experiments/reconstruction_v4/city_replay_results.json",
+    "methods": [
+      "off64",
+      "terminal64",
+      "middle64"
+    ],
+    "order": "All six permutations, then permutations 3 and 4; each arm position count differs by at most one, fixed before results.",
+    "contract": "Committed planner and certificate; platform execution sensitivity, not a platform near-optimality guarantee.",
+    "adapter": "Same V10 primary-only policy: visible-departure boarding, explicit alighting, physical onboard inertia; no tail rescue.",
+    "release": "Root+ceil(measured worker wall), same public pose/prefix/availability revalidation for every arm.",
+    "accounting": "Per-arm context/Worker/scan setup plus worker charged; shared graph, fitting and native compilation recorded separately.",
+    "marginal_reference": "Same archived incumbent replay without worker; realized difference diagnoses useful publications, not expected optimality.",
+    "sampling": "Current shared trip sampler and deterministic floor; cumulative 32/128/512 worlds, stop only at acceptance, same alpha across prefixes.",
+    "tolerance_seconds": 60,
+    "alpha": "Family .05 across eight frozen roots; each root uses .05/8=.00625 for every sequential prefix.",
+    "scope": "All eight existing development roots, once; no new dates or claim of G2 success."
+  },
+  "shared_training_seconds": 0.7840572620007151,
+  "shared_costs": [
+    {
+      "date": "2023-07-26",
+      "query": 0,
+      "graph_seconds": 0.08204105500044534,
+      "native_compile_seconds": 0.8000693249996402
+    },
+    {
+      "date": "2023-07-26",
+      "query": 1,
+      "graph_seconds": 0.09002653599964106,
+      "native_compile_seconds": 0.8392512430000352
+    },
+    {
+      "date": "2023-07-27",
+      "query": 0,
+      "graph_seconds": 0.08923263600081555,
+      "native_compile_seconds": 0.7935884950002219
+    },
+    {
+      "date": "2023-07-27",
+      "query": 1,
+      "graph_seconds": 0.0756472679986473,
+      "native_compile_seconds": 0.7634031960005814
+    }
+  ],
+  "rows": [
+    {
+      "date": "2023-07-26",
+      "query": 0,
+      "decision": 1,
+      "method": "off64",
+      "status": "timeout",
+      "loss_lower": 3515.0,
+      "loss_upper": 3515.0,
+      "root_clock": 29185,
+      "ready_at": 29189,
+      "worker_seconds": 3.157229060001555,
+      "worker_cpu_seconds": 3.00155747,
+      "setup_seconds": 0.9695495150008355,
+      "replay_seconds": 0.058871514000202296,
+      "retained": true,
+      "deferred": false,
+      "replacement_requested": false,
+      "published": false,
+      "rejected": false,
+      "release_check": {},
+      "incumbent_path": [
+        8780,
+        9383,
+        9627,
+        9857,
+        10330
+      ],
+      "replacement_path": [],
+      "missing_connections": [],
+      "work": {
+        "gate": null,
+        "search_seconds": 3.157188559000133,
+        "candidate_seconds": 0.0,
+        "transitions": 64,
+        "posterior_update_seconds": 2.177999704144895e-06,
+        "proposed_first": 8780
+      },
+      "incumbent_moves": 0,
+      "rides": [
+        {
+          "time": 29213,
+          "stop": 594,
+          "action": [
+            "board",
+            8780
+          ],
+          "next_time": 29306,
+          "next_stop": 606,
+          "ridden_connection": 8780,
+          "worker_running": false,
+          "policy": "incumbent"
+        }
+      ],
+      "order": [
+        "off64",
+        "terminal64",
+        "middle64"
+      ],
+      "order_index": 0,
+      "cpu": 28,
+      "setup_plus_worker_seconds": 4.12677857500239,
+      "search_called": true,
+      "marginal_loss_lower": 0.0,
+      "marginal_loss_upper": 0.0,
+      "useful_published": false,
+      "harmful_published": false
+    },
+    {
+      "date": "2023-07-26",
+      "query": 0,
+      "decision": 1,
+      "method": "terminal64",
+      "status": "timeout",
+      "loss_lower": 3515.0,
+      "loss_upper": 3515.0,
+      "root_clock": 29185,
+      "ready_at": 29189,
+      "worker_seconds": 3.062555804001022,
+      "worker_cpu_seconds": 2.896867514,
+      "setup_seconds": 0.6290396469994448,
+      "replay_seconds": 0.07070329700036382,
+      "retained": true,
+      "deferred": false,
+      "replacement_requested": false,
+      "published": false,
+      "rejected": false,
+      "release_check": {},
+      "incumbent_path": [
+        8780,
+        9383,
+        9627,
+        9857,
+        10330
+      ],
+      "replacement_path": [],
+      "missing_connections": [],
+      "work": {
+        "gate": null,
+        "search_seconds": 3.0623228129989,
+        "candidate_seconds": 0.0,
+        "transitions": 64,
+        "posterior_update_seconds": 1.720000000204891e-06,
+        "gate_seconds": 0.00019293299919809215,
+        "proposed_first": 8780
+      },
+      "incumbent_moves": 0,
+      "rides": [
+        {
+          "time": 29213,
+          "stop": 594,
+          "action": [
+            "board",
+            8780
+          ],
+          "next_time": 29306,
+          "next_stop": 606,
+          "ridden_connection": 8780,
+          "worker_running": false,
+          "policy": "incumbent"
+        }
+      ],
+      "order": [
+        "off64",
+        "terminal64",
+        "middle64"
+      ],
+      "order_index": 1,
+      "cpu": 28,
+      "setup_plus_worker_seconds": 3.6915954510004667,
+      "search_called": true,
+      "marginal_loss_lower": 0.0,
+      "marginal_loss_upper": 0.0,
+      "useful_published": false,
+      "harmful_published": false
+    },
+    {
+      "date": "2023-07-26",
+      "query": 0,
+      "decision": 1,
+      "method": "middle64",
+      "status": "timeout",
+      "loss_lower": 3515.0,
+      "loss_upper": 3515.0,
+      "root_clock": 29185,
+      "ready_at": 29193,
+      "worker_seconds": 7.199246722999305,
+      "worker_cpu_seconds": 6.885559875,
+      "setup_seconds": 1.677049261999855,
+      "replay_seconds": 0.09460505499919236,
+      "retained": true,
+      "deferred": false,
+      "replacement_requested": false,
+      "published": false,
+      "rejected": false,
+      "release_check": {},
+      "incumbent_path": [
+        8780,
+        9383,
+        9627,
+        9857,
+        10330
+      ],
+      "replacement_path": [],
+      "missing_connections": [],
+      "work": {
+        "gate": {
+          "upper": 1425.815432099916,
+          "witness_seconds": 0.001432019000276341,
+          "support_floor": 120.0,
+          "cutoff": 30791,
+          "trips": 1301,
+          "connections": 14735,
+          "corridor_seconds": 0.27880113900027936,
+          "kind": "middle",
+          "lower": 682.8058245425927,
+          "accepted": false,
+          "alpha": 0.00625,
+          "worlds": 512,
+          "oracle_mean": 700.7421875,
+          "sample_checkpoints": [
+            {
+              "worlds": 32,
+              "lower": 625.321478988044,
+              "oracle_mean": 725.0,
+              "accepted": false
+            },
+            {
+              "worlds": 128,
+              "lower": 684.1993236436974,
+              "oracle_mean": 720.78125,
+              "accepted": false
+            },
+            {
+              "worlds": 512,
+              "lower": 682.8058245425927,
+              "oracle_mean": 700.7421875,
+              "accepted": false
+            }
+          ],
+          "template_seconds": 0.040549315001044306,
+          "draw_seconds": 3.3252318920003745,
+          "scan_seconds": 0.16176959199947305
+        },
+        "search_seconds": 3.379637465999622,
+        "candidate_seconds": 0.0,
+        "transitions": 64,
+        "posterior_update_seconds": 1.7309994291281328e-06,
+        "gate_seconds": 3.819548007000776,
+        "proposed_first": 8780
+      },
+      "incumbent_moves": 0,
+      "rides": [
+        {
+          "time": 29213,
+          "stop": 594,
+          "action": [
+            "board",
+            8780
+          ],
+          "next_time": 29306,
+          "next_stop": 606,
+          "ridden_connection": 8780,
+          "worker_running": false,
+          "policy": "incumbent"
+        }
+      ],
+      "order": [
+        "off64",
+        "terminal64",
+        "middle64"
+      ],
+      "order_index": 2,
+      "cpu": 28,
+      "setup_plus_worker_seconds": 8.87629598499916,
+      "search_called": true,
+      "marginal_loss_lower": 0.0,
+      "marginal_loss_upper": 0.0,
+      "useful_published": false,
+      "harmful_published": false
+    },
+    {
+      "date": "2023-07-26",
+      "query": 0,
+      "decision": 2,
+      "method": "off64",
+      "status": "arrived",
+      "loss_lower": 629.0,
+      "loss_upper": 629.0,
+      "root_clock": 29306,
+      "ready_at": 29309,
+      "worker_seconds": 2.9227103579996765,
+      "worker_cpu_seconds": 2.784425658,
+      "setup_seconds": 0.9840668870001537,
+      "replay_seconds": 0.0049982900000031805,
+      "retained": false,
+      "deferred": false,
+      "replacement_requested": true,
+      "published": true,
+      "rejected": false,
+      "release_check": {
+        "clock": 29309,
+        "stop": 606,
+        "same_pose": true,
+        "same_prefix": true,
+        "first_publicly_available": true
+      },
+      "incumbent_path": [
+        9488,
+        9727,
+        10616,
+        10853
+      ],
+      "replacement_path": [
+        10375,
+        10611,
+        10847,
+        11306
+      ],
+      "missing_connections": [],
+      "work": {
+        "gate": null,
+        "search_seconds": 2.918341094000425,
+        "candidate_seconds": 0.004339728000559262,
+        "transitions": 64,
+        "posterior_update_seconds": 1.5480000001844019e-06,
+        "proposed_first": 10375
+      },
+      "incumbent_moves": 0,
+      "rides": [
+        {
+          "time": 29620,
+          "stop": 606,
+          "action": [
+            "board",
+            10375
+          ],
+          "next_time": 29694,
+          "next_stop": 647,
+          "ridden_connection": 10375,
+          "worker_running": false,
+          "policy": "off64"
+        },
+        {
+          "time": 29708,
+          "stop": 647,
+          "action": [
+            "board",
+            10611
+          ],
+          "next_time": 29762,
+          "next_stop": 88,
+          "ridden_connection": 10611,
+          "worker_running": false,
+          "policy": "off64"
+        },
+        {
+          "time": 29780,
+          "stop": 88,
+          "action": [
+            "board",
+            10847
+          ],
+          "next_time": 29851,
+          "next_stop": 568,
+          "ridden_connection": 10847,
+          "worker_running": false,
+          "policy": "off64"
+        },
+        {
+          "time": 29863,
+          "stop": 568,
+          "action": [
+            "board",
+            11306
+          ],
+          "next_time": 29935,
+          "next_stop": 3,
+          "ridden_connection": 11306,
+          "worker_running": false,
+          "policy": "off64"
+        }
+      ],
+      "order": [
+        "off64",
+        "middle64",
+        "terminal64"
+      ],
+      "order_index": 0,
+      "cpu": 28,
+      "setup_plus_worker_seconds": 3.90677724499983,
+      "search_called": true,
+      "marginal_loss_lower": -28.0,
+      "marginal_loss_upper": -28.0,
+      "useful_published": true,
+      "harmful_published": false
+    },
+    {
+      "date": "2023-07-26",
+      "query": 0,
+      "decision": 2,
+      "method": "middle64",
+      "status": "arrived",
+      "loss_lower": 629.0,
+      "loss_upper": 629.0,
+      "root_clock": 29306,
+      "ready_at": 29311,
+      "worker_seconds": 4.84182096800032,
+      "worker_cpu_seconds": 4.606730691999999,
+      "setup_seconds": 1.165041704000032,
+      "replay_seconds": 0.004791490000570775,
+      "retained": false,
+      "deferred": false,
+      "replacement_requested": true,
+      "published": true,
+      "rejected": false,
+      "release_check": {
+        "clock": 29311,
+        "stop": 606,
+        "same_pose": true,
+        "same_prefix": true,
+        "first_publicly_available": true
+      },
+      "incumbent_path": [
+        9488,
+        9727,
+        10616,
+        10853
+      ],
+      "replacement_path": [
+        10375,
+        10611,
+        10847,
+        11306
+      ],
+      "missing_connections": [],
+      "work": {
+        "gate": {
+          "upper": 957.2869477973063,
+          "witness_seconds": 0.0007932720000098925,
+          "support_floor": 120.0,
+          "cutoff": 30444,
+          "trips": 1220,
+          "connections": 13391,
+          "corridor_seconds": 0.23997271799998998,
+          "kind": "middle",
+          "lower": 569.6983639577084,
+          "accepted": false,
+          "alpha": 0.00625,
+          "worlds": 512,
+          "oracle_mean": 587.0078125,
+          "sample_checkpoints": [
+            {
+              "worlds": 32,
+              "lower": 518.0527138966136,
+              "oracle_mean": 602.125,
+              "accepted": false
+            },
+            {
+              "worlds": 128,
+              "lower": 559.5504753263667,
+              "oracle_mean": 591.8125,
+              "accepted": false
+            },
+            {
+              "worlds": 512,
+              "lower": 569.6983639577084,
+              "oracle_mean": 587.0078125,
+              "accepted": false
+            }
+          ],
+          "template_seconds": 0.03756857500047772,
+          "draw_seconds": 2.3485568650012283,
+          "scan_seconds": 0.0923388849987532
+        },
+        "search_seconds": 2.1119938989995717,
+        "candidate_seconds": 0.004418762000568677,
+        "transitions": 64,
+        "posterior_update_seconds": 2.2869990061735734e-06,
+        "gate_seconds": 2.725359860000026,
+        "proposed_first": 10375
+      },
+      "incumbent_moves": 0,
+      "rides": [
+        {
+          "time": 29620,
+          "stop": 606,
+          "action": [
+            "board",
+            10375
+          ],
+          "next_time": 29694,
+          "next_stop": 647,
+          "ridden_connection": 10375,
+          "worker_running": false,
+          "policy": "middle64"
+        },
+        {
+          "time": 29708,
+          "stop": 647,
+          "action": [
+            "board",
+            10611
+          ],
+          "next_time": 29762,
+          "next_stop": 88,
+          "ridden_connection": 10611,
+          "worker_running": false,
+          "policy": "middle64"
+        },
+        {
+          "time": 29780,
+          "stop": 88,
+          "action": [
+            "board",
+            10847
+          ],
+          "next_time": 29851,
+          "next_stop": 568,
+          "ridden_connection": 10847,
+          "worker_running": false,
+          "policy": "middle64"
+        },
+        {
+          "time": 29863,
+          "stop": 568,
+          "action": [
+            "board",
+            11306
+          ],
+          "next_time": 29935,
+          "next_stop": 3,
+          "ridden_connection": 11306,
+          "worker_running": false,
+          "policy": "middle64"
+        }
+      ],
+      "order": [
+        "off64",
+        "middle64",
+        "terminal64"
+      ],
+      "order_index": 1,
+      "cpu": 28,
+      "setup_plus_worker_seconds": 6.006862672000352,
+      "search_called": true,
+      "marginal_loss_lower": -28.0,
+      "marginal_loss_upper": -28.0,
+      "useful_published": true,
+      "harmful_published": false
+    },
+    {
+      "date": "2023-07-26",
+      "query": 0,
+      "decision": 2,
+      "method": "terminal64",
+      "status": "arrived",
+      "loss_lower": 629.0,
+      "loss_upper": 629.0,
+      "root_clock": 29306,
+      "ready_at": 29309,
+      "worker_seconds": 2.5815837210011523,
+      "worker_cpu_seconds": 2.4711506340000007,
+      "setup_seconds": 0.6606067379998422,
+      "replay_seconds": 0.004972176000592299,
+      "retained": false,
+      "deferred": false,
+      "replacement_requested": true,
+      "published": true,
+      "rejected": false,
+      "release_check": {
+        "clock": 29309,
+        "stop": 606,
+        "same_pose": true,
+        "same_prefix": true,
+        "first_publicly_available": true
+      },
+      "incumbent_path": [
+        9488,
+        9727,
+        10616,
+        10853
+      ],
+      "replacement_path": [
+        10375,
+        10611,
+        10847,
+        11306
+      ],
+      "missing_connections": [],
+      "work": {
+        "gate": null,
+        "search_seconds": 2.577176707000035,
+        "candidate_seconds": 0.004202528998575872,
+        "transitions": 64,
+        "posterior_update_seconds": 1.8259997887071222e-06,
+        "gate_seconds": 0.00016384999980800785,
+        "proposed_first": 10375
+      },
+      "incumbent_moves": 0,
+      "rides": [
+        {
+          "time": 29620,
+          "stop": 606,
+          "action": [
+            "board",
+            10375
+          ],
+          "next_time": 29694,
+          "next_stop": 647,
+          "ridden_connection": 10375,
+          "worker_running": false,
+          "policy": "terminal64"
+        },
+        {
+          "time": 29708,
+          "stop": 647,
+          "action": [
+            "board",
+            10611
+          ],
+          "next_time": 29762,
+          "next_stop": 88,
+          "ridden_connection": 10611,
+          "worker_running": false,
+          "policy": "terminal64"
+        },
+        {
+          "time": 29780,
+          "stop": 88,
+          "action": [
+            "board",
+            10847
+          ],
+          "next_time": 29851,
+          "next_stop": 568,
+          "ridden_connection": 10847,
+          "worker_running": false,
+          "policy": "terminal64"
+        },
+        {
+          "time": 29863,
+          "stop": 568,
+          "action": [
+            "board",
+            11306
+          ],
+          "next_time": 29935,
+          "next_stop": 3,
+          "ridden_connection": 11306,
+          "worker_running": false,
+          "policy": "terminal64"
+        }
+      ],
+      "order": [
+        "off64",
+        "middle64",
+        "terminal64"
+      ],
+      "order_index": 2,
+      "cpu": 28,
+      "setup_plus_worker_seconds": 3.2421904590009945,
+      "search_called": true,
+      "marginal_loss_lower": -28.0,
+      "marginal_loss_upper": -28.0,
+      "useful_published": true,
+      "harmful_published": false
+    },
+    {
+      "date": "2023-07-26",
+      "query": 1,
+      "decision": 1,
+      "method": "terminal64",
+      "status": "arrived",
+      "loss_lower": 1844.0,
+      "loss_upper": 1844.0,
+      "root_clock": 29142,
+      "ready_at": 29149,
+      "worker_seconds": 6.686863462000474,
+      "worker_cpu_seconds": 6.356573294999999,
+      "setup_seconds": 0.8832868549998238,
+      "replay_seconds": 0.011289632000625716,
+      "retained": true,
+      "deferred": false,
+      "replacement_requested": false,
+      "published": false,
+      "rejected": false,
+      "release_check": {},
+      "incumbent_path": [
+        8538,
+        8759,
+        9224,
+        9704,
+        9938,
+        10407,
+        10879,
+        11339,
+        11788,
+        12230,
+        12695,
+        12918,
+        13372,
+        13588,
+        13816,
+        14288,
+        14501,
+        14737,
+        14955
+      ],
+      "replacement_path": [],
+      "missing_connections": [],
+      "work": {
+        "gate": {
+          "upper": 1826.2865299983964,
+          "witness_seconds": 0.0037998989992047427,
+          "terminal_lower": 0.0,
+          "terminal_seconds": 3.504900087136775e-05,
+          "kind": "terminal",
+          "lower": 0.0,
+          "accepted": false,
+          "alpha": 0.0,
+          "worlds": 0
+        },
+        "search_seconds": 6.682654997999634,
+        "candidate_seconds": 0.0,
+        "transitions": 64,
+        "posterior_update_seconds": 2.0210009097354487e-06,
+        "gate_seconds": 0.004142814999795519,
+        "proposed_first": 8538
+      },
+      "incumbent_moves": 0,
+      "rides": [
+        {
+          "time": 29157,
+          "stop": 614,
+          "action": [
+            "board",
+            8538
+          ],
+          "next_time": 29213,
+          "next_stop": 3,
+          "ridden_connection": 8538,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29230,
+          "stop": 3,
+          "action": [
+            "board",
+            8759
+          ],
+          "next_time": 29326,
+          "next_stop": 568,
+          "ridden_connection": 8759,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29391,
+          "stop": 568,
+          "action": [
+            "board",
+            9224
+          ],
+          "next_time": 29458,
+          "next_stop": 88,
+          "ridden_connection": 9224,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29475,
+          "stop": 88,
+          "action": [
+            "board",
+            9704
+          ],
+          "next_time": 29529,
+          "next_stop": 647,
+          "ridden_connection": 9704,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29540,
+          "stop": 647,
+          "action": [
+            "board",
+            9938
+          ],
+          "next_time": 29594,
+          "next_stop": 606,
+          "ridden_connection": 9938,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29643,
+          "stop": 606,
+          "action": [
+            "board",
+            10407
+          ],
+          "next_time": 29762,
+          "next_stop": 592,
+          "ridden_connection": 10407,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29786,
+          "stop": 592,
+          "action": [
+            "board",
+            10879
+          ],
+          "next_time": 29855,
+          "next_stop": 495,
+          "ridden_connection": 10879,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29875,
+          "stop": 495,
+          "action": [
+            "board",
+            11339
+          ],
+          "next_time": 29938,
+          "next_stop": 164,
+          "ridden_connection": 11339,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29991,
+          "stop": 164,
+          "action": [
+            "board",
+            11788
+          ],
+          "next_time": 30103,
+          "next_stop": 165,
+          "ridden_connection": 11788,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30158,
+          "stop": 165,
+          "action": [
+            "board",
+            12230
+          ],
+          "next_time": 30287,
+          "next_stop": 604,
+          "ridden_connection": 12230,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30302,
+          "stop": 604,
+          "action": [
+            "board",
+            12695
+          ],
+          "next_time": 30372,
+          "next_stop": 319,
+          "ridden_connection": 12695,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30387,
+          "stop": 319,
+          "action": [
+            "board",
+            12918
+          ],
+          "next_time": 30446,
+          "next_stop": 470,
+          "ridden_connection": 12918,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30460,
+          "stop": 470,
+          "action": [
+            "board",
+            13372
+          ],
+          "next_time": 30534,
+          "next_stop": 563,
+          "ridden_connection": 13372,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30547,
+          "stop": 563,
+          "action": [
+            "board",
+            13588
+          ],
+          "next_time": 30603,
+          "next_stop": 406,
+          "ridden_connection": 13588,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30614,
+          "stop": 406,
+          "action": [
+            "board",
+            13816
+          ],
+          "next_time": 30681,
+          "next_stop": 509,
+          "ridden_connection": 13816,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30700,
+          "stop": 509,
+          "action": [
+            "board",
+            14288
+          ],
+          "next_time": 30772,
+          "next_stop": 430,
+          "ridden_connection": 14288,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30783,
+          "stop": 430,
+          "action": [
+            "board",
+            14501
+          ],
+          "next_time": 30847,
+          "next_stop": 321,
+          "ridden_connection": 14501,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30861,
+          "stop": 321,
+          "action": [
+            "board",
+            14737
+          ],
+          "next_time": 30903,
+          "next_stop": 560,
+          "ridden_connection": 14737,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30916,
+          "stop": 560,
+          "action": [
+            "board",
+            14955
+          ],
+          "next_time": 30986,
+          "next_stop": 607,
+          "ridden_connection": 14955,
+          "worker_running": false,
+          "policy": "incumbent"
+        }
+      ],
+      "order": [
+        "terminal64",
+        "off64",
+        "middle64"
+      ],
+      "order_index": 0,
+      "cpu": 29,
+      "setup_plus_worker_seconds": 7.570150317000298,
+      "search_called": true,
+      "marginal_loss_lower": 0.0,
+      "marginal_loss_upper": 0.0,
+      "useful_published": false,
+      "harmful_published": false
+    },
+    {
+      "date": "2023-07-26",
+      "query": 1,
+      "decision": 1,
+      "method": "off64",
+      "status": "arrived",
+      "loss_lower": 1844.0,
+      "loss_upper": 1844.0,
+      "root_clock": 29142,
+      "ready_at": 29152,
+      "worker_seconds": 9.906763794999279,
+      "worker_cpu_seconds": 9.477694318000001,
+      "setup_seconds": 0.9807688599994435,
+      "replay_seconds": 0.008175029999620165,
+      "retained": true,
+      "deferred": false,
+      "replacement_requested": false,
+      "published": false,
+      "rejected": false,
+      "release_check": {},
+      "incumbent_path": [
+        8538,
+        8759,
+        9224,
+        9704,
+        9938,
+        10407,
+        10879,
+        11339,
+        11788,
+        12230,
+        12695,
+        12918,
+        13372,
+        13588,
+        13816,
+        14288,
+        14501,
+        14737,
+        14955
+      ],
+      "replacement_path": [],
+      "missing_connections": [],
+      "work": {
+        "gate": null,
+        "search_seconds": 9.906719510001494,
+        "candidate_seconds": 0.0,
+        "transitions": 64,
+        "posterior_update_seconds": 1.8359987734584138e-06,
+        "proposed_first": 8538
+      },
+      "incumbent_moves": 0,
+      "rides": [
+        {
+          "time": 29157,
+          "stop": 614,
+          "action": [
+            "board",
+            8538
+          ],
+          "next_time": 29213,
+          "next_stop": 3,
+          "ridden_connection": 8538,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29230,
+          "stop": 3,
+          "action": [
+            "board",
+            8759
+          ],
+          "next_time": 29326,
+          "next_stop": 568,
+          "ridden_connection": 8759,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29391,
+          "stop": 568,
+          "action": [
+            "board",
+            9224
+          ],
+          "next_time": 29458,
+          "next_stop": 88,
+          "ridden_connection": 9224,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29475,
+          "stop": 88,
+          "action": [
+            "board",
+            9704
+          ],
+          "next_time": 29529,
+          "next_stop": 647,
+          "ridden_connection": 9704,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29540,
+          "stop": 647,
+          "action": [
+            "board",
+            9938
+          ],
+          "next_time": 29594,
+          "next_stop": 606,
+          "ridden_connection": 9938,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29643,
+          "stop": 606,
+          "action": [
+            "board",
+            10407
+          ],
+          "next_time": 29762,
+          "next_stop": 592,
+          "ridden_connection": 10407,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29786,
+          "stop": 592,
+          "action": [
+            "board",
+            10879
+          ],
+          "next_time": 29855,
+          "next_stop": 495,
+          "ridden_connection": 10879,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29875,
+          "stop": 495,
+          "action": [
+            "board",
+            11339
+          ],
+          "next_time": 29938,
+          "next_stop": 164,
+          "ridden_connection": 11339,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29991,
+          "stop": 164,
+          "action": [
+            "board",
+            11788
+          ],
+          "next_time": 30103,
+          "next_stop": 165,
+          "ridden_connection": 11788,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30158,
+          "stop": 165,
+          "action": [
+            "board",
+            12230
+          ],
+          "next_time": 30287,
+          "next_stop": 604,
+          "ridden_connection": 12230,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30302,
+          "stop": 604,
+          "action": [
+            "board",
+            12695
+          ],
+          "next_time": 30372,
+          "next_stop": 319,
+          "ridden_connection": 12695,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30387,
+          "stop": 319,
+          "action": [
+            "board",
+            12918
+          ],
+          "next_time": 30446,
+          "next_stop": 470,
+          "ridden_connection": 12918,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30460,
+          "stop": 470,
+          "action": [
+            "board",
+            13372
+          ],
+          "next_time": 30534,
+          "next_stop": 563,
+          "ridden_connection": 13372,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30547,
+          "stop": 563,
+          "action": [
+            "board",
+            13588
+          ],
+          "next_time": 30603,
+          "next_stop": 406,
+          "ridden_connection": 13588,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30614,
+          "stop": 406,
+          "action": [
+            "board",
+            13816
+          ],
+          "next_time": 30681,
+          "next_stop": 509,
+          "ridden_connection": 13816,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30700,
+          "stop": 509,
+          "action": [
+            "board",
+            14288
+          ],
+          "next_time": 30772,
+          "next_stop": 430,
+          "ridden_connection": 14288,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30783,
+          "stop": 430,
+          "action": [
+            "board",
+            14501
+          ],
+          "next_time": 30847,
+          "next_stop": 321,
+          "ridden_connection": 14501,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30861,
+          "stop": 321,
+          "action": [
+            "board",
+            14737
+          ],
+          "next_time": 30903,
+          "next_stop": 560,
+          "ridden_connection": 14737,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30916,
+          "stop": 560,
+          "action": [
+            "board",
+            14955
+          ],
+          "next_time": 30986,
+          "next_stop": 607,
+          "ridden_connection": 14955,
+          "worker_running": false,
+          "policy": "incumbent"
+        }
+      ],
+      "order": [
+        "terminal64",
+        "off64",
+        "middle64"
+      ],
+      "order_index": 1,
+      "cpu": 29,
+      "setup_plus_worker_seconds": 10.887532654998722,
+      "search_called": true,
+      "marginal_loss_lower": 0.0,
+      "marginal_loss_upper": 0.0,
+      "useful_published": false,
+      "harmful_published": false
+    },
+    {
+      "date": "2023-07-26",
+      "query": 1,
+      "decision": 1,
+      "method": "middle64",
+      "status": "arrived",
+      "loss_lower": 1844.0,
+      "loss_upper": 1844.0,
+      "root_clock": 29142,
+      "ready_at": 29146,
+      "worker_seconds": 3.106373734999579,
+      "worker_cpu_seconds": 2.962028061999998,
+      "setup_seconds": 0.7764616329986893,
+      "replay_seconds": 0.0078789119997964,
+      "retained": true,
+      "deferred": false,
+      "replacement_requested": false,
+      "published": false,
+      "rejected": false,
+      "release_check": {},
+      "incumbent_path": [
+        8538,
+        8759,
+        9224,
+        9704,
+        9938,
+        10407,
+        10879,
+        11339,
+        11788,
+        12230,
+        12695,
+        12918,
+        13372,
+        13588,
+        13816,
+        14288,
+        14501,
+        14737,
+        14955
+      ],
+      "replacement_path": [],
+      "missing_connections": [],
+      "work": {
+        "gate": {
+          "upper": 1826.2865299983964,
+          "witness_seconds": 0.0038740939999115653,
+          "terminal_lower": 0.0,
+          "terminal_seconds": 3.8594000216107816e-05,
+          "support_floor": 0.0,
+          "cutoff": 31149,
+          "trips": 1383,
+          "connections": 16039,
+          "corridor_seconds": 0.4724197590003314,
+          "kind": "middle",
+          "lower": 1783.5600477256958,
+          "accepted": true,
+          "alpha": 0.00625,
+          "worlds": 512,
+          "oracle_mean": 1804.21875,
+          "sample_checkpoints": [
+            {
+              "worlds": 32,
+              "lower": 1527.9131339206651,
+              "oracle_mean": 1800.21875,
+              "accepted": false
+            },
+            {
+              "worlds": 128,
+              "lower": 1717.512563570086,
+              "oracle_mean": 1790.7109375,
+              "accepted": false
+            },
+            {
+              "worlds": 512,
+              "lower": 1783.5600477256958,
+              "oracle_mean": 1804.21875,
+              "accepted": true
+            }
+          ],
+          "template_seconds": 0.03735443000005034,
+          "draw_seconds": 2.44642816600026,
+          "scan_seconds": 0.1438486560000456
+        },
+        "search_seconds": 0.0,
+        "candidate_seconds": 0.0,
+        "transitions": 0,
+        "posterior_update_seconds": 1.332000465481542e-06,
+        "gate_seconds": 3.1063459390006756
+      },
+      "incumbent_moves": 0,
+      "rides": [
+        {
+          "time": 29157,
+          "stop": 614,
+          "action": [
+            "board",
+            8538
+          ],
+          "next_time": 29213,
+          "next_stop": 3,
+          "ridden_connection": 8538,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29230,
+          "stop": 3,
+          "action": [
+            "board",
+            8759
+          ],
+          "next_time": 29326,
+          "next_stop": 568,
+          "ridden_connection": 8759,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29391,
+          "stop": 568,
+          "action": [
+            "board",
+            9224
+          ],
+          "next_time": 29458,
+          "next_stop": 88,
+          "ridden_connection": 9224,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29475,
+          "stop": 88,
+          "action": [
+            "board",
+            9704
+          ],
+          "next_time": 29529,
+          "next_stop": 647,
+          "ridden_connection": 9704,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29540,
+          "stop": 647,
+          "action": [
+            "board",
+            9938
+          ],
+          "next_time": 29594,
+          "next_stop": 606,
+          "ridden_connection": 9938,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29643,
+          "stop": 606,
+          "action": [
+            "board",
+            10407
+          ],
+          "next_time": 29762,
+          "next_stop": 592,
+          "ridden_connection": 10407,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29786,
+          "stop": 592,
+          "action": [
+            "board",
+            10879
+          ],
+          "next_time": 29855,
+          "next_stop": 495,
+          "ridden_connection": 10879,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29875,
+          "stop": 495,
+          "action": [
+            "board",
+            11339
+          ],
+          "next_time": 29938,
+          "next_stop": 164,
+          "ridden_connection": 11339,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29991,
+          "stop": 164,
+          "action": [
+            "board",
+            11788
+          ],
+          "next_time": 30103,
+          "next_stop": 165,
+          "ridden_connection": 11788,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30158,
+          "stop": 165,
+          "action": [
+            "board",
+            12230
+          ],
+          "next_time": 30287,
+          "next_stop": 604,
+          "ridden_connection": 12230,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30302,
+          "stop": 604,
+          "action": [
+            "board",
+            12695
+          ],
+          "next_time": 30372,
+          "next_stop": 319,
+          "ridden_connection": 12695,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30387,
+          "stop": 319,
+          "action": [
+            "board",
+            12918
+          ],
+          "next_time": 30446,
+          "next_stop": 470,
+          "ridden_connection": 12918,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30460,
+          "stop": 470,
+          "action": [
+            "board",
+            13372
+          ],
+          "next_time": 30534,
+          "next_stop": 563,
+          "ridden_connection": 13372,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30547,
+          "stop": 563,
+          "action": [
+            "board",
+            13588
+          ],
+          "next_time": 30603,
+          "next_stop": 406,
+          "ridden_connection": 13588,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30614,
+          "stop": 406,
+          "action": [
+            "board",
+            13816
+          ],
+          "next_time": 30681,
+          "next_stop": 509,
+          "ridden_connection": 13816,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30700,
+          "stop": 509,
+          "action": [
+            "board",
+            14288
+          ],
+          "next_time": 30772,
+          "next_stop": 430,
+          "ridden_connection": 14288,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30783,
+          "stop": 430,
+          "action": [
+            "board",
+            14501
+          ],
+          "next_time": 30847,
+          "next_stop": 321,
+          "ridden_connection": 14501,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30861,
+          "stop": 321,
+          "action": [
+            "board",
+            14737
+          ],
+          "next_time": 30903,
+          "next_stop": 560,
+          "ridden_connection": 14737,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30916,
+          "stop": 560,
+          "action": [
+            "board",
+            14955
+          ],
+          "next_time": 30986,
+          "next_stop": 607,
+          "ridden_connection": 14955,
+          "worker_running": false,
+          "policy": "incumbent"
+        }
+      ],
+      "order": [
+        "terminal64",
+        "off64",
+        "middle64"
+      ],
+      "order_index": 2,
+      "cpu": 29,
+      "setup_plus_worker_seconds": 3.8828353679982683,
+      "search_called": false,
+      "marginal_loss_lower": 0.0,
+      "marginal_loss_upper": 0.0,
+      "useful_published": false,
+      "harmful_published": false
+    },
+    {
+      "date": "2023-07-26",
+      "query": 1,
+      "decision": 2,
+      "method": "terminal64",
+      "status": "arrived",
+      "loss_lower": 1773.0,
+      "loss_upper": 1773.0,
+      "root_clock": 29213,
+      "ready_at": 29220,
+      "worker_seconds": 6.883507047999956,
+      "worker_cpu_seconds": 6.574655036999999,
+      "setup_seconds": 0.8666813990002993,
+      "replay_seconds": 0.006714002000080654,
+      "retained": true,
+      "deferred": false,
+      "replacement_requested": false,
+      "published": false,
+      "rejected": false,
+      "release_check": {},
+      "incumbent_path": [
+        8759,
+        9224,
+        9704,
+        9938,
+        10407,
+        10879,
+        11339,
+        11788,
+        12230,
+        12695,
+        12918,
+        13372,
+        13588,
+        13816,
+        14288,
+        14501,
+        14737,
+        14955
+      ],
+      "replacement_path": [],
+      "missing_connections": [],
+      "work": {
+        "gate": {
+          "upper": 1732.1447680897377,
+          "witness_seconds": 0.006952722998903482,
+          "terminal_lower": 0.0,
+          "terminal_seconds": 0.0001312060012423899,
+          "kind": "terminal",
+          "lower": 0.0,
+          "accepted": false,
+          "alpha": 0.0,
+          "worlds": 0
+        },
+        "search_seconds": 6.876011934000417,
+        "candidate_seconds": 0.0,
+        "transitions": 64,
+        "posterior_update_seconds": 2.151000444428064e-06,
+        "gate_seconds": 0.007445471999744768,
+        "proposed_first": 8759
+      },
+      "incumbent_moves": 0,
+      "rides": [
+        {
+          "time": 29230,
+          "stop": 3,
+          "action": [
+            "board",
+            8759
+          ],
+          "next_time": 29326,
+          "next_stop": 568,
+          "ridden_connection": 8759,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29391,
+          "stop": 568,
+          "action": [
+            "board",
+            9224
+          ],
+          "next_time": 29458,
+          "next_stop": 88,
+          "ridden_connection": 9224,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29475,
+          "stop": 88,
+          "action": [
+            "board",
+            9704
+          ],
+          "next_time": 29529,
+          "next_stop": 647,
+          "ridden_connection": 9704,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29540,
+          "stop": 647,
+          "action": [
+            "board",
+            9938
+          ],
+          "next_time": 29594,
+          "next_stop": 606,
+          "ridden_connection": 9938,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29643,
+          "stop": 606,
+          "action": [
+            "board",
+            10407
+          ],
+          "next_time": 29762,
+          "next_stop": 592,
+          "ridden_connection": 10407,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29786,
+          "stop": 592,
+          "action": [
+            "board",
+            10879
+          ],
+          "next_time": 29855,
+          "next_stop": 495,
+          "ridden_connection": 10879,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29875,
+          "stop": 495,
+          "action": [
+            "board",
+            11339
+          ],
+          "next_time": 29938,
+          "next_stop": 164,
+          "ridden_connection": 11339,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29991,
+          "stop": 164,
+          "action": [
+            "board",
+            11788
+          ],
+          "next_time": 30103,
+          "next_stop": 165,
+          "ridden_connection": 11788,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30158,
+          "stop": 165,
+          "action": [
+            "board",
+            12230
+          ],
+          "next_time": 30287,
+          "next_stop": 604,
+          "ridden_connection": 12230,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30302,
+          "stop": 604,
+          "action": [
+            "board",
+            12695
+          ],
+          "next_time": 30372,
+          "next_stop": 319,
+          "ridden_connection": 12695,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30387,
+          "stop": 319,
+          "action": [
+            "board",
+            12918
+          ],
+          "next_time": 30446,
+          "next_stop": 470,
+          "ridden_connection": 12918,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30460,
+          "stop": 470,
+          "action": [
+            "board",
+            13372
+          ],
+          "next_time": 30534,
+          "next_stop": 563,
+          "ridden_connection": 13372,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30547,
+          "stop": 563,
+          "action": [
+            "board",
+            13588
+          ],
+          "next_time": 30603,
+          "next_stop": 406,
+          "ridden_connection": 13588,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30614,
+          "stop": 406,
+          "action": [
+            "board",
+            13816
+          ],
+          "next_time": 30681,
+          "next_stop": 509,
+          "ridden_connection": 13816,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30700,
+          "stop": 509,
+          "action": [
+            "board",
+            14288
+          ],
+          "next_time": 30772,
+          "next_stop": 430,
+          "ridden_connection": 14288,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30783,
+          "stop": 430,
+          "action": [
+            "board",
+            14501
+          ],
+          "next_time": 30847,
+          "next_stop": 321,
+          "ridden_connection": 14501,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30861,
+          "stop": 321,
+          "action": [
+            "board",
+            14737
+          ],
+          "next_time": 30903,
+          "next_stop": 560,
+          "ridden_connection": 14737,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30916,
+          "stop": 560,
+          "action": [
+            "board",
+            14955
+          ],
+          "next_time": 30986,
+          "next_stop": 607,
+          "ridden_connection": 14955,
+          "worker_running": false,
+          "policy": "incumbent"
+        }
+      ],
+      "order": [
+        "terminal64",
+        "middle64",
+        "off64"
+      ],
+      "order_index": 0,
+      "cpu": 29,
+      "setup_plus_worker_seconds": 7.750188447000255,
+      "search_called": true,
+      "marginal_loss_lower": 0.0,
+      "marginal_loss_upper": 0.0,
+      "useful_published": false,
+      "harmful_published": false
+    },
+    {
+      "date": "2023-07-26",
+      "query": 1,
+      "decision": 2,
+      "method": "middle64",
+      "status": "arrived",
+      "loss_lower": 1773.0,
+      "loss_upper": 1773.0,
+      "root_clock": 29213,
+      "ready_at": 29217,
+      "worker_seconds": 3.8111804430009215,
+      "worker_cpu_seconds": 3.649874974999996,
+      "setup_seconds": 0.9873712370008434,
+      "replay_seconds": 0.007095429999026237,
+      "retained": true,
+      "deferred": false,
+      "replacement_requested": false,
+      "published": false,
+      "rejected": false,
+      "release_check": {},
+      "incumbent_path": [
+        8759,
+        9224,
+        9704,
+        9938,
+        10407,
+        10879,
+        11339,
+        11788,
+        12230,
+        12695,
+        12918,
+        13372,
+        13588,
+        13816,
+        14288,
+        14501,
+        14737,
+        14955
+      ],
+      "replacement_path": [],
+      "missing_connections": [],
+      "work": {
+        "gate": {
+          "upper": 1732.1447680897377,
+          "witness_seconds": 0.004205007999189547,
+          "terminal_lower": 0.0,
+          "terminal_seconds": 4.122800055483822e-05,
+          "support_floor": 0.0,
+          "cutoff": 31126,
+          "trips": 1369,
+          "connections": 15803,
+          "corridor_seconds": 0.3370024590003595,
+          "kind": "middle",
+          "lower": 1689.0227941155354,
+          "accepted": true,
+          "alpha": 0.00625,
+          "worlds": 512,
+          "oracle_mean": 1707.841796875,
+          "sample_checkpoints": [
+            {
+              "worlds": 32,
+              "lower": 1441.6425096235616,
+              "oracle_mean": 1695.84375,
+              "accepted": false
+            },
+            {
+              "worlds": 128,
+              "lower": 1636.2944786935113,
+              "oracle_mean": 1704.8125,
+              "accepted": false
+            },
+            {
+              "worlds": 512,
+              "lower": 1689.0227941155354,
+              "oracle_mean": 1707.841796875,
+              "accepted": true
+            }
+          ],
+          "template_seconds": 0.045337142000789754,
+          "draw_seconds": 3.282297829997333,
+          "scan_seconds": 0.1392143169978226
+        },
+        "search_seconds": 0.0,
+        "candidate_seconds": 0.0,
+        "transitions": 0,
+        "posterior_update_seconds": 1.946000338648446e-06,
+        "gate_seconds": 3.8111308250008733
+      },
+      "incumbent_moves": 0,
+      "rides": [
+        {
+          "time": 29230,
+          "stop": 3,
+          "action": [
+            "board",
+            8759
+          ],
+          "next_time": 29326,
+          "next_stop": 568,
+          "ridden_connection": 8759,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29391,
+          "stop": 568,
+          "action": [
+            "board",
+            9224
+          ],
+          "next_time": 29458,
+          "next_stop": 88,
+          "ridden_connection": 9224,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29475,
+          "stop": 88,
+          "action": [
+            "board",
+            9704
+          ],
+          "next_time": 29529,
+          "next_stop": 647,
+          "ridden_connection": 9704,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29540,
+          "stop": 647,
+          "action": [
+            "board",
+            9938
+          ],
+          "next_time": 29594,
+          "next_stop": 606,
+          "ridden_connection": 9938,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29643,
+          "stop": 606,
+          "action": [
+            "board",
+            10407
+          ],
+          "next_time": 29762,
+          "next_stop": 592,
+          "ridden_connection": 10407,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29786,
+          "stop": 592,
+          "action": [
+            "board",
+            10879
+          ],
+          "next_time": 29855,
+          "next_stop": 495,
+          "ridden_connection": 10879,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29875,
+          "stop": 495,
+          "action": [
+            "board",
+            11339
+          ],
+          "next_time": 29938,
+          "next_stop": 164,
+          "ridden_connection": 11339,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29991,
+          "stop": 164,
+          "action": [
+            "board",
+            11788
+          ],
+          "next_time": 30103,
+          "next_stop": 165,
+          "ridden_connection": 11788,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30158,
+          "stop": 165,
+          "action": [
+            "board",
+            12230
+          ],
+          "next_time": 30287,
+          "next_stop": 604,
+          "ridden_connection": 12230,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30302,
+          "stop": 604,
+          "action": [
+            "board",
+            12695
+          ],
+          "next_time": 30372,
+          "next_stop": 319,
+          "ridden_connection": 12695,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30387,
+          "stop": 319,
+          "action": [
+            "board",
+            12918
+          ],
+          "next_time": 30446,
+          "next_stop": 470,
+          "ridden_connection": 12918,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30460,
+          "stop": 470,
+          "action": [
+            "board",
+            13372
+          ],
+          "next_time": 30534,
+          "next_stop": 563,
+          "ridden_connection": 13372,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30547,
+          "stop": 563,
+          "action": [
+            "board",
+            13588
+          ],
+          "next_time": 30603,
+          "next_stop": 406,
+          "ridden_connection": 13588,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30614,
+          "stop": 406,
+          "action": [
+            "board",
+            13816
+          ],
+          "next_time": 30681,
+          "next_stop": 509,
+          "ridden_connection": 13816,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30700,
+          "stop": 509,
+          "action": [
+            "board",
+            14288
+          ],
+          "next_time": 30772,
+          "next_stop": 430,
+          "ridden_connection": 14288,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30783,
+          "stop": 430,
+          "action": [
+            "board",
+            14501
+          ],
+          "next_time": 30847,
+          "next_stop": 321,
+          "ridden_connection": 14501,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30861,
+          "stop": 321,
+          "action": [
+            "board",
+            14737
+          ],
+          "next_time": 30903,
+          "next_stop": 560,
+          "ridden_connection": 14737,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30916,
+          "stop": 560,
+          "action": [
+            "board",
+            14955
+          ],
+          "next_time": 30986,
+          "next_stop": 607,
+          "ridden_connection": 14955,
+          "worker_running": false,
+          "policy": "incumbent"
+        }
+      ],
+      "order": [
+        "terminal64",
+        "middle64",
+        "off64"
+      ],
+      "order_index": 1,
+      "cpu": 29,
+      "setup_plus_worker_seconds": 4.798551680001765,
+      "search_called": false,
+      "marginal_loss_lower": 0.0,
+      "marginal_loss_upper": 0.0,
+      "useful_published": false,
+      "harmful_published": false
+    },
+    {
+      "date": "2023-07-26",
+      "query": 1,
+      "decision": 2,
+      "method": "off64",
+      "status": "arrived",
+      "loss_lower": 1773.0,
+      "loss_upper": 1773.0,
+      "root_clock": 29213,
+      "ready_at": 29221,
+      "worker_seconds": 7.68973889299923,
+      "worker_cpu_seconds": 7.296278278999999,
+      "setup_seconds": 0.5838441010000679,
+      "replay_seconds": 0.0069993449997127755,
+      "retained": true,
+      "deferred": false,
+      "replacement_requested": false,
+      "published": false,
+      "rejected": false,
+      "release_check": {},
+      "incumbent_path": [
+        8759,
+        9224,
+        9704,
+        9938,
+        10407,
+        10879,
+        11339,
+        11788,
+        12230,
+        12695,
+        12918,
+        13372,
+        13588,
+        13816,
+        14288,
+        14501,
+        14737,
+        14955
+      ],
+      "replacement_path": [],
+      "missing_connections": [],
+      "work": {
+        "gate": null,
+        "search_seconds": 7.689696409999669,
+        "candidate_seconds": 0.0,
+        "transitions": 64,
+        "posterior_update_seconds": 2.3539996618637815e-06,
+        "proposed_first": 8759
+      },
+      "incumbent_moves": 0,
+      "rides": [
+        {
+          "time": 29230,
+          "stop": 3,
+          "action": [
+            "board",
+            8759
+          ],
+          "next_time": 29326,
+          "next_stop": 568,
+          "ridden_connection": 8759,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29391,
+          "stop": 568,
+          "action": [
+            "board",
+            9224
+          ],
+          "next_time": 29458,
+          "next_stop": 88,
+          "ridden_connection": 9224,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29475,
+          "stop": 88,
+          "action": [
+            "board",
+            9704
+          ],
+          "next_time": 29529,
+          "next_stop": 647,
+          "ridden_connection": 9704,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29540,
+          "stop": 647,
+          "action": [
+            "board",
+            9938
+          ],
+          "next_time": 29594,
+          "next_stop": 606,
+          "ridden_connection": 9938,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29643,
+          "stop": 606,
+          "action": [
+            "board",
+            10407
+          ],
+          "next_time": 29762,
+          "next_stop": 592,
+          "ridden_connection": 10407,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29786,
+          "stop": 592,
+          "action": [
+            "board",
+            10879
+          ],
+          "next_time": 29855,
+          "next_stop": 495,
+          "ridden_connection": 10879,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29875,
+          "stop": 495,
+          "action": [
+            "board",
+            11339
+          ],
+          "next_time": 29938,
+          "next_stop": 164,
+          "ridden_connection": 11339,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29991,
+          "stop": 164,
+          "action": [
+            "board",
+            11788
+          ],
+          "next_time": 30103,
+          "next_stop": 165,
+          "ridden_connection": 11788,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30158,
+          "stop": 165,
+          "action": [
+            "board",
+            12230
+          ],
+          "next_time": 30287,
+          "next_stop": 604,
+          "ridden_connection": 12230,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30302,
+          "stop": 604,
+          "action": [
+            "board",
+            12695
+          ],
+          "next_time": 30372,
+          "next_stop": 319,
+          "ridden_connection": 12695,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30387,
+          "stop": 319,
+          "action": [
+            "board",
+            12918
+          ],
+          "next_time": 30446,
+          "next_stop": 470,
+          "ridden_connection": 12918,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30460,
+          "stop": 470,
+          "action": [
+            "board",
+            13372
+          ],
+          "next_time": 30534,
+          "next_stop": 563,
+          "ridden_connection": 13372,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30547,
+          "stop": 563,
+          "action": [
+            "board",
+            13588
+          ],
+          "next_time": 30603,
+          "next_stop": 406,
+          "ridden_connection": 13588,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30614,
+          "stop": 406,
+          "action": [
+            "board",
+            13816
+          ],
+          "next_time": 30681,
+          "next_stop": 509,
+          "ridden_connection": 13816,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30700,
+          "stop": 509,
+          "action": [
+            "board",
+            14288
+          ],
+          "next_time": 30772,
+          "next_stop": 430,
+          "ridden_connection": 14288,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30783,
+          "stop": 430,
+          "action": [
+            "board",
+            14501
+          ],
+          "next_time": 30847,
+          "next_stop": 321,
+          "ridden_connection": 14501,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30861,
+          "stop": 321,
+          "action": [
+            "board",
+            14737
+          ],
+          "next_time": 30903,
+          "next_stop": 560,
+          "ridden_connection": 14737,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30916,
+          "stop": 560,
+          "action": [
+            "board",
+            14955
+          ],
+          "next_time": 30986,
+          "next_stop": 607,
+          "ridden_connection": 14955,
+          "worker_running": false,
+          "policy": "incumbent"
+        }
+      ],
+      "order": [
+        "terminal64",
+        "middle64",
+        "off64"
+      ],
+      "order_index": 2,
+      "cpu": 29,
+      "setup_plus_worker_seconds": 8.273582993999298,
+      "search_called": true,
+      "marginal_loss_lower": 0.0,
+      "marginal_loss_upper": 0.0,
+      "useful_published": false,
+      "harmful_published": false
+    },
+    {
+      "date": "2023-07-27",
+      "query": 0,
+      "decision": 1,
+      "method": "middle64",
+      "status": "timeout",
+      "loss_lower": 3498.0,
+      "loss_upper": 3498.0,
+      "root_clock": 29202,
+      "ready_at": 29209,
+      "worker_seconds": 6.3748918889996276,
+      "worker_cpu_seconds": 6.055224594,
+      "setup_seconds": 0.9135115480003151,
+      "replay_seconds": 0.1025549919995683,
+      "retained": false,
+      "deferred": true,
+      "replacement_requested": true,
+      "published": true,
+      "rejected": false,
+      "release_check": {
+        "clock": 29209,
+        "stop": 594,
+        "same_pose": true,
+        "same_prefix": true,
+        "first_publicly_available": true
+      },
+      "incumbent_path": [
+        8780,
+        9383,
+        9627,
+        9857,
+        10330
+      ],
+      "replacement_path": [
+        8780,
+        9383,
+        9627,
+        9857,
+        10330
+      ],
+      "missing_connections": [],
+      "work": {
+        "gate": {
+          "upper": 1444.908437094457,
+          "witness_seconds": 0.0010675459998310544,
+          "support_floor": 120.0,
+          "cutoff": 30827,
+          "trips": 1301,
+          "connections": 14735,
+          "corridor_seconds": 0.22973757999898226,
+          "kind": "middle",
+          "lower": 666.2055773582688,
+          "accepted": false,
+          "alpha": 0.00625,
+          "worlds": 512,
+          "oracle_mean": 683.390625,
+          "sample_checkpoints": [
+            {
+              "worlds": 32,
+              "lower": 588.5954922140809,
+              "oracle_mean": 679.875,
+              "accepted": false
+            },
+            {
+              "worlds": 128,
+              "lower": 647.955864117248,
+              "oracle_mean": 681.28125,
+              "accepted": false
+            },
+            {
+              "worlds": 512,
+              "lower": 666.2055773582688,
+              "oracle_mean": 683.390625,
+              "accepted": false
+            }
+          ],
+          "template_seconds": 0.03418296199924953,
+          "draw_seconds": 2.708276807999937,
+          "scan_seconds": 0.09984719600106473
+        },
+        "search_seconds": 3.2992511929987813,
+        "candidate_seconds": 0.0,
+        "transitions": 64,
+        "posterior_update_seconds": 1.9050003174925223e-06,
+        "gate_seconds": 3.0755902040000365
+      },
+      "incumbent_moves": 0,
+      "rides": [
+        {
+          "time": 29214,
+          "stop": 594,
+          "action": [
+            "wait"
+          ],
+          "next_time": 29297,
+          "next_stop": 606,
+          "ridden_connection": 8780,
+          "worker_running": false,
+          "policy": "middle64"
+        }
+      ],
+      "order": [
+        "middle64",
+        "off64",
+        "terminal64"
+      ],
+      "order_index": 0,
+      "cpu": 30,
+      "setup_plus_worker_seconds": 7.288403436999943,
+      "search_called": true,
+      "marginal_loss_lower": 0.0,
+      "marginal_loss_upper": 0.0,
+      "useful_published": false,
+      "harmful_published": false
+    },
+    {
+      "date": "2023-07-27",
+      "query": 0,
+      "decision": 1,
+      "method": "off64",
+      "status": "timeout",
+      "loss_lower": 3498.0,
+      "loss_upper": 3498.0,
+      "root_clock": 29202,
+      "ready_at": 29208,
+      "worker_seconds": 5.796605995999926,
+      "worker_cpu_seconds": 5.545756165,
+      "setup_seconds": 1.0413395280011173,
+      "replay_seconds": 0.09177197999997588,
+      "retained": false,
+      "deferred": true,
+      "replacement_requested": true,
+      "published": true,
+      "rejected": false,
+      "release_check": {
+        "clock": 29208,
+        "stop": 594,
+        "same_pose": true,
+        "same_prefix": true,
+        "first_publicly_available": true
+      },
+      "incumbent_path": [
+        8780,
+        9383,
+        9627,
+        9857,
+        10330
+      ],
+      "replacement_path": [
+        8780,
+        9383,
+        9627,
+        9857,
+        10330
+      ],
+      "missing_connections": [],
+      "work": {
+        "gate": null,
+        "search_seconds": 5.796567258999858,
+        "candidate_seconds": 0.0,
+        "transitions": 64,
+        "posterior_update_seconds": 2.1519990696106106e-06
+      },
+      "incumbent_moves": 0,
+      "rides": [
+        {
+          "time": 29214,
+          "stop": 594,
+          "action": [
+            "wait"
+          ],
+          "next_time": 29297,
+          "next_stop": 606,
+          "ridden_connection": 8780,
+          "worker_running": false,
+          "policy": "off64"
+        }
+      ],
+      "order": [
+        "middle64",
+        "off64",
+        "terminal64"
+      ],
+      "order_index": 1,
+      "cpu": 30,
+      "setup_plus_worker_seconds": 6.837945524001043,
+      "search_called": true,
+      "marginal_loss_lower": 0.0,
+      "marginal_loss_upper": 0.0,
+      "useful_published": false,
+      "harmful_published": false
+    },
+    {
+      "date": "2023-07-27",
+      "query": 0,
+      "decision": 1,
+      "method": "terminal64",
+      "status": "timeout",
+      "loss_lower": 3498.0,
+      "loss_upper": 3498.0,
+      "root_clock": 29202,
+      "ready_at": 29207,
+      "worker_seconds": 4.501068798001143,
+      "worker_cpu_seconds": 4.302487150999999,
+      "setup_seconds": 1.019860754999172,
+      "replay_seconds": 0.06014289999984612,
+      "retained": false,
+      "deferred": true,
+      "replacement_requested": true,
+      "published": true,
+      "rejected": false,
+      "release_check": {
+        "clock": 29207,
+        "stop": 594,
+        "same_pose": true,
+        "same_prefix": true,
+        "first_publicly_available": true
+      },
+      "incumbent_path": [
+        8780,
+        9383,
+        9627,
+        9857,
+        10330
+      ],
+      "replacement_path": [
+        8780,
+        9383,
+        9627,
+        9857,
+        10330
+      ],
+      "missing_connections": [],
+      "work": {
+        "gate": null,
+        "search_seconds": 4.500788639999882,
+        "candidate_seconds": 0.0,
+        "transitions": 64,
+        "posterior_update_seconds": 2.3109987523639575e-06,
+        "gate_seconds": 0.0002482599993527401
+      },
+      "incumbent_moves": 0,
+      "rides": [
+        {
+          "time": 29214,
+          "stop": 594,
+          "action": [
+            "wait"
+          ],
+          "next_time": 29297,
+          "next_stop": 606,
+          "ridden_connection": 8780,
+          "worker_running": false,
+          "policy": "terminal64"
+        }
+      ],
+      "order": [
+        "middle64",
+        "off64",
+        "terminal64"
+      ],
+      "order_index": 2,
+      "cpu": 30,
+      "setup_plus_worker_seconds": 5.520929553000315,
+      "search_called": true,
+      "marginal_loss_lower": 0.0,
+      "marginal_loss_upper": 0.0,
+      "useful_published": false,
+      "harmful_published": false
+    },
+    {
+      "date": "2023-07-27",
+      "query": 0,
+      "decision": 3,
+      "method": "middle64",
+      "status": "arrived",
+      "loss_lower": 394.0,
+      "loss_upper": 394.0,
+      "root_clock": 29545,
+      "ready_at": 29547,
+      "worker_seconds": 1.7816358329982904,
+      "worker_cpu_seconds": 1.701064762999998,
+      "setup_seconds": 0.912395153000034,
+      "replay_seconds": 0.0016277300001092954,
+      "retained": true,
+      "deferred": false,
+      "replacement_requested": false,
+      "published": false,
+      "rejected": false,
+      "release_check": {},
+      "incumbent_path": [
+        10375,
+        10611,
+        10847,
+        11306
+      ],
+      "replacement_path": [],
+      "missing_connections": [],
+      "work": {
+        "gate": {
+          "upper": 435.3353057809063,
+          "witness_seconds": 0.0007825480006431462,
+          "terminal_lower": 119.9999969798873,
+          "terminal_seconds": 0.0006586870003957301,
+          "support_floor": 0.0,
+          "cutoff": 30161,
+          "trips": 1093,
+          "connections": 11894,
+          "corridor_seconds": 0.227394366000226,
+          "kind": "middle",
+          "lower": 416.49442706383707,
+          "accepted": true,
+          "alpha": 0.00625,
+          "worlds": 128,
+          "oracle_mean": 435.8515625,
+          "sample_checkpoints": [
+            {
+              "worlds": 32,
+              "lower": 370.1766535935458,
+              "oracle_mean": 437.625,
+              "accepted": false
+            },
+            {
+              "worlds": 128,
+              "lower": 416.49442706383707,
+              "oracle_mean": 435.8515625,
+              "accepted": true
+            }
+          ],
+          "template_seconds": 0.04270574099973601,
+          "draw_seconds": 1.494743978999395,
+          "scan_seconds": 0.013816160997521365
+        },
+        "search_seconds": 0.0,
+        "candidate_seconds": 0.0,
+        "transitions": 0,
+        "posterior_update_seconds": 1.6369995137210935e-06,
+        "gate_seconds": 1.7816041219994077
+      },
+      "incumbent_moves": 0,
+      "rides": [
+        {
+          "time": 29613,
+          "stop": 606,
+          "action": [
+            "board",
+            10375
+          ],
+          "next_time": 29708,
+          "next_stop": 647,
+          "ridden_connection": 10375,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29716,
+          "stop": 647,
+          "action": [
+            "board",
+            10611
+          ],
+          "next_time": 29771,
+          "next_stop": 88,
+          "ridden_connection": 10611,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29785,
+          "stop": 88,
+          "action": [
+            "board",
+            10847
+          ],
+          "next_time": 29853,
+          "next_stop": 568,
+          "ridden_connection": 10847,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29865,
+          "stop": 568,
+          "action": [
+            "board",
+            11306
+          ],
+          "next_time": 29939,
+          "next_stop": 3,
+          "ridden_connection": 11306,
+          "worker_running": false,
+          "policy": "incumbent"
+        }
+      ],
+      "order": [
+        "middle64",
+        "terminal64",
+        "off64"
+      ],
+      "order_index": 0,
+      "cpu": 30,
+      "setup_plus_worker_seconds": 2.6940309859983245,
+      "search_called": false,
+      "marginal_loss_lower": 0.0,
+      "marginal_loss_upper": 0.0,
+      "useful_published": false,
+      "harmful_published": false
+    },
+    {
+      "date": "2023-07-27",
+      "query": 0,
+      "decision": 3,
+      "method": "terminal64",
+      "status": "arrived",
+      "loss_lower": 394.0,
+      "loss_upper": 394.0,
+      "root_clock": 29545,
+      "ready_at": 29548,
+      "worker_seconds": 2.7892544660007843,
+      "worker_cpu_seconds": 2.6632593589999978,
+      "setup_seconds": 0.9674291530009214,
+      "replay_seconds": 0.0016138199989654822,
+      "retained": true,
+      "deferred": false,
+      "replacement_requested": false,
+      "published": false,
+      "rejected": false,
+      "release_check": {},
+      "incumbent_path": [
+        10375,
+        10611,
+        10847,
+        11306
+      ],
+      "replacement_path": [],
+      "missing_connections": [],
+      "work": {
+        "gate": {
+          "upper": 435.3353057809063,
+          "witness_seconds": 0.0010664410001481883,
+          "terminal_lower": 119.9999969798873,
+          "terminal_seconds": 0.0005550669993681367,
+          "kind": "terminal",
+          "lower": 119.9999969798873,
+          "accepted": false,
+          "alpha": 0.0,
+          "worlds": 0
+        },
+        "search_seconds": 2.7874220439989585,
+        "candidate_seconds": 0.0,
+        "transitions": 64,
+        "posterior_update_seconds": 1.9730014173546806e-06,
+        "gate_seconds": 0.0017986530001508072,
+        "proposed_first": 10375
+      },
+      "incumbent_moves": 0,
+      "rides": [
+        {
+          "time": 29613,
+          "stop": 606,
+          "action": [
+            "board",
+            10375
+          ],
+          "next_time": 29708,
+          "next_stop": 647,
+          "ridden_connection": 10375,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29716,
+          "stop": 647,
+          "action": [
+            "board",
+            10611
+          ],
+          "next_time": 29771,
+          "next_stop": 88,
+          "ridden_connection": 10611,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29785,
+          "stop": 88,
+          "action": [
+            "board",
+            10847
+          ],
+          "next_time": 29853,
+          "next_stop": 568,
+          "ridden_connection": 10847,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29865,
+          "stop": 568,
+          "action": [
+            "board",
+            11306
+          ],
+          "next_time": 29939,
+          "next_stop": 3,
+          "ridden_connection": 11306,
+          "worker_running": false,
+          "policy": "incumbent"
+        }
+      ],
+      "order": [
+        "middle64",
+        "terminal64",
+        "off64"
+      ],
+      "order_index": 1,
+      "cpu": 30,
+      "setup_plus_worker_seconds": 3.7566836190017057,
+      "search_called": true,
+      "marginal_loss_lower": 0.0,
+      "marginal_loss_upper": 0.0,
+      "useful_published": false,
+      "harmful_published": false
+    },
+    {
+      "date": "2023-07-27",
+      "query": 0,
+      "decision": 3,
+      "method": "off64",
+      "status": "arrived",
+      "loss_lower": 394.0,
+      "loss_upper": 394.0,
+      "root_clock": 29545,
+      "ready_at": 29548,
+      "worker_seconds": 2.758688522000739,
+      "worker_cpu_seconds": 2.6420333160000027,
+      "setup_seconds": 0.5587943779992202,
+      "replay_seconds": 0.0015476219996344298,
+      "retained": true,
+      "deferred": false,
+      "replacement_requested": false,
+      "published": false,
+      "rejected": false,
+      "release_check": {},
+      "incumbent_path": [
+        10375,
+        10611,
+        10847,
+        11306
+      ],
+      "replacement_path": [],
+      "missing_connections": [],
+      "work": {
+        "gate": null,
+        "search_seconds": 2.7586605270007567,
+        "candidate_seconds": 0.0,
+        "transitions": 64,
+        "posterior_update_seconds": 1.6529993445146829e-06,
+        "proposed_first": 10375
+      },
+      "incumbent_moves": 0,
+      "rides": [
+        {
+          "time": 29613,
+          "stop": 606,
+          "action": [
+            "board",
+            10375
+          ],
+          "next_time": 29708,
+          "next_stop": 647,
+          "ridden_connection": 10375,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29716,
+          "stop": 647,
+          "action": [
+            "board",
+            10611
+          ],
+          "next_time": 29771,
+          "next_stop": 88,
+          "ridden_connection": 10611,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29785,
+          "stop": 88,
+          "action": [
+            "board",
+            10847
+          ],
+          "next_time": 29853,
+          "next_stop": 568,
+          "ridden_connection": 10847,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29865,
+          "stop": 568,
+          "action": [
+            "board",
+            11306
+          ],
+          "next_time": 29939,
+          "next_stop": 3,
+          "ridden_connection": 11306,
+          "worker_running": false,
+          "policy": "incumbent"
+        }
+      ],
+      "order": [
+        "middle64",
+        "terminal64",
+        "off64"
+      ],
+      "order_index": 2,
+      "cpu": 30,
+      "setup_plus_worker_seconds": 3.317482899999959,
+      "search_called": true,
+      "marginal_loss_lower": 0.0,
+      "marginal_loss_upper": 0.0,
+      "useful_published": false,
+      "harmful_published": false
+    },
+    {
+      "date": "2023-07-27",
+      "query": 1,
+      "decision": 1,
+      "method": "terminal64",
+      "status": "arrived",
+      "loss_lower": 1763.0,
+      "loss_upper": 1763.0,
+      "root_clock": 29160,
+      "ready_at": 29168,
+      "worker_seconds": 7.46800120700027,
+      "worker_cpu_seconds": 7.092517896,
+      "setup_seconds": 0.6404210250002507,
+      "replay_seconds": 0.00809870099874388,
+      "retained": true,
+      "deferred": false,
+      "replacement_requested": false,
+      "published": false,
+      "rejected": false,
+      "release_check": {},
+      "incumbent_path": [
+        8538,
+        8759,
+        9224,
+        9704,
+        9938,
+        10407,
+        10879,
+        11339,
+        11788,
+        12230,
+        12695,
+        12918,
+        13372,
+        13588,
+        13816,
+        14288,
+        14501,
+        14737,
+        14955
+      ],
+      "replacement_path": [],
+      "missing_connections": [],
+      "work": {
+        "gate": {
+          "upper": 1852.5422697425286,
+          "witness_seconds": 0.0038723099987691967,
+          "terminal_lower": 0.0,
+          "terminal_seconds": 4.478699884202797e-05,
+          "kind": "terminal",
+          "lower": 0.0,
+          "accepted": false,
+          "alpha": 0.0,
+          "worlds": 0
+        },
+        "search_seconds": 7.4636969290004345,
+        "candidate_seconds": 0.0,
+        "transitions": 64,
+        "posterior_update_seconds": 1.5290006558643654e-06,
+        "gate_seconds": 0.004251112999554607,
+        "proposed_first": 8538
+      },
+      "incumbent_moves": 0,
+      "rides": [
+        {
+          "time": 29175,
+          "stop": 614,
+          "action": [
+            "board",
+            8538
+          ],
+          "next_time": 29223,
+          "next_stop": 3,
+          "ridden_connection": 8538,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29240,
+          "stop": 3,
+          "action": [
+            "board",
+            8759
+          ],
+          "next_time": 29323,
+          "next_stop": 568,
+          "ridden_connection": 8759,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29341,
+          "stop": 568,
+          "action": [
+            "board",
+            9224
+          ],
+          "next_time": 29446,
+          "next_stop": 88,
+          "ridden_connection": 9224,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29464,
+          "stop": 88,
+          "action": [
+            "board",
+            9704
+          ],
+          "next_time": 29517,
+          "next_stop": 647,
+          "ridden_connection": 9704,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29530,
+          "stop": 647,
+          "action": [
+            "board",
+            9938
+          ],
+          "next_time": 29598,
+          "next_stop": 606,
+          "ridden_connection": 9938,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29669,
+          "stop": 606,
+          "action": [
+            "board",
+            10407
+          ],
+          "next_time": 29758,
+          "next_stop": 592,
+          "ridden_connection": 10407,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29774,
+          "stop": 592,
+          "action": [
+            "board",
+            10879
+          ],
+          "next_time": 29843,
+          "next_stop": 495,
+          "ridden_connection": 10879,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29857,
+          "stop": 495,
+          "action": [
+            "board",
+            11339
+          ],
+          "next_time": 29933,
+          "next_stop": 164,
+          "ridden_connection": 11339,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29956,
+          "stop": 164,
+          "action": [
+            "board",
+            11788
+          ],
+          "next_time": 30061,
+          "next_stop": 165,
+          "ridden_connection": 11788,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30093,
+          "stop": 165,
+          "action": [
+            "board",
+            12230
+          ],
+          "next_time": 30208,
+          "next_stop": 604,
+          "ridden_connection": 12230,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30218,
+          "stop": 604,
+          "action": [
+            "board",
+            12695
+          ],
+          "next_time": 30292,
+          "next_stop": 319,
+          "ridden_connection": 12695,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30302,
+          "stop": 319,
+          "action": [
+            "board",
+            12918
+          ],
+          "next_time": 30360,
+          "next_stop": 470,
+          "ridden_connection": 12918,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30372,
+          "stop": 470,
+          "action": [
+            "board",
+            13372
+          ],
+          "next_time": 30447,
+          "next_stop": 563,
+          "ridden_connection": 13372,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30464,
+          "stop": 563,
+          "action": [
+            "board",
+            13588
+          ],
+          "next_time": 30531,
+          "next_stop": 406,
+          "ridden_connection": 13588,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30548,
+          "stop": 406,
+          "action": [
+            "board",
+            13816
+          ],
+          "next_time": 30604,
+          "next_stop": 509,
+          "ridden_connection": 13816,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30619,
+          "stop": 509,
+          "action": [
+            "board",
+            14288
+          ],
+          "next_time": 30684,
+          "next_stop": 430,
+          "ridden_connection": 14288,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30697,
+          "stop": 430,
+          "action": [
+            "board",
+            14501
+          ],
+          "next_time": 30761,
+          "next_stop": 321,
+          "ridden_connection": 14501,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30780,
+          "stop": 321,
+          "action": [
+            "board",
+            14737
+          ],
+          "next_time": 30822,
+          "next_stop": 560,
+          "ridden_connection": 14737,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30836,
+          "stop": 560,
+          "action": [
+            "board",
+            14955
+          ],
+          "next_time": 30923,
+          "next_stop": 607,
+          "ridden_connection": 14955,
+          "worker_running": false,
+          "policy": "incumbent"
+        }
+      ],
+      "order": [
+        "terminal64",
+        "middle64",
+        "off64"
+      ],
+      "order_index": 0,
+      "cpu": 31,
+      "setup_plus_worker_seconds": 8.108422232000521,
+      "search_called": true,
+      "marginal_loss_lower": 0.0,
+      "marginal_loss_upper": 0.0,
+      "useful_published": false,
+      "harmful_published": false
+    },
+    {
+      "date": "2023-07-27",
+      "query": 1,
+      "decision": 1,
+      "method": "middle64",
+      "status": "arrived",
+      "loss_lower": 1763.0,
+      "loss_upper": 1763.0,
+      "root_clock": 29160,
+      "ready_at": 29165,
+      "worker_seconds": 4.947509204999733,
+      "worker_cpu_seconds": 4.738877315,
+      "setup_seconds": 0.9701643320004223,
+      "replay_seconds": 0.010183544998653815,
+      "retained": true,
+      "deferred": false,
+      "replacement_requested": false,
+      "published": false,
+      "rejected": false,
+      "release_check": {},
+      "incumbent_path": [
+        8538,
+        8759,
+        9224,
+        9704,
+        9938,
+        10407,
+        10879,
+        11339,
+        11788,
+        12230,
+        12695,
+        12918,
+        13372,
+        13588,
+        13816,
+        14288,
+        14501,
+        14737,
+        14955
+      ],
+      "replacement_path": [],
+      "missing_connections": [],
+      "work": {
+        "gate": {
+          "upper": 1852.5422697425286,
+          "witness_seconds": 0.007321420000153012,
+          "terminal_lower": 0.0,
+          "terminal_seconds": 8.60719992488157e-05,
+          "support_floor": 0.0,
+          "cutoff": 31193,
+          "trips": 1383,
+          "connections": 16039,
+          "corridor_seconds": 0.3838014960001601,
+          "kind": "middle",
+          "lower": 1804.6384063867708,
+          "accepted": true,
+          "alpha": 0.00625,
+          "worlds": 512,
+          "oracle_mean": 1826.271484375,
+          "sample_checkpoints": [
+            {
+              "worlds": 32,
+              "lower": 1549.1596581062768,
+              "oracle_mean": 1824.25,
+              "accepted": false
+            },
+            {
+              "worlds": 128,
+              "lower": 1750.3752771645813,
+              "oracle_mean": 1826.140625,
+              "accepted": false
+            },
+            {
+              "worlds": 512,
+              "lower": 1804.6384063867708,
+              "oracle_mean": 1826.271484375,
+              "accepted": true
+            }
+          ],
+          "template_seconds": 0.048848692000319716,
+          "draw_seconds": 4.325768019998577,
+          "scan_seconds": 0.17811981499835383
+        },
+        "search_seconds": 0.0,
+        "candidate_seconds": 0.0,
+        "transitions": 0,
+        "posterior_update_seconds": 2.573000529082492e-06,
+        "gate_seconds": 4.947462711999833
+      },
+      "incumbent_moves": 0,
+      "rides": [
+        {
+          "time": 29175,
+          "stop": 614,
+          "action": [
+            "board",
+            8538
+          ],
+          "next_time": 29223,
+          "next_stop": 3,
+          "ridden_connection": 8538,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29240,
+          "stop": 3,
+          "action": [
+            "board",
+            8759
+          ],
+          "next_time": 29323,
+          "next_stop": 568,
+          "ridden_connection": 8759,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29341,
+          "stop": 568,
+          "action": [
+            "board",
+            9224
+          ],
+          "next_time": 29446,
+          "next_stop": 88,
+          "ridden_connection": 9224,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29464,
+          "stop": 88,
+          "action": [
+            "board",
+            9704
+          ],
+          "next_time": 29517,
+          "next_stop": 647,
+          "ridden_connection": 9704,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29530,
+          "stop": 647,
+          "action": [
+            "board",
+            9938
+          ],
+          "next_time": 29598,
+          "next_stop": 606,
+          "ridden_connection": 9938,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29669,
+          "stop": 606,
+          "action": [
+            "board",
+            10407
+          ],
+          "next_time": 29758,
+          "next_stop": 592,
+          "ridden_connection": 10407,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29774,
+          "stop": 592,
+          "action": [
+            "board",
+            10879
+          ],
+          "next_time": 29843,
+          "next_stop": 495,
+          "ridden_connection": 10879,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29857,
+          "stop": 495,
+          "action": [
+            "board",
+            11339
+          ],
+          "next_time": 29933,
+          "next_stop": 164,
+          "ridden_connection": 11339,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29956,
+          "stop": 164,
+          "action": [
+            "board",
+            11788
+          ],
+          "next_time": 30061,
+          "next_stop": 165,
+          "ridden_connection": 11788,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30093,
+          "stop": 165,
+          "action": [
+            "board",
+            12230
+          ],
+          "next_time": 30208,
+          "next_stop": 604,
+          "ridden_connection": 12230,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30218,
+          "stop": 604,
+          "action": [
+            "board",
+            12695
+          ],
+          "next_time": 30292,
+          "next_stop": 319,
+          "ridden_connection": 12695,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30302,
+          "stop": 319,
+          "action": [
+            "board",
+            12918
+          ],
+          "next_time": 30360,
+          "next_stop": 470,
+          "ridden_connection": 12918,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30372,
+          "stop": 470,
+          "action": [
+            "board",
+            13372
+          ],
+          "next_time": 30447,
+          "next_stop": 563,
+          "ridden_connection": 13372,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30464,
+          "stop": 563,
+          "action": [
+            "board",
+            13588
+          ],
+          "next_time": 30531,
+          "next_stop": 406,
+          "ridden_connection": 13588,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30548,
+          "stop": 406,
+          "action": [
+            "board",
+            13816
+          ],
+          "next_time": 30604,
+          "next_stop": 509,
+          "ridden_connection": 13816,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30619,
+          "stop": 509,
+          "action": [
+            "board",
+            14288
+          ],
+          "next_time": 30684,
+          "next_stop": 430,
+          "ridden_connection": 14288,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30697,
+          "stop": 430,
+          "action": [
+            "board",
+            14501
+          ],
+          "next_time": 30761,
+          "next_stop": 321,
+          "ridden_connection": 14501,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30780,
+          "stop": 321,
+          "action": [
+            "board",
+            14737
+          ],
+          "next_time": 30822,
+          "next_stop": 560,
+          "ridden_connection": 14737,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30836,
+          "stop": 560,
+          "action": [
+            "board",
+            14955
+          ],
+          "next_time": 30923,
+          "next_stop": 607,
+          "ridden_connection": 14955,
+          "worker_running": false,
+          "policy": "incumbent"
+        }
+      ],
+      "order": [
+        "terminal64",
+        "middle64",
+        "off64"
+      ],
+      "order_index": 1,
+      "cpu": 31,
+      "setup_plus_worker_seconds": 5.917673537000155,
+      "search_called": false,
+      "marginal_loss_lower": 0.0,
+      "marginal_loss_upper": 0.0,
+      "useful_published": false,
+      "harmful_published": false
+    },
+    {
+      "date": "2023-07-27",
+      "query": 1,
+      "decision": 1,
+      "method": "off64",
+      "status": "arrived",
+      "loss_lower": 1763.0,
+      "loss_upper": 1763.0,
+      "root_clock": 29160,
+      "ready_at": 29168,
+      "worker_seconds": 7.360074247999364,
+      "worker_cpu_seconds": 7.032618380999999,
+      "setup_seconds": 0.9581423590007034,
+      "replay_seconds": 0.006365085999277653,
+      "retained": true,
+      "deferred": false,
+      "replacement_requested": false,
+      "published": false,
+      "rejected": false,
+      "release_check": {},
+      "incumbent_path": [
+        8538,
+        8759,
+        9224,
+        9704,
+        9938,
+        10407,
+        10879,
+        11339,
+        11788,
+        12230,
+        12695,
+        12918,
+        13372,
+        13588,
+        13816,
+        14288,
+        14501,
+        14737,
+        14955
+      ],
+      "replacement_path": [],
+      "missing_connections": [],
+      "work": {
+        "gate": null,
+        "search_seconds": 7.360028154998872,
+        "candidate_seconds": 0.0,
+        "transitions": 64,
+        "posterior_update_seconds": 2.5210010790033266e-06,
+        "proposed_first": 8538
+      },
+      "incumbent_moves": 0,
+      "rides": [
+        {
+          "time": 29175,
+          "stop": 614,
+          "action": [
+            "board",
+            8538
+          ],
+          "next_time": 29223,
+          "next_stop": 3,
+          "ridden_connection": 8538,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29240,
+          "stop": 3,
+          "action": [
+            "board",
+            8759
+          ],
+          "next_time": 29323,
+          "next_stop": 568,
+          "ridden_connection": 8759,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29341,
+          "stop": 568,
+          "action": [
+            "board",
+            9224
+          ],
+          "next_time": 29446,
+          "next_stop": 88,
+          "ridden_connection": 9224,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29464,
+          "stop": 88,
+          "action": [
+            "board",
+            9704
+          ],
+          "next_time": 29517,
+          "next_stop": 647,
+          "ridden_connection": 9704,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29530,
+          "stop": 647,
+          "action": [
+            "board",
+            9938
+          ],
+          "next_time": 29598,
+          "next_stop": 606,
+          "ridden_connection": 9938,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29669,
+          "stop": 606,
+          "action": [
+            "board",
+            10407
+          ],
+          "next_time": 29758,
+          "next_stop": 592,
+          "ridden_connection": 10407,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29774,
+          "stop": 592,
+          "action": [
+            "board",
+            10879
+          ],
+          "next_time": 29843,
+          "next_stop": 495,
+          "ridden_connection": 10879,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29857,
+          "stop": 495,
+          "action": [
+            "board",
+            11339
+          ],
+          "next_time": 29933,
+          "next_stop": 164,
+          "ridden_connection": 11339,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29956,
+          "stop": 164,
+          "action": [
+            "board",
+            11788
+          ],
+          "next_time": 30061,
+          "next_stop": 165,
+          "ridden_connection": 11788,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30093,
+          "stop": 165,
+          "action": [
+            "board",
+            12230
+          ],
+          "next_time": 30208,
+          "next_stop": 604,
+          "ridden_connection": 12230,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30218,
+          "stop": 604,
+          "action": [
+            "board",
+            12695
+          ],
+          "next_time": 30292,
+          "next_stop": 319,
+          "ridden_connection": 12695,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30302,
+          "stop": 319,
+          "action": [
+            "board",
+            12918
+          ],
+          "next_time": 30360,
+          "next_stop": 470,
+          "ridden_connection": 12918,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30372,
+          "stop": 470,
+          "action": [
+            "board",
+            13372
+          ],
+          "next_time": 30447,
+          "next_stop": 563,
+          "ridden_connection": 13372,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30464,
+          "stop": 563,
+          "action": [
+            "board",
+            13588
+          ],
+          "next_time": 30531,
+          "next_stop": 406,
+          "ridden_connection": 13588,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30548,
+          "stop": 406,
+          "action": [
+            "board",
+            13816
+          ],
+          "next_time": 30604,
+          "next_stop": 509,
+          "ridden_connection": 13816,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30619,
+          "stop": 509,
+          "action": [
+            "board",
+            14288
+          ],
+          "next_time": 30684,
+          "next_stop": 430,
+          "ridden_connection": 14288,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30697,
+          "stop": 430,
+          "action": [
+            "board",
+            14501
+          ],
+          "next_time": 30761,
+          "next_stop": 321,
+          "ridden_connection": 14501,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30780,
+          "stop": 321,
+          "action": [
+            "board",
+            14737
+          ],
+          "next_time": 30822,
+          "next_stop": 560,
+          "ridden_connection": 14737,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30836,
+          "stop": 560,
+          "action": [
+            "board",
+            14955
+          ],
+          "next_time": 30923,
+          "next_stop": 607,
+          "ridden_connection": 14955,
+          "worker_running": false,
+          "policy": "incumbent"
+        }
+      ],
+      "order": [
+        "terminal64",
+        "middle64",
+        "off64"
+      ],
+      "order_index": 2,
+      "cpu": 31,
+      "setup_plus_worker_seconds": 8.318216607000068,
+      "search_called": true,
+      "marginal_loss_lower": 0.0,
+      "marginal_loss_upper": 0.0,
+      "useful_published": false,
+      "harmful_published": false
+    },
+    {
+      "date": "2023-07-27",
+      "query": 1,
+      "decision": 2,
+      "method": "middle64",
+      "status": "arrived",
+      "loss_lower": 1700.0,
+      "loss_upper": 1700.0,
+      "root_clock": 29223,
+      "ready_at": 29226,
+      "worker_seconds": 2.8717558729986195,
+      "worker_cpu_seconds": 2.7424225709999988,
+      "setup_seconds": 1.075240459998895,
+      "replay_seconds": 0.005539198999031214,
+      "retained": true,
+      "deferred": false,
+      "replacement_requested": false,
+      "published": false,
+      "rejected": false,
+      "release_check": {},
+      "incumbent_path": [
+        8759,
+        9224,
+        9704,
+        9938,
+        10407,
+        10879,
+        11339,
+        11788,
+        12230,
+        12695,
+        12918,
+        13372,
+        13588,
+        13816,
+        14288,
+        14501,
+        14737,
+        14955
+      ],
+      "replacement_path": [],
+      "missing_connections": [],
+      "work": {
+        "gate": {
+          "upper": 1749.5105223024739,
+          "witness_seconds": 0.004147305000515189,
+          "terminal_lower": 0.0,
+          "terminal_seconds": 3.2885000109672546e-05,
+          "support_floor": 0.0,
+          "cutoff": 31153,
+          "trips": 1383,
+          "connections": 16038,
+          "corridor_seconds": 0.24305307199938397,
+          "kind": "middle",
+          "lower": 1709.403087259936,
+          "accepted": true,
+          "alpha": 0.00625,
+          "worlds": 512,
+          "oracle_mean": 1728.6171875,
+          "sample_checkpoints": [
+            {
+              "worlds": 32,
+              "lower": 1460.4609095547348,
+              "oracle_mean": 1717.875,
+              "accepted": false
+            },
+            {
+              "worlds": 128,
+              "lower": 1649.3669409622344,
+              "oracle_mean": 1718.8046875,
+              "accepted": false
+            },
+            {
+              "worlds": 512,
+              "lower": 1709.403087259936,
+              "oracle_mean": 1728.6171875,
+              "accepted": true
+            }
+          ],
+          "template_seconds": 0.039780867999070324,
+          "draw_seconds": 2.4406278759997804,
+          "scan_seconds": 0.14163329800067004
+        },
+        "search_seconds": 0.0,
+        "candidate_seconds": 0.0,
+        "transitions": 0,
+        "posterior_update_seconds": 1.4170000213198364e-06,
+        "gate_seconds": 2.8717283660007524
+      },
+      "incumbent_moves": 0,
+      "rides": [
+        {
+          "time": 29240,
+          "stop": 3,
+          "action": [
+            "board",
+            8759
+          ],
+          "next_time": 29323,
+          "next_stop": 568,
+          "ridden_connection": 8759,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29341,
+          "stop": 568,
+          "action": [
+            "board",
+            9224
+          ],
+          "next_time": 29446,
+          "next_stop": 88,
+          "ridden_connection": 9224,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29464,
+          "stop": 88,
+          "action": [
+            "board",
+            9704
+          ],
+          "next_time": 29517,
+          "next_stop": 647,
+          "ridden_connection": 9704,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29530,
+          "stop": 647,
+          "action": [
+            "board",
+            9938
+          ],
+          "next_time": 29598,
+          "next_stop": 606,
+          "ridden_connection": 9938,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29669,
+          "stop": 606,
+          "action": [
+            "board",
+            10407
+          ],
+          "next_time": 29758,
+          "next_stop": 592,
+          "ridden_connection": 10407,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29774,
+          "stop": 592,
+          "action": [
+            "board",
+            10879
+          ],
+          "next_time": 29843,
+          "next_stop": 495,
+          "ridden_connection": 10879,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29857,
+          "stop": 495,
+          "action": [
+            "board",
+            11339
+          ],
+          "next_time": 29933,
+          "next_stop": 164,
+          "ridden_connection": 11339,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29956,
+          "stop": 164,
+          "action": [
+            "board",
+            11788
+          ],
+          "next_time": 30061,
+          "next_stop": 165,
+          "ridden_connection": 11788,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30093,
+          "stop": 165,
+          "action": [
+            "board",
+            12230
+          ],
+          "next_time": 30208,
+          "next_stop": 604,
+          "ridden_connection": 12230,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30218,
+          "stop": 604,
+          "action": [
+            "board",
+            12695
+          ],
+          "next_time": 30292,
+          "next_stop": 319,
+          "ridden_connection": 12695,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30302,
+          "stop": 319,
+          "action": [
+            "board",
+            12918
+          ],
+          "next_time": 30360,
+          "next_stop": 470,
+          "ridden_connection": 12918,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30372,
+          "stop": 470,
+          "action": [
+            "board",
+            13372
+          ],
+          "next_time": 30447,
+          "next_stop": 563,
+          "ridden_connection": 13372,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30464,
+          "stop": 563,
+          "action": [
+            "board",
+            13588
+          ],
+          "next_time": 30531,
+          "next_stop": 406,
+          "ridden_connection": 13588,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30548,
+          "stop": 406,
+          "action": [
+            "board",
+            13816
+          ],
+          "next_time": 30604,
+          "next_stop": 509,
+          "ridden_connection": 13816,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30619,
+          "stop": 509,
+          "action": [
+            "board",
+            14288
+          ],
+          "next_time": 30684,
+          "next_stop": 430,
+          "ridden_connection": 14288,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30697,
+          "stop": 430,
+          "action": [
+            "board",
+            14501
+          ],
+          "next_time": 30761,
+          "next_stop": 321,
+          "ridden_connection": 14501,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30780,
+          "stop": 321,
+          "action": [
+            "board",
+            14737
+          ],
+          "next_time": 30822,
+          "next_stop": 560,
+          "ridden_connection": 14737,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30836,
+          "stop": 560,
+          "action": [
+            "board",
+            14955
+          ],
+          "next_time": 30923,
+          "next_stop": 607,
+          "ridden_connection": 14955,
+          "worker_running": false,
+          "policy": "incumbent"
+        }
+      ],
+      "order": [
+        "middle64",
+        "off64",
+        "terminal64"
+      ],
+      "order_index": 0,
+      "cpu": 31,
+      "setup_plus_worker_seconds": 3.9469963329975144,
+      "search_called": false,
+      "marginal_loss_lower": 0.0,
+      "marginal_loss_upper": 0.0,
+      "useful_published": false,
+      "harmful_published": false
+    },
+    {
+      "date": "2023-07-27",
+      "query": 1,
+      "decision": 2,
+      "method": "off64",
+      "status": "arrived",
+      "loss_lower": 1700.0,
+      "loss_upper": 1700.0,
+      "root_clock": 29223,
+      "ready_at": 29231,
+      "worker_seconds": 7.5979465509990405,
+      "worker_cpu_seconds": 7.275322566,
+      "setup_seconds": 0.5650408530000277,
+      "replay_seconds": 0.005843753000590368,
+      "retained": true,
+      "deferred": false,
+      "replacement_requested": false,
+      "published": false,
+      "rejected": false,
+      "release_check": {},
+      "incumbent_path": [
+        8759,
+        9224,
+        9704,
+        9938,
+        10407,
+        10879,
+        11339,
+        11788,
+        12230,
+        12695,
+        12918,
+        13372,
+        13588,
+        13816,
+        14288,
+        14501,
+        14737,
+        14955
+      ],
+      "replacement_path": [],
+      "missing_connections": [],
+      "work": {
+        "gate": null,
+        "search_seconds": 7.597910312999375,
+        "candidate_seconds": 0.0,
+        "transitions": 64,
+        "posterior_update_seconds": 2.0919997041346505e-06,
+        "proposed_first": 8759
+      },
+      "incumbent_moves": 0,
+      "rides": [
+        {
+          "time": 29240,
+          "stop": 3,
+          "action": [
+            "board",
+            8759
+          ],
+          "next_time": 29323,
+          "next_stop": 568,
+          "ridden_connection": 8759,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29341,
+          "stop": 568,
+          "action": [
+            "board",
+            9224
+          ],
+          "next_time": 29446,
+          "next_stop": 88,
+          "ridden_connection": 9224,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29464,
+          "stop": 88,
+          "action": [
+            "board",
+            9704
+          ],
+          "next_time": 29517,
+          "next_stop": 647,
+          "ridden_connection": 9704,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29530,
+          "stop": 647,
+          "action": [
+            "board",
+            9938
+          ],
+          "next_time": 29598,
+          "next_stop": 606,
+          "ridden_connection": 9938,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29669,
+          "stop": 606,
+          "action": [
+            "board",
+            10407
+          ],
+          "next_time": 29758,
+          "next_stop": 592,
+          "ridden_connection": 10407,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29774,
+          "stop": 592,
+          "action": [
+            "board",
+            10879
+          ],
+          "next_time": 29843,
+          "next_stop": 495,
+          "ridden_connection": 10879,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29857,
+          "stop": 495,
+          "action": [
+            "board",
+            11339
+          ],
+          "next_time": 29933,
+          "next_stop": 164,
+          "ridden_connection": 11339,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29956,
+          "stop": 164,
+          "action": [
+            "board",
+            11788
+          ],
+          "next_time": 30061,
+          "next_stop": 165,
+          "ridden_connection": 11788,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30093,
+          "stop": 165,
+          "action": [
+            "board",
+            12230
+          ],
+          "next_time": 30208,
+          "next_stop": 604,
+          "ridden_connection": 12230,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30218,
+          "stop": 604,
+          "action": [
+            "board",
+            12695
+          ],
+          "next_time": 30292,
+          "next_stop": 319,
+          "ridden_connection": 12695,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30302,
+          "stop": 319,
+          "action": [
+            "board",
+            12918
+          ],
+          "next_time": 30360,
+          "next_stop": 470,
+          "ridden_connection": 12918,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30372,
+          "stop": 470,
+          "action": [
+            "board",
+            13372
+          ],
+          "next_time": 30447,
+          "next_stop": 563,
+          "ridden_connection": 13372,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30464,
+          "stop": 563,
+          "action": [
+            "board",
+            13588
+          ],
+          "next_time": 30531,
+          "next_stop": 406,
+          "ridden_connection": 13588,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30548,
+          "stop": 406,
+          "action": [
+            "board",
+            13816
+          ],
+          "next_time": 30604,
+          "next_stop": 509,
+          "ridden_connection": 13816,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30619,
+          "stop": 509,
+          "action": [
+            "board",
+            14288
+          ],
+          "next_time": 30684,
+          "next_stop": 430,
+          "ridden_connection": 14288,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30697,
+          "stop": 430,
+          "action": [
+            "board",
+            14501
+          ],
+          "next_time": 30761,
+          "next_stop": 321,
+          "ridden_connection": 14501,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30780,
+          "stop": 321,
+          "action": [
+            "board",
+            14737
+          ],
+          "next_time": 30822,
+          "next_stop": 560,
+          "ridden_connection": 14737,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30836,
+          "stop": 560,
+          "action": [
+            "board",
+            14955
+          ],
+          "next_time": 30923,
+          "next_stop": 607,
+          "ridden_connection": 14955,
+          "worker_running": false,
+          "policy": "incumbent"
+        }
+      ],
+      "order": [
+        "middle64",
+        "off64",
+        "terminal64"
+      ],
+      "order_index": 1,
+      "cpu": 31,
+      "setup_plus_worker_seconds": 8.162987403999068,
+      "search_called": true,
+      "marginal_loss_lower": 0.0,
+      "marginal_loss_upper": 0.0,
+      "useful_published": false,
+      "harmful_published": false
+    },
+    {
+      "date": "2023-07-27",
+      "query": 1,
+      "decision": 2,
+      "method": "terminal64",
+      "status": "arrived",
+      "loss_lower": 1700.0,
+      "loss_upper": 1700.0,
+      "root_clock": 29223,
+      "ready_at": 29231,
+      "worker_seconds": 7.568006531000719,
+      "worker_cpu_seconds": 7.181617523999996,
+      "setup_seconds": 0.6216319400009525,
+      "replay_seconds": 0.005966864999209065,
+      "retained": true,
+      "deferred": false,
+      "replacement_requested": false,
+      "published": false,
+      "rejected": false,
+      "release_check": {},
+      "incumbent_path": [
+        8759,
+        9224,
+        9704,
+        9938,
+        10407,
+        10879,
+        11339,
+        11788,
+        12230,
+        12695,
+        12918,
+        13372,
+        13588,
+        13816,
+        14288,
+        14501,
+        14737,
+        14955
+      ],
+      "replacement_path": [],
+      "missing_connections": [],
+      "work": {
+        "gate": {
+          "upper": 1749.5105223024739,
+          "witness_seconds": 0.004072310999617912,
+          "terminal_lower": 0.0,
+          "terminal_seconds": 3.7837000490981154e-05,
+          "kind": "terminal",
+          "lower": 0.0,
+          "accepted": false,
+          "alpha": 0.0,
+          "worlds": 0
+        },
+        "search_seconds": 7.563589559998945,
+        "candidate_seconds": 0.0,
+        "transitions": 64,
+        "posterior_update_seconds": 2.5129993446171284e-06,
+        "gate_seconds": 0.00437034399874392,
+        "proposed_first": 8759
+      },
+      "incumbent_moves": 0,
+      "rides": [
+        {
+          "time": 29240,
+          "stop": 3,
+          "action": [
+            "board",
+            8759
+          ],
+          "next_time": 29323,
+          "next_stop": 568,
+          "ridden_connection": 8759,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29341,
+          "stop": 568,
+          "action": [
+            "board",
+            9224
+          ],
+          "next_time": 29446,
+          "next_stop": 88,
+          "ridden_connection": 9224,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29464,
+          "stop": 88,
+          "action": [
+            "board",
+            9704
+          ],
+          "next_time": 29517,
+          "next_stop": 647,
+          "ridden_connection": 9704,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29530,
+          "stop": 647,
+          "action": [
+            "board",
+            9938
+          ],
+          "next_time": 29598,
+          "next_stop": 606,
+          "ridden_connection": 9938,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29669,
+          "stop": 606,
+          "action": [
+            "board",
+            10407
+          ],
+          "next_time": 29758,
+          "next_stop": 592,
+          "ridden_connection": 10407,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29774,
+          "stop": 592,
+          "action": [
+            "board",
+            10879
+          ],
+          "next_time": 29843,
+          "next_stop": 495,
+          "ridden_connection": 10879,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29857,
+          "stop": 495,
+          "action": [
+            "board",
+            11339
+          ],
+          "next_time": 29933,
+          "next_stop": 164,
+          "ridden_connection": 11339,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29956,
+          "stop": 164,
+          "action": [
+            "board",
+            11788
+          ],
+          "next_time": 30061,
+          "next_stop": 165,
+          "ridden_connection": 11788,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30093,
+          "stop": 165,
+          "action": [
+            "board",
+            12230
+          ],
+          "next_time": 30208,
+          "next_stop": 604,
+          "ridden_connection": 12230,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30218,
+          "stop": 604,
+          "action": [
+            "board",
+            12695
+          ],
+          "next_time": 30292,
+          "next_stop": 319,
+          "ridden_connection": 12695,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30302,
+          "stop": 319,
+          "action": [
+            "board",
+            12918
+          ],
+          "next_time": 30360,
+          "next_stop": 470,
+          "ridden_connection": 12918,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30372,
+          "stop": 470,
+          "action": [
+            "board",
+            13372
+          ],
+          "next_time": 30447,
+          "next_stop": 563,
+          "ridden_connection": 13372,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30464,
+          "stop": 563,
+          "action": [
+            "board",
+            13588
+          ],
+          "next_time": 30531,
+          "next_stop": 406,
+          "ridden_connection": 13588,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30548,
+          "stop": 406,
+          "action": [
+            "board",
+            13816
+          ],
+          "next_time": 30604,
+          "next_stop": 509,
+          "ridden_connection": 13816,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30619,
+          "stop": 509,
+          "action": [
+            "board",
+            14288
+          ],
+          "next_time": 30684,
+          "next_stop": 430,
+          "ridden_connection": 14288,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30697,
+          "stop": 430,
+          "action": [
+            "board",
+            14501
+          ],
+          "next_time": 30761,
+          "next_stop": 321,
+          "ridden_connection": 14501,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30780,
+          "stop": 321,
+          "action": [
+            "board",
+            14737
+          ],
+          "next_time": 30822,
+          "next_stop": 560,
+          "ridden_connection": 14737,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30836,
+          "stop": 560,
+          "action": [
+            "board",
+            14955
+          ],
+          "next_time": 30923,
+          "next_stop": 607,
+          "ridden_connection": 14955,
+          "worker_running": false,
+          "policy": "incumbent"
+        }
+      ],
+      "order": [
+        "middle64",
+        "off64",
+        "terminal64"
+      ],
+      "order_index": 2,
+      "cpu": 31,
+      "setup_plus_worker_seconds": 8.189638471001672,
+      "search_called": true,
+      "marginal_loss_lower": 0.0,
+      "marginal_loss_upper": 0.0,
+      "useful_published": false,
+      "harmful_published": false
+    }
+  ],
+  "incumbent_references": [
+    {
+      "date": "2023-07-26",
+      "query": 0,
+      "decision": 1,
+      "loss_lower": 3515.0,
+      "loss_upper": 3515.0,
+      "status": "timeout",
+      "rides": [
+        {
+          "time": 29213,
+          "stop": 594,
+          "action": [
+            "board",
+            8780
+          ],
+          "next_time": 29306,
+          "next_stop": 606,
+          "ridden_connection": 8780,
+          "worker_running": false,
+          "policy": "incumbent"
+        }
+      ]
+    },
+    {
+      "date": "2023-07-26",
+      "query": 0,
+      "decision": 2,
+      "loss_lower": 657.0,
+      "loss_upper": 657.0,
+      "status": "arrived",
+      "rides": [
+        {
+          "time": 29356,
+          "stop": 606,
+          "action": [
+            "board",
+            9488
+          ],
+          "next_time": 29506,
+          "next_stop": 327,
+          "ridden_connection": 9488,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29519,
+          "stop": 327,
+          "action": [
+            "board",
+            9727
+          ],
+          "next_time": 29575,
+          "next_stop": 453,
+          "ridden_connection": 9727,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29776,
+          "stop": 453,
+          "action": [
+            "board",
+            10616
+          ],
+          "next_time": 29903,
+          "next_stop": 667,
+          "ridden_connection": 10616,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29916,
+          "stop": 667,
+          "action": [
+            "board",
+            10853
+          ],
+          "next_time": 29963,
+          "next_stop": 3,
+          "ridden_connection": 10853,
+          "worker_running": false,
+          "policy": "incumbent"
+        }
+      ]
+    },
+    {
+      "date": "2023-07-26",
+      "query": 1,
+      "decision": 1,
+      "loss_lower": 1844.0,
+      "loss_upper": 1844.0,
+      "status": "arrived",
+      "rides": [
+        {
+          "time": 29157,
+          "stop": 614,
+          "action": [
+            "board",
+            8538
+          ],
+          "next_time": 29213,
+          "next_stop": 3,
+          "ridden_connection": 8538,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29230,
+          "stop": 3,
+          "action": [
+            "board",
+            8759
+          ],
+          "next_time": 29326,
+          "next_stop": 568,
+          "ridden_connection": 8759,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29391,
+          "stop": 568,
+          "action": [
+            "board",
+            9224
+          ],
+          "next_time": 29458,
+          "next_stop": 88,
+          "ridden_connection": 9224,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29475,
+          "stop": 88,
+          "action": [
+            "board",
+            9704
+          ],
+          "next_time": 29529,
+          "next_stop": 647,
+          "ridden_connection": 9704,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29540,
+          "stop": 647,
+          "action": [
+            "board",
+            9938
+          ],
+          "next_time": 29594,
+          "next_stop": 606,
+          "ridden_connection": 9938,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29643,
+          "stop": 606,
+          "action": [
+            "board",
+            10407
+          ],
+          "next_time": 29762,
+          "next_stop": 592,
+          "ridden_connection": 10407,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29786,
+          "stop": 592,
+          "action": [
+            "board",
+            10879
+          ],
+          "next_time": 29855,
+          "next_stop": 495,
+          "ridden_connection": 10879,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29875,
+          "stop": 495,
+          "action": [
+            "board",
+            11339
+          ],
+          "next_time": 29938,
+          "next_stop": 164,
+          "ridden_connection": 11339,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29991,
+          "stop": 164,
+          "action": [
+            "board",
+            11788
+          ],
+          "next_time": 30103,
+          "next_stop": 165,
+          "ridden_connection": 11788,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30158,
+          "stop": 165,
+          "action": [
+            "board",
+            12230
+          ],
+          "next_time": 30287,
+          "next_stop": 604,
+          "ridden_connection": 12230,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30302,
+          "stop": 604,
+          "action": [
+            "board",
+            12695
+          ],
+          "next_time": 30372,
+          "next_stop": 319,
+          "ridden_connection": 12695,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30387,
+          "stop": 319,
+          "action": [
+            "board",
+            12918
+          ],
+          "next_time": 30446,
+          "next_stop": 470,
+          "ridden_connection": 12918,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30460,
+          "stop": 470,
+          "action": [
+            "board",
+            13372
+          ],
+          "next_time": 30534,
+          "next_stop": 563,
+          "ridden_connection": 13372,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30547,
+          "stop": 563,
+          "action": [
+            "board",
+            13588
+          ],
+          "next_time": 30603,
+          "next_stop": 406,
+          "ridden_connection": 13588,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30614,
+          "stop": 406,
+          "action": [
+            "board",
+            13816
+          ],
+          "next_time": 30681,
+          "next_stop": 509,
+          "ridden_connection": 13816,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30700,
+          "stop": 509,
+          "action": [
+            "board",
+            14288
+          ],
+          "next_time": 30772,
+          "next_stop": 430,
+          "ridden_connection": 14288,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30783,
+          "stop": 430,
+          "action": [
+            "board",
+            14501
+          ],
+          "next_time": 30847,
+          "next_stop": 321,
+          "ridden_connection": 14501,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30861,
+          "stop": 321,
+          "action": [
+            "board",
+            14737
+          ],
+          "next_time": 30903,
+          "next_stop": 560,
+          "ridden_connection": 14737,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30916,
+          "stop": 560,
+          "action": [
+            "board",
+            14955
+          ],
+          "next_time": 30986,
+          "next_stop": 607,
+          "ridden_connection": 14955,
+          "worker_running": false,
+          "policy": "incumbent"
+        }
+      ]
+    },
+    {
+      "date": "2023-07-26",
+      "query": 1,
+      "decision": 2,
+      "loss_lower": 1773.0,
+      "loss_upper": 1773.0,
+      "status": "arrived",
+      "rides": [
+        {
+          "time": 29230,
+          "stop": 3,
+          "action": [
+            "board",
+            8759
+          ],
+          "next_time": 29326,
+          "next_stop": 568,
+          "ridden_connection": 8759,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29391,
+          "stop": 568,
+          "action": [
+            "board",
+            9224
+          ],
+          "next_time": 29458,
+          "next_stop": 88,
+          "ridden_connection": 9224,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29475,
+          "stop": 88,
+          "action": [
+            "board",
+            9704
+          ],
+          "next_time": 29529,
+          "next_stop": 647,
+          "ridden_connection": 9704,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29540,
+          "stop": 647,
+          "action": [
+            "board",
+            9938
+          ],
+          "next_time": 29594,
+          "next_stop": 606,
+          "ridden_connection": 9938,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29643,
+          "stop": 606,
+          "action": [
+            "board",
+            10407
+          ],
+          "next_time": 29762,
+          "next_stop": 592,
+          "ridden_connection": 10407,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29786,
+          "stop": 592,
+          "action": [
+            "board",
+            10879
+          ],
+          "next_time": 29855,
+          "next_stop": 495,
+          "ridden_connection": 10879,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29875,
+          "stop": 495,
+          "action": [
+            "board",
+            11339
+          ],
+          "next_time": 29938,
+          "next_stop": 164,
+          "ridden_connection": 11339,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29991,
+          "stop": 164,
+          "action": [
+            "board",
+            11788
+          ],
+          "next_time": 30103,
+          "next_stop": 165,
+          "ridden_connection": 11788,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30158,
+          "stop": 165,
+          "action": [
+            "board",
+            12230
+          ],
+          "next_time": 30287,
+          "next_stop": 604,
+          "ridden_connection": 12230,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30302,
+          "stop": 604,
+          "action": [
+            "board",
+            12695
+          ],
+          "next_time": 30372,
+          "next_stop": 319,
+          "ridden_connection": 12695,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30387,
+          "stop": 319,
+          "action": [
+            "board",
+            12918
+          ],
+          "next_time": 30446,
+          "next_stop": 470,
+          "ridden_connection": 12918,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30460,
+          "stop": 470,
+          "action": [
+            "board",
+            13372
+          ],
+          "next_time": 30534,
+          "next_stop": 563,
+          "ridden_connection": 13372,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30547,
+          "stop": 563,
+          "action": [
+            "board",
+            13588
+          ],
+          "next_time": 30603,
+          "next_stop": 406,
+          "ridden_connection": 13588,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30614,
+          "stop": 406,
+          "action": [
+            "board",
+            13816
+          ],
+          "next_time": 30681,
+          "next_stop": 509,
+          "ridden_connection": 13816,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30700,
+          "stop": 509,
+          "action": [
+            "board",
+            14288
+          ],
+          "next_time": 30772,
+          "next_stop": 430,
+          "ridden_connection": 14288,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30783,
+          "stop": 430,
+          "action": [
+            "board",
+            14501
+          ],
+          "next_time": 30847,
+          "next_stop": 321,
+          "ridden_connection": 14501,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30861,
+          "stop": 321,
+          "action": [
+            "board",
+            14737
+          ],
+          "next_time": 30903,
+          "next_stop": 560,
+          "ridden_connection": 14737,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30916,
+          "stop": 560,
+          "action": [
+            "board",
+            14955
+          ],
+          "next_time": 30986,
+          "next_stop": 607,
+          "ridden_connection": 14955,
+          "worker_running": false,
+          "policy": "incumbent"
+        }
+      ]
+    },
+    {
+      "date": "2023-07-27",
+      "query": 0,
+      "decision": 1,
+      "loss_lower": 3498.0,
+      "loss_upper": 3498.0,
+      "status": "timeout",
+      "rides": [
+        {
+          "time": 29214,
+          "stop": 594,
+          "action": [
+            "board",
+            8780
+          ],
+          "next_time": 29297,
+          "next_stop": 606,
+          "ridden_connection": 8780,
+          "worker_running": false,
+          "policy": "incumbent"
+        }
+      ]
+    },
+    {
+      "date": "2023-07-27",
+      "query": 0,
+      "decision": 3,
+      "loss_lower": 394.0,
+      "loss_upper": 394.0,
+      "status": "arrived",
+      "rides": [
+        {
+          "time": 29613,
+          "stop": 606,
+          "action": [
+            "board",
+            10375
+          ],
+          "next_time": 29708,
+          "next_stop": 647,
+          "ridden_connection": 10375,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29716,
+          "stop": 647,
+          "action": [
+            "board",
+            10611
+          ],
+          "next_time": 29771,
+          "next_stop": 88,
+          "ridden_connection": 10611,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29785,
+          "stop": 88,
+          "action": [
+            "board",
+            10847
+          ],
+          "next_time": 29853,
+          "next_stop": 568,
+          "ridden_connection": 10847,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29865,
+          "stop": 568,
+          "action": [
+            "board",
+            11306
+          ],
+          "next_time": 29939,
+          "next_stop": 3,
+          "ridden_connection": 11306,
+          "worker_running": false,
+          "policy": "incumbent"
+        }
+      ]
+    },
+    {
+      "date": "2023-07-27",
+      "query": 1,
+      "decision": 1,
+      "loss_lower": 1763.0,
+      "loss_upper": 1763.0,
+      "status": "arrived",
+      "rides": [
+        {
+          "time": 29175,
+          "stop": 614,
+          "action": [
+            "board",
+            8538
+          ],
+          "next_time": 29223,
+          "next_stop": 3,
+          "ridden_connection": 8538,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29240,
+          "stop": 3,
+          "action": [
+            "board",
+            8759
+          ],
+          "next_time": 29323,
+          "next_stop": 568,
+          "ridden_connection": 8759,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29341,
+          "stop": 568,
+          "action": [
+            "board",
+            9224
+          ],
+          "next_time": 29446,
+          "next_stop": 88,
+          "ridden_connection": 9224,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29464,
+          "stop": 88,
+          "action": [
+            "board",
+            9704
+          ],
+          "next_time": 29517,
+          "next_stop": 647,
+          "ridden_connection": 9704,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29530,
+          "stop": 647,
+          "action": [
+            "board",
+            9938
+          ],
+          "next_time": 29598,
+          "next_stop": 606,
+          "ridden_connection": 9938,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29669,
+          "stop": 606,
+          "action": [
+            "board",
+            10407
+          ],
+          "next_time": 29758,
+          "next_stop": 592,
+          "ridden_connection": 10407,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29774,
+          "stop": 592,
+          "action": [
+            "board",
+            10879
+          ],
+          "next_time": 29843,
+          "next_stop": 495,
+          "ridden_connection": 10879,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29857,
+          "stop": 495,
+          "action": [
+            "board",
+            11339
+          ],
+          "next_time": 29933,
+          "next_stop": 164,
+          "ridden_connection": 11339,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29956,
+          "stop": 164,
+          "action": [
+            "board",
+            11788
+          ],
+          "next_time": 30061,
+          "next_stop": 165,
+          "ridden_connection": 11788,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30093,
+          "stop": 165,
+          "action": [
+            "board",
+            12230
+          ],
+          "next_time": 30208,
+          "next_stop": 604,
+          "ridden_connection": 12230,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30218,
+          "stop": 604,
+          "action": [
+            "board",
+            12695
+          ],
+          "next_time": 30292,
+          "next_stop": 319,
+          "ridden_connection": 12695,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30302,
+          "stop": 319,
+          "action": [
+            "board",
+            12918
+          ],
+          "next_time": 30360,
+          "next_stop": 470,
+          "ridden_connection": 12918,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30372,
+          "stop": 470,
+          "action": [
+            "board",
+            13372
+          ],
+          "next_time": 30447,
+          "next_stop": 563,
+          "ridden_connection": 13372,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30464,
+          "stop": 563,
+          "action": [
+            "board",
+            13588
+          ],
+          "next_time": 30531,
+          "next_stop": 406,
+          "ridden_connection": 13588,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30548,
+          "stop": 406,
+          "action": [
+            "board",
+            13816
+          ],
+          "next_time": 30604,
+          "next_stop": 509,
+          "ridden_connection": 13816,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30619,
+          "stop": 509,
+          "action": [
+            "board",
+            14288
+          ],
+          "next_time": 30684,
+          "next_stop": 430,
+          "ridden_connection": 14288,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30697,
+          "stop": 430,
+          "action": [
+            "board",
+            14501
+          ],
+          "next_time": 30761,
+          "next_stop": 321,
+          "ridden_connection": 14501,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30780,
+          "stop": 321,
+          "action": [
+            "board",
+            14737
+          ],
+          "next_time": 30822,
+          "next_stop": 560,
+          "ridden_connection": 14737,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30836,
+          "stop": 560,
+          "action": [
+            "board",
+            14955
+          ],
+          "next_time": 30923,
+          "next_stop": 607,
+          "ridden_connection": 14955,
+          "worker_running": false,
+          "policy": "incumbent"
+        }
+      ]
+    },
+    {
+      "date": "2023-07-27",
+      "query": 1,
+      "decision": 2,
+      "loss_lower": 1700.0,
+      "loss_upper": 1700.0,
+      "status": "arrived",
+      "rides": [
+        {
+          "time": 29240,
+          "stop": 3,
+          "action": [
+            "board",
+            8759
+          ],
+          "next_time": 29323,
+          "next_stop": 568,
+          "ridden_connection": 8759,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29341,
+          "stop": 568,
+          "action": [
+            "board",
+            9224
+          ],
+          "next_time": 29446,
+          "next_stop": 88,
+          "ridden_connection": 9224,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29464,
+          "stop": 88,
+          "action": [
+            "board",
+            9704
+          ],
+          "next_time": 29517,
+          "next_stop": 647,
+          "ridden_connection": 9704,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29530,
+          "stop": 647,
+          "action": [
+            "board",
+            9938
+          ],
+          "next_time": 29598,
+          "next_stop": 606,
+          "ridden_connection": 9938,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29669,
+          "stop": 606,
+          "action": [
+            "board",
+            10407
+          ],
+          "next_time": 29758,
+          "next_stop": 592,
+          "ridden_connection": 10407,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29774,
+          "stop": 592,
+          "action": [
+            "board",
+            10879
+          ],
+          "next_time": 29843,
+          "next_stop": 495,
+          "ridden_connection": 10879,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29857,
+          "stop": 495,
+          "action": [
+            "board",
+            11339
+          ],
+          "next_time": 29933,
+          "next_stop": 164,
+          "ridden_connection": 11339,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 29956,
+          "stop": 164,
+          "action": [
+            "board",
+            11788
+          ],
+          "next_time": 30061,
+          "next_stop": 165,
+          "ridden_connection": 11788,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30093,
+          "stop": 165,
+          "action": [
+            "board",
+            12230
+          ],
+          "next_time": 30208,
+          "next_stop": 604,
+          "ridden_connection": 12230,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30218,
+          "stop": 604,
+          "action": [
+            "board",
+            12695
+          ],
+          "next_time": 30292,
+          "next_stop": 319,
+          "ridden_connection": 12695,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30302,
+          "stop": 319,
+          "action": [
+            "board",
+            12918
+          ],
+          "next_time": 30360,
+          "next_stop": 470,
+          "ridden_connection": 12918,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30372,
+          "stop": 470,
+          "action": [
+            "board",
+            13372
+          ],
+          "next_time": 30447,
+          "next_stop": 563,
+          "ridden_connection": 13372,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30464,
+          "stop": 563,
+          "action": [
+            "board",
+            13588
+          ],
+          "next_time": 30531,
+          "next_stop": 406,
+          "ridden_connection": 13588,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30548,
+          "stop": 406,
+          "action": [
+            "board",
+            13816
+          ],
+          "next_time": 30604,
+          "next_stop": 509,
+          "ridden_connection": 13816,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30619,
+          "stop": 509,
+          "action": [
+            "board",
+            14288
+          ],
+          "next_time": 30684,
+          "next_stop": 430,
+          "ridden_connection": 14288,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30697,
+          "stop": 430,
+          "action": [
+            "board",
+            14501
+          ],
+          "next_time": 30761,
+          "next_stop": 321,
+          "ridden_connection": 14501,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30780,
+          "stop": 321,
+          "action": [
+            "board",
+            14737
+          ],
+          "next_time": 30822,
+          "next_stop": 560,
+          "ridden_connection": 14737,
+          "worker_running": false,
+          "policy": "incumbent"
+        },
+        {
+          "time": 30836,
+          "stop": 560,
+          "action": [
+            "board",
+            14955
+          ],
+          "next_time": 30923,
+          "next_stop": 607,
+          "ridden_connection": 14955,
+          "worker_running": false,
+          "policy": "incumbent"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "off64": {
+      "roots": 8,
+      "mean_loss_lower": 1889.5,
+      "mean_loss_upper": 1889.5,
+      "arrived": 6,
+      "censored": 0,
+      "mean_setup_plus_worker_seconds": 6.728912988000047,
+      "median_setup_plus_worker_seconds": 7.500466464000056,
+      "mean_worker_seconds": 5.898719677874851,
+      "mean_paired_total_difference": 0.0,
+      "median_paired_total_difference": 0.0,
+      "search_calls": 8,
+      "actually_saved_searches": 0,
+      "gate_saved_searches": 0,
+      "published": 2,
+      "rejected": 0,
+      "useful_published": 1,
+      "harmful_published": 0,
+      "mean_marginal_loss_lower": -3.5,
+      "mean_marginal_loss_upper": -3.5
+    },
+    "terminal64": {
+      "roots": 8,
+      "mean_loss_lower": 1889.5,
+      "mean_loss_upper": 1889.5,
+      "arrived": 6,
+      "censored": 0,
+      "mean_setup_plus_worker_seconds": 5.978724818625778,
+      "median_setup_plus_worker_seconds": 6.545539935000306,
+      "mean_worker_seconds": 5.19260512962569,
+      "mean_paired_total_difference": -0.7501881693742689,
+      "median_paired_total_difference": -0.4792888355004834,
+      "search_calls": 8,
+      "actually_saved_searches": 0,
+      "gate_saved_searches": 0,
+      "published": 2,
+      "rejected": 0,
+      "useful_published": 1,
+      "harmful_published": 0,
+      "mean_marginal_loss_lower": -3.5,
+      "mean_marginal_loss_upper": -3.5
+    },
+    "middle64": {
+      "roots": 8,
+      "mean_loss_lower": 1889.5,
+      "mean_loss_upper": 1889.5,
+      "arrived": 6,
+      "censored": 0,
+      "mean_setup_plus_worker_seconds": 5.426456249749435,
+      "median_setup_plus_worker_seconds": 5.35811260850096,
+      "mean_worker_seconds": 4.3668018336245495,
+      "mean_paired_total_difference": -1.302456738250612,
+      "median_paired_total_difference": -1.5119974920007735,
+      "search_calls": 3,
+      "actually_saved_searches": 5,
+      "gate_saved_searches": 5,
+      "published": 2,
+      "rejected": 0,
+      "useful_published": 1,
+      "harmful_published": 0,
+      "mean_marginal_loss_lower": -3.5,
+      "mean_marginal_loss_upper": -3.5
+    }
+  },
+  "paired": {
+    "off64": [
+      {
+        "date": "2023-07-26",
+        "query": 0,
+        "decision": 1,
+        "loss_difference_lower": 0.0,
+        "loss_difference_upper": 0.0,
+        "setup_plus_worker_difference": 0.0,
+        "worker_difference": 0.0,
+        "saved_search": 0,
+        "gate_saved_search": false,
+        "publication_preserved": true
+      },
+      {
+        "date": "2023-07-26",
+        "query": 0,
+        "decision": 2,
+        "loss_difference_lower": 0.0,
+        "loss_difference_upper": 0.0,
+        "setup_plus_worker_difference": 0.0,
+        "worker_difference": 0.0,
+        "saved_search": 0,
+        "gate_saved_search": false,
+        "publication_preserved": true
+      },
+      {
+        "date": "2023-07-26",
+        "query": 1,
+        "decision": 1,
+        "loss_difference_lower": 0.0,
+        "loss_difference_upper": 0.0,
+        "setup_plus_worker_difference": 0.0,
+        "worker_difference": 0.0,
+        "saved_search": 0,
+        "gate_saved_search": false,
+        "publication_preserved": true
+      },
+      {
+        "date": "2023-07-26",
+        "query": 1,
+        "decision": 2,
+        "loss_difference_lower": 0.0,
+        "loss_difference_upper": 0.0,
+        "setup_plus_worker_difference": 0.0,
+        "worker_difference": 0.0,
+        "saved_search": 0,
+        "gate_saved_search": false,
+        "publication_preserved": true
+      },
+      {
+        "date": "2023-07-27",
+        "query": 0,
+        "decision": 1,
+        "loss_difference_lower": 0.0,
+        "loss_difference_upper": 0.0,
+        "setup_plus_worker_difference": 0.0,
+        "worker_difference": 0.0,
+        "saved_search": 0,
+        "gate_saved_search": false,
+        "publication_preserved": true
+      },
+      {
+        "date": "2023-07-27",
+        "query": 0,
+        "decision": 3,
+        "loss_difference_lower": 0.0,
+        "loss_difference_upper": 0.0,
+        "setup_plus_worker_difference": 0.0,
+        "worker_difference": 0.0,
+        "saved_search": 0,
+        "gate_saved_search": false,
+        "publication_preserved": true
+      },
+      {
+        "date": "2023-07-27",
+        "query": 1,
+        "decision": 1,
+        "loss_difference_lower": 0.0,
+        "loss_difference_upper": 0.0,
+        "setup_plus_worker_difference": 0.0,
+        "worker_difference": 0.0,
+        "saved_search": 0,
+        "gate_saved_search": false,
+        "publication_preserved": true
+      },
+      {
+        "date": "2023-07-27",
+        "query": 1,
+        "decision": 2,
+        "loss_difference_lower": 0.0,
+        "loss_difference_upper": 0.0,
+        "setup_plus_worker_difference": 0.0,
+        "worker_difference": 0.0,
+        "saved_search": 0,
+        "gate_saved_search": false,
+        "publication_preserved": true
+      }
+    ],
+    "terminal64": [
+      {
+        "date": "2023-07-26",
+        "query": 0,
+        "decision": 1,
+        "loss_difference_lower": 0.0,
+        "loss_difference_upper": 0.0,
+        "setup_plus_worker_difference": -0.4351831240019237,
+        "worker_difference": -0.094673256000533,
+        "saved_search": 0,
+        "gate_saved_search": false,
+        "publication_preserved": true
+      },
+      {
+        "date": "2023-07-26",
+        "query": 0,
+        "decision": 2,
+        "loss_difference_lower": 0.0,
+        "loss_difference_upper": 0.0,
+        "setup_plus_worker_difference": -0.6645867859988357,
+        "worker_difference": -0.3411266369985242,
+        "saved_search": 0,
+        "gate_saved_search": false,
+        "publication_preserved": true
+      },
+      {
+        "date": "2023-07-26",
+        "query": 1,
+        "decision": 1,
+        "loss_difference_lower": 0.0,
+        "loss_difference_upper": 0.0,
+        "setup_plus_worker_difference": -3.317382337998424,
+        "worker_difference": -3.2199003329988045,
+        "saved_search": 0,
+        "gate_saved_search": false,
+        "publication_preserved": true
+      },
+      {
+        "date": "2023-07-26",
+        "query": 1,
+        "decision": 2,
+        "loss_difference_lower": 0.0,
+        "loss_difference_upper": 0.0,
+        "setup_plus_worker_difference": -0.5233945469990431,
+        "worker_difference": -0.8062318449992745,
+        "saved_search": 0,
+        "gate_saved_search": false,
+        "publication_preserved": true
+      },
+      {
+        "date": "2023-07-27",
+        "query": 0,
+        "decision": 1,
+        "loss_difference_lower": 0.0,
+        "loss_difference_upper": 0.0,
+        "setup_plus_worker_difference": -1.3170159710007283,
+        "worker_difference": -1.295537197998783,
+        "saved_search": 0,
+        "gate_saved_search": false,
+        "publication_preserved": true
+      },
+      {
+        "date": "2023-07-27",
+        "query": 0,
+        "decision": 3,
+        "loss_difference_lower": 0.0,
+        "loss_difference_upper": 0.0,
+        "setup_plus_worker_difference": 0.4392007190017466,
+        "worker_difference": 0.03056594400004542,
+        "saved_search": 0,
+        "gate_saved_search": false,
+        "publication_preserved": true
+      },
+      {
+        "date": "2023-07-27",
+        "query": 1,
+        "decision": 1,
+        "loss_difference_lower": 0.0,
+        "loss_difference_upper": 0.0,
+        "setup_plus_worker_difference": -0.20979437499954656,
+        "worker_difference": 0.10792695900090621,
+        "saved_search": 0,
+        "gate_saved_search": false,
+        "publication_preserved": true
+      },
+      {
+        "date": "2023-07-27",
+        "query": 1,
+        "decision": 2,
+        "loss_difference_lower": 0.0,
+        "loss_difference_upper": 0.0,
+        "setup_plus_worker_difference": 0.026651067002603668,
+        "worker_difference": -0.029940019998321077,
+        "saved_search": 0,
+        "gate_saved_search": false,
+        "publication_preserved": true
+      }
+    ],
+    "middle64": [
+      {
+        "date": "2023-07-26",
+        "query": 0,
+        "decision": 1,
+        "loss_difference_lower": 0.0,
+        "loss_difference_upper": 0.0,
+        "setup_plus_worker_difference": 4.74951740999677,
+        "worker_difference": 4.0420176629977504,
+        "saved_search": 0,
+        "gate_saved_search": false,
+        "publication_preserved": true
+      },
+      {
+        "date": "2023-07-26",
+        "query": 0,
+        "decision": 2,
+        "loss_difference_lower": 0.0,
+        "loss_difference_upper": 0.0,
+        "setup_plus_worker_difference": 2.100085427000522,
+        "worker_difference": 1.9191106100006436,
+        "saved_search": 0,
+        "gate_saved_search": false,
+        "publication_preserved": true
+      },
+      {
+        "date": "2023-07-26",
+        "query": 1,
+        "decision": 1,
+        "loss_difference_lower": 0.0,
+        "loss_difference_upper": 0.0,
+        "setup_plus_worker_difference": -7.004697287000454,
+        "worker_difference": -6.8003900599997,
+        "saved_search": 1,
+        "gate_saved_search": true,
+        "publication_preserved": true
+      },
+      {
+        "date": "2023-07-26",
+        "query": 1,
+        "decision": 2,
+        "loss_difference_lower": 0.0,
+        "loss_difference_upper": 0.0,
+        "setup_plus_worker_difference": -3.4750313139975333,
+        "worker_difference": -3.878558449998309,
+        "saved_search": 1,
+        "gate_saved_search": true,
+        "publication_preserved": true
+      },
+      {
+        "date": "2023-07-27",
+        "query": 0,
+        "decision": 1,
+        "loss_difference_lower": 0.0,
+        "loss_difference_upper": 0.0,
+        "setup_plus_worker_difference": 0.4504579129988997,
+        "worker_difference": 0.5782858929997019,
+        "saved_search": 0,
+        "gate_saved_search": false,
+        "publication_preserved": true
+      },
+      {
+        "date": "2023-07-27",
+        "query": 0,
+        "decision": 3,
+        "loss_difference_lower": 0.0,
+        "loss_difference_upper": 0.0,
+        "setup_plus_worker_difference": -0.6234519140016346,
+        "worker_difference": -0.9770526890024485,
+        "saved_search": 1,
+        "gate_saved_search": true,
+        "publication_preserved": true
+      },
+      {
+        "date": "2023-07-27",
+        "query": 1,
+        "decision": 1,
+        "loss_difference_lower": 0.0,
+        "loss_difference_upper": 0.0,
+        "setup_plus_worker_difference": -2.4005430699999124,
+        "worker_difference": -2.4125650429996313,
+        "saved_search": 1,
+        "gate_saved_search": true,
+        "publication_preserved": true
+      },
+      {
+        "date": "2023-07-27",
+        "query": 1,
+        "decision": 2,
+        "loss_difference_lower": 0.0,
+        "loss_difference_upper": 0.0,
+        "setup_plus_worker_difference": -4.215991071001554,
+        "worker_difference": -4.726190678000421,
+        "saved_search": 1,
+        "gate_saved_search": true,
+        "publication_preserved": true
+      }
+    ]
+  }
+}

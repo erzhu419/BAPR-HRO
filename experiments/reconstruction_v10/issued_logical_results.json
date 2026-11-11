@@ -1,0 +1,6049 @@
+{
+  "protocol": {
+    "source": "experiments/reconstruction_data_audit/city_vbz_dated_replay_v2.json.gz",
+    "methods": [
+      "off64",
+      "terminal64",
+      "middle64"
+    ],
+    "samples": 128,
+    "tolerance": 60,
+    "alpha_per_journey": 0.05,
+    "mode": "logical",
+    "alpha_rule": "6 alpha / (pi * k)^2, conditional fresh tape per probabilistic check",
+    "contract": "Shared no-feed commitment with preissued policy; accepted gate retains incumbent. Fallback computes on same snapshot and publishes after measured wall time, using public revalidation.",
+    "scheduling": "The scheduled arms bypass a worker if the same public incumbent has an irrevocable attempt due now.",
+    "unresolved": "If an actually attempted connection is unresolved, retain elapsed/deadline loss interval.",
+    "training_dates": [
+      "2023-07-25"
+    ]
+  },
+  "fit_seconds": 0.8234393020002244,
+  "rows": [
+    {
+      "date": "2023-07-26",
+      "query": 0,
+      "cpu": 2,
+      "graph_seconds": 0.10613682500024879,
+      "kernel_seconds": 0.0,
+      "method": "off64",
+      "clock": "logical",
+      "loss_lower": 835,
+      "loss_upper": 835,
+      "status": "arrived",
+      "missing_connection": null,
+      "setup_seconds": 4.250323815999764,
+      "initial_plan": [
+        8341,
+        8780,
+        9383,
+        9627,
+        9857,
+        10330
+      ],
+      "worker_seconds": 4.38695808400098,
+      "worker_cpu_seconds": 4.367218073000004,
+      "actual_seconds": 8.639519391999784,
+      "actual_cpu_seconds": 8.333970345,
+      "decisions": [
+        {
+          "clock": 29100,
+          "ready_at": 29100,
+          "wall_seconds": 2.6561850349999077,
+          "cpu_seconds": 2.6423740000000002,
+          "active_first": 8341,
+          "gate": null,
+          "search_seconds": 2.6561267959996258,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 2.1490004655788653e-06,
+          "proposed_first": 8341,
+          "publication": "retained"
+        },
+        {
+          "clock": 29185,
+          "ready_at": 29185,
+          "wall_seconds": 0.5941141820003395,
+          "cpu_seconds": 0.593970778000001,
+          "active_first": 8780,
+          "gate": null,
+          "search_seconds": 0.5934618829996907,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0006170329997985391,
+          "proposed_first": 8780,
+          "publication": "retained"
+        },
+        {
+          "clock": 29306,
+          "ready_at": 29306,
+          "wall_seconds": 0.37958087400056684,
+          "cpu_seconds": 0.379477317000001,
+          "active_first": 9383,
+          "gate": null,
+          "search_seconds": 0.3750589979999859,
+          "candidate_seconds": 0.0038866650002091774,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0006071020006856997,
+          "proposed_first": 10375,
+          "publication": "installed"
+        },
+        {
+          "clock": 29694,
+          "ready_at": 29694,
+          "wall_seconds": 0.2806236219994389,
+          "cpu_seconds": 0.28047085700000096,
+          "active_first": 10611,
+          "gate": null,
+          "search_seconds": 0.2801167549996535,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0004837379992750357,
+          "proposed_first": 10611,
+          "publication": "retained"
+        },
+        {
+          "clock": 29762,
+          "ready_at": 29762,
+          "wall_seconds": 0.24602433200016094,
+          "cpu_seconds": 0.24593825600000052,
+          "active_first": 10847,
+          "gate": null,
+          "search_seconds": 0.24540263899962156,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0005985529996905825,
+          "proposed_first": 10847,
+          "publication": "retained"
+        },
+        {
+          "clock": 29851,
+          "ready_at": 29851,
+          "wall_seconds": 0.23043003900056647,
+          "cpu_seconds": 0.22498686499999998,
+          "active_first": 11306,
+          "gate": null,
+          "search_seconds": 0.22984747900045477,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0005574150000029476,
+          "proposed_first": 11306,
+          "publication": "retained"
+        }
+      ],
+      "actions": [
+        {
+          "clock": 29100,
+          "next_clock": 29185,
+          "stop": 530,
+          "next_stop": 594,
+          "connection": 8341,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8341,
+              29115
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29185,
+          "next_clock": 29306,
+          "stop": 594,
+          "next_stop": 606,
+          "connection": 8780,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8780,
+              29213
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29306,
+          "next_clock": 29694,
+          "stop": 606,
+          "next_stop": 647,
+          "connection": 10375,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10375,
+              29620
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29694,
+          "next_clock": 29762,
+          "stop": 647,
+          "next_stop": 88,
+          "connection": 10611,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10611,
+              29708
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29762,
+          "next_clock": 29851,
+          "stop": 88,
+          "next_stop": 568,
+          "connection": 10847,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10847,
+              29780
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29851,
+          "next_clock": 29935,
+          "stop": 568,
+          "next_stop": 3,
+          "connection": 11306,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              11306,
+              29863
+            ]
+          ],
+          "while_computing": false
+        }
+      ]
+    },
+    {
+      "date": "2023-07-26",
+      "query": 0,
+      "cpu": 2,
+      "graph_seconds": 0.10613682500024879,
+      "kernel_seconds": 0.0,
+      "method": "terminal64",
+      "clock": "logical",
+      "loss_lower": 835,
+      "loss_upper": 835,
+      "status": "arrived",
+      "missing_connection": null,
+      "setup_seconds": 2.9714270469994517,
+      "initial_plan": [
+        8341,
+        8780,
+        9383,
+        9627,
+        9857,
+        10330
+      ],
+      "worker_seconds": 4.433824993001508,
+      "worker_cpu_seconds": 4.418346965000001,
+      "actual_seconds": 7.408494106999569,
+      "actual_cpu_seconds": 7.142713796000001,
+      "decisions": [
+        {
+          "clock": 29100,
+          "ready_at": 29100,
+          "wall_seconds": 2.103967630000625,
+          "cpu_seconds": 2.093558248000001,
+          "active_first": 8341,
+          "gate": null,
+          "search_seconds": 2.1037253869999404,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 1.2159998732386157e-06,
+          "gate_seconds": 0.00019661300029838458,
+          "proposed_first": 8341,
+          "publication": "retained"
+        },
+        {
+          "clock": 29185,
+          "ready_at": 29185,
+          "wall_seconds": 0.6696541500004969,
+          "cpu_seconds": 0.6677616830000002,
+          "active_first": 8780,
+          "gate": null,
+          "search_seconds": 0.6686503680002716,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0007278009998117341,
+          "gate_seconds": 0.0002228779994766228,
+          "proposed_first": 8780,
+          "publication": "retained"
+        },
+        {
+          "clock": 29306,
+          "ready_at": 29306,
+          "wall_seconds": 0.8423424650000015,
+          "cpu_seconds": 0.839428496,
+          "active_first": 9383,
+          "gate": null,
+          "search_seconds": 0.8349550129996715,
+          "candidate_seconds": 0.0063869859995975276,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0006797279993406846,
+          "gate_seconds": 0.000262343000031251,
+          "proposed_first": 10375,
+          "publication": "installed"
+        },
+        {
+          "clock": 29694,
+          "ready_at": 29694,
+          "wall_seconds": 0.4002696659999856,
+          "cpu_seconds": 0.40015265100000086,
+          "active_first": 10611,
+          "gate": {
+            "kind": "terminal",
+            "upper": 248.9264142615566,
+            "witness_seconds": 0.006281123999542615,
+            "lower": 119.99064885585008,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.39153920900025696,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0013056800007689162,
+          "gate_seconds": 0.007373837000159256,
+          "proposed_first": 10611,
+          "publication": "retained"
+        },
+        {
+          "clock": 29762,
+          "ready_at": 29762,
+          "wall_seconds": 0.4097458900005222,
+          "cpu_seconds": 0.40960080700000034,
+          "active_first": 10847,
+          "gate": {
+            "kind": "terminal",
+            "upper": 184.71607458709013,
+            "witness_seconds": 0.005079030999695533,
+            "lower": 119.95236790730436,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.4015756519993374,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0022638220007138443,
+          "gate_seconds": 0.005858331999661459,
+          "proposed_first": 10847,
+          "publication": "retained"
+        },
+        {
+          "clock": 29851,
+          "ready_at": 29851,
+          "wall_seconds": 0.007845191999876988,
+          "cpu_seconds": 0.007845079999999172,
+          "active_first": 11306,
+          "gate": {
+            "kind": "terminal",
+            "upper": 83.53326508168811,
+            "witness_seconds": 0.005998672000714578,
+            "lower": 82.98117623361735,
+            "accepted": true,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0008996090000437107,
+          "gate_seconds": 0.006913713999892934,
+          "publication": "retained"
+        }
+      ],
+      "actions": [
+        {
+          "clock": 29100,
+          "next_clock": 29185,
+          "stop": 530,
+          "next_stop": 594,
+          "connection": 8341,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8341,
+              29115
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29185,
+          "next_clock": 29306,
+          "stop": 594,
+          "next_stop": 606,
+          "connection": 8780,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8780,
+              29213
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29306,
+          "next_clock": 29694,
+          "stop": 606,
+          "next_stop": 647,
+          "connection": 10375,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10375,
+              29620
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29694,
+          "next_clock": 29762,
+          "stop": 647,
+          "next_stop": 88,
+          "connection": 10611,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10611,
+              29708
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29762,
+          "next_clock": 29851,
+          "stop": 88,
+          "next_stop": 568,
+          "connection": 10847,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10847,
+              29780
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29851,
+          "next_clock": 29935,
+          "stop": 568,
+          "next_stop": 3,
+          "connection": 11306,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              11306,
+              29863
+            ]
+          ],
+          "while_computing": false
+        }
+      ]
+    },
+    {
+      "date": "2023-07-26",
+      "query": 0,
+      "cpu": 2,
+      "graph_seconds": 0.10613682500024879,
+      "kernel_seconds": 0.6416307300005428,
+      "method": "middle64",
+      "clock": "logical",
+      "loss_lower": 835,
+      "loss_upper": 835,
+      "status": "arrived",
+      "missing_connection": null,
+      "setup_seconds": 4.279014611999628,
+      "initial_plan": [
+        8341,
+        8780,
+        9383,
+        9627,
+        9857,
+        10330
+      ],
+      "worker_seconds": 6.351108674998613,
+      "worker_cpu_seconds": 6.081262771000002,
+      "actual_seconds": 10.632382975000837,
+      "actual_cpu_seconds": 10.210463162,
+      "decisions": [
+        {
+          "clock": 29100,
+          "ready_at": 29100,
+          "wall_seconds": 1.7762163619991043,
+          "cpu_seconds": 1.6908273740000013,
+          "active_first": 8341,
+          "gate": null,
+          "search_seconds": 1.7760031329999038,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 1.720000000204891e-06,
+          "gate_seconds": 0.00017915299940796103,
+          "proposed_first": 8341,
+          "publication": "retained"
+        },
+        {
+          "clock": 29185,
+          "ready_at": 29185,
+          "wall_seconds": 2.2618452599999728,
+          "cpu_seconds": 2.196857501,
+          "active_first": 8780,
+          "gate": {
+            "kind": "middle",
+            "upper": 952.3165267182293,
+            "witness_seconds": 0.003915735998816672,
+            "lower": 667.2192808779073,
+            "accepted": false,
+            "alpha": 0.03039635509270134,
+            "worlds": 128,
+            "oracle_mean": 695.9375,
+            "cutoff": 30318,
+            "trips": 1187,
+            "connections": 12934,
+            "corridor_seconds": 0.24559353299991926,
+            "template_seconds": 0.0343222669998795,
+            "draw_seconds": 1.5128448400009802,
+            "scan_seconds": 0.023619346000486985
+          },
+          "search_seconds": 0.4401354670008004,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.00036803900002269074,
+          "gate_seconds": 1.8213029809994623,
+          "proposed_first": 8780,
+          "publication": "retained"
+        },
+        {
+          "clock": 29306,
+          "ready_at": 29306,
+          "wall_seconds": 1.7198305299989443,
+          "cpu_seconds": 1.6821267229999997,
+          "active_first": 9383,
+          "gate": {
+            "kind": "middle",
+            "upper": 866.9021594007356,
+            "witness_seconds": 0.00166101200011326,
+            "lower": 547.0265433447785,
+            "accepted": false,
+            "alpha": 0.007599088773175335,
+            "worlds": 128,
+            "oracle_mean": 578.6875,
+            "cutoff": 30353,
+            "trips": 1187,
+            "connections": 12933,
+            "corridor_seconds": 0.10540460599986545,
+            "template_seconds": 0.036549853000906296,
+            "draw_seconds": 1.1534283020009752,
+            "scan_seconds": 0.017692376999548287
+          },
+          "search_seconds": 0.3995125879991974,
+          "candidate_seconds": 0.004163034000157495,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0003117079995718086,
+          "gate_seconds": 1.3157979079987854,
+          "proposed_first": 10375,
+          "publication": "installed"
+        },
+        {
+          "clock": 29694,
+          "ready_at": 29694,
+          "wall_seconds": 0.30958150699916587,
+          "cpu_seconds": 0.25304243800000137,
+          "active_first": 10611,
+          "gate": {
+            "kind": "terminal",
+            "upper": 248.9264142615566,
+            "witness_seconds": 0.00356709200059413,
+            "lower": 119.99064885585008,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.3045248749986058,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.000807016000180738,
+          "gate_seconds": 0.004213657999571296,
+          "proposed_first": 10611,
+          "publication": "retained"
+        },
+        {
+          "clock": 29762,
+          "ready_at": 29762,
+          "wall_seconds": 0.2790923810007371,
+          "cpu_seconds": 0.2542158719999996,
+          "active_first": 10847,
+          "gate": {
+            "kind": "terminal",
+            "upper": 184.71607458709013,
+            "witness_seconds": 0.003032023998457589,
+            "lower": 119.95236790730436,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.274761569000475,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.000641593998807366,
+          "gate_seconds": 0.0036406239996722434,
+          "proposed_first": 10847,
+          "publication": "retained"
+        },
+        {
+          "clock": 29851,
+          "ready_at": 29851,
+          "wall_seconds": 0.004542635000689188,
+          "cpu_seconds": 0.004192863000000102,
+          "active_first": 11306,
+          "gate": {
+            "kind": "terminal",
+            "upper": 83.53326508168811,
+            "witness_seconds": 0.003111191001153202,
+            "lower": 82.98117623361735,
+            "accepted": true,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0009007409989862936,
+          "gate_seconds": 0.0036208210003678687,
+          "publication": "retained"
+        }
+      ],
+      "actions": [
+        {
+          "clock": 29100,
+          "next_clock": 29185,
+          "stop": 530,
+          "next_stop": 594,
+          "connection": 8341,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8341,
+              29115
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29185,
+          "next_clock": 29306,
+          "stop": 594,
+          "next_stop": 606,
+          "connection": 8780,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8780,
+              29213
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29306,
+          "next_clock": 29694,
+          "stop": 606,
+          "next_stop": 647,
+          "connection": 10375,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10375,
+              29620
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29694,
+          "next_clock": 29762,
+          "stop": 647,
+          "next_stop": 88,
+          "connection": 10611,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10611,
+              29708
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29762,
+          "next_clock": 29851,
+          "stop": 88,
+          "next_stop": 568,
+          "connection": 10847,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10847,
+              29780
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29851,
+          "next_clock": 29935,
+          "stop": 568,
+          "next_stop": 3,
+          "connection": 11306,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              11306,
+              29863
+            ]
+          ],
+          "while_computing": false
+        }
+      ]
+    },
+    {
+      "date": "2023-07-26",
+      "query": 1,
+      "cpu": 6,
+      "graph_seconds": 0.18555221399947186,
+      "kernel_seconds": 0.7653387689997544,
+      "method": "middle64",
+      "clock": "logical",
+      "loss_lower": 1886,
+      "loss_upper": 1886,
+      "status": "arrived",
+      "missing_connection": null,
+      "setup_seconds": 7.467821457999889,
+      "initial_plan": [
+        8315,
+        8538,
+        8759,
+        9224,
+        9704,
+        9938,
+        10407,
+        10879,
+        11339,
+        11788,
+        12230,
+        12695,
+        12918,
+        13372,
+        13588,
+        13816,
+        14288,
+        14501,
+        14737,
+        14955
+      ],
+      "worker_seconds": 18.452373252001053,
+      "worker_cpu_seconds": 17.936052744999998,
+      "actual_seconds": 25.927583331999813,
+      "actual_cpu_seconds": 25.131525642,
+      "decisions": [
+        {
+          "clock": 29100,
+          "ready_at": 29100,
+          "wall_seconds": 2.706686618999811,
+          "cpu_seconds": 2.519797661,
+          "active_first": 8315,
+          "gate": null,
+          "search_seconds": 2.7063995460002843,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 1.5240002539940178e-06,
+          "gate_seconds": 0.00024032600049395114,
+          "proposed_first": 8315,
+          "publication": "retained"
+        },
+        {
+          "clock": 29142,
+          "ready_at": 29142,
+          "wall_seconds": 1.476048333000108,
+          "cpu_seconds": 1.4152741620000011,
+          "active_first": 8538,
+          "gate": {
+            "kind": "terminal",
+            "upper": 1826.2865299983964,
+            "witness_seconds": 0.009594205999746919,
+            "lower": 0.0,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 1.4654732710005192,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.000626807000116969,
+          "gate_seconds": 0.009911371000271174,
+          "proposed_first": 8538,
+          "publication": "retained"
+        },
+        {
+          "clock": 29213,
+          "ready_at": 29213,
+          "wall_seconds": 2.3316420320006728,
+          "cpu_seconds": 2.331026419999999,
+          "active_first": 8759,
+          "gate": {
+            "kind": "terminal",
+            "upper": 1732.1447680897377,
+            "witness_seconds": 0.008980798000266077,
+            "lower": 0.0,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 2.321709653000653,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0006111100001362502,
+          "gate_seconds": 0.009264155999517243,
+          "proposed_first": 8759,
+          "publication": "retained"
+        },
+        {
+          "clock": 29326,
+          "ready_at": 29326,
+          "wall_seconds": 2.311523814000793,
+          "cpu_seconds": 2.310930624000001,
+          "active_first": 9224,
+          "gate": {
+            "kind": "terminal",
+            "upper": 1636.8539346371144,
+            "witness_seconds": 0.012729801000205043,
+            "lower": 0.0,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 2.2960826880007517,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0021522549996007,
+          "gate_seconds": 0.013221063999480975,
+          "proposed_first": 9224,
+          "publication": "retained"
+        },
+        {
+          "clock": 29458,
+          "ready_at": 29458,
+          "wall_seconds": 1.8995159010009957,
+          "cpu_seconds": 1.844071478,
+          "active_first": 9704,
+          "gate": {
+            "kind": "terminal",
+            "upper": 1524.2997611180106,
+            "witness_seconds": 0.017656286999226722,
+            "lower": 119.99999999999963,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 1.8772408580007323,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.001074814000276092,
+          "gate_seconds": 0.02115722700000333,
+          "proposed_first": 9704,
+          "publication": "retained"
+        },
+        {
+          "clock": 29529,
+          "ready_at": 29529,
+          "wall_seconds": 1.383362421000129,
+          "cpu_seconds": 1.3139280679999992,
+          "active_first": 9938,
+          "gate": {
+            "kind": "terminal",
+            "upper": 1432.4176947569435,
+            "witness_seconds": 0.014045443000213709,
+            "lower": 119.99999999996334,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 1.365255659999093,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0008132380007737083,
+          "gate_seconds": 0.017253206999157555,
+          "proposed_first": 9938,
+          "publication": "retained"
+        },
+        {
+          "clock": 29594,
+          "ready_at": 29594,
+          "wall_seconds": 1.1157980719999614,
+          "cpu_seconds": 1.059792354999999,
+          "active_first": 10407,
+          "gate": {
+            "kind": "terminal",
+            "upper": 1358.0449935878537,
+            "witness_seconds": 0.010471198000232107,
+            "lower": 119.99999999999454,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 1.1021211459992628,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0010528450002311729,
+          "gate_seconds": 0.012589609001224744,
+          "proposed_first": 10407,
+          "publication": "retained"
+        },
+        {
+          "clock": 29762,
+          "ready_at": 29762,
+          "wall_seconds": 0.6786054920012248,
+          "cpu_seconds": 0.6521075569999972,
+          "active_first": 10879,
+          "gate": {
+            "kind": "terminal",
+            "upper": 1180.7273748931275,
+            "witness_seconds": 0.009584565001205192,
+            "lower": 119.99999999999991,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.6661735600009706,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0008391020000999561,
+          "gate_seconds": 0.011550540000826004,
+          "proposed_first": 10879,
+          "publication": "retained"
+        },
+        {
+          "clock": 29855,
+          "ready_at": 29855,
+          "wall_seconds": 0.8346684659991297,
+          "cpu_seconds": 0.8344411029999996,
+          "active_first": 11339,
+          "gate": {
+            "kind": "terminal",
+            "upper": 1083.5567199215734,
+            "witness_seconds": 0.008898150001186877,
+            "lower": 119.99999999992161,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.8234117499996501,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0007762949990137713,
+          "gate_seconds": 0.010446781001519412,
+          "proposed_first": 11339,
+          "publication": "retained"
+        },
+        {
+          "clock": 29938,
+          "ready_at": 29938,
+          "wall_seconds": 0.5129546139996819,
+          "cpu_seconds": 0.512830962999999,
+          "active_first": 11788,
+          "gate": {
+            "kind": "terminal",
+            "upper": 996.1576941474655,
+            "witness_seconds": 0.008830024000417325,
+            "lower": 119.99999999996984,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.5014016709992575,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.001201396000396926,
+          "gate_seconds": 0.010317292999388883,
+          "proposed_first": 11788,
+          "publication": "retained"
+        },
+        {
+          "clock": 30103,
+          "ready_at": 30103,
+          "wall_seconds": 0.4802567539991287,
+          "cpu_seconds": 0.4801316129999975,
+          "active_first": 12230,
+          "gate": {
+            "kind": "terminal",
+            "upper": 826.16631380832,
+            "witness_seconds": 0.008473570000205655,
+            "lower": 119.9999999990993,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.46901335599977756,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0010770790013339138,
+          "gate_seconds": 0.010131514000022435,
+          "proposed_first": 12230,
+          "publication": "retained"
+        },
+        {
+          "clock": 30287,
+          "ready_at": 30287,
+          "wall_seconds": 0.45602337300078943,
+          "cpu_seconds": 0.45586636900000244,
+          "active_first": 12695,
+          "gate": {
+            "kind": "terminal",
+            "upper": 650.31627726374,
+            "witness_seconds": 0.008290166000733734,
+            "lower": 119.9999999999506,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.4449850630007859,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0012757860004057875,
+          "gate_seconds": 0.009723519999170094,
+          "proposed_first": 12695,
+          "publication": "retained"
+        },
+        {
+          "clock": 30372,
+          "ready_at": 30372,
+          "wall_seconds": 0.4117448550005065,
+          "cpu_seconds": 0.41163717199999894,
+          "active_first": 12918,
+          "gate": {
+            "kind": "terminal",
+            "upper": 581.7463723938527,
+            "witness_seconds": 0.008070403999226983,
+            "lower": 119.99999999943783,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.4010409439997602,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0010805270012497203,
+          "gate_seconds": 0.009588088998498279,
+          "proposed_first": 12918,
+          "publication": "retained"
+        },
+        {
+          "clock": 30446,
+          "ready_at": 30446,
+          "wall_seconds": 0.35786824800015893,
+          "cpu_seconds": 0.3577825109999999,
+          "active_first": 13372,
+          "gate": {
+            "kind": "terminal",
+            "upper": 517.027235460177,
+            "witness_seconds": 0.0071736919999239035,
+            "lower": 119.99999999998626,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.3481753939995542,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.001408379999702447,
+          "gate_seconds": 0.008252535999417887,
+          "proposed_first": 13372,
+          "publication": "retained"
+        },
+        {
+          "clock": 30534,
+          "ready_at": 30534,
+          "wall_seconds": 0.35549485000046843,
+          "cpu_seconds": 0.35540941000000004,
+          "active_first": 13588,
+          "gate": {
+            "kind": "terminal",
+            "upper": 423.93366526947307,
+            "witness_seconds": 0.006620796000788687,
+            "lower": 119.99999978133908,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.3468737639996107,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.000934563999180682,
+          "gate_seconds": 0.007649242001207313,
+          "proposed_first": 13588,
+          "publication": "retained"
+        },
+        {
+          "clock": 30603,
+          "ready_at": 30603,
+          "wall_seconds": 0.32432003199937753,
+          "cpu_seconds": 0.3242228460000014,
+          "active_first": 13816,
+          "gate": {
+            "kind": "terminal",
+            "upper": 356.87766413600207,
+            "witness_seconds": 0.0062389579998125555,
+            "lower": 119.99999766832164,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.3156982649998099,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0012793530004273634,
+          "gate_seconds": 0.007297858999663731,
+          "proposed_first": 13816,
+          "publication": "retained"
+        },
+        {
+          "clock": 30681,
+          "ready_at": 30681,
+          "wall_seconds": 0.3736885489997803,
+          "cpu_seconds": 0.34874723400000107,
+          "active_first": 14288,
+          "gate": {
+            "kind": "terminal",
+            "upper": 284.8619138303211,
+            "witness_seconds": 0.005564521999986027,
+            "lower": 119.99998312212027,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.3657857950001926,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0014880509988870472,
+          "gate_seconds": 0.00637688399910985,
+          "proposed_first": 14288,
+          "publication": "retained"
+        },
+        {
+          "clock": 30772,
+          "ready_at": 30772,
+          "wall_seconds": 0.43179791899819975,
+          "cpu_seconds": 0.3984788839999993,
+          "active_first": 14501,
+          "gate": {
+            "kind": "terminal",
+            "upper": 191.38720886550755,
+            "witness_seconds": 0.005125786999997217,
+            "lower": 119.95024588227653,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.42489300399938656,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0011883099996339297,
+          "gate_seconds": 0.005678789999365108,
+          "proposed_first": 14501,
+          "publication": "retained"
+        },
+        {
+          "clock": 30847,
+          "ready_at": 30847,
+          "wall_seconds": 0.0061303279999265214,
+          "cpu_seconds": 0.005659696000002157,
+          "active_first": 14737,
+          "gate": {
+            "kind": "terminal",
+            "upper": 118.83327379411139,
+            "witness_seconds": 0.004080587999851559,
+            "lower": 110.41374251887318,
+            "accepted": true,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.00151979600013874,
+          "gate_seconds": 0.0045929879997856915,
+          "publication": "retained"
+        },
+        {
+          "clock": 30903,
+          "ready_at": 30903,
+          "wall_seconds": 0.004242580000209273,
+          "cpu_seconds": 0.003916619000001731,
+          "active_first": 14955,
+          "gate": {
+            "kind": "terminal",
+            "upper": 61.46019256276327,
+            "witness_seconds": 0.0028937219994986663,
+            "lower": 61.400238164504216,
+            "accepted": true,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0010373269997216994,
+          "gate_seconds": 0.003191203999449499,
+          "publication": "retained"
+        }
+      ],
+      "actions": [
+        {
+          "clock": 29100,
+          "next_clock": 29142,
+          "stop": 427,
+          "next_stop": 614,
+          "connection": 8315,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8315,
+              29104
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29142,
+          "next_clock": 29213,
+          "stop": 614,
+          "next_stop": 3,
+          "connection": 8538,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8538,
+              29157
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29213,
+          "next_clock": 29326,
+          "stop": 3,
+          "next_stop": 568,
+          "connection": 8759,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8759,
+              29230
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29326,
+          "next_clock": 29458,
+          "stop": 568,
+          "next_stop": 88,
+          "connection": 9224,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9224,
+              29391
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29458,
+          "next_clock": 29529,
+          "stop": 88,
+          "next_stop": 647,
+          "connection": 9704,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9704,
+              29475
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29529,
+          "next_clock": 29594,
+          "stop": 647,
+          "next_stop": 606,
+          "connection": 9938,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9938,
+              29540
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29594,
+          "next_clock": 29762,
+          "stop": 606,
+          "next_stop": 592,
+          "connection": 10407,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10407,
+              29643
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29762,
+          "next_clock": 29855,
+          "stop": 592,
+          "next_stop": 495,
+          "connection": 10879,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10879,
+              29786
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29855,
+          "next_clock": 29938,
+          "stop": 495,
+          "next_stop": 164,
+          "connection": 11339,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              11339,
+              29875
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29938,
+          "next_clock": 30103,
+          "stop": 164,
+          "next_stop": 165,
+          "connection": 11788,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              11788,
+              29991
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30103,
+          "next_clock": 30287,
+          "stop": 165,
+          "next_stop": 604,
+          "connection": 12230,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12230,
+              30158
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30287,
+          "next_clock": 30372,
+          "stop": 604,
+          "next_stop": 319,
+          "connection": 12695,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12695,
+              30302
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30372,
+          "next_clock": 30446,
+          "stop": 319,
+          "next_stop": 470,
+          "connection": 12918,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12918,
+              30387
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30446,
+          "next_clock": 30534,
+          "stop": 470,
+          "next_stop": 563,
+          "connection": 13372,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13372,
+              30460
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30534,
+          "next_clock": 30603,
+          "stop": 563,
+          "next_stop": 406,
+          "connection": 13588,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13588,
+              30547
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30603,
+          "next_clock": 30681,
+          "stop": 406,
+          "next_stop": 509,
+          "connection": 13816,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13816,
+              30614
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30681,
+          "next_clock": 30772,
+          "stop": 509,
+          "next_stop": 430,
+          "connection": 14288,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14288,
+              30700
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30772,
+          "next_clock": 30847,
+          "stop": 430,
+          "next_stop": 321,
+          "connection": 14501,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14501,
+              30783
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30847,
+          "next_clock": 30903,
+          "stop": 321,
+          "next_stop": 560,
+          "connection": 14737,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14737,
+              30861
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30903,
+          "next_clock": 30986,
+          "stop": 560,
+          "next_stop": 607,
+          "connection": 14955,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14955,
+              30916
+            ]
+          ],
+          "while_computing": false
+        }
+      ]
+    },
+    {
+      "date": "2023-07-26",
+      "query": 1,
+      "cpu": 6,
+      "graph_seconds": 0.18555221399947186,
+      "kernel_seconds": 0.0,
+      "method": "terminal64",
+      "clock": "logical",
+      "loss_lower": 1886,
+      "loss_upper": 1886,
+      "status": "arrived",
+      "missing_connection": null,
+      "setup_seconds": 5.108161784000913,
+      "initial_plan": [
+        8315,
+        8538,
+        8759,
+        9224,
+        9704,
+        9938,
+        10407,
+        10879,
+        11339,
+        11788,
+        12230,
+        12695,
+        12918,
+        13372,
+        13588,
+        13816,
+        14288,
+        14501,
+        14737,
+        14955
+      ],
+      "worker_seconds": 18.131079802995373,
+      "worker_cpu_seconds": 17.332012143999993,
+      "actual_seconds": 23.247062137001194,
+      "actual_cpu_seconds": 22.062240222,
+      "decisions": [
+        {
+          "clock": 29100,
+          "ready_at": 29100,
+          "wall_seconds": 3.1660105509999994,
+          "cpu_seconds": 3.045768192999997,
+          "active_first": 8315,
+          "gate": null,
+          "search_seconds": 3.1657776730007754,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 1.312999302172102e-06,
+          "gate_seconds": 0.00017922400002134964,
+          "proposed_first": 8315,
+          "publication": "retained"
+        },
+        {
+          "clock": 29142,
+          "ready_at": 29142,
+          "wall_seconds": 2.1250788350007497,
+          "cpu_seconds": 1.9441997059999991,
+          "active_first": 8538,
+          "gate": {
+            "kind": "terminal",
+            "upper": 1826.2865299983964,
+            "witness_seconds": 0.013107324999509729,
+            "lower": 0.0,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 2.110317364000366,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.00114112700066471,
+          "gate_seconds": 0.013556105001043761,
+          "proposed_first": 8538,
+          "publication": "retained"
+        },
+        {
+          "clock": 29213,
+          "ready_at": 29213,
+          "wall_seconds": 2.286452377000387,
+          "cpu_seconds": 2.193408142999999,
+          "active_first": 8759,
+          "gate": {
+            "kind": "terminal",
+            "upper": 1732.1447680897377,
+            "witness_seconds": 0.012957726999957231,
+            "lower": 0.0,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 2.271279800999764,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0014785619987378595,
+          "gate_seconds": 0.013645607999933418,
+          "proposed_first": 8759,
+          "publication": "retained"
+        },
+        {
+          "clock": 29326,
+          "ready_at": 29326,
+          "wall_seconds": 1.4045763710000756,
+          "cpu_seconds": 1.3872732299999981,
+          "active_first": 9224,
+          "gate": {
+            "kind": "terminal",
+            "upper": 1636.8539346371144,
+            "witness_seconds": 0.009489341000517015,
+            "lower": 0.0,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 1.3938468319993262,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.000792147999163717,
+          "gate_seconds": 0.009896183000819292,
+          "proposed_first": 9224,
+          "publication": "retained"
+        },
+        {
+          "clock": 29458,
+          "ready_at": 29458,
+          "wall_seconds": 1.429352884999389,
+          "cpu_seconds": 1.4212255930000026,
+          "active_first": 9704,
+          "gate": {
+            "kind": "terminal",
+            "upper": 1524.2997611180106,
+            "witness_seconds": 0.009186119999867515,
+            "lower": 119.99999999999963,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 1.417419155000971,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0006451030003518099,
+          "gate_seconds": 0.011244852999880095,
+          "proposed_first": 9704,
+          "publication": "retained"
+        },
+        {
+          "clock": 29529,
+          "ready_at": 29529,
+          "wall_seconds": 1.2673552899996139,
+          "cpu_seconds": 1.1512940940000007,
+          "active_first": 9938,
+          "gate": {
+            "kind": "terminal",
+            "upper": 1432.4176947569435,
+            "witness_seconds": 0.010573909999948228,
+            "lower": 119.99999999996334,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 1.2532716980003897,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0007933910001156619,
+          "gate_seconds": 0.013231867998911184,
+          "proposed_first": 9938,
+          "publication": "retained"
+        },
+        {
+          "clock": 29594,
+          "ready_at": 29594,
+          "wall_seconds": 0.9909806910000043,
+          "cpu_seconds": 0.9108751050000023,
+          "active_first": 10407,
+          "gate": {
+            "kind": "terminal",
+            "upper": 1358.0449935878537,
+            "witness_seconds": 0.011903766999239451,
+            "lower": 119.99999999999454,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.974227286000314,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.002307834000021103,
+          "gate_seconds": 0.014401036998606287,
+          "proposed_first": 10407,
+          "publication": "retained"
+        },
+        {
+          "clock": 29762,
+          "ready_at": 29762,
+          "wall_seconds": 0.8146120269993844,
+          "cpu_seconds": 0.7105937099999977,
+          "active_first": 10879,
+          "gate": {
+            "kind": "terminal",
+            "upper": 1180.7273748931275,
+            "witness_seconds": 0.009960008999769343,
+            "lower": 119.99999999999991,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.8017637239991018,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0009173939997708658,
+          "gate_seconds": 0.011889174998941598,
+          "proposed_first": 10879,
+          "publication": "retained"
+        },
+        {
+          "clock": 29855,
+          "ready_at": 29855,
+          "wall_seconds": 0.9244820420008182,
+          "cpu_seconds": 0.9027233179999996,
+          "active_first": 11339,
+          "gate": {
+            "kind": "terminal",
+            "upper": 1083.5567199215734,
+            "witness_seconds": 0.009807484999328153,
+            "lower": 119.99999999992161,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.9113136119995033,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0013801690001855604,
+          "gate_seconds": 0.011741264001102536,
+          "proposed_first": 11339,
+          "publication": "retained"
+        },
+        {
+          "clock": 29938,
+          "ready_at": 29938,
+          "wall_seconds": 0.6037291859993275,
+          "cpu_seconds": 0.5697892849999988,
+          "active_first": 11788,
+          "gate": {
+            "kind": "terminal",
+            "upper": 996.1576941474655,
+            "witness_seconds": 0.00921948400173278,
+            "lower": 119.99999999996984,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.5915928630001872,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0011612679991230834,
+          "gate_seconds": 0.010930349999398459,
+          "proposed_first": 11788,
+          "publication": "retained"
+        },
+        {
+          "clock": 30103,
+          "ready_at": 30103,
+          "wall_seconds": 0.47306422800102155,
+          "cpu_seconds": 0.47093547200000074,
+          "active_first": 12230,
+          "gate": {
+            "kind": "terminal",
+            "upper": 826.16631380832,
+            "witness_seconds": 0.009103316000619088,
+            "lower": 119.9999999990993,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.4610345419987425,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0012946539991389727,
+          "gate_seconds": 0.010695255999962683,
+          "proposed_first": 12230,
+          "publication": "retained"
+        },
+        {
+          "clock": 30287,
+          "ready_at": 30287,
+          "wall_seconds": 0.4570410340002127,
+          "cpu_seconds": 0.45687982499999436,
+          "active_first": 12695,
+          "gate": {
+            "kind": "terminal",
+            "upper": 650.31627726374,
+            "witness_seconds": 0.008013028998902882,
+            "lower": 119.9999999999506,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.4467276870000205,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0009044580001500435,
+          "gate_seconds": 0.00937112899919157,
+          "proposed_first": 12695,
+          "publication": "retained"
+        },
+        {
+          "clock": 30372,
+          "ready_at": 30372,
+          "wall_seconds": 0.4216395979983645,
+          "cpu_seconds": 0.4215052010000022,
+          "active_first": 12918,
+          "gate": {
+            "kind": "terminal",
+            "upper": 581.7463723938527,
+            "witness_seconds": 0.007980229000168038,
+            "lower": 119.99999999943783,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.4109179139995831,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0013811999997415114,
+          "gate_seconds": 0.009293142000387888,
+          "proposed_first": 12918,
+          "publication": "retained"
+        },
+        {
+          "clock": 30446,
+          "ready_at": 30446,
+          "wall_seconds": 0.3806428549996781,
+          "cpu_seconds": 0.3805240789999971,
+          "active_first": 13372,
+          "gate": {
+            "kind": "terminal",
+            "upper": 517.027235460177,
+            "witness_seconds": 0.007413695000650478,
+            "lower": 119.99999999998626,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.3705653120014176,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0014122150005277945,
+          "gate_seconds": 0.008625792001112131,
+          "proposed_first": 13372,
+          "publication": "retained"
+        },
+        {
+          "clock": 30534,
+          "ready_at": 30534,
+          "wall_seconds": 0.3816841369989561,
+          "cpu_seconds": 0.36099039599999827,
+          "active_first": 13588,
+          "gate": {
+            "kind": "terminal",
+            "upper": 423.93366526947307,
+            "witness_seconds": 0.006926091000423185,
+            "lower": 119.99999978133908,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.372262609000245,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0012351369987300131,
+          "gate_seconds": 0.008143760000166367,
+          "proposed_first": 13588,
+          "publication": "retained"
+        },
+        {
+          "clock": 30603,
+          "ready_at": 30603,
+          "wall_seconds": 0.3146615049990942,
+          "cpu_seconds": 0.3145744199999996,
+          "active_first": 13816,
+          "gate": {
+            "kind": "terminal",
+            "upper": 356.87766413600207,
+            "witness_seconds": 0.006151579998913803,
+            "lower": 119.99999766832164,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.3067264740002429,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.000872238999363617,
+          "gate_seconds": 0.007024771999567747,
+          "proposed_first": 13816,
+          "publication": "retained"
+        },
+        {
+          "clock": 30681,
+          "ready_at": 30681,
+          "wall_seconds": 0.30085728199992445,
+          "cpu_seconds": 0.30073573600000003,
+          "active_first": 14288,
+          "gate": {
+            "kind": "terminal",
+            "upper": 284.8619138303211,
+            "witness_seconds": 0.005447883000670117,
+            "lower": 119.99998312212027,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.2936004839993984,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0010822590011230204,
+          "gate_seconds": 0.0061340430002019275,
+          "proposed_first": 14288,
+          "publication": "retained"
+        },
+        {
+          "clock": 30772,
+          "ready_at": 30772,
+          "wall_seconds": 0.3803478030004044,
+          "cpu_seconds": 0.3802030599999995,
+          "active_first": 14501,
+          "gate": {
+            "kind": "terminal",
+            "upper": 191.38720886550755,
+            "witness_seconds": 0.00482944800023688,
+            "lower": 119.95024588227653,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.3736817899989546,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0011306319993309444,
+          "gate_seconds": 0.005499614000655129,
+          "proposed_first": 14501,
+          "publication": "retained"
+        },
+        {
+          "clock": 30847,
+          "ready_at": 30847,
+          "wall_seconds": 0.004976492999048787,
+          "cpu_seconds": 0.0049779620000052205,
+          "active_first": 14737,
+          "gate": {
+            "kind": "terminal",
+            "upper": 118.83327379411139,
+            "witness_seconds": 0.0037098290013091173,
+            "lower": 110.41374251887318,
+            "accepted": true,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0008876720003172522,
+          "gate_seconds": 0.004076143999554915,
+          "publication": "retained"
+        },
+        {
+          "clock": 30903,
+          "ready_at": 30903,
+          "wall_seconds": 0.0035346129989193287,
+          "cpu_seconds": 0.00353561600000063,
+          "active_first": 14955,
+          "gate": {
+            "kind": "terminal",
+            "upper": 61.46019256276327,
+            "witness_seconds": 0.002617287000248325,
+            "lower": 61.400238164504216,
+            "accepted": true,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0006762789998902008,
+          "gate_seconds": 0.0028473410002334276,
+          "publication": "retained"
+        }
+      ],
+      "actions": [
+        {
+          "clock": 29100,
+          "next_clock": 29142,
+          "stop": 427,
+          "next_stop": 614,
+          "connection": 8315,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8315,
+              29104
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29142,
+          "next_clock": 29213,
+          "stop": 614,
+          "next_stop": 3,
+          "connection": 8538,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8538,
+              29157
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29213,
+          "next_clock": 29326,
+          "stop": 3,
+          "next_stop": 568,
+          "connection": 8759,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8759,
+              29230
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29326,
+          "next_clock": 29458,
+          "stop": 568,
+          "next_stop": 88,
+          "connection": 9224,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9224,
+              29391
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29458,
+          "next_clock": 29529,
+          "stop": 88,
+          "next_stop": 647,
+          "connection": 9704,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9704,
+              29475
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29529,
+          "next_clock": 29594,
+          "stop": 647,
+          "next_stop": 606,
+          "connection": 9938,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9938,
+              29540
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29594,
+          "next_clock": 29762,
+          "stop": 606,
+          "next_stop": 592,
+          "connection": 10407,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10407,
+              29643
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29762,
+          "next_clock": 29855,
+          "stop": 592,
+          "next_stop": 495,
+          "connection": 10879,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10879,
+              29786
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29855,
+          "next_clock": 29938,
+          "stop": 495,
+          "next_stop": 164,
+          "connection": 11339,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              11339,
+              29875
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29938,
+          "next_clock": 30103,
+          "stop": 164,
+          "next_stop": 165,
+          "connection": 11788,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              11788,
+              29991
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30103,
+          "next_clock": 30287,
+          "stop": 165,
+          "next_stop": 604,
+          "connection": 12230,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12230,
+              30158
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30287,
+          "next_clock": 30372,
+          "stop": 604,
+          "next_stop": 319,
+          "connection": 12695,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12695,
+              30302
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30372,
+          "next_clock": 30446,
+          "stop": 319,
+          "next_stop": 470,
+          "connection": 12918,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12918,
+              30387
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30446,
+          "next_clock": 30534,
+          "stop": 470,
+          "next_stop": 563,
+          "connection": 13372,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13372,
+              30460
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30534,
+          "next_clock": 30603,
+          "stop": 563,
+          "next_stop": 406,
+          "connection": 13588,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13588,
+              30547
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30603,
+          "next_clock": 30681,
+          "stop": 406,
+          "next_stop": 509,
+          "connection": 13816,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13816,
+              30614
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30681,
+          "next_clock": 30772,
+          "stop": 509,
+          "next_stop": 430,
+          "connection": 14288,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14288,
+              30700
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30772,
+          "next_clock": 30847,
+          "stop": 430,
+          "next_stop": 321,
+          "connection": 14501,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14501,
+              30783
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30847,
+          "next_clock": 30903,
+          "stop": 321,
+          "next_stop": 560,
+          "connection": 14737,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14737,
+              30861
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30903,
+          "next_clock": 30986,
+          "stop": 560,
+          "next_stop": 607,
+          "connection": 14955,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14955,
+              30916
+            ]
+          ],
+          "while_computing": false
+        }
+      ]
+    },
+    {
+      "date": "2023-07-26",
+      "query": 1,
+      "cpu": 6,
+      "graph_seconds": 0.18555221399947186,
+      "kernel_seconds": 0.0,
+      "method": "off64",
+      "clock": "logical",
+      "loss_lower": 1886,
+      "loss_upper": 1886,
+      "status": "arrived",
+      "missing_connection": null,
+      "setup_seconds": 4.796152818998962,
+      "initial_plan": [
+        8315,
+        8538,
+        8759,
+        9224,
+        9704,
+        9938,
+        10407,
+        10879,
+        11339,
+        11788,
+        12230,
+        12695,
+        12918,
+        13372,
+        13588,
+        13816,
+        14288,
+        14501,
+        14737,
+        14955
+      ],
+      "worker_seconds": 15.082626302995777,
+      "worker_cpu_seconds": 14.608078810999999,
+      "actual_seconds": 19.886155834999954,
+      "actual_cpu_seconds": 19.134143673000004,
+      "decisions": [
+        {
+          "clock": 29100,
+          "ready_at": 29100,
+          "wall_seconds": 2.5335651069999585,
+          "cpu_seconds": 2.5002584389999996,
+          "active_first": 8315,
+          "gate": null,
+          "search_seconds": 2.533531588000187,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 1.0530002327868715e-06,
+          "proposed_first": 8315,
+          "publication": "retained"
+        },
+        {
+          "clock": 29142,
+          "ready_at": 29142,
+          "wall_seconds": 1.2970685250002134,
+          "cpu_seconds": 1.2965744239999992,
+          "active_first": 8538,
+          "gate": null,
+          "search_seconds": 1.2965109289998509,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0005284720009512966,
+          "proposed_first": 8538,
+          "publication": "retained"
+        },
+        {
+          "clock": 29213,
+          "ready_at": 29213,
+          "wall_seconds": 1.3377560989993071,
+          "cpu_seconds": 1.3194730209999932,
+          "active_first": 8759,
+          "gate": null,
+          "search_seconds": 1.3370611529990128,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0006650550003541866,
+          "proposed_first": 8759,
+          "publication": "retained"
+        },
+        {
+          "clock": 29326,
+          "ready_at": 29326,
+          "wall_seconds": 1.3025841409998975,
+          "cpu_seconds": 1.2019336859999967,
+          "active_first": 9224,
+          "gate": null,
+          "search_seconds": 1.3020213120016706,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0005296939998515882,
+          "proposed_first": 9224,
+          "publication": "retained"
+        },
+        {
+          "clock": 29458,
+          "ready_at": 29458,
+          "wall_seconds": 1.0865391079987603,
+          "cpu_seconds": 1.0025177529999993,
+          "active_first": 9704,
+          "gate": null,
+          "search_seconds": 1.0859215620002942,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0005872780002391664,
+          "proposed_first": 9704,
+          "publication": "retained"
+        },
+        {
+          "clock": 29529,
+          "ready_at": 29529,
+          "wall_seconds": 0.9798759449986392,
+          "cpu_seconds": 0.9042048210000004,
+          "active_first": 9938,
+          "gate": null,
+          "search_seconds": 0.9792464349993679,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0006008479995216476,
+          "proposed_first": 9938,
+          "publication": "retained"
+        },
+        {
+          "clock": 29594,
+          "ready_at": 29594,
+          "wall_seconds": 0.8215648749992397,
+          "cpu_seconds": 0.8053743040000043,
+          "active_first": 10407,
+          "gate": null,
+          "search_seconds": 0.8205485700000281,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0009844989999692189,
+          "proposed_first": 10407,
+          "publication": "retained"
+        },
+        {
+          "clock": 29762,
+          "ready_at": 29762,
+          "wall_seconds": 0.8193579220005631,
+          "cpu_seconds": 0.8191488209999989,
+          "active_first": 10879,
+          "gate": null,
+          "search_seconds": 0.8184003189999203,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0009264359996450366,
+          "proposed_first": 10879,
+          "publication": "retained"
+        },
+        {
+          "clock": 29855,
+          "ready_at": 29855,
+          "wall_seconds": 0.7806230449987197,
+          "cpu_seconds": 0.7803557540000057,
+          "active_first": 11339,
+          "gate": null,
+          "search_seconds": 0.7797771309997188,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0008131340000545606,
+          "proposed_first": 11339,
+          "publication": "retained"
+        },
+        {
+          "clock": 29938,
+          "ready_at": 29938,
+          "wall_seconds": 0.4885381439999037,
+          "cpu_seconds": 0.4883441009999956,
+          "active_first": 11788,
+          "gate": null,
+          "search_seconds": 0.48737077099940507,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.001132719000452198,
+          "proposed_first": 11788,
+          "publication": "retained"
+        },
+        {
+          "clock": 30103,
+          "ready_at": 30103,
+          "wall_seconds": 0.4272046700007195,
+          "cpu_seconds": 0.4270883519999984,
+          "active_first": 12230,
+          "gate": null,
+          "search_seconds": 0.42597141599981114,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0011985099990852177,
+          "proposed_first": 12230,
+          "publication": "retained"
+        },
+        {
+          "clock": 30287,
+          "ready_at": 30287,
+          "wall_seconds": 0.40757717400083493,
+          "cpu_seconds": 0.40745413899999505,
+          "active_first": 12695,
+          "gate": null,
+          "search_seconds": 0.4058712159985589,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0016706019996490795,
+          "proposed_first": 12695,
+          "publication": "retained"
+        },
+        {
+          "clock": 30372,
+          "ready_at": 30372,
+          "wall_seconds": 0.37739504700039106,
+          "cpu_seconds": 0.3772696550000063,
+          "active_first": 12918,
+          "gate": null,
+          "search_seconds": 0.37617954000052123,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0011788280007749563,
+          "proposed_first": 12918,
+          "publication": "retained"
+        },
+        {
+          "clock": 30446,
+          "ready_at": 30446,
+          "wall_seconds": 0.38923886199881963,
+          "cpu_seconds": 0.38910499499999673,
+          "active_first": 13372,
+          "gate": null,
+          "search_seconds": 0.3876037070003804,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.001603037000677432,
+          "proposed_first": 13372,
+          "publication": "retained"
+        },
+        {
+          "clock": 30534,
+          "ready_at": 30534,
+          "wall_seconds": 0.3634591259997251,
+          "cpu_seconds": 0.3476970669999986,
+          "active_first": 13588,
+          "gate": null,
+          "search_seconds": 0.3619049550015916,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.001523726999948849,
+          "proposed_first": 13588,
+          "publication": "retained"
+        },
+        {
+          "clock": 30603,
+          "ready_at": 30603,
+          "wall_seconds": 0.33999476700046216,
+          "cpu_seconds": 0.3137651100000056,
+          "active_first": 13816,
+          "gate": null,
+          "search_seconds": 0.33887382200009597,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0010856070002773777,
+          "proposed_first": 13816,
+          "publication": "retained"
+        },
+        {
+          "clock": 30681,
+          "ready_at": 30681,
+          "wall_seconds": 0.3432344220000232,
+          "cpu_seconds": 0.316744559,
+          "active_first": 14288,
+          "gate": null,
+          "search_seconds": 0.34126053799991496,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.001939230000061798,
+          "proposed_first": 14288,
+          "publication": "retained"
+        },
+        {
+          "clock": 30772,
+          "ready_at": 30772,
+          "wall_seconds": 0.4523851449994254,
+          "cpu_seconds": 0.4174235800000048,
+          "active_first": 14501,
+          "gate": null,
+          "search_seconds": 0.4499129960004211,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.002432511000733939,
+          "proposed_first": 14501,
+          "publication": "retained"
+        },
+        {
+          "clock": 30847,
+          "ready_at": 30847,
+          "wall_seconds": 0.26975647499966726,
+          "cpu_seconds": 0.24889912300000105,
+          "active_first": 14737,
+          "gate": null,
+          "search_seconds": 0.26800091699988116,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0017172889984067297,
+          "proposed_first": 14737,
+          "publication": "retained"
+        },
+        {
+          "clock": 30903,
+          "ready_at": 30903,
+          "wall_seconds": 0.2649077040005068,
+          "cpu_seconds": 0.24444710699999916,
+          "active_first": 14955,
+          "gate": null,
+          "search_seconds": 0.2631542740000441,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.001713499999823398,
+          "proposed_first": 14955,
+          "publication": "retained"
+        }
+      ],
+      "actions": [
+        {
+          "clock": 29100,
+          "next_clock": 29142,
+          "stop": 427,
+          "next_stop": 614,
+          "connection": 8315,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8315,
+              29104
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29142,
+          "next_clock": 29213,
+          "stop": 614,
+          "next_stop": 3,
+          "connection": 8538,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8538,
+              29157
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29213,
+          "next_clock": 29326,
+          "stop": 3,
+          "next_stop": 568,
+          "connection": 8759,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8759,
+              29230
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29326,
+          "next_clock": 29458,
+          "stop": 568,
+          "next_stop": 88,
+          "connection": 9224,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9224,
+              29391
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29458,
+          "next_clock": 29529,
+          "stop": 88,
+          "next_stop": 647,
+          "connection": 9704,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9704,
+              29475
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29529,
+          "next_clock": 29594,
+          "stop": 647,
+          "next_stop": 606,
+          "connection": 9938,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9938,
+              29540
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29594,
+          "next_clock": 29762,
+          "stop": 606,
+          "next_stop": 592,
+          "connection": 10407,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10407,
+              29643
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29762,
+          "next_clock": 29855,
+          "stop": 592,
+          "next_stop": 495,
+          "connection": 10879,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10879,
+              29786
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29855,
+          "next_clock": 29938,
+          "stop": 495,
+          "next_stop": 164,
+          "connection": 11339,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              11339,
+              29875
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29938,
+          "next_clock": 30103,
+          "stop": 164,
+          "next_stop": 165,
+          "connection": 11788,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              11788,
+              29991
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30103,
+          "next_clock": 30287,
+          "stop": 165,
+          "next_stop": 604,
+          "connection": 12230,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12230,
+              30158
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30287,
+          "next_clock": 30372,
+          "stop": 604,
+          "next_stop": 319,
+          "connection": 12695,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12695,
+              30302
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30372,
+          "next_clock": 30446,
+          "stop": 319,
+          "next_stop": 470,
+          "connection": 12918,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12918,
+              30387
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30446,
+          "next_clock": 30534,
+          "stop": 470,
+          "next_stop": 563,
+          "connection": 13372,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13372,
+              30460
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30534,
+          "next_clock": 30603,
+          "stop": 563,
+          "next_stop": 406,
+          "connection": 13588,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13588,
+              30547
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30603,
+          "next_clock": 30681,
+          "stop": 406,
+          "next_stop": 509,
+          "connection": 13816,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13816,
+              30614
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30681,
+          "next_clock": 30772,
+          "stop": 509,
+          "next_stop": 430,
+          "connection": 14288,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14288,
+              30700
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30772,
+          "next_clock": 30847,
+          "stop": 430,
+          "next_stop": 321,
+          "connection": 14501,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14501,
+              30783
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30847,
+          "next_clock": 30903,
+          "stop": 321,
+          "next_stop": 560,
+          "connection": 14737,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14737,
+              30861
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30903,
+          "next_clock": 30986,
+          "stop": 560,
+          "next_stop": 607,
+          "connection": 14955,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14955,
+              30916
+            ]
+          ],
+          "while_computing": false
+        }
+      ]
+    },
+    {
+      "date": "2023-07-27",
+      "query": 0,
+      "cpu": 20,
+      "graph_seconds": 0.08804911799961701,
+      "kernel_seconds": 0.0,
+      "method": "off64",
+      "clock": "logical",
+      "loss_lower": 839,
+      "loss_upper": 839,
+      "status": "arrived",
+      "missing_connection": null,
+      "setup_seconds": 4.354063445000065,
+      "initial_plan": [
+        8341,
+        8780,
+        9383,
+        9627,
+        9857,
+        10330
+      ],
+      "worker_seconds": 4.2003942749997805,
+      "worker_cpu_seconds": 4.123250516,
+      "actual_seconds": 8.556603566000376,
+      "actual_cpu_seconds": 8.215321040000001,
+      "decisions": [
+        {
+          "clock": 29100,
+          "ready_at": 29100,
+          "wall_seconds": 1.3330644889992982,
+          "cpu_seconds": 1.332709394,
+          "active_first": 8341,
+          "gate": null,
+          "search_seconds": 1.3330222180002238,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 1.4239994925446808e-06,
+          "proposed_first": 8341,
+          "publication": "retained"
+        },
+        {
+          "clock": 29202,
+          "ready_at": 29202,
+          "wall_seconds": 1.1227672920003897,
+          "cpu_seconds": 1.1224822329999995,
+          "active_first": 8780,
+          "gate": null,
+          "search_seconds": 1.122433245999673,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0003190240004187217,
+          "publication": "wait"
+        },
+        {
+          "clock": 29262,
+          "ready_at": 29262,
+          "wall_seconds": 0.5039456969998355,
+          "cpu_seconds": 0.5038235529999993,
+          "active_first": 8780,
+          "gate": null,
+          "search_seconds": 0.49751019700033794,
+          "candidate_seconds": 0.006406757999684487,
+          "transitions": 64,
+          "posterior_update_seconds": 9.619998309062794e-07,
+          "proposed_first": 9681,
+          "publication": "installed"
+        },
+        {
+          "clock": 29545,
+          "ready_at": 29545,
+          "wall_seconds": 0.44407070800025394,
+          "cpu_seconds": 0.42914541100000037,
+          "active_first": 10375,
+          "gate": null,
+          "search_seconds": 0.4433694010003819,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0006790859997636289,
+          "proposed_first": 10375,
+          "publication": "retained"
+        },
+        {
+          "clock": 29708,
+          "ready_at": 29708,
+          "wall_seconds": 0.3376356899998427,
+          "cpu_seconds": 0.31158828999999955,
+          "active_first": 10611,
+          "gate": null,
+          "search_seconds": 0.33713801200065063,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0004692010006692726,
+          "proposed_first": 10611,
+          "publication": "retained"
+        },
+        {
+          "clock": 29771,
+          "ready_at": 29771,
+          "wall_seconds": 0.23497833700002957,
+          "cpu_seconds": 0.21685248800000068,
+          "active_first": 10847,
+          "gate": null,
+          "search_seconds": 0.23436303899961786,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0005908710008952767,
+          "proposed_first": 10847,
+          "publication": "retained"
+        },
+        {
+          "clock": 29853,
+          "ready_at": 29853,
+          "wall_seconds": 0.22393206200013083,
+          "cpu_seconds": 0.20664914700000026,
+          "active_first": 11306,
+          "gate": null,
+          "search_seconds": 0.2235339489998296,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0003753669998332043,
+          "proposed_first": 11306,
+          "publication": "retained"
+        }
+      ],
+      "actions": [
+        {
+          "clock": 29100,
+          "next_clock": 29202,
+          "stop": 530,
+          "next_stop": 594,
+          "connection": 8341,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8341,
+              29121
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29262,
+          "next_clock": 29545,
+          "stop": 594,
+          "next_stop": 606,
+          "connection": 9681,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9681,
+              29468
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29545,
+          "next_clock": 29708,
+          "stop": 606,
+          "next_stop": 647,
+          "connection": 10375,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10375,
+              29613
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29708,
+          "next_clock": 29771,
+          "stop": 647,
+          "next_stop": 88,
+          "connection": 10611,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10611,
+              29716
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29771,
+          "next_clock": 29853,
+          "stop": 88,
+          "next_stop": 568,
+          "connection": 10847,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10847,
+              29785
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29853,
+          "next_clock": 29939,
+          "stop": 568,
+          "next_stop": 3,
+          "connection": 11306,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              11306,
+              29865
+            ]
+          ],
+          "while_computing": false
+        }
+      ]
+    },
+    {
+      "date": "2023-07-27",
+      "query": 0,
+      "cpu": 20,
+      "graph_seconds": 0.08804911799961701,
+      "kernel_seconds": 0.0,
+      "method": "terminal64",
+      "clock": "logical",
+      "loss_lower": 839,
+      "loss_upper": 839,
+      "status": "arrived",
+      "missing_connection": null,
+      "setup_seconds": 2.934419692999654,
+      "initial_plan": [
+        8341,
+        8780,
+        9383,
+        9627,
+        9857,
+        10330
+      ],
+      "worker_seconds": 4.807679974998791,
+      "worker_cpu_seconds": 4.806419528000003,
+      "actual_seconds": 7.74516384799972,
+      "actual_cpu_seconds": 7.578164466999999,
+      "decisions": [
+        {
+          "clock": 29100,
+          "ready_at": 29100,
+          "wall_seconds": 1.3818870790000801,
+          "cpu_seconds": 1.3815025849999998,
+          "active_first": 8341,
+          "gate": null,
+          "search_seconds": 1.3816694729994197,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 1.3630005923914723e-06,
+          "gate_seconds": 0.00016990400035865605,
+          "proposed_first": 8341,
+          "publication": "retained"
+        },
+        {
+          "clock": 29202,
+          "ready_at": 29202,
+          "wall_seconds": 0.9994339589993615,
+          "cpu_seconds": 0.9991750939999999,
+          "active_first": 8780,
+          "gate": null,
+          "search_seconds": 0.9986081380002361,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0005379040003390401,
+          "gate_seconds": 0.00026046800030599115,
+          "publication": "wait"
+        },
+        {
+          "clock": 29262,
+          "ready_at": 29262,
+          "wall_seconds": 0.7019672690003063,
+          "cpu_seconds": 0.701779697000001,
+          "active_first": 8780,
+          "gate": null,
+          "search_seconds": 0.6926961389999633,
+          "candidate_seconds": 0.008770856999944954,
+          "transitions": 64,
+          "posterior_update_seconds": 1.4930001270840876e-06,
+          "gate_seconds": 0.0004478800001379568,
+          "proposed_first": 9681,
+          "publication": "installed"
+        },
+        {
+          "clock": 29545,
+          "ready_at": 29545,
+          "wall_seconds": 0.8905361090000952,
+          "cpu_seconds": 0.8903050400000012,
+          "active_first": 10375,
+          "gate": {
+            "kind": "terminal",
+            "upper": 435.3353057809063,
+            "witness_seconds": 0.005818507000185491,
+            "lower": 119.9999969798873,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.8825002450003012,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0010763179998320993,
+          "gate_seconds": 0.006809190999774728,
+          "proposed_first": 10375,
+          "publication": "retained"
+        },
+        {
+          "clock": 29708,
+          "ready_at": 29708,
+          "wall_seconds": 0.4443729249996977,
+          "cpu_seconds": 0.4442646410000002,
+          "active_first": 10611,
+          "gate": {
+            "kind": "terminal",
+            "upper": 260.52380848738085,
+            "witness_seconds": 0.0035068489996774588,
+            "lower": 119.9928686246825,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.43926652599930094,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0006111909997343901,
+          "gate_seconds": 0.004435931999978493,
+          "proposed_first": 10611,
+          "publication": "retained"
+        },
+        {
+          "clock": 29771,
+          "ready_at": 29771,
+          "wall_seconds": 0.38434905899976,
+          "cpu_seconds": 0.38425660200000067,
+          "active_first": 10847,
+          "gate": {
+            "kind": "terminal",
+            "upper": 189.01243683965686,
+            "witness_seconds": 0.0047994960004871245,
+            "lower": 119.94084207356585,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.3772333159995469,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0013096780003252206,
+          "gate_seconds": 0.005737767999562493,
+          "proposed_first": 10847,
+          "publication": "retained"
+        },
+        {
+          "clock": 29853,
+          "ready_at": 29853,
+          "wall_seconds": 0.00513357499949052,
+          "cpu_seconds": 0.005135869000000071,
+          "active_first": 11306,
+          "gate": {
+            "kind": "terminal",
+            "upper": 90.39834581699415,
+            "witness_seconds": 0.0038217519995669136,
+            "lower": 89.44479775398074,
+            "accepted": true,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0006625209998674109,
+          "gate_seconds": 0.004451994000191917,
+          "publication": "retained"
+        }
+      ],
+      "actions": [
+        {
+          "clock": 29100,
+          "next_clock": 29202,
+          "stop": 530,
+          "next_stop": 594,
+          "connection": 8341,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8341,
+              29121
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29262,
+          "next_clock": 29545,
+          "stop": 594,
+          "next_stop": 606,
+          "connection": 9681,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9681,
+              29468
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29545,
+          "next_clock": 29708,
+          "stop": 606,
+          "next_stop": 647,
+          "connection": 10375,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10375,
+              29613
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29708,
+          "next_clock": 29771,
+          "stop": 647,
+          "next_stop": 88,
+          "connection": 10611,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10611,
+              29716
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29771,
+          "next_clock": 29853,
+          "stop": 88,
+          "next_stop": 568,
+          "connection": 10847,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10847,
+              29785
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29853,
+          "next_clock": 29939,
+          "stop": 568,
+          "next_stop": 3,
+          "connection": 11306,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              11306,
+              29865
+            ]
+          ],
+          "while_computing": false
+        }
+      ]
+    },
+    {
+      "date": "2023-07-27",
+      "query": 0,
+      "cpu": 20,
+      "graph_seconds": 0.08804911799961701,
+      "kernel_seconds": 0.5113654460001271,
+      "method": "middle64",
+      "clock": "logical",
+      "loss_lower": 839,
+      "loss_upper": 839,
+      "status": "arrived",
+      "missing_connection": null,
+      "setup_seconds": 3.696161939000376,
+      "initial_plan": [
+        8341,
+        8780,
+        9383,
+        9627,
+        9857,
+        10330
+      ],
+      "worker_seconds": 4.8691549109989865,
+      "worker_cpu_seconds": 4.819111795000001,
+      "actual_seconds": 8.56746954099981,
+      "actual_cpu_seconds": 8.352403419000002,
+      "decisions": [
+        {
+          "clock": 29100,
+          "ready_at": 29100,
+          "wall_seconds": 0.9686762349992932,
+          "cpu_seconds": 0.9261071889999997,
+          "active_first": 8341,
+          "gate": null,
+          "search_seconds": 0.9684877279996726,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 1.0019994078902528e-06,
+          "gate_seconds": 0.0001557260002300609,
+          "proposed_first": 8341,
+          "publication": "retained"
+        },
+        {
+          "clock": 29202,
+          "ready_at": 29202,
+          "wall_seconds": 2.5548463060003996,
+          "cpu_seconds": 2.5541661289999986,
+          "active_first": 8780,
+          "gate": {
+            "kind": "middle",
+            "upper": 949.9339393302005,
+            "witness_seconds": 0.004358562999186688,
+            "lower": 664.4674045080319,
+            "accepted": false,
+            "alpha": 0.03039635509270134,
+            "worlds": 128,
+            "oracle_mean": 692.0625,
+            "cutoff": 30332,
+            "trips": 1187,
+            "connections": 12934,
+            "corridor_seconds": 0.22415991200068675,
+            "template_seconds": 0.03898577600011777,
+            "draw_seconds": 1.6199177319995215,
+            "scan_seconds": 0.019419360000028973
+          },
+          "search_seconds": 0.6467440890010039,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.000289862000499852,
+          "gate_seconds": 1.9077896359995066,
+          "publication": "wait"
+        },
+        {
+          "clock": 29262,
+          "ready_at": 29262,
+          "wall_seconds": 0.4445623350002279,
+          "cpu_seconds": 0.4444554630000006,
+          "active_first": 8780,
+          "gate": null,
+          "search_seconds": 0.43866580199937744,
+          "candidate_seconds": 0.005625221998343477,
+          "transitions": 64,
+          "posterior_update_seconds": 1.3429998944047838e-06,
+          "gate_seconds": 0.00023967400011315476,
+          "proposed_first": 9681,
+          "publication": "installed"
+        },
+        {
+          "clock": 29545,
+          "ready_at": 29545,
+          "wall_seconds": 0.3848881630001415,
+          "cpu_seconds": 0.38478783999999777,
+          "active_first": 10375,
+          "gate": {
+            "kind": "terminal",
+            "upper": 435.3353057809063,
+            "witness_seconds": 0.00357024600089062,
+            "lower": 119.9999969798873,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.3802809029984928,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.00028968099832127336,
+          "gate_seconds": 0.004286011000658618,
+          "proposed_first": 10375,
+          "publication": "retained"
+        },
+        {
+          "clock": 29708,
+          "ready_at": 29708,
+          "wall_seconds": 0.27579781700114836,
+          "cpu_seconds": 0.275733872,
+          "active_first": 10611,
+          "gate": {
+            "kind": "terminal",
+            "upper": 260.52380848738085,
+            "witness_seconds": 0.003271094001320307,
+            "lower": 119.9928686246825,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.27145785100037756,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.00042021199988084845,
+          "gate_seconds": 0.0038887979990249733,
+          "proposed_first": 10611,
+          "publication": "retained"
+        },
+        {
+          "clock": 29771,
+          "ready_at": 29771,
+          "wall_seconds": 0.236321369999132,
+          "cpu_seconds": 0.23011036800000184,
+          "active_first": 10847,
+          "gate": {
+            "kind": "terminal",
+            "upper": 189.01243683965686,
+            "witness_seconds": 0.0029908530013926793,
+            "lower": 119.94084207356585,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.23229678900133877,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0005120579990034457,
+          "gate_seconds": 0.0034780280002451036,
+          "proposed_first": 10847,
+          "publication": "retained"
+        },
+        {
+          "clock": 29853,
+          "ready_at": 29853,
+          "wall_seconds": 0.004062684998643817,
+          "cpu_seconds": 0.0037509340000028146,
+          "active_first": 11306,
+          "gate": {
+            "kind": "terminal",
+            "upper": 90.39834581699415,
+            "witness_seconds": 0.002973961998577579,
+            "lower": 89.44479775398074,
+            "accepted": true,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0005797539997729473,
+          "gate_seconds": 0.0034634000003279652,
+          "publication": "retained"
+        }
+      ],
+      "actions": [
+        {
+          "clock": 29100,
+          "next_clock": 29202,
+          "stop": 530,
+          "next_stop": 594,
+          "connection": 8341,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8341,
+              29121
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29262,
+          "next_clock": 29545,
+          "stop": 594,
+          "next_stop": 606,
+          "connection": 9681,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9681,
+              29468
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29545,
+          "next_clock": 29708,
+          "stop": 606,
+          "next_stop": 647,
+          "connection": 10375,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10375,
+              29613
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29708,
+          "next_clock": 29771,
+          "stop": 647,
+          "next_stop": 88,
+          "connection": 10611,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10611,
+              29716
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29771,
+          "next_clock": 29853,
+          "stop": 88,
+          "next_stop": 568,
+          "connection": 10847,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10847,
+              29785
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29853,
+          "next_clock": 29939,
+          "stop": 568,
+          "next_stop": 3,
+          "connection": 11306,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              11306,
+              29865
+            ]
+          ],
+          "while_computing": false
+        }
+      ]
+    },
+    {
+      "date": "2023-07-27",
+      "query": 1,
+      "cpu": 28,
+      "graph_seconds": 0.12286104099985096,
+      "kernel_seconds": 0.6729036569995515,
+      "method": "middle64",
+      "clock": "logical",
+      "loss_lower": 1823,
+      "loss_upper": 1823,
+      "status": "arrived",
+      "missing_connection": null,
+      "setup_seconds": 6.901097383999513,
+      "initial_plan": [
+        8315,
+        8538,
+        8759,
+        9224,
+        9704,
+        9938,
+        10407,
+        10879,
+        11339,
+        11788,
+        12230,
+        12695,
+        12918,
+        13372,
+        13588,
+        13816,
+        14288,
+        14501,
+        14737,
+        14955
+      ],
+      "worker_seconds": 18.40724983500786,
+      "worker_cpu_seconds": 17.872116064999997,
+      "actual_seconds": 25.31642784699943,
+      "actual_cpu_seconds": 24.567520212999998,
+      "decisions": [
+        {
+          "clock": 29100,
+          "ready_at": 29100,
+          "wall_seconds": 2.5654448320001393,
+          "cpu_seconds": 2.3674695849999994,
+          "active_first": 8315,
+          "gate": null,
+          "search_seconds": 2.565074404999905,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 1.835000148275867e-06,
+          "gate_seconds": 0.00031675199988967506,
+          "proposed_first": 8315,
+          "publication": "retained"
+        },
+        {
+          "clock": 29160,
+          "ready_at": 29160,
+          "wall_seconds": 1.9111407350001173,
+          "cpu_seconds": 1.88104474,
+          "active_first": 8538,
+          "gate": {
+            "kind": "terminal",
+            "upper": 1852.5422697425286,
+            "witness_seconds": 0.00962610299939115,
+            "lower": 0.0,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 1.9004396529999212,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0006840099995315541,
+          "gate_seconds": 0.009963419000087015,
+          "proposed_first": 8538,
+          "publication": "retained"
+        },
+        {
+          "clock": 29223,
+          "ready_at": 29223,
+          "wall_seconds": 2.4441728479996527,
+          "cpu_seconds": 2.443485959,
+          "active_first": 8759,
+          "gate": {
+            "kind": "terminal",
+            "upper": 1749.5105223024739,
+            "witness_seconds": 0.01433381099923281,
+            "lower": 0.0,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 2.4285830930002703,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0007931600002848427,
+          "gate_seconds": 0.014729129999977886,
+          "proposed_first": 8759,
+          "publication": "retained"
+        },
+        {
+          "clock": 29323,
+          "ready_at": 29323,
+          "wall_seconds": 2.1206732179998653,
+          "cpu_seconds": 2.1201153230000003,
+          "active_first": 9224,
+          "gate": {
+            "kind": "terminal",
+            "upper": 1643.41428574675,
+            "witness_seconds": 0.015788346000590536,
+            "lower": 0.0,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 2.1019642600003863,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0023086199998942902,
+          "gate_seconds": 0.01634252399981051,
+          "proposed_first": 9224,
+          "publication": "retained"
+        },
+        {
+          "clock": 29446,
+          "ready_at": 29446,
+          "wall_seconds": 1.7306764450004266,
+          "cpu_seconds": 1.6459169849999995,
+          "active_first": 9704,
+          "gate": {
+            "kind": "terminal",
+            "upper": 1515.6175211671039,
+            "witness_seconds": 0.015048004001073423,
+            "lower": 119.99999999999895,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 1.7118070390006324,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0010865000003832392,
+          "gate_seconds": 0.017739916000209632,
+          "proposed_first": 9704,
+          "publication": "retained"
+        },
+        {
+          "clock": 29517,
+          "ready_at": 29517,
+          "wall_seconds": 1.0693265780009824,
+          "cpu_seconds": 1.0156557759999991,
+          "active_first": 9938,
+          "gate": {
+            "kind": "terminal",
+            "upper": 1430.8884639921307,
+            "witness_seconds": 0.01034665400038648,
+            "lower": 119.9999999999664,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 1.0562212899985752,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0006344640005409019,
+          "gate_seconds": 0.012434052001481177,
+          "proposed_first": 9938,
+          "publication": "retained"
+        },
+        {
+          "clock": 29598,
+          "ready_at": 29598,
+          "wall_seconds": 0.9110041099993396,
+          "cpu_seconds": 0.8652784020000013,
+          "active_first": 10407,
+          "gate": {
+            "kind": "terminal",
+            "upper": 1342.8394252816674,
+            "witness_seconds": 0.00958055599949148,
+            "lower": 119.99999999999721,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.8983114439997735,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0009500500000285683,
+          "gate_seconds": 0.011704705000738613,
+          "proposed_first": 10407,
+          "publication": "retained"
+        },
+        {
+          "clock": 29758,
+          "ready_at": 29758,
+          "wall_seconds": 0.6830059570002049,
+          "cpu_seconds": 0.6600026750000012,
+          "active_first": 10879,
+          "gate": {
+            "kind": "terminal",
+            "upper": 1177.8329674386584,
+            "witness_seconds": 0.010176149000471924,
+            "lower": 119.99999999999996,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.6702871279994724,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.000603271999352728,
+          "gate_seconds": 0.012082336001185467,
+          "proposed_first": 10879,
+          "publication": "retained"
+        },
+        {
+          "clock": 29843,
+          "ready_at": 29843,
+          "wall_seconds": 0.8165752759996394,
+          "cpu_seconds": 0.8162717049999983,
+          "active_first": 11339,
+          "gate": {
+            "kind": "terminal",
+            "upper": 1088.7796947114762,
+            "witness_seconds": 0.008845125999869197,
+            "lower": 119.99999999966116,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.8052705360005348,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0006319750009424752,
+          "gate_seconds": 0.010638220999680925,
+          "proposed_first": 11339,
+          "publication": "retained"
+        },
+        {
+          "clock": 29933,
+          "ready_at": 29933,
+          "wall_seconds": 0.5156766790005349,
+          "cpu_seconds": 0.515499964,
+          "active_first": 11788,
+          "gate": {
+            "kind": "terminal",
+            "upper": 995.8474164082184,
+            "witness_seconds": 0.009133904999544029,
+            "lower": 119.99999999994688,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.5043737319992943,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0005803340009151725,
+          "gate_seconds": 0.010689120999813895,
+          "proposed_first": 11788,
+          "publication": "retained"
+        },
+        {
+          "clock": 30061,
+          "ready_at": 30061,
+          "wall_seconds": 0.5949548450007569,
+          "cpu_seconds": 0.5948108829999974,
+          "active_first": 12230,
+          "gate": {
+            "kind": "terminal",
+            "upper": 864.6729155637706,
+            "witness_seconds": 0.008412940000198432,
+            "lower": 119.99999986638005,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.5839496070002497,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0009917269999277778,
+          "gate_seconds": 0.009978907999538933,
+          "proposed_first": 12230,
+          "publication": "retained"
+        },
+        {
+          "clock": 30208,
+          "ready_at": 30208,
+          "wall_seconds": 0.4861447590010357,
+          "cpu_seconds": 0.4859030099999977,
+          "active_first": 12695,
+          "gate": {
+            "kind": "terminal",
+            "upper": 715.3721227919575,
+            "witness_seconds": 0.008243837000918575,
+            "lower": 119.99999994755544,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.4751720509993902,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0012524850008048816,
+          "gate_seconds": 0.009683513999334536,
+          "proposed_first": 12695,
+          "publication": "retained"
+        },
+        {
+          "clock": 30292,
+          "ready_at": 30292,
+          "wall_seconds": 0.37552989100004197,
+          "cpu_seconds": 0.375439673999999,
+          "active_first": 12918,
+          "gate": {
+            "kind": "terminal",
+            "upper": 628.4809111533668,
+            "witness_seconds": 0.007506996998927207,
+            "lower": 119.99999999462985,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.3658261830005358,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.000857197999721393,
+          "gate_seconds": 0.0088094809998438,
+          "proposed_first": 12918,
+          "publication": "retained"
+        },
+        {
+          "clock": 30360,
+          "ready_at": 30360,
+          "wall_seconds": 0.3984451630003605,
+          "cpu_seconds": 0.39828223499999993,
+          "active_first": 13372,
+          "gate": {
+            "kind": "terminal",
+            "upper": 559.0765417847397,
+            "witness_seconds": 0.007074027998896781,
+            "lower": 119.99999991187227,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.38897318199997244,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0011776350002037361,
+          "gate_seconds": 0.00825157399958698,
+          "proposed_first": 13372,
+          "publication": "retained"
+        },
+        {
+          "clock": 30447,
+          "ready_at": 30447,
+          "wall_seconds": 0.47272770600102376,
+          "cpu_seconds": 0.47260642500000216,
+          "active_first": 13588,
+          "gate": {
+            "kind": "terminal",
+            "upper": 469.3648533816636,
+            "witness_seconds": 0.006656093000856345,
+            "lower": 119.99999997748654,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.46368075600003067,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0012929919994348893,
+          "gate_seconds": 0.007712978998824838,
+          "proposed_first": 13588,
+          "publication": "retained"
+        },
+        {
+          "clock": 30531,
+          "ready_at": 30531,
+          "wall_seconds": 0.44298073500067403,
+          "cpu_seconds": 0.41258029100000115,
+          "active_first": 13816,
+          "gate": {
+            "kind": "terminal",
+            "upper": 383.0437792716275,
+            "witness_seconds": 0.006012421999912476,
+            "lower": 119.99999574028432,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.4349371070002235,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0010950279993267031,
+          "gate_seconds": 0.006908213001224794,
+          "proposed_first": 13816,
+          "publication": "retained"
+        },
+        {
+          "clock": 30604,
+          "ready_at": 30604,
+          "wall_seconds": 0.5437527710000722,
+          "cpu_seconds": 0.5018038609999991,
+          "active_first": 14288,
+          "gate": {
+            "kind": "terminal",
+            "upper": 309.60616031254244,
+            "witness_seconds": 0.006066394000299624,
+            "lower": 119.99996999906396,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.5348113079999166,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0019617790003394475,
+          "gate_seconds": 0.006942207000975031,
+          "proposed_first": 14288,
+          "publication": "retained"
+        },
+        {
+          "clock": 30684,
+          "ready_at": 30684,
+          "wall_seconds": 0.31449835900093603,
+          "cpu_seconds": 0.29023611899999935,
+          "active_first": 14501,
+          "gate": {
+            "kind": "terminal",
+            "upper": 224.31320080182786,
+            "witness_seconds": 0.0051476419994287426,
+            "lower": 119.99899660769127,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.30743398199956573,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.001170526998976129,
+          "gate_seconds": 0.005855244000485982,
+          "proposed_first": 14501,
+          "publication": "retained"
+        },
+        {
+          "clock": 30761,
+          "ready_at": 30761,
+          "wall_seconds": 0.0063558190013282,
+          "cpu_seconds": 0.005868422000002482,
+          "active_first": 14737,
+          "gate": {
+            "kind": "terminal",
+            "upper": 144.58107349262082,
+            "witness_seconds": 0.004013884999949369,
+            "lower": 118.01284593607264,
+            "accepted": true,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0018460480005160207,
+          "gate_seconds": 0.004493726000873721,
+          "publication": "retained"
+        },
+        {
+          "clock": 30822,
+          "ready_at": 30822,
+          "wall_seconds": 0.004163109000728582,
+          "cpu_seconds": 0.003844030999999859,
+          "active_first": 14955,
+          "gate": {
+            "kind": "terminal",
+            "upper": 76.07978028994421,
+            "witness_seconds": 0.0028767530002369313,
+            "lower": 75.82022737307256,
+            "accepted": true,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0009946829995897133,
+          "gate_seconds": 0.003154681999149034,
+          "publication": "retained"
+        }
+      ],
+      "actions": [
+        {
+          "clock": 29100,
+          "next_clock": 29160,
+          "stop": 427,
+          "next_stop": 614,
+          "connection": 8315,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8315,
+              29126
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29160,
+          "next_clock": 29223,
+          "stop": 614,
+          "next_stop": 3,
+          "connection": 8538,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8538,
+              29175
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29223,
+          "next_clock": 29323,
+          "stop": 3,
+          "next_stop": 568,
+          "connection": 8759,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8759,
+              29240
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29323,
+          "next_clock": 29446,
+          "stop": 568,
+          "next_stop": 88,
+          "connection": 9224,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9224,
+              29341
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29446,
+          "next_clock": 29517,
+          "stop": 88,
+          "next_stop": 647,
+          "connection": 9704,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9704,
+              29464
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29517,
+          "next_clock": 29598,
+          "stop": 647,
+          "next_stop": 606,
+          "connection": 9938,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9938,
+              29530
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29598,
+          "next_clock": 29758,
+          "stop": 606,
+          "next_stop": 592,
+          "connection": 10407,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10407,
+              29669
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29758,
+          "next_clock": 29843,
+          "stop": 592,
+          "next_stop": 495,
+          "connection": 10879,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10879,
+              29774
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29843,
+          "next_clock": 29933,
+          "stop": 495,
+          "next_stop": 164,
+          "connection": 11339,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              11339,
+              29857
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29933,
+          "next_clock": 30061,
+          "stop": 164,
+          "next_stop": 165,
+          "connection": 11788,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              11788,
+              29956
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30061,
+          "next_clock": 30208,
+          "stop": 165,
+          "next_stop": 604,
+          "connection": 12230,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12230,
+              30093
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30208,
+          "next_clock": 30292,
+          "stop": 604,
+          "next_stop": 319,
+          "connection": 12695,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12695,
+              30218
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30292,
+          "next_clock": 30360,
+          "stop": 319,
+          "next_stop": 470,
+          "connection": 12918,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12918,
+              30302
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30360,
+          "next_clock": 30447,
+          "stop": 470,
+          "next_stop": 563,
+          "connection": 13372,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13372,
+              30372
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30447,
+          "next_clock": 30531,
+          "stop": 563,
+          "next_stop": 406,
+          "connection": 13588,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13588,
+              30464
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30531,
+          "next_clock": 30604,
+          "stop": 406,
+          "next_stop": 509,
+          "connection": 13816,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13816,
+              30548
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30604,
+          "next_clock": 30684,
+          "stop": 509,
+          "next_stop": 430,
+          "connection": 14288,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14288,
+              30619
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30684,
+          "next_clock": 30761,
+          "stop": 430,
+          "next_stop": 321,
+          "connection": 14501,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14501,
+              30697
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30761,
+          "next_clock": 30822,
+          "stop": 321,
+          "next_stop": 560,
+          "connection": 14737,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14737,
+              30780
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30822,
+          "next_clock": 30923,
+          "stop": 560,
+          "next_stop": 607,
+          "connection": 14955,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14955,
+              30836
+            ]
+          ],
+          "while_computing": false
+        }
+      ]
+    },
+    {
+      "date": "2023-07-27",
+      "query": 1,
+      "cpu": 28,
+      "graph_seconds": 0.12286104099985096,
+      "kernel_seconds": 0.0,
+      "method": "terminal64",
+      "clock": "logical",
+      "loss_lower": 1823,
+      "loss_upper": 1823,
+      "status": "arrived",
+      "missing_connection": null,
+      "setup_seconds": 5.08250056200086,
+      "initial_plan": [
+        8315,
+        8538,
+        8759,
+        9224,
+        9704,
+        9938,
+        10407,
+        10879,
+        11339,
+        11788,
+        12230,
+        12695,
+        12918,
+        13372,
+        13588,
+        13816,
+        14288,
+        14501,
+        14737,
+        14955
+      ],
+      "worker_seconds": 17.50061134900716,
+      "worker_cpu_seconds": 16.899631330000016,
+      "actual_seconds": 22.59107475300152,
+      "actual_cpu_seconds": 21.711611700000002,
+      "decisions": [
+        {
+          "clock": 29100,
+          "ready_at": 29100,
+          "wall_seconds": 2.8070721790008974,
+          "cpu_seconds": 2.729088786000002,
+          "active_first": 8315,
+          "gate": null,
+          "search_seconds": 2.8068587019988627,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 1.0320000001229346e-06,
+          "gate_seconds": 0.00016133600001921877,
+          "proposed_first": 8315,
+          "publication": "retained"
+        },
+        {
+          "clock": 29160,
+          "ready_at": 29160,
+          "wall_seconds": 2.4486859410008037,
+          "cpu_seconds": 2.2595132580000055,
+          "active_first": 8538,
+          "gate": {
+            "kind": "terminal",
+            "upper": 1852.5422697425286,
+            "witness_seconds": 0.013143614000000525,
+            "lower": 0.0,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 2.433865816999969,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0011122059986519162,
+          "gate_seconds": 0.013659627999004442,
+          "proposed_first": 8538,
+          "publication": "retained"
+        },
+        {
+          "clock": 29223,
+          "ready_at": 29223,
+          "wall_seconds": 2.098789391000537,
+          "cpu_seconds": 2.051525806000001,
+          "active_first": 8759,
+          "gate": {
+            "kind": "terminal",
+            "upper": 1749.5105223024739,
+            "witness_seconds": 0.010758370999610634,
+            "lower": 0.0,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 2.0862874489994283,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0010754560007626424,
+          "gate_seconds": 0.011384743998860358,
+          "proposed_first": 8759,
+          "publication": "retained"
+        },
+        {
+          "clock": 29323,
+          "ready_at": 29323,
+          "wall_seconds": 1.2617506560000038,
+          "cpu_seconds": 1.2599193200000016,
+          "active_first": 9224,
+          "gate": {
+            "kind": "terminal",
+            "upper": 1643.41428574675,
+            "witness_seconds": 0.009194819000185817,
+            "lower": 0.0,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 1.251665227000558,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0005563619997701608,
+          "gate_seconds": 0.009474277998378966,
+          "proposed_first": 9224,
+          "publication": "retained"
+        },
+        {
+          "clock": 29446,
+          "ready_at": 29446,
+          "wall_seconds": 1.1256165209997562,
+          "cpu_seconds": 1.1200783159999972,
+          "active_first": 9704,
+          "gate": {
+            "kind": "terminal",
+            "upper": 1515.6175211671039,
+            "witness_seconds": 0.009312782000051811,
+            "lower": 119.99999999999895,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 1.1130999220004014,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0007619730004080338,
+          "gate_seconds": 0.011711733999618446,
+          "proposed_first": 9704,
+          "publication": "retained"
+        },
+        {
+          "clock": 29517,
+          "ready_at": 29517,
+          "wall_seconds": 1.333968595999977,
+          "cpu_seconds": 1.2443406350000004,
+          "active_first": 9938,
+          "gate": {
+            "kind": "terminal",
+            "upper": 1430.8884639921307,
+            "witness_seconds": 0.009536440998999751,
+            "lower": 119.9999999999664,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 1.321403976999136,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0007717339994997019,
+          "gate_seconds": 0.011748291999538196,
+          "proposed_first": 9938,
+          "publication": "retained"
+        },
+        {
+          "clock": 29598,
+          "ready_at": 29598,
+          "wall_seconds": 0.9782413199991424,
+          "cpu_seconds": 0.9001013309999948,
+          "active_first": 10407,
+          "gate": {
+            "kind": "terminal",
+            "upper": 1342.8394252816674,
+            "witness_seconds": 0.010081309999804944,
+            "lower": 119.99999999999721,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.9650889780004945,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0008915130001696525,
+          "gate_seconds": 0.012221136999869486,
+          "proposed_first": 10407,
+          "publication": "retained"
+        },
+        {
+          "clock": 29758,
+          "ready_at": 29758,
+          "wall_seconds": 0.7839036990008026,
+          "cpu_seconds": 0.7184567350000037,
+          "active_first": 10879,
+          "gate": {
+            "kind": "terminal",
+            "upper": 1177.8329674386584,
+            "witness_seconds": 0.009882459999062121,
+            "lower": 119.99999999999996,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.7712194400010048,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0006934659995749826,
+          "gate_seconds": 0.011936107001019991,
+          "proposed_first": 10879,
+          "publication": "retained"
+        },
+        {
+          "clock": 29843,
+          "ready_at": 29843,
+          "wall_seconds": 0.7056205850003607,
+          "cpu_seconds": 0.6700255639999995,
+          "active_first": 11339,
+          "gate": {
+            "kind": "terminal",
+            "upper": 1088.7796947114762,
+            "witness_seconds": 0.010694905000491417,
+            "lower": 119.99999999966116,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.6915834890005499,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0009787779999896884,
+          "gate_seconds": 0.013011259999984759,
+          "proposed_first": 11339,
+          "publication": "retained"
+        },
+        {
+          "clock": 29933,
+          "ready_at": 29933,
+          "wall_seconds": 0.5489464419988508,
+          "cpu_seconds": 0.546010986000006,
+          "active_first": 11788,
+          "gate": {
+            "kind": "terminal",
+            "upper": 995.8474164082184,
+            "witness_seconds": 0.009277208000639803,
+            "lower": 119.99999999994688,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.536273046000133,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0015009459984867135,
+          "gate_seconds": 0.011121409999759635,
+          "proposed_first": 11788,
+          "publication": "retained"
+        },
+        {
+          "clock": 30061,
+          "ready_at": 30061,
+          "wall_seconds": 0.5636592959999689,
+          "cpu_seconds": 0.561229806,
+          "active_first": 12230,
+          "gate": {
+            "kind": "terminal",
+            "upper": 864.6729155637706,
+            "witness_seconds": 0.00846790399918973,
+            "lower": 119.99999986638005,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.5522363500003848,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0012152239996794378,
+          "gate_seconds": 0.01016791700021713,
+          "proposed_first": 12230,
+          "publication": "retained"
+        },
+        {
+          "clock": 30208,
+          "ready_at": 30208,
+          "wall_seconds": 0.48745057600172004,
+          "cpu_seconds": 0.4831722119999995,
+          "active_first": 12695,
+          "gate": {
+            "kind": "terminal",
+            "upper": 715.3721227919575,
+            "witness_seconds": 0.008064920999458991,
+            "lower": 119.99999994755544,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.47711716500089096,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0008309009990625782,
+          "gate_seconds": 0.009457563999603735,
+          "proposed_first": 12695,
+          "publication": "retained"
+        },
+        {
+          "clock": 30292,
+          "ready_at": 30292,
+          "wall_seconds": 0.385478090000106,
+          "cpu_seconds": 0.38538570499999736,
+          "active_first": 12918,
+          "gate": {
+            "kind": "terminal",
+            "upper": 628.4809111533668,
+            "witness_seconds": 0.008575208999900497,
+            "lower": 119.99999999462985,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.37416173800011165,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0013100770011078566,
+          "gate_seconds": 0.009968513999410789,
+          "proposed_first": 12918,
+          "publication": "retained"
+        },
+        {
+          "clock": 30360,
+          "ready_at": 30360,
+          "wall_seconds": 0.3794084310011385,
+          "cpu_seconds": 0.37927547000000317,
+          "active_first": 13372,
+          "gate": {
+            "kind": "terminal",
+            "upper": 559.0765417847397,
+            "witness_seconds": 0.007118311999875004,
+            "lower": 119.99999991187227,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.36965486200097075,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0013379470001382288,
+          "gate_seconds": 0.008379473998502363,
+          "proposed_first": 13372,
+          "publication": "retained"
+        },
+        {
+          "clock": 30447,
+          "ready_at": 30447,
+          "wall_seconds": 0.44713589700040757,
+          "cpu_seconds": 0.4470314590000015,
+          "active_first": 13588,
+          "gate": {
+            "kind": "terminal",
+            "upper": 469.3648533816636,
+            "witness_seconds": 0.006468870999015053,
+            "lower": 119.99999997748654,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.43817743199906545,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0014396950009540888,
+          "gate_seconds": 0.007486370999686187,
+          "proposed_first": 13588,
+          "publication": "retained"
+        },
+        {
+          "clock": 30531,
+          "ready_at": 30531,
+          "wall_seconds": 0.36847661700085155,
+          "cpu_seconds": 0.3683521809999988,
+          "active_first": 13816,
+          "gate": {
+            "kind": "terminal",
+            "upper": 383.0437792716275,
+            "witness_seconds": 0.00592237999990175,
+            "lower": 119.99999574028432,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.3606715839996468,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0010511820000829175,
+          "gate_seconds": 0.006717361999108107,
+          "proposed_first": 13816,
+          "publication": "retained"
+        },
+        {
+          "clock": 30604,
+          "ready_at": 30604,
+          "wall_seconds": 0.49553234400082147,
+          "cpu_seconds": 0.49533216500000066,
+          "active_first": 14288,
+          "gate": {
+            "kind": "terminal",
+            "upper": 309.60616031254244,
+            "witness_seconds": 0.0052257569986977614,
+            "lower": 119.99996999906396,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.4882659440008865,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0012364390004222514,
+          "gate_seconds": 0.00598569499925361,
+          "proposed_first": 14288,
+          "publication": "retained"
+        },
+        {
+          "clock": 30684,
+          "ready_at": 30684,
+          "wall_seconds": 0.2716658860008465,
+          "cpu_seconds": 0.27157939100000306,
+          "active_first": 14501,
+          "gate": {
+            "kind": "terminal",
+            "upper": 224.31320080182786,
+            "witness_seconds": 0.004795234000994242,
+            "lower": 119.99899660769127,
+            "accepted": false,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.2649827759996697,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0012028279998048674,
+          "gate_seconds": 0.005441077999421395,
+          "proposed_first": 14501,
+          "publication": "retained"
+        },
+        {
+          "clock": 30761,
+          "ready_at": 30761,
+          "wall_seconds": 0.0052256170001783175,
+          "cpu_seconds": 0.005226403999998297,
+          "active_first": 14737,
+          "gate": {
+            "kind": "terminal",
+            "upper": 144.58107349262082,
+            "witness_seconds": 0.0037232169997878373,
+            "lower": 118.01284593607264,
+            "accepted": true,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0011149390011269134,
+          "gate_seconds": 0.004096537000805256,
+          "publication": "retained"
+        },
+        {
+          "clock": 30822,
+          "ready_at": 30822,
+          "wall_seconds": 0.003983264999988023,
+          "cpu_seconds": 0.003985800000002371,
+          "active_first": 14955,
+          "gate": {
+            "kind": "terminal",
+            "upper": 76.07978028994421,
+            "witness_seconds": 0.002829573000781238,
+            "lower": 75.82022737307256,
+            "accepted": true,
+            "alpha": 0.0,
+            "worlds": 0
+          },
+          "search_seconds": 0.0,
+          "candidate_seconds": 0.0,
+          "transitions": 0,
+          "posterior_update_seconds": 0.0008459429991489742,
+          "gate_seconds": 0.0031221400004142197,
+          "publication": "retained"
+        }
+      ],
+      "actions": [
+        {
+          "clock": 29100,
+          "next_clock": 29160,
+          "stop": 427,
+          "next_stop": 614,
+          "connection": 8315,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8315,
+              29126
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29160,
+          "next_clock": 29223,
+          "stop": 614,
+          "next_stop": 3,
+          "connection": 8538,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8538,
+              29175
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29223,
+          "next_clock": 29323,
+          "stop": 3,
+          "next_stop": 568,
+          "connection": 8759,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8759,
+              29240
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29323,
+          "next_clock": 29446,
+          "stop": 568,
+          "next_stop": 88,
+          "connection": 9224,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9224,
+              29341
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29446,
+          "next_clock": 29517,
+          "stop": 88,
+          "next_stop": 647,
+          "connection": 9704,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9704,
+              29464
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29517,
+          "next_clock": 29598,
+          "stop": 647,
+          "next_stop": 606,
+          "connection": 9938,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9938,
+              29530
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29598,
+          "next_clock": 29758,
+          "stop": 606,
+          "next_stop": 592,
+          "connection": 10407,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10407,
+              29669
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29758,
+          "next_clock": 29843,
+          "stop": 592,
+          "next_stop": 495,
+          "connection": 10879,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10879,
+              29774
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29843,
+          "next_clock": 29933,
+          "stop": 495,
+          "next_stop": 164,
+          "connection": 11339,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              11339,
+              29857
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29933,
+          "next_clock": 30061,
+          "stop": 164,
+          "next_stop": 165,
+          "connection": 11788,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              11788,
+              29956
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30061,
+          "next_clock": 30208,
+          "stop": 165,
+          "next_stop": 604,
+          "connection": 12230,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12230,
+              30093
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30208,
+          "next_clock": 30292,
+          "stop": 604,
+          "next_stop": 319,
+          "connection": 12695,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12695,
+              30218
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30292,
+          "next_clock": 30360,
+          "stop": 319,
+          "next_stop": 470,
+          "connection": 12918,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12918,
+              30302
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30360,
+          "next_clock": 30447,
+          "stop": 470,
+          "next_stop": 563,
+          "connection": 13372,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13372,
+              30372
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30447,
+          "next_clock": 30531,
+          "stop": 563,
+          "next_stop": 406,
+          "connection": 13588,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13588,
+              30464
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30531,
+          "next_clock": 30604,
+          "stop": 406,
+          "next_stop": 509,
+          "connection": 13816,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13816,
+              30548
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30604,
+          "next_clock": 30684,
+          "stop": 509,
+          "next_stop": 430,
+          "connection": 14288,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14288,
+              30619
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30684,
+          "next_clock": 30761,
+          "stop": 430,
+          "next_stop": 321,
+          "connection": 14501,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14501,
+              30697
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30761,
+          "next_clock": 30822,
+          "stop": 321,
+          "next_stop": 560,
+          "connection": 14737,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14737,
+              30780
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30822,
+          "next_clock": 30923,
+          "stop": 560,
+          "next_stop": 607,
+          "connection": 14955,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14955,
+              30836
+            ]
+          ],
+          "while_computing": false
+        }
+      ]
+    },
+    {
+      "date": "2023-07-27",
+      "query": 1,
+      "cpu": 28,
+      "graph_seconds": 0.12286104099985096,
+      "kernel_seconds": 0.0,
+      "method": "off64",
+      "clock": "logical",
+      "loss_lower": 1823,
+      "loss_upper": 1823,
+      "status": "arrived",
+      "missing_connection": null,
+      "setup_seconds": 4.8972537929985265,
+      "initial_plan": [
+        8315,
+        8538,
+        8759,
+        9224,
+        9704,
+        9938,
+        10407,
+        10879,
+        11339,
+        11788,
+        12230,
+        12695,
+        12918,
+        13372,
+        13588,
+        13816,
+        14288,
+        14501,
+        14737,
+        14955
+      ],
+      "worker_seconds": 15.032644640001308,
+      "worker_cpu_seconds": 14.490208712999966,
+      "actual_seconds": 19.936536702998637,
+      "actual_cpu_seconds": 19.144680357000006,
+      "decisions": [
+        {
+          "clock": 29100,
+          "ready_at": 29100,
+          "wall_seconds": 2.0819674490012403,
+          "cpu_seconds": 2.0507667890000008,
+          "active_first": 8315,
+          "gate": null,
+          "search_seconds": 2.081924907000939,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 1.0640014806995168e-06,
+          "proposed_first": 8315,
+          "publication": "retained"
+        },
+        {
+          "clock": 29160,
+          "ready_at": 29160,
+          "wall_seconds": 1.4518835620001482,
+          "cpu_seconds": 1.4514254639999962,
+          "active_first": 8538,
+          "gate": null,
+          "search_seconds": 1.4512479299992265,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0006067199992685346,
+          "proposed_first": 8538,
+          "publication": "retained"
+        },
+        {
+          "clock": 29223,
+          "ready_at": 29223,
+          "wall_seconds": 1.5693537539991667,
+          "cpu_seconds": 1.5379970620000023,
+          "active_first": 8759,
+          "gate": null,
+          "search_seconds": 1.5687478290001309,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.000578028999370872,
+          "proposed_first": 8759,
+          "publication": "retained"
+        },
+        {
+          "clock": 29323,
+          "ready_at": 29323,
+          "wall_seconds": 1.1849039339995215,
+          "cpu_seconds": 1.0934280319999985,
+          "active_first": 9224,
+          "gate": null,
+          "search_seconds": 1.1842695390005247,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0006035849983163644,
+          "proposed_first": 9224,
+          "publication": "retained"
+        },
+        {
+          "clock": 29446,
+          "ready_at": 29446,
+          "wall_seconds": 1.0548575009997876,
+          "cpu_seconds": 0.9508363539999962,
+          "active_first": 9704,
+          "gate": null,
+          "search_seconds": 1.0542300100005377,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.000593585000387975,
+          "proposed_first": 9704,
+          "publication": "retained"
+        },
+        {
+          "clock": 29517,
+          "ready_at": 29517,
+          "wall_seconds": 0.9894499689999066,
+          "cpu_seconds": 0.9130563049999978,
+          "active_first": 9938,
+          "gate": null,
+          "search_seconds": 0.9884388169994054,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0009834580014285166,
+          "proposed_first": 9938,
+          "publication": "retained"
+        },
+        {
+          "clock": 29598,
+          "ready_at": 29598,
+          "wall_seconds": 0.8824947609991796,
+          "cpu_seconds": 0.8294401429999994,
+          "active_first": 10407,
+          "gate": null,
+          "search_seconds": 0.8818162459992891,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0006507020007120445,
+          "proposed_first": 10407,
+          "publication": "retained"
+        },
+        {
+          "clock": 29758,
+          "ready_at": 29758,
+          "wall_seconds": 0.6594108159988536,
+          "cpu_seconds": 0.6591943490000034,
+          "active_first": 10879,
+          "gate": null,
+          "search_seconds": 0.6588628909994441,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0005030090014770394,
+          "proposed_first": 10879,
+          "publication": "retained"
+        },
+        {
+          "clock": 29843,
+          "ready_at": 29843,
+          "wall_seconds": 0.6001597129998117,
+          "cpu_seconds": 0.6000020679999949,
+          "active_first": 11339,
+          "gate": null,
+          "search_seconds": 0.5989920089996303,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0011383419987396337,
+          "proposed_first": 11339,
+          "publication": "retained"
+        },
+        {
+          "clock": 29933,
+          "ready_at": 29933,
+          "wall_seconds": 0.466755016001116,
+          "cpu_seconds": 0.46662640599999605,
+          "active_first": 11788,
+          "gate": null,
+          "search_seconds": 0.46605900400027167,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0006398419991455739,
+          "proposed_first": 11788,
+          "publication": "retained"
+        },
+        {
+          "clock": 30061,
+          "ready_at": 30061,
+          "wall_seconds": 0.5242200449993106,
+          "cpu_seconds": 0.512289219000003,
+          "active_first": 12230,
+          "gate": null,
+          "search_seconds": 0.5232557870003802,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0009375810004712548,
+          "proposed_first": 12230,
+          "publication": "retained"
+        },
+        {
+          "clock": 30208,
+          "ready_at": 30208,
+          "wall_seconds": 0.4216419530002895,
+          "cpu_seconds": 0.4215401370000009,
+          "active_first": 12695,
+          "gate": null,
+          "search_seconds": 0.4204325489990879,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0011824649991467595,
+          "proposed_first": 12695,
+          "publication": "retained"
+        },
+        {
+          "clock": 30292,
+          "ready_at": 30292,
+          "wall_seconds": 0.5481817750005575,
+          "cpu_seconds": 0.5480484679999975,
+          "active_first": 12918,
+          "gate": null,
+          "search_seconds": 0.5471671790000983,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0009873470007732976,
+          "proposed_first": 12918,
+          "publication": "retained"
+        },
+        {
+          "clock": 30360,
+          "ready_at": 30360,
+          "wall_seconds": 0.3820854000005056,
+          "cpu_seconds": 0.38196712200000604,
+          "active_first": 13372,
+          "gate": null,
+          "search_seconds": 0.3807833769988065,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0012703039992629783,
+          "proposed_first": 13372,
+          "publication": "retained"
+        },
+        {
+          "clock": 30447,
+          "ready_at": 30447,
+          "wall_seconds": 0.47179230700021435,
+          "cpu_seconds": 0.46423508200000185,
+          "active_first": 13588,
+          "gate": null,
+          "search_seconds": 0.47039799699996365,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0013656080009241123,
+          "proposed_first": 13588,
+          "publication": "retained"
+        },
+        {
+          "clock": 30531,
+          "ready_at": 30531,
+          "wall_seconds": 0.37662193400137767,
+          "cpu_seconds": 0.3480234609999968,
+          "active_first": 13816,
+          "gate": null,
+          "search_seconds": 0.375095859000794,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0014906060005159816,
+          "proposed_first": 13816,
+          "publication": "retained"
+        },
+        {
+          "clock": 30604,
+          "ready_at": 30604,
+          "wall_seconds": 0.522637168998699,
+          "cpu_seconds": 0.48231750999998724,
+          "active_first": 14288,
+          "gate": null,
+          "search_seconds": 0.521205106000707,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0013935440001660027,
+          "proposed_first": 14288,
+          "publication": "retained"
+        },
+        {
+          "clock": 30684,
+          "ready_at": 30684,
+          "wall_seconds": 0.30513436000001093,
+          "cpu_seconds": 0.2815952839999909,
+          "active_first": 14501,
+          "gate": null,
+          "search_seconds": 0.3036745580011484,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0014212829992175102,
+          "proposed_first": 14501,
+          "publication": "retained"
+        },
+        {
+          "clock": 30761,
+          "ready_at": 30761,
+          "wall_seconds": 0.26827462400069635,
+          "cpu_seconds": 0.24751138999999966,
+          "active_first": 14737,
+          "gate": null,
+          "search_seconds": 0.26680386699990777,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0014387179999175714,
+          "proposed_first": 14737,
+          "publication": "retained"
+        },
+        {
+          "clock": 30822,
+          "ready_at": 30822,
+          "wall_seconds": 0.2708185980009148,
+          "cpu_seconds": 0.24990806799999632,
+          "active_first": 14955,
+          "gate": null,
+          "search_seconds": 0.268628918000104,
+          "candidate_seconds": 0.0,
+          "transitions": 64,
+          "posterior_update_seconds": 0.0021250949994282564,
+          "proposed_first": 14955,
+          "publication": "retained"
+        }
+      ],
+      "actions": [
+        {
+          "clock": 29100,
+          "next_clock": 29160,
+          "stop": 427,
+          "next_stop": 614,
+          "connection": 8315,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8315,
+              29126
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29160,
+          "next_clock": 29223,
+          "stop": 614,
+          "next_stop": 3,
+          "connection": 8538,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8538,
+              29175
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29223,
+          "next_clock": 29323,
+          "stop": 3,
+          "next_stop": 568,
+          "connection": 8759,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              8759,
+              29240
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29323,
+          "next_clock": 29446,
+          "stop": 568,
+          "next_stop": 88,
+          "connection": 9224,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9224,
+              29341
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29446,
+          "next_clock": 29517,
+          "stop": 88,
+          "next_stop": 647,
+          "connection": 9704,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9704,
+              29464
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29517,
+          "next_clock": 29598,
+          "stop": 647,
+          "next_stop": 606,
+          "connection": 9938,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              9938,
+              29530
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29598,
+          "next_clock": 29758,
+          "stop": 606,
+          "next_stop": 592,
+          "connection": 10407,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10407,
+              29669
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29758,
+          "next_clock": 29843,
+          "stop": 592,
+          "next_stop": 495,
+          "connection": 10879,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              10879,
+              29774
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29843,
+          "next_clock": 29933,
+          "stop": 495,
+          "next_stop": 164,
+          "connection": 11339,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              11339,
+              29857
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 29933,
+          "next_clock": 30061,
+          "stop": 164,
+          "next_stop": 165,
+          "connection": 11788,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              11788,
+              29956
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30061,
+          "next_clock": 30208,
+          "stop": 165,
+          "next_stop": 604,
+          "connection": 12230,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12230,
+              30093
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30208,
+          "next_clock": 30292,
+          "stop": 604,
+          "next_stop": 319,
+          "connection": 12695,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12695,
+              30218
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30292,
+          "next_clock": 30360,
+          "stop": 319,
+          "next_stop": 470,
+          "connection": 12918,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              12918,
+              30302
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30360,
+          "next_clock": 30447,
+          "stop": 470,
+          "next_stop": 563,
+          "connection": 13372,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13372,
+              30372
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30447,
+          "next_clock": 30531,
+          "stop": 563,
+          "next_stop": 406,
+          "connection": 13588,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13588,
+              30464
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30531,
+          "next_clock": 30604,
+          "stop": 406,
+          "next_stop": 509,
+          "connection": 13816,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              13816,
+              30548
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30604,
+          "next_clock": 30684,
+          "stop": 509,
+          "next_stop": 430,
+          "connection": 14288,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14288,
+              30619
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30684,
+          "next_clock": 30761,
+          "stop": 430,
+          "next_stop": 321,
+          "connection": 14501,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14501,
+              30697
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30761,
+          "next_clock": 30822,
+          "stop": 321,
+          "next_stop": 560,
+          "connection": 14737,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14737,
+              30780
+            ]
+          ],
+          "while_computing": false
+        },
+        {
+          "clock": 30822,
+          "next_clock": 30923,
+          "stop": 560,
+          "next_stop": 607,
+          "connection": 14955,
+          "caught": true,
+          "feedback": [
+            [
+              "board",
+              14955,
+              30836
+            ]
+          ],
+          "while_computing": false
+        }
+      ]
+    }
+  ]
+}

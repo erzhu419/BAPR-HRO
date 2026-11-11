@@ -148,22 +148,29 @@ class CommitmentBounds:
                 result[action] = self.commit(state, action[1]).expected_first_cost
         return result
 
-    def _ready(self, times, cid, previous_trip, *, initial=None, first_action_now=False):
+    def _ready(self, times, cid, previous_trip, *, last=None, first_action_now=False,
+               departures=None):
         c = self.graph.connections[cid]
         transfer = (0 if previous_trip is None or previous_trip == c.trip_id
                     else self.graph.stops[c.dep_stop].min_transfer_time)
-        last = np.full(len(times), initial.last_arrival) if initial is not None else times
-        platform = last + transfer
+        platform = (times if last is None else last) + transfer
         if first_action_now:
-            return np.maximum(times, platform).astype(int)
-        opening = c.dep_time - self.lookahead
-        menu = times + self.minute * np.ceil(np.maximum(0, opening - times) / self.minute)
-        ready = np.maximum(menu, platform)
-        event = self.belief.mean_events(self.parameters)[cid]
-        nominal_departure = c.dep_time if event.departure is None else round(event.departure)
-        delayed = nominal_departure > ready + self.patience
-        aligned = times + self.minute * np.ceil(np.maximum(0, nominal_departure - self.patience - times) / self.minute)
-        return np.maximum(np.where(delayed, aligned, menu), platform).astype(int)
+            attempt = times
+        else:
+            opening = c.dep_time - self.lookahead
+            menu = times + self.minute * np.ceil(np.maximum(0, opening - times) / self.minute)
+            if departures is None:
+                event = self.belief.mean_events(self.parameters)[cid]
+                nominal_departure = c.dep_time if event.departure is None else round(event.departure)
+            else:
+                nominal_departure = departures.get(cid, c.dep_time)
+            delayed = nominal_departure > np.maximum(menu, platform) + self.patience
+            aligned = times + self.minute * np.ceil(np.maximum(0, nominal_departure - self.patience - times) / self.minute)
+            attempt = np.where(delayed, aligned, menu)
+        ready = np.maximum(attempt, platform)
+        if c.dep_distribution is not None:
+            ready = np.where(attempt <= c.dep_distribution.support_max, ready, self.deadline)
+        return ready.astype(int)
 
     def itinerary(self, state, path, *, first_action_now=True, lookahead=None):
         """Cost of a fixed legal itinerary, stopping at deadline after any miss.
@@ -173,6 +180,11 @@ class CommitmentBounds:
         phase until the fixed nominal boarding window; it never sees private
         future clocks. Root first_action_now fixes the selected root attempt.
         """
+        return self._itinerary(state, path, first_action_now=first_action_now, lookahead=lookahead)
+
+    def _itinerary(self, state, path, *, first_action_now, lookahead, departures=None,
+                   incoming=None, on_entry=None):
+        """Propagate a weighted arrival distribution, with optional transfer accounting."""
         started = perf_counter()
         self.lookahead = 25 * self.minute if lookahead is None else lookahead
         path = tuple(path)
@@ -206,17 +218,23 @@ class CommitmentBounds:
         first = self.graph.connections[path[0]]
         if first_action_now and first.dep_time > state.time + self.lookahead:
             raise ValueError('The fixed first attempt is outside the current scheduled lookahead')
-        incoming_times, incoming_mass = np.array([state.time]), np.array([1.])
+        if incoming is None:
+            incoming = np.array([state.time]), np.array([1.]), state.last_arrival
+        incoming_times, incoming_mass, last = incoming
         previous_trip = state.current_trip
+        position_in_path = 0
         for group_number, (trip, cids) in enumerate(groups):
             entry = self.graph.connections[cids[0]]
             if not entry.pickup_allowed and previous_trip != entry.trip_id:
                 raise ValueError('A new trip must permit boarding')
             slot = self.belief._positions[cids[0], 'departure'][1]
             law = self._law(trip)
-            initial = state if group_number == 0 else None
-            ready = self._ready(incoming_times, cids[0], previous_trip, initial=initial,
-                                first_action_now=first_action_now and group_number == 0)
+            ready = self._ready(incoming_times, cids[0], previous_trip, last=last,
+                                first_action_now=first_action_now and group_number == 0,
+                                departures=departures)
+            if on_entry is not None:
+                on_entry(position_in_path, incoming_times if last is None else last, incoming_mass,
+                         previous_trip, law, slot, ready)
             window = _prefix_window_mass(ready, incoming_mass, law.times[slot], self.patience, self.deadline)
             mass = law.marginal(slot) * window * ~law.canceled[slot]
             self.stats['window_input_cells'] += len(ready) + len(law.times[slot])
@@ -224,7 +242,7 @@ class CommitmentBounds:
                 dep = self.belief._positions[cid, 'departure'][1]
                 if position:
                     edge = self._posterior_edge(trip, dep - 1)
-                    ready = self._ready(law.times[dep - 1], cid, trip)
+                    ready = self._ready(law.times[dep - 1], cid, trip, departures=departures)
                     caught = ((ready[:, None] <= law.times[dep][None, :])
                               & (law.times[dep][None, :] <= ready[:, None] + self.patience)
                               & (ready[:, None] < self.deadline)
@@ -238,6 +256,8 @@ class CommitmentBounds:
             final = self.belief._positions[cids[-1], 'arrival'][1]
             incoming_times, incoming_mass = law.times[final], mass
             previous_trip = trip
+            last = None
+            position_in_path += len(cids)
         gain = float(np.dot(incoming_mass, self.deadline - incoming_times))
         probability = float(incoming_mass.sum())
         self.stats['seconds'] += perf_counter() - started

@@ -1,0 +1,818 @@
+{
+  "protocol": {
+    "source": "experiments/reconstruction_data_audit/city_vbz_dated_replay_v2.json.gz",
+    "archive": "experiments/reconstruction_v4/city_replay_results.json",
+    "frozen_cases_and_upper": "experiments/reconstruction_v8/opportunity_city_results.json",
+    "training_dates": [
+      "2023-07-25"
+    ],
+    "slack_seconds": [
+      0,
+      60,
+      120,
+      180,
+      300
+    ],
+    "proposal": "Forward and reverse labels on shifted nominal interval timetable.",
+    "target": "Model-conditional all-action lower bound under the frozen independent trip posterior.",
+    "assumptions": "Complete graph, zero transfer time, no footpaths. The cut also relaxes pickup restrictions.",
+    "timing": "Lower includes cold support, label proposal, joint crossing integration. Frozen first-exit bound and fixed witness path reused. Exact witness value independently recomputed and timed."
+  },
+  "summary": {
+    "mean_frontier_lower_seconds": 21.156234429765,
+    "mean_combined_lower_seconds": 76.68059748482341,
+    "mean_gain_seconds": 9.504856669599183,
+    "improved": 8,
+    "min_gap_seconds": 338.4870040417487,
+    "median_lower_wall_seconds": 3.193868622000082,
+    "max_lower_wall_seconds": 4.9044412789999114,
+    "median_witness_evaluate_seconds": 0.007936187999803224,
+    "gaps_within_seconds": {
+      "1": 0,
+      "30": 0,
+      "60": 0
+    }
+  },
+  "rows": [
+    {
+      "date": "2023-07-26",
+      "query": 0,
+      "decision": 1,
+      "stop": 594,
+      "clock": 29185,
+      "destination": 3,
+      "deadline": 32700,
+      "context_wall_seconds": 0.19926965099966765,
+      "v8_lower_seconds": 84.71992663224427,
+      "v8_lower_wall_seconds": 0.279867696999645,
+      "v8_witness_wall_seconds": 1.4988480970005185,
+      "frontier_lower_seconds": 4.151246572735396,
+      "combined_lower_seconds": 84.90876931994505,
+      "gain_seconds": 0.1888426877007845,
+      "upper_seconds": 1425.815432099916,
+      "gap_seconds": 1340.906662779971,
+      "support_seconds": 0.15474080900003173,
+      "proposal_seconds": 0.11856071300007898,
+      "cut_seconds": 1.909560768999654,
+      "lower_wall_seconds": 2.1829434040000706,
+      "lower_cpu_seconds": 2.068036426,
+      "witness_evaluate_seconds": 0.00546989200029202,
+      "work": {
+        "single_connection_cells": 2784352,
+        "chain_edge_cells": 54358848,
+        "chain_queries": 996,
+        "single_connection_queries": 644
+      },
+      "analytic_work": {
+        "law_queries": 545,
+        "root_joint_cells": 0,
+        "posterior_edge_cells": 34667492,
+        "path_matrix_cells": 0,
+        "window_input_cells": 0,
+        "seconds": 0.0
+      },
+      "cuts": [
+        {
+          "slack_seconds": 0,
+          "direction": "forward",
+          "threshold": 29730,
+          "survival": 8.807652232169057e-06,
+          "union_survival": 0.0,
+          "crossings": 709,
+          "trips": 264,
+          "repeated_trips": 193
+        },
+        {
+          "slack_seconds": 0,
+          "direction": "backward",
+          "threshold": 29730,
+          "survival": 4.330018872941651e-05,
+          "union_survival": 0.0,
+          "crossings": 448,
+          "trips": 191,
+          "repeated_trips": 113
+        },
+        {
+          "slack_seconds": 60,
+          "direction": "forward",
+          "threshold": 29645,
+          "survival": 0.0002565088706179491,
+          "union_survival": 0.0,
+          "crossings": 1385,
+          "trips": 382,
+          "repeated_trips": 311
+        },
+        {
+          "slack_seconds": 60,
+          "direction": "backward",
+          "threshold": 29645,
+          "survival": 0.00034026681694152147,
+          "union_survival": 0.0,
+          "crossings": 1282,
+          "trips": 355,
+          "repeated_trips": 266
+        },
+        {
+          "slack_seconds": 120,
+          "direction": "forward",
+          "threshold": 29189,
+          "survival": 0.9981010970419806,
+          "union_survival": 0.9981010970419805,
+          "crossings": 367,
+          "trips": 300,
+          "repeated_trips": 65
+        },
+        {
+          "slack_seconds": 120,
+          "direction": "backward",
+          "threshold": 29189,
+          "survival": 0.9981010970420156,
+          "union_survival": 0.9981010970420156,
+          "crossings": 196,
+          "trips": 148,
+          "repeated_trips": 48
+        }
+      ]
+    },
+    {
+      "date": "2023-07-26",
+      "query": 0,
+      "decision": 2,
+      "stop": 606,
+      "clock": 29306,
+      "destination": 3,
+      "deadline": 32700,
+      "context_wall_seconds": 0.24772922000011022,
+      "v8_lower_seconds": 83.10955818194917,
+      "v8_lower_wall_seconds": 0.5918352140006391,
+      "v8_witness_wall_seconds": 0.6239047019998907,
+      "frontier_lower_seconds": 19.65378996045442,
+      "combined_lower_seconds": 85.67930991115712,
+      "gain_seconds": 2.569751729207951,
+      "upper_seconds": 957.2869477973063,
+      "gap_seconds": 871.6076378861492,
+      "support_seconds": 0.1481676610001159,
+      "proposal_seconds": 0.09126561699940794,
+      "cut_seconds": 1.589133187000698,
+      "lower_wall_seconds": 1.8286773990002985,
+      "lower_cpu_seconds": 1.7263048910000003,
+      "witness_evaluate_seconds": 0.0050595740003700485,
+      "work": {
+        "single_connection_cells": 2113084,
+        "chain_edge_cells": 43236124,
+        "chain_queries": 867,
+        "single_connection_queries": 487
+      },
+      "analytic_work": {
+        "law_queries": 475,
+        "root_joint_cells": 0,
+        "posterior_edge_cells": 27847392,
+        "path_matrix_cells": 0,
+        "window_input_cells": 0,
+        "seconds": 0.0
+      },
+      "cuts": [
+        {
+          "slack_seconds": 0,
+          "direction": "forward",
+          "threshold": 29730,
+          "survival": 0.00014438826664863664,
+          "union_survival": 0.0,
+          "crossings": 502,
+          "trips": 205,
+          "repeated_trips": 173
+        },
+        {
+          "slack_seconds": 0,
+          "direction": "backward",
+          "threshold": 29730,
+          "survival": 0.00393651869565533,
+          "union_survival": 0.0,
+          "crossings": 355,
+          "trips": 180,
+          "repeated_trips": 81
+        },
+        {
+          "slack_seconds": 60,
+          "direction": "forward",
+          "threshold": 29645,
+          "survival": 0.0008351458687800463,
+          "union_survival": 0.0,
+          "crossings": 1374,
+          "trips": 382,
+          "repeated_trips": 311
+        },
+        {
+          "slack_seconds": 60,
+          "direction": "backward",
+          "threshold": 29645,
+          "survival": 0.007202440594173476,
+          "union_survival": 0.0,
+          "crossings": 744,
+          "trips": 254,
+          "repeated_trips": 188
+        },
+        {
+          "slack_seconds": 120,
+          "direction": "forward",
+          "threshold": 29323,
+          "survival": 0.9999983886471533,
+          "union_survival": 0.9999983886471533,
+          "crossings": 379,
+          "trips": 252,
+          "repeated_trips": 95
+        },
+        {
+          "slack_seconds": 120,
+          "direction": "backward",
+          "threshold": 29323,
+          "survival": 0.9999999999999919,
+          "union_survival": 0.9999999999999919,
+          "crossings": 100,
+          "trips": 81,
+          "repeated_trips": 19
+        }
+      ]
+    },
+    {
+      "date": "2023-07-26",
+      "query": 1,
+      "decision": 1,
+      "stop": 614,
+      "clock": 29142,
+      "destination": 607,
+      "deadline": 32700,
+      "context_wall_seconds": 0.2837540139998964,
+      "v8_lower_seconds": 51.706309952566436,
+      "v8_lower_wall_seconds": 0.29763249100051326,
+      "v8_witness_wall_seconds": 4.440068541999608,
+      "frontier_lower_seconds": 22.811139534426648,
+      "combined_lower_seconds": 67.91468103129158,
+      "gain_seconds": 16.208371078725143,
+      "upper_seconds": 1826.2865299983964,
+      "gap_seconds": 1758.3718489671048,
+      "support_seconds": 0.17586081700028444,
+      "proposal_seconds": 0.20456174199989619,
+      "cut_seconds": 3.871589344000313,
+      "lower_wall_seconds": 4.252113721000569,
+      "lower_cpu_seconds": 4.011243578,
+      "witness_evaluate_seconds": 0.010402483999314427,
+      "work": {
+        "single_connection_cells": 3194800,
+        "chain_edge_cells": 217506950,
+        "chain_queries": 2633,
+        "single_connection_queries": 790
+      },
+      "analytic_work": {
+        "law_queries": 1050,
+        "root_joint_cells": 0,
+        "posterior_edge_cells": 91261542,
+        "path_matrix_cells": 0,
+        "window_input_cells": 0,
+        "seconds": 0.0
+      },
+      "cuts": [
+        {
+          "slack_seconds": 0,
+          "direction": "forward",
+          "threshold": 30726,
+          "survival": 1.2151304110580556e-27,
+          "union_survival": 0.0,
+          "crossings": 4495,
+          "trips": 804,
+          "repeated_trips": 630
+        },
+        {
+          "slack_seconds": 0,
+          "direction": "backward",
+          "threshold": 30726,
+          "survival": 3.611987465902883e-30,
+          "union_survival": 0.0,
+          "crossings": 3145,
+          "trips": 601,
+          "repeated_trips": 472
+        },
+        {
+          "slack_seconds": 60,
+          "direction": "forward",
+          "threshold": 30210,
+          "survival": 2.799392624475893e-13,
+          "union_survival": 0.0,
+          "crossings": 3701,
+          "trips": 773,
+          "repeated_trips": 601
+        },
+        {
+          "slack_seconds": 60,
+          "direction": "backward",
+          "threshold": 30210,
+          "survival": 2.9090463044855307e-13,
+          "union_survival": 0.0,
+          "crossings": 2799,
+          "trips": 613,
+          "repeated_trips": 484
+        },
+        {
+          "slack_seconds": 120,
+          "direction": "forward",
+          "threshold": 29429,
+          "survival": 0.003975066716063038,
+          "union_survival": 0.0,
+          "crossings": 1275,
+          "trips": 487,
+          "repeated_trips": 340
+        },
+        {
+          "slack_seconds": 120,
+          "direction": "backward",
+          "threshold": 29429,
+          "survival": 0.07948132241881342,
+          "union_survival": 0.0,
+          "crossings": 387,
+          "trips": 145,
+          "repeated_trips": 106
+        }
+      ]
+    },
+    {
+      "date": "2023-07-26",
+      "query": 1,
+      "decision": 2,
+      "stop": 3,
+      "clock": 29213,
+      "destination": 607,
+      "deadline": 32700,
+      "context_wall_seconds": 0.29641496099975484,
+      "v8_lower_seconds": 45.84343148112626,
+      "v8_lower_wall_seconds": 0.5286665409994384,
+      "v8_witness_wall_seconds": 4.3127334250002605,
+      "frontier_lower_seconds": 13.134332694172391,
+      "combined_lower_seconds": 55.14458372804567,
+      "gain_seconds": 9.301152246919408,
+      "upper_seconds": 1732.1447680897377,
+      "gap_seconds": 1677.000184361692,
+      "support_seconds": 0.2418262129995128,
+      "proposal_seconds": 0.41725782200046524,
+      "cut_seconds": 3.8674857569994856,
+      "lower_wall_seconds": 4.526667123999687,
+      "lower_cpu_seconds": 4.304520868999999,
+      "witness_evaluate_seconds": 0.012749707000693888,
+      "work": {
+        "single_connection_cells": 3234000,
+        "chain_edge_cells": 212049928,
+        "chain_queries": 2633,
+        "single_connection_queries": 813
+      },
+      "analytic_work": {
+        "law_queries": 1028,
+        "root_joint_cells": 0,
+        "posterior_edge_cells": 89392698,
+        "path_matrix_cells": 0,
+        "window_input_cells": 0,
+        "seconds": 0.0
+      },
+      "cuts": [
+        {
+          "slack_seconds": 0,
+          "direction": "forward",
+          "threshold": 30726,
+          "survival": 1.6078946204456622e-28,
+          "union_survival": 0.0,
+          "crossings": 4492,
+          "trips": 799,
+          "repeated_trips": 627
+        },
+        {
+          "slack_seconds": 0,
+          "direction": "backward",
+          "threshold": 30726,
+          "survival": 1.921164709302163e-27,
+          "union_survival": 0.0,
+          "crossings": 2906,
+          "trips": 569,
+          "repeated_trips": 459
+        },
+        {
+          "slack_seconds": 60,
+          "direction": "forward",
+          "threshold": 30210,
+          "survival": 3.76033273761731e-13,
+          "union_survival": 0.0,
+          "crossings": 3695,
+          "trips": 779,
+          "repeated_trips": 608
+        },
+        {
+          "slack_seconds": 60,
+          "direction": "backward",
+          "threshold": 30210,
+          "survival": 6.180040919319932e-12,
+          "union_survival": 0.0,
+          "crossings": 2484,
+          "trips": 563,
+          "repeated_trips": 446
+        },
+        {
+          "slack_seconds": 120,
+          "direction": "forward",
+          "threshold": 29466,
+          "survival": 0.00582894191063826,
+          "union_survival": 0.0,
+          "crossings": 1373,
+          "trips": 493,
+          "repeated_trips": 345
+        },
+        {
+          "slack_seconds": 120,
+          "direction": "backward",
+          "threshold": 29466,
+          "survival": 0.05191435845681597,
+          "union_survival": 0.0,
+          "crossings": 517,
+          "trips": 243,
+          "repeated_trips": 148
+        }
+      ]
+    },
+    {
+      "date": "2023-07-27",
+      "query": 0,
+      "decision": 1,
+      "stop": 594,
+      "clock": 29202,
+      "destination": 3,
+      "deadline": 32700,
+      "context_wall_seconds": 0.3242772920002608,
+      "v8_lower_seconds": 91.7531270326429,
+      "v8_lower_wall_seconds": 0.29376558900003147,
+      "v8_witness_wall_seconds": 1.5687072640002953,
+      "frontier_lower_seconds": 0.15599735058473074,
+      "combined_lower_seconds": 91.8311999723034,
+      "gain_seconds": 0.0780729396605011,
+      "upper_seconds": 1444.908437094457,
+      "gap_seconds": 1353.0772371221535,
+      "support_seconds": 0.16362598900013836,
+      "proposal_seconds": 0.14398935099961818,
+      "cut_seconds": 1.7199606479998693,
+      "lower_wall_seconds": 2.027671394999743,
+      "lower_cpu_seconds": 1.9305757809999982,
+      "witness_evaluate_seconds": 0.0049762300004658755,
+      "work": {
+        "single_connection_cells": 1338276,
+        "chain_edge_cells": 44532912,
+        "chain_queries": 874,
+        "single_connection_queries": 301
+      },
+      "analytic_work": {
+        "law_queries": 505,
+        "root_joint_cells": 0,
+        "posterior_edge_cells": 30958192,
+        "path_matrix_cells": 0,
+        "window_input_cells": 0,
+        "seconds": 0.0
+      },
+      "cuts": [
+        {
+          "slack_seconds": 0,
+          "direction": "forward",
+          "threshold": 29730,
+          "survival": 4.3349023931242805e-05,
+          "union_survival": 0.0,
+          "crossings": 709,
+          "trips": 264,
+          "repeated_trips": 193
+        },
+        {
+          "slack_seconds": 0,
+          "direction": "backward",
+          "threshold": 29730,
+          "survival": 4.330063934035075e-05,
+          "union_survival": 0.0,
+          "crossings": 448,
+          "trips": 191,
+          "repeated_trips": 113
+        },
+        {
+          "slack_seconds": 60,
+          "direction": "forward",
+          "threshold": 29645,
+          "survival": 0.00026036381002018954,
+          "union_survival": 0.0,
+          "crossings": 1385,
+          "trips": 382,
+          "repeated_trips": 311
+        },
+        {
+          "slack_seconds": 60,
+          "direction": "backward",
+          "threshold": 29645,
+          "survival": 0.00034382095609610636,
+          "union_survival": 0.0,
+          "crossings": 1192,
+          "trips": 338,
+          "repeated_trips": 257
+        }
+      ]
+    },
+    {
+      "date": "2023-07-27",
+      "query": 0,
+      "decision": 3,
+      "stop": 606,
+      "clock": 29545,
+      "destination": 3,
+      "deadline": 32700,
+      "context_wall_seconds": 0.2788274309996268,
+      "v8_lower_seconds": 78.05488044536644,
+      "v8_lower_wall_seconds": 0.5642985229997066,
+      "v8_witness_wall_seconds": 0.26905256700047175,
+      "frontier_lower_seconds": 64.99281651891896,
+      "combined_lower_seconds": 96.84830173915759,
+      "gain_seconds": 18.793421293791155,
+      "upper_seconds": 435.3353057809063,
+      "gap_seconds": 338.4870040417487,
+      "support_seconds": 0.3027976640005363,
+      "proposal_seconds": 0.11676284199984366,
+      "cut_seconds": 1.5206766060000518,
+      "lower_wall_seconds": 1.9403145250007583,
+      "lower_cpu_seconds": 1.8473207280000032,
+      "witness_evaluate_seconds": 0.00446991200078628,
+      "work": {
+        "single_connection_cells": 2778876,
+        "chain_edge_cells": 26509836,
+        "chain_queries": 621,
+        "single_connection_queries": 643
+      },
+      "analytic_work": {
+        "law_queries": 543,
+        "root_joint_cells": 0,
+        "posterior_edge_cells": 21798640,
+        "path_matrix_cells": 0,
+        "window_input_cells": 0,
+        "seconds": 0.0
+      },
+      "cuts": [
+        {
+          "slack_seconds": 0,
+          "direction": "forward",
+          "threshold": 29923,
+          "survival": 0.001663682212948604,
+          "union_survival": 0.0,
+          "crossings": 478,
+          "trips": 222,
+          "repeated_trips": 126
+        },
+        {
+          "slack_seconds": 0,
+          "direction": "backward",
+          "threshold": 29923,
+          "survival": 0.004332398570322479,
+          "union_survival": 0.0,
+          "crossings": 353,
+          "trips": 153,
+          "repeated_trips": 104
+        },
+        {
+          "slack_seconds": 60,
+          "direction": "forward",
+          "threshold": 29722,
+          "survival": 0.24868371218279292,
+          "union_survival": 0.0,
+          "crossings": 400,
+          "trips": 232,
+          "repeated_trips": 135
+        },
+        {
+          "slack_seconds": 60,
+          "direction": "backward",
+          "threshold": 29722,
+          "survival": 0.34373258375750015,
+          "union_survival": 0.0,
+          "crossings": 253,
+          "trips": 116,
+          "repeated_trips": 88
+        },
+        {
+          "slack_seconds": 120,
+          "direction": "forward",
+          "threshold": 29550,
+          "survival": 0.9999999999986878,
+          "union_survival": 0.9999999999986878,
+          "crossings": 698,
+          "trips": 459,
+          "repeated_trips": 168
+        },
+        {
+          "slack_seconds": 120,
+          "direction": "backward",
+          "threshold": 29550,
+          "survival": 0.999999999998823,
+          "union_survival": 0.999999999998823,
+          "crossings": 82,
+          "trips": 82,
+          "repeated_trips": 0
+        }
+      ]
+    },
+    {
+      "date": "2023-07-27",
+      "query": 1,
+      "decision": 1,
+      "stop": 614,
+      "clock": 29160,
+      "destination": 607,
+      "deadline": 32700,
+      "context_wall_seconds": 0.29696736200003215,
+      "v8_lower_seconds": 58.912759931722,
+      "v8_lower_wall_seconds": 0.24471832400013227,
+      "v8_witness_wall_seconds": 4.370129015999737,
+      "frontier_lower_seconds": 21.380475279200027,
+      "combined_lower_seconds": 70.57921966427048,
+      "gain_seconds": 11.666459732548482,
+      "upper_seconds": 1852.5422697425286,
+      "gap_seconds": 1781.963050078258,
+      "support_seconds": 0.16441833800035965,
+      "proposal_seconds": 0.23833670000021812,
+      "cut_seconds": 3.8019350919994395,
+      "lower_wall_seconds": 4.204793840000093,
+      "lower_cpu_seconds": 3.998498282,
+      "witness_evaluate_seconds": 0.01299071300036303,
+      "work": {
+        "single_connection_cells": 3185000,
+        "chain_edge_cells": 212113486,
+        "chain_queries": 2612,
+        "single_connection_queries": 785
+      },
+      "analytic_work": {
+        "law_queries": 1046,
+        "root_joint_cells": 0,
+        "posterior_edge_cells": 90362846,
+        "path_matrix_cells": 0,
+        "window_input_cells": 0,
+        "seconds": 0.0
+      },
+      "cuts": [
+        {
+          "slack_seconds": 0,
+          "direction": "forward",
+          "threshold": 30726,
+          "survival": 2.9431734524148253e-27,
+          "union_survival": 0.0,
+          "crossings": 4495,
+          "trips": 804,
+          "repeated_trips": 630
+        },
+        {
+          "slack_seconds": 0,
+          "direction": "backward",
+          "threshold": 30726,
+          "survival": 3.602907805015589e-30,
+          "union_survival": 0.0,
+          "crossings": 3077,
+          "trips": 601,
+          "repeated_trips": 463
+        },
+        {
+          "slack_seconds": 60,
+          "direction": "forward",
+          "threshold": 30210,
+          "survival": 3.2074570951990354e-13,
+          "union_survival": 0.0,
+          "crossings": 3701,
+          "trips": 773,
+          "repeated_trips": 601
+        },
+        {
+          "slack_seconds": 60,
+          "direction": "backward",
+          "threshold": 30210,
+          "survival": 3.014450354954578e-13,
+          "union_survival": 0.0,
+          "crossings": 2665,
+          "trips": 582,
+          "repeated_trips": 477
+        },
+        {
+          "slack_seconds": 120,
+          "direction": "forward",
+          "threshold": 29429,
+          "survival": 0.00235002909913333,
+          "union_survival": 0.0,
+          "crossings": 1258,
+          "trips": 493,
+          "repeated_trips": 335
+        },
+        {
+          "slack_seconds": 120,
+          "direction": "backward",
+          "threshold": 29429,
+          "survival": 0.07948132073958931,
+          "union_survival": 0.0,
+          "crossings": 372,
+          "trips": 144,
+          "repeated_trips": 106
+        }
+      ]
+    },
+    {
+      "date": "2023-07-27",
+      "query": 1,
+      "decision": 2,
+      "stop": 3,
+      "clock": 29223,
+      "destination": 607,
+      "deadline": 32700,
+      "context_wall_seconds": 0.37952953400053957,
+      "v8_lower_seconds": 43.305932864176384,
+      "v8_lower_wall_seconds": 0.5710608039998988,
+      "v8_witness_wall_seconds": 4.442097930000273,
+      "frontier_lower_seconds": 22.97007752762744,
+      "combined_lower_seconds": 60.538714512416426,
+      "gain_seconds": 17.232781648240042,
+      "upper_seconds": 1749.5105223024739,
+      "gap_seconds": 1688.9718077900575,
+      "support_seconds": 0.1652371629998015,
+      "proposal_seconds": 0.4066490459999841,
+      "cut_seconds": 4.332437842000218,
+      "lower_wall_seconds": 4.9044412789999114,
+      "lower_cpu_seconds": 4.669412315999999,
+      "witness_evaluate_seconds": 0.010539194000557472,
+      "work": {
+        "single_connection_cells": 3243800,
+        "chain_edge_cells": 211697491,
+        "chain_queries": 2631,
+        "single_connection_queries": 815
+      },
+      "analytic_work": {
+        "law_queries": 1028,
+        "root_joint_cells": 0,
+        "posterior_edge_cells": 89278166,
+        "path_matrix_cells": 0,
+        "window_input_cells": 0,
+        "seconds": 0.0
+      },
+      "cuts": [
+        {
+          "slack_seconds": 0,
+          "direction": "forward",
+          "threshold": 30726,
+          "survival": 5.839858893725752e-28,
+          "union_survival": 0.0,
+          "crossings": 4492,
+          "trips": 799,
+          "repeated_trips": 627
+        },
+        {
+          "slack_seconds": 0,
+          "direction": "backward",
+          "threshold": 30726,
+          "survival": 2.2339862559899786e-25,
+          "union_survival": 0.0,
+          "crossings": 2890,
+          "trips": 569,
+          "repeated_trips": 457
+        },
+        {
+          "slack_seconds": 60,
+          "direction": "forward",
+          "threshold": 30210,
+          "survival": 6.514864776691606e-13,
+          "union_survival": 0.0,
+          "crossings": 3695,
+          "trips": 779,
+          "repeated_trips": 608
+        },
+        {
+          "slack_seconds": 60,
+          "direction": "backward",
+          "threshold": 30210,
+          "survival": 5.694160189098869e-11,
+          "union_survival": 0.0,
+          "crossings": 2468,
+          "trips": 563,
+          "repeated_trips": 446
+        },
+        {
+          "slack_seconds": 120,
+          "direction": "forward",
+          "threshold": 29466,
+          "survival": 0.007382082558886098,
+          "union_survival": 0.0,
+          "crossings": 1373,
+          "trips": 493,
+          "repeated_trips": 345
+        },
+        {
+          "slack_seconds": 120,
+          "direction": "backward",
+          "threshold": 29466,
+          "survival": 0.09452706784058801,
+          "union_survival": 0.0,
+          "crossings": 517,
+          "trips": 243,
+          "repeated_trips": 148
+        }
+      ]
+    }
+  ]
+}
