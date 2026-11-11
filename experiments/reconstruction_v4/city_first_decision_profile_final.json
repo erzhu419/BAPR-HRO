@@ -1,0 +1,574 @@
+{
+  "scope": "Diagnostic only. One first public-history decision. No journey execution or held-out actual world supplied to the planner.",
+  "implementation_change": "v5 bounded anchored kernels and FFBS conditional probability reuse",
+  "input": "experiments/reconstruction_data_audit/city_vbz_dated_replay_v2.json.gz",
+  "date": "2023-07-26",
+  "query": 0,
+  "static_query": {
+    "origin": "8591299",
+    "destination": "8502572",
+    "origin_name": "Z\u00fcrich, Paradeplatz",
+    "destination_name": "Z\u00fcrich, Goldbrunnenplatz",
+    "ready_seconds": 29100,
+    "deadline_seconds": 32700
+  },
+  "graph_connections": 27895,
+  "trips": 2173,
+  "samples": 4,
+  "budget": 512,
+  "profiled_wall_seconds": 53.65400317701278,
+  "profiled_cpu_seconds": 50.314399665,
+  "user_cpu_seconds": 49.785052,
+  "system_cpu_seconds": 0.529368,
+  "process_peak_rss_kib": 938468,
+  "peak_before_query_kib": 326712,
+  "selected": 8341,
+  "planning": {
+    "connection": 8341,
+    "stop": 530,
+    "time": 29100,
+    "planning_ms": 53621.38175498694,
+    "work": 512,
+    "value": null,
+    "completed_rollouts": 72,
+    "root_actions": 132,
+    "scored_root_actions": 0,
+    "complete_common_rounds": 0,
+    "tree_nodes": 0,
+    "menu_size": 27895
+  },
+  "comparison_baselines": {
+    "v3": {
+      "planning_checks": {
+        "connection": true,
+        "stop": true,
+        "time": true,
+        "work": true,
+        "value": true,
+        "completed_rollouts": true,
+        "root_actions": true,
+        "scored_root_actions": true,
+        "complete_common_rounds": true,
+        "tree_nodes": true,
+        "menu_size": true,
+        "selected_action": true
+      },
+      "all_planning_equal": true,
+      "previous_wall_seconds": 85.78364465001505,
+      "wall_speedup": 1.5988302749191268,
+      "function_calls": {
+        "mean_events": {
+          "previous": 441,
+          "current": 441
+        },
+        "_tail": {
+          "previous": 440,
+          "current": 440
+        },
+        "logsumexp": {
+          "previous": 467897,
+          "current": 435698
+        },
+        "_law": {
+          "previous": 1041948,
+          "current": 1041948
+        },
+        "sample": {
+          "previous": 1,
+          "current": 1
+        },
+        "marginals": {
+          "previous": 2611,
+          "current": 2611
+        },
+        "draw": {
+          "previous": 8692,
+          "current": 8692
+        },
+        "nominal_action": {
+          "previous": 440,
+          "current": 440
+        },
+        "get_connections_from": {
+          "previous": 17435,
+          "current": 17435
+        },
+        "transition": {
+          "previous": 512,
+          "current": 512
+        },
+        "build_committed_model": {
+          "previous": 1,
+          "current": 1
+        }
+      }
+    },
+    "v4": {
+      "planning_checks": {
+        "connection": true,
+        "stop": true,
+        "time": true,
+        "work": true,
+        "value": true,
+        "completed_rollouts": true,
+        "root_actions": true,
+        "scored_root_actions": true,
+        "complete_common_rounds": true,
+        "tree_nodes": true,
+        "menu_size": true,
+        "selected_action": true
+      },
+      "all_planning_equal": true,
+      "previous_wall_seconds": 43.56865839898819,
+      "wall_speedup": 0.8120299664360273,
+      "function_calls": {
+        "mean_events": {
+          "previous": 441,
+          "current": 441
+        },
+        "_tail": {
+          "previous": 440,
+          "current": 440
+        },
+        "logsumexp": {
+          "previous": 467897,
+          "current": 435698
+        },
+        "_law": {
+          "previous": 1041948,
+          "current": 1041948
+        },
+        "sample": {
+          "previous": 1,
+          "current": 1
+        },
+        "marginals": {
+          "previous": 2611,
+          "current": 2611
+        },
+        "draw": {
+          "previous": 8692,
+          "current": 8692
+        },
+        "nominal_action": {
+          "previous": 440,
+          "current": 440
+        },
+        "get_connections_from": {
+          "previous": 17435,
+          "current": 17435
+        },
+        "transition": {
+          "previous": 512,
+          "current": 512
+        },
+        "build_committed_model": {
+          "previous": 1,
+          "current": 1
+        }
+      }
+    }
+  },
+  "top15_cumulative": [
+    {
+      "file": "/home/erzhu419/mine_code/BAPR-HRO/experiments/reconstruction_v4/run_dated_replay.py",
+      "line": 234,
+      "function": "select_connection",
+      "primitive_calls": 1,
+      "total_calls": 1,
+      "own_seconds": 0.02154899,
+      "cumulative_seconds": 53.642965191,
+      "callers": []
+    },
+    {
+      "file": "/home/erzhu419/mine_code/BAPR-HRO/src/causal_planning_router.py",
+      "line": 194,
+      "function": "select_connection",
+      "primitive_calls": 1,
+      "total_calls": 1,
+      "own_seconds": 0.002313865,
+      "cumulative_seconds": 53.621398571,
+      "callers": []
+    },
+    {
+      "file": "/home/erzhu419/mine_code/BAPR-HRO/src/evolving_trip_belief.py",
+      "line": 330,
+      "function": "mean_events",
+      "primitive_calls": 441,
+      "total_calls": 441,
+      "own_seconds": 1.140452088,
+      "cumulative_seconds": 29.016642601,
+      "callers": [
+        {
+          "file": "/home/erzhu419/mine_code/BAPR-HRO/src/causal_planning_router.py",
+          "line": 214,
+          "function": "tail",
+          "counts": [
+            440,
+            440,
+            0.9475075110000001,
+            19.071812031
+          ]
+        },
+        {
+          "file": "/home/erzhu419/mine_code/BAPR-HRO/src/causal_planning_router.py",
+          "line": 194,
+          "function": "select_connection",
+          "counts": [
+            1,
+            1,
+            0.192944577,
+            9.94483057
+          ]
+        }
+      ]
+    },
+    {
+      "file": "/home/erzhu419/mine_code/BAPR-HRO/src/causal_planning_router.py",
+      "line": 100,
+      "function": "plan",
+      "primitive_calls": 1,
+      "total_calls": 1,
+      "own_seconds": 0.028598815000000003,
+      "cumulative_seconds": 26.314440731,
+      "callers": []
+    },
+    {
+      "file": "/home/erzhu419/mine_code/BAPR-HRO/src/causal_planning_router.py",
+      "line": 63,
+      "function": "_simulate",
+      "primitive_calls": 73,
+      "total_calls": 73,
+      "own_seconds": 0.008039766,
+      "cumulative_seconds": 26.199583247000003,
+      "callers": []
+    },
+    {
+      "file": "/home/erzhu419/mine_code/BAPR-HRO/src/causal_planning_router.py",
+      "line": 47,
+      "function": "_tail",
+      "primitive_calls": 440,
+      "total_calls": 440,
+      "own_seconds": 0.006793711,
+      "cumulative_seconds": 25.705258957,
+      "callers": []
+    },
+    {
+      "file": "/home/erzhu419/mine_code/BAPR-HRO/src/causal_planning_router.py",
+      "line": 214,
+      "function": "tail",
+      "primitive_calls": 440,
+      "total_calls": 440,
+      "own_seconds": 0.20647485200000001,
+      "cumulative_seconds": 25.693998319000002,
+      "callers": []
+    },
+    {
+      "file": "/home/erzhu419/mine_code/BAPR-HRO/src/evolving_trip_belief.py",
+      "line": 21,
+      "function": "logsumexp",
+      "primitive_calls": 435698,
+      "total_calls": 435698,
+      "own_seconds": 17.830585077000002,
+      "cumulative_seconds": 24.754819477,
+      "callers": [
+        {
+          "file": "/home/erzhu419/mine_code/BAPR-HRO/src/evolving_trip_belief.py",
+          "line": 49,
+          "function": "marginals",
+          "counts": [
+            160353,
+            160353,
+            8.06095589,
+            10.857577118
+          ]
+        },
+        {
+          "file": "/home/erzhu419/mine_code/BAPR-HRO/src/evolving_trip_belief.py",
+          "line": 60,
+          "function": "draw",
+          "counts": [
+            169028,
+            169028,
+            1.248432141,
+            2.910358419
+          ]
+        },
+        {
+          "file": "/home/erzhu419/mine_code/BAPR-HRO/src/evolving_trip_belief.py",
+          "line": 244,
+          "function": "_law",
+          "counts": [
+            106317,
+            106317,
+            8.521197046000001,
+            10.98688394
+          ]
+        }
+      ]
+    },
+    {
+      "file": "/home/erzhu419/mine_code/BAPR-HRO/src/evolving_trip_belief.py",
+      "line": 244,
+      "function": "_law",
+      "primitive_calls": 1041948,
+      "total_calls": 1041948,
+      "own_seconds": 8.695452421,
+      "cumulative_seconds": 22.984639050000002,
+      "callers": []
+    },
+    {
+      "file": "/home/erzhu419/mine_code/BAPR-HRO/src/evolving_trip_belief.py",
+      "line": 313,
+      "function": "sample",
+      "primitive_calls": 1,
+      "total_calls": 1,
+      "own_seconds": 0.278642504,
+      "cumulative_seconds": 17.311720842,
+      "callers": [
+        {
+          "file": "/home/erzhu419/mine_code/BAPR-HRO/src/causal_planning_router.py",
+          "line": 194,
+          "function": "select_connection",
+          "counts": [
+            1,
+            1,
+            0.278642504,
+            17.311720842
+          ]
+        }
+      ]
+    },
+    {
+      "file": "/home/erzhu419/mine_code/BAPR-HRO/src/evolving_trip_belief.py",
+      "line": 302,
+      "function": "event_distribution",
+      "primitive_calls": 81482,
+      "total_calls": 81482,
+      "own_seconds": 0.457746635,
+      "cumulative_seconds": 14.026053064000001,
+      "callers": []
+    },
+    {
+      "file": "/usr/lib/python3.10/functools.py",
+      "line": 961,
+      "function": "__get__",
+      "primitive_calls": 4784,
+      "total_calls": 4784,
+      "own_seconds": 0.033338360000000004,
+      "cumulative_seconds": 13.12058623,
+      "callers": []
+    },
+    {
+      "file": "/home/erzhu419/mine_code/BAPR-HRO/src/evolving_trip_belief.py",
+      "line": 49,
+      "function": "marginals",
+      "primitive_calls": 2611,
+      "total_calls": 2611,
+      "own_seconds": 2.2171487890000003,
+      "cumulative_seconds": 13.082276748,
+      "callers": []
+    },
+    {
+      "file": "/home/erzhu419/mine_code/BAPR-HRO/src/evolving_trip_belief.py",
+      "line": 60,
+      "function": "draw",
+      "primitive_calls": 8692,
+      "total_calls": 8692,
+      "own_seconds": 2.993499309,
+      "cumulative_seconds": 6.4720071070000005,
+      "callers": []
+    },
+    {
+      "file": "/home/erzhu419/mine_code/BAPR-HRO/src/continuation_router.py",
+      "line": 16,
+      "function": "nominal_action",
+      "primitive_calls": 440,
+      "total_calls": 440,
+      "own_seconds": 4.850436893,
+      "cumulative_seconds": 6.4121038200000005,
+      "callers": []
+    }
+  ],
+  "focused_functions": [
+    {
+      "file": "/home/erzhu419/mine_code/BAPR-HRO/src/evolving_trip_belief.py",
+      "line": 330,
+      "function": "mean_events",
+      "primitive_calls": 441,
+      "total_calls": 441,
+      "own_seconds": 1.140452088,
+      "cumulative_seconds": 29.016642601,
+      "callers": [
+        {
+          "file": "/home/erzhu419/mine_code/BAPR-HRO/src/causal_planning_router.py",
+          "line": 214,
+          "function": "tail",
+          "counts": [
+            440,
+            440,
+            0.9475075110000001,
+            19.071812031
+          ]
+        },
+        {
+          "file": "/home/erzhu419/mine_code/BAPR-HRO/src/causal_planning_router.py",
+          "line": 194,
+          "function": "select_connection",
+          "counts": [
+            1,
+            1,
+            0.192944577,
+            9.94483057
+          ]
+        }
+      ]
+    },
+    {
+      "file": "/home/erzhu419/mine_code/BAPR-HRO/src/causal_planning_router.py",
+      "line": 47,
+      "function": "_tail",
+      "primitive_calls": 440,
+      "total_calls": 440,
+      "own_seconds": 0.006793711,
+      "cumulative_seconds": 25.705258957,
+      "callers": []
+    },
+    {
+      "file": "/home/erzhu419/mine_code/BAPR-HRO/src/evolving_trip_belief.py",
+      "line": 21,
+      "function": "logsumexp",
+      "primitive_calls": 435698,
+      "total_calls": 435698,
+      "own_seconds": 17.830585077000002,
+      "cumulative_seconds": 24.754819477,
+      "callers": [
+        {
+          "file": "/home/erzhu419/mine_code/BAPR-HRO/src/evolving_trip_belief.py",
+          "line": 49,
+          "function": "marginals",
+          "counts": [
+            160353,
+            160353,
+            8.06095589,
+            10.857577118
+          ]
+        },
+        {
+          "file": "/home/erzhu419/mine_code/BAPR-HRO/src/evolving_trip_belief.py",
+          "line": 60,
+          "function": "draw",
+          "counts": [
+            169028,
+            169028,
+            1.248432141,
+            2.910358419
+          ]
+        },
+        {
+          "file": "/home/erzhu419/mine_code/BAPR-HRO/src/evolving_trip_belief.py",
+          "line": 244,
+          "function": "_law",
+          "counts": [
+            106317,
+            106317,
+            8.521197046000001,
+            10.98688394
+          ]
+        }
+      ]
+    },
+    {
+      "file": "/home/erzhu419/mine_code/BAPR-HRO/src/evolving_trip_belief.py",
+      "line": 244,
+      "function": "_law",
+      "primitive_calls": 1041948,
+      "total_calls": 1041948,
+      "own_seconds": 8.695452421,
+      "cumulative_seconds": 22.984639050000002,
+      "callers": []
+    },
+    {
+      "file": "/home/erzhu419/mine_code/BAPR-HRO/src/evolving_trip_belief.py",
+      "line": 313,
+      "function": "sample",
+      "primitive_calls": 1,
+      "total_calls": 1,
+      "own_seconds": 0.278642504,
+      "cumulative_seconds": 17.311720842,
+      "callers": [
+        {
+          "file": "/home/erzhu419/mine_code/BAPR-HRO/src/causal_planning_router.py",
+          "line": 194,
+          "function": "select_connection",
+          "counts": [
+            1,
+            1,
+            0.278642504,
+            17.311720842
+          ]
+        }
+      ]
+    },
+    {
+      "file": "/home/erzhu419/mine_code/BAPR-HRO/src/evolving_trip_belief.py",
+      "line": 49,
+      "function": "marginals",
+      "primitive_calls": 2611,
+      "total_calls": 2611,
+      "own_seconds": 2.2171487890000003,
+      "cumulative_seconds": 13.082276748,
+      "callers": []
+    },
+    {
+      "file": "/home/erzhu419/mine_code/BAPR-HRO/src/evolving_trip_belief.py",
+      "line": 60,
+      "function": "draw",
+      "primitive_calls": 8692,
+      "total_calls": 8692,
+      "own_seconds": 2.993499309,
+      "cumulative_seconds": 6.4720071070000005,
+      "callers": []
+    },
+    {
+      "file": "/home/erzhu419/mine_code/BAPR-HRO/src/continuation_router.py",
+      "line": 16,
+      "function": "nominal_action",
+      "primitive_calls": 440,
+      "total_calls": 440,
+      "own_seconds": 4.850436893,
+      "cumulative_seconds": 6.4121038200000005,
+      "callers": []
+    },
+    {
+      "file": "/home/erzhu419/mine_code/BAPR-HRO/src/transit_graph.py",
+      "line": 97,
+      "function": "get_connections_from",
+      "primitive_calls": 17435,
+      "total_calls": 17435,
+      "own_seconds": 0.019441649000000002,
+      "cumulative_seconds": 0.59090546,
+      "callers": []
+    },
+    {
+      "file": "/home/erzhu419/mine_code/BAPR-HRO/src/committed_transit.py",
+      "line": 145,
+      "function": "transition",
+      "primitive_calls": 512,
+      "total_calls": 512,
+      "own_seconds": 0.012804373,
+      "cumulative_seconds": 0.47845025,
+      "callers": []
+    },
+    {
+      "file": "/home/erzhu419/mine_code/BAPR-HRO/src/committed_transit.py",
+      "line": 52,
+      "function": "build_committed_model",
+      "primitive_calls": 1,
+      "total_calls": 1,
+      "own_seconds": 0.044767504,
+      "cumulative_seconds": 0.047407295,
+      "callers": []
+    }
+  ]
+}

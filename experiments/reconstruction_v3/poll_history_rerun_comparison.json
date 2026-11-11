@@ -1,0 +1,72 @@
+{
+  "scope": "Correctness reruns of existing generated dates, OD pairs and seeds.",
+  "implementation": "synthetic_poll_history_correctness_rerun_v1",
+  "verified_ledger": {
+    "journeys": 120,
+    "polls": 1837,
+    "messages": 4648,
+    "wait_choices": 828,
+    "event_timestamp_not_after_receipt": true,
+    "attempt_decision_references_consistent": true,
+    "per_query_transition_limits_satisfied": [
+      128,
+      512
+    ]
+  },
+  "legacy_budget_reconstruction": {
+    "old_scalar_protocol_present": false,
+    "source_protocol": "route_id_factorial_results_protocol.json",
+    "old_public_vehicle_events_checked": 2246,
+    "vehicle_time_status_route_mismatches": 0
+  },
+  "confirmation_changed_rows": {
+    "loss": 0,
+    "arrived": 0,
+    "planning_transitions": 0,
+    "events": 0,
+    "public_messages": 0,
+    "decisions": 0
+  },
+  "learning_changed_rows": {
+    "loss": 0,
+    "arrived": 0,
+    "planning_transitions": 0,
+    "events": 0,
+    "public_messages": 0,
+    "decisions": 0
+  },
+  "budget128_changed_rows": {
+    "loss": 0,
+    "arrived": 0,
+    "planning_transitions": 1,
+    "events": 1,
+    "public_messages": 1
+  },
+  "budget512_changed_rows": {
+    "loss": 2,
+    "arrived": 0,
+    "planning_transitions": 3,
+    "events": 2,
+    "public_messages": 3
+  },
+  "changed_losses": [
+    {
+      "date": "2023-10-12",
+      "od": 1,
+      "stress": false,
+      "method": "belief_uct",
+      "budget": 512,
+      "previous": 17,
+      "corrected": 33
+    },
+    {
+      "date": "2023-10-29",
+      "od": 1,
+      "stress": false,
+      "method": "belief_uct",
+      "budget": 512,
+      "previous": 32,
+      "corrected": 31
+    }
+  ]
+}

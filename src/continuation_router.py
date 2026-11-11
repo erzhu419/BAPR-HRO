@@ -13,7 +13,8 @@ from .transit_graph import StopLabel
 from .trip_belief import TripBelief
 
 
-def nominal_action(graph, state, destination, nominal, menu, deadline, lookahead, root_boardings=None):
+def nominal_action(graph, state, destination, nominal, menu, deadline, lookahead, root_boardings=None,
+                   minute=1):
     """First executable action of a nominal path within the frozen menu.
 
     Waiting can bring a departure into lookahead or commitment range. With
@@ -34,16 +35,18 @@ def nominal_action(graph, state, destination, nominal, menu, deadline, lookahead
             same_trip = trip is not None and trip == c.trip_id
             if c.id in state.unavailable_ids or (c.id not in menu and not same_trip):
                 continue
+            if not c.pickup_allowed and not same_trip:
+                continue
             event = nominal[c.id]
             if event.departure is None:
                 continue
             departure = round(event.departure)
-            arrival = departure + c.scheduled_travel_time
+            arrival = departure + round(event.arrival - event.departure)
             transfer = 0 if trip is None or same_trip else graph.stops[stop].min_transfer_time
             ready = (state.last_arrival if first is None else time) + transfer
             attempt = max(time, c.dep_time - lookahead)
-            if departure > max(attempt, ready) + 12:
-                attempt = departure - 12
+            if departure > max(attempt, ready) + 12 * minute:
+                attempt = departure - 12 * minute
             if (departure < max(attempt, ready) or attempt >= deadline or arrival > deadline
                     or (c.dep_distribution is not None and c.dep_distribution.support_max < attempt)):
                 continue
@@ -90,7 +93,17 @@ class ContinuationRouter(MatchedRouter):
                            "event_ids": [message.event_id for message in messages]})
 
     def observe_vehicle_event(self, cid, canceled, delay):
-        self.trip_belief.observe_vehicle_event(cid, canceled, delay)
+        self._record_event(self.trip_belief, cid, 'cancel' if canceled else 'departure', delay)
+
+    @staticmethod
+    def _record_event(belief, cid, kind, delay):
+        if hasattr(belief, 'observe_connection_event'):
+            belief.observe_connection_event(cid, kind, delay)
+        else:
+            belief.observe_vehicle_event(cid, kind == 'cancel', delay)
+
+    def observe_connection_event(self, cid, kind, delay):
+        self._record_event(self.trip_belief, cid, kind, delay)
 
     def set_information_context(self, stop, time, trip, last_arrival, unavailable, seen, learned):
         self.information_state = CommittedState(
@@ -99,7 +112,14 @@ class ContinuationRouter(MatchedRouter):
 
     def observe_attempt_outcome(self, cid, kind, started, time):
         if kind in ("missed", "wait_late"):
-            self.trip_belief.observe_attempt(cid, "missed" if kind == "missed" else "timeout", time)
+            if kind == 'wait_late' and hasattr(self.trip_belief, 'observe_wait'):
+                c = self.graph.connections[cid]
+                state = self.information_state
+                transfer = (self.graph.stops[state.stop].min_transfer_time
+                            if state.current_trip is not None and state.current_trip != c.trip_id else 0)
+                self.trip_belief.observe_wait(cid, max(started, state.last_arrival + transfer), time)
+            else:
+                self.trip_belief.observe_attempt(cid, "missed" if kind == "missed" else "timeout", time)
         if self.predictions and self.predictions[-1]["connection"] == cid:
             self.predictions[-1].update(actual_kind=kind, action_end=time)
 
@@ -237,9 +257,19 @@ class ContinuationRouter(MatchedRouter):
         new_feedback = after.feedback[len(before.feedback):]
         for kind, cid, time in new_feedback:
             if kind == "board":
-                belief.observe_vehicle_event(cid, False, time - self.graph.connections[cid].dep_time)
+                c = self.graph.connections[cid]
+                self._record_event(belief, cid, 'departure', time - c.dep_time)
+                # The traveler knows their arrival even if the local batch omits it.
+                if (hasattr(belief, 'observe_connection_event') and after.stop == c.arr_stop
+                        and after.last_arrival == after.time):
+                    self._record_event(belief, cid, 'arrival', after.time - c.arr_time)
             elif kind == "cancel":
-                belief.observe_vehicle_event(cid, True, 0)
+                self._record_event(belief, cid, 'cancel', 0)
+            elif kind == 'wait_late' and hasattr(belief, 'observe_wait'):
+                c = self.graph.connections[cid]
+                transfer = (self.graph.stops[before.stop].min_transfer_time
+                            if before.current_trip is not None and before.current_trip != c.trip_id else 0)
+                belief.observe_wait(cid, max(before.time, before.last_arrival + transfer), time)
             else:
                 belief.observe_attempt(cid, "missed" if kind == "missed" else "timeout", time)
         if not terminal:

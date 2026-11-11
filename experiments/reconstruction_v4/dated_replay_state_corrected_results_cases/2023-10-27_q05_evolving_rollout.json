@@ -1,0 +1,153 @@
+{
+  "implementation": "dated_active_seconds_arrival_history_v2",
+  "samples": 4,
+  "transition_budget_per_decision": 64,
+  "transfer_rule": "assumed120",
+  "graph_build_ms": 1.0090770083479583,
+  "policy_setup_ms": 1.403325004503131,
+  "end_to_end_ms": 3396.9551310292445,
+  "worker_peak_kib": 214228,
+  "date": "2023-10-27",
+  "query": 5,
+  "method": "evolving_rollout",
+  "od": {
+    "origin": "8503001",
+    "destination": "8503004",
+    "ready_seconds": 29100,
+    "deadline_seconds": 32700
+  },
+  "status": "arrived",
+  "loss_seconds": 1130,
+  "elapsed_observed_seconds": 1130,
+  "compute_ms": 3394.5521879941225,
+  "planning_transitions": 192,
+  "decisions": [
+    {
+      "clock_seconds": 29100,
+      "stop": 1,
+      "current_trip": null,
+      "action": 165,
+      "forecast": {
+        "receipts": [],
+        "updates": {}
+      },
+      "forecast_ms": 0.007939990609884262,
+      "planning_ms": 1777.0699620014057,
+      "decision_total_ms": 1777.0789329661056,
+      "model_transitions": 64,
+      "outcome": "board",
+      "end_seconds": 29540,
+      "source_connection": 166
+    },
+    {
+      "clock_seconds": 29540,
+      "stop": 0,
+      "current_trip": "508.TA.91-14-C-j23-1.95.R",
+      "action": 209,
+      "forecast": {
+        "receipts": [],
+        "updates": {}
+      },
+      "forecast_ms": 0.007694994565099478,
+      "planning_ms": 884.7357169725001,
+      "decision_total_ms": 884.7438160446472,
+      "model_transitions": 64,
+      "outcome": "board",
+      "end_seconds": 29994,
+      "source_connection": 210
+    },
+    {
+      "clock_seconds": 29994,
+      "stop": 2,
+      "current_trip": "519.TA.91-16-A-j23-1.75.R",
+      "action": 224,
+      "forecast": {
+        "receipts": [],
+        "updates": {}
+      },
+      "forecast_ms": 0.00706803984940052,
+      "planning_ms": 731.4027879619971,
+      "decision_total_ms": 731.410545995459,
+      "model_transitions": 64,
+      "outcome": "board",
+      "end_seconds": 30230,
+      "source_connection": 225
+    }
+  ],
+  "events": [
+    {
+      "time": 29100,
+      "stop_id": 1,
+      "event_type": "depart",
+      "route": "",
+      "details": "Initial route computed"
+    },
+    {
+      "time": 29318,
+      "stop_id": 1,
+      "event_type": "board",
+      "route": "91-14-C-j23-1",
+      "details": "connection=165; to=0; trip=508.TA.91-14-C-j23-1.95.R"
+    },
+    {
+      "time": 29540,
+      "stop_id": 0,
+      "event_type": "arrive",
+      "route": "91-14-C-j23-1",
+      "details": "connection=165; delay=2.33333min"
+    },
+    {
+      "time": 29869,
+      "stop_id": 0,
+      "event_type": "board",
+      "route": "91-16-A-j23-1",
+      "details": "connection=209; to=2; trip=519.TA.91-16-A-j23-1.75.R"
+    },
+    {
+      "time": 29994,
+      "stop_id": 2,
+      "event_type": "arrive",
+      "route": "91-16-A-j23-1",
+      "details": "connection=209; delay=2.9min"
+    },
+    {
+      "time": 30062,
+      "stop_id": 2,
+      "event_type": "board",
+      "route": "91-16-A-j23-1",
+      "details": "connection=224; to=3; trip=519.TA.91-16-A-j23-1.75.R"
+    },
+    {
+      "time": 30230,
+      "stop_id": 3,
+      "event_type": "finish",
+      "route": "",
+      "details": "arrived"
+    }
+  ],
+  "public_actual_receipts": [
+    {
+      "stop": 1,
+      "receipt_time": 29100,
+      "event_ids": []
+    },
+    {
+      "stop": 0,
+      "receipt_time": 29540,
+      "event_ids": []
+    },
+    {
+      "stop": 2,
+      "receipt_time": 29994,
+      "event_ids": []
+    }
+  ],
+  "forecast_frames_consumed": 0,
+  "graph_connections": 522,
+  "known_world_events": 519,
+  "excluded_pickup_dropoff_source_ids": [
+    12,
+    226
+  ],
+  "route_prior_pool_fallbacks": []
+}

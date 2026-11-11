@@ -141,12 +141,19 @@ class CausalPlanningRouter(ContinuationRouter):
     """Replan over the full menu or a fixed, trip-closed TopoCSA menu."""
 
     def __init__(self, graph, priors, *, menu="full", algorithm="rollout", work_budget=256,
-                 samples=8, seed=0, candidate_limit=5, max_time=120):
-        if menu not in ("full", "fixed", "fixed_top5") or algorithm not in ("rollout", "uct") or work_budget < 1:
-            raise ValueError("Use full/fixed/fixed_top5 menus, rollout/uct search and a positive work budget")
+                 samples=8, seed=0, candidate_limit=5, max_time=120, event_belief=None):
+        if (menu not in ("full", "fixed", "fixed_top5") or algorithm not in ("rollout", "uct", "nominal")
+                or work_budget < 1):
+            raise ValueError("Choose a supported menu, search and positive work budget")
         super().__init__(graph, priors, samples=samples, seed=seed, max_time=max_time,
                          candidate_limit=candidate_limit)
         self.menu_mode, self.algorithm, self.work_budget = menu, algorithm, work_budget
+        if event_belief is not None and menu != 'full':
+            raise ValueError("Measured event clocks use the physical full menu")
+        self.minute = 1 if event_belief is None else event_belief.minute
+        if event_belief is not None:
+            self.trip_belief = event_belief
+            self.lookahead = 25 * self.minute
 
     def route(self, source, destination, departure):
         started = perf_counter()
@@ -162,7 +169,8 @@ class CausalPlanningRouter(ContinuationRouter):
         else:
             self.origin, self.destination, self.departure = source, destination, departure
             self.journey_deadline = departure + self.max_time
-            self._assign()  # Install the common delay support used by the physical action contract.
+            if self.minute == 1:
+                self._assign()  # Legacy minute-grid marginal support.
             self.estimate_ms += (perf_counter() - started) * 1000
             self.menu = {c.id for c in self.graph.connections}
         labels = {sid: [] for sid in self.graph.stops}
@@ -189,6 +197,13 @@ class CausalPlanningRouter(ContinuationRouter):
         parameters = self._parameters()
         private_rng = np.random.default_rng(np.random.SeedSequence([self.seed, self.query_number]))
         self.query_number += 1
+        if self.algorithm == 'nominal':
+            action = nominal_action(self.graph, state, self.destination, self.trip_belief.mean_events(parameters),
+                                    self.menu, self.journey_deadline, self.lookahead, minute=self.minute)
+            if action == WAIT:
+                return None
+            c = self.graph.connections[action[1]]
+            return StopLabel(c.id, c.arr_distribution, c.arr_time, 0.0), 0.0
         scenes = self.trip_belief.sample(parameters, private_rng, self.samples)
         self.trip_belief.mean_events(parameters)
         model = build_committed_model(
@@ -201,7 +216,8 @@ class CausalPlanningRouter(ContinuationRouter):
             if not boardings:
                 return WAIT
             return nominal_action(self.graph, state, self.destination, belief.mean_events(parameters),
-                                  self.menu, self.journey_deadline, self.lookahead, root_boardings=boardings)
+                                  self.menu, self.journey_deadline, self.lookahead, root_boardings=boardings,
+                                  minute=self.minute)
 
         planner = BudgetedPolicySearch(model, self.trip_belief, tail, self._advance_belief,
                                        private_rng, self.work_budget, self.max_time)

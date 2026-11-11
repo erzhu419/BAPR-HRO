@@ -16,9 +16,9 @@ COLORS = {"marginal": "#697481", "native_strict": "#A56538",
           "nominal": "#164A60", "rollout": "#587C49"}
 
 
-def plot_budget():
+def plot_budget(input_suffix="poll_history_results", output_stem="route_id_budget_poll_history"):
     budgets = (128, 512)
-    summaries = [next(iter(json.loads((HERE / f"budget_{budget}_results.json").read_text())
+    summaries = [next(iter(json.loads((HERE / f"budget_{budget}_{input_suffix}.json").read_text())
                            ["summary"].values()))["metrics"] for budget in budgets]
     labels = {"full_rollout": "Full rollout", "fixed_h_rollout": "Fixed H",
               "material_h_rollout": "Smaller H", "belief_uct": "Belief UCT"}
@@ -36,7 +36,7 @@ def plot_budget():
     axes[1].legend(fontsize=8, frameon=False)
     figure.tight_layout()
     for suffix in ("pdf", "png"):
-        figure.savefig(HERE / f"route_id_budget.{suffix}", dpi=220, bbox_inches="tight")
+        figure.savefig(HERE / f"{output_stem}.{suffix}", dpi=220, bbox_inches="tight")
     plt.close(figure)
 
 

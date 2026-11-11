@@ -31,12 +31,14 @@ def simulate_bandit_journey(
     random choices. Local actual events are published only after occurrence.
     Each trip contributes at most one outcome to a route's posterior per
     journey. A waiting timeout is recorded separately from cancellation.
+    Timetable and journey times use the scenario's clock ticks.
     """
     if scenario is None:
         scenario = JourneyScenario.sample(
             graph, regime_schedule,
             np.random.default_rng(int(rng.integers(0, 2**63))),
         )
+    minute = scenario.minute
     is_online = all(hasattr(router, name) for name in (
         'observe_delay', 'observe_cancel', 'select_connection'))
     if isinstance(router, AdaptiveBetaBanditRouter):
@@ -52,9 +54,12 @@ def simulate_bandit_journey(
     observation_log = []
     n_transfers = 0
     events = [JourneyEvent(t_depart, s_source, 'depart', details='Initial route computed')]
+    censored = False
 
-    def learn(connection, canceled: bool, delay: int):
-        if hasattr(router, 'observe_vehicle_event'):
+    def learn(connection, canceled: bool, delay: int, kind='departure'):
+        if hasattr(router, 'observe_connection_event'):
+            router.observe_connection_event(connection.id, 'cancel' if canceled else kind, delay)
+        elif hasattr(router, 'observe_vehicle_event'):
             router.observe_vehicle_event(connection.id, canceled, delay)
         key = connection.trip_id or f'connection:{connection.id}'
         if not is_online or key in learned_trips:
@@ -63,7 +68,7 @@ def simulate_bandit_journey(
         if canceled:
             router.observe_cancel(connection.route, kind='true')
         else:
-            router.observe_delay(connection.route, delay)
+            router.observe_delay(connection.route, delay / minute if minute != 1 else delay)
 
     while current_stop != s_dest and current_time < deadline:
         seen_before = set(seen_events)
@@ -78,7 +83,7 @@ def simulate_bandit_journey(
         for obs in observations:
             cid = int(obs.event_id.split(':', 1)[0])
             c_obs = graph.connections[cid]
-            learn(c_obs, obs.is_canceled, obs.actual_delay)
+            learn(c_obs, obs.is_canceled, obs.actual_delay, obs.event_id.split(':', 1)[1])
             if obs.is_canceled or obs.event_id.endswith(':departure'):
                 # A departure at this instant remains boardable.
                 if obs.is_canceled or obs.actual_time < current_time:
@@ -109,13 +114,15 @@ def simulate_bandit_journey(
             original_labels = hyperpath.stop_labels.get(current_stop, [])
             hyperpath.stop_labels[current_stop] = [
                 label for label in original_labels
-                if label.connection_id not in unavailable_ids]
+                if label.connection_id not in unavailable_ids and (
+                    graph.connections[label.connection_id].pickup_allowed
+                    or graph.connections[label.connection_id].trip_id == current_trip)]
             try:
                 selected = router.select_connection(current_stop, current_time, rng, top_k=5)
             finally:
                 hyperpath.stop_labels[current_stop] = original_labels
             if selected is None:
-                current_time = min(deadline, current_time + 1)
+                current_time = min(deadline, current_time + minute)
                 continue
             label, _score = selected
             c = graph.connections[label.connection_id]
@@ -123,16 +130,21 @@ def simulate_bandit_journey(
             c = next((graph.connections[label.connection_id]
                       for label in reversed(labels)
                       if label.connection_id not in unavailable_ids
-                      and current_time - 1 <= graph.connections[label.connection_id].dep_time
-                      <= current_time + 25), None)
+                      and (graph.connections[label.connection_id].pickup_allowed
+                           or graph.connections[label.connection_id].trip_id == current_trip)
+                      and current_time - minute <= graph.connections[label.connection_id].dep_time
+                      <= current_time + 25 * minute), None)
             if c is None:
-                current_time = min(deadline, current_time + 1)
+                current_time = min(deadline, current_time + minute)
                 continue
 
         if c.id in unavailable_ids:
             # A selector that recomputed its cache will see the exclusion on
             # its next invocation, without spending fictitious waiting time.
-            current_time = min(deadline, current_time + 1)
+            current_time = min(deadline, current_time + minute)
+            continue
+        if not c.pickup_allowed and c.trip_id != current_trip:
+            current_time = min(deadline, current_time + minute)
             continue
         same_trip = current_trip is not None and c.trip_id == current_trip
         action_started = current_time
@@ -149,17 +161,24 @@ def simulate_bandit_journey(
         if current_time >= deadline:
             report_outcome('deadline')
             break
-        event = scenario.event(c)
+        event = scenario.events.get(c.id)
+        if event is None:
+            events.append(JourneyEvent(current_time, current_stop, 'unresolved', route=c.route,
+                                       details=f'connection={c.id}; measured outcome unavailable'))
+            report_outcome('unresolved')
+            censored = True
+            break
         if event.canceled:
-            if current_time < c.dep_time:
-                wait_end = min(deadline, current_time + 12)
-                if c.dep_time > wait_end:
-                    current_time = wait_end
-                    events.append(JourneyEvent(current_time, current_stop, 'wait_late', route=c.route,
-                                               details=f'connection={c.id}; patience window'))
-                    report_outcome('wait_late')
-                    continue
-                current_time = c.dep_time
+            notice = (c.dep_time if scenario.publications is None
+                      else scenario.publications.get(f'{c.id}:cancel'))
+            wait_end = min(deadline, current_time + 12 * minute)
+            if notice is None or notice > wait_end:
+                current_time = wait_end
+                events.append(JourneyEvent(current_time, current_stop, 'wait_late', route=c.route,
+                                           details=f'connection={c.id}; no vehicle during patience window'))
+                report_outcome('wait_late')
+                continue
+            current_time = max(current_time, notice)
             unavailable_ids.add(c.id)
             learn(c, True, 0)
             events.append(JourneyEvent(current_time, current_stop, 'cancel', route=c.route,
@@ -168,10 +187,18 @@ def simulate_bandit_journey(
             continue
 
         if event.departure < current_time:
+            receipt = (event.departure if scenario.publications is None
+                       else scenario.publications.get(f'{c.id}:departure'))
+            if receipt is None or receipt > current_time:
+                current_time = min(deadline, current_time + 12 * minute)
+                events.append(JourneyEvent(current_time, current_stop, 'wait_late', route=c.route,
+                                           details=f'connection={c.id}; no vehicle during patience window'))
+                report_outcome('wait_late')
+                continue
             unavailable_ids.add(c.id)
             report_outcome('missed')
             continue
-        wait_end = min(deadline, current_time + 12)
+        wait_end = min(deadline, current_time + 12 * minute)
         if event.departure > wait_end:
             # Censoring is not a cancellation or a realized delay sample.
             current_time = wait_end
@@ -182,7 +209,7 @@ def simulate_bandit_journey(
         if event.departure > deadline:
             current_time = deadline
             break
-        learn(c, False, event.delay)
+        learn(c, False, event.departure - c.dep_time)
         events.append(JourneyEvent(event.departure, current_stop, 'board', route=c.route,
                                    details=f'connection={c.id}; to={c.arr_stop}; trip={c.trip_id}'))
         # A connection is one physical segment and cannot be boarded twice,
@@ -196,15 +223,17 @@ def simulate_bandit_journey(
             break
         current_time = last_arrival = event.arrival
         current_stop = c.arr_stop
+        if hasattr(router, 'observe_connection_event'):
+            router.observe_connection_event(c.id, 'arrival', event.arrival - c.arr_time)
         report_outcome('board')
         if current_stop != s_dest:
             events.append(JourneyEvent(current_time, current_stop, 'arrive', route=c.route,
-                                       details=f'connection={c.id}; delay={event.delay}min'))
+                                       details=f'connection={c.id}; delay={(event.arrival - c.arr_time) / minute:g}min'))
 
     arrived = current_stop == s_dest
-    arrival = current_time if arrived else deadline
+    arrival = current_time if arrived or censored else deadline
     events.append(JourneyEvent(arrival, current_stop, 'finish',
-                               details='arrived' if arrived else 'timeout'))
+                               details='arrived' if arrived else 'censored' if censored else 'timeout'))
     if isinstance(router, AdaptiveBetaBanditRouter):
         router.end_journey(arrival - t_depart)
     return JourneyResult(

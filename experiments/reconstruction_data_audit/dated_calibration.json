@@ -1,0 +1,601 @@
+{
+  "scope": "Fixed earlier-date empirical fits scored on later REAL rail endpoints. Observed-status departure ratios and measured departure shifts form a route-level boarding model. Transfer pairs have scheduled slack 0\u20138 minutes and use the incoming realized arrival as public traveler feedback. Pairs and endpoint errors cluster within trips and dates.",
+  "train_dates": [
+    "2023-10-02",
+    "2023-10-06",
+    "2023-10-09"
+  ],
+  "dates": {
+    "2023-10-12": {
+      "coverage": {
+        "n_scheduled_trips": 172,
+        "n_scheduled_connections": 524,
+        "endpoint_status_counts": {
+          "REAL": 1046,
+          "MISSING": 2
+        },
+        "connection_outcome_counts": {
+          "MEASURED": 523,
+          "UNRESOLVED": 1
+        }
+      },
+      "point_and_interval": {
+        "all_real_endpoints": {
+          "n": 1046,
+          "schedule": {
+            "n": 1046,
+            "mae_seconds": 85.52963671128107,
+            "signed_error_seconds": -83.1567877629063,
+            "signed_p10_p90_seconds": [
+              -177.5,
+              -12.0
+            ]
+          },
+          "measured_prior": {
+            "n": 1046,
+            "mae_seconds": 54.41848051074733,
+            "signed_error_seconds": 3.069876460170748,
+            "signed_p10_p90_seconds": [
+              -88.62673611111111,
+              77.2223731884058
+            ],
+            "central90_covered": 901,
+            "below": 73,
+            "above": 72
+          },
+          "forecast_prior": {
+            "n": 366,
+            "mae_seconds": 82.5777904979722,
+            "signed_error_seconds": -77.97656905752527,
+            "signed_p10_p90_seconds": [
+              -178.34541878475412,
+              -1.8678461774334008
+            ],
+            "central90_covered": 198,
+            "below": 2,
+            "above": 166
+          }
+        },
+        "common_forecast_supported_endpoints": {
+          "n": 366,
+          "schedule": {
+            "n": 366,
+            "mae_seconds": 92.72677595628416,
+            "signed_error_seconds": -90.14207650273224,
+            "signed_p10_p90_seconds": [
+              -191.5,
+              -12.0
+            ]
+          },
+          "measured_prior": {
+            "n": 366,
+            "mae_seconds": 56.936461756567226,
+            "signed_error_seconds": -8.72040072859745,
+            "signed_p10_p90_seconds": [
+              -105.00139735772359,
+              70.75730158730158
+            ],
+            "central90_covered": 312,
+            "below": 18,
+            "above": 36
+          },
+          "forecast_prior": {
+            "n": 366,
+            "mae_seconds": 82.5777904979722,
+            "signed_error_seconds": -77.97656905752527,
+            "signed_p10_p90_seconds": [
+              -178.34541878475412,
+              -1.8678461774334008
+            ],
+            "central90_covered": 198,
+            "below": 2,
+            "above": 166
+          }
+        },
+        "by_event_kind": {
+          "departure": {
+            "n": 523,
+            "schedule": {
+              "n": 523,
+              "mae_seconds": 97.45124282982792,
+              "signed_error_seconds": -97.45124282982792,
+              "signed_p10_p90_seconds": [
+                -191.8,
+                -22.0
+              ]
+            },
+            "measured_prior": {
+              "n": 523,
+              "mae_seconds": 56.13546078354205,
+              "signed_error_seconds": 3.6641636247754796,
+              "signed_p10_p90_seconds": [
+                -91.74583333333334,
+                78.07851037851039
+              ],
+              "central90_covered": 446,
+              "below": 42,
+              "above": 35
+            },
+            "forecast_prior": {
+              "n": 183,
+              "mae_seconds": 94.4563655345901,
+              "signed_error_seconds": -94.29350894823565,
+              "signed_p10_p90_seconds": [
+                -180.76271309657955,
+                -16.631190934742673
+              ],
+              "central90_covered": 80,
+              "below": 0,
+              "above": 103
+            }
+          },
+          "arrival": {
+            "n": 523,
+            "schedule": {
+              "n": 523,
+              "mae_seconds": 73.60803059273422,
+              "signed_error_seconds": -68.8623326959847,
+              "signed_p10_p90_seconds": [
+                -152.8,
+                1.8000000000000114
+              ]
+            },
+            "measured_prior": {
+              "n": 523,
+              "mae_seconds": 52.701500237952615,
+              "signed_error_seconds": 2.475589295566018,
+              "signed_p10_p90_seconds": [
+                -87.43333333333334,
+                75.93913043478263
+              ],
+              "central90_covered": 455,
+              "below": 31,
+              "above": 37
+            },
+            "forecast_prior": {
+              "n": 183,
+              "mae_seconds": 70.69921546135433,
+              "signed_error_seconds": -61.659629166814874,
+              "signed_p10_p90_seconds": [
+                -155.37295061851827,
+                14.206177182893649
+              ],
+              "central90_covered": 118,
+              "below": 2,
+              "above": 63
+            }
+          }
+        },
+        "measured_prior_pool_fallbacks": 0
+      },
+      "transfer_probability": {
+        "n": 2467,
+        "excluded_unknown_departures": 0,
+        "observed_boardable": 2311,
+        "explicit_canceled_departure_pairs": 0,
+        "mean_model_probability": 0.9222369075161568,
+        "measured_prior_brier": 0.031212240634169084,
+        "schedule_only_brier": 0.10174300770166193
+      },
+      "issued_precutoff_forecasts": {
+        "cutoff_before_scheduled_seconds": 300,
+        "by_event_kind": {
+          "departure": {
+            "n": 106,
+            "mae_seconds": {
+              "schedule": 85.73584905660377,
+              "issued_forecast": 49.41509433962264,
+              "measured_prior": 47.60531150396335
+            }
+          },
+          "arrival": {
+            "n": 109,
+            "mae_seconds": {
+              "schedule": 62.330275229357795,
+              "issued_forecast": 62.56880733944954,
+              "measured_prior": 41.753073267400296
+            }
+          }
+        },
+        "receipts_before_realized_event": 215,
+        "event_endpoints_excluded_by_cancel_notice": 0
+      }
+    },
+    "2023-10-25": {
+      "coverage": {
+        "n_scheduled_trips": 172,
+        "n_scheduled_connections": 524,
+        "endpoint_status_counts": {
+          "REAL": 1022,
+          "MISSING": 2,
+          "PROGNOSE": 7,
+          "CANCELED": 17
+        },
+        "connection_outcome_counts": {
+          "MEASURED": 511,
+          "UNRESOLVED": 8,
+          "CANCELED": 5
+        }
+      },
+      "point_and_interval": {
+        "all_real_endpoints": {
+          "n": 1022,
+          "schedule": {
+            "n": 1022,
+            "mae_seconds": 198.9491193737769,
+            "signed_error_seconds": -198.4637964774951,
+            "signed_p10_p90_seconds": [
+              -356.9,
+              -43.0
+            ]
+          },
+          "measured_prior": {
+            "n": 1022,
+            "mae_seconds": 130.588334851913,
+            "signed_error_seconds": -112.26086502505503,
+            "signed_p10_p90_seconds": [
+              -270.09270833333335,
+              37.45510869565217
+            ],
+            "central90_covered": 615,
+            "below": 16,
+            "above": 391
+          },
+          "forecast_prior": {
+            "n": 362,
+            "mae_seconds": 186.28807834189917,
+            "signed_error_seconds": -185.2892733645886,
+            "signed_p10_p90_seconds": [
+              -337.82400269039545,
+              -32.92400269039544
+            ],
+            "central90_covered": 93,
+            "below": 0,
+            "above": 269
+          }
+        },
+        "common_forecast_supported_endpoints": {
+          "n": 362,
+          "schedule": {
+            "n": 362,
+            "mae_seconds": 198.0303867403315,
+            "signed_error_seconds": -197.40055248618785,
+            "signed_p10_p90_seconds": [
+              -345.7,
+              -40.0
+            ]
+          },
+          "measured_prior": {
+            "n": 362,
+            "mae_seconds": 134.16029583838656,
+            "signed_error_seconds": -116.2768569674647,
+            "signed_p10_p90_seconds": [
+              -261.07334494773517,
+              37.17333333333333
+            ],
+            "central90_covered": 202,
+            "below": 5,
+            "above": 155
+          },
+          "forecast_prior": {
+            "n": 362,
+            "mae_seconds": 186.28807834189917,
+            "signed_error_seconds": -185.2892733645886,
+            "signed_p10_p90_seconds": [
+              -337.82400269039545,
+              -32.92400269039544
+            ],
+            "central90_covered": 93,
+            "below": 0,
+            "above": 269
+          }
+        },
+        "by_event_kind": {
+          "departure": {
+            "n": 511,
+            "schedule": {
+              "n": 511,
+              "mae_seconds": 211.30332681017612,
+              "signed_error_seconds": -211.30332681017612,
+              "signed_p10_p90_seconds": [
+                -371.0,
+                -54.0
+              ]
+            },
+            "measured_prior": {
+              "n": 511,
+              "mae_seconds": 130.34363151392014,
+              "signed_error_seconds": -110.19199111390893,
+              "signed_p10_p90_seconds": [
+                -271.3253968253968,
+                43.33333333333333
+              ],
+              "central90_covered": 310,
+              "below": 8,
+              "above": 193
+            },
+            "forecast_prior": {
+              "n": 181,
+              "mae_seconds": 201.38310359318234,
+              "signed_error_seconds": -201.31413524304165,
+              "signed_p10_p90_seconds": [
+                -351.97168405365124,
+                -42.831295843520785
+              ],
+              "central90_covered": 38,
+              "below": 0,
+              "above": 143
+            }
+          },
+          "arrival": {
+            "n": 511,
+            "schedule": {
+              "n": 511,
+              "mae_seconds": 186.5949119373777,
+              "signed_error_seconds": -185.6242661448141,
+              "signed_p10_p90_seconds": [
+                -341.0,
+                -36.0
+              ]
+            },
+            "measured_prior": {
+              "n": 511,
+              "mae_seconds": 130.8330381899058,
+              "signed_error_seconds": -114.32973893620111,
+              "signed_p10_p90_seconds": [
+                -266.869918699187,
+                33.666666666666664
+              ],
+              "central90_covered": 305,
+              "below": 8,
+              "above": 198
+            },
+            "forecast_prior": {
+              "n": 181,
+              "mae_seconds": 171.19305309061602,
+              "signed_error_seconds": -169.26441148613557,
+              "signed_p10_p90_seconds": [
+                -308.97168405365124,
+                -25.34939759036145
+              ],
+              "central90_covered": 55,
+              "below": 0,
+              "above": 126
+            }
+          }
+        },
+        "measured_prior_pool_fallbacks": 0
+      },
+      "transfer_probability": {
+        "n": 2377,
+        "excluded_unknown_departures": 28,
+        "observed_boardable": 2009,
+        "explicit_canceled_departure_pairs": 27,
+        "mean_model_probability": 0.7748244997963857,
+        "measured_prior_brier": 0.11887594118659892,
+        "schedule_only_brier": 0.26630206142196045
+      },
+      "issued_precutoff_forecasts": {
+        "cutoff_before_scheduled_seconds": 300,
+        "by_event_kind": {
+          "departure": {
+            "n": 117,
+            "mae_seconds": {
+              "schedule": 156.4957264957265,
+              "issued_forecast": 100.47863247863248,
+              "measured_prior": 83.69690639166828
+            }
+          },
+          "arrival": {
+            "n": 116,
+            "mae_seconds": {
+              "schedule": 128.93103448275863,
+              "issued_forecast": 102.63793103448276,
+              "measured_prior": 81.93728284291619
+            }
+          }
+        },
+        "receipts_before_realized_event": 233,
+        "event_endpoints_excluded_by_cancel_notice": 4
+      }
+    },
+    "2023-10-27": {
+      "coverage": {
+        "n_scheduled_trips": 172,
+        "n_scheduled_connections": 524,
+        "endpoint_status_counts": {
+          "REAL": 1033,
+          "CANCELED": 11,
+          "PROGNOSE": 2,
+          "MISSING": 2
+        },
+        "connection_outcome_counts": {
+          "MEASURED": 516,
+          "UNRESOLVED": 4,
+          "CANCELED": 4
+        }
+      },
+      "point_and_interval": {
+        "all_real_endpoints": {
+          "n": 1033,
+          "schedule": {
+            "n": 1033,
+            "mae_seconds": 158.4085188770571,
+            "signed_error_seconds": -157.7618586640852,
+            "signed_p10_p90_seconds": [
+              -296.0,
+              -36.0
+            ]
+          },
+          "measured_prior": {
+            "n": 1033,
+            "mae_seconds": 96.91301547970309,
+            "signed_error_seconds": -71.70068692956032,
+            "signed_p10_p90_seconds": [
+              -215.36249999999998,
+              47.043137254901986
+            ],
+            "central90_covered": 706,
+            "below": 22,
+            "above": 305
+          },
+          "forecast_prior": {
+            "n": 360,
+            "mae_seconds": 173.1222638901294,
+            "signed_error_seconds": -172.77424507255034,
+            "signed_p10_p90_seconds": [
+              -334.96280040551017,
+              -34.66400830121551
+            ],
+            "central90_covered": 94,
+            "below": 0,
+            "above": 266
+          }
+        },
+        "common_forecast_supported_endpoints": {
+          "n": 360,
+          "schedule": {
+            "n": 360,
+            "mae_seconds": 185.15,
+            "signed_error_seconds": -184.9,
+            "signed_p10_p90_seconds": [
+              -342.3,
+              -44.89999999999998
+            ]
+          },
+          "measured_prior": {
+            "n": 360,
+            "mae_seconds": 118.54786435077644,
+            "signed_error_seconds": -103.51483598690155,
+            "signed_p10_p90_seconds": [
+              -258.5760416666667,
+              34.195121951219505
+            ],
+            "central90_covered": 228,
+            "below": 3,
+            "above": 129
+          },
+          "forecast_prior": {
+            "n": 360,
+            "mae_seconds": 173.1222638901294,
+            "signed_error_seconds": -172.77424507255034,
+            "signed_p10_p90_seconds": [
+              -334.96280040551017,
+              -34.66400830121551
+            ],
+            "central90_covered": 94,
+            "below": 0,
+            "above": 266
+          }
+        },
+        "by_event_kind": {
+          "departure": {
+            "n": 516,
+            "schedule": {
+              "n": 516,
+              "mae_seconds": 169.3701550387597,
+              "signed_error_seconds": -169.3701550387597,
+              "signed_p10_p90_seconds": [
+                -306.0,
+                -45.5
+              ]
+            },
+            "measured_prior": {
+              "n": 516,
+              "mae_seconds": 96.40450603940772,
+              "signed_error_seconds": -68.41489062148527,
+              "signed_p10_p90_seconds": [
+                -209.0369565217391,
+                50.927083333333336
+              ],
+              "central90_covered": 359,
+              "below": 8,
+              "above": 149
+            },
+            "forecast_prior": {
+              "n": 180,
+              "mae_seconds": 187.29091173921705,
+              "signed_error_seconds": -187.29091173921705,
+              "signed_p10_p90_seconds": [
+                -340.990294262552,
+                -44.72456708929027
+              ],
+              "central90_covered": 36,
+              "below": 0,
+              "above": 144
+            }
+          },
+          "arrival": {
+            "n": 517,
+            "schedule": {
+              "n": 517,
+              "mae_seconds": 147.46808510638297,
+              "signed_error_seconds": -146.17601547388782,
+              "signed_p10_p90_seconds": [
+                -286.0,
+                -29.0
+              ]
+            },
+            "measured_prior": {
+              "n": 517,
+              "mae_seconds": 97.42054134274451,
+              "signed_error_seconds": -74.98012773220388,
+              "signed_p10_p90_seconds": [
+                -218.45,
+                42.130081300813
+              ],
+              "central90_covered": 347,
+              "below": 14,
+              "above": 156
+            },
+            "forecast_prior": {
+              "n": 180,
+              "mae_seconds": 158.9536160410418,
+              "signed_error_seconds": -158.2575784058837,
+              "signed_p10_p90_seconds": [
+                -308.15035207951286,
+                -28.66400830121554
+              ],
+              "central90_covered": 58,
+              "below": 0,
+              "above": 122
+            }
+          }
+        },
+        "measured_prior_pool_fallbacks": 0
+      },
+      "transfer_probability": {
+        "n": 2429,
+        "excluded_unknown_departures": 14,
+        "observed_boardable": 2145,
+        "explicit_canceled_departure_pairs": 4,
+        "mean_model_probability": 0.80378083574797,
+        "measured_prior_brier": 0.08498321228487006,
+        "schedule_only_brier": 0.22107863318237958
+      },
+      "issued_precutoff_forecasts": {
+        "cutoff_before_scheduled_seconds": 300,
+        "by_event_kind": {
+          "departure": {
+            "n": 459,
+            "mae_seconds": {
+              "schedule": 172.37037037037038,
+              "issued_forecast": 109.98257080610021,
+              "measured_prior": 97.99496146350957
+            }
+          },
+          "arrival": {
+            "n": 431,
+            "mae_seconds": {
+              "schedule": 151.66125290023203,
+              "issued_forecast": 115.4524361948956,
+              "measured_prior": 99.75215863614433
+            }
+          }
+        },
+        "receipts_before_realized_event": 890,
+        "event_endpoints_excluded_by_cancel_notice": 0
+      }
+    }
+  }
+}

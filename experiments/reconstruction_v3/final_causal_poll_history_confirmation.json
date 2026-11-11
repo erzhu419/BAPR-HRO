@@ -1,0 +1,812 @@
+{
+  "implementation": "synthetic_poll_history_correctness_rerun_v1",
+  "frozen_protocol": "/home/erzhu419/mine_code/BAPR-HRO/experiments/reconstruction_v3/final_causal_poll_history_confirmation_protocol.json",
+  "corrected_from": "/home/erzhu419/mine_code/BAPR-HRO/experiments/reconstruction_v3/final_causal_generated_confirmation.json",
+  "scope": "Correctness rerun on previously inspected generated dates and seeds.",
+  "input_provenance": "Original frozen scalar inputs, network and OD identities reused.",
+  "workers": 8,
+  "od_conditions": 12,
+  "journeys": 24,
+  "methods": [
+    "full_nominal",
+    "full_rollout"
+  ],
+  "samples": 8,
+  "transition_budget": 512,
+  "summary": {
+    "stress=False/cap=120": {
+      "od_cases": 6,
+      "generated_worlds": 3,
+      "metrics": {
+        "full_nominal": {
+          "loss": 14.333333333333334,
+          "arrived": 1,
+          "total_ms": 12.846575661872825,
+          "initial_ms": 4.813022504094988,
+          "estimate_ms": 3.0324248364195228,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 0.0,
+          "decision_p50_p95_ms": [
+            0.467720499727875,
+            6.447550022858194
+          ],
+          "largest_worker_peak_kib": 52384,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size_range": [
+            2000,
+            2000
+          ]
+        },
+        "full_rollout": {
+          "loss": 14.333333333333334,
+          "arrived": 1,
+          "total_ms": 250.6940548288791,
+          "initial_ms": 4.822718338497604,
+          "estimate_ms": 3.1805571828347943,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 236.7018708221925,
+          "decision_p50_p95_ms": [
+            57.669531990541145,
+            79.84587452956474
+          ],
+          "largest_worker_peak_kib": 55456,
+          "planning_transitions": 1073,
+          "max_query_transitions": 512,
+          "menu_size_range": [
+            2000,
+            2000
+          ]
+        }
+      },
+      "paired_reference": "full_nominal",
+      "paired_differences": {
+        "full_rollout": {
+          "mean_date_difference": 0.0,
+          "date_resampling_interval": [
+            0.0,
+            0.0
+          ],
+          "by_date": {
+            "2023-11-12": 0,
+            "2023-11-13": 0,
+            "2023-11-14": 0
+          }
+        }
+      },
+      "factorial_effects": {}
+    },
+    "stress=True/cap=120": {
+      "od_cases": 6,
+      "generated_worlds": 3,
+      "metrics": {
+        "full_nominal": {
+          "loss": 15.666666666666666,
+          "arrived": 1,
+          "total_ms": 13.427934667561203,
+          "initial_ms": 4.718080172703291,
+          "estimate_ms": 2.9651436780113727,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 0.0,
+          "decision_p50_p95_ms": [
+            0.451951491413638,
+            6.850914552342147
+          ],
+          "largest_worker_peak_kib": 52348,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size_range": [
+            2000,
+            2000
+          ]
+        },
+        "full_rollout": {
+          "loss": 13.666666666666666,
+          "arrived": 1,
+          "total_ms": 267.2253833346379,
+          "initial_ms": 4.603994175946961,
+          "estimate_ms": 3.041482161885748,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 252.2605361203508,
+          "decision_p50_p95_ms": [
+            52.9665460344404,
+            93.37174535030499
+          ],
+          "largest_worker_peak_kib": 55272,
+          "planning_transitions": 881.3333333333334,
+          "max_query_transitions": 512,
+          "menu_size_range": [
+            2000,
+            2000
+          ]
+        }
+      },
+      "paired_reference": "full_nominal",
+      "paired_differences": {
+        "full_rollout": {
+          "mean_date_difference": -2.0,
+          "date_resampling_interval": [
+            -6.0,
+            0.0
+          ],
+          "by_date": {
+            "2023-11-12": -6,
+            "2023-11-13": 0,
+            "2023-11-14": 0
+          }
+        }
+      },
+      "factorial_effects": {}
+    }
+  },
+  "cases": [
+    {
+      "implementation": "synthetic_poll_history_correctness_rerun_v1",
+      "data_source": "/home/erzhu419/mine_code/BAPR-HRO/data/per_day_distributions_corrected.pkl",
+      "spec": [
+        "2023-11-12",
+        0,
+        false,
+        120
+      ],
+      "od": [
+        "Zürich, Seebach",
+        "Zürich, Sternen Oerlikon"
+      ],
+      "world_seed": 20308612,
+      "route_coverage": {
+        "delay_routes": 0,
+        "status_routes": 0
+      },
+      "transition_budget": 512,
+      "rows": [
+        {
+          "method": "full_nominal",
+          "loss": 13,
+          "arrived": true,
+          "total_ms": 14.04037798056379,
+          "initial_ms": 5.063869990408421,
+          "estimate_ms": 3.1522089848294854,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": 2000,
+          "worker_peak_kib": 46056
+        },
+        {
+          "method": "full_rollout",
+          "loss": 13,
+          "arrived": true,
+          "total_ms": 248.2740700361319,
+          "initial_ms": 4.715485032647848,
+          "estimate_ms": 3.0796060455031693,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 234.27554493537173,
+          "planning_transitions": 464,
+          "max_query_transitions": 144,
+          "menu_size": 2000,
+          "worker_peak_kib": 51944
+        }
+      ],
+      "correction_of": "/home/erzhu419/mine_code/BAPR-HRO/experiments/reconstruction_v3/final_causal_generated_confirmation.json"
+    },
+    {
+      "implementation": "synthetic_poll_history_correctness_rerun_v1",
+      "data_source": "/home/erzhu419/mine_code/BAPR-HRO/data/per_day_distributions_corrected.pkl",
+      "spec": [
+        "2023-11-12",
+        0,
+        true,
+        120
+      ],
+      "od": [
+        "Zürich, Seebach",
+        "Zürich, Sternen Oerlikon"
+      ],
+      "world_seed": 20309612,
+      "route_coverage": {
+        "delay_routes": 0,
+        "status_routes": 0
+      },
+      "transition_budget": 512,
+      "rows": [
+        {
+          "method": "full_nominal",
+          "loss": 7,
+          "arrived": true,
+          "total_ms": 14.67024302110076,
+          "initial_ms": 5.258658027742058,
+          "estimate_ms": 3.2204530434682965,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": 2000,
+          "worker_peak_kib": 46100
+        },
+        {
+          "method": "full_rollout",
+          "loss": 7,
+          "arrived": true,
+          "total_ms": 315.4836110188626,
+          "initial_ms": 4.597126971930265,
+          "estimate_ms": 3.1743149738758802,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 301.190514001064,
+          "planning_transitions": 571,
+          "max_query_transitions": 182,
+          "menu_size": 2000,
+          "worker_peak_kib": 51988
+        }
+      ],
+      "correction_of": "/home/erzhu419/mine_code/BAPR-HRO/experiments/reconstruction_v3/final_causal_generated_confirmation.json"
+    },
+    {
+      "implementation": "synthetic_poll_history_correctness_rerun_v1",
+      "data_source": "/home/erzhu419/mine_code/BAPR-HRO/data/per_day_distributions_corrected.pkl",
+      "spec": [
+        "2023-11-12",
+        1,
+        false,
+        120
+      ],
+      "od": [
+        "Stettbach, Bahnhof",
+        "Zürich, Roswiesen"
+      ],
+      "world_seed": 20308612,
+      "route_coverage": {
+        "delay_routes": 0,
+        "status_routes": 0
+      },
+      "transition_budget": 512,
+      "rows": [
+        {
+          "method": "full_nominal",
+          "loss": 12,
+          "arrived": true,
+          "total_ms": 12.215761002153158,
+          "initial_ms": 4.5855570351704955,
+          "estimate_ms": 3.0084160389378667,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": 2000,
+          "worker_peak_kib": 45904
+        },
+        {
+          "method": "full_rollout",
+          "loss": 12,
+          "arrived": true,
+          "total_ms": 260.2150909951888,
+          "initial_ms": 4.456886032130569,
+          "estimate_ms": 3.0551489908248186,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 246.76739593269303,
+          "planning_transitions": 1609,
+          "max_query_transitions": 512,
+          "menu_size": 2000,
+          "worker_peak_kib": 52048
+        }
+      ],
+      "correction_of": "/home/erzhu419/mine_code/BAPR-HRO/experiments/reconstruction_v3/final_causal_generated_confirmation.json"
+    },
+    {
+      "implementation": "synthetic_poll_history_correctness_rerun_v1",
+      "data_source": "/home/erzhu419/mine_code/BAPR-HRO/data/per_day_distributions_corrected.pkl",
+      "spec": [
+        "2023-11-12",
+        1,
+        true,
+        120
+      ],
+      "od": [
+        "Stettbach, Bahnhof",
+        "Zürich, Roswiesen"
+      ],
+      "world_seed": 20309612,
+      "route_coverage": {
+        "delay_routes": 0,
+        "status_routes": 0
+      },
+      "transition_budget": 512,
+      "rows": [
+        {
+          "method": "full_nominal",
+          "loss": 17,
+          "arrived": true,
+          "total_ms": 13.977483031339943,
+          "initial_ms": 4.902564047370106,
+          "estimate_ms": 3.084327036049217,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": 2000,
+          "worker_peak_kib": 46204
+        },
+        {
+          "method": "full_rollout",
+          "loss": 5,
+          "arrived": true,
+          "total_ms": 228.30278595210984,
+          "initial_ms": 4.5623890473507345,
+          "estimate_ms": 2.984885999467224,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 214.5726518938318,
+          "planning_transitions": 392,
+          "max_query_transitions": 113,
+          "menu_size": 2000,
+          "worker_peak_kib": 52092
+        }
+      ],
+      "correction_of": "/home/erzhu419/mine_code/BAPR-HRO/experiments/reconstruction_v3/final_causal_generated_confirmation.json"
+    },
+    {
+      "implementation": "synthetic_poll_history_correctness_rerun_v1",
+      "data_source": "/home/erzhu419/mine_code/BAPR-HRO/data/per_day_distributions_corrected.pkl",
+      "spec": [
+        "2023-11-13",
+        0,
+        false,
+        120
+      ],
+      "od": [
+        "Zürich, Seebach",
+        "Zürich, Sternen Oerlikon"
+      ],
+      "world_seed": 20308613,
+      "route_coverage": {
+        "delay_routes": 0,
+        "status_routes": 0
+      },
+      "transition_budget": 512,
+      "rows": [
+        {
+          "method": "full_nominal",
+          "loss": 17,
+          "arrived": true,
+          "total_ms": 12.459865014534444,
+          "initial_ms": 4.243777017109096,
+          "estimate_ms": 2.860786975361407,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": 2000,
+          "worker_peak_kib": 46204
+        },
+        {
+          "method": "full_rollout",
+          "loss": 17,
+          "arrived": true,
+          "total_ms": 273.3277049846947,
+          "initial_ms": 5.6060319766402245,
+          "estimate_ms": 3.701305016875267,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 257.4952270369977,
+          "planning_transitions": 583,
+          "max_query_transitions": 200,
+          "menu_size": 2000,
+          "worker_peak_kib": 52092
+        }
+      ],
+      "correction_of": "/home/erzhu419/mine_code/BAPR-HRO/experiments/reconstruction_v3/final_causal_generated_confirmation.json"
+    },
+    {
+      "implementation": "synthetic_poll_history_correctness_rerun_v1",
+      "data_source": "/home/erzhu419/mine_code/BAPR-HRO/data/per_day_distributions_corrected.pkl",
+      "spec": [
+        "2023-11-13",
+        0,
+        true,
+        120
+      ],
+      "od": [
+        "Zürich, Seebach",
+        "Zürich, Sternen Oerlikon"
+      ],
+      "world_seed": 20309613,
+      "route_coverage": {
+        "delay_routes": 0,
+        "status_routes": 0
+      },
+      "transition_budget": 512,
+      "rows": [
+        {
+          "method": "full_nominal",
+          "loss": 12,
+          "arrived": true,
+          "total_ms": 13.889557041693479,
+          "initial_ms": 4.941291001159698,
+          "estimate_ms": 3.1090920092538,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": 2000,
+          "worker_peak_kib": 46176
+        },
+        {
+          "method": "full_rollout",
+          "loss": 12,
+          "arrived": true,
+          "total_ms": 269.5350300054997,
+          "initial_ms": 4.623060987796634,
+          "estimate_ms": 3.0221649794839323,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 256.0936168883927,
+          "planning_transitions": 507,
+          "max_query_transitions": 168,
+          "menu_size": 2000,
+          "worker_peak_kib": 52064
+        }
+      ],
+      "correction_of": "/home/erzhu419/mine_code/BAPR-HRO/experiments/reconstruction_v3/final_causal_generated_confirmation.json"
+    },
+    {
+      "implementation": "synthetic_poll_history_correctness_rerun_v1",
+      "data_source": "/home/erzhu419/mine_code/BAPR-HRO/data/per_day_distributions_corrected.pkl",
+      "spec": [
+        "2023-11-13",
+        1,
+        false,
+        120
+      ],
+      "od": [
+        "Stettbach, Bahnhof",
+        "Zürich, Roswiesen"
+      ],
+      "world_seed": 20308613,
+      "route_coverage": {
+        "delay_routes": 0,
+        "status_routes": 0
+      },
+      "transition_budget": 512,
+      "rows": [
+        {
+          "method": "full_nominal",
+          "loss": 13,
+          "arrived": true,
+          "total_ms": 13.07671598624438,
+          "initial_ms": 4.881458007730544,
+          "estimate_ms": 3.0279509956017137,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": 2000,
+          "worker_peak_kib": 46240
+        },
+        {
+          "method": "full_rollout",
+          "loss": 13,
+          "arrived": true,
+          "total_ms": 250.60183799359947,
+          "initial_ms": 4.395756986923516,
+          "estimate_ms": 2.9157180106267333,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 238.03601309191436,
+          "planning_transitions": 1608,
+          "max_query_transitions": 512,
+          "menu_size": 2000,
+          "worker_peak_kib": 52128
+        }
+      ],
+      "correction_of": "/home/erzhu419/mine_code/BAPR-HRO/experiments/reconstruction_v3/final_causal_generated_confirmation.json"
+    },
+    {
+      "implementation": "synthetic_poll_history_correctness_rerun_v1",
+      "data_source": "/home/erzhu419/mine_code/BAPR-HRO/data/per_day_distributions_corrected.pkl",
+      "spec": [
+        "2023-11-13",
+        1,
+        true,
+        120
+      ],
+      "od": [
+        "Stettbach, Bahnhof",
+        "Zürich, Roswiesen"
+      ],
+      "world_seed": 20309613,
+      "route_coverage": {
+        "delay_routes": 0,
+        "status_routes": 0
+      },
+      "transition_budget": 512,
+      "rows": [
+        {
+          "method": "full_nominal",
+          "loss": 22,
+          "arrived": true,
+          "total_ms": 11.023007973562926,
+          "initial_ms": 3.598737996071577,
+          "estimate_ms": 2.3526170407421887,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": 2000,
+          "worker_peak_kib": 46204
+        },
+        {
+          "method": "full_rollout",
+          "loss": 22,
+          "arrived": true,
+          "total_ms": 271.40862302621827,
+          "initial_ms": 4.274613049346954,
+          "estimate_ms": 2.9817059985361993,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 255.48113696277142,
+          "planning_transitions": 1682,
+          "max_query_transitions": 512,
+          "menu_size": 2000,
+          "worker_peak_kib": 52092
+        }
+      ],
+      "correction_of": "/home/erzhu419/mine_code/BAPR-HRO/experiments/reconstruction_v3/final_causal_generated_confirmation.json"
+    },
+    {
+      "implementation": "synthetic_poll_history_correctness_rerun_v1",
+      "data_source": "/home/erzhu419/mine_code/BAPR-HRO/data/per_day_distributions_corrected.pkl",
+      "spec": [
+        "2023-11-14",
+        0,
+        false,
+        120
+      ],
+      "od": [
+        "Zürich, Seebach",
+        "Zürich, Sternen Oerlikon"
+      ],
+      "world_seed": 20308614,
+      "route_coverage": {
+        "delay_routes": 0,
+        "status_routes": 0
+      },
+      "transition_budget": 512,
+      "rows": [
+        {
+          "method": "full_nominal",
+          "loss": 17,
+          "arrived": true,
+          "total_ms": 12.794756970833987,
+          "initial_ms": 5.289461987558752,
+          "estimate_ms": 3.1157160410657525,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": 2000,
+          "worker_peak_kib": 52348
+        },
+        {
+          "method": "full_rollout",
+          "loss": 17,
+          "arrived": true,
+          "total_ms": 228.07368397479877,
+          "initial_ms": 5.356036999728531,
+          "estimate_ms": 3.3042210270650685,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 214.02469399617985,
+          "planning_transitions": 566,
+          "max_query_transitions": 181,
+          "menu_size": 2000,
+          "worker_peak_kib": 54396
+        }
+      ],
+      "correction_of": "/home/erzhu419/mine_code/BAPR-HRO/experiments/reconstruction_v3/final_causal_generated_confirmation.json"
+    },
+    {
+      "implementation": "synthetic_poll_history_correctness_rerun_v1",
+      "data_source": "/home/erzhu419/mine_code/BAPR-HRO/data/per_day_distributions_corrected.pkl",
+      "spec": [
+        "2023-11-14",
+        0,
+        true,
+        120
+      ],
+      "od": [
+        "Zürich, Seebach",
+        "Zürich, Sternen Oerlikon"
+      ],
+      "world_seed": 20309614,
+      "route_coverage": {
+        "delay_routes": 0,
+        "status_routes": 0
+      },
+      "transition_budget": 512,
+      "rows": [
+        {
+          "method": "full_nominal",
+          "loss": 5,
+          "arrived": true,
+          "total_ms": 13.16536997910589,
+          "initial_ms": 4.978543962351978,
+          "estimate_ms": 3.042581956833601,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": 2000,
+          "worker_peak_kib": 52200
+        },
+        {
+          "method": "full_rollout",
+          "loss": 5,
+          "arrived": true,
+          "total_ms": 224.85692100599408,
+          "initial_ms": 4.704947001300752,
+          "estimate_ms": 2.971710986457765,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 212.11103402310982,
+          "planning_transitions": 384,
+          "max_query_transitions": 146,
+          "menu_size": 2000,
+          "worker_peak_kib": 55272
+        }
+      ],
+      "correction_of": "/home/erzhu419/mine_code/BAPR-HRO/experiments/reconstruction_v3/final_causal_generated_confirmation.json"
+    },
+    {
+      "implementation": "synthetic_poll_history_correctness_rerun_v1",
+      "data_source": "/home/erzhu419/mine_code/BAPR-HRO/data/per_day_distributions_corrected.pkl",
+      "spec": [
+        "2023-11-14",
+        1,
+        false,
+        120
+      ],
+      "od": [
+        "Stettbach, Bahnhof",
+        "Zürich, Roswiesen"
+      ],
+      "world_seed": 20308614,
+      "route_coverage": {
+        "delay_routes": 0,
+        "status_routes": 0
+      },
+      "transition_budget": 512,
+      "rows": [
+        {
+          "method": "full_nominal",
+          "loss": 14,
+          "arrived": true,
+          "total_ms": 12.491977016907185,
+          "initial_ms": 4.814010986592621,
+          "estimate_ms": 3.0294699827209115,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": 2000,
+          "worker_peak_kib": 52384
+        },
+        {
+          "method": "full_rollout",
+          "loss": 14,
+          "arrived": true,
+          "total_ms": 243.67194098886102,
+          "initial_ms": 4.406113002914935,
+          "estimate_ms": 3.027344006113708,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 229.61234993999824,
+          "planning_transitions": 1608,
+          "max_query_transitions": 512,
+          "menu_size": 2000,
+          "worker_peak_kib": 55456
+        }
+      ],
+      "correction_of": "/home/erzhu419/mine_code/BAPR-HRO/experiments/reconstruction_v3/final_causal_generated_confirmation.json"
+    },
+    {
+      "implementation": "synthetic_poll_history_correctness_rerun_v1",
+      "data_source": "/home/erzhu419/mine_code/BAPR-HRO/data/per_day_distributions_corrected.pkl",
+      "spec": [
+        "2023-11-14",
+        1,
+        true,
+        120
+      ],
+      "od": [
+        "Stettbach, Bahnhof",
+        "Zürich, Roswiesen"
+      ],
+      "world_seed": 20309614,
+      "route_coverage": {
+        "delay_routes": 0,
+        "status_routes": 0
+      },
+      "transition_budget": 512,
+      "rows": [
+        {
+          "method": "full_nominal",
+          "loss": 31,
+          "arrived": true,
+          "total_ms": 13.841946958564222,
+          "initial_ms": 4.628686001524329,
+          "estimate_ms": 2.981790981721133,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": 2000,
+          "worker_peak_kib": 52348
+        },
+        {
+          "method": "full_rollout",
+          "loss": 31,
+          "arrived": true,
+          "total_ms": 293.7653289991431,
+          "initial_ms": 4.861827997956425,
+          "estimate_ms": 3.114110033493489,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 274.11426295293495,
+          "planning_transitions": 1752,
+          "max_query_transitions": 512,
+          "menu_size": 2000,
+          "worker_peak_kib": 54396
+        }
+      ],
+      "correction_of": "/home/erzhu419/mine_code/BAPR-HRO/experiments/reconstruction_v3/final_causal_generated_confirmation.json"
+    }
+  ]
+}

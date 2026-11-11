@@ -120,14 +120,21 @@ class VehicleEvent:
 class JourneyScenario:
     """Exogenous trip realizations, sampled before any policy decision.
 
-    Segments on the same trip share a delay and cancellation outcome. The
-    regime at the trip's first scheduled departure determines its draw.
-    Pass the same scenario to all policies in a paired comparison.
+    ``sample`` uses a shared trip delay and cancellation. Measured scenarios
+    can supply distinct segment clocks and partial cancellations. An explicit
+    publication map controls availability of exact facts, including direct
+    cancellation receipts. An empty map supplies only first-hand ride facts.
     """
     events: Mapping[int, VehicleEvent]
+    minute: int = 1  # ticks per minute; measured replay uses integer seconds
+    publications: Mapping[str, int] | None = None
 
     def __post_init__(self):
+        if self.minute < 1:
+            raise ValueError("A minute must contain at least one clock tick")
         object.__setattr__(self, "events", MappingProxyType(dict(self.events)))
+        if self.publications is not None:
+            object.__setattr__(self, "publications", MappingProxyType(dict(self.publications)))
 
     @classmethod
     def sample(cls, graph: TransitGraph, regime_schedule: RegimeSchedule,
@@ -172,21 +179,31 @@ def generate_delay_observations(
     observations = []
     pending = []
     for c in graph.get_connections_from(current_stop):
-        event = scenario.event(c)
+        event = scenario.events.get(c.id)
+        if event is None:
+            continue
         pending.append((event.departure, c, "cancel" if event.canceled else "departure", c.dep_time))
     for c in graph.get_connections_to(current_stop):
-        event = scenario.event(c)
-        if not event.canceled:
+        event = scenario.events.get(c.id)
+        if event is not None and not event.canceled:
             pending.append((event.arrival, c, "arrival", c.arr_time))
-    for actual, c, kind, scheduled in sorted(pending, key=lambda x: (x[0], x[1].id, x[2])):
+    released = []
+    for actual, c, kind, scheduled in pending:
+        publication = (actual if scenario.publications is None
+                       else scenario.publications.get(f'{c.id}:{kind}'))
+        if publication is not None:
+            released.append((publication, actual, c, kind, scheduled))
+    for publication, actual, c, kind, scheduled in sorted(released, key=lambda x: (x[0], x[2].id, x[3])):
         event_id = f"{c.id}:{kind}"
-        if not current_time - 10 <= actual <= current_time:
+        if (not current_time - 10 * scenario.minute <= publication <= current_time
+                or (kind != 'cancel' and actual > publication)):
             continue
         if seen_events is not None and event_id in seen_events:
             continue
         observations.append(DelayObservation(
             route=c.route, stop_id=current_stop, scheduled_time=scheduled,
-            predicted_time=scheduled, actual_time=actual, timestamp=actual,
+            predicted_time=scheduled, actual_time=publication if kind == 'cancel' else actual,
+            timestamp=publication,
             event_id=event_id, is_canceled=kind == "cancel",
         ))
         if seen_events is not None:
@@ -297,6 +314,8 @@ def simulate_journey(
         seen_routes = set()
         for label in reversed(labels):  # best mean_dest_arrival first
             c = graph.connections[label.connection_id]
+            if not c.pickup_allowed and c.trip_id != current_trip:
+                continue
             if c.dep_time < current_time - 1:
                 continue
             if c.dep_time > current_time + 25:

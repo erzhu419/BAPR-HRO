@@ -76,6 +76,7 @@ def build_transit_model(
                 log.append((event.arrival, cid, "arrival"))
             if (connection.dep_stop == stop and event.departure == time
                     and cid not in used
+                    and (connection.pickup_allowed or onboard == trip_key(connection))
                     and (onboard == trip_key(connection) or time >= ready)):
                 visible.append(cid)
         return TransitState(stop, time, onboard, ready, used,

@@ -1,0 +1,1274 @@
+{
+  "implementation": "route_id_chronological_provenance",
+  "data": "/home/erzhu419/mine_code/BAPR-HRO/data/per_day_distributions_corrected.pkl",
+  "frozen_protocol": "/home/erzhu419/mine_code/BAPR-HRO/experiments/reconstruction_v3/final_platform_resolved_confirmation_protocol.json",
+  "workers": 8,
+  "scope": "untouched prior-predictive generated pseudo-dates; no target-day observations",
+  "inference": "paired date resampling describes these generated conditions, not independent observed service events",
+  "od_conditions": 12,
+  "journeys": 48,
+  "predeclared_departure": 490,
+  "methods": [
+    "marginal",
+    "native_strict",
+    "nominal",
+    "rollout"
+  ],
+  "transition_budget": null,
+  "summary": {
+    "stress=False/cap=120": {
+      "od_cases": 6,
+      "generated_worlds": 3,
+      "metrics": {
+        "marginal": {
+          "loss": 14.833333333333334,
+          "arrived": 1,
+          "total_ms": 396.7686301718156,
+          "initial_ms": 126.98084049043246,
+          "estimate_ms": 11.94240832895351,
+          "scan_ms": 382.29222800388624,
+          "scans": 6000,
+          "label_updates": 75,
+          "rollout_ms": 0.0,
+          "decision_p50_p95_ms": [
+            48.352883488405496,
+            164.96276504185516
+          ],
+          "largest_worker_peak_kib": 68608
+        },
+        "native_strict": {
+          "loss": 84,
+          "arrived": 0.5,
+          "total_ms": 701.6567756751707,
+          "initial_ms": 212.242771522142,
+          "estimate_ms": 28.719518343374755,
+          "scan_ms": 670.7643181725871,
+          "scans": 8000,
+          "label_updates": 117,
+          "rollout_ms": 0.0,
+          "decision_p50_p95_ms": [
+            0.0015919795259833336,
+            0.01986459828913211
+          ],
+          "largest_worker_peak_kib": 68608
+        },
+        "nominal": {
+          "loss": 14.833333333333334,
+          "arrived": 1,
+          "total_ms": 394.3468591605779,
+          "initial_ms": 127.66992300748825,
+          "estimate_ms": 12.360270833596587,
+          "scan_ms": 369.6926699873681,
+          "scans": 6000,
+          "label_updates": 75,
+          "rollout_ms": 0.0,
+          "decision_p50_p95_ms": [
+            49.29577448638156,
+            173.2296742178732
+          ],
+          "largest_worker_peak_kib": 68608
+        },
+        "rollout": {
+          "loss": 14.833333333333334,
+          "arrived": 1,
+          "total_ms": 926.6270128233979,
+          "initial_ms": 116.88298650551587,
+          "estimate_ms": 11.839783837785944,
+          "scan_ms": 340.76351700544666,
+          "scans": 6000,
+          "label_updates": 75,
+          "rollout_ms": 570.1997992000543,
+          "decision_p50_p95_ms": [
+            165.44768304447643,
+            305.7953513547544
+          ],
+          "largest_worker_peak_kib": 68928
+        }
+      },
+      "paired_reference": "nominal",
+      "paired_differences": {
+        "marginal": {
+          "mean_date_difference": 0.0,
+          "date_resampling_interval": [
+            0.0,
+            0.0
+          ],
+          "by_date": {
+            "2023-11-09": 0,
+            "2023-11-10": 0,
+            "2023-11-11": 0
+          }
+        },
+        "native_strict": {
+          "mean_date_difference": 69.16666666666667,
+          "date_resampling_interval": [
+            68.0,
+            70.5
+          ],
+          "by_date": {
+            "2023-11-09": 69,
+            "2023-11-10": 68,
+            "2023-11-11": 70.5
+          }
+        },
+        "rollout": {
+          "mean_date_difference": 0.0,
+          "date_resampling_interval": [
+            0.0,
+            0.0
+          ],
+          "by_date": {
+            "2023-11-09": 0,
+            "2023-11-10": 0,
+            "2023-11-11": 0
+          }
+        }
+      },
+      "factorial_effects": {}
+    },
+    "stress=True/cap=120": {
+      "od_cases": 6,
+      "generated_worlds": 3,
+      "metrics": {
+        "marginal": {
+          "loss": 38.333333333333336,
+          "arrived": 0.8333333333333334,
+          "total_ms": 282.35370334975113,
+          "initial_ms": 99.3692159827333,
+          "estimate_ms": 9.427207832535109,
+          "scan_ms": 270.9882861818187,
+          "scans": 5666.666666666667,
+          "label_updates": 73.66666666666667,
+          "rollout_ms": 0.0,
+          "decision_p50_p95_ms": [
+            0.0012730015441775322,
+            95.18370825389866
+          ],
+          "largest_worker_peak_kib": 68272
+        },
+        "native_strict": {
+          "loss": 25.666666666666668,
+          "arrived": 0.8333333333333334,
+          "total_ms": 417.44052433447604,
+          "initial_ms": 153.8814850015721,
+          "estimate_ms": 16.542844503419474,
+          "scan_ms": 399.70606080411625,
+          "scans": 5333.333333333333,
+          "label_updates": 78,
+          "rollout_ms": 0.0,
+          "decision_p50_p95_ms": [
+            0.001485488610342145,
+            151.43567861523476
+          ],
+          "largest_worker_peak_kib": 68272
+        },
+        "nominal": {
+          "loss": 33,
+          "arrived": 0.8333333333333334,
+          "total_ms": 277.8435239937001,
+          "initial_ms": 100.46987601284248,
+          "estimate_ms": 8.4327251825016,
+          "scan_ms": 258.5010839975439,
+          "scans": 5000,
+          "label_updates": 59.666666666666664,
+          "rollout_ms": 0.0,
+          "decision_p50_p95_ms": [
+            0.03131249104626477,
+            97.62091513548509
+          ],
+          "largest_worker_peak_kib": 68272
+        },
+        "rollout": {
+          "loss": 8.333333333333334,
+          "arrived": 1,
+          "total_ms": 623.939776502084,
+          "initial_ms": 114.79136681494613,
+          "estimate_ms": 7.7828425079739345,
+          "scan_ms": 251.56343198614195,
+          "scans": 4333.333333333333,
+          "label_updates": 57,
+          "rollout_ms": 361.2798669879946,
+          "decision_p50_p95_ms": [
+            78.78527702996507,
+            210.7312454842031
+          ],
+          "largest_worker_peak_kib": 69100
+        }
+      },
+      "paired_reference": "nominal",
+      "paired_differences": {
+        "marginal": {
+          "mean_date_difference": 5.333333333333333,
+          "date_resampling_interval": [
+            0.0,
+            10.5
+          ],
+          "by_date": {
+            "2023-11-09": 5.5,
+            "2023-11-10": 0,
+            "2023-11-11": 10.5
+          }
+        },
+        "native_strict": {
+          "mean_date_difference": -7.333333333333333,
+          "date_resampling_interval": [
+            -58.0,
+            43.5
+          ],
+          "by_date": {
+            "2023-11-09": -58,
+            "2023-11-10": 43.5,
+            "2023-11-11": -7.5
+          }
+        },
+        "rollout": {
+          "mean_date_difference": -24.666666666666668,
+          "date_resampling_interval": [
+            -58.0,
+            -7.5
+          ],
+          "by_date": {
+            "2023-11-09": -58,
+            "2023-11-10": -8.5,
+            "2023-11-11": -7.5
+          }
+        }
+      },
+      "factorial_effects": {}
+    }
+  },
+  "cases": [
+    {
+      "implementation": "route_id_chronological_provenance",
+      "data_source": "/home/erzhu419/mine_code/BAPR-HRO/data/per_day_distributions_corrected.pkl",
+      "spec": [
+        "2023-11-09",
+        0,
+        false,
+        120
+      ],
+      "od": [
+        "Zürich, Seebach",
+        "Zürich, Sternen Oerlikon"
+      ],
+      "world_seed": 20308609,
+      "route_coverage": {
+        "delay_routes": 0,
+        "status_routes": 0
+      },
+      "transition_budget": null,
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 17,
+          "arrived": true,
+          "total_ms": 455.1599739934318,
+          "initial_ms": 128.55913199018687,
+          "estimate_ms": 13.338499004021287,
+          "scan_ms": 438.84511693613604,
+          "scans": 6000,
+          "label_updates": 126,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 57576
+        },
+        {
+          "method": "native_strict",
+          "loss": 50,
+          "arrived": true,
+          "total_ms": 918.5438310378231,
+          "initial_ms": 253.43165802769363,
+          "estimate_ms": 37.64675505226478,
+          "scan_ms": 878.63625906175,
+          "scans": 10000,
+          "label_updates": 210,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 60136
+        },
+        {
+          "method": "nominal",
+          "loss": 17,
+          "arrived": true,
+          "total_ms": 370.1469100196846,
+          "initial_ms": 129.27644199226052,
+          "estimate_ms": 13.26736604096368,
+          "scan_ms": 344.51501589501277,
+          "scans": 6000,
+          "label_updates": 126,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 63464
+        },
+        {
+          "method": "rollout",
+          "loss": 17,
+          "arrived": true,
+          "total_ms": 634.3911529984325,
+          "initial_ms": 108.95777097903192,
+          "estimate_ms": 11.125917080789804,
+          "scan_ms": 324.51896503334865,
+          "scans": 6000,
+          "label_updates": 126,
+          "rollout_ms": 295.13430409133434,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 67844
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_provenance",
+      "data_source": "/home/erzhu419/mine_code/BAPR-HRO/data/per_day_distributions_corrected.pkl",
+      "spec": [
+        "2023-11-09",
+        0,
+        true,
+        120
+      ],
+      "od": [
+        "Zürich, Seebach",
+        "Zürich, Sternen Oerlikon"
+      ],
+      "world_seed": 20309609,
+      "route_coverage": {
+        "delay_routes": 0,
+        "status_routes": 0
+      },
+      "transition_budget": null,
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 22,
+          "arrived": true,
+          "total_ms": 276.0359229869209,
+          "initial_ms": 92.62469998793676,
+          "estimate_ms": 8.410540001932532,
+          "scan_ms": 265.51975205074996,
+          "scans": 6000,
+          "label_updates": 126,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 57600
+        },
+        {
+          "method": "native_strict",
+          "loss": 6,
+          "arrived": true,
+          "total_ms": 289.15093501564115,
+          "initial_ms": 144.71549302106723,
+          "estimate_ms": 10.774530994240195,
+          "scan_ms": 277.6489019743167,
+          "scans": 4000,
+          "label_updates": 84,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 59904
+        },
+        {
+          "method": "nominal",
+          "loss": 11,
+          "arrived": true,
+          "total_ms": 199.14437195984647,
+          "initial_ms": 94.077677000314,
+          "estimate_ms": 5.975266976747662,
+          "scan_ms": 182.89595999522135,
+          "scans": 4000,
+          "label_updates": 84,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 64512
+        },
+        {
+          "method": "rollout",
+          "loss": 6,
+          "arrived": true,
+          "total_ms": 853.5411859629676,
+          "initial_ms": 99.65626295888796,
+          "estimate_ms": 9.099476970732212,
+          "scan_ms": 304.1463519912213,
+          "scans": 4000,
+          "label_updates": 84,
+          "rollout_ms": 535.5553741683252,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 68608
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_provenance",
+      "data_source": "/home/erzhu419/mine_code/BAPR-HRO/data/per_day_distributions_corrected.pkl",
+      "spec": [
+        "2023-11-09",
+        1,
+        false,
+        120
+      ],
+      "od": [
+        "Stettbach, Bahnhof",
+        "Zürich, Roswiesen"
+      ],
+      "world_seed": 20308609,
+      "route_coverage": {
+        "delay_routes": 0,
+        "status_routes": 0
+      },
+      "transition_budget": null,
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 15,
+          "arrived": true,
+          "total_ms": 299.9318970250897,
+          "initial_ms": 105.42729398002848,
+          "estimate_ms": 8.7620560079813,
+          "scan_ms": 289.3005490186624,
+          "scans": 6000,
+          "label_updates": 24,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 57776
+        },
+        {
+          "method": "native_strict",
+          "loss": 120,
+          "arrived": false,
+          "total_ms": 447.3648690036498,
+          "initial_ms": 146.93342504324391,
+          "estimate_ms": 15.886000008322299,
+          "scan_ms": 429.943730996456,
+          "scans": 6000,
+          "label_updates": 24,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 60336
+        },
+        {
+          "method": "nominal",
+          "loss": 15,
+          "arrived": true,
+          "total_ms": 348.3331350143999,
+          "initial_ms": 97.96039800858125,
+          "estimate_ms": 9.321404970251024,
+          "scan_ms": 328.44148005824536,
+          "scans": 6000,
+          "label_updates": 24,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 64688
+        },
+        {
+          "method": "rollout",
+          "loss": 15,
+          "arrived": true,
+          "total_ms": 900.6789170089178,
+          "initial_ms": 93.40702497866005,
+          "estimate_ms": 9.62079199962318,
+          "scan_ms": 276.1953730368987,
+          "scans": 6000,
+          "label_updates": 24,
+          "rollout_ms": 612.0049570454285,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 68272
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_provenance",
+      "data_source": "/home/erzhu419/mine_code/BAPR-HRO/data/per_day_distributions_corrected.pkl",
+      "spec": [
+        "2023-11-09",
+        1,
+        true,
+        120
+      ],
+      "od": [
+        "Stettbach, Bahnhof",
+        "Zürich, Roswiesen"
+      ],
+      "world_seed": 20309609,
+      "route_coverage": {
+        "delay_routes": 0,
+        "status_routes": 0
+      },
+      "transition_budget": null,
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 120,
+          "arrived": false,
+          "total_ms": 194.08931804355234,
+          "initial_ms": 98.33306499058381,
+          "estimate_ms": 6.661391991656274,
+          "scan_ms": 185.82246906589717,
+          "scans": 4000,
+          "label_updates": 16,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 56596
+        },
+        {
+          "method": "native_strict",
+          "loss": 9,
+          "arrived": true,
+          "total_ms": 316.5198239730671,
+          "initial_ms": 156.87833895208314,
+          "estimate_ms": 13.125890982337296,
+          "scan_ms": 302.75176401482895,
+          "scans": 4000,
+          "label_updates": 16,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 59668
+        },
+        {
+          "method": "nominal",
+          "loss": 120,
+          "arrived": false,
+          "total_ms": 198.34481697762385,
+          "initial_ms": 92.40714501356706,
+          "estimate_ms": 5.9155410272069275,
+          "scan_ms": 180.41283899219707,
+          "scans": 4000,
+          "label_updates": 16,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 60952
+        },
+        {
+          "method": "rollout",
+          "loss": 9,
+          "arrived": true,
+          "total_ms": 516.8828319874592,
+          "initial_ms": 143.51631700992584,
+          "estimate_ms": 7.124272990040481,
+          "scan_ms": 240.48278701957315,
+          "scans": 4000,
+          "label_updates": 16,
+          "rollout_ms": 266.77184796426445,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 67608
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_provenance",
+      "data_source": "/home/erzhu419/mine_code/BAPR-HRO/data/per_day_distributions_corrected.pkl",
+      "spec": [
+        "2023-11-10",
+        0,
+        false,
+        120
+      ],
+      "od": [
+        "Zürich, Seebach",
+        "Zürich, Sternen Oerlikon"
+      ],
+      "world_seed": 20308610,
+      "route_coverage": {
+        "delay_routes": 0,
+        "status_routes": 0
+      },
+      "transition_budget": null,
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 15,
+          "arrived": true,
+          "total_ms": 326.7039390048012,
+          "initial_ms": 105.86865100776777,
+          "estimate_ms": 9.693866944871843,
+          "scan_ms": 314.00703301187605,
+          "scans": 6000,
+          "label_updates": 126,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 57400
+        },
+        {
+          "method": "native_strict",
+          "loss": 46,
+          "arrived": true,
+          "total_ms": 812.2705370187759,
+          "initial_ms": 158.4281550021842,
+          "estimate_ms": 32.506653980817646,
+          "scan_ms": 777.5652780546807,
+          "scans": 10000,
+          "label_updates": 210,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 60216
+        },
+        {
+          "method": "nominal",
+          "loss": 15,
+          "arrived": true,
+          "total_ms": 366.77737400168553,
+          "initial_ms": 125.7945240358822,
+          "estimate_ms": 10.38721902295947,
+          "scan_ms": 344.98768899356946,
+          "scans": 6000,
+          "label_updates": 126,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 63544
+        },
+        {
+          "method": "rollout",
+          "loss": 15,
+          "arrived": true,
+          "total_ms": 654.6435880009085,
+          "initial_ms": 113.63150703255087,
+          "estimate_ms": 11.556792014744133,
+          "scan_ms": 347.39640000043437,
+          "scans": 6000,
+          "label_updates": 126,
+          "rollout_ms": 292.11950907483697,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 67640
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_provenance",
+      "data_source": "/home/erzhu419/mine_code/BAPR-HRO/data/per_day_distributions_corrected.pkl",
+      "spec": [
+        "2023-11-10",
+        0,
+        true,
+        120
+      ],
+      "od": [
+        "Zürich, Seebach",
+        "Zürich, Sternen Oerlikon"
+      ],
+      "world_seed": 20309610,
+      "route_coverage": {
+        "delay_routes": 0,
+        "status_routes": 0
+      },
+      "transition_budget": null,
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 16,
+          "arrived": true,
+          "total_ms": 299.5043120463379,
+          "initial_ms": 106.67192796245217,
+          "estimate_ms": 11.295535950921476,
+          "scan_ms": 286.28218692028895,
+          "scans": 6000,
+          "label_updates": 126,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 57580
+        },
+        {
+          "method": "native_strict",
+          "loss": 120,
+          "arrived": false,
+          "total_ms": 974.804856989067,
+          "initial_ms": 154.00872100144625,
+          "estimate_ms": 37.426951981615275,
+          "scan_ms": 933.9157629292458,
+          "scans": 12000,
+          "label_updates": 252,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 60396
+        },
+        {
+          "method": "nominal",
+          "loss": 16,
+          "arrived": true,
+          "total_ms": 321.7824689927511,
+          "initial_ms": 105.48388201277703,
+          "estimate_ms": 11.193561018444598,
+          "scan_ms": 299.37831294955686,
+          "scans": 6000,
+          "label_updates": 126,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 61932
+        },
+        {
+          "method": "rollout",
+          "loss": 16,
+          "arrived": true,
+          "total_ms": 886.1997710191645,
+          "initial_ms": 129.61891997838393,
+          "estimate_ms": 9.235453966539353,
+          "scan_ms": 344.9637789744884,
+          "scans": 6000,
+          "label_updates": 126,
+          "rollout_ms": 527.0509908441454,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 69100
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_provenance",
+      "data_source": "/home/erzhu419/mine_code/BAPR-HRO/data/per_day_distributions_corrected.pkl",
+      "spec": [
+        "2023-11-10",
+        1,
+        false,
+        120
+      ],
+      "od": [
+        "Stettbach, Bahnhof",
+        "Zürich, Roswiesen"
+      ],
+      "world_seed": 20308610,
+      "route_coverage": {
+        "delay_routes": 0,
+        "status_routes": 0
+      },
+      "transition_budget": null,
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 15,
+          "arrived": true,
+          "total_ms": 452.03518302878365,
+          "initial_ms": 130.51534298574552,
+          "estimate_ms": 13.080363103654236,
+          "scan_ms": 436.616427032277,
+          "scans": 6000,
+          "label_updates": 24,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 57004
+        },
+        {
+          "method": "native_strict",
+          "loss": 120,
+          "arrived": false,
+          "total_ms": 609.4651549938135,
+          "initial_ms": 247.3062050412409,
+          "estimate_ms": 24.45477101719007,
+          "scan_ms": 582.5996259227395,
+          "scans": 6000,
+          "label_updates": 24,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 59308
+        },
+        {
+          "method": "nominal",
+          "loss": 15,
+          "arrived": true,
+          "total_ms": 584.3319289851934,
+          "initial_ms": 167.32022300129756,
+          "estimate_ms": 18.898947979323566,
+          "scan_ms": 548.4044169425033,
+          "scans": 6000,
+          "label_updates": 24,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 64176
+        },
+        {
+          "method": "rollout",
+          "loss": 15,
+          "arrived": true,
+          "total_ms": 1279.273853986524,
+          "initial_ms": 170.17702100565657,
+          "estimate_ms": 15.899104997515678,
+          "scan_ms": 483.79442299483344,
+          "scans": 6000,
+          "label_updates": 24,
+          "rollout_ms": 776.1930109700188,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 67504
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_provenance",
+      "data_source": "/home/erzhu419/mine_code/BAPR-HRO/data/per_day_distributions_corrected.pkl",
+      "spec": [
+        "2023-11-10",
+        1,
+        true,
+        120
+      ],
+      "od": [
+        "Stettbach, Bahnhof",
+        "Zürich, Roswiesen"
+      ],
+      "world_seed": 20309610,
+      "route_coverage": {
+        "delay_routes": 0,
+        "status_routes": 0
+      },
+      "transition_budget": null,
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 24,
+          "arrived": true,
+          "total_ms": 307.19148699427024,
+          "initial_ms": 103.14136696979403,
+          "estimate_ms": 9.716322994790971,
+          "scan_ms": 295.37241999059916,
+          "scans": 6000,
+          "label_updates": 24,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 57204
+        },
+        {
+          "method": "native_strict",
+          "loss": 7,
+          "arrived": true,
+          "total_ms": 299.05169300036505,
+          "initial_ms": 150.47908498672768,
+          "estimate_ms": 13.077243987936527,
+          "scan_ms": 285.2728519937955,
+          "scans": 4000,
+          "label_updates": 16,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 59508
+        },
+        {
+          "method": "nominal",
+          "loss": 24,
+          "arrived": true,
+          "total_ms": 350.47109302831814,
+          "initial_ms": 102.15970099670812,
+          "estimate_ms": 9.268287976738065,
+          "scan_ms": 329.67429398559034,
+          "scans": 6000,
+          "label_updates": 24,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 64116
+        },
+        {
+          "method": "rollout",
+          "loss": 7,
+          "arrived": true,
+          "total_ms": 451.49228000082076,
+          "initial_ms": 104.96736195636913,
+          "estimate_ms": 7.681765011511743,
+          "scan_ms": 217.23182097775862,
+          "scans": 4000,
+          "label_updates": 16,
+          "rollout_ms": 224.07868289155886,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 66412
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_provenance",
+      "data_source": "/home/erzhu419/mine_code/BAPR-HRO/data/per_day_distributions_corrected.pkl",
+      "spec": [
+        "2023-11-11",
+        0,
+        false,
+        120
+      ],
+      "od": [
+        "Zürich, Seebach",
+        "Zürich, Sternen Oerlikon"
+      ],
+      "world_seed": 20308611,
+      "route_coverage": {
+        "delay_routes": 0,
+        "status_routes": 0
+      },
+      "transition_budget": null,
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 14,
+          "arrived": true,
+          "total_ms": 342.4319860059768,
+          "initial_ms": 122.13362799957395,
+          "estimate_ms": 10.680832958314568,
+          "scan_ms": 329.7421269817278,
+          "scans": 6000,
+          "label_updates": 126,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 67608
+        },
+        {
+          "method": "native_strict",
+          "loss": 48,
+          "arrived": true,
+          "total_ms": 843.4415700030513,
+          "initial_ms": 199.0191230433993,
+          "estimate_ms": 35.38164298515767,
+          "scan_ms": 805.4583360208198,
+          "scans": 10000,
+          "label_updates": 210,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 67608
+        },
+        {
+          "method": "nominal",
+          "loss": 14,
+          "arrived": true,
+          "total_ms": 355.2275329711847,
+          "initial_ms": 108.81422500824556,
+          "estimate_ms": 12.071494944393635,
+          "scan_ms": 331.2142390641384,
+          "scans": 6000,
+          "label_updates": 126,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 67608
+        },
+        {
+          "method": "rollout",
+          "loss": 14,
+          "arrived": true,
+          "total_ms": 1115.9257299732417,
+          "initial_ms": 103.424052009359,
+          "estimate_ms": 11.171752994414419,
+          "scan_ms": 304.41240494837984,
+          "scans": 6000,
+          "label_updates": 126,
+          "rollout_ms": 793.6756701092236,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 67956
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_provenance",
+      "data_source": "/home/erzhu419/mine_code/BAPR-HRO/data/per_day_distributions_corrected.pkl",
+      "spec": [
+        "2023-11-11",
+        0,
+        true,
+        120
+      ],
+      "od": [
+        "Zürich, Seebach",
+        "Zürich, Sternen Oerlikon"
+      ],
+      "world_seed": 20309611,
+      "route_coverage": {
+        "delay_routes": 0,
+        "status_routes": 0
+      },
+      "transition_budget": null,
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 26,
+          "arrived": true,
+          "total_ms": 321.08783099101856,
+          "initial_ms": 98.15227094804868,
+          "estimate_ms": 10.69450203794986,
+          "scan_ms": 308.3366430364549,
+          "scans": 6000,
+          "label_updates": 126,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 67388
+        },
+        {
+          "method": "native_strict",
+          "loss": 5,
+          "arrived": true,
+          "total_ms": 311.01307802600786,
+          "initial_ms": 148.107985034585,
+          "estimate_ms": 12.894296029116958,
+          "scan_ms": 297.30315296910703,
+          "scans": 4000,
+          "label_updates": 84,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 67388
+        },
+        {
+          "method": "nominal",
+          "loss": 5,
+          "arrived": true,
+          "total_ms": 259.42344398936257,
+          "initial_ms": 111.21654201997444,
+          "estimate_ms": 7.4269690667279065,
+          "scan_ms": 241.96531099732965,
+          "scans": 4000,
+          "label_updates": 84,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 67388
+        },
+        {
+          "method": "rollout",
+          "loss": 5,
+          "arrived": true,
+          "total_ms": 529.3875590432435,
+          "initial_ms": 110.51710799802095,
+          "estimate_ms": 6.865160074084997,
+          "scan_ms": 208.65938294446096,
+          "scans": 4000,
+          "label_updates": 84,
+          "rollout_ms": 311.11235200660303,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 67388
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_provenance",
+      "data_source": "/home/erzhu419/mine_code/BAPR-HRO/data/per_day_distributions_corrected.pkl",
+      "spec": [
+        "2023-11-11",
+        1,
+        false,
+        120
+      ],
+      "od": [
+        "Stettbach, Bahnhof",
+        "Zürich, Roswiesen"
+      ],
+      "world_seed": 20308611,
+      "route_coverage": {
+        "delay_routes": 0,
+        "status_routes": 0
+      },
+      "transition_budget": null,
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 13,
+          "arrived": true,
+          "total_ms": 504.3488019728102,
+          "initial_ms": 169.38099497929215,
+          "estimate_ms": 16.098831954877824,
+          "scan_ms": 485.24211504263803,
+          "scans": 6000,
+          "label_updates": 24,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 68608
+        },
+        {
+          "method": "native_strict",
+          "loss": 120,
+          "arrived": false,
+          "total_ms": 578.8546919939108,
+          "initial_ms": 268.33806297509,
+          "estimate_ms": 26.441287016496062,
+          "scan_ms": 550.3826789790764,
+          "scans": 6000,
+          "label_updates": 24,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 68608
+        },
+        {
+          "method": "nominal",
+          "loss": 13,
+          "arrived": true,
+          "total_ms": 341.2642739713192,
+          "initial_ms": 136.8537259986624,
+          "estimate_ms": 10.215192043688148,
+          "scan_ms": 320.59317897073925,
+          "scans": 6000,
+          "label_updates": 24,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 68608
+        },
+        {
+          "method": "rollout",
+          "loss": 13,
+          "arrived": true,
+          "total_ms": 974.848834972363,
+          "initial_ms": 111.70054302783683,
+          "estimate_ms": 11.664343939628452,
+          "scan_ms": 308.2635360187851,
+          "scans": 6000,
+          "label_updates": 24,
+          "rollout_ms": 652.0713439094834,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 68928
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_provenance",
+      "data_source": "/home/erzhu419/mine_code/BAPR-HRO/data/per_day_distributions_corrected.pkl",
+      "spec": [
+        "2023-11-11",
+        1,
+        true,
+        120
+      ],
+      "od": [
+        "Stettbach, Bahnhof",
+        "Zürich, Roswiesen"
+      ],
+      "world_seed": 20309611,
+      "route_coverage": {
+        "delay_routes": 0,
+        "status_routes": 0
+      },
+      "transition_budget": null,
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 22,
+          "arrived": true,
+          "total_ms": 296.2133490364067,
+          "initial_ms": 97.2919650375843,
+          "estimate_ms": 9.784954017959535,
+          "scan_ms": 284.596246026922,
+          "scans": 6000,
+          "label_updates": 24,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 68272
+        },
+        {
+          "method": "native_strict",
+          "loss": 7,
+          "arrived": true,
+          "total_ms": 314.1027590027079,
+          "initial_ms": 169.09928701352328,
+          "estimate_ms": 11.958153045270592,
+          "scan_ms": 301.3439309434034,
+          "scans": 4000,
+          "label_updates": 16,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 68272
+        },
+        {
+          "method": "nominal",
+          "loss": 22,
+          "arrived": true,
+          "total_ms": 337.8949490142986,
+          "initial_ms": 97.47430903371423,
+          "estimate_ms": 10.816725029144436,
+          "scan_ms": 316.67978706536815,
+          "scans": 6000,
+          "label_updates": 24,
+          "rollout_ms": 0.0,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 68272
+        },
+        {
+          "method": "rollout",
+          "loss": 7,
+          "arrived": true,
+          "total_ms": 506.1350309988484,
+          "initial_ms": 100.472230988089,
+          "estimate_ms": 6.690926034934819,
+          "scan_ms": 193.8964700093493,
+          "scans": 4000,
+          "label_updates": 16,
+          "rollout_ms": 303.1099540530704,
+          "planning_transitions": 0,
+          "max_query_transitions": 0,
+          "menu_size": null,
+          "worker_peak_kib": 68272
+        }
+      ]
+    }
+  ]
+}

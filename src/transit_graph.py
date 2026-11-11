@@ -21,8 +21,8 @@ class Stop:
     name: str
     lat: float = 0.0
     lon: float = 0.0
-    # Minimum transfer time at this stop (seconds→minutes in our model)
-    min_transfer_time: int = 2  # minutes
+    # Uses the graph's timetable clock unit. The legacy grid uses minutes.
+    min_transfer_time: int = 2
 
 
 @dataclass
@@ -43,14 +43,15 @@ class Connection:
     trip_id: str
     dep_stop: int       # stop id
     arr_stop: int       # stop id
-    dep_time: int       # scheduled departure, minutes from midnight
-    arr_time: int       # scheduled arrival, minutes from midnight
+    dep_time: int       # scheduled departure, clock ticks from midnight
+    arr_time: int       # scheduled arrival, clock ticks from midnight
     # Stochastic distributions (set later from historical data / regime)
     dep_distribution: Optional[PMF] = None
     arr_distribution: Optional[PMF] = None
     cancel_prob: float = 0.0
     # Computed by preprocessing
     topo_order: int = -1
+    pickup_allowed: bool = True
 
     @property
     def scheduled_travel_time(self) -> int:

@@ -1,0 +1,283 @@
+{
+  "scope": "Fixed local-committed scenario banks with free-transfer optimistic suffix labels. All timings are single-process measurements, not a matched production benchmark.",
+  "fragments": [
+    {
+      "name": "through_vehicle",
+      "connections": [
+        67,
+        68,
+        1303,
+        1304
+      ],
+      "cap": 14,
+      "index_labels": 168,
+      "index_build_ms": 0.3438949934206903,
+      "certificate_ms": 0.7427220116369426,
+      "lower": 3.625,
+      "upper": 3.625,
+      "gap": 0.0,
+      "transitions": 23,
+      "removed": [
+        "67",
+        "1303"
+      ],
+      "action_lower": {
+        "wait": 3.625,
+        "67": 3.875,
+        "1303": 5.75
+      },
+      "full": {
+        "value": 3.625,
+        "wall_ms": 414.69365399098024,
+        "transition_evaluations": 7732,
+        "action_evaluations": 7717,
+        "information_nodes_solved": 6047
+      },
+      "H_every_future_history": {
+        "value": 3.625,
+        "wall_ms": 2.781237999442965,
+        "transition_evaluations": 15,
+        "action_evaluations": 10,
+        "information_nodes_solved": 10,
+        "screening_work": {
+          "calls": 10,
+          "transitions": 64,
+          "actions_removed": 18,
+          "nonroot_removals": 16
+        }
+      }
+    },
+    {
+      "name": "transfer_with_direct_fallback",
+      "connections": [
+        123,
+        147,
+        261,
+        1637
+      ],
+      "cap": 12,
+      "index_labels": 144,
+      "index_build_ms": 0.2888999879360199,
+      "certificate_ms": 0.39386196294799447,
+      "lower": 5.0,
+      "upper": 6.0,
+      "gap": 1.0,
+      "transitions": 12,
+      "removed": [
+        "123"
+      ],
+      "action_lower": {
+        "wait": 5.0,
+        "123": 7.0,
+        "1637": 6.0
+      },
+      "full": {
+        "value": 6.0,
+        "wall_ms": 56.1798459966667,
+        "transition_evaluations": 2640,
+        "action_evaluations": 854,
+        "information_nodes_solved": 571
+      },
+      "H_every_future_history": {
+        "value": 6.0,
+        "wall_ms": 4.932388023007661,
+        "transition_evaluations": 84,
+        "action_evaluations": 21,
+        "information_nodes_solved": 11,
+        "screening_work": {
+          "calls": 11,
+          "transitions": 108,
+          "actions_removed": 6,
+          "nonroot_removals": 5
+        }
+      }
+    }
+  ],
+  "archived_template": {
+    "origin": "Zürich, Heuried",
+    "destination": "Zürich, Triemli",
+    "scope": "Archived 2000-connection template; four constructed trip-level scenarios, with stochastic shifts/cancellations on two full trips and all other services on time. One OD and horizon; no citywide exact comparison.",
+    "index_labels": 20520,
+    "graph_connections": 2000,
+    "index_build_ms": 25.306730007287115,
+    "before_screen_ms_including_initial_poll": 6.145135965198278,
+    "before": [
+      {
+        "world_support": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "public_event_ids": [
+          "1406:arrival",
+          "1407:arrival",
+          "1407:departure"
+        ],
+        "lower": 3.625,
+        "upper": 3.625,
+        "gap": 0.0,
+        "transitions": 23,
+        "removed": [
+          "67",
+          "1303"
+        ],
+        "action_lower": {
+          "wait": 3.625,
+          "67": 3.875,
+          "1303": 5.75
+        }
+      }
+    ],
+    "edits": [
+      {
+        "name": "resolve_departure_delay",
+        "changed_world": 1,
+        "changed_connections": [
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "repair_ms": 0.1079560024663806,
+        "repair": {
+          "changed_arcs": 5,
+          "recomputed_labels": 14,
+          "changed_labels": 10
+        },
+        "fresh_build_ms": 25.816239009145647,
+        "after_screen_ms_including_initial_poll": 4.723882011603564,
+        "after": [
+          {
+            "world_support": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "public_event_ids": [
+              "1406:arrival",
+              "1407:arrival",
+              "1407:departure"
+            ],
+            "lower": 3.625,
+            "upper": 3.625,
+            "gap": 0.0,
+            "transitions": 23,
+            "removed": [
+              "1303"
+            ],
+            "action_lower": {
+              "wait": 3.625,
+              "67": 3.625,
+              "1303": 5.75
+            }
+          }
+        ],
+        "all_labels_and_certificates_match_fresh_build": true
+      },
+      {
+        "name": "cancel_through_trip",
+        "changed_world": 0,
+        "changed_connections": [
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "repair_ms": 0.09561801562085748,
+        "repair": {
+          "changed_arcs": 3,
+          "recomputed_labels": 6,
+          "changed_labels": 6
+        },
+        "fresh_build_ms": 25.380645995028317,
+        "after_screen_ms_including_initial_poll": 5.016659037210047,
+        "after": [
+          {
+            "world_support": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "public_event_ids": [
+              "1406:arrival",
+              "1407:arrival",
+              "1407:departure"
+            ],
+            "lower": 5.125,
+            "upper": 5.125,
+            "gap": 0.0,
+            "transitions": 27,
+            "removed": [
+              "1303"
+            ],
+            "action_lower": {
+              "wait": 5.125,
+              "67": 5.125,
+              "1303": 5.75
+            }
+          }
+        ],
+        "all_labels_and_certificates_match_fresh_build": true
+      }
+    ]
+  },
+  "corridor": {
+    "scope": "Constructed timed corridor with a single downstream failure and no fallback.",
+    "index_labels": 720,
+    "repair": {
+      "changed_arcs": 1,
+      "recomputed_labels": 583,
+      "changed_labels": 583
+    },
+    "repair_ms": 0.9775009821169078,
+    "root_lower_before": 58,
+    "root_lower_after": 60
+  }
+}

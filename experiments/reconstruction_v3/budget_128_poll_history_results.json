@@ -1,0 +1,678 @@
+{
+  "implementation": "synthetic_poll_history_correctness_rerun_v1",
+  "frozen_protocol": "/home/erzhu419/mine_code/BAPR-HRO/experiments/reconstruction_v3/budget_128_poll_history_results_protocol.json",
+  "corrected_from": "/home/erzhu419/mine_code/BAPR-HRO/experiments/reconstruction_v3/budget_128_results.json",
+  "scope": "Correctness rerun on previously inspected generated dates and seeds.",
+  "input_provenance": "Legacy budget receipts have no scalar-input protocol. Reuse the later frozen factorial inputs for the same dates, data source, OD identities and world seeds.",
+  "workers": 8,
+  "od_conditions": 6,
+  "journeys": 24,
+  "methods": [
+    "full_rollout",
+    "fixed_h_rollout",
+    "material_h_rollout",
+    "belief_uct"
+  ],
+  "samples": 8,
+  "transition_budget": 128,
+  "summary": {
+    "stress=False/cap=120": {
+      "od_cases": 6,
+      "generated_worlds": 3,
+      "metrics": {
+        "full_rollout": {
+          "loss": 31.333333333333332,
+          "arrived": 1,
+          "total_ms": 5530.881751823472,
+          "initial_ms": 5.8084165017741425,
+          "estimate_ms": 3.7891833344474435,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 5441.510908645189,
+          "decision_p50_p95_ms": [
+            297.6031400030479,
+            499.3396776262671
+          ],
+          "largest_worker_peak_kib": 50472,
+          "planning_transitions": 2325.3333333333335,
+          "max_query_transitions": 128,
+          "menu_size_range": [
+            2000,
+            2000
+          ]
+        },
+        "fixed_h_rollout": {
+          "loss": 31.333333333333332,
+          "arrived": 1,
+          "total_ms": 5428.854068508372,
+          "initial_ms": 434.70248515950516,
+          "estimate_ms": 4.635795155384888,
+          "scan_ms": 416.6832255141344,
+          "scans": 2000,
+          "label_updates": 1193,
+          "rollout_ms": 4886.7553266851855,
+          "decision_p50_p95_ms": [
+            253.06681403890252,
+            468.74538599513465
+          ],
+          "largest_worker_peak_kib": 62760,
+          "planning_transitions": 2325.3333333333335,
+          "max_query_transitions": 128,
+          "menu_size_range": [
+            1379,
+            1891
+          ]
+        },
+        "material_h_rollout": {
+          "loss": 31.5,
+          "arrived": 1,
+          "total_ms": 4227.538487844868,
+          "initial_ms": 457.04958867281675,
+          "estimate_ms": 4.896431676267336,
+          "scan_ms": 448.6093088247192,
+          "scans": 2000,
+          "label_updates": 1193,
+          "rollout_ms": 3676.807775850951,
+          "decision_p50_p95_ms": [
+            184.0440144878812,
+            424.22159498673864
+          ],
+          "largest_worker_peak_kib": 63528,
+          "planning_transitions": 2304,
+          "max_query_transitions": 128,
+          "menu_size_range": [
+            1149,
+            1508
+          ]
+        },
+        "belief_uct": {
+          "loss": 28.666666666666668,
+          "arrived": 1,
+          "total_ms": 3636.9763378364346,
+          "initial_ms": 8.10693382906417,
+          "estimate_ms": 4.920558984546612,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 3562.8730345342774,
+          "decision_p50_p95_ms": [
+            267.51459896331653,
+            484.3397212098352
+          ],
+          "largest_worker_peak_kib": 63528,
+          "planning_transitions": 1685.3333333333333,
+          "max_query_transitions": 128,
+          "menu_size_range": [
+            2000,
+            2000
+          ]
+        }
+      },
+      "paired_reference": "full_rollout",
+      "paired_differences": {
+        "fixed_h_rollout": {
+          "mean_date_difference": 0.0,
+          "date_resampling_interval": [
+            0.0,
+            0.0
+          ],
+          "by_date": {
+            "2023-10-12": 0,
+            "2023-10-25": 0,
+            "2023-10-29": 0
+          }
+        },
+        "material_h_rollout": {
+          "mean_date_difference": 0.16666666666666666,
+          "date_resampling_interval": [
+            0.0,
+            0.5
+          ],
+          "by_date": {
+            "2023-10-12": 0.5,
+            "2023-10-25": 0,
+            "2023-10-29": 0
+          }
+        },
+        "belief_uct": {
+          "mean_date_difference": -2.6666666666666665,
+          "date_resampling_interval": [
+            -7.5,
+            0.0
+          ],
+          "by_date": {
+            "2023-10-12": -7.5,
+            "2023-10-25": -0.5,
+            "2023-10-29": 0
+          }
+        }
+      },
+      "factorial_effects": {}
+    }
+  },
+  "cases": [
+    {
+      "implementation": "synthetic_poll_history_correctness_rerun_v1",
+      "data_source": "/home/erzhu419/mine_code/BAPR-HRO/data/per_day_distributions_corrected.pkl",
+      "spec": [
+        "2023-10-12",
+        1,
+        false,
+        120
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Triemli"
+      ],
+      "world_seed": 20231197,
+      "route_coverage": {
+        "delay_routes": 28,
+        "status_routes": 28
+      },
+      "transition_budget": 128,
+      "rows": [
+        {
+          "method": "full_rollout",
+          "loss": 32,
+          "arrived": true,
+          "total_ms": 3942.3467030283064,
+          "initial_ms": 4.151011991780251,
+          "estimate_ms": 2.8290419722907245,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 3884.164998016786,
+          "planning_transitions": 1536,
+          "max_query_transitions": 128,
+          "menu_size": 2000,
+          "worker_peak_kib": 50384
+        },
+        {
+          "method": "fixed_h_rollout",
+          "loss": 32,
+          "arrived": true,
+          "total_ms": 4592.9776430130005,
+          "initial_ms": 446.9261249760166,
+          "estimate_ms": 4.077698977198452,
+          "scan_ms": 439.67280199285597,
+          "scans": 2000,
+          "label_updates": 1424,
+          "rollout_ms": 4066.7440909310244,
+          "planning_transitions": 1536,
+          "max_query_transitions": 128,
+          "menu_size": 1844,
+          "worker_peak_kib": 57552
+        },
+        {
+          "method": "material_h_rollout",
+          "loss": 33,
+          "arrived": true,
+          "total_ms": 3980.0790160079487,
+          "initial_ms": 520.2981639886275,
+          "estimate_ms": 4.580920038279146,
+          "scan_ms": 511.3829580368474,
+          "scans": 2000,
+          "label_updates": 1424,
+          "rollout_ms": 3390.79756004503,
+          "planning_transitions": 1408,
+          "max_query_transitions": 128,
+          "menu_size": 1393,
+          "worker_peak_kib": 58064
+        },
+        {
+          "method": "belief_uct",
+          "loss": 17,
+          "arrived": true,
+          "total_ms": 3595.789226994384,
+          "initial_ms": 7.930631982162595,
+          "estimate_ms": 4.15575597435236,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 3529.990447976161,
+          "planning_transitions": 1536,
+          "max_query_transitions": 128,
+          "menu_size": 2000,
+          "worker_peak_kib": 58064
+        }
+      ],
+      "correction_of": "/home/erzhu419/mine_code/BAPR-HRO/experiments/reconstruction_v3/budget_128_results.json"
+    },
+    {
+      "implementation": "synthetic_poll_history_correctness_rerun_v1",
+      "data_source": "/home/erzhu419/mine_code/BAPR-HRO/data/per_day_distributions_corrected.pkl",
+      "spec": [
+        "2023-10-12",
+        5,
+        false,
+        120
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Feldeggstrasse"
+      ],
+      "world_seed": 20231197,
+      "route_coverage": {
+        "delay_routes": 28,
+        "status_routes": 28
+      },
+      "transition_budget": 128,
+      "rows": [
+        {
+          "method": "full_rollout",
+          "loss": 38,
+          "arrived": true,
+          "total_ms": 6052.884505013935,
+          "initial_ms": 4.658518999349326,
+          "estimate_ms": 2.9399810009635985,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 5943.071323912591,
+          "planning_transitions": 3072,
+          "max_query_transitions": 128,
+          "menu_size": 2000,
+          "worker_peak_kib": 49796
+        },
+        {
+          "method": "fixed_h_rollout",
+          "loss": 38,
+          "arrived": true,
+          "total_ms": 6453.198513016105,
+          "initial_ms": 372.3662039847113,
+          "estimate_ms": 7.108217978384346,
+          "scan_ms": 361.6422970080748,
+          "scans": 2000,
+          "label_updates": 847,
+          "rollout_ms": 5932.179617055226,
+          "planning_transitions": 3072,
+          "max_query_transitions": 128,
+          "menu_size": 1395,
+          "worker_peak_kib": 56708
+        },
+        {
+          "method": "material_h_rollout",
+          "loss": 38,
+          "arrived": true,
+          "total_ms": 4339.65497900499,
+          "initial_ms": 355.6226170039736,
+          "estimate_ms": 7.360808027442545,
+          "scan_ms": 344.79147399542853,
+          "scans": 2000,
+          "label_updates": 847,
+          "rollout_ms": 3862.088803027291,
+          "planning_transitions": 3072,
+          "max_query_transitions": 128,
+          "menu_size": 1149,
+          "worker_peak_kib": 57220
+        },
+        {
+          "method": "belief_uct",
+          "loss": 38,
+          "arrived": true,
+          "total_ms": 2116.319514985662,
+          "initial_ms": 6.082416977733374,
+          "estimate_ms": 3.6065689637325704,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 2067.5679630367085,
+          "planning_transitions": 1280,
+          "max_query_transitions": 128,
+          "menu_size": 2000,
+          "worker_peak_kib": 57220
+        }
+      ],
+      "correction_of": "/home/erzhu419/mine_code/BAPR-HRO/experiments/reconstruction_v3/budget_128_results.json"
+    },
+    {
+      "implementation": "synthetic_poll_history_correctness_rerun_v1",
+      "data_source": "/home/erzhu419/mine_code/BAPR-HRO/data/per_day_distributions_corrected.pkl",
+      "spec": [
+        "2023-10-25",
+        1,
+        false,
+        120
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Triemli"
+      ],
+      "world_seed": 20231210,
+      "route_coverage": {
+        "delay_routes": 28,
+        "status_routes": 28
+      },
+      "transition_budget": 128,
+      "rows": [
+        {
+          "method": "full_rollout",
+          "loss": 19,
+          "arrived": true,
+          "total_ms": 4150.054960977286,
+          "initial_ms": 8.248865022324026,
+          "estimate_ms": 5.436527018900961,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 4091.7959879152477,
+          "planning_transitions": 1536,
+          "max_query_transitions": 128,
+          "menu_size": 2000,
+          "worker_peak_kib": 50428
+        },
+        {
+          "method": "fixed_h_rollout",
+          "loss": 19,
+          "arrived": true,
+          "total_ms": 5159.54620303819,
+          "initial_ms": 409.0468739741482,
+          "estimate_ms": 3.259381977841258,
+          "scan_ms": 401.2610460049473,
+          "scans": 2000,
+          "label_updates": 1540,
+          "rollout_ms": 4678.0867842026055,
+          "planning_transitions": 1536,
+          "max_query_transitions": 128,
+          "menu_size": 1887,
+          "worker_peak_kib": 58108
+        },
+        {
+          "method": "material_h_rollout",
+          "loss": 19,
+          "arrived": true,
+          "total_ms": 4384.993512008805,
+          "initial_ms": 682.3546490049921,
+          "estimate_ms": 6.53680699178949,
+          "scan_ms": 671.2106469785795,
+          "scans": 2000,
+          "label_updates": 1540,
+          "rollout_ms": 3633.797033922747,
+          "planning_transitions": 1536,
+          "max_query_transitions": 128,
+          "menu_size": 1508,
+          "worker_peak_kib": 58620
+        },
+        {
+          "method": "belief_uct",
+          "loss": 18,
+          "arrived": true,
+          "total_ms": 5400.19775897963,
+          "initial_ms": 9.409856982529163,
+          "estimate_ms": 6.046642956789583,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 5298.660250147805,
+          "planning_transitions": 2048,
+          "max_query_transitions": 128,
+          "menu_size": 2000,
+          "worker_peak_kib": 58620
+        }
+      ],
+      "correction_of": "/home/erzhu419/mine_code/BAPR-HRO/experiments/reconstruction_v3/budget_128_results.json"
+    },
+    {
+      "implementation": "synthetic_poll_history_correctness_rerun_v1",
+      "data_source": "/home/erzhu419/mine_code/BAPR-HRO/data/per_day_distributions_corrected.pkl",
+      "spec": [
+        "2023-10-25",
+        5,
+        false,
+        120
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Feldeggstrasse"
+      ],
+      "world_seed": 20231210,
+      "route_coverage": {
+        "delay_routes": 28,
+        "status_routes": 28
+      },
+      "transition_budget": 128,
+      "rows": [
+        {
+          "method": "full_rollout",
+          "loss": 42,
+          "arrived": true,
+          "total_ms": 7764.567034959327,
+          "initial_ms": 4.039508989080787,
+          "estimate_ms": 2.755068999249488,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 7634.157390915789,
+          "planning_transitions": 3328,
+          "max_query_transitions": 128,
+          "menu_size": 2000,
+          "worker_peak_kib": 50128
+        },
+        {
+          "method": "fixed_h_rollout",
+          "loss": 42,
+          "arrived": true,
+          "total_ms": 6100.834878976457,
+          "initial_ms": 479.7558120335452,
+          "estimate_ms": 3.338349051773548,
+          "scan_ms": 471.455886028707,
+          "scans": 2000,
+          "label_updates": 817,
+          "rollout_ms": 5475.993331056088,
+          "planning_transitions": 3328,
+          "max_query_transitions": 128,
+          "menu_size": 1379,
+          "worker_peak_kib": 53712
+        },
+        {
+          "method": "material_h_rollout",
+          "loss": 42,
+          "arrived": true,
+          "total_ms": 4222.033875004854,
+          "initial_ms": 257.4978420161642,
+          "estimate_ms": 3.5790910478681326,
+          "scan_ms": 251.5532539691776,
+          "scans": 2000,
+          "label_updates": 817,
+          "rollout_ms": 3842.097554006614,
+          "planning_transitions": 3328,
+          "max_query_transitions": 128,
+          "menu_size": 1161,
+          "worker_peak_kib": 54480
+        },
+        {
+          "method": "belief_uct",
+          "loss": 42,
+          "arrived": true,
+          "total_ms": 4293.153784004971,
+          "initial_ms": 5.918238020967692,
+          "estimate_ms": 3.3341380185447633,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 4200.463539978955,
+          "planning_transitions": 2304,
+          "max_query_transitions": 128,
+          "menu_size": 2000,
+          "worker_peak_kib": 55760
+        }
+      ],
+      "correction_of": "/home/erzhu419/mine_code/BAPR-HRO/experiments/reconstruction_v3/budget_128_results.json"
+    },
+    {
+      "implementation": "synthetic_poll_history_correctness_rerun_v1",
+      "data_source": "/home/erzhu419/mine_code/BAPR-HRO/data/per_day_distributions_corrected.pkl",
+      "spec": [
+        "2023-10-29",
+        1,
+        false,
+        120
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Triemli"
+      ],
+      "world_seed": 20231214,
+      "route_coverage": {
+        "delay_routes": 25,
+        "status_routes": 25
+      },
+      "transition_budget": 128,
+      "rows": [
+        {
+          "method": "full_rollout",
+          "loss": 18,
+          "arrived": true,
+          "total_ms": 3705.8707120013423,
+          "initial_ms": 9.206578019075096,
+          "estimate_ms": 5.775070050731301,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 3659.533248981461,
+          "planning_transitions": 1280,
+          "max_query_transitions": 128,
+          "menu_size": 2000,
+          "worker_peak_kib": 50472
+        },
+        {
+          "method": "fixed_h_rollout",
+          "loss": 18,
+          "arrived": true,
+          "total_ms": 3933.0324420006946,
+          "initial_ms": 454.13640001788735,
+          "estimate_ms": 3.383468952961266,
+          "scan_ms": 428.14886901760474,
+          "scans": 2000,
+          "label_updates": 1545,
+          "rollout_ms": 3423.1644670362584,
+          "planning_transitions": 1280,
+          "max_query_transitions": 128,
+          "menu_size": 1891,
+          "worker_peak_kib": 62760
+        },
+        {
+          "method": "material_h_rollout",
+          "loss": 18,
+          "arrived": true,
+          "total_ms": 3913.850962999277,
+          "initial_ms": 586.2350580282509,
+          "estimate_ms": 3.6909739719703794,
+          "scan_ms": 578.3526379964314,
+          "scans": 2000,
+          "label_updates": 1545,
+          "rollout_ms": 3271.7554450500757,
+          "planning_transitions": 1280,
+          "max_query_transitions": 128,
+          "menu_size": 1435,
+          "worker_peak_kib": 63528
+        },
+        {
+          "method": "belief_uct",
+          "loss": 18,
+          "arrived": true,
+          "total_ms": 4227.741931041237,
+          "initial_ms": 9.260791004635394,
+          "estimate_ms": 5.733360012527555,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 4153.4637659206055,
+          "planning_transitions": 1536,
+          "max_query_transitions": 128,
+          "menu_size": 2000,
+          "worker_peak_kib": 63528
+        }
+      ],
+      "correction_of": "/home/erzhu419/mine_code/BAPR-HRO/experiments/reconstruction_v3/budget_128_results.json"
+    },
+    {
+      "implementation": "synthetic_poll_history_correctness_rerun_v1",
+      "data_source": "/home/erzhu419/mine_code/BAPR-HRO/data/per_day_distributions_corrected.pkl",
+      "spec": [
+        "2023-10-29",
+        5,
+        false,
+        120
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Feldeggstrasse"
+      ],
+      "world_seed": 20231214,
+      "route_coverage": {
+        "delay_routes": 25,
+        "status_routes": 25
+      },
+      "transition_budget": 128,
+      "rows": [
+        {
+          "method": "full_rollout",
+          "loss": 39,
+          "arrived": true,
+          "total_ms": 7569.566594960634,
+          "initial_ms": 4.546015989035368,
+          "estimate_ms": 2.999410964548588,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 7436.342502129264,
+          "planning_transitions": 3200,
+          "max_query_transitions": 128,
+          "menu_size": 2000,
+          "worker_peak_kib": 50328
+        },
+        {
+          "method": "fixed_h_rollout",
+          "loss": 39,
+          "arrived": true,
+          "total_ms": 6333.534731005784,
+          "initial_ms": 445.9834959707223,
+          "estimate_ms": 6.64765399415046,
+          "scan_ms": 397.9184530326165,
+          "scans": 2000,
+          "label_updates": 985,
+          "rollout_ms": 5744.363669829909,
+          "planning_transitions": 3200,
+          "max_query_transitions": 128,
+          "menu_size": 1451,
+          "worker_peak_kib": 57752
+        },
+        {
+          "method": "material_h_rollout",
+          "loss": 39,
+          "arrived": true,
+          "total_ms": 4524.618582043331,
+          "initial_ms": 340.2892019948922,
+          "estimate_ms": 3.6299899802543223,
+          "scan_ms": 334.364881971851,
+          "scans": 2000,
+          "label_updates": 985,
+          "rollout_ms": 4060.3102590539493,
+          "planning_transitions": 3200,
+          "max_query_transitions": 128,
+          "menu_size": 1206,
+          "worker_peak_kib": 58264
+        },
+        {
+          "method": "belief_uct",
+          "loss": 39,
+          "arrived": true,
+          "total_ms": 2188.6558110127226,
+          "initial_ms": 10.039668006356806,
+          "estimate_ms": 6.6468879813328385,
+          "scan_ms": 0,
+          "scans": 0,
+          "label_updates": 0,
+          "rollout_ms": 2127.09224014543,
+          "planning_transitions": 1408,
+          "max_query_transitions": 128,
+          "menu_size": 2000,
+          "worker_peak_kib": 58264
+        }
+      ],
+      "correction_of": "/home/erzhu419/mine_code/BAPR-HRO/experiments/reconstruction_v3/budget_128_results.json"
+    }
+  ]
+}

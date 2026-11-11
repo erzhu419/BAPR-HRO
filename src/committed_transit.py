@@ -46,6 +46,8 @@ class CommittedState:
     learning_log: tuple = ()
     feedback: tuple = ()
     initialized: bool = False
+    arrivals: tuple[tuple[int, int], ...] = ()
+    poll_history: tuple = ()
 
 
 def build_committed_model(
@@ -56,7 +58,7 @@ def build_committed_model(
     departure: int,
     deadline: int,
     candidate_ids=None,
-    lookahead: int = 25,
+    lookahead: int | None = None,
     initial_state: CommittedState | None = None,
 ) -> FiniteScenarioModel:
     """Exact causal full/H planning with the current online executor actions.
@@ -83,9 +85,15 @@ def build_committed_model(
     if deadline < departure:
         raise ValueError("Deadline must not precede departure")
     bank = tuple(bank)
+    if not bank:
+        raise ValueError("A nonempty scenario bank is required")
+    minute = bank[0][1].minute
+    lookahead = 25 * minute if lookahead is None else lookahead
     connections = {c.id: c for c in graph.connections}
     candidate_ids = frozenset(connections if candidate_ids is None else candidate_ids)
     for _, scene in bank:
+        if scene.minute != minute:
+            raise ValueError("The scene bank must share a clock unit")
         for cid in connections:
             event = scene.events[cid]
             if not event.canceled and event.arrival < event.departure:
@@ -112,9 +120,12 @@ def build_committed_model(
                 if observation.is_canceled or observation.actual_time < state.time:
                     unavailable.add(cid)
         messages = tuple(LocalMessage(**vars(observation)) for observation in batch)
+        polls = state.poll_history
+        if scene.publications is None:
+            polls += ((state.stop, state.time, tuple(message.event_id for message in messages)),)
         return replace(state, unavailable_ids=frozenset(unavailable),
                        seen_events=frozenset(seen), messages=state.messages + messages,
-                       initialized=True)
+                       initialized=True, poll_history=polls)
 
     def actions(state):
         if state.stop == destination or state.time >= deadline:
@@ -128,6 +139,8 @@ def build_committed_model(
             if (c.id not in candidate_ids or c.id in state.unavailable_ids
                     or c.dep_time > state.time + lookahead):
                 continue
+            if not c.pickup_allowed and c.trip_id != state.current_trip:
+                continue
             if c.dep_distribution is not None and c.dep_distribution.support_max < state.time:
                 continue
             available.append(("select", c.id))
@@ -140,7 +153,7 @@ def build_committed_model(
             updated = publish(scene, state)
             return Outcome(updated, updated.messages, 0)
         if action == WAIT:
-            state = replace(state, time=min(deadline, state.time + 1))
+            state = replace(state, time=min(deadline, state.time + minute))
         else:
             if action not in actions(state) or action[0] != "select":
                 raise ValueError("Selected connection is outside the public fixed menu")
@@ -153,21 +166,30 @@ def build_committed_model(
             if state.time < deadline:
                 event = scene.events[connection.id]
                 if event.canceled:
-                    wait_end = min(deadline, state.time + 12)
-                    if state.time < connection.dep_time and connection.dep_time > wait_end:
+                    wait_end = min(deadline, state.time + 12 * minute)
+                    notice = (connection.dep_time if scene.publications is None
+                              else scene.publications.get(f'{connection.id}:cancel'))
+                    if notice is None or notice > wait_end:
                         state = replace(state, time=wait_end,
                                         feedback=state.feedback + (("wait_late", connection.id, wait_end),))
                     else:
-                        state = replace(state, time=max(state.time, connection.dep_time),
+                        state = replace(state, time=max(state.time, notice),
                                         unavailable_ids=state.unavailable_ids | {connection.id})
                         state = learn(state, connection, True, 0)
                         state = replace(state, feedback=state.feedback +
                                         (("cancel", connection.id, state.time),))
                 elif event.departure < state.time:
-                    state = replace(state, unavailable_ids=state.unavailable_ids | {connection.id},
-                                    feedback=state.feedback + (("missed", connection.id, state.time),))
-                elif event.departure > min(deadline, state.time + 12):
-                    wait_end = min(deadline, state.time + 12)
+                    receipt = (event.departure if scene.publications is None
+                               else scene.publications.get(f'{connection.id}:departure'))
+                    if receipt is None or receipt > state.time:
+                        wait_end = min(deadline, state.time + 12 * minute)
+                        state = replace(state, time=wait_end,
+                                        feedback=state.feedback + (("wait_late", connection.id, wait_end),))
+                    else:
+                        state = replace(state, unavailable_ids=state.unavailable_ids | {connection.id},
+                                        feedback=state.feedback + (("missed", connection.id, state.time),))
+                elif event.departure > min(deadline, state.time + 12 * minute):
+                    wait_end = min(deadline, state.time + 12 * minute)
                     state = replace(state, time=wait_end,
                                     feedback=state.feedback + (("wait_late", connection.id, wait_end),))
                 else:
@@ -180,7 +202,8 @@ def build_committed_model(
                         state = replace(state, time=deadline)
                     else:
                         state = replace(state, stop=connection.arr_stop, time=event.arrival,
-                                        last_arrival=event.arrival)
+                                        last_arrival=event.arrival,
+                                        arrivals=state.arrivals + ((connection.id, event.arrival),))
         terminal = state.stop == destination or state.time >= deadline
         if not terminal:
             state = publish(scene, state)
@@ -192,10 +215,10 @@ def build_committed_model(
 
     scenarios = tuple(Scenario(str(i), probability, {"bank_index": i})
                       for i, (probability, _) in enumerate(bank))
-    # Every zero-time action removes a connection; all others advance at least
-    # one minute. Add the one forced observation to cover every valid journey.
+    # An action shorter than a minute removes a connection unless it reaches
+    # the deadline. Allow one initial observation and a partial final minute.
     initial_state = initial_state or CommittedState(origin, departure, None, departure)
-    horizon = max(0, deadline - initial_state.time) + len(connections) + 1
+    horizon = (max(0, deadline - initial_state.time) + minute - 1) // minute + len(connections) + 1
     return FiniteScenarioModel(scenarios,
                                initial_state,
                                actions, transition, horizon, terminal_cost)

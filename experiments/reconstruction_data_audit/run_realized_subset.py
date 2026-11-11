@@ -50,15 +50,15 @@ def get_range(byte_range, count):
         return response.read(count), int(content_range.rsplit('/', 1)[1])
 
 
-def archive_prefixes():
+def archive_prefixes(dates=DATES, prefix_bytes=PREFIX_BYTES):
     tail, size = get_range('-65557', 65557)
     with ZipFile(BytesIO(tail)) as archive:
-        for service_date in DATES:
+        for service_date in dates:
             member = archive.getinfo(f'ist-daten-2023-10/{service_date}_istdaten.csv')
-            if member.compress_type != ZIP_DEFLATED or member.compress_size < PREFIX_BYTES:
+            if member.compress_type != ZIP_DEFLATED or member.compress_size < prefix_bytes:
                 raise ValueError(f'Unexpected compression for {member.filename}')
             start = member.header_offset + size - len(tail)
-            block, _ = get_range(f'{start}-{start + PREFIX_BYTES - 1}', PREFIX_BYTES)
+            block, _ = get_range(f'{start}-{start + prefix_bytes - 1}', prefix_bytes)
             header = struct.unpack_from('<4s5H3L2H', block)
             if header[0] != b'PK\x03\x04':
                 raise ValueError(f'Unexpected ZIP header for {member.filename}')
@@ -67,7 +67,7 @@ def archive_prefixes():
             rows = list(csv.DictReader(StringIO(lines), delimiter=';'))
             # The last train-number group can be truncated by the byte cap.
             tail_group = rows[-1]['BETREIBER_ID'], rows[-1]['LINIEN_ID']
-            yield service_date, (start, start + PREFIX_BYTES - 1), [
+            yield service_date, (start, start + prefix_bytes - 1), [
                 row for row in rows if (row['BETREIBER_ID'], row['LINIEN_ID']) != tail_group
             ]
 
