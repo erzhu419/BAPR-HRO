@@ -1,54 +1,13 @@
 import Mathlib
 
 /-!
-# Irrecoverability Bridge: From Environment Structure to ρ > 0
+# Parametric models of recovery
 
-## Overview
-
-This file bridges the gap between the abstract irrecoverability parameter ρ
-(defined in Irrecoverability.lean) and concrete environment properties.
-
-We define two environment models:
-1. **Irrecoverable**: agent commits to arm k, pays the FULL realized cost c_k.
-   If c_k is above the mean (bad outcome), the agent absorbs the full loss.
-2. **Recoverable**: agent can abandon arm k mid-execution and switch.
-   The actual cost is min(c_k, c_fallback) — the right tail is truncated.
-
-## Main Theorem
-
-If the cost distribution is right-skewed (right tail heavier than left),
-then irrecoverable environments have ρ > 0, and recoverable environments
-have ρ ≤ 0.
-
-Formally, we define:
-- Right-tail excess: E[max(c - μ, 0)] — expected positive deviation
-- Left-tail excess: E[max(μ - c, 0)] — expected negative deviation
-- Skewness parameter: δ = right_excess - left_excess
-  - δ > 0: right-skewed (typical for costs: delays, energy prices, travel times)
-
-Theorem: In an irrecoverable environment, ρ = δ / σ > 0 when δ > 0.
-In a recoverable environment with fallback at μ, ρ ≤ 0.
-
-## Proof Strategy
-
-1. Irrecoverable: E[cost] = μ, but E[cost | selected by LCB] > μ because
-   LCB selects the arm, then the FULL cost realizes. The excess over μ
-   correlates with σ through δ.
-
-2. Recoverable: E[cost | selected] ≤ μ because the agent can switch away
-   from costs above the fallback threshold, truncating the right tail.
-
-## Connection to BAPR-HRO
-
-This completes the logical chain:
-  Right-skewed costs + irrecoverable decision
-    → ρ > 0 (this file)
-      → sign(β*) > 0 → LCB is optimal (Irrecoverability.lean)
-        → LCB ≡ Wasserstein DRO (DRO.lean)
-
-  Symmetric costs + recoverable decision
-    → ρ ≤ 0 (this file)
-      → sign(β*) ≤ 0 → UCB is optimal (Irrecoverability.lean)
+The environment structures supply mean-plus-scale and mean-minus-scale
+cost formulas. The sign results follow from the supplied coefficients.
+The partial-recovery model uses the given recovery probability in the
+coefficient. A causal transport interpretation requires identifying those
+cost formulas from the underlying decision process.
 -/
 
 noncomputable section
@@ -75,26 +34,10 @@ structure CostDistribution where
   -- (since E[c-μ] = 0, the positive and negative parts balance)
   h_balance : right_excess = left_excess
 
-/-- A right-skewed cost distribution: the right tail is heavier.
-    This is typical for costs (delays, prices) — bounded below,
-    unbounded above. The tail WEIGHT (probability × magnitude) is larger. -/
+/-- Cost parameters with a separately supplied positive coefficient. -/
 structure RightSkewedCost extends CostDistribution where
-  -- Conditional expectation of excess given above mean is larger
-  -- than conditional expectation given below mean.
-  -- This captures "right tail is HEAVIER" (not just longer).
-  --
-  -- Formally: E[c - μ | c > μ] · P(c > μ) ≥ E[μ - c | c < μ] · P(c < μ)
-  -- which equals right_excess ≥ left_excess. But h_balance says they're equal!
-  --
-  -- The real skewness comes from the correlation with σ:
-  -- higher-σ arms have disproportionately more right-tail mass.
-  --
-  -- We capture this with a CROSS-ARM property:
-  -- the excess-over-mean grows faster than linearly with σ.
-  skew_param : ℝ   -- δ: excess growth rate (right_excess per unit σ)
+  skew_param : ℝ
   h_skew_pos : skew_param > 0
-  -- Meaning: for an arm with std σ, the right-tail "surprise" is δ·σ
-  -- more than what the mean predicts.
 
 /-! ## 2. Irrecoverable vs Recoverable Environments -/
 
@@ -144,9 +87,8 @@ def recov_actual_cost (env : RecoverableEnv) (k : Fin env.K) : ℝ :=
 
 /-! ## 3. Main Theorem: Environment Structure → ρ sign -/
 
-/-- **Theorem**: In an irrecoverable environment with right-skewed costs (δ > 0),
-    the irrecoverability parameter ρ equals δ, which is positive.
-    This means LCB (β > 0) is optimal. -/
+/-- The specified mean-plus-scale cost uses the positive coefficient δ
+    supplied by the environment. -/
 theorem irrecoverable_implies_rho_positive (env : IrrecoverableEnv) :
     -- The "ρ" in actual_cost = μ + ρ·σ is exactly δ
     (∀ k, irrecov_actual_cost env k = env.mu k + env.delta * env.sigma k) ∧
@@ -155,8 +97,7 @@ theorem irrecoverable_implies_rho_positive (env : IrrecoverableEnv) :
   · intro k; rfl
   · exact env.h_delta_pos
 
-/-- **Theorem**: In a recoverable environment, ρ = -truncation_benefit ≤ 0.
-    This means UCB (β < 0) is optimal (or at least not pessimistic). -/
+/-- The specified mean-minus-scale cost uses a nonpositive coefficient. -/
 theorem recoverable_implies_rho_nonpositive (env : RecoverableEnv) :
     -- The "ρ" in actual_cost = μ + ρ·σ is -truncation_benefit ≤ 0
     (∀ k, recov_actual_cost env k = env.mu k + (-env.truncation_benefit) * env.sigma k) ∧

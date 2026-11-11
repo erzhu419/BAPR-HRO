@@ -15,7 +15,7 @@ from ..transit_graph import TransitGraph, Connection
 from ..pmf import prob_reachable
 
 
-def build_successor_graph(graph: TransitGraph, query_window: tuple[int, int]
+def build_successor_graph(graph: TransitGraph, query_window: tuple[int, int], reach=prob_reachable
                           ) -> dict[int, list[int]]:
     """Build C_reach(c): for each connection c, find reachable continuing connections.
 
@@ -32,7 +32,9 @@ def build_successor_graph(graph: TransitGraph, query_window: tuple[int, int]
     # Filter connections in window
     active_ids = set()
     for c in graph.connections:
-        if t_start <= c.dep_time <= t_end:
+        last_possible_departure = (c.dep_distribution.support_max
+                                   if c.dep_distribution is not None else c.dep_time)
+        if last_possible_departure >= t_start and c.dep_time <= t_end:
             active_ids.add(c.id)
 
     # Build arrival_stop → departing connections index (for active connections)
@@ -42,7 +44,6 @@ def build_successor_graph(graph: TransitGraph, query_window: tuple[int, int]
         stop_to_deps.setdefault(c.dep_stop, []).append(cid)
 
     successors: dict[int, list[int]] = {}
-    max_wait = 60  # max minutes to wait for a connection (prune obvious non-successors)
     for cid in active_ids:
         c = graph.connections[cid]
         arr_stop = c.arr_stop
@@ -53,18 +54,12 @@ def build_successor_graph(graph: TransitGraph, query_window: tuple[int, int]
                 continue
             c2 = graph.connections[cid2]
             # Same trip connections (next segment) are always successors
-            if c.trip_id == c2.trip_id:
+            if c.trip_id and c.trip_id == c2.trip_id and c2.dep_time >= c.arr_time:
                 succs.append(cid2)
-                continue
-            # Prune: skip connections departing too late (> max_wait after arrival)
-            if c2.dep_time > c.arr_time + max_wait:
-                continue
-            # Prune: skip connections that departed before we arrive
-            if c2.dep_time < c.arr_time - 5:
                 continue
             # Check if transfer is possible
             if c.arr_distribution is not None and c2.dep_distribution is not None:
-                p = prob_reachable(c.arr_distribution, c2.dep_distribution, transfer_time)
+                p = reach(c.arr_distribution, c2.dep_distribution, transfer_time)
                 if p > 0:
                     succs.append(cid2)
             else:
@@ -78,7 +73,8 @@ def build_successor_graph(graph: TransitGraph, query_window: tuple[int, int]
 
 def topological_sort_with_cycle_cutting(
     graph: TransitGraph,
-    query_window: tuple[int, int]
+    query_window: tuple[int, int],
+    reach=prob_reachable,
 ) -> tuple[list[int], set[tuple[int, int]]]:
     """Durner Algorithms 5.1-5.2: DFS-based topological sort with cycle cutting.
 
@@ -86,7 +82,7 @@ def topological_sort_with_cycle_cutting(
         ordered_ids: Connection IDs in topological order.
         cuts: Set of (c_a, c_b) pairs where cycles were cut.
     """
-    successors = build_successor_graph(graph, query_window)
+    successors = build_successor_graph(graph, query_window, reach)
     active_ids = set(successors.keys())
 
     # Also include connections that are only successors (not in successors keys yet)

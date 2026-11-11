@@ -27,6 +27,8 @@ class DelayObservation:
     predicted_time: int      # GTFS-RT predicted time
     actual_time: int         # actual observed time (if available)
     timestamp: int           # observation time
+    event_id: str = ""       # stable vehicle-event identity, for deduplication
+    is_canceled: bool = False
 
     @property
     def predicted_delay(self) -> int:
@@ -78,7 +80,11 @@ class TransitSurpriseComputer:
         Returns:
             EMA-smoothed surprise value (higher = more surprising).
         """
+        cancellations = any(obs.is_canceled for obs in observations)
+        observations = [obs for obs in observations if not obs.is_canceled]
         if not observations:
+            if cancellations:
+                self.ema_surprise = max(self.ema_surprise, 3.0)
             return self.ema_surprise
 
         signals = []
@@ -105,7 +111,7 @@ class TransitSurpriseComputer:
         self.prev_mean_delay = mean_delay
 
         # Combine (max-pooling, same as BAPR)
-        raw_surprise = max(signals) if signals else 0.0
+        raw_surprise = max(signals + ([3.0] if cancellations else []))
 
         self.ema_surprise = (self.ema_alpha * raw_surprise +
                              (1 - self.ema_alpha) * self.ema_surprise)
@@ -142,12 +148,14 @@ class RegimeDetector:
         self.regime_delay_stats: list[dict] = [
             {"mean": 1.0, "std": 2.0} for _ in range(n_regimes)
         ]
+        self._seen_events: set[str] = set()
 
     def reset(self):
         self.belief_tracker.reset()
         self.surprise_computer.reset()
         self.current_regime = 0
         self.regime_history = []
+        self._seen_events.clear()
 
     def update(self, observations: list[DelayObservation]) -> dict:
         """Process new delay observations and detect regime.
@@ -159,6 +167,18 @@ class RegimeDetector:
             Dict with regime_id, regime_name, confidence, surprise,
             effective_window, changepoint_prob.
         """
+        observations = [obs for obs in observations
+                        if not obs.event_id or obs.event_id not in self._seen_events]
+        self._seen_events.update(obs.event_id for obs in observations if obs.event_id)
+        if not observations:
+            return {
+                "regime_id": self.current_regime,
+                "regime_name": self.regime_names[self.current_regime],
+                "confidence": self.belief_tracker.confidence,
+                "surprise": self.surprise_computer.ema_surprise,
+                "effective_window": self.belief_tracker.effective_window,
+                "changepoint_prob": self.belief_tracker.changepoint_probability,
+            }
         # Compute surprise
         surprise = self.surprise_computer.compute(observations)
 
@@ -167,9 +187,11 @@ class RegimeDetector:
 
         # Classify regime based on delay patterns
         if observations:
-            delays = [obs.actual_delay for obs in observations]
-            mean_delay = np.mean(delays)
-            max_delay = np.max(delays)
+            delays = [obs.actual_delay for obs in observations if not obs.is_canceled]
+            mean_delay = np.mean(delays) if delays else 0.0
+            max_delay = np.max(delays) if delays else 0.0
+            if any(obs.is_canceled for obs in observations):
+                max_delay = max(max_delay, 20.0)
             self.current_regime = self._classify_regime(mean_delay, max_delay, surprise)
 
         self.regime_history.append(self.current_regime)

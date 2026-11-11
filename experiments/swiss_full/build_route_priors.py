@@ -1,63 +1,56 @@
-"""A4 (GPT-5.5 review): Build per-route historical prior from
-per_day_distributions.pkl.
+"""Pool corrected route-ID forecast summaries for an explicit training period.
 
-For each route, average mean / std / cancel_rate across the 34 normal
-days (excluding Oct 29 disrupted to avoid contamination). This gives
-a route-level historical prior for cold-start initialization in
-BanditRouter, replacing the uniform prior_mean=1.0, prior_var=2.
-
-Output: data/route_priors.pkl
-  {route_short_name: {'mean': float, 'std': float, 'cancel_rate': float, 'n_days': int}}
+These are prediction-calibrated model inputs, not realized delay priors. Use
+``build_route_priors_temporal`` for deployment-style past-only evaluation.
 """
-
-import os, sys, pickle
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../.."))
+import os
+import pickle
+import sys
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '../..'))
 
 import numpy as np
-from collections import defaultdict
 
 
-def main(in_path: str = 'data/per_day_distributions.pkl',
-         out_path: str = 'data/route_priors.pkl',
-         exclude_dates: list = ('2023-10-29',)):
-    per_day = pickle.load(open(in_path, 'rb'))
-    print(f'Loaded {len(per_day)} days; excluding {exclude_dates}')
-
-    by_route_means = defaultdict(list)
-    by_route_stds = defaultdict(list)
-    by_route_cancels = defaultdict(list)
-
-    for date, dist in per_day.items():
-        if date in exclude_dates:
-            continue
-        for rname, d in dist.items():
-            by_route_means[rname].append(d['mean'])
-            by_route_stds[rname].append(d['std'])
-            by_route_cancels[rname].append(d['cancel_rate'])
-
+def pool_priors(per_day: dict, train_dates) -> dict:
+    """Pool unique-event moments and observed trip-status counts by route ID."""
+    grouped = {}
+    for date in sorted(train_dates):
+        for rid, item in per_day[date].items():
+            group = grouped.setdefault(rid, [])
+            group.append(item)
     priors = {}
-    for rname in by_route_means:
-        means = np.array(by_route_means[rname])
-        stds = np.array(by_route_stds[rname])
-        cancels = np.array(by_route_cancels[rname])
-        priors[rname] = {
-            'mean': float(np.mean(means)),
-            'std':  float(np.mean(stds)),  # avg of per-day stds
-            'cancel_rate': float(np.mean(cancels)),
-            'n_days': len(means),
+    for rid, items in grouped.items():
+        delay_items = [item for item in items if item['n_obs'] and item['mean'] is not None]
+        if not delay_items:
+            continue
+        n = sum(item['n_obs'] for item in delay_items)
+        mean = sum(item['mean'] * item['n_obs'] for item in delay_items) / n
+        variance = sum(item['n_obs'] * (item['std'] ** 2 + (item['mean'] - mean) ** 2)
+                       for item in delay_items) / n
+        status_count = sum(item['n_status_trips'] for item in items)
+        cancel_count = sum(item['n_canceled'] for item in items)
+        priors[rid] = {
+            'route_id': rid, 'agency_id': items[0]['agency_id'], 'name': items[0]['name'],
+            'mean': mean, 'std': float(np.sqrt(variance)),
+            'cancel_rate': cancel_count / status_count if status_count else None,
+            'n_canceled': cancel_count, 'n_status_trips': status_count,
+            'n_obs': n, 'n_days': len(items),
+            'data_kind': 'latest_unique_predictions_not_realized_events',
+            'cancel_source': 'explicit_status_among_observed_scheduled_trips',
         }
+    return priors
 
-    with open(out_path, 'wb') as f:
-        pickle.dump(priors, f)
-    print(f'Saved {len(priors)} route priors to {out_path}')
 
-    # Sanity print: top-5 by sample size
-    sorted_routes = sorted(priors.items(), key=lambda kv: -kv[1]['n_days'])
-    print('\nFirst 10 priors:')
-    print(f'{"route":<20} {"mean":>6} {"std":>6} {"cancel":>8} {"days":>5}')
-    for r, p in sorted_routes[:10]:
-        print(f'{str(r)[:19]:<20} {p["mean"]:>6.2f} {p["std"]:>6.2f}'
-              f' {p["cancel_rate"]:>8.4f} {p["n_days"]:>5}')
+def main(in_path='data/per_day_distributions_corrected.pkl',
+         out_path='data/route_priors_corrected.pkl',
+         exclude_dates=('2023-10-29',)):
+    with open(in_path, 'rb') as handle:
+        per_day = pickle.load(handle)
+    train_dates = [date for date in per_day if date not in exclude_dates]
+    priors = pool_priors(per_day, train_dates)
+    with open(out_path, 'wb') as handle:
+        pickle.dump(priors, handle)
+    print(f'Saved {len(priors)} route-ID forecast priors to {out_path}; train_dates={sorted(train_dates)}')
 
 
 if __name__ == '__main__':

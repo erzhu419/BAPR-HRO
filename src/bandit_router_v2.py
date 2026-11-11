@@ -143,8 +143,6 @@ class RouteEnsembleBelief:
         # 'true' = simulator/GTFS-RT cancel signal; 'late_no_show'
         # = patience-window timeout; 'feed_missing' = inferred from
         # absent update.
-        self.n_cancels += 1
-        self.n_attempts += 1
         if not hasattr(self, 'n_true_cancels'):
             self.n_true_cancels = 0
             self.n_late_no_shows = 0
@@ -153,8 +151,12 @@ class RouteEnsembleBelief:
             self.n_late_no_shows += 1
         elif kind == 'feed_missing':
             self.n_feed_missing += 1
-        else:
+        elif kind == 'true':
             self.n_true_cancels += 1
+            self.n_cancels += 1
+            self.n_attempts += 1
+        else:
+            raise ValueError(f"Unknown cancellation observation kind: {kind}")
 
     def sample_ts(self, scheduled_arrival: float, rng: np.random.Generator) -> float:
         """Thompson Sampling: sample from a random estimator."""

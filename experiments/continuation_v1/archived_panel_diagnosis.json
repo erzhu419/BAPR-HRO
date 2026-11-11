@@ -1,0 +1,3346 @@
+{
+  "source": "experiments/reconstruction_v2/matched_corrected_results.json",
+  "implementation": "causal_matched_v3_once_per_connection",
+  "scope": "Three archived offline decision states and two reconstructed label queries; zero rerun journeys.",
+  "results": [
+    {
+      "case_spec": [
+        "2023-10-29",
+        true,
+        "Zürich, Paradeplatz",
+        "Zürich, Goldbrunnenplatz",
+        711,
+        120,
+        5
+      ],
+      "method": "refresh/offline",
+      "decision_index": 3,
+      "archived_journey_loss": 85,
+      "state": {
+        "stop": 866129988,
+        "stop_name": "Zürich, Sihlstrasse",
+        "time": 523,
+        "current_trip": "1070.TA.91-9-I-j23-1.4.H",
+        "last_arrival": 523,
+        "known_current_trip_delay": 20,
+        "previous_completed_connection": 1421
+      },
+      "archived_decision": {
+        "stop": 866129988,
+        "time": 523,
+        "selected": 1422,
+        "candidates": [
+          822,
+          1363,
+          1422,
+          558,
+          1843
+        ],
+        "refresh_only_ids": [],
+        "retained_only_ids": [],
+        "score": 26.888759771096716
+      },
+      "reproduced_score": 26.888759771096716,
+      "frozen_label": {
+        "conditional_mean_destination_arrival": 516.8886028587447,
+        "conditional_continuation_success": 0.9999999999875961,
+        "destination_mass_before_current_time": 0.889316954085656,
+        "selected_leg_unconditioned_arrival_mean": 506.0427467369903
+      },
+      "trace_context": [
+        {
+          "time": 490,
+          "stop_id": 895684956,
+          "event_type": "depart",
+          "route": "",
+          "details": "Initial route computed"
+        },
+        {
+          "time": 502,
+          "stop_id": 895684956,
+          "event_type": "wait_late",
+          "route": "9",
+          "details": "connection=1421; patience window"
+        },
+        {
+          "time": 514,
+          "stop_id": 895684956,
+          "event_type": "wait_late",
+          "route": "9",
+          "details": "connection=1421; patience window"
+        },
+        {
+          "time": 522,
+          "stop_id": 895684956,
+          "event_type": "board",
+          "route": "9",
+          "details": "connection=1421; to=866129988; trip=1070.TA.91-9-I-j23-1.4.H"
+        },
+        {
+          "time": 523,
+          "stop_id": 866129988,
+          "event_type": "arrive",
+          "route": "9",
+          "details": "connection=1421; delay=20min"
+        }
+      ],
+      "diagnosis": "Continuation PMF is not conditioned on a causally known shared-trip delay.",
+      "exact_generated_model_fact": {
+        "next_segment_departure": 524,
+        "next_segment_arrival": 525,
+        "arrival_at_goal_before_next_segment_arrival_probability": 0.0
+      },
+      "frozen_destination_mass_before_known_next_arrival": 0.9173848513442128,
+      "evidence": "1421 was boarded and completed before this decision. In the panel generator every segment of that trip has exactly the same delay and cancellation outcome.",
+      "claim_boundary": "The impossible conditional mass is established under the stated generator; this is not a population calibration estimate or a counterfactual journey-gain estimate.",
+      "subgraph": {
+        "scope": "All archived segments of 2-3 named trips; original IDs retained. A new finite submodel requires an explicit observation contract.",
+        "initial_state_for_adapter": {
+          "stop": 866129988,
+          "stop_name": "Zürich, Sihlstrasse",
+          "time": 523,
+          "current_trip": "1070.TA.91-9-I-j23-1.4.H",
+          "last_arrival": 523,
+          "known_current_trip_delay": 20,
+          "previous_completed_connection": 1421
+        },
+        "original_departure": 490,
+        "deadline": 610,
+        "original_destination": 55894816,
+        "known_trip_delays_from_causal_prefix": {
+          "1070.TA.91-9-I-j23-1.4.H": 20
+        },
+        "stops": {
+          "16724261": {
+            "name": "Zürich, Bürkliplatz",
+            "min_transfer_time": 2
+          },
+          "55894816": {
+            "name": "Zürich, Goldbrunnenplatz",
+            "min_transfer_time": 2
+          },
+          "60777165": {
+            "name": "Zürich, Langmauerstrasse",
+            "min_transfer_time": 2
+          },
+          "206640500": {
+            "name": "Zürich, Bellevue",
+            "min_transfer_time": 2
+          },
+          "244643559": {
+            "name": "Zürich, ETH/Universitätsspital",
+            "min_transfer_time": 2
+          },
+          "278195227": {
+            "name": "Zürich, Heuried",
+            "min_transfer_time": 2
+          },
+          "292530480": {
+            "name": "Zürich Wiedikon, Bahnhof",
+            "min_transfer_time": 2
+          },
+          "338393872": {
+            "name": "Zürich, Haldenbach",
+            "min_transfer_time": 2
+          },
+          "384362790": {
+            "name": "Zürich, Letzistrasse",
+            "min_transfer_time": 2
+          },
+          "407299640": {
+            "name": "Zürich, Werd",
+            "min_transfer_time": 2
+          },
+          "483829710": {
+            "name": "Zürich, Kunsthaus",
+            "min_transfer_time": 2
+          },
+          "536904088": {
+            "name": "Zürich, Stauffacher",
+            "min_transfer_time": 2
+          },
+          "557902517": {
+            "name": "Zürich, Kinkelstrasse",
+            "min_transfer_time": 2
+          },
+          "657847921": {
+            "name": "Zürich, Winkelriedstrasse",
+            "min_transfer_time": 2
+          },
+          "776549682": {
+            "name": "Zürich, Talwiesenstrasse",
+            "min_transfer_time": 2
+          },
+          "840784464": {
+            "name": "Zürich, Kantonalbank",
+            "min_transfer_time": 2
+          },
+          "866129988": {
+            "name": "Zürich, Sihlstrasse",
+            "min_transfer_time": 2
+          },
+          "885267425": {
+            "name": "Zürich, Seilbahn Rigiblick",
+            "min_transfer_time": 2
+          },
+          "890460469": {
+            "name": "Zürich, Kantonsschule",
+            "min_transfer_time": 2
+          },
+          "895684956": {
+            "name": "Zürich, Paradeplatz",
+            "min_transfer_time": 2
+          },
+          "917158457": {
+            "name": "Zürich, Schmiede Wiedikon",
+            "min_transfer_time": 2
+          },
+          "995193321": {
+            "name": "Zürich, Universität Irchel",
+            "min_transfer_time": 2
+          }
+        },
+        "connections": [
+          {
+            "original_id": 1355,
+            "trip_id": "1068.TA.91-9-I-j23-1.4.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 338393872,
+            "arr_stop": 244643559,
+            "dep_time": 481,
+            "arr_time": 482
+          },
+          {
+            "original_id": 1356,
+            "trip_id": "1068.TA.91-9-I-j23-1.4.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 244643559,
+            "arr_stop": 890460469,
+            "dep_time": 482,
+            "arr_time": 483
+          },
+          {
+            "original_id": 1357,
+            "trip_id": "1068.TA.91-9-I-j23-1.4.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 890460469,
+            "arr_stop": 483829710,
+            "dep_time": 484,
+            "arr_time": 485
+          },
+          {
+            "original_id": 1358,
+            "trip_id": "1068.TA.91-9-I-j23-1.4.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 483829710,
+            "arr_stop": 206640500,
+            "dep_time": 485,
+            "arr_time": 487
+          },
+          {
+            "original_id": 1359,
+            "trip_id": "1068.TA.91-9-I-j23-1.4.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 206640500,
+            "arr_stop": 16724261,
+            "dep_time": 487,
+            "arr_time": 489
+          },
+          {
+            "original_id": 1360,
+            "trip_id": "1068.TA.91-9-I-j23-1.4.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 16724261,
+            "arr_stop": 840784464,
+            "dep_time": 489,
+            "arr_time": 491
+          },
+          {
+            "original_id": 1361,
+            "trip_id": "1068.TA.91-9-I-j23-1.4.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 840784464,
+            "arr_stop": 895684956,
+            "dep_time": 491,
+            "arr_time": 492
+          },
+          {
+            "original_id": 1362,
+            "trip_id": "1068.TA.91-9-I-j23-1.4.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 895684956,
+            "arr_stop": 866129988,
+            "dep_time": 492,
+            "arr_time": 493
+          },
+          {
+            "original_id": 1363,
+            "trip_id": "1068.TA.91-9-I-j23-1.4.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 866129988,
+            "arr_stop": 536904088,
+            "dep_time": 494,
+            "arr_time": 495
+          },
+          {
+            "original_id": 1364,
+            "trip_id": "1068.TA.91-9-I-j23-1.4.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 536904088,
+            "arr_stop": 407299640,
+            "dep_time": 497,
+            "arr_time": 498
+          },
+          {
+            "original_id": 1365,
+            "trip_id": "1068.TA.91-9-I-j23-1.4.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 407299640,
+            "arr_stop": 292530480,
+            "dep_time": 498,
+            "arr_time": 499
+          },
+          {
+            "original_id": 1366,
+            "trip_id": "1068.TA.91-9-I-j23-1.4.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 292530480,
+            "arr_stop": 917158457,
+            "dep_time": 499,
+            "arr_time": 501
+          },
+          {
+            "original_id": 1367,
+            "trip_id": "1068.TA.91-9-I-j23-1.4.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 917158457,
+            "arr_stop": 55894816,
+            "dep_time": 501,
+            "arr_time": 502
+          },
+          {
+            "original_id": 1368,
+            "trip_id": "1068.TA.91-9-I-j23-1.4.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 55894816,
+            "arr_stop": 776549682,
+            "dep_time": 502,
+            "arr_time": 503
+          },
+          {
+            "original_id": 1369,
+            "trip_id": "1068.TA.91-9-I-j23-1.4.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 776549682,
+            "arr_stop": 278195227,
+            "dep_time": 503,
+            "arr_time": 504
+          },
+          {
+            "original_id": 1408,
+            "trip_id": "1070.TA.91-9-I-j23-1.4.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 995193321,
+            "arr_stop": 60777165,
+            "dep_time": 484,
+            "arr_time": 485
+          },
+          {
+            "original_id": 1409,
+            "trip_id": "1070.TA.91-9-I-j23-1.4.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 60777165,
+            "arr_stop": 384362790,
+            "dep_time": 485,
+            "arr_time": 486
+          },
+          {
+            "original_id": 1410,
+            "trip_id": "1070.TA.91-9-I-j23-1.4.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 384362790,
+            "arr_stop": 557902517,
+            "dep_time": 486,
+            "arr_time": 487
+          },
+          {
+            "original_id": 1411,
+            "trip_id": "1070.TA.91-9-I-j23-1.4.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 557902517,
+            "arr_stop": 885267425,
+            "dep_time": 487,
+            "arr_time": 488
+          },
+          {
+            "original_id": 1412,
+            "trip_id": "1070.TA.91-9-I-j23-1.4.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 885267425,
+            "arr_stop": 657847921,
+            "dep_time": 488,
+            "arr_time": 489
+          },
+          {
+            "original_id": 1413,
+            "trip_id": "1070.TA.91-9-I-j23-1.4.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 657847921,
+            "arr_stop": 338393872,
+            "dep_time": 489,
+            "arr_time": 490
+          },
+          {
+            "original_id": 1414,
+            "trip_id": "1070.TA.91-9-I-j23-1.4.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 338393872,
+            "arr_stop": 244643559,
+            "dep_time": 491,
+            "arr_time": 492
+          },
+          {
+            "original_id": 1415,
+            "trip_id": "1070.TA.91-9-I-j23-1.4.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 244643559,
+            "arr_stop": 890460469,
+            "dep_time": 492,
+            "arr_time": 493
+          },
+          {
+            "original_id": 1416,
+            "trip_id": "1070.TA.91-9-I-j23-1.4.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 890460469,
+            "arr_stop": 483829710,
+            "dep_time": 494,
+            "arr_time": 495
+          },
+          {
+            "original_id": 1417,
+            "trip_id": "1070.TA.91-9-I-j23-1.4.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 483829710,
+            "arr_stop": 206640500,
+            "dep_time": 495,
+            "arr_time": 497
+          },
+          {
+            "original_id": 1418,
+            "trip_id": "1070.TA.91-9-I-j23-1.4.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 206640500,
+            "arr_stop": 16724261,
+            "dep_time": 497,
+            "arr_time": 499
+          },
+          {
+            "original_id": 1419,
+            "trip_id": "1070.TA.91-9-I-j23-1.4.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 16724261,
+            "arr_stop": 840784464,
+            "dep_time": 499,
+            "arr_time": 501
+          },
+          {
+            "original_id": 1420,
+            "trip_id": "1070.TA.91-9-I-j23-1.4.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 840784464,
+            "arr_stop": 895684956,
+            "dep_time": 501,
+            "arr_time": 502
+          },
+          {
+            "original_id": 1421,
+            "trip_id": "1070.TA.91-9-I-j23-1.4.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 895684956,
+            "arr_stop": 866129988,
+            "dep_time": 502,
+            "arr_time": 503
+          },
+          {
+            "original_id": 1422,
+            "trip_id": "1070.TA.91-9-I-j23-1.4.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 866129988,
+            "arr_stop": 536904088,
+            "dep_time": 504,
+            "arr_time": 505
+          },
+          {
+            "original_id": 1423,
+            "trip_id": "1070.TA.91-9-I-j23-1.4.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 536904088,
+            "arr_stop": 407299640,
+            "dep_time": 507,
+            "arr_time": 508
+          },
+          {
+            "original_id": 1424,
+            "trip_id": "1070.TA.91-9-I-j23-1.4.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 407299640,
+            "arr_stop": 292530480,
+            "dep_time": 508,
+            "arr_time": 509
+          },
+          {
+            "original_id": 1425,
+            "trip_id": "1070.TA.91-9-I-j23-1.4.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 292530480,
+            "arr_stop": 917158457,
+            "dep_time": 509,
+            "arr_time": 511
+          },
+          {
+            "original_id": 1426,
+            "trip_id": "1070.TA.91-9-I-j23-1.4.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 917158457,
+            "arr_stop": 55894816,
+            "dep_time": 511,
+            "arr_time": 512
+          },
+          {
+            "original_id": 1427,
+            "trip_id": "1070.TA.91-9-I-j23-1.4.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 55894816,
+            "arr_stop": 776549682,
+            "dep_time": 512,
+            "arr_time": 513
+          },
+          {
+            "original_id": 1428,
+            "trip_id": "1070.TA.91-9-I-j23-1.4.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 776549682,
+            "arr_stop": 278195227,
+            "dep_time": 513,
+            "arr_time": 514
+          }
+        ],
+        "original_case_priors_by_route": {
+          "9": {
+            "mean": 0.975331224320733,
+            "std": 2.7496053350977547,
+            "cancel_rate": 0.0
+          }
+        },
+        "generated_trip_factor_laws": {
+          "1068.TA.91-9-I-j23-1.4.H": {
+            "route": "9",
+            "delay_offset": -5,
+            "delay_probs": [
+              0.005635718540007742,
+              0.00786751970809138,
+              0.010714943572726843,
+              0.014236572423411815,
+              0.018453744356085787,
+              0.02333603474742268,
+              0.028789434236472837,
+              0.034649957200450325,
+              0.04068513668618511,
+              0.04660498375830511,
+              0.052082574914215196,
+              0.05678269985419144,
+              0.06039529873114368,
+              0.06266913986376776,
+              0.06344068140347293,
+              0.06265351612021958,
+              0.06036518875871836,
+              0.05674024177094978,
+              0.05203065650286474,
+              0.0465469183894459,
+              0.04062431650306575,
+              0.03458953350147578,
+              0.02873206546403822,
+              0.02328372677472367,
+              0.018407789787349048,
+              0.014197579283976828,
+              0.010682931993971417,
+              0.007842059436257336,
+              0.00561608018696558,
+              0.003923737771826925,
+              0.0026744233484507682,
+              0.0017783770275131912,
+              0.0011536684844644614,
+              0.00073013257127074,
+              0.00045080209054255255,
+              0.0002715398818099128,
+              0.00015956764392980753,
+              9.147860752450013e-05,
+              5.1163207414212566e-05,
+              2.791640462970777e-05,
+              1.4860201938258355e-05,
+              7.717087820123195e-06,
+              3.909720203924336e-06,
+              1.9324195355197455e-06,
+              9.317956199925877e-07,
+              4.38332239895882e-07,
+              2.0116372524654553e-07,
+              9.006570003802944e-08,
+              3.933984940182758e-08,
+              1.6763683852426197e-08,
+              6.968988298823409e-09,
+              2.8263992779788964e-09,
+              1.1183063638895436e-09,
+              4.316697182466471e-10,
+              1.6255707497249123e-10,
+              5.972053270021285e-11,
+              2.1404494437347617e-11,
+              7.484275758653255e-12,
+              2.5530427773351e-12,
+              8.496301340843509e-13,
+              2.7584507066575127e-13,
+              8.737034538162299e-14,
+              2.699767606881061e-14,
+              8.138647082193137e-15,
+              2.393544771951379e-15,
+              6.867432496133781e-16,
+              1.922253886082061e-16,
+              5.249169547008912e-17,
+              1.3984081884845378e-17,
+              3.634467760064744e-18
+            ],
+            "cancel_prob": 0.2,
+            "shared_within_trip": true,
+            "independent_between_trips": true
+          },
+          "1070.TA.91-9-I-j23-1.4.H": {
+            "route": "9",
+            "delay_offset": -5,
+            "delay_probs": [
+              0.005635718540007742,
+              0.00786751970809138,
+              0.010714943572726843,
+              0.014236572423411815,
+              0.018453744356085787,
+              0.02333603474742268,
+              0.028789434236472837,
+              0.034649957200450325,
+              0.04068513668618511,
+              0.04660498375830511,
+              0.052082574914215196,
+              0.05678269985419144,
+              0.06039529873114368,
+              0.06266913986376776,
+              0.06344068140347293,
+              0.06265351612021958,
+              0.06036518875871836,
+              0.05674024177094978,
+              0.05203065650286474,
+              0.0465469183894459,
+              0.04062431650306575,
+              0.03458953350147578,
+              0.02873206546403822,
+              0.02328372677472367,
+              0.018407789787349048,
+              0.014197579283976828,
+              0.010682931993971417,
+              0.007842059436257336,
+              0.00561608018696558,
+              0.003923737771826925,
+              0.0026744233484507682,
+              0.0017783770275131912,
+              0.0011536684844644614,
+              0.00073013257127074,
+              0.00045080209054255255,
+              0.0002715398818099128,
+              0.00015956764392980753,
+              9.147860752450013e-05,
+              5.1163207414212566e-05,
+              2.791640462970777e-05,
+              1.4860201938258355e-05,
+              7.717087820123195e-06,
+              3.909720203924336e-06,
+              1.9324195355197455e-06,
+              9.317956199925877e-07,
+              4.38332239895882e-07,
+              2.0116372524654553e-07,
+              9.006570003802944e-08,
+              3.933984940182758e-08,
+              1.6763683852426197e-08,
+              6.968988298823409e-09,
+              2.8263992779788964e-09,
+              1.1183063638895436e-09,
+              4.316697182466471e-10,
+              1.6255707497249123e-10,
+              5.972053270021285e-11,
+              2.1404494437347617e-11,
+              7.484275758653255e-12,
+              2.5530427773351e-12,
+              8.496301340843509e-13,
+              2.7584507066575127e-13,
+              8.737034538162299e-14,
+              2.699767606881061e-14,
+              8.138647082193137e-15,
+              2.393544771951379e-15,
+              6.867432496133781e-16,
+              1.922253886082061e-16,
+              5.249169547008912e-17,
+              1.3984081884845378e-17,
+              3.634467760064744e-18
+            ],
+            "cancel_prob": 0.2,
+            "shared_within_trip": true,
+            "independent_between_trips": true
+          }
+        },
+        "archived_realization_for_trace_check_only": {
+          "1355": {
+            "delay": 10,
+            "canceled": false,
+            "departure": 491,
+            "arrival": 492
+          },
+          "1356": {
+            "delay": 10,
+            "canceled": false,
+            "departure": 492,
+            "arrival": 493
+          },
+          "1357": {
+            "delay": 10,
+            "canceled": false,
+            "departure": 494,
+            "arrival": 495
+          },
+          "1358": {
+            "delay": 10,
+            "canceled": false,
+            "departure": 495,
+            "arrival": 497
+          },
+          "1359": {
+            "delay": 10,
+            "canceled": false,
+            "departure": 497,
+            "arrival": 499
+          },
+          "1360": {
+            "delay": 10,
+            "canceled": false,
+            "departure": 499,
+            "arrival": 501
+          },
+          "1361": {
+            "delay": 10,
+            "canceled": false,
+            "departure": 501,
+            "arrival": 502
+          },
+          "1362": {
+            "delay": 10,
+            "canceled": false,
+            "departure": 502,
+            "arrival": 503
+          },
+          "1363": {
+            "delay": 10,
+            "canceled": false,
+            "departure": 504,
+            "arrival": 505
+          },
+          "1364": {
+            "delay": 10,
+            "canceled": false,
+            "departure": 507,
+            "arrival": 508
+          },
+          "1365": {
+            "delay": 10,
+            "canceled": false,
+            "departure": 508,
+            "arrival": 509
+          },
+          "1366": {
+            "delay": 10,
+            "canceled": false,
+            "departure": 509,
+            "arrival": 511
+          },
+          "1367": {
+            "delay": 10,
+            "canceled": false,
+            "departure": 511,
+            "arrival": 512
+          },
+          "1368": {
+            "delay": 10,
+            "canceled": false,
+            "departure": 512,
+            "arrival": 513
+          },
+          "1369": {
+            "delay": 10,
+            "canceled": false,
+            "departure": 513,
+            "arrival": 514
+          },
+          "1408": {
+            "delay": 20,
+            "canceled": false,
+            "departure": 504,
+            "arrival": 505
+          },
+          "1409": {
+            "delay": 20,
+            "canceled": false,
+            "departure": 505,
+            "arrival": 506
+          },
+          "1410": {
+            "delay": 20,
+            "canceled": false,
+            "departure": 506,
+            "arrival": 507
+          },
+          "1411": {
+            "delay": 20,
+            "canceled": false,
+            "departure": 507,
+            "arrival": 508
+          },
+          "1412": {
+            "delay": 20,
+            "canceled": false,
+            "departure": 508,
+            "arrival": 509
+          },
+          "1413": {
+            "delay": 20,
+            "canceled": false,
+            "departure": 509,
+            "arrival": 510
+          },
+          "1414": {
+            "delay": 20,
+            "canceled": false,
+            "departure": 511,
+            "arrival": 512
+          },
+          "1415": {
+            "delay": 20,
+            "canceled": false,
+            "departure": 512,
+            "arrival": 513
+          },
+          "1416": {
+            "delay": 20,
+            "canceled": false,
+            "departure": 514,
+            "arrival": 515
+          },
+          "1417": {
+            "delay": 20,
+            "canceled": false,
+            "departure": 515,
+            "arrival": 517
+          },
+          "1418": {
+            "delay": 20,
+            "canceled": false,
+            "departure": 517,
+            "arrival": 519
+          },
+          "1419": {
+            "delay": 20,
+            "canceled": false,
+            "departure": 519,
+            "arrival": 521
+          },
+          "1420": {
+            "delay": 20,
+            "canceled": false,
+            "departure": 521,
+            "arrival": 522
+          },
+          "1421": {
+            "delay": 20,
+            "canceled": false,
+            "departure": 522,
+            "arrival": 523
+          },
+          "1422": {
+            "delay": 20,
+            "canceled": false,
+            "departure": 524,
+            "arrival": 525
+          },
+          "1423": {
+            "delay": 20,
+            "canceled": false,
+            "departure": 527,
+            "arrival": 528
+          },
+          "1424": {
+            "delay": 20,
+            "canceled": false,
+            "departure": 528,
+            "arrival": 529
+          },
+          "1425": {
+            "delay": 20,
+            "canceled": false,
+            "departure": 529,
+            "arrival": 531
+          },
+          "1426": {
+            "delay": 20,
+            "canceled": false,
+            "departure": 531,
+            "arrival": 532
+          },
+          "1427": {
+            "delay": 20,
+            "canceled": false,
+            "departure": 532,
+            "arrival": 533
+          },
+          "1428": {
+            "delay": 20,
+            "canceled": false,
+            "departure": 533,
+            "arrival": 534
+          }
+        },
+        "information_warning": "Removing other trips changes the local capped publisher. Do not call this the full archived conditional optimum without modeling the receipt history. Message timestamps are event times, not receipt times."
+      }
+    },
+    {
+      "case_spec": [
+        "2023-10-07",
+        false,
+        "Zürich Wiedikon, Bahnhof",
+        "Zürich, Triemli",
+        711,
+        120,
+        5
+      ],
+      "method": "refresh/offline",
+      "decision_index": 1,
+      "archived_journey_loss": 120,
+      "state": {
+        "stop": 917158457,
+        "stop_name": "Zürich, Schmiede Wiedikon",
+        "time": 501,
+        "current_trip": "1008.TA.91-14-E-j23-1.6.H",
+        "last_arrival": 501,
+        "known_current_trip_delay": 0,
+        "previous_completed_connection": 291
+      },
+      "archived_decision": {
+        "stop": 917158457,
+        "time": 501,
+        "selected": 217,
+        "candidates": [
+          1925,
+          217,
+          225,
+          1463,
+          826
+        ],
+        "refresh_only_ids": [],
+        "retained_only_ids": [],
+        "score": 119.99840697383667
+      },
+      "reproduced_score": 119.99840697383667,
+      "frozen_label": {
+        "conditional_mean_destination_arrival": 512.6497557813663,
+        "conditional_continuation_success": 0.9999999999308187,
+        "destination_mass_before_current_time": 0.3204138779148734,
+        "selected_leg_unconditioned_arrival_mean": 488.5965846536305
+      },
+      "trace_context": [
+        {
+          "time": 490,
+          "stop_id": 292530480,
+          "event_type": "depart",
+          "route": "",
+          "details": "Initial route computed"
+        },
+        {
+          "time": 500,
+          "stop_id": 292530480,
+          "event_type": "board",
+          "route": "14",
+          "details": "connection=291; to=917158457; trip=1008.TA.91-14-E-j23-1.6.H"
+        },
+        {
+          "time": 501,
+          "stop_id": 917158457,
+          "event_type": "arrive",
+          "route": "14",
+          "details": "connection=291; delay=0min"
+        }
+      ],
+      "diagnosis": "A shared-trip delay observed at another stop is not propagated to the later segment; the score treats a recoverable failed attempt as terminal loss.",
+      "causal_evidence_at_initial_origin": {
+        "route": "14",
+        "stop_id": 292530480,
+        "scheduled_time": 485,
+        "predicted_time": 485,
+        "actual_time": 484,
+        "timestamp": 484,
+        "event_id": "216:departure",
+        "is_canceled": false
+      },
+      "exact_generated_model_fact": {
+        "known_other_trip_delay": -1,
+        "selected_departure": 486,
+        "transfer_ready": 503,
+        "selected_boarding_probability_given_evidence": 0.0
+      },
+      "marginal_estimated_boarding_probability": 1.636490706813376e-05,
+      "failure_term_used_by_score": 119.99803621115196,
+      "next_archived_decision_after_failed_attempt": {
+        "stop": 917158457,
+        "time": 503,
+        "selected": 944,
+        "candidates": [
+          1925,
+          225,
+          1463,
+          826,
+          944
+        ],
+        "refresh_only_ids": [],
+        "retained_only_ids": [],
+        "score": 77.63756849728404
+      },
+      "claim_boundary": "The exact zero boarding probability follows from a message already received at the origin, not from future world access. Recovery exists in the executor; its expected value requires continuation planning and is not inferred from this one realized journey.",
+      "subgraph": {
+        "scope": "All archived segments of 2-3 named trips; original IDs retained. A new finite submodel requires an explicit observation contract.",
+        "initial_state_for_adapter": {
+          "stop": 917158457,
+          "stop_name": "Zürich, Schmiede Wiedikon",
+          "time": 501,
+          "current_trip": "1008.TA.91-14-E-j23-1.6.H",
+          "last_arrival": 501,
+          "known_current_trip_delay": 0,
+          "previous_completed_connection": 291
+        },
+        "original_departure": 490,
+        "deadline": 610,
+        "original_destination": 419126122,
+        "known_trip_delays_from_causal_prefix": {
+          "1008.TA.91-14-E-j23-1.6.H": 0,
+          "1004.TA.91-14-E-j23-1.6.H": -1
+        },
+        "stops": {
+          "55894816": {
+            "name": "Zürich, Goldbrunnenplatz",
+            "min_transfer_time": 2
+          },
+          "66629608": {
+            "name": "Zürich, Stampfenbachplatz",
+            "min_transfer_time": 2
+          },
+          "154761638": {
+            "name": "Zürich, Bahnhofquai/HB",
+            "min_transfer_time": 2
+          },
+          "201257157": {
+            "name": "Zürich, Sihlpost/HB",
+            "min_transfer_time": 2
+          },
+          "225785246": {
+            "name": "Zürich, Kronenstrasse",
+            "min_transfer_time": 2
+          },
+          "278195227": {
+            "name": "Zürich, Heuried",
+            "min_transfer_time": 2
+          },
+          "292530480": {
+            "name": "Zürich Wiedikon, Bahnhof",
+            "min_transfer_time": 2
+          },
+          "320218085": {
+            "name": "Zürich, Schaufelbergerstrasse",
+            "min_transfer_time": 2
+          },
+          "322687491": {
+            "name": "Zürich, Schaffhauserplatz",
+            "min_transfer_time": 2
+          },
+          "381498145": {
+            "name": "Zürich, Bahnhofplatz/HB",
+            "min_transfer_time": 2
+          },
+          "407299640": {
+            "name": "Zürich, Werd",
+            "min_transfer_time": 2
+          },
+          "419126122": {
+            "name": "Zürich, Triemli",
+            "min_transfer_time": 2
+          },
+          "536904088": {
+            "name": "Zürich, Stauffacher",
+            "min_transfer_time": 2
+          },
+          "645407124": {
+            "name": "Zürich, Löwenplatz",
+            "min_transfer_time": 2
+          },
+          "776549682": {
+            "name": "Zürich, Talwiesenstrasse",
+            "min_transfer_time": 2
+          },
+          "842622961": {
+            "name": "Zürich, Guggachstrasse",
+            "min_transfer_time": 2
+          },
+          "917158457": {
+            "name": "Zürich, Schmiede Wiedikon",
+            "min_transfer_time": 2
+          },
+          "948473533": {
+            "name": "Zürich, Hirschwiesenstrasse",
+            "min_transfer_time": 2
+          },
+          "953134939": {
+            "name": "Zürich, Beckenhof",
+            "min_transfer_time": 2
+          },
+          "955541259": {
+            "name": "Zürich, Milchbuck",
+            "min_transfer_time": 2
+          }
+        },
+        "connections": [
+          {
+            "original_id": 214,
+            "trip_id": "1004.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 536904088,
+            "arr_stop": 407299640,
+            "dep_time": 482,
+            "arr_time": 483
+          },
+          {
+            "original_id": 215,
+            "trip_id": "1004.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 407299640,
+            "arr_stop": 292530480,
+            "dep_time": 483,
+            "arr_time": 485
+          },
+          {
+            "original_id": 216,
+            "trip_id": "1004.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 292530480,
+            "arr_stop": 917158457,
+            "dep_time": 485,
+            "arr_time": 486
+          },
+          {
+            "original_id": 217,
+            "trip_id": "1004.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 917158457,
+            "arr_stop": 55894816,
+            "dep_time": 487,
+            "arr_time": 488
+          },
+          {
+            "original_id": 218,
+            "trip_id": "1004.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 55894816,
+            "arr_stop": 776549682,
+            "dep_time": 488,
+            "arr_time": 489
+          },
+          {
+            "original_id": 219,
+            "trip_id": "1004.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 776549682,
+            "arr_stop": 278195227,
+            "dep_time": 489,
+            "arr_time": 490
+          },
+          {
+            "original_id": 220,
+            "trip_id": "1004.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 278195227,
+            "arr_stop": 320218085,
+            "dep_time": 490,
+            "arr_time": 491
+          },
+          {
+            "original_id": 221,
+            "trip_id": "1004.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 320218085,
+            "arr_stop": 419126122,
+            "dep_time": 491,
+            "arr_time": 492
+          },
+          {
+            "original_id": 280,
+            "trip_id": "1008.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 842622961,
+            "arr_stop": 322687491,
+            "dep_time": 480,
+            "arr_time": 482
+          },
+          {
+            "original_id": 281,
+            "trip_id": "1008.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 322687491,
+            "arr_stop": 225785246,
+            "dep_time": 482,
+            "arr_time": 483
+          },
+          {
+            "original_id": 282,
+            "trip_id": "1008.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 225785246,
+            "arr_stop": 953134939,
+            "dep_time": 484,
+            "arr_time": 485
+          },
+          {
+            "original_id": 283,
+            "trip_id": "1008.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 953134939,
+            "arr_stop": 66629608,
+            "dep_time": 485,
+            "arr_time": 486
+          },
+          {
+            "original_id": 284,
+            "trip_id": "1008.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 66629608,
+            "arr_stop": 154761638,
+            "dep_time": 487,
+            "arr_time": 489
+          },
+          {
+            "original_id": 285,
+            "trip_id": "1008.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 154761638,
+            "arr_stop": 381498145,
+            "dep_time": 489,
+            "arr_time": 491
+          },
+          {
+            "original_id": 286,
+            "trip_id": "1008.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 381498145,
+            "arr_stop": 645407124,
+            "dep_time": 491,
+            "arr_time": 492
+          },
+          {
+            "original_id": 287,
+            "trip_id": "1008.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 645407124,
+            "arr_stop": 201257157,
+            "dep_time": 492,
+            "arr_time": 494
+          },
+          {
+            "original_id": 288,
+            "trip_id": "1008.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 201257157,
+            "arr_stop": 536904088,
+            "dep_time": 494,
+            "arr_time": 496
+          },
+          {
+            "original_id": 289,
+            "trip_id": "1008.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 536904088,
+            "arr_stop": 407299640,
+            "dep_time": 497,
+            "arr_time": 498
+          },
+          {
+            "original_id": 290,
+            "trip_id": "1008.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 407299640,
+            "arr_stop": 292530480,
+            "dep_time": 498,
+            "arr_time": 500
+          },
+          {
+            "original_id": 291,
+            "trip_id": "1008.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 292530480,
+            "arr_stop": 917158457,
+            "dep_time": 500,
+            "arr_time": 501
+          },
+          {
+            "original_id": 292,
+            "trip_id": "1008.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 917158457,
+            "arr_stop": 55894816,
+            "dep_time": 502,
+            "arr_time": 503
+          },
+          {
+            "original_id": 293,
+            "trip_id": "1008.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 55894816,
+            "arr_stop": 776549682,
+            "dep_time": 503,
+            "arr_time": 504
+          },
+          {
+            "original_id": 294,
+            "trip_id": "1008.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 776549682,
+            "arr_stop": 278195227,
+            "dep_time": 504,
+            "arr_time": 505
+          },
+          {
+            "original_id": 295,
+            "trip_id": "1008.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 278195227,
+            "arr_stop": 320218085,
+            "dep_time": 505,
+            "arr_time": 506
+          },
+          {
+            "original_id": 296,
+            "trip_id": "1008.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 320218085,
+            "arr_stop": 419126122,
+            "dep_time": 506,
+            "arr_time": 507
+          },
+          {
+            "original_id": 930,
+            "trip_id": "1047.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 948473533,
+            "arr_stop": 955541259,
+            "dep_time": 481,
+            "arr_time": 482
+          },
+          {
+            "original_id": 931,
+            "trip_id": "1047.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 955541259,
+            "arr_stop": 842622961,
+            "dep_time": 482,
+            "arr_time": 483
+          },
+          {
+            "original_id": 932,
+            "trip_id": "1047.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 842622961,
+            "arr_stop": 322687491,
+            "dep_time": 483,
+            "arr_time": 484
+          },
+          {
+            "original_id": 933,
+            "trip_id": "1047.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 322687491,
+            "arr_stop": 225785246,
+            "dep_time": 484,
+            "arr_time": 486
+          },
+          {
+            "original_id": 934,
+            "trip_id": "1047.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 225785246,
+            "arr_stop": 953134939,
+            "dep_time": 486,
+            "arr_time": 487
+          },
+          {
+            "original_id": 935,
+            "trip_id": "1047.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 953134939,
+            "arr_stop": 66629608,
+            "dep_time": 487,
+            "arr_time": 488
+          },
+          {
+            "original_id": 936,
+            "trip_id": "1047.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 66629608,
+            "arr_stop": 154761638,
+            "dep_time": 489,
+            "arr_time": 491
+          },
+          {
+            "original_id": 937,
+            "trip_id": "1047.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 154761638,
+            "arr_stop": 381498145,
+            "dep_time": 491,
+            "arr_time": 492
+          },
+          {
+            "original_id": 938,
+            "trip_id": "1047.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 381498145,
+            "arr_stop": 645407124,
+            "dep_time": 493,
+            "arr_time": 494
+          },
+          {
+            "original_id": 939,
+            "trip_id": "1047.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 645407124,
+            "arr_stop": 201257157,
+            "dep_time": 494,
+            "arr_time": 495
+          },
+          {
+            "original_id": 940,
+            "trip_id": "1047.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 201257157,
+            "arr_stop": 536904088,
+            "dep_time": 496,
+            "arr_time": 497
+          },
+          {
+            "original_id": 941,
+            "trip_id": "1047.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 536904088,
+            "arr_stop": 407299640,
+            "dep_time": 497,
+            "arr_time": 499
+          },
+          {
+            "original_id": 942,
+            "trip_id": "1047.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 407299640,
+            "arr_stop": 292530480,
+            "dep_time": 499,
+            "arr_time": 500
+          },
+          {
+            "original_id": 943,
+            "trip_id": "1047.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 292530480,
+            "arr_stop": 917158457,
+            "dep_time": 500,
+            "arr_time": 501
+          },
+          {
+            "original_id": 944,
+            "trip_id": "1047.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 917158457,
+            "arr_stop": 55894816,
+            "dep_time": 502,
+            "arr_time": 503
+          },
+          {
+            "original_id": 945,
+            "trip_id": "1047.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 55894816,
+            "arr_stop": 776549682,
+            "dep_time": 503,
+            "arr_time": 504
+          },
+          {
+            "original_id": 946,
+            "trip_id": "1047.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 776549682,
+            "arr_stop": 278195227,
+            "dep_time": 504,
+            "arr_time": 505
+          },
+          {
+            "original_id": 947,
+            "trip_id": "1047.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 278195227,
+            "arr_stop": 320218085,
+            "dep_time": 505,
+            "arr_time": 506
+          },
+          {
+            "original_id": 948,
+            "trip_id": "1047.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 320218085,
+            "arr_stop": 419126122,
+            "dep_time": 506,
+            "arr_time": 507
+          }
+        ],
+        "original_case_priors_by_route": {
+          "14": {
+            "mean": 0.08980677149454702,
+            "std": 3.709544485936308,
+            "cancel_rate": 0.0
+          }
+        },
+        "generated_trip_factor_laws": {
+          "1004.TA.91-14-E-j23-1.6.H": {
+            "route": "14",
+            "delay_offset": -5,
+            "delay_probs": [
+              0.0015106268309962108,
+              0.00948476581060694,
+              0.03967946112370567,
+              0.11060497302368894,
+              0.2054249917465184,
+              0.25421527217468337,
+              0.20961373296136374,
+              0.11516156611878385,
+              0.042156556388895594,
+              0.010282351084963134,
+              0.0016710500764659777,
+              0.0001809490202936661,
+              1.3055476965515528e-05,
+              6.276231944299128e-07,
+              2.0103652212127875e-08,
+              4.2906261497621197e-10,
+              6.101493085790168e-12,
+              5.781244101508686e-14,
+              3.6498601645130085e-16,
+              1.5353269739488958e-18,
+              4.303237041289667e-21,
+              8.036360206377878e-24,
+              9.999844685750091e-27,
+              8.290807857370928e-30,
+              4.580049599979061e-33,
+              1.6858279408042542e-36,
+              4.134529063684454e-40,
+              6.75629472326406e-44,
+              7.356324160743685e-48,
+              5.336823820465657e-52,
+              2.579732108274633e-56,
+              8.308757569471242e-61,
+              1.783065516720708e-65,
+              2.5495776897773224e-70,
+              2.429063871214877e-75,
+              1.5419821781444249e-80,
+              6.522130876619974e-86,
+              1.8381011203638127e-91,
+              3.4515885968740206e-97,
+              4.3185543198734714e-103,
+              3.60020709206059e-109,
+              1.999798852696557e-115,
+              7.401417148852323e-122,
+              1.8252114498804279e-128,
+              2.9990328465908484e-135,
+              3.283363723408846e-142,
+              2.3951157357703635e-149,
+              1.1641360757524059e-156,
+              3.770081399612774e-164,
+              8.135185152421806e-172,
+              1.1696445231903353e-179,
+              1.1204953971424218e-187,
+              7.15213984265449e-196,
+              3.041806988755096e-204,
+              8.619797129893505e-213,
+              1.6275418748257232e-221,
+              2.0475618691072903e-230,
+              1.7163728280570526e-239,
+              9.58640920340679e-249,
+              3.567549693597074e-258,
+              8.846140536446013e-268,
+              1.4615287851795334e-277,
+              1.6089059114130872e-287,
+              1.1801131690730226e-297,
+              5.767484041190319e-308,
+              1.8781e-318,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "cancel_prob": 0.0,
+            "shared_within_trip": true,
+            "independent_between_trips": true
+          },
+          "1008.TA.91-14-E-j23-1.6.H": {
+            "route": "14",
+            "delay_offset": -5,
+            "delay_probs": [
+              0.0015106268309962108,
+              0.00948476581060694,
+              0.03967946112370567,
+              0.11060497302368894,
+              0.2054249917465184,
+              0.25421527217468337,
+              0.20961373296136374,
+              0.11516156611878385,
+              0.042156556388895594,
+              0.010282351084963134,
+              0.0016710500764659777,
+              0.0001809490202936661,
+              1.3055476965515528e-05,
+              6.276231944299128e-07,
+              2.0103652212127875e-08,
+              4.2906261497621197e-10,
+              6.101493085790168e-12,
+              5.781244101508686e-14,
+              3.6498601645130085e-16,
+              1.5353269739488958e-18,
+              4.303237041289667e-21,
+              8.036360206377878e-24,
+              9.999844685750091e-27,
+              8.290807857370928e-30,
+              4.580049599979061e-33,
+              1.6858279408042542e-36,
+              4.134529063684454e-40,
+              6.75629472326406e-44,
+              7.356324160743685e-48,
+              5.336823820465657e-52,
+              2.579732108274633e-56,
+              8.308757569471242e-61,
+              1.783065516720708e-65,
+              2.5495776897773224e-70,
+              2.429063871214877e-75,
+              1.5419821781444249e-80,
+              6.522130876619974e-86,
+              1.8381011203638127e-91,
+              3.4515885968740206e-97,
+              4.3185543198734714e-103,
+              3.60020709206059e-109,
+              1.999798852696557e-115,
+              7.401417148852323e-122,
+              1.8252114498804279e-128,
+              2.9990328465908484e-135,
+              3.283363723408846e-142,
+              2.3951157357703635e-149,
+              1.1641360757524059e-156,
+              3.770081399612774e-164,
+              8.135185152421806e-172,
+              1.1696445231903353e-179,
+              1.1204953971424218e-187,
+              7.15213984265449e-196,
+              3.041806988755096e-204,
+              8.619797129893505e-213,
+              1.6275418748257232e-221,
+              2.0475618691072903e-230,
+              1.7163728280570526e-239,
+              9.58640920340679e-249,
+              3.567549693597074e-258,
+              8.846140536446013e-268,
+              1.4615287851795334e-277,
+              1.6089059114130872e-287,
+              1.1801131690730226e-297,
+              5.767484041190319e-308,
+              1.8781e-318,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "cancel_prob": 0.0,
+            "shared_within_trip": true,
+            "independent_between_trips": true
+          },
+          "1047.TA.91-14-E-j23-1.6.H": {
+            "route": "14",
+            "delay_offset": -5,
+            "delay_probs": [
+              0.0015106268309962108,
+              0.00948476581060694,
+              0.03967946112370567,
+              0.11060497302368894,
+              0.2054249917465184,
+              0.25421527217468337,
+              0.20961373296136374,
+              0.11516156611878385,
+              0.042156556388895594,
+              0.010282351084963134,
+              0.0016710500764659777,
+              0.0001809490202936661,
+              1.3055476965515528e-05,
+              6.276231944299128e-07,
+              2.0103652212127875e-08,
+              4.2906261497621197e-10,
+              6.101493085790168e-12,
+              5.781244101508686e-14,
+              3.6498601645130085e-16,
+              1.5353269739488958e-18,
+              4.303237041289667e-21,
+              8.036360206377878e-24,
+              9.999844685750091e-27,
+              8.290807857370928e-30,
+              4.580049599979061e-33,
+              1.6858279408042542e-36,
+              4.134529063684454e-40,
+              6.75629472326406e-44,
+              7.356324160743685e-48,
+              5.336823820465657e-52,
+              2.579732108274633e-56,
+              8.308757569471242e-61,
+              1.783065516720708e-65,
+              2.5495776897773224e-70,
+              2.429063871214877e-75,
+              1.5419821781444249e-80,
+              6.522130876619974e-86,
+              1.8381011203638127e-91,
+              3.4515885968740206e-97,
+              4.3185543198734714e-103,
+              3.60020709206059e-109,
+              1.999798852696557e-115,
+              7.401417148852323e-122,
+              1.8252114498804279e-128,
+              2.9990328465908484e-135,
+              3.283363723408846e-142,
+              2.3951157357703635e-149,
+              1.1641360757524059e-156,
+              3.770081399612774e-164,
+              8.135185152421806e-172,
+              1.1696445231903353e-179,
+              1.1204953971424218e-187,
+              7.15213984265449e-196,
+              3.041806988755096e-204,
+              8.619797129893505e-213,
+              1.6275418748257232e-221,
+              2.0475618691072903e-230,
+              1.7163728280570526e-239,
+              9.58640920340679e-249,
+              3.567549693597074e-258,
+              8.846140536446013e-268,
+              1.4615287851795334e-277,
+              1.6089059114130872e-287,
+              1.1801131690730226e-297,
+              5.767484041190319e-308,
+              1.8781e-318,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "cancel_prob": 0.0,
+            "shared_within_trip": true,
+            "independent_between_trips": true
+          }
+        },
+        "archived_realization_for_trace_check_only": {
+          "214": {
+            "delay": -1,
+            "canceled": false,
+            "departure": 481,
+            "arrival": 482
+          },
+          "215": {
+            "delay": -1,
+            "canceled": false,
+            "departure": 482,
+            "arrival": 484
+          },
+          "216": {
+            "delay": -1,
+            "canceled": false,
+            "departure": 484,
+            "arrival": 485
+          },
+          "217": {
+            "delay": -1,
+            "canceled": false,
+            "departure": 486,
+            "arrival": 487
+          },
+          "218": {
+            "delay": -1,
+            "canceled": false,
+            "departure": 487,
+            "arrival": 488
+          },
+          "219": {
+            "delay": -1,
+            "canceled": false,
+            "departure": 488,
+            "arrival": 489
+          },
+          "220": {
+            "delay": -1,
+            "canceled": false,
+            "departure": 489,
+            "arrival": 490
+          },
+          "221": {
+            "delay": -1,
+            "canceled": false,
+            "departure": 490,
+            "arrival": 491
+          },
+          "280": {
+            "delay": 0,
+            "canceled": false,
+            "departure": 480,
+            "arrival": 482
+          },
+          "281": {
+            "delay": 0,
+            "canceled": false,
+            "departure": 482,
+            "arrival": 483
+          },
+          "282": {
+            "delay": 0,
+            "canceled": false,
+            "departure": 484,
+            "arrival": 485
+          },
+          "283": {
+            "delay": 0,
+            "canceled": false,
+            "departure": 485,
+            "arrival": 486
+          },
+          "284": {
+            "delay": 0,
+            "canceled": false,
+            "departure": 487,
+            "arrival": 489
+          },
+          "285": {
+            "delay": 0,
+            "canceled": false,
+            "departure": 489,
+            "arrival": 491
+          },
+          "286": {
+            "delay": 0,
+            "canceled": false,
+            "departure": 491,
+            "arrival": 492
+          },
+          "287": {
+            "delay": 0,
+            "canceled": false,
+            "departure": 492,
+            "arrival": 494
+          },
+          "288": {
+            "delay": 0,
+            "canceled": false,
+            "departure": 494,
+            "arrival": 496
+          },
+          "289": {
+            "delay": 0,
+            "canceled": false,
+            "departure": 497,
+            "arrival": 498
+          },
+          "290": {
+            "delay": 0,
+            "canceled": false,
+            "departure": 498,
+            "arrival": 500
+          },
+          "291": {
+            "delay": 0,
+            "canceled": false,
+            "departure": 500,
+            "arrival": 501
+          },
+          "292": {
+            "delay": 0,
+            "canceled": false,
+            "departure": 502,
+            "arrival": 503
+          },
+          "293": {
+            "delay": 0,
+            "canceled": false,
+            "departure": 503,
+            "arrival": 504
+          },
+          "294": {
+            "delay": 0,
+            "canceled": false,
+            "departure": 504,
+            "arrival": 505
+          },
+          "295": {
+            "delay": 0,
+            "canceled": false,
+            "departure": 505,
+            "arrival": 506
+          },
+          "296": {
+            "delay": 0,
+            "canceled": false,
+            "departure": 506,
+            "arrival": 507
+          },
+          "930": {
+            "delay": 2,
+            "canceled": false,
+            "departure": 483,
+            "arrival": 484
+          },
+          "931": {
+            "delay": 2,
+            "canceled": false,
+            "departure": 484,
+            "arrival": 485
+          },
+          "932": {
+            "delay": 2,
+            "canceled": false,
+            "departure": 485,
+            "arrival": 486
+          },
+          "933": {
+            "delay": 2,
+            "canceled": false,
+            "departure": 486,
+            "arrival": 488
+          },
+          "934": {
+            "delay": 2,
+            "canceled": false,
+            "departure": 488,
+            "arrival": 489
+          },
+          "935": {
+            "delay": 2,
+            "canceled": false,
+            "departure": 489,
+            "arrival": 490
+          },
+          "936": {
+            "delay": 2,
+            "canceled": false,
+            "departure": 491,
+            "arrival": 493
+          },
+          "937": {
+            "delay": 2,
+            "canceled": false,
+            "departure": 493,
+            "arrival": 494
+          },
+          "938": {
+            "delay": 2,
+            "canceled": false,
+            "departure": 495,
+            "arrival": 496
+          },
+          "939": {
+            "delay": 2,
+            "canceled": false,
+            "departure": 496,
+            "arrival": 497
+          },
+          "940": {
+            "delay": 2,
+            "canceled": false,
+            "departure": 498,
+            "arrival": 499
+          },
+          "941": {
+            "delay": 2,
+            "canceled": false,
+            "departure": 499,
+            "arrival": 501
+          },
+          "942": {
+            "delay": 2,
+            "canceled": false,
+            "departure": 501,
+            "arrival": 502
+          },
+          "943": {
+            "delay": 2,
+            "canceled": false,
+            "departure": 502,
+            "arrival": 503
+          },
+          "944": {
+            "delay": 2,
+            "canceled": false,
+            "departure": 504,
+            "arrival": 505
+          },
+          "945": {
+            "delay": 2,
+            "canceled": false,
+            "departure": 505,
+            "arrival": 506
+          },
+          "946": {
+            "delay": 2,
+            "canceled": false,
+            "departure": 506,
+            "arrival": 507
+          },
+          "947": {
+            "delay": 2,
+            "canceled": false,
+            "departure": 507,
+            "arrival": 508
+          },
+          "948": {
+            "delay": 2,
+            "canceled": false,
+            "departure": 508,
+            "arrival": 509
+          }
+        },
+        "information_warning": "Removing other trips changes the local capped publisher. Do not call this the full archived conditional optimum without modeling the receipt history. Message timestamps are event times, not receipt times."
+      }
+    },
+    {
+      "case_spec": [
+        "2023-10-07",
+        true,
+        "Zürich Wiedikon, Bahnhof",
+        "Zürich, Triemli",
+        712,
+        120,
+        5
+      ],
+      "method": "refresh/offline",
+      "decision_index": 2,
+      "archived_journey_loss": 120,
+      "state": {
+        "stop": 55894816,
+        "stop_name": "Zürich, Goldbrunnenplatz",
+        "time": 499,
+        "current_trip": "103.TA.91-9-I-j23-1.21.H",
+        "last_arrival": 499,
+        "known_current_trip_delay": 4,
+        "previous_completed_connection": 705
+      },
+      "archived_decision": {
+        "stop": 55894816,
+        "time": 499,
+        "selected": 1097,
+        "candidates": [
+          226,
+          1097,
+          1079,
+          855,
+          1109
+        ],
+        "refresh_only_ids": [],
+        "retained_only_ids": [],
+        "score": 33.15127312470212
+      },
+      "reproduced_score": 33.15127312470212,
+      "frozen_label": {
+        "conditional_mean_destination_arrival": 522.2621697747799,
+        "conditional_continuation_success": 0.9999999999986265,
+        "destination_mass_before_current_time": 7.838029754569785e-08,
+        "selected_leg_unconditioned_arrival_mean": 506.26217210801804
+      },
+      "trace_context": [
+        {
+          "time": 490,
+          "stop_id": 292530480,
+          "event_type": "depart",
+          "route": "",
+          "details": "Initial route computed"
+        },
+        {
+          "time": 497,
+          "stop_id": 292530480,
+          "event_type": "board",
+          "route": "9",
+          "details": "connection=704; to=917158457; trip=103.TA.91-9-I-j23-1.21.H"
+        },
+        {
+          "time": 498,
+          "stop_id": 917158457,
+          "event_type": "arrive",
+          "route": "9",
+          "details": "connection=704; delay=4min"
+        },
+        {
+          "time": 498,
+          "stop_id": 917158457,
+          "event_type": "board",
+          "route": "9",
+          "details": "connection=705; to=55894816; trip=103.TA.91-9-I-j23-1.21.H"
+        },
+        {
+          "time": 499,
+          "stop_id": 55894816,
+          "event_type": "arrive",
+          "route": "9",
+          "details": "connection=705; delay=4min"
+        }
+      ],
+      "diagnosis": "The conditional-mean top-5 screen omits the current-trip continuation with a lower capped-loss score.",
+      "omitted_connection": {
+        "original_id": 706,
+        "conditional_mean_destination_arrival": 522.3576451617563,
+        "score_under_same_estimate": 32.357645163855594,
+        "known_departure_from_current_trip": 500,
+        "known_arrival_from_current_trip": 501,
+        "present_in_archived_candidate_menu": false
+      },
+      "claim_boundary": "This establishes a pre-score menu effect, not an expected benefit from taking 706, nor a retain-versus-refresh advantage. Both candidate modes use this same cap.",
+      "subgraph": {
+        "scope": "All archived segments of 2-3 named trips; original IDs retained. A new finite submodel requires an explicit observation contract.",
+        "initial_state_for_adapter": {
+          "stop": 55894816,
+          "stop_name": "Zürich, Goldbrunnenplatz",
+          "time": 499,
+          "current_trip": "103.TA.91-9-I-j23-1.21.H",
+          "last_arrival": 499,
+          "known_current_trip_delay": 4,
+          "previous_completed_connection": 705
+        },
+        "original_departure": 490,
+        "deadline": 610,
+        "original_destination": 419126122,
+        "known_trip_delays_from_causal_prefix": {
+          "103.TA.91-9-I-j23-1.21.H": 4
+        },
+        "stops": {
+          "34084970": {
+            "name": "Stallikon, Diebis",
+            "min_transfer_time": 2
+          },
+          "55894816": {
+            "name": "Zürich, Goldbrunnenplatz",
+            "min_transfer_time": 2
+          },
+          "66629608": {
+            "name": "Zürich, Stampfenbachplatz",
+            "min_transfer_time": 2
+          },
+          "154761638": {
+            "name": "Zürich, Bahnhofquai/HB",
+            "min_transfer_time": 2
+          },
+          "201257157": {
+            "name": "Zürich, Sihlpost/HB",
+            "min_transfer_time": 2
+          },
+          "209383483": {
+            "name": "Zürich, Stockerstrasse",
+            "min_transfer_time": 2
+          },
+          "225785246": {
+            "name": "Zürich, Kronenstrasse",
+            "min_transfer_time": 2
+          },
+          "233400288": {
+            "name": "Ringlikon, Langwies",
+            "min_transfer_time": 2
+          },
+          "243115878": {
+            "name": "Waldegg, Katholische Kirche",
+            "min_transfer_time": 2
+          },
+          "263380301": {
+            "name": "Stallikon, Sellenbüren",
+            "min_transfer_time": 2
+          },
+          "266038806": {
+            "name": "Stallikon, Loomatt",
+            "min_transfer_time": 2
+          },
+          "278195227": {
+            "name": "Zürich, Heuried",
+            "min_transfer_time": 2
+          },
+          "292530480": {
+            "name": "Zürich Wiedikon, Bahnhof",
+            "min_transfer_time": 2
+          },
+          "320218085": {
+            "name": "Zürich, Schaufelbergerstrasse",
+            "min_transfer_time": 2
+          },
+          "322687491": {
+            "name": "Zürich, Schaffhauserplatz",
+            "min_transfer_time": 2
+          },
+          "381498145": {
+            "name": "Zürich, Bahnhofplatz/HB",
+            "min_transfer_time": 2
+          },
+          "407299640": {
+            "name": "Zürich, Werd",
+            "min_transfer_time": 2
+          },
+          "419126122": {
+            "name": "Zürich, Triemli",
+            "min_transfer_time": 2
+          },
+          "536904088": {
+            "name": "Zürich, Stauffacher",
+            "min_transfer_time": 2
+          },
+          "611497318": {
+            "name": "Zürich, Sädlenweg",
+            "min_transfer_time": 2
+          },
+          "645407124": {
+            "name": "Zürich, Löwenplatz",
+            "min_transfer_time": 2
+          },
+          "660141451": {
+            "name": "Waldegg, Birmensdorferstrasse",
+            "min_transfer_time": 2
+          },
+          "687985628": {
+            "name": "Zürich Selnau, Bahnhof",
+            "min_transfer_time": 2
+          },
+          "776549682": {
+            "name": "Zürich, Talwiesenstrasse",
+            "min_transfer_time": 2
+          },
+          "816191765": {
+            "name": "Stallikon, Bleiki",
+            "min_transfer_time": 2
+          },
+          "842622961": {
+            "name": "Zürich, Guggachstrasse",
+            "min_transfer_time": 2
+          },
+          "895684956": {
+            "name": "Zürich, Paradeplatz",
+            "min_transfer_time": 2
+          },
+          "917158457": {
+            "name": "Zürich, Schmiede Wiedikon",
+            "min_transfer_time": 2
+          },
+          "953134939": {
+            "name": "Zürich, Beckenhof",
+            "min_transfer_time": 2
+          }
+        },
+        "connections": [
+          {
+            "original_id": 280,
+            "trip_id": "1008.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 842622961,
+            "arr_stop": 322687491,
+            "dep_time": 480,
+            "arr_time": 482
+          },
+          {
+            "original_id": 281,
+            "trip_id": "1008.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 322687491,
+            "arr_stop": 225785246,
+            "dep_time": 482,
+            "arr_time": 483
+          },
+          {
+            "original_id": 282,
+            "trip_id": "1008.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 225785246,
+            "arr_stop": 953134939,
+            "dep_time": 484,
+            "arr_time": 485
+          },
+          {
+            "original_id": 283,
+            "trip_id": "1008.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 953134939,
+            "arr_stop": 66629608,
+            "dep_time": 485,
+            "arr_time": 486
+          },
+          {
+            "original_id": 284,
+            "trip_id": "1008.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 66629608,
+            "arr_stop": 154761638,
+            "dep_time": 487,
+            "arr_time": 489
+          },
+          {
+            "original_id": 285,
+            "trip_id": "1008.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 154761638,
+            "arr_stop": 381498145,
+            "dep_time": 489,
+            "arr_time": 491
+          },
+          {
+            "original_id": 286,
+            "trip_id": "1008.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 381498145,
+            "arr_stop": 645407124,
+            "dep_time": 491,
+            "arr_time": 492
+          },
+          {
+            "original_id": 287,
+            "trip_id": "1008.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 645407124,
+            "arr_stop": 201257157,
+            "dep_time": 492,
+            "arr_time": 494
+          },
+          {
+            "original_id": 288,
+            "trip_id": "1008.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 201257157,
+            "arr_stop": 536904088,
+            "dep_time": 494,
+            "arr_time": 496
+          },
+          {
+            "original_id": 289,
+            "trip_id": "1008.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 536904088,
+            "arr_stop": 407299640,
+            "dep_time": 497,
+            "arr_time": 498
+          },
+          {
+            "original_id": 290,
+            "trip_id": "1008.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 407299640,
+            "arr_stop": 292530480,
+            "dep_time": 498,
+            "arr_time": 500
+          },
+          {
+            "original_id": 291,
+            "trip_id": "1008.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 292530480,
+            "arr_stop": 917158457,
+            "dep_time": 500,
+            "arr_time": 501
+          },
+          {
+            "original_id": 292,
+            "trip_id": "1008.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 917158457,
+            "arr_stop": 55894816,
+            "dep_time": 502,
+            "arr_time": 503
+          },
+          {
+            "original_id": 293,
+            "trip_id": "1008.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 55894816,
+            "arr_stop": 776549682,
+            "dep_time": 503,
+            "arr_time": 504
+          },
+          {
+            "original_id": 294,
+            "trip_id": "1008.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 776549682,
+            "arr_stop": 278195227,
+            "dep_time": 504,
+            "arr_time": 505
+          },
+          {
+            "original_id": 295,
+            "trip_id": "1008.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 278195227,
+            "arr_stop": 320218085,
+            "dep_time": 505,
+            "arr_time": 506
+          },
+          {
+            "original_id": 296,
+            "trip_id": "1008.TA.91-14-E-j23-1.6.H",
+            "route": "14",
+            "route_id": "91-14-E-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 320218085,
+            "arr_stop": 419126122,
+            "dep_time": 506,
+            "arr_time": 507
+          },
+          {
+            "original_id": 699,
+            "trip_id": "103.TA.91-9-I-j23-1.21.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 895684956,
+            "arr_stop": 209383483,
+            "dep_time": 486,
+            "arr_time": 487
+          },
+          {
+            "original_id": 700,
+            "trip_id": "103.TA.91-9-I-j23-1.21.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 209383483,
+            "arr_stop": 687985628,
+            "dep_time": 487,
+            "arr_time": 488
+          },
+          {
+            "original_id": 701,
+            "trip_id": "103.TA.91-9-I-j23-1.21.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 687985628,
+            "arr_stop": 536904088,
+            "dep_time": 489,
+            "arr_time": 490
+          },
+          {
+            "original_id": 702,
+            "trip_id": "103.TA.91-9-I-j23-1.21.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 536904088,
+            "arr_stop": 407299640,
+            "dep_time": 490,
+            "arr_time": 491
+          },
+          {
+            "original_id": 703,
+            "trip_id": "103.TA.91-9-I-j23-1.21.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 407299640,
+            "arr_stop": 292530480,
+            "dep_time": 491,
+            "arr_time": 492
+          },
+          {
+            "original_id": 704,
+            "trip_id": "103.TA.91-9-I-j23-1.21.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 292530480,
+            "arr_stop": 917158457,
+            "dep_time": 493,
+            "arr_time": 494
+          },
+          {
+            "original_id": 705,
+            "trip_id": "103.TA.91-9-I-j23-1.21.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 917158457,
+            "arr_stop": 55894816,
+            "dep_time": 494,
+            "arr_time": 495
+          },
+          {
+            "original_id": 706,
+            "trip_id": "103.TA.91-9-I-j23-1.21.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 55894816,
+            "arr_stop": 776549682,
+            "dep_time": 496,
+            "arr_time": 497
+          },
+          {
+            "original_id": 707,
+            "trip_id": "103.TA.91-9-I-j23-1.21.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 776549682,
+            "arr_stop": 278195227,
+            "dep_time": 497,
+            "arr_time": 497
+          },
+          {
+            "original_id": 708,
+            "trip_id": "103.TA.91-9-I-j23-1.21.H",
+            "route": "9",
+            "route_id": "91-9-I-j23-1",
+            "agency_id": "3849",
+            "dep_stop": 278195227,
+            "arr_stop": 278195227,
+            "dep_time": 498,
+            "arr_time": 498
+          },
+          {
+            "original_id": 1087,
+            "trip_id": "1056.TA.96-180-2-j23-1.4.R",
+            "route": "236",
+            "route_id": "96-180-2-j23-1",
+            "agency_id": "801",
+            "dep_stop": 816191765,
+            "arr_stop": 266038806,
+            "dep_time": 484,
+            "arr_time": 485
+          },
+          {
+            "original_id": 1088,
+            "trip_id": "1056.TA.96-180-2-j23-1.4.R",
+            "route": "236",
+            "route_id": "96-180-2-j23-1",
+            "agency_id": "801",
+            "dep_stop": 266038806,
+            "arr_stop": 263380301,
+            "dep_time": 486,
+            "arr_time": 486
+          },
+          {
+            "original_id": 1089,
+            "trip_id": "1056.TA.96-180-2-j23-1.4.R",
+            "route": "236",
+            "route_id": "96-180-2-j23-1",
+            "agency_id": "801",
+            "dep_stop": 263380301,
+            "arr_stop": 34084970,
+            "dep_time": 487,
+            "arr_time": 488
+          },
+          {
+            "original_id": 1090,
+            "trip_id": "1056.TA.96-180-2-j23-1.4.R",
+            "route": "236",
+            "route_id": "96-180-2-j23-1",
+            "agency_id": "801",
+            "dep_stop": 34084970,
+            "arr_stop": 233400288,
+            "dep_time": 488,
+            "arr_time": 491
+          },
+          {
+            "original_id": 1091,
+            "trip_id": "1056.TA.96-180-2-j23-1.4.R",
+            "route": "236",
+            "route_id": "96-180-2-j23-1",
+            "agency_id": "801",
+            "dep_stop": 233400288,
+            "arr_stop": 243115878,
+            "dep_time": 492,
+            "arr_time": 493
+          },
+          {
+            "original_id": 1092,
+            "trip_id": "1056.TA.96-180-2-j23-1.4.R",
+            "route": "236",
+            "route_id": "96-180-2-j23-1",
+            "agency_id": "801",
+            "dep_stop": 243115878,
+            "arr_stop": 660141451,
+            "dep_time": 493,
+            "arr_time": 495
+          },
+          {
+            "original_id": 1093,
+            "trip_id": "1056.TA.96-180-2-j23-1.4.R",
+            "route": "236",
+            "route_id": "96-180-2-j23-1",
+            "agency_id": "801",
+            "dep_stop": 660141451,
+            "arr_stop": 611497318,
+            "dep_time": 495,
+            "arr_time": 498
+          },
+          {
+            "original_id": 1094,
+            "trip_id": "1056.TA.96-180-2-j23-1.4.R",
+            "route": "236",
+            "route_id": "96-180-2-j23-1",
+            "agency_id": "801",
+            "dep_stop": 611497318,
+            "arr_stop": 419126122,
+            "dep_time": 498,
+            "arr_time": 499
+          },
+          {
+            "original_id": 1095,
+            "trip_id": "1056.TA.96-180-2-j23-1.4.R",
+            "route": "236",
+            "route_id": "96-180-2-j23-1",
+            "agency_id": "801",
+            "dep_stop": 419126122,
+            "arr_stop": 320218085,
+            "dep_time": 500,
+            "arr_time": 501
+          },
+          {
+            "original_id": 1096,
+            "trip_id": "1056.TA.96-180-2-j23-1.4.R",
+            "route": "236",
+            "route_id": "96-180-2-j23-1",
+            "agency_id": "801",
+            "dep_stop": 320218085,
+            "arr_stop": 55894816,
+            "dep_time": 501,
+            "arr_time": 503
+          },
+          {
+            "original_id": 1097,
+            "trip_id": "1056.TA.96-180-2-j23-1.4.R",
+            "route": "236",
+            "route_id": "96-180-2-j23-1",
+            "agency_id": "801",
+            "dep_stop": 55894816,
+            "arr_stop": 917158457,
+            "dep_time": 504,
+            "arr_time": 505
+          },
+          {
+            "original_id": 1098,
+            "trip_id": "1056.TA.96-180-2-j23-1.4.R",
+            "route": "236",
+            "route_id": "96-180-2-j23-1",
+            "agency_id": "801",
+            "dep_stop": 917158457,
+            "arr_stop": 292530480,
+            "dep_time": 505,
+            "arr_time": 508
+          }
+        ],
+        "original_case_priors_by_route": {
+          "14": {
+            "mean": 0.08980677149454702,
+            "std": 3.709544485936308,
+            "cancel_rate": 0.0
+          },
+          "236": {
+            "mean": 1.2621712367095692,
+            "std": 1.3374785169164265,
+            "cancel_rate": 0.0
+          },
+          "9": {
+            "mean": 0.9947699252499758,
+            "std": 2.5504870702813887,
+            "cancel_rate": 0.0
+          }
+        },
+        "generated_trip_factor_laws": {
+          "1008.TA.91-14-E-j23-1.6.H": {
+            "route": "14",
+            "delay_offset": -5,
+            "delay_probs": [
+              0.0004972837012187318,
+              0.001087856275477328,
+              0.002235606751199442,
+              0.004315944967809477,
+              0.007827318017932237,
+              0.01333541866628529,
+              0.02134307180721262,
+              0.03208956212463386,
+              0.04532389777585302,
+              0.06013776817702972,
+              0.07495902978321979,
+              0.08777224399354157,
+              0.09654883585131907,
+              0.09976850772265992,
+              0.09684930443470571,
+              0.08831940417078325,
+              0.07566104754664134,
+              0.06088988645508169,
+              0.04603356117234331,
+              0.03269343683917928,
+              0.02181238609150291,
+              0.013671065691218946,
+              0.00804930083123368,
+              0.004452157733987221,
+              0.00231334028527518,
+              0.0011291849839049723,
+              0.0005177823740180996,
+              0.00022304167890361548,
+              9.025710169114471e-05,
+              3.431099687958147e-05,
+              1.2252984498262473e-05,
+              4.110617120191114e-06,
+              1.2954741879650615e-06,
+              3.835368495709385e-07,
+              1.0666993337377216e-07,
+              2.7869780353167697e-08,
+              6.84040259382356e-09,
+              1.5771985709525315e-09,
+              3.416234558567983e-10,
+              6.951292820081628e-11,
+              1.3287402166994022e-11,
+              2.386004021574283e-12,
+              4.0249348743851346e-13,
+              6.378273514755645e-14,
+              9.495197771507496e-15,
+              1.327888121131898e-15,
+              1.7445183889157311e-16,
+              2.1530108201186656e-17,
+              2.4961660263716396e-18,
+              2.718675155790303e-19,
+              2.781619766565103e-20,
+              2.673589974855555e-21,
+              2.4140621077009065e-22,
+              2.0476638782769768e-23,
+              1.6316443223826394e-24,
+              1.2213746837751737e-25,
+              8.588729570005304e-27,
+              5.6736891503772335e-28,
+              3.5209409571830503e-29,
+              2.0526199315396904e-30,
+              1.1241258527804741e-31,
+              5.783329345373805e-33,
+              2.7951010211111906e-34,
+              1.2690352558887284e-35,
+              5.412606582539972e-37,
+              2.168681775768547e-38,
+              8.162849575128391e-40,
+              2.8863191561507836e-41,
+              9.587458673699402e-43,
+              2.991708346386408e-44
+            ],
+            "cancel_prob": 0.2,
+            "shared_within_trip": true,
+            "independent_between_trips": true
+          },
+          "103.TA.91-9-I-j23-1.21.H": {
+            "route": "9",
+            "delay_offset": -5,
+            "delay_probs": [
+              9.398980071287351e-05,
+              0.00023163269525895222,
+              0.0005362602265874058,
+              0.0011662936443449855,
+              0.0023828506640043694,
+              0.004573433165462387,
+              0.008246021125742567,
+              0.013967000356738776,
+              0.0222238061519771,
+              0.03321928886611153,
+              0.046646473556963164,
+              0.06153240609739141,
+              0.07625100518028148,
+              0.08876542639076893,
+              0.09707305752598683,
+              0.09972640625587206,
+              0.09624501048188763,
+              0.08725752173121504,
+              0.07431630679358843,
+              0.05945959662720338,
+              0.044690621388012164,
+              0.03155494464836413,
+              0.020930280423907918,
+              0.01304185196400263,
+              0.007634139302809683,
+              0.004197952202206552,
+              0.0021685602522561395,
+              0.001052354571600176,
+              0.0004797437059686967,
+              0.0002054532777178435,
+              8.265582359419503e-05,
+              3.12385189894626e-05,
+              1.1090828993215852e-05,
+              3.6990838601690006e-06,
+              1.1589933391523756e-06,
+              3.4113344324702364e-07,
+              9.432444326715236e-08,
+              2.4500830065357933e-08,
+              5.9785234983221274e-09,
+              1.3704515231555986e-09,
+              2.9511413420175576e-10,
+              5.969980838486902e-11,
+              1.134520791234288e-11,
+              2.025389601895989e-12,
+              3.3967320399630764e-13,
+              5.35143918529832e-14,
+              7.920206335661784e-15,
+              1.1011817172901797e-15,
+              1.4382622560900607e-16,
+              1.7647117187536604e-17,
+              2.034070731357497e-18,
+              2.2024949768634795e-19,
+              2.2403733471489976e-20,
+              2.1408313854300853e-21,
+              1.921768734934215e-22,
+              1.6206020317267474e-23,
+              1.2838320972957765e-24,
+              9.554251617811917e-26,
+              6.679465555221437e-27,
+              4.386754695031119e-28,
+              2.706459791638093e-29,
+              1.5686151461088804e-30,
+              8.540589018956786e-32,
+              4.368334013610218e-33,
+              2.098942046649146e-34,
+              9.474180439809024e-36,
+              4.017347973122249e-37,
+              1.6002721417703324e-38,
+              5.988317710540756e-40,
+              2.1050984795242044e-41
+            ],
+            "cancel_prob": 0.2,
+            "shared_within_trip": true,
+            "independent_between_trips": true
+          },
+          "1056.TA.96-180-2-j23-1.4.R": {
+            "route": "236",
+            "delay_offset": -5,
+            "delay_probs": [
+              0.00016918559365902922,
+              0.0004005072670144303,
+              0.0008906642411362907,
+              0.001860690871850182,
+              0.0036516658719535204,
+              0.006732315077974404,
+              0.011659889333696102,
+              0.018970597893257286,
+              0.02899507281998442,
+              0.04163168451277133,
+              0.05615395616680082,
+              0.07115301844544242,
+              0.08469599862744155,
+              0.09470852055688843,
+              0.0994882534938181,
+              0.0981773162606417,
+              0.0910137691925155,
+              0.07926101680350132,
+              0.06484384713828295,
+              0.04983500453456125,
+              0.03597964100771835,
+              0.02440257995164038,
+              0.01554788278334391,
+              0.00930600681228876,
+              0.005232534124523774,
+              0.0027638684438350274,
+              0.0013714477311984868,
+              0.0006392897602263999,
+              0.0002799450746576937,
+              0.00011516075634537845,
+              4.450335791154585e-05,
+              1.6156141508137906e-05,
+              5.509841561503468e-06,
+              1.7652132057416106e-06,
+              5.312657516889311e-07,
+              1.5020454244980194e-07,
+              3.989430544600036e-08,
+              9.953947484159087e-09,
+              2.3331162400501707e-09,
+              5.13728906249888e-10,
+              1.0626450520721999e-10,
+              2.0649000774552127e-11,
+              3.769349880525451e-12,
+              6.463837913299296e-13,
+              1.0412884672159384e-13,
+              1.575825972229018e-14,
+              2.240278673924273e-15,
+              2.9919369009514753e-16,
+              3.7536987047001773e-17,
+              4.42408014336746e-18,
+              4.898274911002421e-19,
+              5.094715309443764e-20,
+              4.977981527743787e-21,
+              4.5692322714004395e-22,
+              3.939941605139875e-23,
+              3.191485896666215e-24,
+              2.4285814250250005e-25,
+              1.736077079149156e-26,
+              1.165848001123907e-27,
+              7.354809975985416e-29,
+              4.358705990729218e-30,
+              2.42661171094978e-31,
+              1.2691109693460868e-32,
+              6.235273408057994e-34,
+              2.8778489801664896e-35,
+              1.2477773364347144e-36,
+              5.082329071737834e-38,
+              1.9446661939904453e-39,
+              6.990108911812657e-41,
+              2.3603663539590218e-42
+            ],
+            "cancel_prob": 0.2,
+            "shared_within_trip": true,
+            "independent_between_trips": true
+          }
+        },
+        "archived_realization_for_trace_check_only": {
+          "280": {
+            "delay": 6,
+            "canceled": false,
+            "departure": 486,
+            "arrival": 488
+          },
+          "281": {
+            "delay": 6,
+            "canceled": false,
+            "departure": 488,
+            "arrival": 489
+          },
+          "282": {
+            "delay": 6,
+            "canceled": false,
+            "departure": 490,
+            "arrival": 491
+          },
+          "283": {
+            "delay": 6,
+            "canceled": false,
+            "departure": 491,
+            "arrival": 492
+          },
+          "284": {
+            "delay": 6,
+            "canceled": false,
+            "departure": 493,
+            "arrival": 495
+          },
+          "285": {
+            "delay": 6,
+            "canceled": false,
+            "departure": 495,
+            "arrival": 497
+          },
+          "286": {
+            "delay": 6,
+            "canceled": false,
+            "departure": 497,
+            "arrival": 498
+          },
+          "287": {
+            "delay": 6,
+            "canceled": false,
+            "departure": 498,
+            "arrival": 500
+          },
+          "288": {
+            "delay": 6,
+            "canceled": false,
+            "departure": 500,
+            "arrival": 502
+          },
+          "289": {
+            "delay": 6,
+            "canceled": false,
+            "departure": 503,
+            "arrival": 504
+          },
+          "290": {
+            "delay": 6,
+            "canceled": false,
+            "departure": 504,
+            "arrival": 506
+          },
+          "291": {
+            "delay": 6,
+            "canceled": false,
+            "departure": 506,
+            "arrival": 507
+          },
+          "292": {
+            "delay": 6,
+            "canceled": false,
+            "departure": 508,
+            "arrival": 509
+          },
+          "293": {
+            "delay": 6,
+            "canceled": false,
+            "departure": 509,
+            "arrival": 510
+          },
+          "294": {
+            "delay": 6,
+            "canceled": false,
+            "departure": 510,
+            "arrival": 511
+          },
+          "295": {
+            "delay": 6,
+            "canceled": false,
+            "departure": 511,
+            "arrival": 512
+          },
+          "296": {
+            "delay": 6,
+            "canceled": false,
+            "departure": 512,
+            "arrival": 513
+          },
+          "699": {
+            "delay": 4,
+            "canceled": false,
+            "departure": 490,
+            "arrival": 491
+          },
+          "700": {
+            "delay": 4,
+            "canceled": false,
+            "departure": 491,
+            "arrival": 492
+          },
+          "701": {
+            "delay": 4,
+            "canceled": false,
+            "departure": 493,
+            "arrival": 494
+          },
+          "702": {
+            "delay": 4,
+            "canceled": false,
+            "departure": 494,
+            "arrival": 495
+          },
+          "703": {
+            "delay": 4,
+            "canceled": false,
+            "departure": 495,
+            "arrival": 496
+          },
+          "704": {
+            "delay": 4,
+            "canceled": false,
+            "departure": 497,
+            "arrival": 498
+          },
+          "705": {
+            "delay": 4,
+            "canceled": false,
+            "departure": 498,
+            "arrival": 499
+          },
+          "706": {
+            "delay": 4,
+            "canceled": false,
+            "departure": 500,
+            "arrival": 501
+          },
+          "707": {
+            "delay": 4,
+            "canceled": false,
+            "departure": 501,
+            "arrival": 501
+          },
+          "708": {
+            "delay": 4,
+            "canceled": false,
+            "departure": 502,
+            "arrival": 502
+          },
+          "1087": {
+            "delay": 4,
+            "canceled": false,
+            "departure": 488,
+            "arrival": 489
+          },
+          "1088": {
+            "delay": 4,
+            "canceled": false,
+            "departure": 490,
+            "arrival": 490
+          },
+          "1089": {
+            "delay": 4,
+            "canceled": false,
+            "departure": 491,
+            "arrival": 492
+          },
+          "1090": {
+            "delay": 4,
+            "canceled": false,
+            "departure": 492,
+            "arrival": 495
+          },
+          "1091": {
+            "delay": 4,
+            "canceled": false,
+            "departure": 496,
+            "arrival": 497
+          },
+          "1092": {
+            "delay": 4,
+            "canceled": false,
+            "departure": 497,
+            "arrival": 499
+          },
+          "1093": {
+            "delay": 4,
+            "canceled": false,
+            "departure": 499,
+            "arrival": 502
+          },
+          "1094": {
+            "delay": 4,
+            "canceled": false,
+            "departure": 502,
+            "arrival": 503
+          },
+          "1095": {
+            "delay": 4,
+            "canceled": false,
+            "departure": 504,
+            "arrival": 505
+          },
+          "1096": {
+            "delay": 4,
+            "canceled": false,
+            "departure": 505,
+            "arrival": 507
+          },
+          "1097": {
+            "delay": 4,
+            "canceled": false,
+            "departure": 508,
+            "arrival": 509
+          },
+          "1098": {
+            "delay": 4,
+            "canceled": false,
+            "departure": 509,
+            "arrival": 512
+          }
+        },
+        "information_warning": "Removing other trips changes the local capped publisher. Do not call this the full archived conditional optimum without modeling the receipt history. Message timestamps are event times, not receipt times."
+      }
+    }
+  ],
+  "next_exact_panel": "Use the extracted 2-3-trip subgraphs, condition only on the supplied causal prefix, and keep one delay per trip. Retain missed-attempt recovery. Quantizing the supplied 70-bin laws is an explicit new finite approximation, not the original exact generating model."
+}

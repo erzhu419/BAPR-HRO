@@ -1,0 +1,504 @@
+{
+  "scope": "Two fixed public histories on the full archived 2000-connection graph.",
+  "tail": "Historical nominal earliest-arrival policy, frozen fitted route parameters and historical five-by-conditional-arrival-mean menus after the forced root action.",
+  "p_A_F": "p is analytic first-attempt boarding mass; A is exact capped journey loss conditional on boarding a direct leg; F averages the deployable frozen tail conditional on first-attempt failure. Q=p*A+(1-p)*F.",
+  "laws": "Fitted and original generated trip laws are conditioned on the identical received history. Both use the fitted public tail policy. The generated law is used in retrospective evaluation only.",
+  "uncertainty": "Intervals describe Monte Carlo numerical error for a fixed policy and law. Paired differences use matched conditional-bank indices and seeds. Zero standard error on a sampled failure tail records identical observed draws. The deterministic direct branch is marked by zero failure rollouts.",
+  "failure_draws_per_action_and_law": 256,
+  "conditional_sampling_seed": 99108,
+  "cases": [
+    {
+      "name": "primary_002",
+      "source": "experiments/continuation_v1/matched_results_methods/case_002_conditioned_rescue.json",
+      "spec": [
+        "2023-10-07",
+        false,
+        "Zürich, Stauffacher",
+        "Zürich, Triemli",
+        711,
+        120,
+        5
+      ],
+      "query": 67,
+      "state": {
+        "stop": "Zürich, Schaufelbergerstrasse",
+        "time": 535,
+        "onboard_trip": "1000.TA.91-14-E-j23-1.6.H",
+        "last_arrival": 535
+      },
+      "archived_selected": 1927,
+      "archived_menu": [
+        1927,
+        1467,
+        229,
+        221,
+        948
+      ],
+      "last_poll": {
+        "stop": 320218085,
+        "receipt_time": 535,
+        "event_ids": [
+          "67:arrival",
+          "68:departure"
+        ]
+      },
+      "actions": {
+        "1927": {
+          "old_menu_member": true,
+          "historical_pool_rank": 1,
+          "route": "236",
+          "trip_id": "11.TA.96-180-2-j23-1.1.H",
+          "scheduled_departure": 489,
+          "scheduled_arrival": 491,
+          "same_trip": false,
+          "destination_of_leg": "Zürich, Triemli",
+          "historical_eight_worlds": {
+            "p_board": 0.0,
+            "A": null,
+            "F": 76.875,
+            "Q": 76.875
+          },
+          "fitted": {
+            "p_board_exact": 0.0,
+            "A_capped_loss_given_board": null,
+            "F_capped_loss_given_first_failure": {
+              "mean": 61.4140625,
+              "mc_se": 1.6062841387184295,
+              "approximate_mc_95_interval": [
+                58.265745588111876,
+                64.56237941188812
+              ]
+            },
+            "Q": {
+              "mean": 61.4140625,
+              "mc_se": 1.6062841387184295,
+              "approximate_mc_95_interval": [
+                58.265745588111876,
+                64.56237941188812
+              ]
+            },
+            "failure_rollouts": 256,
+            "ready_time": 537
+          },
+          "generator": {
+            "p_board_exact": 0.0,
+            "A_capped_loss_given_board": null,
+            "F_capped_loss_given_first_failure": {
+              "mean": 72.26171875,
+              "mc_se": 2.108018453937436,
+              "approximate_mc_95_interval": [
+                68.13000258028262,
+                76.39343491971738
+              ]
+            },
+            "Q": {
+              "mean": 72.26171874999999,
+              "mc_se": 2.1080184539374356,
+              "approximate_mc_95_interval": [
+                68.1300025802826,
+                76.39343491971736
+              ]
+            },
+            "failure_rollouts": 256,
+            "ready_time": 537
+          },
+          "signed_score_errors": {
+            "historical_eight_minus_fitted": 15.4609375,
+            "fitted_minus_generator": {
+              "mean": -10.847656249999982,
+              "mc_se": 1.830698273114297,
+              "approximate_mc_95_interval": [
+                -14.435824865304005,
+                -7.25948763469596
+              ]
+            },
+            "historical_eight_minus_generator": 4.613281250000014
+          }
+        },
+        "68": {
+          "old_menu_member": false,
+          "historical_pool_rank": 37,
+          "route": "14",
+          "trip_id": "1000.TA.91-14-E-j23-1.6.H",
+          "scheduled_departure": 536,
+          "scheduled_arrival": 537,
+          "same_trip": true,
+          "destination_of_leg": "Zürich, Triemli",
+          "historical_eight_worlds": {
+            "p_board": 1.0,
+            "A": 46.0,
+            "F": null,
+            "Q": 46.0
+          },
+          "fitted": {
+            "p_board_exact": 1.0,
+            "A_capped_loss_given_board": 46.0,
+            "F_capped_loss_given_first_failure": null,
+            "Q": {
+              "mean": 46.0,
+              "mc_se": 0.0,
+              "approximate_mc_95_interval": [
+                46.0,
+                46.0
+              ]
+            },
+            "failure_rollouts": 0,
+            "ready_time": 535
+          },
+          "generator": {
+            "p_board_exact": 1.0,
+            "A_capped_loss_given_board": 46.0,
+            "F_capped_loss_given_first_failure": null,
+            "Q": {
+              "mean": 46.0,
+              "mc_se": 0.0,
+              "approximate_mc_95_interval": [
+                46.0,
+                46.0
+              ]
+            },
+            "failure_rollouts": 0,
+            "ready_time": 535
+          },
+          "signed_score_errors": {
+            "historical_eight_minus_fitted": 0.0,
+            "fitted_minus_generator": {
+              "mean": 0.0,
+              "mc_se": 0.0,
+              "approximate_mc_95_interval": [
+                0.0,
+                0.0
+              ]
+            },
+            "historical_eight_minus_generator": 0.0
+          }
+        },
+        "1304": {
+          "old_menu_member": false,
+          "historical_pool_rank": 38,
+          "route": "14",
+          "trip_id": "1066.TA.91-14-E-j23-1.6.H",
+          "scheduled_departure": 536,
+          "scheduled_arrival": 537,
+          "same_trip": false,
+          "destination_of_leg": "Zürich, Triemli",
+          "historical_eight_worlds": {
+            "p_board": 0.625,
+            "A": 51.0,
+            "F": 120.0,
+            "Q": 76.875
+          },
+          "fitted": {
+            "p_board_exact": 0.7807650026771351,
+            "A_capped_loss_given_board": 50.19270205677049,
+            "F_capped_loss_given_first_failure": {
+              "mean": 120.0,
+              "mc_se": 0.0,
+              "approximate_mc_95_interval": [
+                120.0,
+                120.0
+              ]
+            },
+            "Q": {
+              "mean": 65.49690483447083,
+              "mc_se": 8.89918241974143e-16,
+              "approximate_mc_95_interval": [
+                65.49690483447083,
+                65.49690483447083
+              ]
+            },
+            "failure_rollouts": 256,
+            "ready_time": 537
+          },
+          "generator": {
+            "p_board_exact": 0.5985832837274789,
+            "A_capped_loss_given_board": 48.62781899726965,
+            "F_capped_loss_given_first_failure": {
+              "mean": 120.0,
+              "mc_se": 0.0,
+              "approximate_mc_95_interval": [
+                120.0,
+                120.0
+              ]
+            },
+            "Q": {
+              "mean": 77.27780552859369,
+              "mc_se": 8.89918241974143e-16,
+              "approximate_mc_95_interval": [
+                77.27780552859369,
+                77.27780552859369
+              ]
+            },
+            "failure_rollouts": 256,
+            "ready_time": 537
+          },
+          "signed_score_errors": {
+            "historical_eight_minus_fitted": 11.378095165529174,
+            "fitted_minus_generator": {
+              "mean": -11.780900694122835,
+              "mc_se": 0.0,
+              "approximate_mc_95_interval": [
+                -11.780900694122835,
+                -11.780900694122835
+              ]
+            },
+            "historical_eight_minus_generator": -0.4028055285936887
+          }
+        }
+      },
+      "ranking_differences": [
+        {
+          "left_minus_right": [
+            1927,
+            68
+          ],
+          "historical_eight": 30.875,
+          "fitted": {
+            "mean": 15.4140625,
+            "mc_se": 1.6062841387184295,
+            "approximate_mc_95_interval": [
+              12.265745588111878,
+              18.562379411888124
+            ]
+          },
+          "generator": {
+            "mean": 26.261718749999986,
+            "mc_se": 2.1080184539374356,
+            "approximate_mc_95_interval": [
+              22.130002580282614,
+              30.393434919717357
+            ]
+          }
+        },
+        {
+          "left_minus_right": [
+            1304,
+            68
+          ],
+          "historical_eight": 30.875,
+          "fitted": {
+            "mean": 19.496904834470847,
+            "mc_se": 4.449591209870715e-16,
+            "approximate_mc_95_interval": [
+              19.496904834470847,
+              19.496904834470847
+            ]
+          },
+          "generator": {
+            "mean": 31.277805528593664,
+            "mc_se": 6.674386814806071e-16,
+            "approximate_mc_95_interval": [
+              31.277805528593664,
+              31.277805528593664
+            ]
+          }
+        }
+      ],
+      "wall_seconds": 38.36343799298629
+    },
+    {
+      "name": "independent_001",
+      "source": "experiments/continuation_v1/independent_results_methods/case_001_conditioned_rescue.json",
+      "spec": [
+        "2023-10-15",
+        false,
+        "Zürich, Stauffacher",
+        "Zürich, Triemli",
+        913,
+        120,
+        5
+      ],
+      "query": 48,
+      "state": {
+        "stop": "Zürich, Schaufelbergerstrasse",
+        "time": 524,
+        "onboard_trip": "101.TA.96-180-2-j23-1.1.H",
+        "last_arrival": 522
+      },
+      "archived_selected": 1304,
+      "archived_menu": [
+        1771,
+        1795,
+        68,
+        1304
+      ],
+      "last_poll": {
+        "stop": 320218085,
+        "receipt_time": 524,
+        "event_ids": []
+      },
+      "actions": {
+        "68": {
+          "old_menu_member": true,
+          "historical_pool_rank": 3,
+          "route": "14",
+          "trip_id": "1000.TA.91-14-E-j23-1.6.H",
+          "scheduled_departure": 536,
+          "scheduled_arrival": 537,
+          "same_trip": false,
+          "destination_of_leg": "Zürich, Triemli",
+          "historical_eight_worlds": {
+            "p_board": 0.375,
+            "A": 44.666666666666664,
+            "F": 50.0,
+            "Q": 48.0
+          },
+          "fitted": {
+            "p_board_exact": 0.4613250061933467,
+            "A_capped_loss_given_board": 45.38333249734769,
+            "F_capped_loss_given_first_failure": {
+              "mean": 50.39453125,
+              "mc_se": 0.4080822621932477,
+              "approximate_mc_95_interval": [
+                49.59469001610123,
+                51.19437248389877
+              ]
+            },
+            "Q": {
+              "mean": 48.08273995439658,
+              "mc_se": 0.2198237100595527,
+              "approximate_mc_95_interval": [
+                47.65188548267986,
+                48.5135944261133
+              ]
+            },
+            "failure_rollouts": 256,
+            "ready_time": 524
+          },
+          "generator": {
+            "p_board_exact": 0.5603753221035419,
+            "A_capped_loss_given_board": 45.33752838370357,
+            "F_capped_loss_given_first_failure": {
+              "mean": 49.25,
+              "mc_se": 0.11464459146833389,
+              "approximate_mc_95_interval": [
+                49.025296600722065,
+                49.474703399277935
+              ]
+            },
+            "Q": {
+              "mean": 47.05754745779693,
+              "mc_se": 0.05040059159683737,
+              "approximate_mc_95_interval": [
+                46.958762298267125,
+                47.15633261732673
+              ]
+            },
+            "failure_rollouts": 256,
+            "ready_time": 524
+          },
+          "signed_score_errors": {
+            "historical_eight_minus_fitted": -0.08273995439657966,
+            "fitted_minus_generator": {
+              "mean": 1.025192496599647,
+              "mc_se": 0.2016698335450614,
+              "approximate_mc_95_interval": [
+                0.6299196228513266,
+                1.4204653703479675
+              ]
+            },
+            "historical_eight_minus_generator": 0.9424525422030712
+          }
+        },
+        "1304": {
+          "old_menu_member": true,
+          "historical_pool_rank": 4,
+          "route": "14",
+          "trip_id": "1066.TA.91-14-E-j23-1.6.H",
+          "scheduled_departure": 536,
+          "scheduled_arrival": 537,
+          "same_trip": false,
+          "destination_of_leg": "Zürich, Triemli",
+          "historical_eight_worlds": {
+            "p_board": 0.5,
+            "A": 45.5,
+            "F": 50.0,
+            "Q": 47.75
+          },
+          "fitted": {
+            "p_board_exact": 0.4613250061933467,
+            "A_capped_loss_given_board": 45.38333249734769,
+            "F_capped_loss_given_first_failure": {
+              "mean": 49.796875,
+              "mc_se": 0.128113043440197,
+              "approximate_mc_95_interval": [
+                49.54577343485722,
+                50.04797656514278
+              ]
+            },
+            "Q": {
+              "mean": 47.760797477629325,
+              "mc_se": 0.06901129288169955,
+              "approximate_mc_95_interval": [
+                47.62553534358119,
+                47.89605961167746
+              ]
+            },
+            "failure_rollouts": 256,
+            "ready_time": 524
+          },
+          "generator": {
+            "p_board_exact": 0.5603753221035419,
+            "A_capped_loss_given_board": 45.33752838370357,
+            "F_capped_loss_given_first_failure": {
+              "mean": 49.18359375,
+              "mc_se": 0.10238957868541224,
+              "approximate_mc_95_interval": [
+                48.982910175776595,
+                49.384277324223405
+              ]
+            },
+            "Q": {
+              "mean": 47.028353631530365,
+              "mc_se": 0.04501298554952847,
+              "approximate_mc_95_interval": [
+                46.94012817985329,
+                47.11657908320744
+              ]
+            },
+            "failure_rollouts": 256,
+            "ready_time": 524
+          },
+          "signed_score_errors": {
+            "historical_eight_minus_fitted": -0.010797477629324703,
+            "fitted_minus_generator": {
+              "mean": 0.7324438460989514,
+              "mc_se": 0.04130387903376512,
+              "approximate_mc_95_interval": [
+                0.6514882431927718,
+                0.8133994490051311
+              ]
+            },
+            "historical_eight_minus_generator": 0.721646368469635
+          }
+        }
+      },
+      "ranking_differences": [
+        {
+          "left_minus_right": [
+            1304,
+            68
+          ],
+          "historical_eight": -0.25,
+          "fitted": {
+            "mean": -0.3219424767672574,
+            "mc_se": 0.21514751040105914,
+            "approximate_mc_95_interval": [
+              -0.7436315971533334,
+              0.09974664361881852
+            ]
+          },
+          "generator": {
+            "mean": -0.029193826266561723,
+            "mc_se": 0.05068968612221835,
+            "approximate_mc_95_interval": [
+              -0.12854561106610968,
+              0.07015795853298624
+            ]
+          }
+        }
+      ],
+      "wall_seconds": 5.4726952919736505
+    }
+  ]
+}

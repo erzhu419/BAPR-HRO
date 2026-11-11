@@ -1,123 +1,68 @@
-"""Build per-day delay distributions for the 35 days of GTFS-RT data.
+"""Build route-ID summaries of unique predictions and explicit trip statuses.
 
-Parallel version: 15 worker processes via multiprocessing.Pool.
-
-For each day's tar.bz2 archive, extract delay records and aggregate
-per route → save a dict of:
-
-    per_day_distributions[YYYY-MM-DD][route_short_name] = {
-        'mean': float, 'std': float, 'cancel_rate': float, 'n_obs': int
-    }
+Outputs are forecast-calibrated simulation inputs, not realized event replay.
+Historical proxy-based pickles are preserved; corrected files use a new name.
 """
-
-import sys, os, pickle, time
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../.."))
-
-import numpy as np
-from collections import defaultdict
+import argparse
+import json
+import os
+import pickle
+import sys
 from multiprocessing import Pool
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '../..'))
 
-# Worker imports (must be importable from worker subprocess)
-from src.gtfs_rt_parser import process_day
-from src.gtfs_parser import load_routes
+from src.gtfs_rt_parser import load_route_metadata, process_day, summarize_predictions
 
-
-# Global state set per worker
-_ROUTE_NAMES = None
+_ROUTE_METADATA = None
+_ROUTE_IDS = None
 
 
-def _init_worker(route_names: dict):
-    global _ROUTE_NAMES
-    _ROUTE_NAMES = route_names
+def _init_worker(route_metadata, route_ids=None):
+    global _ROUTE_METADATA, _ROUTE_IDS
+    _ROUTE_METADATA = route_metadata
+    _ROUTE_IDS = route_ids
 
 
 def _build_one_day(args):
-    """Worker: process one day. Returns (date, dist_dict)."""
     date, tar_path, sample_interval = args
-    try:
-        recs = process_day(tar_path, sample_interval=sample_interval)
-    except Exception as e:
-        return date, {}, f'process_day error: {e}'
-
-    delays_by_name: dict[str, list[float]] = defaultdict(list)
-    for r in recs:
-        rid = r.get('route_id')
-        if not rid:
-            continue
-        d = r.get('delay_seconds', 0) / 60.0
-        if abs(d) > 120:
-            continue
-        name = _ROUTE_NAMES.get(rid, rid) if _ROUTE_NAMES else rid
-        delays_by_name[name].append(d)
-
-    out = {}
-    for name, dlist in delays_by_name.items():
-        if len(dlist) < 5:
-            continue
-        arr = np.asarray(dlist, dtype=float)
-        n_cancel = int((np.abs(arr) > 30).sum())
-        out[name] = {
-            'mean': float(arr.mean()),
-            'std': float(arr.std() if arr.size > 1 else 1.0),
-            'cancel_rate': n_cancel / len(arr),
-            'n_obs': len(arr),
-        }
-    return date, out, None
+    records = process_day(tar_path, sample_interval=sample_interval, route_ids=_ROUTE_IDS,
+                          service_date=date.replace('-', ''))
+    summaries = summarize_predictions(records, _ROUTE_METADATA)
+    return date, summaries
 
 
-def main(rt_dir: str = 'data/swiss_rt/gtfs-rt',
-         out_path: str = 'data/per_day_distributions.pkl',
-         sample_interval: int = 30,
-         n_workers: int = 15):
-    print(f'Loading routes ...', flush=True)
-    route_names = load_routes('data/swiss_gtfs')
-    print(f'Loaded {len(route_names)} route names.', flush=True)
-
-    tar_files = sorted([f for f in os.listdir(rt_dir) if f.endswith('.tar.bz2')])
-    print(f'{len(tar_files)} day files. Pool size = {n_workers}.', flush=True)
-
-    args_list = [
-        (tf.replace('.tar.bz2', ''),
-         os.path.join(rt_dir, tf),
-         sample_interval)
-        for tf in tar_files
-    ]
-
+def main(rt_dir='data/swiss_rt/gtfs-rt',
+         out_path='data/per_day_distributions_corrected.pkl',
+         sample_interval=30, n_workers=4, graph_identity=None, dates=None):
+    metadata = load_route_metadata('data/swiss_gtfs')
+    route_ids = None
+    if graph_identity is not None:
+        with open(graph_identity, encoding='utf-8') as handle:
+            by_trip = json.load(handle)['by_trip']
+        route_ids = {trip['route_id'] for trip in by_trip.values()}
+    inputs = [(f.removesuffix('.tar.bz2'), os.path.join(rt_dir, f), sample_interval)
+              for f in sorted(os.listdir(rt_dir)) if f.endswith('.tar.bz2')
+              and (dates is None or f.removesuffix('.tar.bz2') in dates)]
     per_day = {}
-    t0 = time.time()
-    with Pool(processes=n_workers,
-              initializer=_init_worker,
-              initargs=(route_names,)) as pool:
-        for i, (date, dist, err) in enumerate(
-                pool.imap_unordered(_build_one_day, args_list)):
-            if err:
-                print(f'  [{i+1}/{len(args_list)}] {date} FAILED: {err}', flush=True)
-                per_day[date] = {}
-            else:
-                print(f'  [{i+1}/{len(args_list)}] {date} -> {len(dist)} routes',
-                      flush=True)
-                per_day[date] = dist
-
-    elapsed = time.time() - t0
-    print(f'\nWall time: {elapsed:.1f}s', flush=True)
-
-    with open(out_path, 'wb') as f:
-        pickle.dump(per_day, f)
-    print(f'Saved to {out_path}', flush=True)
-
-    # Summary
-    print('\n=== Per-day summary ===', flush=True)
-    print(f"{'date':<12} {'routes':>7} {'mean_delay':>11} {'mean_cancel':>11}")
-    for d in sorted(per_day):
-        dist = per_day[d]
-        if not dist:
-            print(f'{d:<12} (empty)', flush=True)
-            continue
-        means = [v['mean'] for v in dist.values()]
-        cancels = [v['cancel_rate'] for v in dist.values()]
-        print(f'{d:<12} {len(dist):>7} {np.mean(means):>10.2f} '
-              f'{np.mean(cancels):>10.3f}', flush=True)
+    temporary = f'{out_path}.tmp'
+    with Pool(n_workers, initializer=_init_worker, initargs=(metadata, route_ids)) as pool:
+        for date, summaries in pool.imap_unordered(_build_one_day, inputs):
+            per_day[date] = summaries
+            with open(temporary, 'wb') as handle:
+                pickle.dump(per_day, handle)
+            os.replace(temporary, out_path)
+            print(f'{date}: {len(summaries)} route IDs', flush=True)
+    print(f'Saved {out_path}', flush=True)
 
 
 if __name__ == '__main__':
-    main()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--rt-dir', default='data/swiss_rt/gtfs-rt')
+    parser.add_argument('--output', default='data/per_day_distributions_corrected.pkl')
+    parser.add_argument('--sample-interval', type=int, default=30)
+    parser.add_argument('--workers', type=int, default=4)
+    parser.add_argument('--graph-identity', help='Restrict to exact route IDs from this graph identity JSON')
+    parser.add_argument('--dates', nargs='+', help='Service days in YYYY-MM-DD format')
+    args = parser.parse_args()
+    main(args.rt_dir, args.output, args.sample_interval, args.workers, args.graph_identity,
+         set(args.dates) if args.dates else None)

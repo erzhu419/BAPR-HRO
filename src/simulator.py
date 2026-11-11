@@ -10,6 +10,8 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 import numpy as np
 from typing import Optional
+from types import MappingProxyType
+from collections.abc import Mapping
 
 from .transit_graph import TransitGraph, Connection
 from .bocd.regime_detector import DelayObservation
@@ -39,6 +41,7 @@ class JourneyResult:
     n_replans: int = 0
     total_computation_ms: float = 0.0
     regime_changes_encountered: int = 0
+    observations: list[DelayObservation] = field(default_factory=list)
 
 
 @dataclass
@@ -88,17 +91,64 @@ def sample_actual_delay(connection: Connection, regime: str, rng: np.random.Gene
     if route in dists:
         info = dists[route]
         # Check cancellation
-        cancel_prob = info.get("cancel_prob", 0)
+        probs = info["delay_probs"]
+        # Either an explicit probability or a sub-PMF may encode cancellation.
+        cancel_prob = info.get("cancel_prob", max(0.0, 1.0 - float(probs.sum())))
         if cancel_prob > 0 and rng.random() < cancel_prob:
             return 999  # canceled
 
-        probs = info["delay_probs"]
+        if probs.sum() <= 0:
+            return 999
         offset = info.get("delay_offset", 0)
         probs_norm = probs / probs.sum()
         delay_idx = rng.choice(len(probs_norm), p=probs_norm)
         return offset + delay_idx
     else:
         return int(rng.normal(1, 2))
+
+
+@dataclass(frozen=True)
+class VehicleEvent:
+    """One immutable realization of a scheduled connection."""
+    delay: int
+    canceled: bool
+    departure: int
+    arrival: int
+
+
+@dataclass(frozen=True)
+class JourneyScenario:
+    """Exogenous trip realizations, sampled before any policy decision.
+
+    Segments on the same trip share a delay and cancellation outcome. The
+    regime at the trip's first scheduled departure determines its draw.
+    Pass the same scenario to all policies in a paired comparison.
+    """
+    events: Mapping[int, VehicleEvent]
+
+    def __post_init__(self):
+        object.__setattr__(self, "events", MappingProxyType(dict(self.events)))
+
+    @classmethod
+    def sample(cls, graph: TransitGraph, regime_schedule: RegimeSchedule,
+               rng: np.random.Generator) -> JourneyScenario:
+        trips = {}
+        events = {}
+        for c in sorted(graph.connections, key=lambda c: (c.dep_time, c.id)):
+            key = ("trip", c.trip_id) if c.trip_id else ("connection", c.id)
+            if key not in trips:
+                regime = regime_schedule.get_regime(c.dep_time)
+                trips[key] = sample_actual_delay(c, regime, rng)
+            delay = trips[key]
+            events[c.id] = VehicleEvent(
+                delay=delay, canceled=delay == 999,
+                departure=c.dep_time + delay if delay != 999 else c.dep_time,
+                arrival=c.arr_time + delay if delay != 999 else c.arr_time,
+            )
+        return cls(events)
+
+    def event(self, connection: Connection) -> VehicleEvent:
+        return self.events[connection.id]
 
 
 def generate_delay_observations(
@@ -108,46 +158,41 @@ def generate_delay_observations(
     regime: str,
     rng: np.random.Generator,
     n_obs: int = 5,
+    scenario: Optional[JourneyScenario] = None,
+    seen_events: Optional[set[str]] = None,
 ) -> list[DelayObservation]:
-    """Generate simulated GTFS-RT observations at a stop.
+    """Publish completed local vehicle events, with no future actual times.
 
-    Looks at connections departing from current_stop in the near future
-    and samples actual delays according to the current regime.
+    Cancellations are explicitly announced at scheduled departure. A caller
+    simulating more than one step supplies one scenario and a persistent set
+    of consumed event IDs. No forecasts are modeled by this interface.
     """
+    if scenario is None:
+        scenario = JourneyScenario.sample(graph, RegimeSchedule([(0, regime)]), rng)
     observations = []
-    nearby_conns = [c for c in graph.get_connections_from(current_stop)
-                    if current_time - 5 <= c.dep_time <= current_time + 15]
-    nearby_conns += [c for c in graph.get_connections_to(current_stop)
-                     if current_time - 10 <= c.arr_time <= current_time + 5]
-
-    # Note: removed global network sampling — it pollutes per-route beliefs
-    # with unrelated disruption signals. Real GTFS-RT observations are
-    # per-vehicle, so only nearby connections are observed.
-
-    for c in nearby_conns[:n_obs]:
-        delay = sample_actual_delay(c, regime, rng)
-        if delay == 999:
-            # Canceled: generate a "no-show" observation with very high delay.
-            # The bus was expected but never came — this is a strong surprise signal.
-            obs = DelayObservation(
-                route=c.route,
-                stop_id=current_stop,
-                scheduled_time=c.dep_time,
-                predicted_time=c.dep_time + 2,  # system predicted near on-time
-                actual_time=c.dep_time + 30,     # treat as 30 min delay (no-show)
-                timestamp=current_time,
-            )
-        else:
-            obs = DelayObservation(
-                route=c.route,
-                stop_id=current_stop,
-                scheduled_time=c.dep_time,
-                predicted_time=c.dep_time + max(0, delay - rng.integers(0, 3)),
-                actual_time=c.dep_time + delay,
-                timestamp=current_time,
-            )
-        observations.append(obs)
-
+    pending = []
+    for c in graph.get_connections_from(current_stop):
+        event = scenario.event(c)
+        pending.append((event.departure, c, "cancel" if event.canceled else "departure", c.dep_time))
+    for c in graph.get_connections_to(current_stop):
+        event = scenario.event(c)
+        if not event.canceled:
+            pending.append((event.arrival, c, "arrival", c.arr_time))
+    for actual, c, kind, scheduled in sorted(pending, key=lambda x: (x[0], x[1].id, x[2])):
+        event_id = f"{c.id}:{kind}"
+        if not current_time - 10 <= actual <= current_time:
+            continue
+        if seen_events is not None and event_id in seen_events:
+            continue
+        observations.append(DelayObservation(
+            route=c.route, stop_id=current_stop, scheduled_time=scheduled,
+            predicted_time=scheduled, actual_time=actual, timestamp=actual,
+            event_id=event_id, is_canceled=kind == "cancel",
+        ))
+        if seen_events is not None:
+            seen_events.add(event_id)
+        if len(observations) >= n_obs:
+            break
     return observations
 
 
@@ -160,6 +205,7 @@ def simulate_journey(
     regime_schedule: RegimeSchedule,
     rng: np.random.Generator,
     max_time: int = 300,  # max journey duration in minutes
+    scenario: Optional[JourneyScenario] = None,
 ) -> JourneyResult:
     """Simulate a passenger journey from source to destination.
 
@@ -168,6 +214,7 @@ def simulate_journey(
     At transfer stops, the adaptive router may re-plan.
     """
     events = []
+    observation_log = []
     current_stop = s_source
     current_time = t_depart
     n_transfers = 0
@@ -175,6 +222,12 @@ def simulate_journey(
     total_comp_ms = 0.0
     regime_changes = 0
     prev_regime = regime_schedule.get_regime(t_depart)
+    if scenario is None:
+        scenario = JourneyScenario.sample(graph, regime_schedule,
+            np.random.default_rng(int(rng.integers(0, 2**63))))
+    seen_events: set[str] = set()
+    current_trip = None
+    last_arrival = t_depart
 
     # Initial route computation
     decision = router.route(s_source, s_dest, t_depart)
@@ -182,7 +235,8 @@ def simulate_journey(
     events.append(JourneyEvent(current_time, current_stop, "depart",
                                details=f"Initial route computed"))
 
-    canceled_routes_at_stop: set[str] = set()  # routes known canceled at current stop
+    canceled_routes_at_stop: set[int] = set()  # individual connections, not entire lines
+    boarded_connection_ids: set[int] = set()
     prev_stop = -1
 
     while current_stop != s_dest and current_time < t_depart + max_time:
@@ -199,7 +253,9 @@ def simulate_journey(
 
         # Generate delay observations at current stop
         observations = generate_delay_observations(
-            graph, current_stop, current_time, current_regime, rng)
+            graph, current_stop, current_time, current_regime, rng,
+            scenario=scenario, seen_events=seen_events)
+        observation_log.extend(observations)
 
         # Re-plan only at transfer stops (stops served by multiple routes)
         is_transfer = len(graph.get_routes_at_stop(current_stop)) > 1
@@ -227,8 +283,9 @@ def simulate_journey(
         #   it means waiting a few extra minutes. The ranking reflects current
         #   regime awareness (after reweight).
         is_adaptive = hasattr(router, 'detector')
-        patience = 10
+        patience = 12
         boarded = False
+        action_completed = False
         tried_routes = set()
 
         # Real-world constraint: passenger only considers TOP-K alternatives
@@ -246,7 +303,7 @@ def simulate_journey(
                 continue
             if label.feasibility < 0.2:
                 continue
-            if c.route in canceled_routes_at_stop:
+            if c.id in canceled_routes_at_stop or c.id in boarded_connection_ids:
                 continue  # known canceled, don't try again
             if c.route in seen_routes:
                 continue
@@ -262,42 +319,71 @@ def simulate_journey(
                 continue
             tried_routes.add(c.route)
 
-            # Sample actual delay
-            delay = sample_actual_delay(c, current_regime, rng)
-            if delay == 999:
-                # Canceled. Blacklist this route at this stop and try others.
-                canceled_routes_at_stop.add(c.route)
-                current_time += patience
+            same_trip = current_trip is not None and c.trip_id == current_trip
+            ready = last_arrival + (0 if current_trip is None or same_trip
+                                   else graph.stops[current_stop].min_transfer_time)
+            current_time = min(t_depart + max_time, max(current_time, ready))
+            if current_time >= t_depart + max_time:
+                action_completed = True
+                break
+            event = scenario.event(c)
+            delay = event.delay
+            if event.canceled:
+                # Commit to the same waiting window before any outcome is
+                # visible; a scheduled cancellation announcement may end it.
+                if current_time < c.dep_time:
+                    wait_end = min(t_depart + max_time, current_time + patience)
+                    if c.dep_time > wait_end:
+                        current_time = wait_end
+                        action_completed = True
+                        events.append(JourneyEvent(current_time, current_stop, "wait_late",
+                                                   route=c.route, details=f"connection={c.id}; patience window"))
+                        break
+                    current_time = c.dep_time
+                canceled_routes_at_stop.add(c.id)
+                action_completed = True
                 events.append(JourneyEvent(
                     current_time, current_stop, "wait_cancel",
                     route=c.route,
-                    details=f"waited {patience}min, {c.route} canceled"))
+                    details=f"connection={c.id}; explicit cancellation"))
                 break  # back to main loop → replan → try with updated info
 
-            actual_dep = c.dep_time + delay
-            if actual_dep > current_time + patience:
-                current_time += patience
+            actual_dep = event.departure
+            wait_end = min(t_depart + max_time, current_time + patience)
+            if actual_dep > wait_end:
+                current_time = wait_end
+                action_completed = True
                 events.append(JourneyEvent(
                     current_time, current_stop, "wait_late",
                     route=c.route,
-                    details=f"dep={c.dep_time} actual={actual_dep}, too late"))
+                    details=f"connection={c.id}; patience window"))
                 break
 
             if actual_dep < current_time:
                 continue  # already left
 
-            actual_arr = c.arr_time + delay
+            actual_arr = event.arrival
+            if actual_dep > t_depart + max_time:
+                current_time = t_depart + max_time
+                break
 
             events.append(JourneyEvent(
                 actual_dep, current_stop, "board",
                 route=c.route,
                 details=f"→stop {c.arr_stop} (sched {c.dep_time}, actual {actual_dep})"))
+            boarded_connection_ids.add(c.id)
 
+            if actual_arr > t_depart + max_time:
+                current_time = t_depart + max_time
+                break
             current_time = actual_arr
             current_stop = c.arr_stop
+            transferred = current_trip is not None and not same_trip
+            n_transfers += int(transferred)
+            current_trip = c.trip_id or f"connection:{c.id}"
+            last_arrival = actual_arr
 
             if current_stop != s_dest:
-                n_transfers += 1
                 events.append(JourneyEvent(
                     current_time, current_stop, "arrive",
                     route=c.route,
@@ -306,7 +392,7 @@ def simulate_journey(
             boarded = True
             break  # exit the label loop after boarding
 
-        if not boarded:
+        if not boarded and not action_completed:
             # Nothing worked in this iteration, advance time slightly
             current_time += 1
 
@@ -325,4 +411,5 @@ def simulate_journey(
         n_replans=n_replans,
         total_computation_ms=total_comp_ms,
         regime_changes_encountered=regime_changes,
+        observations=observation_log,
     )

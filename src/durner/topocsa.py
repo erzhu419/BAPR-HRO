@@ -14,7 +14,7 @@ from typing import Optional
 import numpy as np
 
 from ..transit_graph import TransitGraph, StopLabel
-from ..pmf import PMF, componentwise_sum, prob_reachable
+from ..pmf import PMF, componentwise_sum, query_reachability
 from .preprocessing import topological_sort_with_cycle_cutting
 
 
@@ -57,8 +57,8 @@ def topocsa(
         t_end = t_source + 180  # 3-hour window
 
     # Step 1: Preprocessing - topological sort
-    ordered_ids, cuts = topological_sort_with_cycle_cutting(
-        graph, (t_source, t_end))
+    reach = query_reachability()
+    ordered_ids, cuts = topological_sort_with_cycle_cutting(graph, (t_source, t_end), reach)
 
     # Step 2: Initialize stop_labels for all stops
     stop_labels: dict[int, list[StopLabel]] = {sid: [] for sid in graph.stops}
@@ -69,11 +69,13 @@ def topocsa(
 
         if c.arr_distribution is None or c.dep_distribution is None:
             continue
+        if c.dep_distribution.total_prob < 1e-12 or c.arr_distribution.total_prob < 1e-12:
+            continue
 
         # Case 1: Connection arrives at destination
         if c.arr_stop == s_dest:
             feasibility = 1.0
-            dest_arrival = c.arr_distribution
+            dest_arrival = c.arr_distribution.normalize()
             mean_da = dest_arrival.mean()
 
             label = StopLabel(
@@ -105,8 +107,15 @@ def topocsa(
             c_next = graph.connections[label.connection_id]
 
             # P_success = P_feasible(c') · P_reachable(c, c')
-            p_reachable = prob_reachable(
-                c.arr_distribution, c_next.dep_distribution, transfer_time)
+            if (c.trip_id and c.trip_id == c_next.trip_id
+                    and c_next.dep_time >= c.arr_time):
+                # Staying aboard is not a transfer. Trip operation and delay
+                # are shared, rather than independent across its segments.
+                p_reachable = 1.0
+            else:
+                p_reachable = reach(
+                    c.arr_distribution.normalize(), c_next.dep_distribution,
+                    transfer_time)
             p_success = label.feasibility * p_reachable
 
             if p_success < 1e-10:
@@ -182,8 +191,8 @@ def _insert_departure_label(
     Labels are sorted by mean_dest_arrival in descending order (worst first,
     best last). This allows efficient iteration in reverse during the main loop.
 
-    Domination: label A dominates label B if A has both earlier departure AND
-    earlier mean destination arrival. Dominated labels are removed.
+    This implementation retains every connection. Equal arrival means do not
+    imply equivalent departure times, feasibility, or future options.
     """
     labels = stop_labels[dep_stop]
     mean_da = new_label.mean_dest_arrival
@@ -201,16 +210,4 @@ def _insert_departure_label(
         else:
             hi = mid
 
-    # Check domination: if the next label (later arrival) has later or equal
-    # departure time, the new label dominates it — but we use Durner's
-    # simplified approach: just insert and let the non-dominated property hold
-    # by mean_dest_arrival ordering.
-    if lo < len(labels) and abs(labels[lo].mean_dest_arrival - mean_da) < 0.01:
-        # Nearly identical mean arrival — skip to avoid redundancy
-        return
-
     labels.insert(lo, new_label)
-
-    # Remove dominated labels: any label with worse mean_dest_arrival
-    # that also has later departure. Simplified: keep all for now,
-    # since the main loop processes in order anyway.

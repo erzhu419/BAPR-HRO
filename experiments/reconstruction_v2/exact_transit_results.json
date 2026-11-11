@@ -1,0 +1,3565 @@
+{
+  "scope": "exact known-model diagnostics on two tiny archived Zurich subgraphs and four constructed worlds; not observed event replay or full-city computation",
+  "source": "data/zurich_wide.pkl",
+  "source_stops": 687,
+  "source_connections": 2000,
+  "source_load_ms": 17.853668017778546,
+  "departure": 490,
+  "information": "global cumulative occurred departure/arrival announcements; explicit cancellations at scheduled departure; no future actual times",
+  "timing_note": "tracemalloc enabled during solve; measurements describe this reference implementation, not an optimized routing baseline",
+  "cost": "actual elapsed duration when arrived, otherwise common timeout cap",
+  "tuning": "none; selection rule, four worlds and caps fixed before solving",
+  "inference": "deterministic finite-bank enumeration; no statistical population or real disruption benefit inference",
+  "research_gate": "not passed: small-subgraph support loss is diagnosed, full-network bottleneck and new algorithm value remain unestablished; no phase-four expansion",
+  "process_peak_rss_kib_cumulative": 5469160,
+  "cases": [
+    {
+      "provenance": {
+        "origin": "Zürich, Paradeplatz",
+        "destination": "Zürich, Goldbrunnenplatz",
+        "origin_id": 895684956,
+        "destination_id": 55894816,
+        "selection_rule": "first two archived through-trips by origin departure, destination arrival, trip ID; [490,510)",
+        "trips": [
+          {
+            "trip_id": "1068.TA.91-9-I-j23-1.4.H",
+            "origin_departure": 492,
+            "destination_arrival": 502,
+            "archived_segment_count": 15
+          },
+          {
+            "trip_id": "102.TA.91-9-I-j23-1.21.H",
+            "origin_departure": 501,
+            "destination_arrival": 510,
+            "archived_segment_count": 10
+          }
+        ],
+        "old_connection_id_to_subgraph_id": {
+          "526": 0,
+          "527": 1,
+          "528": 2,
+          "529": 3,
+          "530": 4,
+          "531": 5,
+          "532": 6,
+          "533": 7,
+          "534": 8,
+          "535": 9,
+          "1355": 10,
+          "1356": 11,
+          "1357": 12,
+          "1358": 13,
+          "1359": 14,
+          "1360": 15,
+          "1361": 16,
+          "1362": 17,
+          "1363": 18,
+          "1364": 19,
+          "1365": 20,
+          "1366": 21,
+          "1367": 22,
+          "1368": 23,
+          "1369": 24
+        },
+        "subgraph_stops": 18,
+        "subgraph_connections": 25,
+        "coverage": "all segments of selected trips present in the archived 2000-connection graph; full GTFS coverage not asserted"
+      },
+      "timeout_cap": 30,
+      "worlds": [
+        {
+          "name": "all_operate_on_schedule",
+          "canceled_trip": null,
+          "shared_delay": 0,
+          "probability": 0.25,
+          "events_by_subgraph_connection_id": {
+            "0": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 501,
+              "arrival": 502
+            },
+            "1": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 502,
+              "arrival": 503
+            },
+            "2": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 504,
+              "arrival": 505
+            },
+            "3": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 505,
+              "arrival": 506
+            },
+            "4": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 506,
+              "arrival": 507
+            },
+            "5": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 508,
+              "arrival": 509
+            },
+            "6": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 509,
+              "arrival": 510
+            },
+            "7": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 511,
+              "arrival": 512
+            },
+            "8": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 512,
+              "arrival": 512
+            },
+            "9": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 513,
+              "arrival": 513
+            },
+            "10": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 481,
+              "arrival": 482
+            },
+            "11": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 482,
+              "arrival": 483
+            },
+            "12": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 484,
+              "arrival": 485
+            },
+            "13": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 485,
+              "arrival": 487
+            },
+            "14": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 487,
+              "arrival": 489
+            },
+            "15": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 489,
+              "arrival": 491
+            },
+            "16": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 491,
+              "arrival": 492
+            },
+            "17": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 492,
+              "arrival": 493
+            },
+            "18": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 494,
+              "arrival": 495
+            },
+            "19": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 497,
+              "arrival": 498
+            },
+            "20": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 498,
+              "arrival": 499
+            },
+            "21": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 499,
+              "arrival": 501
+            },
+            "22": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 501,
+              "arrival": 502
+            },
+            "23": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 502,
+              "arrival": 503
+            },
+            "24": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 503,
+              "arrival": 504
+            }
+          }
+        },
+        {
+          "name": "primary_canceled",
+          "canceled_trip": "1068.TA.91-9-I-j23-1.4.H",
+          "shared_delay": 0,
+          "probability": 0.25,
+          "events_by_subgraph_connection_id": {
+            "0": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 501,
+              "arrival": 502
+            },
+            "1": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 502,
+              "arrival": 503
+            },
+            "2": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 504,
+              "arrival": 505
+            },
+            "3": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 505,
+              "arrival": 506
+            },
+            "4": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 506,
+              "arrival": 507
+            },
+            "5": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 508,
+              "arrival": 509
+            },
+            "6": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 509,
+              "arrival": 510
+            },
+            "7": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 511,
+              "arrival": 512
+            },
+            "8": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 512,
+              "arrival": 512
+            },
+            "9": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 513,
+              "arrival": 513
+            },
+            "10": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 481,
+              "arrival": 482
+            },
+            "11": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 482,
+              "arrival": 483
+            },
+            "12": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 484,
+              "arrival": 485
+            },
+            "13": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 485,
+              "arrival": 487
+            },
+            "14": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 487,
+              "arrival": 489
+            },
+            "15": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 489,
+              "arrival": 491
+            },
+            "16": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 491,
+              "arrival": 492
+            },
+            "17": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 492,
+              "arrival": 493
+            },
+            "18": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 494,
+              "arrival": 495
+            },
+            "19": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 497,
+              "arrival": 498
+            },
+            "20": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 498,
+              "arrival": 499
+            },
+            "21": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 499,
+              "arrival": 501
+            },
+            "22": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 501,
+              "arrival": 502
+            },
+            "23": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 502,
+              "arrival": 503
+            },
+            "24": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 503,
+              "arrival": 504
+            }
+          }
+        },
+        {
+          "name": "backup_canceled",
+          "canceled_trip": "102.TA.91-9-I-j23-1.21.H",
+          "shared_delay": 0,
+          "probability": 0.25,
+          "events_by_subgraph_connection_id": {
+            "0": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 501,
+              "arrival": 502
+            },
+            "1": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 502,
+              "arrival": 503
+            },
+            "2": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 504,
+              "arrival": 505
+            },
+            "3": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 505,
+              "arrival": 506
+            },
+            "4": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 506,
+              "arrival": 507
+            },
+            "5": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 508,
+              "arrival": 509
+            },
+            "6": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 509,
+              "arrival": 510
+            },
+            "7": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 511,
+              "arrival": 512
+            },
+            "8": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 512,
+              "arrival": 512
+            },
+            "9": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 513,
+              "arrival": 513
+            },
+            "10": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 481,
+              "arrival": 482
+            },
+            "11": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 482,
+              "arrival": 483
+            },
+            "12": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 484,
+              "arrival": 485
+            },
+            "13": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 485,
+              "arrival": 487
+            },
+            "14": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 487,
+              "arrival": 489
+            },
+            "15": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 489,
+              "arrival": 491
+            },
+            "16": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 491,
+              "arrival": 492
+            },
+            "17": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 492,
+              "arrival": 493
+            },
+            "18": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 494,
+              "arrival": 495
+            },
+            "19": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 497,
+              "arrival": 498
+            },
+            "20": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 498,
+              "arrival": 499
+            },
+            "21": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 499,
+              "arrival": 501
+            },
+            "22": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 501,
+              "arrival": 502
+            },
+            "23": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 502,
+              "arrival": 503
+            },
+            "24": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 503,
+              "arrival": 504
+            }
+          }
+        },
+        {
+          "name": "shared_six_minute_delay",
+          "canceled_trip": null,
+          "shared_delay": 6,
+          "probability": 0.25,
+          "events_by_subgraph_connection_id": {
+            "0": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 507,
+              "arrival": 508
+            },
+            "1": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 508,
+              "arrival": 509
+            },
+            "2": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 510,
+              "arrival": 511
+            },
+            "3": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 511,
+              "arrival": 512
+            },
+            "4": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 512,
+              "arrival": 513
+            },
+            "5": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 514,
+              "arrival": 515
+            },
+            "6": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 515,
+              "arrival": 516
+            },
+            "7": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 517,
+              "arrival": 518
+            },
+            "8": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 518,
+              "arrival": 518
+            },
+            "9": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 519,
+              "arrival": 519
+            },
+            "10": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 487,
+              "arrival": 488
+            },
+            "11": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 488,
+              "arrival": 489
+            },
+            "12": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 490,
+              "arrival": 491
+            },
+            "13": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 491,
+              "arrival": 493
+            },
+            "14": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 493,
+              "arrival": 495
+            },
+            "15": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 495,
+              "arrival": 497
+            },
+            "16": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 497,
+              "arrival": 498
+            },
+            "17": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 498,
+              "arrival": 499
+            },
+            "18": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 500,
+              "arrival": 501
+            },
+            "19": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 503,
+              "arrival": 504
+            },
+            "20": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 504,
+              "arrival": 505
+            },
+            "21": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 505,
+              "arrival": 507
+            },
+            "22": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 507,
+              "arrival": 508
+            },
+            "23": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 508,
+              "arrival": 509
+            },
+            "24": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 509,
+              "arrival": 510
+            }
+          }
+        }
+      ],
+      "excluded_whole_trip": "102.TA.91-9-I-j23-1.21.H",
+      "excluded_connection_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "selection_and_bank_ms": 1.9253760110586882,
+      "model_build_ms": 0.04373100819066167,
+      "full_causal_optimum": {
+        "value": 15.5,
+        "executed_policy_cost": 15.5,
+        "within_candidate_loss": 0.0,
+        "solve_ms": 421.6091420385055,
+        "solve_plus_policy_verification_ms": 430.5552300065756,
+        "peak_traced_python_bytes": 3870905,
+        "stats": {
+          "transition_evaluations": 833,
+          "action_evaluations": 795,
+          "information_nodes_solved": 741,
+          "value_cache_hits": 150,
+          "q_cache_hits": 100
+        }
+      },
+      "restricted_causal_optimum": {
+        "value": 18.0,
+        "executed_policy_cost": 18.0,
+        "within_candidate_loss": 0.0,
+        "solve_ms": 126.52276601875201,
+        "solve_plus_policy_verification_ms": 137.0028960518539,
+        "peak_traced_python_bytes": 1764654,
+        "stats": {
+          "transition_evaluations": 454,
+          "action_evaluations": 416,
+          "information_nodes_solved": 403,
+          "value_cache_hits": 180,
+          "q_cache_hits": 120
+        }
+      },
+      "clairvoyant_information_relaxation": {
+        "value": 15.5,
+        "executed_policy_cost": null,
+        "within_candidate_loss": null,
+        "solve_ms": 269.04431596631184,
+        "solve_plus_policy_verification_ms": 269.0465219784528,
+        "peak_traced_python_bytes": 1481972,
+        "stats": {}
+      },
+      "candidate_support_loss": 2.5,
+      "within_candidate_loss_of_restricted_optimal_policy": 0.0,
+      "same_information_policy_gap": 2.5
+    },
+    {
+      "provenance": {
+        "origin": "Zürich, Paradeplatz",
+        "destination": "Zürich, Goldbrunnenplatz",
+        "origin_id": 895684956,
+        "destination_id": 55894816,
+        "selection_rule": "first two archived through-trips by origin departure, destination arrival, trip ID; [490,510)",
+        "trips": [
+          {
+            "trip_id": "1068.TA.91-9-I-j23-1.4.H",
+            "origin_departure": 492,
+            "destination_arrival": 502,
+            "archived_segment_count": 15
+          },
+          {
+            "trip_id": "102.TA.91-9-I-j23-1.21.H",
+            "origin_departure": 501,
+            "destination_arrival": 510,
+            "archived_segment_count": 10
+          }
+        ],
+        "old_connection_id_to_subgraph_id": {
+          "526": 0,
+          "527": 1,
+          "528": 2,
+          "529": 3,
+          "530": 4,
+          "531": 5,
+          "532": 6,
+          "533": 7,
+          "534": 8,
+          "535": 9,
+          "1355": 10,
+          "1356": 11,
+          "1357": 12,
+          "1358": 13,
+          "1359": 14,
+          "1360": 15,
+          "1361": 16,
+          "1362": 17,
+          "1363": 18,
+          "1364": 19,
+          "1365": 20,
+          "1366": 21,
+          "1367": 22,
+          "1368": 23,
+          "1369": 24
+        },
+        "subgraph_stops": 18,
+        "subgraph_connections": 25,
+        "coverage": "all segments of selected trips present in the archived 2000-connection graph; full GTFS coverage not asserted"
+      },
+      "timeout_cap": 60,
+      "worlds": [
+        {
+          "name": "all_operate_on_schedule",
+          "canceled_trip": null,
+          "shared_delay": 0,
+          "probability": 0.25,
+          "events_by_subgraph_connection_id": {
+            "0": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 501,
+              "arrival": 502
+            },
+            "1": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 502,
+              "arrival": 503
+            },
+            "2": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 504,
+              "arrival": 505
+            },
+            "3": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 505,
+              "arrival": 506
+            },
+            "4": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 506,
+              "arrival": 507
+            },
+            "5": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 508,
+              "arrival": 509
+            },
+            "6": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 509,
+              "arrival": 510
+            },
+            "7": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 511,
+              "arrival": 512
+            },
+            "8": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 512,
+              "arrival": 512
+            },
+            "9": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 513,
+              "arrival": 513
+            },
+            "10": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 481,
+              "arrival": 482
+            },
+            "11": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 482,
+              "arrival": 483
+            },
+            "12": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 484,
+              "arrival": 485
+            },
+            "13": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 485,
+              "arrival": 487
+            },
+            "14": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 487,
+              "arrival": 489
+            },
+            "15": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 489,
+              "arrival": 491
+            },
+            "16": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 491,
+              "arrival": 492
+            },
+            "17": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 492,
+              "arrival": 493
+            },
+            "18": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 494,
+              "arrival": 495
+            },
+            "19": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 497,
+              "arrival": 498
+            },
+            "20": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 498,
+              "arrival": 499
+            },
+            "21": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 499,
+              "arrival": 501
+            },
+            "22": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 501,
+              "arrival": 502
+            },
+            "23": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 502,
+              "arrival": 503
+            },
+            "24": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 503,
+              "arrival": 504
+            }
+          }
+        },
+        {
+          "name": "primary_canceled",
+          "canceled_trip": "1068.TA.91-9-I-j23-1.4.H",
+          "shared_delay": 0,
+          "probability": 0.25,
+          "events_by_subgraph_connection_id": {
+            "0": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 501,
+              "arrival": 502
+            },
+            "1": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 502,
+              "arrival": 503
+            },
+            "2": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 504,
+              "arrival": 505
+            },
+            "3": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 505,
+              "arrival": 506
+            },
+            "4": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 506,
+              "arrival": 507
+            },
+            "5": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 508,
+              "arrival": 509
+            },
+            "6": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 509,
+              "arrival": 510
+            },
+            "7": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 511,
+              "arrival": 512
+            },
+            "8": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 512,
+              "arrival": 512
+            },
+            "9": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 513,
+              "arrival": 513
+            },
+            "10": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 481,
+              "arrival": 482
+            },
+            "11": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 482,
+              "arrival": 483
+            },
+            "12": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 484,
+              "arrival": 485
+            },
+            "13": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 485,
+              "arrival": 487
+            },
+            "14": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 487,
+              "arrival": 489
+            },
+            "15": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 489,
+              "arrival": 491
+            },
+            "16": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 491,
+              "arrival": 492
+            },
+            "17": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 492,
+              "arrival": 493
+            },
+            "18": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 494,
+              "arrival": 495
+            },
+            "19": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 497,
+              "arrival": 498
+            },
+            "20": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 498,
+              "arrival": 499
+            },
+            "21": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 499,
+              "arrival": 501
+            },
+            "22": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 501,
+              "arrival": 502
+            },
+            "23": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 502,
+              "arrival": 503
+            },
+            "24": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 503,
+              "arrival": 504
+            }
+          }
+        },
+        {
+          "name": "backup_canceled",
+          "canceled_trip": "102.TA.91-9-I-j23-1.21.H",
+          "shared_delay": 0,
+          "probability": 0.25,
+          "events_by_subgraph_connection_id": {
+            "0": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 501,
+              "arrival": 502
+            },
+            "1": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 502,
+              "arrival": 503
+            },
+            "2": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 504,
+              "arrival": 505
+            },
+            "3": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 505,
+              "arrival": 506
+            },
+            "4": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 506,
+              "arrival": 507
+            },
+            "5": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 508,
+              "arrival": 509
+            },
+            "6": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 509,
+              "arrival": 510
+            },
+            "7": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 511,
+              "arrival": 512
+            },
+            "8": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 512,
+              "arrival": 512
+            },
+            "9": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 513,
+              "arrival": 513
+            },
+            "10": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 481,
+              "arrival": 482
+            },
+            "11": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 482,
+              "arrival": 483
+            },
+            "12": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 484,
+              "arrival": 485
+            },
+            "13": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 485,
+              "arrival": 487
+            },
+            "14": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 487,
+              "arrival": 489
+            },
+            "15": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 489,
+              "arrival": 491
+            },
+            "16": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 491,
+              "arrival": 492
+            },
+            "17": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 492,
+              "arrival": 493
+            },
+            "18": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 494,
+              "arrival": 495
+            },
+            "19": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 497,
+              "arrival": 498
+            },
+            "20": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 498,
+              "arrival": 499
+            },
+            "21": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 499,
+              "arrival": 501
+            },
+            "22": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 501,
+              "arrival": 502
+            },
+            "23": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 502,
+              "arrival": 503
+            },
+            "24": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 503,
+              "arrival": 504
+            }
+          }
+        },
+        {
+          "name": "shared_six_minute_delay",
+          "canceled_trip": null,
+          "shared_delay": 6,
+          "probability": 0.25,
+          "events_by_subgraph_connection_id": {
+            "0": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 507,
+              "arrival": 508
+            },
+            "1": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 508,
+              "arrival": 509
+            },
+            "2": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 510,
+              "arrival": 511
+            },
+            "3": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 511,
+              "arrival": 512
+            },
+            "4": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 512,
+              "arrival": 513
+            },
+            "5": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 514,
+              "arrival": 515
+            },
+            "6": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 515,
+              "arrival": 516
+            },
+            "7": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 517,
+              "arrival": 518
+            },
+            "8": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 518,
+              "arrival": 518
+            },
+            "9": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 519,
+              "arrival": 519
+            },
+            "10": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 487,
+              "arrival": 488
+            },
+            "11": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 488,
+              "arrival": 489
+            },
+            "12": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 490,
+              "arrival": 491
+            },
+            "13": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 491,
+              "arrival": 493
+            },
+            "14": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 493,
+              "arrival": 495
+            },
+            "15": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 495,
+              "arrival": 497
+            },
+            "16": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 497,
+              "arrival": 498
+            },
+            "17": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 498,
+              "arrival": 499
+            },
+            "18": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 500,
+              "arrival": 501
+            },
+            "19": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 503,
+              "arrival": 504
+            },
+            "20": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 504,
+              "arrival": 505
+            },
+            "21": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 505,
+              "arrival": 507
+            },
+            "22": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 507,
+              "arrival": 508
+            },
+            "23": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 508,
+              "arrival": 509
+            },
+            "24": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 509,
+              "arrival": 510
+            }
+          }
+        }
+      ],
+      "excluded_whole_trip": "102.TA.91-9-I-j23-1.21.H",
+      "excluded_connection_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "selection_and_bank_ms": 1.9253760110586882,
+      "model_build_ms": 0.156897003762424,
+      "full_causal_optimum": {
+        "value": 15.5,
+        "executed_policy_cost": 15.5,
+        "within_candidate_loss": 0.0,
+        "solve_ms": 1756.0419919900596,
+        "solve_plus_policy_verification_ms": 1761.7757230182178,
+        "peak_traced_python_bytes": 12037288,
+        "stats": {
+          "transition_evaluations": 2303,
+          "action_evaluations": 2265,
+          "information_nodes_solved": 2211,
+          "value_cache_hits": 150,
+          "q_cache_hits": 100
+        }
+      },
+      "restricted_causal_optimum": {
+        "value": 25.5,
+        "executed_policy_cost": 25.5,
+        "within_candidate_loss": 0.0,
+        "solve_ms": 583.3034240058623,
+        "solve_plus_policy_verification_ms": 619.109177030623,
+        "peak_traced_python_bytes": 4857107,
+        "stats": {
+          "transition_evaluations": 1024,
+          "action_evaluations": 986,
+          "information_nodes_solved": 973,
+          "value_cache_hits": 270,
+          "q_cache_hits": 180
+        }
+      },
+      "clairvoyant_information_relaxation": {
+        "value": 15.5,
+        "executed_policy_cost": null,
+        "within_candidate_loss": null,
+        "solve_ms": 1786.6561219561845,
+        "solve_plus_policy_verification_ms": 1786.6585849551484,
+        "peak_traced_python_bytes": 4792852,
+        "stats": {}
+      },
+      "candidate_support_loss": 10.0,
+      "within_candidate_loss_of_restricted_optimal_policy": 0.0,
+      "same_information_policy_gap": 10.0
+    },
+    {
+      "provenance": {
+        "origin": "Zürich, Stauffacher",
+        "destination": "Zürich, Triemli",
+        "origin_id": 536904088,
+        "destination_id": 419126122,
+        "selection_rule": "first two archived through-trips by origin departure, destination arrival, trip ID; [490,510)",
+        "trips": [
+          {
+            "trip_id": "1008.TA.91-14-E-j23-1.6.H",
+            "origin_departure": 497,
+            "destination_arrival": 507,
+            "archived_segment_count": 17
+          },
+          {
+            "trip_id": "1047.TA.91-14-E-j23-1.6.H",
+            "origin_departure": 497,
+            "destination_arrival": 507,
+            "archived_segment_count": 19
+          }
+        ],
+        "old_connection_id_to_subgraph_id": {
+          "280": 0,
+          "281": 1,
+          "282": 2,
+          "283": 3,
+          "284": 4,
+          "285": 5,
+          "286": 6,
+          "287": 7,
+          "288": 8,
+          "289": 9,
+          "290": 10,
+          "291": 11,
+          "292": 12,
+          "293": 13,
+          "294": 14,
+          "295": 15,
+          "296": 16,
+          "930": 17,
+          "931": 18,
+          "932": 19,
+          "933": 20,
+          "934": 21,
+          "935": 22,
+          "936": 23,
+          "937": 24,
+          "938": 25,
+          "939": 26,
+          "940": 27,
+          "941": 28,
+          "942": 29,
+          "943": 30,
+          "944": 31,
+          "945": 32,
+          "946": 33,
+          "947": 34,
+          "948": 35
+        },
+        "subgraph_stops": 20,
+        "subgraph_connections": 36,
+        "coverage": "all segments of selected trips present in the archived 2000-connection graph; full GTFS coverage not asserted"
+      },
+      "timeout_cap": 30,
+      "worlds": [
+        {
+          "name": "all_operate_on_schedule",
+          "canceled_trip": null,
+          "shared_delay": 0,
+          "probability": 0.25,
+          "events_by_subgraph_connection_id": {
+            "0": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 480,
+              "arrival": 482
+            },
+            "1": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 482,
+              "arrival": 483
+            },
+            "2": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 484,
+              "arrival": 485
+            },
+            "3": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 485,
+              "arrival": 486
+            },
+            "4": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 487,
+              "arrival": 489
+            },
+            "5": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 489,
+              "arrival": 491
+            },
+            "6": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 491,
+              "arrival": 492
+            },
+            "7": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 492,
+              "arrival": 494
+            },
+            "8": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 494,
+              "arrival": 496
+            },
+            "9": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 497,
+              "arrival": 498
+            },
+            "10": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 498,
+              "arrival": 500
+            },
+            "11": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 500,
+              "arrival": 501
+            },
+            "12": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 502,
+              "arrival": 503
+            },
+            "13": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 503,
+              "arrival": 504
+            },
+            "14": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 504,
+              "arrival": 505
+            },
+            "15": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 505,
+              "arrival": 506
+            },
+            "16": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 506,
+              "arrival": 507
+            },
+            "17": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 481,
+              "arrival": 482
+            },
+            "18": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 482,
+              "arrival": 483
+            },
+            "19": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 483,
+              "arrival": 484
+            },
+            "20": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 484,
+              "arrival": 486
+            },
+            "21": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 486,
+              "arrival": 487
+            },
+            "22": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 487,
+              "arrival": 488
+            },
+            "23": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 489,
+              "arrival": 491
+            },
+            "24": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 491,
+              "arrival": 492
+            },
+            "25": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 493,
+              "arrival": 494
+            },
+            "26": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 494,
+              "arrival": 495
+            },
+            "27": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 496,
+              "arrival": 497
+            },
+            "28": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 497,
+              "arrival": 499
+            },
+            "29": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 499,
+              "arrival": 500
+            },
+            "30": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 500,
+              "arrival": 501
+            },
+            "31": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 502,
+              "arrival": 503
+            },
+            "32": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 503,
+              "arrival": 504
+            },
+            "33": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 504,
+              "arrival": 505
+            },
+            "34": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 505,
+              "arrival": 506
+            },
+            "35": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 506,
+              "arrival": 507
+            }
+          }
+        },
+        {
+          "name": "primary_canceled",
+          "canceled_trip": "1008.TA.91-14-E-j23-1.6.H",
+          "shared_delay": 0,
+          "probability": 0.25,
+          "events_by_subgraph_connection_id": {
+            "0": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 480,
+              "arrival": 482
+            },
+            "1": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 482,
+              "arrival": 483
+            },
+            "2": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 484,
+              "arrival": 485
+            },
+            "3": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 485,
+              "arrival": 486
+            },
+            "4": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 487,
+              "arrival": 489
+            },
+            "5": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 489,
+              "arrival": 491
+            },
+            "6": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 491,
+              "arrival": 492
+            },
+            "7": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 492,
+              "arrival": 494
+            },
+            "8": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 494,
+              "arrival": 496
+            },
+            "9": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 497,
+              "arrival": 498
+            },
+            "10": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 498,
+              "arrival": 500
+            },
+            "11": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 500,
+              "arrival": 501
+            },
+            "12": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 502,
+              "arrival": 503
+            },
+            "13": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 503,
+              "arrival": 504
+            },
+            "14": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 504,
+              "arrival": 505
+            },
+            "15": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 505,
+              "arrival": 506
+            },
+            "16": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 506,
+              "arrival": 507
+            },
+            "17": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 481,
+              "arrival": 482
+            },
+            "18": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 482,
+              "arrival": 483
+            },
+            "19": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 483,
+              "arrival": 484
+            },
+            "20": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 484,
+              "arrival": 486
+            },
+            "21": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 486,
+              "arrival": 487
+            },
+            "22": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 487,
+              "arrival": 488
+            },
+            "23": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 489,
+              "arrival": 491
+            },
+            "24": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 491,
+              "arrival": 492
+            },
+            "25": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 493,
+              "arrival": 494
+            },
+            "26": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 494,
+              "arrival": 495
+            },
+            "27": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 496,
+              "arrival": 497
+            },
+            "28": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 497,
+              "arrival": 499
+            },
+            "29": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 499,
+              "arrival": 500
+            },
+            "30": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 500,
+              "arrival": 501
+            },
+            "31": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 502,
+              "arrival": 503
+            },
+            "32": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 503,
+              "arrival": 504
+            },
+            "33": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 504,
+              "arrival": 505
+            },
+            "34": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 505,
+              "arrival": 506
+            },
+            "35": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 506,
+              "arrival": 507
+            }
+          }
+        },
+        {
+          "name": "backup_canceled",
+          "canceled_trip": "1047.TA.91-14-E-j23-1.6.H",
+          "shared_delay": 0,
+          "probability": 0.25,
+          "events_by_subgraph_connection_id": {
+            "0": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 480,
+              "arrival": 482
+            },
+            "1": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 482,
+              "arrival": 483
+            },
+            "2": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 484,
+              "arrival": 485
+            },
+            "3": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 485,
+              "arrival": 486
+            },
+            "4": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 487,
+              "arrival": 489
+            },
+            "5": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 489,
+              "arrival": 491
+            },
+            "6": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 491,
+              "arrival": 492
+            },
+            "7": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 492,
+              "arrival": 494
+            },
+            "8": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 494,
+              "arrival": 496
+            },
+            "9": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 497,
+              "arrival": 498
+            },
+            "10": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 498,
+              "arrival": 500
+            },
+            "11": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 500,
+              "arrival": 501
+            },
+            "12": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 502,
+              "arrival": 503
+            },
+            "13": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 503,
+              "arrival": 504
+            },
+            "14": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 504,
+              "arrival": 505
+            },
+            "15": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 505,
+              "arrival": 506
+            },
+            "16": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 506,
+              "arrival": 507
+            },
+            "17": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 481,
+              "arrival": 482
+            },
+            "18": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 482,
+              "arrival": 483
+            },
+            "19": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 483,
+              "arrival": 484
+            },
+            "20": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 484,
+              "arrival": 486
+            },
+            "21": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 486,
+              "arrival": 487
+            },
+            "22": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 487,
+              "arrival": 488
+            },
+            "23": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 489,
+              "arrival": 491
+            },
+            "24": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 491,
+              "arrival": 492
+            },
+            "25": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 493,
+              "arrival": 494
+            },
+            "26": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 494,
+              "arrival": 495
+            },
+            "27": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 496,
+              "arrival": 497
+            },
+            "28": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 497,
+              "arrival": 499
+            },
+            "29": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 499,
+              "arrival": 500
+            },
+            "30": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 500,
+              "arrival": 501
+            },
+            "31": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 502,
+              "arrival": 503
+            },
+            "32": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 503,
+              "arrival": 504
+            },
+            "33": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 504,
+              "arrival": 505
+            },
+            "34": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 505,
+              "arrival": 506
+            },
+            "35": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 506,
+              "arrival": 507
+            }
+          }
+        },
+        {
+          "name": "shared_six_minute_delay",
+          "canceled_trip": null,
+          "shared_delay": 6,
+          "probability": 0.25,
+          "events_by_subgraph_connection_id": {
+            "0": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 486,
+              "arrival": 488
+            },
+            "1": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 488,
+              "arrival": 489
+            },
+            "2": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 490,
+              "arrival": 491
+            },
+            "3": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 491,
+              "arrival": 492
+            },
+            "4": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 493,
+              "arrival": 495
+            },
+            "5": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 495,
+              "arrival": 497
+            },
+            "6": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 497,
+              "arrival": 498
+            },
+            "7": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 498,
+              "arrival": 500
+            },
+            "8": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 500,
+              "arrival": 502
+            },
+            "9": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 503,
+              "arrival": 504
+            },
+            "10": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 504,
+              "arrival": 506
+            },
+            "11": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 506,
+              "arrival": 507
+            },
+            "12": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 508,
+              "arrival": 509
+            },
+            "13": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 509,
+              "arrival": 510
+            },
+            "14": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 510,
+              "arrival": 511
+            },
+            "15": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 511,
+              "arrival": 512
+            },
+            "16": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 512,
+              "arrival": 513
+            },
+            "17": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 487,
+              "arrival": 488
+            },
+            "18": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 488,
+              "arrival": 489
+            },
+            "19": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 489,
+              "arrival": 490
+            },
+            "20": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 490,
+              "arrival": 492
+            },
+            "21": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 492,
+              "arrival": 493
+            },
+            "22": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 493,
+              "arrival": 494
+            },
+            "23": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 495,
+              "arrival": 497
+            },
+            "24": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 497,
+              "arrival": 498
+            },
+            "25": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 499,
+              "arrival": 500
+            },
+            "26": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 500,
+              "arrival": 501
+            },
+            "27": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 502,
+              "arrival": 503
+            },
+            "28": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 503,
+              "arrival": 505
+            },
+            "29": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 505,
+              "arrival": 506
+            },
+            "30": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 506,
+              "arrival": 507
+            },
+            "31": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 508,
+              "arrival": 509
+            },
+            "32": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 509,
+              "arrival": 510
+            },
+            "33": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 510,
+              "arrival": 511
+            },
+            "34": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 511,
+              "arrival": 512
+            },
+            "35": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 512,
+              "arrival": 513
+            }
+          }
+        }
+      ],
+      "excluded_whole_trip": "1047.TA.91-14-E-j23-1.6.H",
+      "excluded_connection_ids": [
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35
+      ],
+      "selection_and_bank_ms": 1.8155070138163865,
+      "model_build_ms": 0.08672196418046951,
+      "full_causal_optimum": {
+        "value": 18.5,
+        "executed_policy_cost": 18.5,
+        "within_candidate_loss": 0.0,
+        "solve_ms": 333.85284297401085,
+        "solve_plus_policy_verification_ms": 345.3759589465335,
+        "peak_traced_python_bytes": 5094613,
+        "stats": {
+          "transition_evaluations": 823,
+          "action_evaluations": 820,
+          "information_nodes_solved": 772,
+          "value_cache_hits": 213,
+          "q_cache_hits": 142
+        }
+      },
+      "restricted_causal_optimum": {
+        "value": 21.75,
+        "executed_policy_cost": 21.75,
+        "within_candidate_loss": 0.0,
+        "solve_ms": 206.0703750466928,
+        "solve_plus_policy_verification_ms": 225.80273303901777,
+        "peak_traced_python_bytes": 2881017,
+        "stats": {
+          "transition_evaluations": 475,
+          "action_evaluations": 472,
+          "information_nodes_solved": 448,
+          "value_cache_hits": 255,
+          "q_cache_hits": 170
+        }
+      },
+      "clairvoyant_information_relaxation": {
+        "value": 18.5,
+        "executed_policy_cost": null,
+        "within_candidate_loss": null,
+        "solve_ms": 329.0133419795893,
+        "solve_plus_policy_verification_ms": 329.01555800344795,
+        "peak_traced_python_bytes": 1822676,
+        "stats": {}
+      },
+      "candidate_support_loss": 3.25,
+      "within_candidate_loss_of_restricted_optimal_policy": 0.0,
+      "same_information_policy_gap": 3.25
+    },
+    {
+      "provenance": {
+        "origin": "Zürich, Stauffacher",
+        "destination": "Zürich, Triemli",
+        "origin_id": 536904088,
+        "destination_id": 419126122,
+        "selection_rule": "first two archived through-trips by origin departure, destination arrival, trip ID; [490,510)",
+        "trips": [
+          {
+            "trip_id": "1008.TA.91-14-E-j23-1.6.H",
+            "origin_departure": 497,
+            "destination_arrival": 507,
+            "archived_segment_count": 17
+          },
+          {
+            "trip_id": "1047.TA.91-14-E-j23-1.6.H",
+            "origin_departure": 497,
+            "destination_arrival": 507,
+            "archived_segment_count": 19
+          }
+        ],
+        "old_connection_id_to_subgraph_id": {
+          "280": 0,
+          "281": 1,
+          "282": 2,
+          "283": 3,
+          "284": 4,
+          "285": 5,
+          "286": 6,
+          "287": 7,
+          "288": 8,
+          "289": 9,
+          "290": 10,
+          "291": 11,
+          "292": 12,
+          "293": 13,
+          "294": 14,
+          "295": 15,
+          "296": 16,
+          "930": 17,
+          "931": 18,
+          "932": 19,
+          "933": 20,
+          "934": 21,
+          "935": 22,
+          "936": 23,
+          "937": 24,
+          "938": 25,
+          "939": 26,
+          "940": 27,
+          "941": 28,
+          "942": 29,
+          "943": 30,
+          "944": 31,
+          "945": 32,
+          "946": 33,
+          "947": 34,
+          "948": 35
+        },
+        "subgraph_stops": 20,
+        "subgraph_connections": 36,
+        "coverage": "all segments of selected trips present in the archived 2000-connection graph; full GTFS coverage not asserted"
+      },
+      "timeout_cap": 60,
+      "worlds": [
+        {
+          "name": "all_operate_on_schedule",
+          "canceled_trip": null,
+          "shared_delay": 0,
+          "probability": 0.25,
+          "events_by_subgraph_connection_id": {
+            "0": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 480,
+              "arrival": 482
+            },
+            "1": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 482,
+              "arrival": 483
+            },
+            "2": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 484,
+              "arrival": 485
+            },
+            "3": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 485,
+              "arrival": 486
+            },
+            "4": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 487,
+              "arrival": 489
+            },
+            "5": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 489,
+              "arrival": 491
+            },
+            "6": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 491,
+              "arrival": 492
+            },
+            "7": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 492,
+              "arrival": 494
+            },
+            "8": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 494,
+              "arrival": 496
+            },
+            "9": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 497,
+              "arrival": 498
+            },
+            "10": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 498,
+              "arrival": 500
+            },
+            "11": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 500,
+              "arrival": 501
+            },
+            "12": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 502,
+              "arrival": 503
+            },
+            "13": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 503,
+              "arrival": 504
+            },
+            "14": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 504,
+              "arrival": 505
+            },
+            "15": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 505,
+              "arrival": 506
+            },
+            "16": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 506,
+              "arrival": 507
+            },
+            "17": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 481,
+              "arrival": 482
+            },
+            "18": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 482,
+              "arrival": 483
+            },
+            "19": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 483,
+              "arrival": 484
+            },
+            "20": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 484,
+              "arrival": 486
+            },
+            "21": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 486,
+              "arrival": 487
+            },
+            "22": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 487,
+              "arrival": 488
+            },
+            "23": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 489,
+              "arrival": 491
+            },
+            "24": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 491,
+              "arrival": 492
+            },
+            "25": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 493,
+              "arrival": 494
+            },
+            "26": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 494,
+              "arrival": 495
+            },
+            "27": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 496,
+              "arrival": 497
+            },
+            "28": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 497,
+              "arrival": 499
+            },
+            "29": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 499,
+              "arrival": 500
+            },
+            "30": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 500,
+              "arrival": 501
+            },
+            "31": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 502,
+              "arrival": 503
+            },
+            "32": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 503,
+              "arrival": 504
+            },
+            "33": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 504,
+              "arrival": 505
+            },
+            "34": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 505,
+              "arrival": 506
+            },
+            "35": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 506,
+              "arrival": 507
+            }
+          }
+        },
+        {
+          "name": "primary_canceled",
+          "canceled_trip": "1008.TA.91-14-E-j23-1.6.H",
+          "shared_delay": 0,
+          "probability": 0.25,
+          "events_by_subgraph_connection_id": {
+            "0": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 480,
+              "arrival": 482
+            },
+            "1": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 482,
+              "arrival": 483
+            },
+            "2": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 484,
+              "arrival": 485
+            },
+            "3": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 485,
+              "arrival": 486
+            },
+            "4": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 487,
+              "arrival": 489
+            },
+            "5": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 489,
+              "arrival": 491
+            },
+            "6": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 491,
+              "arrival": 492
+            },
+            "7": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 492,
+              "arrival": 494
+            },
+            "8": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 494,
+              "arrival": 496
+            },
+            "9": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 497,
+              "arrival": 498
+            },
+            "10": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 498,
+              "arrival": 500
+            },
+            "11": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 500,
+              "arrival": 501
+            },
+            "12": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 502,
+              "arrival": 503
+            },
+            "13": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 503,
+              "arrival": 504
+            },
+            "14": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 504,
+              "arrival": 505
+            },
+            "15": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 505,
+              "arrival": 506
+            },
+            "16": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 506,
+              "arrival": 507
+            },
+            "17": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 481,
+              "arrival": 482
+            },
+            "18": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 482,
+              "arrival": 483
+            },
+            "19": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 483,
+              "arrival": 484
+            },
+            "20": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 484,
+              "arrival": 486
+            },
+            "21": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 486,
+              "arrival": 487
+            },
+            "22": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 487,
+              "arrival": 488
+            },
+            "23": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 489,
+              "arrival": 491
+            },
+            "24": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 491,
+              "arrival": 492
+            },
+            "25": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 493,
+              "arrival": 494
+            },
+            "26": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 494,
+              "arrival": 495
+            },
+            "27": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 496,
+              "arrival": 497
+            },
+            "28": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 497,
+              "arrival": 499
+            },
+            "29": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 499,
+              "arrival": 500
+            },
+            "30": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 500,
+              "arrival": 501
+            },
+            "31": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 502,
+              "arrival": 503
+            },
+            "32": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 503,
+              "arrival": 504
+            },
+            "33": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 504,
+              "arrival": 505
+            },
+            "34": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 505,
+              "arrival": 506
+            },
+            "35": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 506,
+              "arrival": 507
+            }
+          }
+        },
+        {
+          "name": "backup_canceled",
+          "canceled_trip": "1047.TA.91-14-E-j23-1.6.H",
+          "shared_delay": 0,
+          "probability": 0.25,
+          "events_by_subgraph_connection_id": {
+            "0": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 480,
+              "arrival": 482
+            },
+            "1": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 482,
+              "arrival": 483
+            },
+            "2": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 484,
+              "arrival": 485
+            },
+            "3": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 485,
+              "arrival": 486
+            },
+            "4": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 487,
+              "arrival": 489
+            },
+            "5": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 489,
+              "arrival": 491
+            },
+            "6": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 491,
+              "arrival": 492
+            },
+            "7": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 492,
+              "arrival": 494
+            },
+            "8": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 494,
+              "arrival": 496
+            },
+            "9": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 497,
+              "arrival": 498
+            },
+            "10": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 498,
+              "arrival": 500
+            },
+            "11": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 500,
+              "arrival": 501
+            },
+            "12": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 502,
+              "arrival": 503
+            },
+            "13": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 503,
+              "arrival": 504
+            },
+            "14": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 504,
+              "arrival": 505
+            },
+            "15": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 505,
+              "arrival": 506
+            },
+            "16": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 506,
+              "arrival": 507
+            },
+            "17": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 481,
+              "arrival": 482
+            },
+            "18": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 482,
+              "arrival": 483
+            },
+            "19": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 483,
+              "arrival": 484
+            },
+            "20": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 484,
+              "arrival": 486
+            },
+            "21": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 486,
+              "arrival": 487
+            },
+            "22": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 487,
+              "arrival": 488
+            },
+            "23": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 489,
+              "arrival": 491
+            },
+            "24": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 491,
+              "arrival": 492
+            },
+            "25": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 493,
+              "arrival": 494
+            },
+            "26": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 494,
+              "arrival": 495
+            },
+            "27": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 496,
+              "arrival": 497
+            },
+            "28": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 497,
+              "arrival": 499
+            },
+            "29": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 499,
+              "arrival": 500
+            },
+            "30": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 500,
+              "arrival": 501
+            },
+            "31": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 502,
+              "arrival": 503
+            },
+            "32": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 503,
+              "arrival": 504
+            },
+            "33": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 504,
+              "arrival": 505
+            },
+            "34": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 505,
+              "arrival": 506
+            },
+            "35": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 506,
+              "arrival": 507
+            }
+          }
+        },
+        {
+          "name": "shared_six_minute_delay",
+          "canceled_trip": null,
+          "shared_delay": 6,
+          "probability": 0.25,
+          "events_by_subgraph_connection_id": {
+            "0": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 486,
+              "arrival": 488
+            },
+            "1": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 488,
+              "arrival": 489
+            },
+            "2": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 490,
+              "arrival": 491
+            },
+            "3": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 491,
+              "arrival": 492
+            },
+            "4": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 493,
+              "arrival": 495
+            },
+            "5": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 495,
+              "arrival": 497
+            },
+            "6": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 497,
+              "arrival": 498
+            },
+            "7": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 498,
+              "arrival": 500
+            },
+            "8": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 500,
+              "arrival": 502
+            },
+            "9": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 503,
+              "arrival": 504
+            },
+            "10": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 504,
+              "arrival": 506
+            },
+            "11": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 506,
+              "arrival": 507
+            },
+            "12": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 508,
+              "arrival": 509
+            },
+            "13": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 509,
+              "arrival": 510
+            },
+            "14": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 510,
+              "arrival": 511
+            },
+            "15": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 511,
+              "arrival": 512
+            },
+            "16": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 512,
+              "arrival": 513
+            },
+            "17": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 487,
+              "arrival": 488
+            },
+            "18": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 488,
+              "arrival": 489
+            },
+            "19": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 489,
+              "arrival": 490
+            },
+            "20": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 490,
+              "arrival": 492
+            },
+            "21": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 492,
+              "arrival": 493
+            },
+            "22": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 493,
+              "arrival": 494
+            },
+            "23": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 495,
+              "arrival": 497
+            },
+            "24": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 497,
+              "arrival": 498
+            },
+            "25": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 499,
+              "arrival": 500
+            },
+            "26": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 500,
+              "arrival": 501
+            },
+            "27": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 502,
+              "arrival": 503
+            },
+            "28": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 503,
+              "arrival": 505
+            },
+            "29": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 505,
+              "arrival": 506
+            },
+            "30": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 506,
+              "arrival": 507
+            },
+            "31": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 508,
+              "arrival": 509
+            },
+            "32": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 509,
+              "arrival": 510
+            },
+            "33": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 510,
+              "arrival": 511
+            },
+            "34": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 511,
+              "arrival": 512
+            },
+            "35": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 512,
+              "arrival": 513
+            }
+          }
+        }
+      ],
+      "excluded_whole_trip": "1047.TA.91-14-E-j23-1.6.H",
+      "excluded_connection_ids": [
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35
+      ],
+      "selection_and_bank_ms": 1.8155070138163865,
+      "model_build_ms": 0.16962597146630287,
+      "full_causal_optimum": {
+        "value": 18.5,
+        "executed_policy_cost": 18.5,
+        "within_candidate_loss": 0.0,
+        "solve_ms": 2015.9103809855878,
+        "solve_plus_policy_verification_ms": 2027.7429319685325,
+        "peak_traced_python_bytes": 14848216,
+        "stats": {
+          "transition_evaluations": 2203,
+          "action_evaluations": 2200,
+          "information_nodes_solved": 2152,
+          "value_cache_hits": 213,
+          "q_cache_hits": 142
+        }
+      },
+      "restricted_causal_optimum": {
+        "value": 29.25,
+        "executed_policy_cost": 29.25,
+        "within_candidate_loss": 0.0,
+        "solve_ms": 1061.3164919777773,
+        "solve_plus_policy_verification_ms": 1119.8571129934862,
+        "peak_traced_python_bytes": 8129342,
+        "stats": {
+          "transition_evaluations": 1225,
+          "action_evaluations": 1222,
+          "information_nodes_solved": 1198,
+          "value_cache_hits": 345,
+          "q_cache_hits": 230
+        }
+      },
+      "clairvoyant_information_relaxation": {
+        "value": 18.5,
+        "executed_policy_cost": null,
+        "within_candidate_loss": null,
+        "solve_ms": 2072.6355799706653,
+        "solve_plus_policy_verification_ms": 2072.6385539746843,
+        "peak_traced_python_bytes": 5312868,
+        "stats": {}
+      },
+      "candidate_support_loss": 10.75,
+      "within_candidate_loss_of_restricted_optimal_policy": 0.0,
+      "same_information_policy_gap": 10.75
+    }
+  ]
+}

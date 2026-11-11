@@ -134,14 +134,29 @@ def prob_reachable(arr_pmf: PMF, dep_pmf: PMF, transfer_time: int) -> float:
 
     Durner Section 3.2: P_reachable(c, c').
     """
-    # For each arrival time t_a, we need P(dep >= t_a + transfer_time)
-    total = 0.0
-    for i, p_arr in enumerate(arr_pmf.probs):
-        if p_arr < 1e-15:
-            continue
-        t_arr = arr_pmf.offset + i
-        needed = t_arr + transfer_time
-        # P(dep >= needed)
-        p_dep_ok = 1.0 - dep_pmf.prob_le(needed - 1)
-        total += p_arr * p_dep_ok
-    return total
+    # One CDF gives every departure tail in O(|arrival| + |departure|).
+    # Missing PMF mass represents cancellation, not a departure at infinity.
+    cdf = np.concatenate(([0.0], np.cumsum(dep_pmf.probs)))
+    needed = arr_pmf.offset + np.arange(len(arr_pmf.probs)) + transfer_time
+    counts_before = np.clip(needed - dep_pmf.offset, 0, len(dep_pmf.probs))
+    tails = cdf[-1] - cdf[counts_before]
+    return float(np.dot(arr_pmf.probs, tails))
+
+
+def query_reachability():
+    """Reuse transfer integrals for shared PMF shapes at the same time gap."""
+    evaluated = {}
+
+    def reach(arrival, departure, transfer_time):
+        a, d = arrival.probs, departure.probs
+        gap = arrival.offset + transfer_time - departure.offset
+        key = id(a), id(d), gap
+        entry = evaluated.get(key)
+        if entry is None:
+            # Keep the arrays alive for the duration of the query so their
+            # identities cannot be reused by an ephemeral PMF.
+            entry = (prob_reachable(arrival, departure, transfer_time), a, d)
+            evaluated[key] = entry
+        return entry[0]
+
+    return reach

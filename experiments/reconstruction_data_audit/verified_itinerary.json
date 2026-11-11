@@ -1,0 +1,129 @@
+{
+  "scope": "Retrospective replay of two fixed itineraries on two dated, measured SBB worlds. Only the specified services are evaluated; no citywide policy comparison.",
+  "actual_source": "realized_subset.json",
+  "forecast_source": "local GTFS-RT snapshot archive",
+  "forecast_lookback_seconds": 3600,
+  "stops": [
+    "Zürich Stadelhofen",
+    "Zürich HB",
+    "Zürich Hardbrücke"
+  ],
+  "results": {
+    "2023-10-12": {
+      "public_history": {
+        "origin": {
+          "time": "08:25:00",
+          "direct_forecasts": []
+        },
+        "hub": {
+          "time": "08:28:50",
+          "direct_forecasts": []
+        }
+      },
+      "shared_first_leg": {
+        "connection_id": 975,
+        "official_journey": "85:11:19130:001",
+        "ready": "08:25:00",
+        "actual_board": "08:26:49",
+        "actual_hub_arrival": "08:28:50"
+      },
+      "fixed_itineraries": {
+        "transfer_to_s20": {
+          "connection_id": 1,
+          "official_journey": "85:11:20030:001",
+          "same_vehicle": false,
+          "buffer_seconds": 120,
+          "ready_to_depart": "08:30:50",
+          "actual_departure": "08:35:08",
+          "actual_arrival": "08:37:13",
+          "departure_slack_seconds": 258,
+          "arrived": true,
+          "elapsed_seconds": 733
+        },
+        "stay_on_s11": {
+          "connection_id": 976,
+          "official_journey": "85:11:19130:001",
+          "same_vehicle": true,
+          "buffer_seconds": 0,
+          "ready_to_depart": "08:28:50",
+          "actual_departure": "08:30:06",
+          "actual_arrival": "08:32:11",
+          "departure_slack_seconds": 76,
+          "arrived": true,
+          "elapsed_seconds": 431
+        }
+      }
+    },
+    "2023-10-25": {
+      "public_history": {
+        "origin": {
+          "time": "08:25:00",
+          "direct_forecasts": [
+            {
+              "connection_id": 1,
+              "event_kind": "arrival",
+              "receipt": "07:42:03",
+              "predicted_event_time": "08:37:00"
+            },
+            {
+              "connection_id": 1,
+              "event_kind": "departure",
+              "receipt": "07:42:03",
+              "predicted_event_time": "08:35:00"
+            }
+          ]
+        },
+        "hub": {
+          "time": "08:31:20",
+          "direct_forecasts": [
+            {
+              "connection_id": 1,
+              "event_kind": "arrival",
+              "receipt": "07:42:03",
+              "predicted_event_time": "08:37:00"
+            },
+            {
+              "connection_id": 1,
+              "event_kind": "departure",
+              "receipt": "07:42:03",
+              "predicted_event_time": "08:35:00"
+            }
+          ]
+        }
+      },
+      "shared_first_leg": {
+        "connection_id": 975,
+        "official_journey": "85:11:19130:001",
+        "ready": "08:25:00",
+        "actual_board": "08:29:18",
+        "actual_hub_arrival": "08:31:20"
+      },
+      "fixed_itineraries": {
+        "transfer_to_s20": {
+          "connection_id": 1,
+          "official_journey": "85:11:20030:001",
+          "same_vehicle": false,
+          "buffer_seconds": 120,
+          "ready_to_depart": "08:33:20",
+          "actual_departure": "08:37:37",
+          "actual_arrival": "08:39:41",
+          "departure_slack_seconds": 257,
+          "arrived": true,
+          "elapsed_seconds": 881
+        },
+        "stay_on_s11": {
+          "connection_id": 976,
+          "official_journey": "85:11:19130:001",
+          "same_vehicle": true,
+          "buffer_seconds": 0,
+          "ready_to_depart": "08:31:20",
+          "actual_departure": "08:33:04",
+          "actual_arrival": "08:35:48",
+          "departure_slack_seconds": 104,
+          "arrived": true,
+          "elapsed_seconds": 648
+        }
+      }
+    }
+  }
+}

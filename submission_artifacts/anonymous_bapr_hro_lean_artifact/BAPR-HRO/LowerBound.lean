@@ -459,10 +459,8 @@ theorem regret_lower_bound_summation
         Finset.sum_le_sum (fun i _ => h_per_cp i)
     _ = C * d_min := by simp [Finset.sum_const, nsmul_eq_mul]
 
-/-- **Tightness sandwich**: `T · d_min ≤ regret ≤ T · d_max · Δ`.
-    The lower bound is the adversarial minimax above; the upper bound
-    is the LCB suboptimality from `BAPRHRO.lean` Theorem 7
-    (`lcb_suboptimality`). -/
+/-- Order the prescribed endpoints `T · d_min` and `T · d_max · Δ`.
+    The statement quantifies no algorithm or common regret process. -/
 theorem regret_sandwich
     (T : ℕ) (d_min d_max Δ_detect : ℝ)
     (_hd_min : d_min > 0) (hd_max : d_max ≥ d_min) (hΔ : Δ_detect ≥ 1) :

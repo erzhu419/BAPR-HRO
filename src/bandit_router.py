@@ -1,21 +1,10 @@
-"""Bandit Router: Thompson Sampling on Durner's hyperpath labels.
+"""Heuristic pessimistic reranking of a precomputed candidate hyperpath.
 
-Core idea: Durner's hyperpath already contains the right SET of alternatives.
-The problem is RANKING them under real-time conditions. We model this as a
-contextual bandit:
-
-- At each stop, the "arms" are the available routes in the hyperpath
-- Each arm has an uncertain "reward" = -(actual arrival time at destination)
-- We maintain a posterior over each arm's expected arrival time
-- Thompson Sampling selects which route to try first
-- After observing delays/cancels, we update the posterior
-
-This avoids the two failure modes of the previous adaptive approach:
-1. No hyperpath recomputation → no over-conservative rerouting
-2. No regime detection needed → learns from direct observations
-
-The posterior is a simple Normal-InverseGamma for each route, tracking
-mean delay and variance from actual observations.
+Route delay means use Normal--Gamma statistics; explicit cancellations have
+separate Beta--Binomial counts. The executed selector adds uncertainty and
+reliability penalties. Candidate sufficiency and bandit regret are not assumed
+or proved by this implementation. Historical results used a different variance
+statistic and are not evidence for this correction.
 """
 
 from __future__ import annotations
@@ -37,22 +26,20 @@ class RouteBeliefState:
     - delay ~ N(mu, sigma^2)
     - We track posterior over (mu, sigma^2)
 
-    Simplified: just track running mean and variance of observed delays,
-    plus a cancel rate estimate.
+    ``prior_var`` is the prior expected observation variance; ``prior_n``
+    is kappa_0. Alpha_0=2 and beta_0=prior_var define the precision prior.
+    The uncertainty used for re-ranking is Var(mu | data), not delay variance.
     """
     n_obs: int = 0
     delay_sum: float = 0.0
     delay_sq_sum: float = 0.0
     n_cancels: int = 0
     n_attempts: int = 0
-    # A3 (implementation note): typed cancel counters. true_cancels are signal
-    # cancellations confirmed by GTFS-RT (delay > 30 min sentinel);
-    # late_no_shows are passenger-side timeouts (waited past patience).
-    # In current data we cannot distinguish "feed_missing"; we collapse
-    # both observed kinds into n_cancels for the cancel_rate property
-    # but keep the sub-counts for later reweighting.
+    # Only explicit cancellations update the cancellation posterior. Patience
+    # timeouts and missing updates are recorded as censored observations.
     n_true_cancels: int = 0
     n_late_no_shows: int = 0
+    n_feed_missing: int = 0
 
     # Prior parameters. The defaults reflect Swiss real-data normal-day
     # statistics: mean delay ≈ 0.7 min, std ≈ 1.3 min, cancel rate ≈
@@ -76,17 +63,16 @@ class RouteBeliefState:
 
     @property
     def posterior_var(self) -> float:
-        """Posterior variance of delay estimate."""
-        total_n = self.prior_n + self.n_obs
-        if total_n < 2:
-            return self.prior_var
-        # Combine prior variance with observed variance
-        if self.n_obs > 1:
-            obs_mean = self.delay_sum / self.n_obs
-            obs_var = (self.delay_sq_sum / self.n_obs - obs_mean ** 2)
-        else:
-            obs_var = self.prior_var
-        return (self.prior_n * self.prior_var + self.n_obs * obs_var) / total_n
+        """Normal–Gamma posterior variance of the unknown mean delay."""
+        kappa = self.prior_n + self.n_obs
+        alpha = 2.0 + self.n_obs / 2.0
+        beta = self.prior_var
+        if self.n_obs:
+            mean = self.delay_sum / self.n_obs
+            centered_ss = max(0.0, self.delay_sq_sum - self.delay_sum * mean)
+            beta += 0.5 * centered_ss
+            beta += self.prior_n * self.n_obs * (mean - self.prior_mean) ** 2 / (2 * kappa)
+        return beta / ((alpha - 1.0) * kappa)
 
     @property
     def cancel_rate(self) -> float:
@@ -113,14 +99,16 @@ class RouteBeliefState:
         For backward compat, default 'true'. Caller can pass kind to
         track sub-types.
         """
-        self.n_cancels += 1
-        self.n_attempts += 1
         if kind == 'late_no_show':
             self.n_late_no_shows += 1
+        elif kind == 'feed_missing':
+            self.n_feed_missing += 1
         elif kind == 'true':
             self.n_true_cancels += 1
-        # 'feed_missing' is structurally tracked but we treat it as
-        # not strongly indicative of route reliability.
+            self.n_cancels += 1
+            self.n_attempts += 1
+        else:
+            raise ValueError(f"Unknown cancellation observation kind: {kind}")
 
     @property
     def cancel_rate_by_type(self) -> tuple[float, float]:

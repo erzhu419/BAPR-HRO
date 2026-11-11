@@ -14,9 +14,9 @@ V2 extends V1 (BAPRHRO.lean) with:
 ## Main Results
 
 - `per_step_gap_dynamic`: V1's per-step gap holds with state-dependent β(s)
-- `ensemble_lcb_suboptimality`: Total excess ≤ Σ_t 2(1+β(s_t))·σ(s_t)
-- `dynamic_beta_dominates_fixed`: Dynamic β gives tighter bound than fixed β
-- `ensemble_std_contraction`: Bootstrap ensemble std = O(1/√n)
+- `ensemble_lcb_suboptimality`: Sums the supplied per-stage bounds
+- `dynamic_dominates_fixed`: Compares the numerical coefficient envelope
+- `ensemble_std_bound`: Restates a supplied error envelope
 
 ## Connection to V1
 
@@ -166,19 +166,9 @@ theorem dynamic_dominates_fixed
     _ = ↑D * (2 * (1 + (p.β_base + p.β_ood)) * σ_max) := by
           simp [Finset.sum_const, nsmul_eq_mul]
 
-/-! ## 5. Ensemble Standard Deviation Contraction
+/-! ## 5. Supplied estimator error envelope -/
 
-For K bootstrap estimators, each maintaining a running mean from
-Poisson-bootstrap subsamples, the ensemble std (disagreement)
-contracts as O(1/√n) where n is the total number of observations.
-
-This is because each estimator's mean converges to the true mean
-at rate O(1/√n_k) where n_k ~ n (Poisson bootstrap gives ~n obs
-per estimator), and the ensemble std is dominated by individual errors.
--/
-
-/-- Ensemble std bound: if each estimator has error ≤ C/√n,
-then ensemble std ≤ C/√n. -/
+/-- Return the supplied bound on each estimator's error. -/
 theorem ensemble_std_bound
     (K : ℕ) (hK : K > 0)
     (estimator_errors : Fin K → ℝ)  -- |μ̂_k - μ_true| for each estimator
@@ -189,8 +179,7 @@ theorem ensemble_std_bound
     ∀ k, |estimator_errors k| ≤ C * Real.sqrt (1 / n) :=
   h_errors
 
-/-- The V2 suboptimality bound converges to 0 as observations grow.
-Combines ensemble_std_bound with ensemble_lcb_suboptimality. -/
+/-- Rearrange the numerical bound using the specified `C / sqrt n` scale. -/
 theorem v2_convergence_rate
     (D : ℕ) (p : V2Params) (C : ℝ) (n : ℕ) :
     let β_max := p.β_base + p.β_ood

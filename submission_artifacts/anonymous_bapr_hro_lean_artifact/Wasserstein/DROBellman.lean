@@ -22,29 +22,16 @@ This file proves:
    and of the per-state-action `Q`, not an "additive penalty cancels"
    shortcut.
 
-2. `mixture_robust_bellman_contraction`: the discrete posterior-gated
-   mixture functional `Q_b(s, a) V = ∑_z b(z) ⟨P_z(s, a), V⟩` (which
-   is the value-update operator in the redesigned BAPR's
-   belief-state framework, see internal design review) is non-expansive,
-   hence `T_b` is `γ`-contractive.
+2. `mixture_robust_bellman_contraction`: the discrete mixture functional
+   `Q_b(s, a) V = ∑_z b(z) ⟨P_z(s, a), V⟩` is nonexpansive under the
+   probability assumptions, giving the same contraction factor.
 
-3. `wasserstein_amb_lipBound`: the Wasserstein-ball ambiguity
-   functional `Q_W(s, a) V = ⟨P̂(s, a), V⟩ + ε · Lip(V)` is
-   `(1 + ε C)`-Lipschitz in `V` (where `C` is the `Lip` operator's
-   own non-expansiveness constant). This is *not* 1-non-expansive
-   for `ε > 0`; the additional `ε`-slack is exactly the per-step DRO
-   penalty whose cumulative effect is bounded in
-   `BAPRHRO.lean` by `2D(1+β)·σ_max` (Theorem 7).
-
-The previous version of this file defined `droBellmanOp` as
-`bellmanOp + ε · lipV` and proved contraction by observing that the
-constant cancels in differences. That was an algebraic identity, not
-a robust-MDP theorem (consistent with the abstract Bellman framework).
-The new version actually instantiates the `min_a [c + γ · Q]` operator
-and proves contraction directly via non-expansiveness of `Q`. The
-mixture instance (BAPR's framework) is fully `γ`-contractive; the
-Wasserstein instance has the honest `(1 + εC)` Lipschitz bound, which
-is the right characterisation for single-shot DRO.
+3. `wasserstein_amb_lipBound`: the nominal expectation plus penalty
+   `Q_W(s, a) V = ⟨P̂(s, a), V⟩ + ε · Lip(V)` has a `(1 + ε)`
+   Lipschitz bound when the supplied `Lip` functional is nonexpansive.
+   This expression is the upper endpoint in the Wasserstein bound.
+   A supremum of expectations over a fixed nonempty set of probability
+   measures satisfies the nonexpansiveness premise directly.
 -/
 
 noncomputable section
@@ -238,28 +225,19 @@ theorem mixture_robust_bellman_contraction {Z : Type} [Fintype Z]
   robustBellmanOp_contraction hγ c _
     (mixture_amb_nonexp b hbnn hbsum P_z hpnn hpsum) V W s
 
-/-! ## 4. Wasserstein-ball ambiguity (BAPR-HRO): honest (1+ε)-Lipschitz bound
+/-! ## 4. Lipschitz bound for the nominal expectation plus penalty
 
-Unlike the mixture, the W₁-ball ambiguity functional adds an explicit
-`ε · Lip(V)` slack to the nominal expectation. This is *not*
-1-non-expansive in `V` for `ε > 0`; the per-step expansion factor is
-`(1 + εC)` where `C` is the Lipschitz operator's own non-expansiveness
-constant.
-
-The honest single-step bound below complements the cumulative SSP
-suboptimality theorem in `BAPRHRO.lean` (`per_step_gap`,
-`lcb_suboptimality`), which compounds the per-step `ε` across `D` stops
-to give the LCB excess-cost bound `2D(1+β)·σ_max` (Theorem 7 in the
-paper).
+The penalty is `ε · Lip(V)`. The bounds below apply to this expression
+under the given hypothesis on `lipV`.
 -/
 
-/-- Wasserstein-ball ambiguity functional. -/
+/-- Upper endpoint `E[V] + ε · lipV V` of the Wasserstein bound. -/
 def wassersteinAmbFunc
     (P_hat : S × A → S → ℝ) (ε : ℝ) (lipV : (S → ℝ) → ℝ)
     (sa : S × A) (V : S → ℝ) : ℝ :=
   ∑ s' : S, P_hat sa s' * V s' + ε * lipV V
 
-/-- **Wasserstein-ball Lipschitz bound**. -/
+/-- Lipschitz bound for the nominal expectation plus penalty. -/
 theorem wasserstein_amb_lipBound
     (P_hat : S × A → S → ℝ) (hpnn : ∀ sa s', 0 ≤ P_hat sa s')
     (hpsum : ∀ sa, ∑ s' : S, P_hat sa s' = 1)
@@ -301,12 +279,8 @@ theorem wasserstein_amb_lipBound
     _ ≤ supDiff V W + ε * supDiff V W := by linarith [hexp_bound, hlip_bound]
     _ = (1 + ε) * supDiff V W := by ring
 
-/-- Bellman backup with Wasserstein ambiguity is `(1 + ε)γ`-Lipschitz
-    (per-step). For `ε > 0` this exceeds `γ`, so iteration *increases*
-    the bound; the cumulative effect after `D` stops is
-    `(γ(1+ε))^D · supDiff`, matching the paper's `2D(1+β)σ_max`
-    statement up to constants. The full SSP suboptimality theorem
-    handles the bookkeeping in `BAPRHRO.lean`. -/
+/-- The Bellman backup using the nominal expectation plus penalty has
+    Lipschitz bound `(1 + ε)γ`. -/
 theorem wasserstein_robust_bellman_lipBound
     {γ : ℝ} (hγ : 0 ≤ γ)
     (c : S × A → ℝ)
@@ -341,12 +315,11 @@ theorem wasserstein_robust_bellman_lipBound
     _
     hbound
 
-/-! ## 4b. Derive Wasserstein ambiguity from a W₁-ball
+/-! ## 4b. Abstract Wasserstein bounds
 
-A previous version of `wassersteinAmbFunc` postulates the
-KR upper-bound form `E_{P̂}[V] + ε · Lip(V)` rather than deriving it
-from a sup over a W₁-ball. The substantive content of the derivation
-is `dro_upper_bound` in `DRO.lean`: for any 1-Lipschitz `f`,
+`wassersteinAmbFunc` defines the upper-bound expression
+`E_{P̂}[V] + ε · Lip(V)`. The measure-level one-sided result is
+`dro_upper_bound` in `DRO.lean`. For a nonnegative 1-Lipschitz `f`,
 
     sup_{P : W₁(P, P̂) ≤ ε} ∫ f dP  ≤  ∫ f dP̂ + ε.
 
@@ -401,20 +374,5 @@ theorem wassersteinAmbFunc_satisfies_KR
     unfold wassersteinAmbFunc
     have : 0 ≤ ε * lipV V := mul_nonneg hε (h_lip_nn V)
     linarith
-
-/-! ## 5. Belief-state robust Bellman: BAPR-HRO ∪ BAPR
-
-The two papers' robust Bellman operators are now both instances of
-`robustBellmanOp`:
-
-  • Redesigned BAPR uses `mixtureAmbFunc` (γ-contractive directly via
-    `mixture_robust_bellman_contraction`).
-  • BAPR-HRO uses `wassersteinAmbFunc` ((γ(1+ε))-Lipschitz per step
-    via `wasserstein_robust_bellman_lipBound`; the cumulative SSP
-    bound is `2D(1+β)σ_max` from `BAPRHRO.lean`).
-
-These are the substantive contraction and Lipschitz theorems used in
-the paper's "Relationship to BAPR" section.
--/
 
 end DROBellman

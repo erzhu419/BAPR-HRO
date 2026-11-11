@@ -65,9 +65,9 @@ class StopLabel:
     by mean destination arrival time (earlier = better).
     """
     connection_id: int
-    dest_arrival: PMF               # T_dest(c): distribution of arrival at destination
+    dest_arrival: PMF               # normalized arrival conditional on successful completion
     mean_dest_arrival: float         # E[T_dest(c)]
-    feasibility: float              # P_feasible(c): prob user is still at this stop
+    feasibility: float              # downstream success conditional on boarding this connection
 
 
 @dataclass
@@ -130,11 +130,16 @@ class TransitGraph:
         for conn in self.connections:
             if conn.route in regime_dists:
                 info = regime_dists[conn.route]
+                probs = np.asarray(info["delay_probs"], dtype=float)
+                if "cancel_prob" in info and probs.sum() > 0:
+                    probs = probs / probs.sum() * (1.0 - info["cancel_prob"])
+                conn.cancel_prob = max(0.0, 1.0 - float(probs.sum()))
                 conn.dep_distribution = PMF.from_delays(
-                    conn.dep_time, info["delay_probs"], info.get("delay_offset", 0))
+                    conn.dep_time, probs, info.get("delay_offset", 0))
                 conn.arr_distribution = PMF.from_delays(
-                    conn.arr_time, info["delay_probs"], info.get("delay_offset", 0))
+                    conn.arr_time, probs, info.get("delay_offset", 0))
             else:
+                conn.cancel_prob = 0.0
                 # Default: Gaussian-like delay centered at 0, discretized
                 delays = np.arange(-3, 11)  # -3 to +10 min
                 probs = np.exp(-0.5 * (delays / default_std) ** 2)

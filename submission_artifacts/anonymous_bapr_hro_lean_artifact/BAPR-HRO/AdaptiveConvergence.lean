@@ -1,14 +1,14 @@
 import Mathlib
 
 /-!
-# Adaptive-β Convergence: Tighter Regret Bounds
+# Inequalities for numerical rate expressions
 
 ## Overview
 
-1. Per-episode regret² ≤ 2·(c + v²)/T — the O(1/T) rate
-2. Convergence: ∀ ε > 0, ∃ T₀, per-episode ≤ ε for T ≥ T₀
-3. Doubling T halves the squared per-episode regret
-4. For large T, stationary term dominates variation
+The square of `sqrt (c / T) + v / T` is at most `2·(c + v²)/T`
+for `T ≥ 1`. The other lemmas give convergence and monotonicity
+inequalities for numerical expressions. Applying these rates to a
+learning algorithm requires a bound for that algorithm's regret process.
 -/
 
 noncomputable section

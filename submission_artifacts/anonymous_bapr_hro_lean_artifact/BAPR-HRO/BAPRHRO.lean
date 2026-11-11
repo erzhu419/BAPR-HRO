@@ -19,29 +19,15 @@ of the route's delay.
 
 ## Main Theorem
 
-We prove that the excess cost of LCB relative to the Bayes-optimal policy
-is bounded by:
+The algebraic selection lemma bounds a per-stage gap under uniform
+errors on the candidate costs. Summing any D gaps that satisfy the
+assumed bound gives:
 
-    excess ≤ D · 2β · σ_max
+    sum of supplied gaps ≤ D · 2(1+β) · σ_max
 
-where D is the maximum journey length (number of stops) and σ_max is the
-maximum posterior standard deviation across routes. Since σ_max → 0 as
-observations accumulate (posterior contraction), this bound vanishes with
-more data.
-
-## Proof Strategy
-
-1. At each stop, the gap between LCB's choice and the optimal choice
-   is bounded by 2β · σ_posterior (Lemma `per_step_gap`).
-2. Summing over D stops gives the total bound (Theorem `lcb_suboptimality`).
-3. Posterior contraction: σ ~ 1/√n (Lemma `posterior_std_bound`).
-
-## Connection to BAPR
-
-This proof is the transit-routing analogue of BAPR's contraction proof:
-- BAPR.lean proves T_BAPR is a γ-contraction (training-time convergence)
-- BAPRHRO.lean proves LCB has bounded excess cost (inference-time optimality)
-Both exploit the same principle: frozen Bayesian parameters yield clean bounds.
+To turn this sum into a causal journey-cost bound requires identifying the
+gaps with Bellman advantages along the policy's induced histories and
+justifying the conditional continuation errors on those histories.
 -/
 
 noncomputable section
@@ -77,10 +63,9 @@ After n observations with sample mean x̄ and sample variance s²:
   α_n = α₀ + n/2
   β_n = β₀ + n·s²/2 + κ₀·n·(x̄ - μ₀)² / (2·κ_n)
 
-The posterior predictive std of the mean is:
-  σ_posterior = √(β_n / (α_n · κ_n))
-
-Key property: σ_posterior → 0 as n → ∞ (posterior contraction).
+The marginal Student-t law of μ has scale √(β_n / (α_n · κ_n)).
+Its standard deviation for α_n > 1 is √(β_n / ((α_n - 1) · κ_n)).
+The symbol `posterior_std` below retains the original scale formula.
 -/
 
 /-- Posterior state after n observations. -/
@@ -92,23 +77,15 @@ structure PosteriorState where
   hα  : α_n > 1
   hβn : β_n > 0
 
-/-- Posterior standard deviation of the delay mean estimate. -/
+/-- Student-t scale of the marginal delay mean in the Normal–Gamma model. -/
 def posterior_std (p : PosteriorState) : ℝ :=
   Real.sqrt (p.β_n / (p.α_n * p.κ_n))
 
-/-! ## 3. Posterior Contraction Lemma
+/-! ## 3. Numerical scale envelope
 
-After n observations from a distribution with true variance σ²_true,
-the posterior std satisfies σ_posterior ≤ C / √n for a constant C
-depending on the prior and true variance.
--/
-
-/-!
-## 3. Posterior Variance Contraction
-
-The posterior variance of the delay mean decreases monotonically as
-observations accumulate. We prove β_n/(α_n·κ_n) ≤ 2(β₀ + σ²/2)/n
-by bounding numerator and denominator separately.
+For the numerator `β₀ + n·σ_true²/2` used below, the squared scale is
+bounded by `2(β₀ + σ_true²/2)/n`. An application to the sample-dependent
+Normal–Gamma update needs an envelope for its full rate parameter.
 -/
 
 /-- The denominator α_n · κ_n grows at least as fast as n²/2. -/
@@ -129,10 +106,7 @@ lemma numer_bound (β₀ σ_true : ℝ) (n : ℝ)
   nlinarith
 
 /--
-**Lemma (Posterior Variance Bound)**: β_n / (α_n · κ_n) ≤ 2(β₀ + σ²/2) / n.
-
-This is the key estimate: the posterior variance of the delay mean
-decreases as O(1/n), establishing √n-rate convergence.
+Bound the squared scale with the specified numerator and denominator.
 -/
 lemma posterior_variance_bound
     (β₀ α₀ κ₀ σ_true : ℝ) (n : ℝ)
@@ -157,23 +131,14 @@ lemma posterior_variance_bound
 At a single stop, the LCB policy selects the connection minimizing:
   score(c) = nominal(c) + β · σ(route(c))
 
-The Bayes-optimal policy selects the connection minimizing the TRUE
-expected arrival (unknown, but bounded). The gap between LCB's
-choice and optimal's choice is bounded by 2β·σ_max.
+The comparator minimizes the supplied true costs in this menu. A
+uniform bound on nominal cost errors is a separate premise.
 -/
 
 /--
-**Lemma (Per-Step Gap)**: At a single stop with K labels, if the
-posterior std for each route is ≤ σ_max, then the cost of LCB's
-choice exceeds the cost of the Bayes-optimal choice by at most 2β·σ_max.
-
-Proof sketch:
-- Let c_opt be the Bayes-optimal choice (minimizes true expected arrival).
-- Let c_lcb be LCB's choice (minimizes nominal + β·σ).
-- LCB selected c_lcb, so: nominal(c_lcb) + β·σ(c_lcb) ≤ nominal(c_opt) + β·σ(c_opt)
-- The true cost of c_lcb differs from nominal by at most σ: true(c_lcb) ≤ nominal(c_lcb) + σ
-- Similarly: nominal(c_opt) ≤ true(c_opt) + σ
-- Combining: true(c_lcb) ≤ true(c_opt) + 2β·σ_max
+Bound the gap between two selections from K labels under a uniform
+cost-error bound and bounded nonnegative penalty scales. The score
+comparison and the two cost errors give the stated `2(1+β)·σ_max` bound.
 -/
 lemma per_step_gap
     (K : ℕ) (β σ_max : ℝ)
@@ -234,21 +199,9 @@ lemma per_step_gap
 /-! ## 5. Main Theorem: Total Suboptimality Bound -/
 
 /--
-**Theorem (LCB Suboptimality Bound)**: Over a journey of at most D stops,
-the total excess cost of the LCB policy relative to the Bayes-optimal
-policy is bounded by:
-
-    excess ≤ D · 2(1+β) · σ_max
-
-where σ_max is the maximum posterior std across all routes.
-
-Since σ_max = O(1/√n) by posterior contraction (Lemma `posterior_std_bound`),
-the bound vanishes as observations accumulate:
-
-    excess ≤ D · 2(1+β) · C / √n → 0
-
-This establishes that LCB is **asymptotically Bayes-optimal** for transit
-routing with conjugate delay posteriors.
+Sum D externally supplied gaps under a uniform bound. The hypotheses
+state the gap bounds directly. They do not identify the gaps with a
+journey's Bellman advantages.
 -/
 theorem lcb_suboptimality
     (D : ℕ) (β σ_max : ℝ)
@@ -272,8 +225,7 @@ theorem lcb_suboptimality
 /-! ## 6. Corollary: Convergence Rate -/
 
 /--
-**Corollary**: After n delay observations per route, the LCB suboptimality
-gap is O(D·β/√n), establishing a √n convergence rate to Bayes-optimality.
+Insert an assumed O(1/√n) scale envelope into the numerical gap bound.
 -/
 theorem lcb_convergence_rate
     (D : ℕ) (β C_prior : ℝ) (n : ℕ) :

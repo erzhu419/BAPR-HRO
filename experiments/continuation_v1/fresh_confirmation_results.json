@@ -1,0 +1,562 @@
+{
+  "implementation": "continuation_v2_fresh_generated",
+  "dates_and_seeds": [
+    [
+      "2023-10-12",
+      1327
+    ],
+    [
+      "2023-10-25",
+      4219
+    ]
+  ],
+  "ods": [
+    [
+      "Zürich, Bellevue",
+      "Zürich, Triemli"
+    ],
+    [
+      "Zürich, Central",
+      "Zürich Wiedikon, Bahnhof"
+    ]
+  ],
+  "samples": 8,
+  "tuning": "none",
+  "od_cases": 8,
+  "scope": "New generated dates, worlds and OD pairs with frozen policies",
+  "summary": {
+    "all": {
+      "methods": {
+        "legacy": {
+          "mean_loss": 103.25,
+          "arrival_rate": 0.25,
+          "mean_total_ms": 8871.797641382727
+        },
+        "nominal": {
+          "mean_loss": 39.5,
+          "arrival_rate": 0.875,
+          "mean_total_ms": 5278.84416175948
+        },
+        "rollout": {
+          "mean_loss": 30.375,
+          "arrival_rate": 1,
+          "mean_total_ms": 16491.028833370365
+        }
+      },
+      "rollout_minus_nominal": {
+        "n": 8,
+        "mean_difference": -9.125,
+        "better": 3,
+        "worse": 1
+      }
+    },
+    "no_cancel": {
+      "methods": {
+        "legacy": {
+          "mean_loss": 102,
+          "arrival_rate": 0.25,
+          "mean_total_ms": 6963.210176254506
+        },
+        "nominal": {
+          "mean_loss": 25.25,
+          "arrival_rate": 1,
+          "mean_total_ms": 4783.3353000023635
+        },
+        "rollout": {
+          "mean_loss": 24.75,
+          "arrival_rate": 1,
+          "mean_total_ms": 13883.160462748492
+        }
+      },
+      "rollout_minus_nominal": {
+        "n": 4,
+        "mean_difference": -0.5,
+        "better": 1,
+        "worse": 0
+      }
+    },
+    "stress": {
+      "methods": {
+        "legacy": {
+          "mean_loss": 104.5,
+          "arrival_rate": 0.25,
+          "mean_total_ms": 10780.385106510948
+        },
+        "nominal": {
+          "mean_loss": 53.75,
+          "arrival_rate": 0.75,
+          "mean_total_ms": 5774.353023516596
+        },
+        "rollout": {
+          "mean_loss": 36,
+          "arrival_rate": 1,
+          "mean_total_ms": 19098.897203992237
+        }
+      },
+      "rollout_minus_nominal": {
+        "n": 4,
+        "mean_difference": -17.75,
+        "better": 2,
+        "worse": 1
+      }
+    }
+  },
+  "rows": [
+    {
+      "index": 0,
+      "variant": "legacy",
+      "spec": [
+        "2023-10-12",
+        false,
+        "Zürich, Bellevue",
+        "Zürich, Triemli",
+        1327,
+        120,
+        5
+      ],
+      "loss": 120,
+      "arrived": false,
+      "total_ms": 8948.428381001577,
+      "rollout_ms": 0.0,
+      "scans": 28000,
+      "rollout_steps": 0
+    },
+    {
+      "index": 0,
+      "variant": "nominal",
+      "spec": [
+        "2023-10-12",
+        false,
+        "Zürich, Bellevue",
+        "Zürich, Triemli",
+        1327,
+        120,
+        5
+      ],
+      "loss": 30,
+      "arrived": true,
+      "total_ms": 5071.080719993915,
+      "rollout_ms": 0.0,
+      "scans": 16000,
+      "rollout_steps": 0
+    },
+    {
+      "index": 0,
+      "variant": "rollout",
+      "spec": [
+        "2023-10-12",
+        false,
+        "Zürich, Bellevue",
+        "Zürich, Triemli",
+        1327,
+        120,
+        5
+      ],
+      "loss": 30,
+      "arrived": true,
+      "total_ms": 23754.657462995965,
+      "rollout_ms": 16213.456483732443,
+      "scans": 22000,
+      "rollout_steps": 9916
+    },
+    {
+      "index": 1,
+      "variant": "legacy",
+      "spec": [
+        "2023-10-12",
+        false,
+        "Zürich, Central",
+        "Zürich Wiedikon, Bahnhof",
+        1327,
+        120,
+        5
+      ],
+      "loss": 120,
+      "arrived": false,
+      "total_ms": 4942.309615027625,
+      "rollout_ms": 0.0,
+      "scans": 16000,
+      "rollout_steps": 0
+    },
+    {
+      "index": 1,
+      "variant": "nominal",
+      "spec": [
+        "2023-10-12",
+        false,
+        "Zürich, Central",
+        "Zürich Wiedikon, Bahnhof",
+        1327,
+        120,
+        5
+      ],
+      "loss": 22,
+      "arrived": true,
+      "total_ms": 3813.466996012721,
+      "rollout_ms": 0.0,
+      "scans": 12000,
+      "rollout_steps": 0
+    },
+    {
+      "index": 1,
+      "variant": "rollout",
+      "spec": [
+        "2023-10-12",
+        false,
+        "Zürich, Central",
+        "Zürich Wiedikon, Bahnhof",
+        1327,
+        120,
+        5
+      ],
+      "loss": 20,
+      "arrived": true,
+      "total_ms": 6788.914568955079,
+      "rollout_ms": 2961.1429720534943,
+      "scans": 12000,
+      "rollout_steps": 2823
+    },
+    {
+      "index": 2,
+      "variant": "legacy",
+      "spec": [
+        "2023-10-12",
+        true,
+        "Zürich, Bellevue",
+        "Zürich, Triemli",
+        1327,
+        120,
+        5
+      ],
+      "loss": 120,
+      "arrived": false,
+      "total_ms": 11867.058699019253,
+      "rollout_ms": 0.0,
+      "scans": 36000,
+      "rollout_steps": 0
+    },
+    {
+      "index": 2,
+      "variant": "nominal",
+      "spec": [
+        "2023-10-12",
+        true,
+        "Zürich, Bellevue",
+        "Zürich, Triemli",
+        1327,
+        120,
+        5
+      ],
+      "loss": 29,
+      "arrived": true,
+      "total_ms": 4579.843614017591,
+      "rollout_ms": 0.0,
+      "scans": 14000,
+      "rollout_steps": 0
+    },
+    {
+      "index": 2,
+      "variant": "rollout",
+      "spec": [
+        "2023-10-12",
+        true,
+        "Zürich, Bellevue",
+        "Zürich, Triemli",
+        1327,
+        120,
+        5
+      ],
+      "loss": 29,
+      "arrived": true,
+      "total_ms": 15138.15507903928,
+      "rollout_ms": 9070.046575914603,
+      "scans": 18000,
+      "rollout_steps": 5730
+    },
+    {
+      "index": 3,
+      "variant": "legacy",
+      "spec": [
+        "2023-10-12",
+        true,
+        "Zürich, Central",
+        "Zürich Wiedikon, Bahnhof",
+        1327,
+        120,
+        5
+      ],
+      "loss": 58,
+      "arrived": true,
+      "total_ms": 8008.083515043836,
+      "rollout_ms": 0.0,
+      "scans": 24000,
+      "rollout_steps": 0
+    },
+    {
+      "index": 3,
+      "variant": "nominal",
+      "spec": [
+        "2023-10-12",
+        true,
+        "Zürich, Central",
+        "Zürich Wiedikon, Bahnhof",
+        1327,
+        120,
+        5
+      ],
+      "loss": 40,
+      "arrived": true,
+      "total_ms": 3928.0572830466554,
+      "rollout_ms": 0.0,
+      "scans": 12000,
+      "rollout_steps": 0
+    },
+    {
+      "index": 3,
+      "variant": "rollout",
+      "spec": [
+        "2023-10-12",
+        true,
+        "Zürich, Central",
+        "Zürich Wiedikon, Bahnhof",
+        1327,
+        120,
+        5
+      ],
+      "loss": 30,
+      "arrived": true,
+      "total_ms": 6856.053374009207,
+      "rollout_ms": 2293.773791869171,
+      "scans": 14000,
+      "rollout_steps": 2069
+    },
+    {
+      "index": 4,
+      "variant": "legacy",
+      "spec": [
+        "2023-10-25",
+        false,
+        "Zürich, Bellevue",
+        "Zürich, Triemli",
+        4219,
+        120,
+        5
+      ],
+      "loss": 120,
+      "arrived": false,
+      "total_ms": 8532.563126995228,
+      "rollout_ms": 0.0,
+      "scans": 24000,
+      "rollout_steps": 0
+    },
+    {
+      "index": 4,
+      "variant": "nominal",
+      "spec": [
+        "2023-10-25",
+        false,
+        "Zürich, Bellevue",
+        "Zürich, Triemli",
+        4219,
+        120,
+        5
+      ],
+      "loss": 31,
+      "arrived": true,
+      "total_ms": 5231.58623999916,
+      "rollout_ms": 0.0,
+      "scans": 16000,
+      "rollout_steps": 0
+    },
+    {
+      "index": 4,
+      "variant": "rollout",
+      "spec": [
+        "2023-10-25",
+        false,
+        "Zürich, Bellevue",
+        "Zürich, Triemli",
+        4219,
+        120,
+        5
+      ],
+      "loss": 31,
+      "arrived": true,
+      "total_ms": 17124.087775009684,
+      "rollout_ms": 11700.037652277388,
+      "scans": 16000,
+      "rollout_steps": 7668
+    },
+    {
+      "index": 5,
+      "variant": "legacy",
+      "spec": [
+        "2023-10-25",
+        false,
+        "Zürich, Central",
+        "Zürich Wiedikon, Bahnhof",
+        4219,
+        120,
+        5
+      ],
+      "loss": 48,
+      "arrived": true,
+      "total_ms": 5429.539581993595,
+      "rollout_ms": 0.0,
+      "scans": 16000,
+      "rollout_steps": 0
+    },
+    {
+      "index": 5,
+      "variant": "nominal",
+      "spec": [
+        "2023-10-25",
+        false,
+        "Zürich, Central",
+        "Zürich Wiedikon, Bahnhof",
+        4219,
+        120,
+        5
+      ],
+      "loss": 18,
+      "arrived": true,
+      "total_ms": 5017.207244003657,
+      "rollout_ms": 0.0,
+      "scans": 14000,
+      "rollout_steps": 0
+    },
+    {
+      "index": 5,
+      "variant": "rollout",
+      "spec": [
+        "2023-10-25",
+        false,
+        "Zürich, Central",
+        "Zürich Wiedikon, Bahnhof",
+        4219,
+        120,
+        5
+      ],
+      "loss": 18,
+      "arrived": true,
+      "total_ms": 7864.9820440332405,
+      "rollout_ms": 2573.708233074285,
+      "scans": 14000,
+      "rollout_steps": 2287
+    },
+    {
+      "index": 6,
+      "variant": "legacy",
+      "spec": [
+        "2023-10-25",
+        true,
+        "Zürich, Bellevue",
+        "Zürich, Triemli",
+        4219,
+        120,
+        5
+      ],
+      "loss": 120,
+      "arrived": false,
+      "total_ms": 14412.811202986632,
+      "rollout_ms": 0.0,
+      "scans": 42000,
+      "rollout_steps": 0
+    },
+    {
+      "index": 6,
+      "variant": "nominal",
+      "spec": [
+        "2023-10-25",
+        true,
+        "Zürich, Bellevue",
+        "Zürich, Triemli",
+        4219,
+        120,
+        5
+      ],
+      "loss": 120,
+      "arrived": false,
+      "total_ms": 9873.405596998055,
+      "rollout_ms": 0.0,
+      "scans": 28000,
+      "rollout_steps": 0
+    },
+    {
+      "index": 6,
+      "variant": "rollout",
+      "spec": [
+        "2023-10-25",
+        true,
+        "Zürich, Bellevue",
+        "Zürich, Triemli",
+        4219,
+        120,
+        5
+      ],
+      "loss": 54,
+      "arrived": true,
+      "total_ms": 43231.22608795529,
+      "rollout_ms": 27215.83748079138,
+      "scans": 48000,
+      "rollout_steps": 28963
+    },
+    {
+      "index": 7,
+      "variant": "legacy",
+      "spec": [
+        "2023-10-25",
+        true,
+        "Zürich, Central",
+        "Zürich Wiedikon, Bahnhof",
+        4219,
+        120,
+        5
+      ],
+      "loss": 120,
+      "arrived": false,
+      "total_ms": 8833.587008994073,
+      "rollout_ms": 0.0,
+      "scans": 26000,
+      "rollout_steps": 0
+    },
+    {
+      "index": 7,
+      "variant": "nominal",
+      "spec": [
+        "2023-10-25",
+        true,
+        "Zürich, Central",
+        "Zürich Wiedikon, Bahnhof",
+        4219,
+        120,
+        5
+      ],
+      "loss": 26,
+      "arrived": true,
+      "total_ms": 4716.105600004084,
+      "rollout_ms": 0.0,
+      "scans": 14000,
+      "rollout_steps": 0
+    },
+    {
+      "index": 7,
+      "variant": "rollout",
+      "spec": [
+        "2023-10-25",
+        true,
+        "Zürich, Central",
+        "Zürich Wiedikon, Bahnhof",
+        4219,
+        120,
+        5
+      ],
+      "loss": 31,
+      "arrived": true,
+      "total_ms": 11170.15427496517,
+      "rollout_ms": 5019.855847989675,
+      "scans": 18000,
+      "rollout_steps": 4901
+    }
+  ]
+}

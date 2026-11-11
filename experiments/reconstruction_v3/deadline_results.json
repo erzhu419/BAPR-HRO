@@ -1,0 +1,2935 @@
+{
+  "implementation": "route_id_chronological_cached_transfer",
+  "data": "/home/erzhu419/mine_code/BAPR-HRO/data/per_day_distributions_corrected.pkl",
+  "scope": "one generated world per date and condition; target-day latest forecast statistics and observed service declarations calibrate worlds on the same static topology; policy priors use strictly earlier dates",
+  "inference": "paired date resampling describes these generated conditions, not independent observed service events",
+  "od_conditions": 36,
+  "journeys": 144,
+  "predeclared_departure": 490,
+  "methods": [
+    "marginal",
+    "native_strict",
+    "nominal",
+    "rollout"
+  ],
+  "summary": {
+    "stress=True/cap=60": {
+      "od_cases": 12,
+      "generated_worlds": 3,
+      "metrics": {
+        "marginal": {
+          "loss": 49.916666666666664,
+          "arrived": 0.4166666666666667,
+          "total_ms": 8231.577102822484,
+          "initial_ms": 699.2120709134421,
+          "estimate_ms": 87.51196084873906,
+          "scan_ms": 8076.535123070546,
+          "scans": 23666.666666666668,
+          "label_updates": 15096.25,
+          "rollout_ms": 0.0,
+          "decision_p50_p95_ms": [
+            0.33387995790690184,
+            820.1639037812123
+          ],
+          "largest_worker_peak_kib": 81992
+        },
+        "native_strict": {
+          "loss": 47.166666666666664,
+          "arrived": 0.5833333333333334,
+          "total_ms": 7343.204161908943,
+          "initial_ms": 498.8983097525003,
+          "estimate_ms": 200.723812818372,
+          "scan_ms": 7111.149963743325,
+          "scans": 29000,
+          "label_updates": 16169.416666666666,
+          "rollout_ms": 0.0,
+          "decision_p50_p95_ms": [
+            0.09877502452582121,
+            568.0158844101237
+          ],
+          "largest_worker_peak_kib": 81992
+        },
+        "nominal": {
+          "loss": 28.5,
+          "arrived": 0.9166666666666666,
+          "total_ms": 5407.435033334575,
+          "initial_ms": 710.1623240790408,
+          "estimate_ms": 61.67716800215809,
+          "scan_ms": 5231.831892519646,
+          "scans": 14166.666666666666,
+          "label_updates": 8931.166666666666,
+          "rollout_ms": 0.0,
+          "decision_p50_p95_ms": [
+            8.457988471491262,
+            1125.5573314090718
+          ],
+          "largest_worker_peak_kib": 81992
+        },
+        "rollout": {
+          "loss": 29.166666666666668,
+          "arrived": 0.9166666666666666,
+          "total_ms": 17820.05542058808,
+          "initial_ms": 743.0209970916621,
+          "estimate_ms": 61.50330043359039,
+          "scan_ms": 5548.741810615563,
+          "scans": 15333.333333333334,
+          "label_updates": 9417.416666666666,
+          "rollout_ms": 12134.499181396677,
+          "decision_p50_p95_ms": [
+            976.6340075002518,
+            3477.1800730464747
+          ],
+          "largest_worker_peak_kib": 82692
+        }
+      },
+      "paired_minus_nominal": {
+        "marginal": {
+          "mean_date_difference": 21.416666666666668,
+          "date_resampling_interval": [
+            13.0,
+            28.0
+          ],
+          "by_date": {
+            "2023-10-12": 28,
+            "2023-10-25": 23.25,
+            "2023-10-29": 13
+          }
+        },
+        "native_strict": {
+          "mean_date_difference": 18.666666666666668,
+          "date_resampling_interval": [
+            17.0,
+            20.5
+          ],
+          "by_date": {
+            "2023-10-12": 17,
+            "2023-10-25": 18.5,
+            "2023-10-29": 20.5
+          }
+        },
+        "rollout": {
+          "mean_date_difference": 0.6666666666666666,
+          "date_resampling_interval": [
+            0.0,
+            2.0
+          ],
+          "by_date": {
+            "2023-10-12": 0,
+            "2023-10-25": 2,
+            "2023-10-29": 0
+          }
+        }
+      }
+    },
+    "stress=True/cap=90": {
+      "od_cases": 12,
+      "generated_worlds": 3,
+      "metrics": {
+        "marginal": {
+          "loss": 67.41666666666667,
+          "arrived": 0.4166666666666667,
+          "total_ms": 9520.364539076885,
+          "initial_ms": 716.0600036731921,
+          "estimate_ms": 103.3144802689397,
+          "scan_ms": 9333.408041391522,
+          "scans": 24333.333333333332,
+          "label_updates": 15533.75,
+          "rollout_ms": 0.0,
+          "decision_p50_p95_ms": [
+            0.14463899424299598,
+            938.0804904096244
+          ],
+          "largest_worker_peak_kib": 82924
+        },
+        "native_strict": {
+          "loss": 59.666666666666664,
+          "arrived": 0.5833333333333334,
+          "total_ms": 7606.073126759536,
+          "initial_ms": 557.8331229965746,
+          "estimate_ms": 204.7886026945586,
+          "scan_ms": 7369.064944476122,
+          "scans": 29000,
+          "label_updates": 16169.416666666666,
+          "rollout_ms": 0.0,
+          "decision_p50_p95_ms": [
+            0.029578979592770338,
+            544.0778749994934
+          ],
+          "largest_worker_peak_kib": 82924
+        },
+        "nominal": {
+          "loss": 31,
+          "arrived": 0.9166666666666666,
+          "total_ms": 5104.018231082591,
+          "initial_ms": 738.6657424940495,
+          "estimate_ms": 53.21483016693188,
+          "scan_ms": 4941.620280767286,
+          "scans": 14166.666666666666,
+          "label_updates": 8931.166666666666,
+          "rollout_ms": 0.0,
+          "decision_p50_p95_ms": [
+            9.494252037256956,
+            857.4062542495085
+          ],
+          "largest_worker_peak_kib": 82924
+        },
+        "rollout": {
+          "loss": 31.666666666666668,
+          "arrived": 0.9166666666666666,
+          "total_ms": 21767.076607914834,
+          "initial_ms": 786.0818721771162,
+          "estimate_ms": 55.85327985075613,
+          "scan_ms": 5102.377901503739,
+          "scans": 15166.666666666666,
+          "label_updates": 9333.5,
+          "rollout_ms": 16539.254293476308,
+          "decision_p50_p95_ms": [
+            1255.5973904964048,
+            4087.7312461263496
+          ],
+          "largest_worker_peak_kib": 83116
+        }
+      },
+      "paired_minus_nominal": {
+        "marginal": {
+          "mean_date_difference": 36.416666666666664,
+          "date_resampling_interval": [
+            20.5,
+            45.75
+          ],
+          "by_date": {
+            "2023-10-12": 43,
+            "2023-10-25": 45.75,
+            "2023-10-29": 20.5
+          }
+        },
+        "native_strict": {
+          "mean_date_difference": 28.666666666666668,
+          "date_resampling_interval": [
+            24.5,
+            35.5
+          ],
+          "by_date": {
+            "2023-10-12": 24.5,
+            "2023-10-25": 26,
+            "2023-10-29": 35.5
+          }
+        },
+        "rollout": {
+          "mean_date_difference": 0.6666666666666666,
+          "date_resampling_interval": [
+            0.0,
+            2.0
+          ],
+          "by_date": {
+            "2023-10-12": 0,
+            "2023-10-25": 2,
+            "2023-10-29": 0
+          }
+        }
+      }
+    },
+    "stress=True/cap=120": {
+      "od_cases": 12,
+      "generated_worlds": 3,
+      "metrics": {
+        "marginal": {
+          "loss": 84.91666666666667,
+          "arrived": 0.4166666666666667,
+          "total_ms": 8574.004122754559,
+          "initial_ms": 646.2615425843978,
+          "estimate_ms": 88.31904802840047,
+          "scan_ms": 8407.419546429688,
+          "scans": 24333.333333333332,
+          "label_updates": 15533.75,
+          "rollout_ms": 0.0,
+          "decision_p50_p95_ms": [
+            0.009029987268149853,
+            760.9379749861545
+          ],
+          "largest_worker_peak_kib": 82152
+        },
+        "native_strict": {
+          "loss": 72.16666666666667,
+          "arrived": 0.5833333333333334,
+          "total_ms": 7351.508847074001,
+          "initial_ms": 477.61885125752696,
+          "estimate_ms": 199.55876899863748,
+          "scan_ms": 7120.551162321742,
+          "scans": 29000,
+          "label_updates": 16169.416666666666,
+          "rollout_ms": 0.0,
+          "decision_p50_p95_ms": [
+            0.004214991349726915,
+            528.5739276092501
+          ],
+          "largest_worker_peak_kib": 82152
+        },
+        "nominal": {
+          "loss": 33.5,
+          "arrived": 0.9166666666666666,
+          "total_ms": 4934.695455342687,
+          "initial_ms": 714.7947257471969,
+          "estimate_ms": 53.43855722943166,
+          "scan_ms": 4777.251349189707,
+          "scans": 14166.666666666666,
+          "label_updates": 8931.166666666666,
+          "rollout_ms": 0.0,
+          "decision_p50_p95_ms": [
+            8.480899006826803,
+            785.031465999782
+          ],
+          "largest_worker_peak_kib": 82152
+        },
+        "rollout": {
+          "loss": 34.166666666666664,
+          "arrived": 0.9166666666666666,
+          "total_ms": 24256.689240578755,
+          "initial_ms": 708.5021606617374,
+          "estimate_ms": 61.916211236772746,
+          "scan_ms": 5000.080811403071,
+          "scans": 15333.333333333334,
+          "label_updates": 9417.416666666666,
+          "rollout_ms": 19125.741445624346,
+          "decision_p50_p95_ms": [
+            505.91508302022703,
+            5519.41965982259
+          ],
+          "largest_worker_peak_kib": 82924
+        }
+      },
+      "paired_minus_nominal": {
+        "marginal": {
+          "mean_date_difference": 51.416666666666664,
+          "date_resampling_interval": [
+            28.0,
+            68.25
+          ],
+          "by_date": {
+            "2023-10-12": 58,
+            "2023-10-25": 68.25,
+            "2023-10-29": 28
+          }
+        },
+        "native_strict": {
+          "mean_date_difference": 38.666666666666664,
+          "date_resampling_interval": [
+            32.0,
+            50.5
+          ],
+          "by_date": {
+            "2023-10-12": 32,
+            "2023-10-25": 33.5,
+            "2023-10-29": 50.5
+          }
+        },
+        "rollout": {
+          "mean_date_difference": 0.6666666666666666,
+          "date_resampling_interval": [
+            0.0,
+            2.0
+          ],
+          "by_date": {
+            "2023-10-12": 0,
+            "2023-10-25": 2,
+            "2023-10-29": 0
+          }
+        }
+      }
+    }
+  },
+  "cases": [
+    {
+      "implementation": "route_id_chronological_cached_transfer",
+      "spec": [
+        "2023-10-12",
+        0,
+        true,
+        60
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Goldbrunnenplatz"
+      ],
+      "world_seed": 20231197,
+      "route_coverage": {
+        "delay_routes": 28,
+        "status_routes": 28
+      },
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 29,
+          "arrived": true,
+          "total_ms": 4468.885427981149,
+          "initial_ms": 624.2456359905191,
+          "estimate_ms": 37.258323980495334,
+          "scan_ms": 4406.06317698257,
+          "scans": 16000,
+          "label_updates": 11067,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 72064
+        },
+        {
+          "method": "native_strict",
+          "loss": 29,
+          "arrived": true,
+          "total_ms": 5338.2014819653705,
+          "initial_ms": 442.73734401213005,
+          "estimate_ms": 131.4622439094819,
+          "scan_ms": 5189.106772886589,
+          "scans": 22000,
+          "label_updates": 13379,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 73088
+        },
+        {
+          "method": "nominal",
+          "loss": 10,
+          "arrived": true,
+          "total_ms": 3215.4950510011986,
+          "initial_ms": 673.3653140254319,
+          "estimate_ms": 30.820668034721166,
+          "scan_ms": 3088.513162045274,
+          "scans": 8000,
+          "label_updates": 5531,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 73088
+        },
+        {
+          "method": "rollout",
+          "loss": 10,
+          "arrived": true,
+          "total_ms": 10264.931117999367,
+          "initial_ms": 717.5525480415672,
+          "estimate_ms": 35.56390694575384,
+          "scan_ms": 3063.446988002397,
+          "scans": 8000,
+          "label_updates": 5535,
+          "rollout_ms": 7114.244625845458,
+          "worker_peak_kib": 79488
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_cached_transfer",
+      "spec": [
+        "2023-10-12",
+        0,
+        true,
+        90
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Goldbrunnenplatz"
+      ],
+      "world_seed": 20231197,
+      "route_coverage": {
+        "delay_routes": 28,
+        "status_routes": 28
+      },
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 29,
+          "arrived": true,
+          "total_ms": 4717.761441948824,
+          "initial_ms": 562.2389769996516,
+          "estimate_ms": 41.51244804961607,
+          "scan_ms": 4646.356816054322,
+          "scans": 16000,
+          "label_updates": 11067,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 71928
+        },
+        {
+          "method": "native_strict",
+          "loss": 29,
+          "arrived": true,
+          "total_ms": 5237.384456035215,
+          "initial_ms": 519.7373270057142,
+          "estimate_ms": 123.58851596945897,
+          "scan_ms": 5094.018842908554,
+          "scans": 22000,
+          "label_updates": 13379,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 72232
+        },
+        {
+          "method": "nominal",
+          "loss": 10,
+          "arrived": true,
+          "total_ms": 3133.048496034462,
+          "initial_ms": 690.1229849900119,
+          "estimate_ms": 27.64537394978106,
+          "scan_ms": 3043.0435599409975,
+          "scans": 8000,
+          "label_updates": 5531,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 72488
+        },
+        {
+          "method": "rollout",
+          "loss": 10,
+          "arrived": true,
+          "total_ms": 10454.443497001193,
+          "initial_ms": 895.156048994977,
+          "estimate_ms": 29.763710976112634,
+          "scan_ms": 3394.6842010482214,
+          "scans": 8000,
+          "label_updates": 5535,
+          "rollout_ms": 6989.124216022901,
+          "worker_peak_kib": 78888
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_cached_transfer",
+      "spec": [
+        "2023-10-12",
+        0,
+        true,
+        120
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Goldbrunnenplatz"
+      ],
+      "world_seed": 20231197,
+      "route_coverage": {
+        "delay_routes": 28,
+        "status_routes": 28
+      },
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 29,
+          "arrived": true,
+          "total_ms": 4541.488446004223,
+          "initial_ms": 586.9198559666984,
+          "estimate_ms": 36.74866503570229,
+          "scan_ms": 4477.704910968896,
+          "scans": 16000,
+          "label_updates": 11067,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 72304
+        },
+        {
+          "method": "native_strict",
+          "loss": 29,
+          "arrived": true,
+          "total_ms": 5165.01709097065,
+          "initial_ms": 425.96691905055195,
+          "estimate_ms": 136.188386939466,
+          "scan_ms": 5010.186686937232,
+          "scans": 22000,
+          "label_updates": 13379,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 73328
+        },
+        {
+          "method": "nominal",
+          "loss": 10,
+          "arrived": true,
+          "total_ms": 2853.3910040277988,
+          "initial_ms": 633.4215499809943,
+          "estimate_ms": 28.03478093119338,
+          "scan_ms": 2755.266238003969,
+          "scans": 8000,
+          "label_updates": 5531,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 73328
+        },
+        {
+          "method": "rollout",
+          "loss": 10,
+          "arrived": true,
+          "total_ms": 10400.953242962714,
+          "initial_ms": 688.2129929726943,
+          "estimate_ms": 29.494710033759475,
+          "scan_ms": 2929.487543995492,
+          "scans": 8000,
+          "label_updates": 5535,
+          "rollout_ms": 7397.577122144867,
+          "worker_peak_kib": 79728
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_cached_transfer",
+      "spec": [
+        "2023-10-12",
+        1,
+        true,
+        60
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Triemli"
+      ],
+      "world_seed": 20231197,
+      "route_coverage": {
+        "delay_routes": 28,
+        "status_routes": 28
+      },
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 60,
+          "arrived": false,
+          "total_ms": 7543.917309958488,
+          "initial_ms": 606.0802990105003,
+          "estimate_ms": 73.29328719060868,
+          "scan_ms": 7391.009837039746,
+          "scans": 28000,
+          "label_updates": 15040,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 72536
+        },
+        {
+          "method": "native_strict",
+          "loss": 49,
+          "arrived": true,
+          "total_ms": 6829.398016969208,
+          "initial_ms": 481.230809004046,
+          "estimate_ms": 162.35457186121494,
+          "scan_ms": 6642.435559886508,
+          "scans": 26000,
+          "label_updates": 15771,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 72536
+        },
+        {
+          "method": "nominal",
+          "loss": 24,
+          "arrived": true,
+          "total_ms": 3950.9432439808734,
+          "initial_ms": 737.3019740334712,
+          "estimate_ms": 37.202551029622555,
+          "scan_ms": 3781.935910054017,
+          "scans": 10000,
+          "label_updates": 7138,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 73560
+        },
+        {
+          "method": "rollout",
+          "loss": 24,
+          "arrived": true,
+          "total_ms": 40202.59080303367,
+          "initial_ms": 738.2353190332651,
+          "estimate_ms": 68.31408897414804,
+          "scan_ms": 8309.50638098875,
+          "scans": 14000,
+          "label_updates": 10009,
+          "rollout_ms": 31688.987674366217,
+          "worker_peak_kib": 79972
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_cached_transfer",
+      "spec": [
+        "2023-10-12",
+        1,
+        true,
+        90
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Triemli"
+      ],
+      "world_seed": 20231197,
+      "route_coverage": {
+        "delay_routes": 28,
+        "status_routes": 28
+      },
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 90,
+          "arrived": false,
+          "total_ms": 16430.217049026396,
+          "initial_ms": 719.31932203006,
+          "estimate_ms": 188.59591684304178,
+          "scan_ms": 16009.454783925321,
+          "scans": 30000,
+          "label_updates": 15732,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 79728
+        },
+        {
+          "method": "native_strict",
+          "loss": 49,
+          "arrived": true,
+          "total_ms": 13157.2470869869,
+          "initial_ms": 948.6907399841584,
+          "estimate_ms": 370.2130810706876,
+          "scan_ms": 12723.427248944063,
+          "scans": 26000,
+          "label_updates": 15771,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 79728
+        },
+        {
+          "method": "nominal",
+          "loss": 24,
+          "arrived": true,
+          "total_ms": 8134.554693999235,
+          "initial_ms": 1633.365395013243,
+          "estimate_ms": 85.61835112050176,
+          "scan_ms": 7780.632183072157,
+          "scans": 10000,
+          "label_updates": 7138,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 79728
+        },
+        {
+          "method": "rollout",
+          "loss": 24,
+          "arrived": true,
+          "total_ms": 35592.63462701347,
+          "initial_ms": 1761.3081120071001,
+          "estimate_ms": 90.03018296789378,
+          "scan_ms": 8360.759626957588,
+          "scans": 14000,
+          "label_updates": 10009,
+          "rollout_ms": 27022.40984578384,
+          "worker_peak_kib": 80136
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_cached_transfer",
+      "spec": [
+        "2023-10-12",
+        1,
+        true,
+        120
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Triemli"
+      ],
+      "world_seed": 20231197,
+      "route_coverage": {
+        "delay_routes": 28,
+        "status_routes": 28
+      },
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 120,
+          "arrived": false,
+          "total_ms": 14972.222929995041,
+          "initial_ms": 723.2704710331745,
+          "estimate_ms": 159.81276711681858,
+          "scan_ms": 14609.81514910236,
+          "scans": 30000,
+          "label_updates": 15732,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 79488
+        },
+        {
+          "method": "native_strict",
+          "loss": 49,
+          "arrived": true,
+          "total_ms": 11609.8029660061,
+          "initial_ms": 642.9855020251125,
+          "estimate_ms": 314.85370406880975,
+          "scan_ms": 11248.061912949197,
+          "scans": 26000,
+          "label_updates": 15771,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 79488
+        },
+        {
+          "method": "nominal",
+          "loss": 24,
+          "arrived": true,
+          "total_ms": 8338.70541502256,
+          "initial_ms": 1623.0432000011206,
+          "estimate_ms": 86.1193899763748,
+          "scan_ms": 8001.418492058292,
+          "scans": 10000,
+          "label_updates": 7138,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 79488
+        },
+        {
+          "method": "rollout",
+          "loss": 24,
+          "arrived": true,
+          "total_ms": 36287.02660696581,
+          "initial_ms": 1459.7414240124635,
+          "estimate_ms": 119.6781390463002,
+          "scan_ms": 7548.607983917464,
+          "scans": 14000,
+          "label_updates": 10009,
+          "rollout_ms": 28522.783000895288,
+          "worker_peak_kib": 80032
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_cached_transfer",
+      "spec": [
+        "2023-10-12",
+        5,
+        true,
+        60
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Feldeggstrasse"
+      ],
+      "world_seed": 20231197,
+      "route_coverage": {
+        "delay_routes": 28,
+        "status_routes": 28
+      },
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 60,
+          "arrived": false,
+          "total_ms": 15127.133778005373,
+          "initial_ms": 530.4077910259366,
+          "estimate_ms": 213.70040794136003,
+          "scan_ms": 14779.77854287019,
+          "scans": 30000,
+          "label_updates": 12626,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 78888
+        },
+        {
+          "method": "native_strict",
+          "loss": 60,
+          "arrived": false,
+          "total_ms": 12084.25613300642,
+          "initial_ms": 792.7285420009866,
+          "estimate_ms": 391.39240694930777,
+          "scan_ms": 11628.806853026617,
+          "scans": 28000,
+          "label_updates": 11499,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 78888
+        },
+        {
+          "method": "nominal",
+          "loss": 39,
+          "arrived": true,
+          "total_ms": 15022.042056021746,
+          "initial_ms": 1149.1725909872912,
+          "estimate_ms": 234.27648097276688,
+          "scan_ms": 14531.568684149534,
+          "scans": 24000,
+          "label_updates": 10179,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 78888
+        },
+        {
+          "method": "rollout",
+          "loss": 39,
+          "arrived": true,
+          "total_ms": 18927.502056001686,
+          "initial_ms": 1422.1781700034626,
+          "estimate_ms": 155.784483125899,
+          "scan_ms": 11881.02387211984,
+          "scans": 24000,
+          "label_updates": 10179,
+          "rollout_ms": 6770.76896710787,
+          "worker_peak_kib": 78888
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_cached_transfer",
+      "spec": [
+        "2023-10-12",
+        5,
+        true,
+        90
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Feldeggstrasse"
+      ],
+      "world_seed": 20231197,
+      "route_coverage": {
+        "delay_routes": 28,
+        "status_routes": 28
+      },
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 90,
+          "arrived": false,
+          "total_ms": 19236.068881000392,
+          "initial_ms": 1078.5914099542424,
+          "estimate_ms": 280.6101411115378,
+          "scan_ms": 18783.631666912697,
+          "scans": 30000,
+          "label_updates": 12626,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 79972
+        },
+        {
+          "method": "native_strict",
+          "loss": 90,
+          "arrived": false,
+          "total_ms": 7655.4761890438385,
+          "initial_ms": 1088.2698919740506,
+          "estimate_ms": 217.12705510435626,
+          "scan_ms": 7416.32843593834,
+          "scans": 28000,
+          "label_updates": 11499,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 79972
+        },
+        {
+          "method": "nominal",
+          "loss": 39,
+          "arrived": true,
+          "total_ms": 6638.073984009679,
+          "initial_ms": 515.4604340204969,
+          "estimate_ms": 90.65746597480029,
+          "scan_ms": 6431.345434044488,
+          "scans": 24000,
+          "label_updates": 10179,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 79972
+        },
+        {
+          "method": "rollout",
+          "loss": 39,
+          "arrived": true,
+          "total_ms": 18415.390420006588,
+          "initial_ms": 497.9935010196641,
+          "estimate_ms": 86.37889701640233,
+          "scan_ms": 6342.004075937439,
+          "scans": 24000,
+          "label_updates": 10179,
+          "rollout_ms": 11916.153570928145,
+          "worker_peak_kib": 79972
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_cached_transfer",
+      "spec": [
+        "2023-10-12",
+        5,
+        true,
+        120
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Feldeggstrasse"
+      ],
+      "world_seed": 20231197,
+      "route_coverage": {
+        "delay_routes": 28,
+        "status_routes": 28
+      },
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 120,
+          "arrived": false,
+          "total_ms": 8647.721713001374,
+          "initial_ms": 515.0295580388047,
+          "estimate_ms": 117.0391869964078,
+          "scan_ms": 8457.813897170126,
+          "scans": 30000,
+          "label_updates": 12626,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 78888
+        },
+        {
+          "method": "native_strict",
+          "loss": 120,
+          "arrived": false,
+          "total_ms": 6448.9050029660575,
+          "initial_ms": 446.508836990688,
+          "estimate_ms": 212.6570730470121,
+          "scan_ms": 6209.93399398867,
+          "scans": 28000,
+          "label_updates": 11499,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 78888
+        },
+        {
+          "method": "nominal",
+          "loss": 39,
+          "arrived": true,
+          "total_ms": 6790.084401029162,
+          "initial_ms": 573.1598599813879,
+          "estimate_ms": 92.92669495334849,
+          "scan_ms": 6582.6106439344585,
+          "scans": 24000,
+          "label_updates": 10179,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 78888
+        },
+        {
+          "method": "rollout",
+          "loss": 39,
+          "arrived": true,
+          "total_ms": 26167.281349014957,
+          "initial_ms": 670.5633170204237,
+          "estimate_ms": 106.6518560401164,
+          "scan_ms": 6410.778732039034,
+          "scans": 24000,
+          "label_updates": 10179,
+          "rollout_ms": 19586.294619948603,
+          "worker_peak_kib": 78888
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_cached_transfer",
+      "spec": [
+        "2023-10-12",
+        12,
+        true,
+        60
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Heuried"
+      ],
+      "world_seed": 20231197,
+      "route_coverage": {
+        "delay_routes": 28,
+        "status_routes": 28
+      },
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 48,
+          "arrived": true,
+          "total_ms": 14301.330801972654,
+          "initial_ms": 1120.0476110097952,
+          "estimate_ms": 144.76285316050053,
+          "scan_ms": 14044.394547934644,
+          "scans": 36000,
+          "label_updates": 25474,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 80032
+        },
+        {
+          "method": "native_strict",
+          "loss": 15,
+          "arrived": true,
+          "total_ms": 2540.998814976774,
+          "initial_ms": 527.2994440165348,
+          "estimate_ms": 67.61198298772797,
+          "scan_ms": 2464.249158045277,
+          "scans": 10000,
+          "label_updates": 6031,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 80032
+        },
+        {
+          "method": "nominal",
+          "loss": 12,
+          "arrived": true,
+          "total_ms": 3079.041283985134,
+          "initial_ms": 755.9625209541991,
+          "estimate_ms": 27.438279008492827,
+          "scan_ms": 2972.4176920135505,
+          "scans": 8000,
+          "label_updates": 5633,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 80032
+        },
+        {
+          "method": "rollout",
+          "loss": 12,
+          "arrived": true,
+          "total_ms": 13072.224706003908,
+          "initial_ms": 762.2944689937867,
+          "estimate_ms": 27.366862050257623,
+          "scan_ms": 2910.1468959706835,
+          "scans": 8000,
+          "label_updates": 5637,
+          "rollout_ms": 10088.041938841343,
+          "worker_peak_kib": 80044
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_cached_transfer",
+      "spec": [
+        "2023-10-12",
+        12,
+        true,
+        90
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Heuried"
+      ],
+      "world_seed": 20231197,
+      "route_coverage": {
+        "delay_routes": 28,
+        "status_routes": 28
+      },
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 48,
+          "arrived": true,
+          "total_ms": 14240.419692010619,
+          "initial_ms": 742.5925750285387,
+          "estimate_ms": 138.88252613833174,
+          "scan_ms": 14003.180729865562,
+          "scans": 36000,
+          "label_updates": 25474,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 80136
+        },
+        {
+          "method": "native_strict",
+          "loss": 15,
+          "arrived": true,
+          "total_ms": 2646.941668994259,
+          "initial_ms": 525.1541569596156,
+          "estimate_ms": 67.53398693399504,
+          "scan_ms": 2570.550152042415,
+          "scans": 10000,
+          "label_updates": 6031,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 80136
+        },
+        {
+          "method": "nominal",
+          "loss": 12,
+          "arrived": true,
+          "total_ms": 2994.1481789574027,
+          "initial_ms": 811.6685940185562,
+          "estimate_ms": 25.056756974663585,
+          "scan_ms": 2896.5309720369987,
+          "scans": 8000,
+          "label_updates": 5633,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 80136
+        },
+        {
+          "method": "rollout",
+          "loss": 12,
+          "arrived": true,
+          "total_ms": 13083.56849302072,
+          "initial_ms": 731.0391520150006,
+          "estimate_ms": 26.89132100204006,
+          "scan_ms": 2860.7498329365626,
+          "scans": 8000,
+          "label_updates": 5637,
+          "rollout_ms": 10143.931363068987,
+          "worker_peak_kib": 80136
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_cached_transfer",
+      "spec": [
+        "2023-10-12",
+        12,
+        true,
+        120
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Heuried"
+      ],
+      "world_seed": 20231197,
+      "route_coverage": {
+        "delay_routes": 28,
+        "status_routes": 28
+      },
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 48,
+          "arrived": true,
+          "total_ms": 13295.569528010674,
+          "initial_ms": 770.648516016081,
+          "estimate_ms": 119.34992793248966,
+          "scan_ms": 13070.394967042375,
+          "scans": 36000,
+          "label_updates": 25474,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 79972
+        },
+        {
+          "method": "native_strict",
+          "loss": 15,
+          "arrived": true,
+          "total_ms": 2426.8268579617143,
+          "initial_ms": 500.1595600042492,
+          "estimate_ms": 63.164803956169635,
+          "scan_ms": 2354.363489022944,
+          "scans": 10000,
+          "label_updates": 6031,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 79972
+        },
+        {
+          "method": "nominal",
+          "loss": 12,
+          "arrived": true,
+          "total_ms": 2832.425666972995,
+          "initial_ms": 687.003900995478,
+          "estimate_ms": 26.153123937547207,
+          "scan_ms": 2732.551618013531,
+          "scans": 8000,
+          "label_updates": 5633,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 79972
+        },
+        {
+          "method": "rollout",
+          "loss": 12,
+          "arrived": true,
+          "total_ms": 13898.964436957613,
+          "initial_ms": 646.1828989558853,
+          "estimate_ms": 32.092754961922765,
+          "scan_ms": 3138.6366739752702,
+          "scans": 8000,
+          "label_updates": 5637,
+          "rollout_ms": 10678.638974728528,
+          "worker_peak_kib": 79972
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_cached_transfer",
+      "spec": [
+        "2023-10-25",
+        0,
+        true,
+        60
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Goldbrunnenplatz"
+      ],
+      "world_seed": 20231210,
+      "route_coverage": {
+        "delay_routes": 28,
+        "status_routes": 28
+      },
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 60,
+          "arrived": false,
+          "total_ms": 9178.487028984819,
+          "initial_ms": 740.5801140121184,
+          "estimate_ms": 81.77830307977274,
+          "scan_ms": 9027.75340207154,
+          "scans": 24000,
+          "label_updates": 17964,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 80044
+        },
+        {
+          "method": "native_strict",
+          "loss": 26,
+          "arrived": true,
+          "total_ms": 4751.260188990273,
+          "initial_ms": 505.4900979739614,
+          "estimate_ms": 134.99425811460242,
+          "scan_ms": 4595.565017138142,
+          "scans": 20000,
+          "label_updates": 12200,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 80044
+        },
+        {
+          "method": "nominal",
+          "loss": 18,
+          "arrived": true,
+          "total_ms": 3402.3168359999545,
+          "initial_ms": 666.3873609504662,
+          "estimate_ms": 30.7827609940432,
+          "scan_ms": 3272.2369029652327,
+          "scans": 10000,
+          "label_updates": 7489,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 80044
+        },
+        {
+          "method": "rollout",
+          "loss": 18,
+          "arrived": true,
+          "total_ms": 7437.631404027343,
+          "initial_ms": 625.1139990054071,
+          "estimate_ms": 31.305803975556046,
+          "scan_ms": 3058.6742130108178,
+          "scans": 10000,
+          "label_updates": 7489,
+          "rollout_ms": 4307.967845001258,
+          "worker_peak_kib": 81092
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_cached_transfer",
+      "spec": [
+        "2023-10-25",
+        0,
+        true,
+        90
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Goldbrunnenplatz"
+      ],
+      "world_seed": 20231210,
+      "route_coverage": {
+        "delay_routes": 28,
+        "status_routes": 28
+      },
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 90,
+          "arrived": false,
+          "total_ms": 10607.652991020586,
+          "initial_ms": 779.5261180144735,
+          "estimate_ms": 92.99230296164751,
+          "scan_ms": 10424.607550958171,
+          "scans": 28000,
+          "label_updates": 20972,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 80136
+        },
+        {
+          "method": "native_strict",
+          "loss": 26,
+          "arrived": true,
+          "total_ms": 4946.3886430021375,
+          "initial_ms": 517.5086610252038,
+          "estimate_ms": 124.92466304684058,
+          "scan_ms": 4803.5057320958,
+          "scans": 20000,
+          "label_updates": 12200,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 80136
+        },
+        {
+          "method": "nominal",
+          "loss": 18,
+          "arrived": true,
+          "total_ms": 3336.6945900488645,
+          "initial_ms": 686.3755559897982,
+          "estimate_ms": 29.172413982450962,
+          "scan_ms": 3253.6367491120473,
+          "scans": 10000,
+          "label_updates": 7489,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 80136
+        },
+        {
+          "method": "rollout",
+          "loss": 18,
+          "arrived": true,
+          "total_ms": 7777.280430018436,
+          "initial_ms": 657.488017983269,
+          "estimate_ms": 33.06533198338002,
+          "scan_ms": 3242.1883420902304,
+          "scans": 10000,
+          "label_updates": 7489,
+          "rollout_ms": 4464.935960015282,
+          "worker_peak_kib": 81540
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_cached_transfer",
+      "spec": [
+        "2023-10-25",
+        0,
+        true,
+        120
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Goldbrunnenplatz"
+      ],
+      "world_seed": 20231210,
+      "route_coverage": {
+        "delay_routes": 28,
+        "status_routes": 28
+      },
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 120,
+          "arrived": false,
+          "total_ms": 11019.99236503616,
+          "initial_ms": 874.8221750138327,
+          "estimate_ms": 97.76772710029036,
+          "scan_ms": 10825.909932900686,
+          "scans": 28000,
+          "label_updates": 20972,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 78888
+        },
+        {
+          "method": "native_strict",
+          "loss": 26,
+          "arrived": true,
+          "total_ms": 4580.052667995915,
+          "initial_ms": 510.9330199775286,
+          "estimate_ms": 115.9113280591555,
+          "scan_ms": 4445.5358679406345,
+          "scans": 20000,
+          "label_updates": 12200,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 78888
+        },
+        {
+          "method": "nominal",
+          "loss": 18,
+          "arrived": true,
+          "total_ms": 3446.413302968722,
+          "initial_ms": 673.4603339573368,
+          "estimate_ms": 35.66904808394611,
+          "scan_ms": 3347.4313760525547,
+          "scans": 10000,
+          "label_updates": 7489,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 78888
+        },
+        {
+          "method": "rollout",
+          "loss": 18,
+          "arrived": true,
+          "total_ms": 7895.809406007174,
+          "initial_ms": 638.7181119644083,
+          "estimate_ms": 36.121874989476055,
+          "scan_ms": 3359.62841991568,
+          "scans": 10000,
+          "label_updates": 7489,
+          "rollout_ms": 4460.081105062272,
+          "worker_peak_kib": 80512
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_cached_transfer",
+      "spec": [
+        "2023-10-25",
+        1,
+        true,
+        60
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Triemli"
+      ],
+      "world_seed": 20231210,
+      "route_coverage": {
+        "delay_routes": 28,
+        "status_routes": 28
+      },
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 60,
+          "arrived": false,
+          "total_ms": 9612.911698000971,
+          "initial_ms": 703.4367350279354,
+          "estimate_ms": 93.5314119560644,
+          "scan_ms": 9443.57538211625,
+          "scans": 28000,
+          "label_updates": 21560,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 79972
+        },
+        {
+          "method": "native_strict",
+          "loss": 45,
+          "arrived": true,
+          "total_ms": 9933.918247988913,
+          "initial_ms": 464.82482098508626,
+          "estimate_ms": 247.0082868821919,
+          "scan_ms": 9646.407633961644,
+          "scans": 42000,
+          "label_updates": 25412,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 79972
+        },
+        {
+          "method": "nominal",
+          "loss": 30,
+          "arrived": true,
+          "total_ms": 4862.374128017109,
+          "initial_ms": 651.290618989151,
+          "estimate_ms": 46.72775708604604,
+          "scan_ms": 4704.504941997584,
+          "scans": 14000,
+          "label_updates": 10811,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 79972
+        },
+        {
+          "method": "rollout",
+          "loss": 30,
+          "arrived": true,
+          "total_ms": 21972.847583994735,
+          "initial_ms": 689.4369520014152,
+          "estimate_ms": 59.94184606242925,
+          "scan_ms": 6264.680767024402,
+          "scans": 18000,
+          "label_updates": 13925,
+          "rollout_ms": 15569.71728859935,
+          "worker_peak_kib": 82152
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_cached_transfer",
+      "spec": [
+        "2023-10-25",
+        1,
+        true,
+        90
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Triemli"
+      ],
+      "world_seed": 20231210,
+      "route_coverage": {
+        "delay_routes": 28,
+        "status_routes": 28
+      },
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 90,
+          "arrived": false,
+          "total_ms": 10020.02515195636,
+          "initial_ms": 680.8193140313961,
+          "estimate_ms": 92.83226408297196,
+          "scan_ms": 9852.454406907782,
+          "scans": 30000,
+          "label_updates": 23110,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 81092
+        },
+        {
+          "method": "native_strict",
+          "loss": 45,
+          "arrived": true,
+          "total_ms": 9749.11739397794,
+          "initial_ms": 413.9386860188097,
+          "estimate_ms": 265.0934880366549,
+          "scan_ms": 9442.250852880534,
+          "scans": 42000,
+          "label_updates": 25412,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 81092
+        },
+        {
+          "method": "nominal",
+          "loss": 30,
+          "arrived": true,
+          "total_ms": 5182.023213012144,
+          "initial_ms": 692.1181079815142,
+          "estimate_ms": 46.56631499528885,
+          "scan_ms": 5014.488371962216,
+          "scans": 14000,
+          "label_updates": 10811,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 81092
+        },
+        {
+          "method": "rollout",
+          "loss": 30,
+          "arrived": true,
+          "total_ms": 21174.31706399657,
+          "initial_ms": 709.3974280287512,
+          "estimate_ms": 64.41853201249614,
+          "scan_ms": 6192.930856021121,
+          "scans": 18000,
+          "label_updates": 13925,
+          "rollout_ms": 14831.32805407513,
+          "worker_peak_kib": 81924
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_cached_transfer",
+      "spec": [
+        "2023-10-25",
+        1,
+        true,
+        120
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Triemli"
+      ],
+      "world_seed": 20231210,
+      "route_coverage": {
+        "delay_routes": 28,
+        "status_routes": 28
+      },
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 120,
+          "arrived": false,
+          "total_ms": 10156.531982007436,
+          "initial_ms": 570.7749410066754,
+          "estimate_ms": 95.18470306647941,
+          "scan_ms": 9983.099974982906,
+          "scans": 30000,
+          "label_updates": 23110,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 81540
+        },
+        {
+          "method": "native_strict",
+          "loss": 45,
+          "arrived": true,
+          "total_ms": 10262.866585049778,
+          "initial_ms": 481.6083830082789,
+          "estimate_ms": 267.6687310449779,
+          "scan_ms": 9952.79291504994,
+          "scans": 42000,
+          "label_updates": 25412,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 81540
+        },
+        {
+          "method": "nominal",
+          "loss": 30,
+          "arrived": true,
+          "total_ms": 5031.7872450104915,
+          "initial_ms": 709.2596280272119,
+          "estimate_ms": 47.665421036072075,
+          "scan_ms": 4871.98876705952,
+          "scans": 14000,
+          "label_updates": 10811,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 81540
+        },
+        {
+          "method": "rollout",
+          "loss": 30,
+          "arrived": true,
+          "total_ms": 21565.142991021276,
+          "initial_ms": 594.1354149836116,
+          "estimate_ms": 62.89347494021058,
+          "scan_ms": 6217.037640919443,
+          "scans": 18000,
+          "label_updates": 13925,
+          "rollout_ms": 15203.011102741584,
+          "worker_peak_kib": 81860
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_cached_transfer",
+      "spec": [
+        "2023-10-25",
+        5,
+        true,
+        60
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Feldeggstrasse"
+      ],
+      "world_seed": 20231210,
+      "route_coverage": {
+        "delay_routes": 28,
+        "status_routes": 28
+      },
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 60,
+          "arrived": false,
+          "total_ms": 5679.750521027017,
+          "initial_ms": 426.7114799586125,
+          "estimate_ms": 73.49438907112926,
+          "scan_ms": 5566.7179769370705,
+          "scans": 24000,
+          "label_updates": 11198,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 81024
+        },
+        {
+          "method": "native_strict",
+          "loss": 60,
+          "arrived": false,
+          "total_ms": 5298.134826007299,
+          "initial_ms": 396.33898704778403,
+          "estimate_ms": 160.27606703573838,
+          "scan_ms": 5117.829800059553,
+          "scans": 28000,
+          "label_updates": 11204,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 81024
+        },
+        {
+          "method": "nominal",
+          "loss": 47,
+          "arrived": true,
+          "total_ms": 6348.693606967572,
+          "initial_ms": 464.6918160142377,
+          "estimate_ms": 80.83526493282989,
+          "scan_ms": 6163.653928961139,
+          "scans": 24000,
+          "label_updates": 11197,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 81024
+        },
+        {
+          "method": "rollout",
+          "loss": 47,
+          "arrived": true,
+          "total_ms": 13978.80931198597,
+          "initial_ms": 527.782584016677,
+          "estimate_ms": 73.5608420218341,
+          "scan_ms": 5263.814736972563,
+          "scans": 22000,
+          "label_updates": 10221,
+          "rollout_ms": 8580.725607753266,
+          "worker_peak_kib": 81024
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_cached_transfer",
+      "spec": [
+        "2023-10-25",
+        5,
+        true,
+        90
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Feldeggstrasse"
+      ],
+      "world_seed": 20231210,
+      "route_coverage": {
+        "delay_routes": 28,
+        "status_routes": 28
+      },
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 90,
+          "arrived": false,
+          "total_ms": 6068.742818024475,
+          "initial_ms": 543.1406690040603,
+          "estimate_ms": 78.39283999055624,
+          "scan_ms": 5949.517040047795,
+          "scans": 24000,
+          "label_updates": 11198,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 82152
+        },
+        {
+          "method": "native_strict",
+          "loss": 90,
+          "arrived": false,
+          "total_ms": 5807.939341990277,
+          "initial_ms": 382.8977569937706,
+          "estimate_ms": 179.1322150384076,
+          "scan_ms": 5607.345302007161,
+          "scans": 28000,
+          "label_updates": 11204,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 82152
+        },
+        {
+          "method": "nominal",
+          "loss": 47,
+          "arrived": true,
+          "total_ms": 6023.122925020289,
+          "initial_ms": 476.01162298815325,
+          "estimate_ms": 77.68119301181287,
+          "scan_ms": 5836.772755079437,
+          "scans": 24000,
+          "label_updates": 11197,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 82152
+        },
+        {
+          "method": "rollout",
+          "loss": 47,
+          "arrived": true,
+          "total_ms": 38465.463107975665,
+          "initial_ms": 486.90519301453605,
+          "estimate_ms": 71.51944801444188,
+          "scan_ms": 5513.774883933365,
+          "scans": 22000,
+          "label_updates": 10221,
+          "rollout_ms": 32809.200869174674,
+          "worker_peak_kib": 82152
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_cached_transfer",
+      "spec": [
+        "2023-10-25",
+        5,
+        true,
+        120
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Feldeggstrasse"
+      ],
+      "world_seed": 20231210,
+      "route_coverage": {
+        "delay_routes": 28,
+        "status_routes": 28
+      },
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 120,
+          "arrived": false,
+          "total_ms": 5807.582727982663,
+          "initial_ms": 366.0197939607315,
+          "estimate_ms": 81.81047707330436,
+          "scan_ms": 5682.887995091733,
+          "scans": 24000,
+          "label_updates": 11198,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 81024
+        },
+        {
+          "method": "native_strict",
+          "loss": 120,
+          "arrived": false,
+          "total_ms": 5538.419021992013,
+          "initial_ms": 369.49696199735627,
+          "estimate_ms": 167.7271569496952,
+          "scan_ms": 5348.801408079453,
+          "scans": 28000,
+          "label_updates": 11204,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 81024
+        },
+        {
+          "method": "nominal",
+          "loss": 47,
+          "arrived": true,
+          "total_ms": 6119.747139047831,
+          "initial_ms": 487.93897399445996,
+          "estimate_ms": 78.80621601361781,
+          "scan_ms": 5941.457108070608,
+          "scans": 24000,
+          "label_updates": 11197,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 81024
+        },
+        {
+          "method": "rollout",
+          "loss": 47,
+          "arrived": true,
+          "total_ms": 61080.54345101118,
+          "initial_ms": 432.7712579979561,
+          "estimate_ms": 74.07788193086162,
+          "scan_ms": 5409.620997030288,
+          "scans": 22000,
+          "label_updates": 10221,
+          "rollout_ms": 55526.113716186956,
+          "worker_peak_kib": 81024
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_cached_transfer",
+      "spec": [
+        "2023-10-25",
+        12,
+        true,
+        60
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Heuried"
+      ],
+      "world_seed": 20231210,
+      "route_coverage": {
+        "delay_routes": 28,
+        "status_routes": 28
+      },
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 20,
+          "arrived": true,
+          "total_ms": 4930.097327043768,
+          "initial_ms": 887.5489619676955,
+          "estimate_ms": 43.8167589600198,
+          "scan_ms": 4852.919224998914,
+          "scans": 14000,
+          "label_updates": 10693,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 81992
+        },
+        {
+          "method": "native_strict",
+          "loss": 50,
+          "arrived": true,
+          "total_ms": 9798.240997013636,
+          "initial_ms": 477.2928479942493,
+          "estimate_ms": 265.17743710428476,
+          "scan_ms": 9491.30250804592,
+          "scans": 40000,
+          "label_updates": 23919,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 81992
+        },
+        {
+          "method": "nominal",
+          "loss": 12,
+          "arrived": true,
+          "total_ms": 3513.9034049934708,
+          "initial_ms": 670.8504179841839,
+          "estimate_ms": 38.69011509232223,
+          "scan_ms": 3397.970244928729,
+          "scans": 10000,
+          "label_updates": 7623,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 81992
+        },
+        {
+          "method": "rollout",
+          "loss": 20,
+          "arrived": true,
+          "total_ms": 13529.728902038187,
+          "initial_ms": 671.1205010069534,
+          "estimate_ms": 45.69343599723652,
+          "scan_ms": 4719.548364111688,
+          "scans": 12000,
+          "label_updates": 9147,
+          "rollout_ms": 8705.839076836128,
+          "worker_peak_kib": 81992
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_cached_transfer",
+      "spec": [
+        "2023-10-25",
+        12,
+        true,
+        90
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Heuried"
+      ],
+      "world_seed": 20231210,
+      "route_coverage": {
+        "delay_routes": 28,
+        "status_routes": 28
+      },
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 20,
+          "arrived": true,
+          "total_ms": 5031.281954958104,
+          "initial_ms": 659.1867639799602,
+          "estimate_ms": 46.33277002722025,
+          "scan_ms": 4949.062184954528,
+          "scans": 14000,
+          "label_updates": 10693,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 81860
+        },
+        {
+          "method": "native_strict",
+          "loss": 50,
+          "arrived": true,
+          "total_ms": 9340.986638038885,
+          "initial_ms": 467.32831600820646,
+          "estimate_ms": 244.88992290571332,
+          "scan_ms": 9056.061848823447,
+          "scans": 40000,
+          "label_updates": 23919,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 81860
+        },
+        {
+          "method": "nominal",
+          "loss": 12,
+          "arrived": true,
+          "total_ms": 4128.218762984034,
+          "initial_ms": 656.0229209717363,
+          "estimate_ms": 36.286600981839,
+          "scan_ms": 4002.861493965611,
+          "scans": 10000,
+          "label_updates": 7623,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 81860
+        },
+        {
+          "method": "rollout",
+          "loss": 20,
+          "arrived": true,
+          "total_ms": 12656.557488953695,
+          "initial_ms": 1055.8447770308703,
+          "estimate_ms": 40.80235899891704,
+          "scan_ms": 4690.8055930398405,
+          "scans": 12000,
+          "label_updates": 9147,
+          "rollout_ms": 7873.166320787277,
+          "worker_peak_kib": 81860
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_cached_transfer",
+      "spec": [
+        "2023-10-25",
+        12,
+        true,
+        120
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Heuried"
+      ],
+      "world_seed": 20231210,
+      "route_coverage": {
+        "delay_routes": 28,
+        "status_routes": 28
+      },
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 20,
+          "arrived": true,
+          "total_ms": 4604.446935991291,
+          "initial_ms": 625.2833420294337,
+          "estimate_ms": 42.73569799261168,
+          "scan_ms": 4527.632699930109,
+          "scans": 14000,
+          "label_updates": 10693,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 81992
+        },
+        {
+          "method": "native_strict",
+          "loss": 50,
+          "arrived": true,
+          "total_ms": 9425.742451974656,
+          "initial_ms": 434.59881300805137,
+          "estimate_ms": 242.38271807553247,
+          "scan_ms": 9144.045369990636,
+          "scans": 40000,
+          "label_updates": 23919,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 81992
+        },
+        {
+          "method": "nominal",
+          "loss": 12,
+          "arrived": true,
+          "total_ms": 3735.5737710022368,
+          "initial_ms": 703.2742180163041,
+          "estimate_ms": 39.82831095345318,
+          "scan_ms": 3616.1115240538493,
+          "scans": 10000,
+          "label_updates": 7623,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 81992
+        },
+        {
+          "method": "rollout",
+          "loss": 20,
+          "arrived": true,
+          "total_ms": 11975.002343009692,
+          "initial_ms": 735.7026999816298,
+          "estimate_ms": 44.23922096611932,
+          "scan_ms": 4228.40091312537,
+          "scans": 12000,
+          "label_updates": 9147,
+          "rollout_ms": 7646.30357932765,
+          "worker_peak_kib": 81992
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_cached_transfer",
+      "spec": [
+        "2023-10-29",
+        0,
+        true,
+        60
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Goldbrunnenplatz"
+      ],
+      "world_seed": 20231214,
+      "route_coverage": {
+        "delay_routes": 25,
+        "status_routes": 25
+      },
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 29,
+          "arrived": true,
+          "total_ms": 4701.640963961836,
+          "initial_ms": 611.0423930222169,
+          "estimate_ms": 46.7137930681929,
+          "scan_ms": 4620.980792969931,
+          "scans": 14000,
+          "label_updates": 10570,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 81860
+        },
+        {
+          "method": "native_strict",
+          "loss": 52,
+          "arrived": true,
+          "total_ms": 7977.862559026107,
+          "initial_ms": 487.5426449580118,
+          "estimate_ms": 204.73844604566693,
+          "scan_ms": 7737.437125004362,
+          "scans": 32000,
+          "label_updates": 19654,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 81860
+        },
+        {
+          "method": "nominal",
+          "loss": 20,
+          "arrived": true,
+          "total_ms": 4373.678588017356,
+          "initial_ms": 663.7932370067574,
+          "estimate_ms": 40.44407495530322,
+          "scan_ms": 4263.477142027114,
+          "scans": 12000,
+          "label_updates": 9079,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 81860
+        },
+        {
+          "method": "rollout",
+          "loss": 20,
+          "arrived": true,
+          "total_ms": 13710.191460966598,
+          "initial_ms": 701.9670070149004,
+          "estimate_ms": 46.47968290373683,
+          "scan_ms": 4249.998715065885,
+          "scans": 12000,
+          "label_updates": 9079,
+          "rollout_ms": 9354.063652921468,
+          "worker_peak_kib": 81860
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_cached_transfer",
+      "spec": [
+        "2023-10-29",
+        0,
+        true,
+        90
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Goldbrunnenplatz"
+      ],
+      "world_seed": 20231214,
+      "route_coverage": {
+        "delay_routes": 25,
+        "status_routes": 25
+      },
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 29,
+          "arrived": true,
+          "total_ms": 5189.993234002031,
+          "initial_ms": 685.1943539804779,
+          "estimate_ms": 45.272424060385674,
+          "scan_ms": 5108.420434989966,
+          "scans": 14000,
+          "label_updates": 10570,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 82152
+        },
+        {
+          "method": "native_strict",
+          "loss": 52,
+          "arrived": true,
+          "total_ms": 8188.62877698848,
+          "initial_ms": 489.4801440532319,
+          "estimate_ms": 214.97082215500996,
+          "scan_ms": 7937.188180920202,
+          "scans": 32000,
+          "label_updates": 19654,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 82152
+        },
+        {
+          "method": "nominal",
+          "loss": 20,
+          "arrived": true,
+          "total_ms": 4573.2143559725955,
+          "initial_ms": 671.1728650261648,
+          "estimate_ms": 39.857560012023896,
+          "scan_ms": 4460.752340964973,
+          "scans": 12000,
+          "label_updates": 9079,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 82152
+        },
+        {
+          "method": "rollout",
+          "loss": 20,
+          "arrived": true,
+          "total_ms": 13620.328200981021,
+          "initial_ms": 660.9561140066944,
+          "estimate_ms": 39.4796451437287,
+          "scan_ms": 4171.394766075537,
+          "scans": 12000,
+          "label_updates": 9079,
+          "rollout_ms": 9349.34521082323,
+          "worker_peak_kib": 82152
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_cached_transfer",
+      "spec": [
+        "2023-10-29",
+        0,
+        true,
+        120
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Goldbrunnenplatz"
+      ],
+      "world_seed": 20231214,
+      "route_coverage": {
+        "delay_routes": 25,
+        "status_routes": 25
+      },
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 29,
+          "arrived": true,
+          "total_ms": 5068.914068979211,
+          "initial_ms": 802.8525999980047,
+          "estimate_ms": 54.179026978090405,
+          "scan_ms": 4973.043882113416,
+          "scans": 14000,
+          "label_updates": 10570,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 81992
+        },
+        {
+          "method": "native_strict",
+          "loss": 52,
+          "arrived": true,
+          "total_ms": 7973.88432797743,
+          "initial_ms": 480.1091880071908,
+          "estimate_ms": 201.8878599628806,
+          "scan_ms": 7738.529473950621,
+          "scans": 32000,
+          "label_updates": 19654,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 81992
+        },
+        {
+          "method": "nominal",
+          "loss": 20,
+          "arrived": true,
+          "total_ms": 4204.606597020756,
+          "initial_ms": 664.0760389855132,
+          "estimate_ms": 39.19784992467612,
+          "scan_ms": 4093.555437924806,
+          "scans": 12000,
+          "label_updates": 9079,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 81992
+        },
+        {
+          "method": "rollout",
+          "loss": 20,
+          "arrived": true,
+          "total_ms": 14613.39025903726,
+          "initial_ms": 712.3532110126689,
+          "estimate_ms": 41.86843190109357,
+          "scan_ms": 4340.183139021974,
+          "scans": 12000,
+          "label_updates": 9079,
+          "rollout_ms": 10165.619491890538,
+          "worker_peak_kib": 81992
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_cached_transfer",
+      "spec": [
+        "2023-10-29",
+        1,
+        true,
+        60
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Triemli"
+      ],
+      "world_seed": 20231214,
+      "route_coverage": {
+        "delay_routes": 25,
+        "status_routes": 25
+      },
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 60,
+          "arrived": false,
+          "total_ms": 6717.24190399982,
+          "initial_ms": 774.6173450141214,
+          "estimate_ms": 68.95045191049576,
+          "scan_ms": 6575.369716854766,
+          "scans": 20000,
+          "label_updates": 13116,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 81860
+        },
+        {
+          "method": "native_strict",
+          "loss": 60,
+          "arrived": false,
+          "total_ms": 9016.23990299413,
+          "initial_ms": 515.4524989775382,
+          "estimate_ms": 236.91923695150763,
+          "scan_ms": 8738.877073803451,
+          "scans": 36000,
+          "label_updates": 21638,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 81860
+        },
+        {
+          "method": "nominal",
+          "loss": 48,
+          "arrived": true,
+          "total_ms": 6404.977962025441,
+          "initial_ms": 771.5393770486116,
+          "estimate_ms": 53.16887894878164,
+          "scan_ms": 6219.069063954521,
+          "scans": 16000,
+          "label_updates": 12450,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 81860
+        },
+        {
+          "method": "rollout",
+          "loss": 48,
+          "arrived": true,
+          "total_ms": 27657.17218699865,
+          "initial_ms": 808.5872890078463,
+          "estimate_ms": 64.9468430201523,
+          "scan_ms": 5643.178219150286,
+          "scans": 18000,
+          "label_updates": 9760,
+          "rollout_ms": 21850.25129345013,
+          "worker_peak_kib": 82692
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_cached_transfer",
+      "spec": [
+        "2023-10-29",
+        1,
+        true,
+        90
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Triemli"
+      ],
+      "world_seed": 20231214,
+      "route_coverage": {
+        "delay_routes": 25,
+        "status_routes": 25
+      },
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 90,
+          "arrived": false,
+          "total_ms": 6789.72810698906,
+          "initial_ms": 838.5729790315963,
+          "estimate_ms": 69.97280090581626,
+          "scan_ms": 6643.664433097001,
+          "scans": 20000,
+          "label_updates": 13116,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 81024
+        },
+        {
+          "method": "native_strict",
+          "loss": 90,
+          "arrived": false,
+          "total_ms": 9433.003475016449,
+          "initial_ms": 468.658272002358,
+          "estimate_ms": 250.9000119753182,
+          "scan_ms": 9135.756452044006,
+          "scans": 36000,
+          "label_updates": 21638,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 81024
+        },
+        {
+          "method": "nominal",
+          "loss": 48,
+          "arrived": true,
+          "total_ms": 6510.927031980827,
+          "initial_ms": 775.9706809883937,
+          "estimate_ms": 60.167166928295046,
+          "scan_ms": 6316.762168076821,
+          "scans": 16000,
+          "label_updates": 12450,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 81024
+        },
+        {
+          "method": "rollout",
+          "loss": 48,
+          "arrived": true,
+          "total_ms": 28792.73137700511,
+          "initial_ms": 771.2157630012371,
+          "estimate_ms": 66.17716909386218,
+          "scan_ms": 5580.735140945762,
+          "scans": 18000,
+          "label_updates": 9760,
+          "rollout_ms": 23049.66738499934,
+          "worker_peak_kib": 82136
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_cached_transfer",
+      "spec": [
+        "2023-10-29",
+        1,
+        true,
+        120
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Triemli"
+      ],
+      "world_seed": 20231214,
+      "route_coverage": {
+        "delay_routes": 25,
+        "status_routes": 25
+      },
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 120,
+          "arrived": false,
+          "total_ms": 8218.38477201527,
+          "initial_ms": 674.4066569954157,
+          "estimate_ms": 72.24809797480702,
+          "scan_ms": 8045.848002075218,
+          "scans": 20000,
+          "label_updates": 13116,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 82152
+        },
+        {
+          "method": "native_strict",
+          "loss": 120,
+          "arrived": false,
+          "total_ms": 10609.57460803911,
+          "initial_ms": 520.0254519586451,
+          "estimate_ms": 273.4906998812221,
+          "scan_ms": 10286.15163906943,
+          "scans": 36000,
+          "label_updates": 21638,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 82152
+        },
+        {
+          "method": "nominal",
+          "loss": 48,
+          "arrived": true,
+          "total_ms": 6239.120046026073,
+          "initial_ms": 758.7288030190393,
+          "estimate_ms": 57.31534003280103,
+          "scan_ms": 6055.898923019413,
+          "scans": 16000,
+          "label_updates": 12450,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 82152
+        },
+        {
+          "method": "rollout",
+          "loss": 48,
+          "arrived": true,
+          "total_ms": 30637.045787996612,
+          "initial_ms": 710.734163003508,
+          "estimate_ms": 73.5068439389579,
+          "scan_ms": 5597.31244307477,
+          "scans": 18000,
+          "label_updates": 9760,
+          "rollout_ms": 24865.302371094003,
+          "worker_peak_kib": 82924
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_cached_transfer",
+      "spec": [
+        "2023-10-29",
+        5,
+        true,
+        60
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Feldeggstrasse"
+      ],
+      "world_seed": 20231214,
+      "route_coverage": {
+        "delay_routes": 25,
+        "status_routes": 25
+      },
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 60,
+          "arrived": false,
+          "total_ms": 6515.208019991405,
+          "initial_ms": 492.66107694711536,
+          "estimate_ms": 86.3759700441733,
+          "scan_ms": 6373.20973793976,
+          "scans": 24000,
+          "label_updates": 11814,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 81992
+        },
+        {
+          "method": "native_strict",
+          "loss": 60,
+          "arrived": false,
+          "total_ms": 5768.529994995333,
+          "initial_ms": 406.5315690240823,
+          "estimate_ms": 178.54736204026267,
+          "scan_ms": 5567.750035086647,
+          "scans": 28000,
+          "label_updates": 11335,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 81992
+        },
+        {
+          "method": "nominal",
+          "loss": 60,
+          "arrived": false,
+          "total_ms": 6253.547087020706,
+          "initial_ms": 524.5775599614717,
+          "estimate_ms": 76.09743397915736,
+          "scan_ms": 6057.129455090035,
+          "scans": 22000,
+          "label_updates": 10815,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 81992
+        },
+        {
+          "method": "rollout",
+          "loss": 60,
+          "arrived": false,
+          "total_ms": 14578.579364984762,
+          "initial_ms": 534.2127960175276,
+          "estimate_ms": 85.711655090563,
+          "scan_ms": 6870.6915260409005,
+          "scans": 26000,
+          "label_updates": 12799,
+          "rollout_ms": 7536.798930726945,
+          "worker_peak_kib": 81992
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_cached_transfer",
+      "spec": [
+        "2023-10-29",
+        5,
+        true,
+        90
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Feldeggstrasse"
+      ],
+      "world_seed": 20231214,
+      "route_coverage": {
+        "delay_routes": 25,
+        "status_routes": 25
+      },
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 90,
+          "arrived": false,
+          "total_ms": 6360.305480018724,
+          "initial_ms": 563.4719210211188,
+          "estimate_ms": 75.73652901919559,
+          "scan_ms": 6238.459599961061,
+          "scans": 24000,
+          "label_updates": 11814,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 82692
+        },
+        {
+          "method": "native_strict",
+          "loss": 90,
+          "arrived": false,
+          "total_ms": 5908.571430016309,
+          "initial_ms": 396.6650079819374,
+          "estimate_ms": 174.2921739933081,
+          "scan_ms": 5709.874690859579,
+          "scans": 28000,
+          "label_updates": 11335,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 82692
+        },
+        {
+          "method": "nominal",
+          "loss": 90,
+          "arrived": false,
+          "total_ms": 6141.345392970834,
+          "initial_ms": 541.299236996565,
+          "estimate_ms": 77.87581899901852,
+          "scan_ms": 5937.3549479059875,
+          "scans": 22000,
+          "label_updates": 10815,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 82692
+        },
+        {
+          "method": "rollout",
+          "loss": 90,
+          "arrived": false,
+          "total_ms": 41660.3892359999,
+          "initial_ms": 477.0593619905412,
+          "estimate_ms": 79.69532400602475,
+          "scan_ms": 6277.9901580070145,
+          "scans": 24000,
+          "label_updates": 11792,
+          "rollout_ms": 35223.31295692129,
+          "worker_peak_kib": 82692
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_cached_transfer",
+      "spec": [
+        "2023-10-29",
+        5,
+        true,
+        120
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Feldeggstrasse"
+      ],
+      "world_seed": 20231214,
+      "route_coverage": {
+        "delay_routes": 25,
+        "status_routes": 25
+      },
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 120,
+          "arrived": false,
+          "total_ms": 6600.358069990762,
+          "initial_ms": 513.0270029767416,
+          "estimate_ms": 81.03452908108011,
+          "scan_ms": 6466.702781966887,
+          "scans": 24000,
+          "label_updates": 11814,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 82136
+        },
+        {
+          "method": "native_strict",
+          "loss": 120,
+          "arrived": false,
+          "total_ms": 5909.051167953294,
+          "initial_ms": 402.4542370461859,
+          "estimate_ms": 190.94872899586335,
+          "scan_ms": 5692.658392887097,
+          "scans": 28000,
+          "label_updates": 11335,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 82136
+        },
+        {
+          "method": "nominal",
+          "loss": 120,
+          "arrived": false,
+          "total_ms": 5822.669127956033,
+          "initial_ms": 497.0683890278451,
+          "estimate_ms": 72.27226591203362,
+          "scan_ms": 5640.246745024342,
+          "scans": 22000,
+          "label_updates": 10815,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 82136
+        },
+        {
+          "method": "rollout",
+          "loss": 120,
+          "arrived": false,
+          "total_ms": 39970.33699497115,
+          "initial_ms": 553.6604860099033,
+          "estimate_ms": 83.80533900344744,
+          "scan_ms": 6788.870750868227,
+          "scans": 26000,
+          "label_updates": 12799,
+          "rollout_ms": 33002.036166901235,
+          "worker_peak_kib": 82136
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_cached_transfer",
+      "spec": [
+        "2023-10-29",
+        12,
+        true,
+        60
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Heuried"
+      ],
+      "world_seed": 20231214,
+      "route_coverage": {
+        "delay_routes": 25,
+        "status_routes": 25
+      },
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 53,
+          "arrived": true,
+          "total_ms": 10002.320452942513,
+          "initial_ms": 873.1654079747386,
+          "estimate_ms": 86.467579822056,
+          "scan_ms": 9836.649138131179,
+          "scans": 26000,
+          "label_updates": 20033,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 81992
+        },
+        {
+          "method": "native_strict",
+          "loss": 60,
+          "arrived": false,
+          "total_ms": 8781.408778973855,
+          "initial_ms": 489.31011103559285,
+          "estimate_ms": 228.20345393847674,
+          "scan_ms": 8514.03202797519,
+          "scans": 36000,
+          "label_updates": 21991,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 81992
+        },
+        {
+          "method": "nominal",
+          "loss": 22,
+          "arrived": true,
+          "total_ms": 4462.20715198433,
+          "initial_ms": 793.015100993216,
+          "estimate_ms": 43.64175099181011,
+          "scan_ms": 4329.505582049023,
+          "scans": 12000,
+          "label_updates": 9229,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 81992
+        },
+        {
+          "method": "rollout",
+          "loss": 22,
+          "arrived": true,
+          "total_ms": 18508.456149022095,
+          "initial_ms": 717.770330957137,
+          "estimate_ms": 43.37015503551811,
+          "scan_ms": 4350.1910489285365,
+          "scans": 12000,
+          "label_updates": 9229,
+          "rollout_ms": 14046.583275310695,
+          "worker_peak_kib": 82076
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_cached_transfer",
+      "spec": [
+        "2023-10-29",
+        12,
+        true,
+        90
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Heuried"
+      ],
+      "world_seed": 20231214,
+      "route_coverage": {
+        "delay_routes": 25,
+        "status_routes": 25
+      },
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 53,
+          "arrived": true,
+          "total_ms": 9552.177667967044,
+          "initial_ms": 740.0656410027295,
+          "estimate_ms": 88.64080003695562,
+          "scan_ms": 9392.086849024054,
+          "scans": 26000,
+          "label_updates": 20033,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 82924
+        },
+        {
+          "method": "native_strict",
+          "loss": 90,
+          "arrived": false,
+          "total_ms": 9201.192421023734,
+          "initial_ms": 475.66851595183834,
+          "estimate_ms": 224.7972961049527,
+          "scan_ms": 8932.471594249364,
+          "scans": 36000,
+          "label_updates": 21991,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 82924
+        },
+        {
+          "method": "nominal",
+          "loss": 22,
+          "arrived": true,
+          "total_ms": 4452.847148000728,
+          "initial_ms": 714.4005109439604,
+          "estimate_ms": 41.99294507270679,
+          "scan_ms": 4325.262393045705,
+          "scans": 12000,
+          "label_updates": 9229,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 82924
+        },
+        {
+          "method": "rollout",
+          "loss": 22,
+          "arrived": true,
+          "total_ms": 19511.81535300566,
+          "initial_ms": 728.6189970327541,
+          "estimate_ms": 42.01743699377403,
+          "scan_ms": 4600.517341052182,
+          "scans": 12000,
+          "label_updates": 9229,
+          "rollout_ms": 14798.475769115612,
+          "worker_peak_kib": 83116
+        }
+      ]
+    },
+    {
+      "implementation": "route_id_chronological_cached_transfer",
+      "spec": [
+        "2023-10-29",
+        12,
+        true,
+        120
+      ],
+      "od": [
+        "Zürich, Paradeplatz",
+        "Zürich, Heuried"
+      ],
+      "world_seed": 20231214,
+      "route_coverage": {
+        "delay_routes": 25,
+        "status_routes": 25
+      },
+      "rows": [
+        {
+          "method": "marginal",
+          "loss": 53,
+          "arrived": true,
+          "total_ms": 9954.835934040602,
+          "initial_ms": 732.08359797718,
+          "estimate_ms": 101.91776999272406,
+          "scan_ms": 9768.180363811553,
+          "scans": 26000,
+          "label_updates": 20033,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 82076
+        },
+        {
+          "method": "native_strict",
+          "loss": 120,
+          "arrived": false,
+          "total_ms": 8267.963416001294,
+          "initial_ms": 516.5793420164846,
+          "estimate_ms": 207.82403700286523,
+          "scan_ms": 8015.552797995042,
+          "scans": 36000,
+          "label_updates": 21991,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 82076
+        },
+        {
+          "method": "nominal",
+          "loss": 22,
+          "arrived": true,
+          "total_ms": 3801.821748027578,
+          "initial_ms": 567.1018129796721,
+          "estimate_ms": 37.274244998116046,
+          "scan_ms": 3688.4793170611374,
+          "scans": 12000,
+          "label_updates": 9229,
+          "rollout_ms": 0.0,
+          "worker_peak_kib": 82076
+        },
+        {
+          "method": "rollout",
+          "loss": 22,
+          "arrived": true,
+          "total_ms": 16588.774017989635,
+          "initial_ms": 659.2499500256963,
+          "estimate_ms": 38.564007089007646,
+          "scan_ms": 4032.404498953838,
+          "scans": 12000,
+          "label_updates": 9229,
+          "rollout_ms": 12455.13609657064,
+          "worker_peak_kib": 82244
+        }
+      ]
+    }
+  ]
+}

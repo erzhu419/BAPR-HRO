@@ -99,7 +99,9 @@ We show this equals the worst-case expected arrival over a Wasserstein ball:
   = (nominal + μ̂ - μ₀) + β·σ̂ · 1
   = LCB score
 
-The key step: for 1-Lipschitz f, the DRO problem has value E[f] + ε.
+For a general 1-Lipschitz cost, E[f] + ε is an upper bound.
+The displayed equality uses an affine cost and an admissible
+translation that attains the bound.
 -/
 
 /-- Pointwise bound for 1-Lipschitz non-negative functions:

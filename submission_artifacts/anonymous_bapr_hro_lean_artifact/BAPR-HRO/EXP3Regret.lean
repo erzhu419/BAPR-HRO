@@ -3,52 +3,14 @@ import Mathlib
 /-!
 # Non-Stationary EXP3 Regret: Piecewise Extension
 
-## Overview
+The epoch argument uses `StationaryEXP3Bound` as a hypothesis for a
+specified algorithm. It combines the assumed epoch bounds and the
+supplied variation budget.
 
-The Adaptive-β router uses EXP3-IX (Auer et al. 2002, Kocak et al.
-2014) as a meta-bandit over a finite β grid. We prove the
-*piecewise* (non-stationary) regret bound conditionally on a
-stationary EXP3 oracle: given any concrete EXP3-style algorithm
-with a stationary regret bound, the piecewise extension over T
-rounds with V_T variation has regret bounded by an explicit
-expression involving the number of epochs and the per-epoch
-variation.
-
-## Formalization scope
-
-The previous version of this file contained an `axiom
-stationary_exp3_bound` that was both (a) existential (it asserted
-*some* regret satisfied the bound, not the regret of the algorithm)
-and (b) not connected to any actual EXP3 process. The current version
-states the stationary result as an explicit hypothesis and proves the
-aggregation step used in the manuscript.
-
-The current version takes the honest approach:
-
-1. The stationary EXP3 bound is *not* axiomatized. It is a
-   `Prop`-valued *hypothesis* `StationaryEXP3Bound` that any
-   user-supplied EXP3 instance can discharge by either
-   (a) plugging in the published proof from Auer 2002 / Kocak 2014
-       once Mathlib has Hoeffding-type concentration inequalities, or
-   (b) proving a deterministic *Hedge* bound for the full-information
-       sub-case (which the transit application uses, since travel
-       times are observed).
-
-2. Given the hypothesis, we prove a *fully derived*, *no-axiom*
-   piecewise regret theorem: epoch decomposition cumulates the
-   per-epoch stationary bound and the within-epoch variation budget.
-
-3. We additionally prove the deterministic *Hedge* (full-information
-   exponential-weights) bound from first principles. Hedge is
-   sufficient for the BAPR-HRO transit setting because the passenger
-   observes their own realized travel time on each route they sample
-   (the loss is observable, no importance-weighting needed).
-
-## Connection to BAPR-HRO
-
-K = |β_grid| ≈ 7-9, T = episodes (cf. Adapt-β experiment, 50
-journeys), V_T = regime variation. Guarantees Adaptive-β converges
-to best fixed β at rate `O(T · √(K · ln K / τ) + V_T)`.
+The separate Hedge proof uses the whole bounded loss vector in every
+round. A passenger's realized journey supplies the loss for the chosen
+action. Applying the epoch result to that feedback requires a stationary
+bound under the same information and loss process.
 -/
 
 noncomputable section
@@ -100,11 +62,8 @@ losses. The standard "potential argument" gives:
 
 Optimizing η gives the rate `√(2T log K)`.
 
-This is fully deterministic — no concentration — so we can prove it
-in Lean without any axioms. The transit setting is full-information
-(passenger sees their own realized arrival time on each chosen
-route), so this Hedge bound suffices: it serves as the
-`StationaryRegretCertificate` for our application.
+This potential argument is deterministic. The bound uses the loss vector
+of every expert in each round.
 -/
 
 /-- The Hedge bound parameters at fixed K, T, η. -/
@@ -266,11 +225,7 @@ This makes `hedge_bound` a theorem about the explicit Hedge process.
 
 The Hedge proof is the standard exponential-weights argument
 (Cesa-Bianchi & Lugosi 2006, Theorem 2.2; Auer-Cesa-Bianchi-Freund-Schapire
-2002, Theorem 3.1). We formalize the deterministic full-information
-case (the bandit case requires importance weighting + concentration).
-For the BAPR-HRO transit application, full information is the
-appropriate setting since the passenger observes their own travel
-time on the chosen route.
+2002, Theorem 3.1). The formalization uses deterministic full feedback.
 -/
 
 /-- Weights state: per-expert non-negative weight vector. -/

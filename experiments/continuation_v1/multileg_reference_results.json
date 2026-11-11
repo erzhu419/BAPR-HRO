@@ -1,0 +1,825 @@
+{
+  "scope": "Two four-connection archived timetable fragments and constructed persistent trip-shift/cancellation banks. Omitted vehicles have no actions or publications.",
+  "information": "Committed 12-minute boarding, per-stop occurred last10/max5 publications, one-minute waiting, and archived min-transfer time. H filters actions on every history while the physical message generator keeps every fragment connection.",
+  "information_references": "Same information sees only the public history. Regime-aware policies know the persistent regime and its conditional law, still with multiple possible future scenes. Hindsight knows each complete scene from the beginning and is a relaxation.",
+  "scale_scope": "One exact run per horizon on the same fragment and bank. Profile is reference-enumeration wall/CPU time and explored states, with no controlled city comparison.",
+  "stage_IV": "Candidate losses can occur in these instances, but a matched practical full-planning bottleneck, cheap certificate and novel structured update are still unestablished.",
+  "cases": [
+    {
+      "name": "through_vehicle",
+      "origin": "Zürich, Heuried",
+      "destination": "Zürich, Triemli",
+      "start": 533,
+      "cap": 14,
+      "removed_at_all_histories": [
+        68
+      ],
+      "connections": [
+        {
+          "archive_id": 67,
+          "local_id": 0,
+          "trip": "1000.TA.91-14-E-j23-1.6.H",
+          "from": "Zürich, Heuried",
+          "to": "Zürich, Schaufelbergerstrasse",
+          "departure": 535,
+          "arrival": 536
+        },
+        {
+          "archive_id": 68,
+          "local_id": 1,
+          "trip": "1000.TA.91-14-E-j23-1.6.H",
+          "from": "Zürich, Schaufelbergerstrasse",
+          "to": "Zürich, Triemli",
+          "departure": 536,
+          "arrival": 537
+        },
+        {
+          "archive_id": 1303,
+          "local_id": 2,
+          "trip": "1066.TA.91-14-E-j23-1.6.H",
+          "from": "Zürich, Heuried",
+          "to": "Zürich, Schaufelbergerstrasse",
+          "departure": 535,
+          "arrival": 536
+        },
+        {
+          "archive_id": 1304,
+          "local_id": 3,
+          "trip": "1066.TA.91-14-E-j23-1.6.H",
+          "from": "Zürich, Schaufelbergerstrasse",
+          "to": "Zürich, Triemli",
+          "departure": 536,
+          "arrival": 537
+        }
+      ],
+      "worlds": [
+        {
+          "regime": "clear",
+          "probability": 0.375,
+          "events_by_archive_connection": {
+            "67": {
+              "delay": -1,
+              "canceled": false,
+              "departure": 534,
+              "arrival": 535
+            },
+            "68": {
+              "delay": -1,
+              "canceled": false,
+              "departure": 535,
+              "arrival": 536
+            },
+            "1303": {
+              "delay": 3,
+              "canceled": false,
+              "departure": 538,
+              "arrival": 539
+            },
+            "1304": {
+              "delay": 3,
+              "canceled": false,
+              "departure": 539,
+              "arrival": 540
+            }
+          }
+        },
+        {
+          "regime": "clear",
+          "probability": 0.125,
+          "events_by_archive_connection": {
+            "67": {
+              "delay": 2,
+              "canceled": false,
+              "departure": 537,
+              "arrival": 538
+            },
+            "68": {
+              "delay": 2,
+              "canceled": false,
+              "departure": 538,
+              "arrival": 539
+            },
+            "1303": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 535,
+              "arrival": 536
+            },
+            "1304": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 536,
+              "arrival": 537
+            }
+          }
+        },
+        {
+          "regime": "disrupted",
+          "probability": 0.375,
+          "events_by_archive_connection": {
+            "67": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 535,
+              "arrival": 536
+            },
+            "68": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 536,
+              "arrival": 537
+            },
+            "1303": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 535,
+              "arrival": 536
+            },
+            "1304": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 536,
+              "arrival": 537
+            }
+          }
+        },
+        {
+          "regime": "disrupted",
+          "probability": 0.125,
+          "events_by_archive_connection": {
+            "67": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 535,
+              "arrival": 536
+            },
+            "68": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 536,
+              "arrival": 537
+            },
+            "1303": {
+              "delay": 5,
+              "canceled": false,
+              "departure": 540,
+              "arrival": 541
+            },
+            "1304": {
+              "delay": 5,
+              "canceled": false,
+              "departure": 541,
+              "arrival": 542
+            }
+          }
+        }
+      ],
+      "values": {
+        "full": {
+          "same_information": {
+            "value": 3.625,
+            "solve_wall_ms": 589.8871259996668,
+            "solve_cpu_ms": 559.3892660000001,
+            "states": {
+              "transition_evaluations": 7736,
+              "action_evaluations": 7718,
+              "information_nodes_solved": 6048
+            },
+            "first_decisions_after_public_poll": [
+              {
+                "probability": 1.0,
+                "public_events": [],
+                "action": "wait",
+                "Q": {
+                  "wait": 3.625,
+                  "67": 3.875,
+                  "1303": 5.75
+                }
+              }
+            ]
+          },
+          "current_regime_known": {
+            "clear": {
+              "probability": 0.5,
+              "future_worlds": 2,
+              "value": 3.25,
+              "solve_wall_ms": 373.9342240151018,
+              "solve_cpu_ms": 354.6185930000001,
+              "states": {
+                "transition_evaluations": 5065,
+                "action_evaluations": 5061,
+                "information_nodes_solved": 4007
+              },
+              "first_decisions_after_public_poll": [
+                {
+                  "probability": 1.0,
+                  "public_events": [],
+                  "action": "wait",
+                  "Q": {
+                    "wait": 3.25,
+                    "67": 3.75,
+                    "1303": 6.25
+                  }
+                }
+              ]
+            },
+            "disrupted": {
+              "probability": 0.5,
+              "future_worlds": 2,
+              "value": 4.0,
+              "solve_wall_ms": 229.24351296387613,
+              "solve_cpu_ms": 217.4121269999998,
+              "states": {
+                "transition_evaluations": 2671,
+                "action_evaluations": 2664,
+                "information_nodes_solved": 2044
+              },
+              "first_decisions_after_public_poll": [
+                {
+                  "probability": 1.0,
+                  "public_events": [],
+                  "action": "wait",
+                  "Q": {
+                    "wait": 4.0,
+                    "67": 4.0,
+                    "1303": 5.25
+                  }
+                }
+              ]
+            }
+          },
+          "current_regime_value": 3.625,
+          "hindsight_value": 3.625
+        },
+        "H": {
+          "same_information": {
+            "value": 5.75,
+            "solve_wall_ms": 346.81196801830083,
+            "solve_cpu_ms": 328.91372699999977,
+            "states": {
+              "transition_evaluations": 4279,
+              "action_evaluations": 4261,
+              "information_nodes_solved": 3424
+            },
+            "first_decisions_after_public_poll": [
+              {
+                "probability": 1.0,
+                "public_events": [],
+                "action": "wait",
+                "Q": {
+                  "wait": 5.75,
+                  "67": 7.0,
+                  "1303": 5.75
+                }
+              }
+            ],
+            "restricted_nonroot_states_with_removed_physical_option": 428,
+            "next_leg_heuristic": {
+              "cost": 7.0,
+              "within_menu_loss": 1.25
+            }
+          },
+          "current_regime_known": {
+            "clear": {
+              "probability": 0.5,
+              "future_worlds": 2,
+              "value": 6.25,
+              "solve_wall_ms": 189.3224369850941,
+              "solve_cpu_ms": 179.5523659999998,
+              "states": {
+                "transition_evaluations": 2451,
+                "action_evaluations": 2447,
+                "information_nodes_solved": 1983
+              },
+              "first_decisions_after_public_poll": [
+                {
+                  "probability": 1.0,
+                  "public_events": [],
+                  "action": "wait",
+                  "Q": {
+                    "wait": 6.25,
+                    "67": 8.75,
+                    "1303": 6.25
+                  }
+                }
+              ],
+              "restricted_nonroot_states_with_removed_physical_option": 350
+            },
+            "disrupted": {
+              "probability": 0.5,
+              "future_worlds": 2,
+              "value": 5.25,
+              "solve_wall_ms": 146.19858103105798,
+              "solve_cpu_ms": 138.62198600000042,
+              "states": {
+                "transition_evaluations": 1828,
+                "action_evaluations": 1821,
+                "information_nodes_solved": 1444
+              },
+              "first_decisions_after_public_poll": [
+                {
+                  "probability": 1.0,
+                  "public_events": [],
+                  "action": "wait",
+                  "Q": {
+                    "wait": 5.25,
+                    "67": 5.25,
+                    "1303": 5.25
+                  }
+                }
+              ],
+              "restricted_nonroot_states_with_removed_physical_option": 78
+            }
+          },
+          "current_regime_value": 5.75,
+          "hindsight_value": 5.75
+        }
+      },
+      "same_information_candidate_loss": 2.125,
+      "same_information_within_H_loss": 1.25
+    },
+    {
+      "name": "transfer_with_direct_fallback",
+      "origin": "Zürich, Escher-Wyss-Platz",
+      "destination": "Zürich, Quellenstrasse",
+      "start": 502,
+      "cap": 12,
+      "removed_at_all_histories": [
+        261
+      ],
+      "connections": [
+        {
+          "archive_id": 123,
+          "local_id": 0,
+          "trip": "1001.TA.92-13-D-j23-1.6.H",
+          "from": "Zürich, Escher-Wyss-Platz",
+          "to": "Zürich, Löwenbräu",
+          "departure": 503,
+          "arrival": 503
+        },
+        {
+          "archive_id": 147,
+          "local_id": 1,
+          "trip": "1003.TA.91-13-B-j23-1.9.H",
+          "from": "Zürich, Löwenbräu",
+          "to": "Zürich, Quellenstrasse",
+          "departure": 505,
+          "arrival": 506
+        },
+        {
+          "archive_id": 261,
+          "local_id": 2,
+          "trip": "1007.TA.91-13-B-j23-1.9.H",
+          "from": "Zürich, Löwenbräu",
+          "to": "Zürich, Quellenstrasse",
+          "departure": 505,
+          "arrival": 506
+        },
+        {
+          "archive_id": 1637,
+          "local_id": 3,
+          "trip": "108.TA.92-E-L-j23-1.3.H",
+          "from": "Zürich, Escher-Wyss-Platz",
+          "to": "Zürich, Quellenstrasse",
+          "departure": 506,
+          "arrival": 508
+        }
+      ],
+      "worlds": [
+        {
+          "regime": "good",
+          "probability": 0.4,
+          "events_by_archive_connection": {
+            "123": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 503,
+              "arrival": 503
+            },
+            "147": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 505,
+              "arrival": 506
+            },
+            "261": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 511,
+              "arrival": 512
+            },
+            "1637": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 506,
+              "arrival": 508
+            }
+          }
+        },
+        {
+          "regime": "good",
+          "probability": 0.1,
+          "events_by_archive_connection": {
+            "123": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 503,
+              "arrival": 503
+            },
+            "147": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 505,
+              "arrival": 506
+            },
+            "261": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 511,
+              "arrival": 512
+            },
+            "1637": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 506,
+              "arrival": 508
+            }
+          }
+        },
+        {
+          "regime": "bad",
+          "probability": 0.1,
+          "events_by_archive_connection": {
+            "123": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 503,
+              "arrival": 503
+            },
+            "147": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 505,
+              "arrival": 506
+            },
+            "261": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 511,
+              "arrival": 512
+            },
+            "1637": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 506,
+              "arrival": 508
+            }
+          }
+        },
+        {
+          "regime": "bad",
+          "probability": 0.4,
+          "events_by_archive_connection": {
+            "123": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 503,
+              "arrival": 503
+            },
+            "147": {
+              "delay": 999,
+              "canceled": true,
+              "departure": 505,
+              "arrival": 506
+            },
+            "261": {
+              "delay": 6,
+              "canceled": false,
+              "departure": 511,
+              "arrival": 512
+            },
+            "1637": {
+              "delay": 0,
+              "canceled": false,
+              "departure": 506,
+              "arrival": 508
+            }
+          }
+        }
+      ],
+      "values": {
+        "full": {
+          "same_information": {
+            "value": 6.0,
+            "solve_wall_ms": 114.44937804481015,
+            "solve_cpu_ms": 108.5426570000001,
+            "states": {
+              "transition_evaluations": 2644,
+              "action_evaluations": 855,
+              "information_nodes_solved": 572
+            },
+            "first_decisions_after_public_poll": [
+              {
+                "probability": 1.0,
+                "public_events": [],
+                "action": "wait",
+                "Q": {
+                  "wait": 6.0,
+                  "123": 7.0,
+                  "1637": 6.0
+                }
+              }
+            ]
+          },
+          "current_regime_known": {
+            "good": {
+              "probability": 0.5,
+              "future_worlds": 2,
+              "value": 5.2,
+              "solve_wall_ms": 68.27317900024354,
+              "solve_cpu_ms": 64.75219200000026,
+              "states": {
+                "transition_evaluations": 1322,
+                "action_evaluations": 855,
+                "information_nodes_solved": 572
+              },
+              "first_decisions_after_public_poll": [
+                {
+                  "probability": 1.0,
+                  "public_events": [],
+                  "action": "wait",
+                  "Q": {
+                    "wait": 5.2,
+                    "123": 5.2,
+                    "1637": 6.0
+                  }
+                }
+              ]
+            },
+            "bad": {
+              "probability": 0.5,
+              "future_worlds": 2,
+              "value": 6.0,
+              "solve_wall_ms": 69.24513896228746,
+              "solve_cpu_ms": 65.67393800000065,
+              "states": {
+                "transition_evaluations": 1322,
+                "action_evaluations": 855,
+                "information_nodes_solved": 572
+              },
+              "first_decisions_after_public_poll": [
+                {
+                  "probability": 1.0,
+                  "public_events": [],
+                  "action": "wait",
+                  "Q": {
+                    "wait": 6.0,
+                    "123": 8.8,
+                    "1637": 6.0
+                  }
+                }
+              ]
+            }
+          },
+          "current_regime_value": 5.6,
+          "hindsight_value": 5.0
+        },
+        "H": {
+          "same_information": {
+            "value": 6.0,
+            "solve_wall_ms": 98.18063594866544,
+            "solve_cpu_ms": 87.26226199999942,
+            "states": {
+              "transition_evaluations": 2176,
+              "action_evaluations": 625,
+              "information_nodes_solved": 496
+            },
+            "first_decisions_after_public_poll": [
+              {
+                "probability": 1.0,
+                "public_events": [],
+                "action": "wait",
+                "Q": {
+                  "wait": 6.0,
+                  "123": 8.0,
+                  "1637": 6.0
+                }
+              }
+            ],
+            "restricted_nonroot_states_with_removed_physical_option": 148,
+            "next_leg_heuristic": {
+              "cost": 8.0,
+              "within_menu_loss": 2.0
+            }
+          },
+          "current_regime_known": {
+            "good": {
+              "probability": 0.5,
+              "future_worlds": 2,
+              "value": 5.6,
+              "solve_wall_ms": 54.6434199786745,
+              "solve_cpu_ms": 50.75215499999963,
+              "states": {
+                "transition_evaluations": 1088,
+                "action_evaluations": 625,
+                "information_nodes_solved": 496
+              },
+              "first_decisions_after_public_poll": [
+                {
+                  "probability": 1.0,
+                  "public_events": [],
+                  "action": "wait",
+                  "Q": {
+                    "wait": 5.6,
+                    "123": 5.6,
+                    "1637": 6.0
+                  }
+                }
+              ],
+              "restricted_nonroot_states_with_removed_physical_option": 148
+            },
+            "bad": {
+              "probability": 0.5,
+              "future_worlds": 2,
+              "value": 6.0,
+              "solve_wall_ms": 54.54762204317376,
+              "solve_cpu_ms": 50.041008,
+              "states": {
+                "transition_evaluations": 1088,
+                "action_evaluations": 625,
+                "information_nodes_solved": 496
+              },
+              "first_decisions_after_public_poll": [
+                {
+                  "probability": 1.0,
+                  "public_events": [],
+                  "action": "wait",
+                  "Q": {
+                    "wait": 6.0,
+                    "123": 10.4,
+                    "1637": 6.0
+                  }
+                }
+              ],
+              "restricted_nonroot_states_with_removed_physical_option": 148
+            }
+          },
+          "current_regime_value": 5.8,
+          "hindsight_value": 5.0
+        }
+      },
+      "same_information_candidate_loss": 0.0,
+      "same_information_within_H_loss": 2.0
+    }
+  ],
+  "horizon_scale": [
+    {
+      "cap": 12,
+      "full": {
+        "value": 6.0,
+        "solve_wall_ms": 114.44937804481015,
+        "solve_cpu_ms": 108.5426570000001,
+        "states": {
+          "transition_evaluations": 2644,
+          "action_evaluations": 855,
+          "information_nodes_solved": 572
+        },
+        "first_decisions_after_public_poll": [
+          {
+            "probability": 1.0,
+            "public_events": [],
+            "action": "wait",
+            "Q": {
+              "wait": 6.0,
+              "123": 7.0,
+              "1637": 6.0
+            }
+          }
+        ]
+      },
+      "H": {
+        "value": 6.0,
+        "solve_wall_ms": 98.18063594866544,
+        "solve_cpu_ms": 87.26226199999942,
+        "states": {
+          "transition_evaluations": 2176,
+          "action_evaluations": 625,
+          "information_nodes_solved": 496
+        },
+        "first_decisions_after_public_poll": [
+          {
+            "probability": 1.0,
+            "public_events": [],
+            "action": "wait",
+            "Q": {
+              "wait": 6.0,
+              "123": 8.0,
+              "1637": 6.0
+            }
+          }
+        ],
+        "restricted_nonroot_states_with_removed_physical_option": 148,
+        "next_leg_heuristic": {
+          "cost": 8.0,
+          "within_menu_loss": 2.0
+        }
+      }
+    },
+    {
+      "cap": 20,
+      "full": {
+        "value": 6.0,
+        "solve_wall_ms": 646.4616170269437,
+        "solve_cpu_ms": 609.5366430000003,
+        "states": {
+          "transition_evaluations": 15380,
+          "action_evaluations": 5315,
+          "information_nodes_solved": 4424
+        },
+        "first_decisions_after_public_poll": [
+          {
+            "probability": 1.0,
+            "public_events": [],
+            "action": "wait",
+            "Q": {
+              "wait": 6.0,
+              "123": 7.0,
+              "1637": 6.0
+            }
+          }
+        ]
+      },
+      "H": {
+        "value": 6.0,
+        "solve_wall_ms": 398.0750939808786,
+        "solve_cpu_ms": 377.13228600000014,
+        "states": {
+          "transition_evaluations": 10368,
+          "action_evaluations": 2813,
+          "information_nodes_solved": 2444
+        },
+        "first_decisions_after_public_poll": [
+          {
+            "probability": 1.0,
+            "public_events": [],
+            "action": "wait",
+            "Q": {
+              "wait": 6.0,
+              "123": 12.0,
+              "1637": 6.0
+            }
+          }
+        ],
+        "restricted_nonroot_states_with_removed_physical_option": 412
+      }
+    },
+    {
+      "cap": 30,
+      "full": {
+        "value": 6.0,
+        "solve_wall_ms": 3278.3595980145037,
+        "solve_cpu_ms": 2949.402398,
+        "states": {
+          "transition_evaluations": 58900,
+          "action_evaluations": 21060,
+          "information_nodes_solved": 18869
+        },
+        "first_decisions_after_public_poll": [
+          {
+            "probability": 1.0,
+            "public_events": [],
+            "action": "wait",
+            "Q": {
+              "wait": 6.0,
+              "123": 7.0,
+              "1637": 6.0
+            }
+          }
+        ]
+      },
+      "H": {
+        "value": 6.0,
+        "solve_wall_ms": 1532.7021689736284,
+        "solve_cpu_ms": 1354.6674789999997,
+        "states": {
+          "transition_evaluations": 35488,
+          "action_evaluations": 9358,
+          "information_nodes_solved": 8509
+        },
+        "first_decisions_after_public_poll": [
+          {
+            "probability": 1.0,
+            "public_events": [],
+            "action": "wait",
+            "Q": {
+              "wait": 6.0,
+              "123": 17.0,
+              "1637": 6.0
+            }
+          }
+        ],
+        "restricted_nonroot_states_with_removed_physical_option": 922
+      }
+    }
+  ]
+}
