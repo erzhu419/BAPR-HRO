@@ -1,0 +1,22 @@
+{
+  "stage": "V35 forecast-error likelihood validation and fixed-control paired replay",
+  "stage_complete": true,
+  "G2_passed": false,
+  "frozen_model_retention_gate_passed": false,
+  "model_gate_source": "validation_summary.json:gate",
+  "prediction_queries": {"endpoint": 9070, "onboard": 3010, "unsupported": 0},
+  "paired_roots": 72,
+  "physical_replays": 216,
+  "arrived": 216,
+  "conditional_worlds": 128,
+  "action_continuations": 256,
+  "unresolved_conditional_pairs": 0,
+  "model_change_combined_rule": {"wins": 2, "losses": 0, "ties": 70, "total_gain_seconds": 1144},
+  "standard_rollout_vs_fitted_combined": {"wins": 0, "losses": 0, "ties": 72, "all_actions_identical": true},
+  "fitted_combined_vs_own_only_combined": {"wins": 0, "losses": 1, "ties": 71, "total_gain_seconds": -343},
+  "tests": {"passed": 688, "source": "tests.log"},
+  "server_transfer_bytes": 0,
+  "interpretation": "Calibration changes some real decisions and improves the combined baseline. It does not establish new planning value: standard rollout exactly reproduces the cheaper combined control and remains worse than the own-observation combined baseline. The failed model retention gate and all negative roots remain recorded.",
+  "next_bounded_step": "Predeclare an observation-model structure check with a one-current-message-per-trip cheap comparator, message-age strata and joint-event validation. Do not tune on V34 replay gains or start a larger DP/search before a residual strong-baseline decision gap is demonstrated.",
+  "no_new_algorithm_admitted": true
+}

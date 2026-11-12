@@ -1,0 +1,3414 @@
+{
+  "stage": "V35 past-date message-model validation inputs",
+  "train_dates": [
+    "2023-10-01",
+    "2023-10-02"
+  ],
+  "validation_dates": [
+    "2023-10-03",
+    "2023-10-04",
+    "2023-10-05",
+    "2023-10-06",
+    "2023-10-07",
+    "2023-10-08",
+    "2023-10-09",
+    "2023-10-10",
+    "2023-10-11"
+  ],
+  "dates_previously_developed": true,
+  "sources": [
+    {
+      "path": "experiments/reconstruction_data_audit/rail_calibration_dates_v2.json.gz",
+      "bytes": 212303,
+      "modified_utc": "2026-11-11T01:48:22.709274+00:00"
+    },
+    {
+      "path": "experiments/reconstruction_v5/calibration_public_frames.json.gz",
+      "bytes": 26117,
+      "modified_utc": "2026-11-11T02:45:35.983826+00:00"
+    },
+    {
+      "path": "experiments/reconstruction_v5/calibration_protocol.json",
+      "bytes": 1821,
+      "modified_utc": "2026-11-11T02:48:41.154298+00:00"
+    }
+  ],
+  "raw_archives": [
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-01.tar.bz2",
+      "bytes": 122141822,
+      "modified_utc": "2023-10-02T11:52:04+00:00"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-02.tar.bz2",
+      "bytes": 176808531,
+      "modified_utc": "2023-10-03T12:05:18+00:00"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-03.tar.bz2",
+      "bytes": 176290938,
+      "modified_utc": "2023-10-04T11:50:46+00:00"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-04.tar.bz2",
+      "bytes": 175658373,
+      "modified_utc": "2023-10-05T12:04:28+00:00"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-05.tar.bz2",
+      "bytes": 177472518,
+      "modified_utc": "2023-10-06T12:04:49+00:00"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-06.tar.bz2",
+      "bytes": 176448371,
+      "modified_utc": "2023-10-07T12:05:57+00:00"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-07.tar.bz2",
+      "bytes": 154309676,
+      "modified_utc": "2023-10-08T11:57:18+00:00"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-08.tar.bz2",
+      "bytes": 129046297,
+      "modified_utc": "2023-10-09T11:49:15+00:00"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-09.tar.bz2",
+      "bytes": 179885617,
+      "modified_utc": "2023-10-10T12:04:49+00:00"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-10.tar.bz2",
+      "bytes": 183592258,
+      "modified_utc": "2023-10-11T12:01:42+00:00"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-11.tar.bz2",
+      "bytes": 183336307,
+      "modified_utc": "2023-10-12T12:10:24+00:00"
+    }
+  ],
+  "original_endpoint_fields": [
+    "agency_id",
+    "operator_id",
+    "route_id",
+    "route_name",
+    "trip_id",
+    "service_id",
+    "vehicle_number",
+    "dep_stop",
+    "arr_stop",
+    "dep_sequence",
+    "arr_sequence",
+    "scheduled_departure_seconds",
+    "scheduled_arrival_seconds",
+    "pickup_allowed",
+    "dropoff_allowed",
+    "id",
+    "departure",
+    "arrival",
+    "outcome"
+  ],
+  "original_actual_fields": [
+    "status",
+    "time_seconds",
+    "official_journey",
+    "reported_time_seconds",
+    "canceled_flag",
+    "reported_status"
+  ],
+  "event_fields": [
+    "date",
+    "split",
+    "source_connection_id",
+    "trip_id",
+    "route_id",
+    "route_name",
+    "stop_id",
+    "stop_sequence",
+    "kind",
+    "scheduled",
+    "prediction_clock",
+    "actual_status",
+    "actual_seconds",
+    "official_journey",
+    "forecast_seconds",
+    "forecast_receipt",
+    "forecast_publication",
+    "forecast_age",
+    "cutoff_before_actual",
+    "receipt_before_actual",
+    "actual_lead_seconds",
+    "message_trip_status",
+    "message_endpoint_status",
+    "error_eligible",
+    "error_seconds",
+    "legacy_forecast_seconds",
+    "legacy_forecast_receipt",
+    "legacy_prediction_changed"
+  ],
+  "source_id_contract": "Original source connection IDs; no dated_graph local-ID remapping.",
+  "source_join": "Date, operator/train number, BPUIC, event kind and scheduled minute; ambiguous identities remain unresolved.",
+  "static_feed": "feed_publisher_name,feed_publisher_url,feed_lang,feed_start_date,feed_end_date,feed_version\n\"SBB\",\"http://www.sbb.ch/\",\"DE\",\"20221211\",\"20231209\",\"20231024\"",
+  "message_contract": "max(archive capture, feed header, individual TripUpdate timestamp)",
+  "sample_seconds": 600,
+  "capture_window_seconds": [
+    25200,
+    34800
+  ],
+  "by_day": {
+    "2023-10-01": {
+      "events": {
+        "endpoints": 884,
+        "distinct_trips": 145,
+        "status_counts": {
+          "REAL": 784,
+          "MISSING": 100
+        },
+        "real_endpoints": 784,
+        "cutoff_before_actual": 784,
+        "cutoff_at_or_after_actual": 0,
+        "latest_numeric_forecast": 147,
+        "real_without_numeric_forecast": 637,
+        "error_samples": 147,
+        "legacy_prediction_changes": 0,
+        "error_mean_seconds": 3.1020408163265305,
+        "error_mae_seconds": 28.231292517006803,
+        "error_sd_seconds": 36.314971948045944
+      },
+      "messages": {
+        "scheduled_trips": 145,
+        "scheduled_connections": 442,
+        "archive_members": 720,
+        "sampled_snapshots": 17,
+        "matched_trip_messages": 298,
+        "distinct_trips": 28,
+        "endpoint_updates": {
+          "FORECAST": 1650
+        },
+        "trip_status_messages": {
+          "SCHEDULED": 298
+        },
+        "capture_range": [
+          25202,
+          34802
+        ],
+        "receipt_range": [
+          25202,
+          34803
+        ],
+        "messages_later_than_capture": 44,
+        "messages_later_than_legacy_receipt": 0,
+        "messages_with_update_timestamp": 0,
+        "maximum_delay_from_capture": 1,
+        "archive_bytes": 122141822,
+        "extraction_seconds": 17.042706549997092
+      },
+      "actual_source": "experiments/reconstruction_data_audit/rail_calibration_sources/rail_calibration_2023-10-01.csv.gz"
+    },
+    "2023-10-02": {
+      "events": {
+        "endpoints": 1048,
+        "distinct_trips": 172,
+        "status_counts": {
+          "REAL": 1040,
+          "MISSING": 4,
+          "CANCELED": 4
+        },
+        "real_endpoints": 1040,
+        "cutoff_before_actual": 1040,
+        "cutoff_at_or_after_actual": 0,
+        "latest_numeric_forecast": 187,
+        "real_without_numeric_forecast": 853,
+        "error_samples": 187,
+        "legacy_prediction_changes": 0,
+        "error_mean_seconds": 33.6951871657754,
+        "error_mae_seconds": 95.27807486631016,
+        "error_sd_seconds": 119.7411999969605
+      },
+      "messages": {
+        "scheduled_trips": 172,
+        "scheduled_connections": 524,
+        "archive_members": 720,
+        "sampled_snapshots": 17,
+        "matched_trip_messages": 434,
+        "distinct_trips": 45,
+        "endpoint_updates": {
+          "FORECAST": 1831
+        },
+        "trip_status_messages": {
+          "SCHEDULED": 434
+        },
+        "capture_range": [
+          25203,
+          34803
+        ],
+        "receipt_range": [
+          25203,
+          34803
+        ],
+        "messages_later_than_capture": 77,
+        "messages_later_than_legacy_receipt": 0,
+        "messages_with_update_timestamp": 0,
+        "maximum_delay_from_capture": 6,
+        "archive_bytes": 176808531,
+        "extraction_seconds": 24.518811129993992
+      },
+      "actual_source": "experiments/reconstruction_data_audit/rail_calibration_sources/rail_calibration_2023-10-02.csv.gz"
+    },
+    "2023-10-03": {
+      "events": {
+        "endpoints": 1048,
+        "distinct_trips": 172,
+        "status_counts": {
+          "REAL": 1042,
+          "MISSING": 2,
+          "PROGNOSE": 2,
+          "CANCELED": 2
+        },
+        "real_endpoints": 1042,
+        "cutoff_before_actual": 1042,
+        "cutoff_at_or_after_actual": 0,
+        "latest_numeric_forecast": 206,
+        "real_without_numeric_forecast": 836,
+        "error_samples": 206,
+        "legacy_prediction_changes": 0,
+        "error_mean_seconds": 130.28155339805826,
+        "error_mae_seconds": 166.4757281553398,
+        "error_sd_seconds": 175.96556855419067
+      },
+      "messages": {
+        "scheduled_trips": 172,
+        "scheduled_connections": 524,
+        "archive_members": 715,
+        "sampled_snapshots": 17,
+        "matched_trip_messages": 444,
+        "distinct_trips": 47,
+        "endpoint_updates": {
+          "FORECAST": 1891
+        },
+        "trip_status_messages": {
+          "SCHEDULED": 444
+        },
+        "capture_range": [
+          25203,
+          34802
+        ],
+        "receipt_range": [
+          25203,
+          34802
+        ],
+        "messages_later_than_capture": 47,
+        "messages_later_than_legacy_receipt": 0,
+        "messages_with_update_timestamp": 0,
+        "maximum_delay_from_capture": 1,
+        "archive_bytes": 176290938,
+        "extraction_seconds": 24.41022883199912
+      },
+      "actual_source": "experiments/reconstruction_data_audit/rail_calibration_sources/rail_calibration_2023-10-03.csv.gz"
+    },
+    "2023-10-04": {
+      "events": {
+        "endpoints": 1048,
+        "distinct_trips": 172,
+        "status_counts": {
+          "CANCELED": 6,
+          "REAL": 1040,
+          "MISSING": 2
+        },
+        "real_endpoints": 1040,
+        "cutoff_before_actual": 1040,
+        "cutoff_at_or_after_actual": 0,
+        "latest_numeric_forecast": 186,
+        "real_without_numeric_forecast": 856,
+        "error_samples": 184,
+        "legacy_prediction_changes": 0,
+        "error_mean_seconds": 74.46195652173913,
+        "error_mae_seconds": 88.04891304347827,
+        "error_sd_seconds": 92.20349713315
+      },
+      "messages": {
+        "scheduled_trips": 172,
+        "scheduled_connections": 524,
+        "archive_members": 720,
+        "sampled_snapshots": 17,
+        "matched_trip_messages": 443,
+        "distinct_trips": 47,
+        "endpoint_updates": {
+          "FORECAST": 1816
+        },
+        "trip_status_messages": {
+          "SCHEDULED": 439,
+          "CANCELED": 4
+        },
+        "capture_range": [
+          25203,
+          34803
+        ],
+        "receipt_range": [
+          25203,
+          34803
+        ],
+        "messages_later_than_capture": 0,
+        "messages_later_than_legacy_receipt": 0,
+        "messages_with_update_timestamp": 0,
+        "maximum_delay_from_capture": 0,
+        "archive_bytes": 175658373,
+        "extraction_seconds": 24.255665667995345
+      },
+      "actual_source": "experiments/reconstruction_data_audit/rail_calibration_sources/rail_calibration_2023-10-04.csv.gz"
+    },
+    "2023-10-05": {
+      "events": {
+        "endpoints": 1048,
+        "distinct_trips": 172,
+        "status_counts": {
+          "REAL": 1046,
+          "MISSING": 2
+        },
+        "real_endpoints": 1046,
+        "cutoff_before_actual": 1046,
+        "cutoff_at_or_after_actual": 0,
+        "latest_numeric_forecast": 191,
+        "real_without_numeric_forecast": 855,
+        "error_samples": 191,
+        "legacy_prediction_changes": 0,
+        "error_mean_seconds": 36.02094240837696,
+        "error_mae_seconds": 53.4869109947644,
+        "error_sd_seconds": 61.57895728379804
+      },
+      "messages": {
+        "scheduled_trips": 172,
+        "scheduled_connections": 524,
+        "archive_members": 720,
+        "sampled_snapshots": 17,
+        "matched_trip_messages": 460,
+        "distinct_trips": 48,
+        "endpoint_updates": {
+          "FORECAST": 1972
+        },
+        "trip_status_messages": {
+          "SCHEDULED": 460
+        },
+        "capture_range": [
+          25203,
+          34803
+        ],
+        "receipt_range": [
+          25203,
+          34803
+        ],
+        "messages_later_than_capture": 22,
+        "messages_later_than_legacy_receipt": 0,
+        "messages_with_update_timestamp": 0,
+        "maximum_delay_from_capture": 1,
+        "archive_bytes": 177472518,
+        "extraction_seconds": 24.08732233000046
+      },
+      "actual_source": "experiments/reconstruction_data_audit/rail_calibration_sources/rail_calibration_2023-10-05.csv.gz"
+    },
+    "2023-10-06": {
+      "events": {
+        "endpoints": 1048,
+        "distinct_trips": 172,
+        "status_counts": {
+          "REAL": 1036,
+          "MISSING": 2,
+          "CANCELED": 10
+        },
+        "real_endpoints": 1036,
+        "cutoff_before_actual": 1036,
+        "cutoff_at_or_after_actual": 0,
+        "latest_numeric_forecast": 183,
+        "real_without_numeric_forecast": 853,
+        "error_samples": 183,
+        "legacy_prediction_changes": 0,
+        "error_mean_seconds": 47.75409836065574,
+        "error_mae_seconds": 62.4207650273224,
+        "error_sd_seconds": 66.23791344967093
+      },
+      "messages": {
+        "scheduled_trips": 172,
+        "scheduled_connections": 524,
+        "archive_members": 720,
+        "sampled_snapshots": 17,
+        "matched_trip_messages": 457,
+        "distinct_trips": 48,
+        "endpoint_updates": {
+          "FORECAST": 1969
+        },
+        "trip_status_messages": {
+          "SCHEDULED": 457
+        },
+        "capture_range": [
+          25204,
+          34803
+        ],
+        "receipt_range": [
+          25204,
+          34803
+        ],
+        "messages_later_than_capture": 0,
+        "messages_later_than_legacy_receipt": 0,
+        "messages_with_update_timestamp": 0,
+        "maximum_delay_from_capture": 0,
+        "archive_bytes": 176448371,
+        "extraction_seconds": 24.271753415989224
+      },
+      "actual_source": "experiments/reconstruction_data_audit/rail_calibration_sources/rail_calibration_2023-10-06.csv.gz"
+    },
+    "2023-10-07": {
+      "events": {
+        "endpoints": 908,
+        "distinct_trips": 145,
+        "status_counts": {
+          "REAL": 898,
+          "MISSING": 10
+        },
+        "real_endpoints": 898,
+        "cutoff_before_actual": 898,
+        "cutoff_at_or_after_actual": 0,
+        "latest_numeric_forecast": 147,
+        "real_without_numeric_forecast": 751,
+        "error_samples": 147,
+        "legacy_prediction_changes": 0,
+        "error_mean_seconds": 16.476190476190474,
+        "error_mae_seconds": 31.07482993197279,
+        "error_sd_seconds": 37.97102957200385
+      },
+      "messages": {
+        "scheduled_trips": 145,
+        "scheduled_connections": 454,
+        "archive_members": 720,
+        "sampled_snapshots": 17,
+        "matched_trip_messages": 327,
+        "distinct_trips": 33,
+        "endpoint_updates": {
+          "FORECAST": 1581
+        },
+        "trip_status_messages": {
+          "SCHEDULED": 327
+        },
+        "capture_range": [
+          25202,
+          34803
+        ],
+        "receipt_range": [
+          25202,
+          34803
+        ],
+        "messages_later_than_capture": 0,
+        "messages_later_than_legacy_receipt": 0,
+        "messages_with_update_timestamp": 0,
+        "maximum_delay_from_capture": 0,
+        "archive_bytes": 154309676,
+        "extraction_seconds": 21.829350433996296
+      },
+      "actual_source": "experiments/reconstruction_data_audit/rail_calibration_sources/rail_calibration_2023-10-07.csv.gz"
+    },
+    "2023-10-08": {
+      "events": {
+        "endpoints": 908,
+        "distinct_trips": 145,
+        "status_counts": {
+          "REAL": 898,
+          "MISSING": 10
+        },
+        "real_endpoints": 898,
+        "cutoff_before_actual": 898,
+        "cutoff_at_or_after_actual": 0,
+        "latest_numeric_forecast": 132,
+        "real_without_numeric_forecast": 766,
+        "error_samples": 132,
+        "legacy_prediction_changes": 0,
+        "error_mean_seconds": 15.795454545454545,
+        "error_mae_seconds": 29.674242424242426,
+        "error_sd_seconds": 36.312414262381445
+      },
+      "messages": {
+        "scheduled_trips": 145,
+        "scheduled_connections": 454,
+        "archive_members": 720,
+        "sampled_snapshots": 17,
+        "matched_trip_messages": 322,
+        "distinct_trips": 31,
+        "endpoint_updates": {
+          "FORECAST": 1531
+        },
+        "trip_status_messages": {
+          "SCHEDULED": 322
+        },
+        "capture_range": [
+          25202,
+          34803
+        ],
+        "receipt_range": [
+          25202,
+          34803
+        ],
+        "messages_later_than_capture": 0,
+        "messages_later_than_legacy_receipt": 0,
+        "messages_with_update_timestamp": 0,
+        "maximum_delay_from_capture": 0,
+        "archive_bytes": 129046297,
+        "extraction_seconds": 18.584142090010573
+      },
+      "actual_source": "experiments/reconstruction_data_audit/rail_calibration_sources/rail_calibration_2023-10-08.csv.gz"
+    },
+    "2023-10-09": {
+      "events": {
+        "endpoints": 1048,
+        "distinct_trips": 172,
+        "status_counts": {
+          "REAL": 1038,
+          "MISSING": 2,
+          "PROGNOSE": 1,
+          "CANCELED": 7
+        },
+        "real_endpoints": 1038,
+        "cutoff_before_actual": 1038,
+        "cutoff_at_or_after_actual": 0,
+        "latest_numeric_forecast": 190,
+        "real_without_numeric_forecast": 848,
+        "error_samples": 190,
+        "legacy_prediction_changes": 0,
+        "error_mean_seconds": 38.036842105263155,
+        "error_mae_seconds": 52.415789473684214,
+        "error_sd_seconds": 58.130793145011005
+      },
+      "messages": {
+        "scheduled_trips": 172,
+        "scheduled_connections": 524,
+        "archive_members": 720,
+        "sampled_snapshots": 17,
+        "matched_trip_messages": 442,
+        "distinct_trips": 45,
+        "endpoint_updates": {
+          "FORECAST": 1922
+        },
+        "trip_status_messages": {
+          "SCHEDULED": 442
+        },
+        "capture_range": [
+          25203,
+          34802
+        ],
+        "receipt_range": [
+          25203,
+          34802
+        ],
+        "messages_later_than_capture": 0,
+        "messages_later_than_legacy_receipt": 0,
+        "messages_with_update_timestamp": 0,
+        "maximum_delay_from_capture": 0,
+        "archive_bytes": 179885617,
+        "extraction_seconds": 25.63844454700302
+      },
+      "actual_source": "experiments/reconstruction_data_audit/rail_calibration_sources/rail_calibration_2023-10-09.csv.gz"
+    },
+    "2023-10-10": {
+      "events": {
+        "endpoints": 1048,
+        "distinct_trips": 172,
+        "status_counts": {
+          "REAL": 1034,
+          "CANCELED": 4,
+          "MISSING": 2,
+          "PROGNOSE": 1,
+          "SKIPPED": 7
+        },
+        "real_endpoints": 1034,
+        "cutoff_before_actual": 1034,
+        "cutoff_at_or_after_actual": 0,
+        "latest_numeric_forecast": 192,
+        "real_without_numeric_forecast": 842,
+        "error_samples": 192,
+        "legacy_prediction_changes": 0,
+        "error_mean_seconds": 43.859375,
+        "error_mae_seconds": 70.00520833333333,
+        "error_sd_seconds": 80.69466733144752
+      },
+      "messages": {
+        "scheduled_trips": 172,
+        "scheduled_connections": 524,
+        "archive_members": 720,
+        "sampled_snapshots": 17,
+        "matched_trip_messages": 449,
+        "distinct_trips": 47,
+        "endpoint_updates": {
+          "FORECAST": 1968
+        },
+        "trip_status_messages": {
+          "SCHEDULED": 449
+        },
+        "capture_range": [
+          25203,
+          34803
+        ],
+        "receipt_range": [
+          25204,
+          34803
+        ],
+        "messages_later_than_capture": 72,
+        "messages_later_than_legacy_receipt": 0,
+        "messages_with_update_timestamp": 0,
+        "maximum_delay_from_capture": 1,
+        "archive_bytes": 183592258,
+        "extraction_seconds": 26.085560594990966
+      },
+      "actual_source": "experiments/reconstruction_data_audit/rail_calibration_sources/rail_calibration_2023-10-10.csv.gz"
+    },
+    "2023-10-11": {
+      "events": {
+        "endpoints": 1048,
+        "distinct_trips": 172,
+        "status_counts": {
+          "REAL": 1038,
+          "MISSING": 2,
+          "CANCELED": 8
+        },
+        "real_endpoints": 1038,
+        "cutoff_before_actual": 1038,
+        "cutoff_at_or_after_actual": 0,
+        "latest_numeric_forecast": 191,
+        "real_without_numeric_forecast": 847,
+        "error_samples": 191,
+        "legacy_prediction_changes": 0,
+        "error_mean_seconds": 36.96335078534032,
+        "error_mae_seconds": 55.57068062827225,
+        "error_sd_seconds": 64.20521144020604
+      },
+      "messages": {
+        "scheduled_trips": 172,
+        "scheduled_connections": 524,
+        "archive_members": 720,
+        "sampled_snapshots": 17,
+        "matched_trip_messages": 448,
+        "distinct_trips": 47,
+        "endpoint_updates": {
+          "FORECAST": 1937
+        },
+        "trip_status_messages": {
+          "SCHEDULED": 448
+        },
+        "capture_range": [
+          25204,
+          34803
+        ],
+        "receipt_range": [
+          25204,
+          34803
+        ],
+        "messages_later_than_capture": 0,
+        "messages_later_than_legacy_receipt": 0,
+        "messages_with_update_timestamp": 0,
+        "maximum_delay_from_capture": 0,
+        "archive_bytes": 183336307,
+        "extraction_seconds": 25.101583180992748
+      },
+      "actual_source": "experiments/reconstruction_data_audit/rail_calibration_sources/rail_calibration_2023-10-11.csv.gz"
+    }
+  },
+  "by_split": {
+    "training": {
+      "endpoints": 1932,
+      "distinct_trips": 317,
+      "status_counts": {
+        "REAL": 1824,
+        "MISSING": 104,
+        "CANCELED": 4
+      },
+      "real_endpoints": 1824,
+      "cutoff_before_actual": 1824,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 334,
+      "real_without_numeric_forecast": 1490,
+      "error_samples": 334,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 20.230538922155688,
+      "error_mae_seconds": 65.76946107784431,
+      "error_sd_seconds": 93.90480209960697
+    },
+    "validation": {
+      "endpoints": 9152,
+      "distinct_trips": 1494,
+      "status_counts": {
+        "REAL": 9070,
+        "MISSING": 34,
+        "PROGNOSE": 4,
+        "CANCELED": 37,
+        "SKIPPED": 7
+      },
+      "real_endpoints": 9070,
+      "cutoff_before_actual": 9070,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 1618,
+      "real_without_numeric_forecast": 7454,
+      "error_samples": 1616,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 51.59220297029703,
+      "error_mae_seconds": 70.93626237623762,
+      "error_sd_seconds": 94.19598258001837
+    }
+  },
+  "route_kind": [
+    {
+      "split": "training",
+      "route_id": "91-1-D-j23-1",
+      "route_name": "IC1",
+      "kind": "arrival",
+      "endpoints": 16,
+      "distinct_trips": 8,
+      "status_counts": {
+        "MISSING": 4,
+        "REAL": 12
+      },
+      "real_endpoints": 12,
+      "cutoff_before_actual": 12,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 12,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "training",
+      "route_id": "91-1-D-j23-1",
+      "route_name": "IC1",
+      "kind": "departure",
+      "endpoints": 16,
+      "distinct_trips": 8,
+      "status_counts": {
+        "MISSING": 4,
+        "REAL": 12
+      },
+      "real_endpoints": 12,
+      "cutoff_before_actual": 12,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 12,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "training",
+      "route_id": "91-11-A-j23-1",
+      "route_name": "S11",
+      "kind": "arrival",
+      "endpoints": 84,
+      "distinct_trips": 20,
+      "status_counts": {
+        "REAL": 84
+      },
+      "real_endpoints": 84,
+      "cutoff_before_actual": 84,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 13,
+      "real_without_numeric_forecast": 71,
+      "error_samples": 13,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 16.23076923076923,
+      "error_mae_seconds": 42.38461538461539,
+      "error_sd_seconds": 48.43406832343298
+    },
+    {
+      "split": "training",
+      "route_id": "91-11-A-j23-1",
+      "route_name": "S11",
+      "kind": "departure",
+      "endpoints": 84,
+      "distinct_trips": 20,
+      "status_counts": {
+        "REAL": 84
+      },
+      "real_endpoints": 84,
+      "cutoff_before_actual": 84,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 13,
+      "real_without_numeric_forecast": 71,
+      "error_samples": 13,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 1.3076923076923077,
+      "error_mae_seconds": 42.23076923076923,
+      "error_sd_seconds": 51.108356484669926
+    },
+    {
+      "split": "training",
+      "route_id": "91-12-j23-1",
+      "route_name": "S12",
+      "kind": "arrival",
+      "endpoints": 80,
+      "distinct_trips": 16,
+      "status_counts": {
+        "REAL": 80
+      },
+      "real_endpoints": 80,
+      "cutoff_before_actual": 80,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 80,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "training",
+      "route_id": "91-12-j23-1",
+      "route_name": "S12",
+      "kind": "departure",
+      "endpoints": 80,
+      "distinct_trips": 16,
+      "status_counts": {
+        "REAL": 80
+      },
+      "real_endpoints": 80,
+      "cutoff_before_actual": 80,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 80,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "training",
+      "route_id": "91-13-j23-1",
+      "route_name": "IR13",
+      "kind": "arrival",
+      "endpoints": 16,
+      "distinct_trips": 8,
+      "status_counts": {
+        "REAL": 16
+      },
+      "real_endpoints": 16,
+      "cutoff_before_actual": 16,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 16,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "training",
+      "route_id": "91-13-j23-1",
+      "route_name": "IR13",
+      "kind": "departure",
+      "endpoints": 16,
+      "distinct_trips": 8,
+      "status_counts": {
+        "REAL": 16
+      },
+      "real_endpoints": 16,
+      "cutoff_before_actual": 16,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 16,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "training",
+      "route_id": "91-14-C-j23-1",
+      "route_name": "S14",
+      "kind": "arrival",
+      "endpoints": 32,
+      "distinct_trips": 16,
+      "status_counts": {
+        "REAL": 30,
+        "CANCELED": 2
+      },
+      "real_endpoints": 30,
+      "cutoff_before_actual": 30,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 8,
+      "real_without_numeric_forecast": 22,
+      "error_samples": 8,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 6.75,
+      "error_mae_seconds": 17.5,
+      "error_sd_seconds": 21.5919958714864
+    },
+    {
+      "split": "training",
+      "route_id": "91-14-C-j23-1",
+      "route_name": "S14",
+      "kind": "departure",
+      "endpoints": 32,
+      "distinct_trips": 16,
+      "status_counts": {
+        "REAL": 30,
+        "CANCELED": 2
+      },
+      "real_endpoints": 30,
+      "cutoff_before_actual": 30,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 4,
+      "real_without_numeric_forecast": 26,
+      "error_samples": 4,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": -20.75,
+      "error_mae_seconds": 22.75,
+      "error_sd_seconds": 20.45116133621756
+    },
+    {
+      "split": "training",
+      "route_id": "91-15-C-j23-1",
+      "route_name": "S15",
+      "kind": "arrival",
+      "endpoints": 50,
+      "distinct_trips": 18,
+      "status_counts": {
+        "REAL": 50
+      },
+      "real_endpoints": 50,
+      "cutoff_before_actual": 50,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 8,
+      "real_without_numeric_forecast": 42,
+      "error_samples": 8,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 25.875,
+      "error_mae_seconds": 41.625,
+      "error_sd_seconds": 52.30251974263354
+    },
+    {
+      "split": "training",
+      "route_id": "91-15-C-j23-1",
+      "route_name": "S15",
+      "kind": "departure",
+      "endpoints": 50,
+      "distinct_trips": 18,
+      "status_counts": {
+        "REAL": 50
+      },
+      "real_endpoints": 50,
+      "cutoff_before_actual": 50,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 10,
+      "real_without_numeric_forecast": 40,
+      "error_samples": 10,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 24.3,
+      "error_mae_seconds": 38.9,
+      "error_sd_seconds": 51.47178299266934
+    },
+    {
+      "split": "training",
+      "route_id": "91-16-A-j23-1",
+      "route_name": "S16",
+      "kind": "arrival",
+      "endpoints": 82,
+      "distinct_trips": 18,
+      "status_counts": {
+        "REAL": 82
+      },
+      "real_endpoints": 82,
+      "cutoff_before_actual": 82,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 17,
+      "real_without_numeric_forecast": 65,
+      "error_samples": 17,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": -33.35294117647059,
+      "error_mae_seconds": 88.88235294117646,
+      "error_sd_seconds": 118.13707143424041
+    },
+    {
+      "split": "training",
+      "route_id": "91-16-A-j23-1",
+      "route_name": "S16",
+      "kind": "departure",
+      "endpoints": 82,
+      "distinct_trips": 18,
+      "status_counts": {
+        "REAL": 82
+      },
+      "real_endpoints": 82,
+      "cutoff_before_actual": 82,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 20,
+      "real_without_numeric_forecast": 62,
+      "error_samples": 20,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": -38.1,
+      "error_mae_seconds": 85.4,
+      "error_sd_seconds": 117.28593041658581
+    },
+    {
+      "split": "training",
+      "route_id": "91-19-A-j23-1",
+      "route_name": "S19",
+      "kind": "arrival",
+      "endpoints": 24,
+      "distinct_trips": 8,
+      "status_counts": {
+        "REAL": 24
+      },
+      "real_endpoints": 24,
+      "cutoff_before_actual": 24,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 5,
+      "real_without_numeric_forecast": 19,
+      "error_samples": 5,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 94.2,
+      "error_mae_seconds": 94.2,
+      "error_sd_seconds": 26.640195194480086
+    },
+    {
+      "split": "training",
+      "route_id": "91-19-A-j23-1",
+      "route_name": "S19",
+      "kind": "departure",
+      "endpoints": 24,
+      "distinct_trips": 8,
+      "status_counts": {
+        "REAL": 24
+      },
+      "real_endpoints": 24,
+      "cutoff_before_actual": 24,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 10,
+      "real_without_numeric_forecast": 14,
+      "error_samples": 10,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 82.2,
+      "error_mae_seconds": 82.2,
+      "error_sd_seconds": 51.67806325920334
+    },
+    {
+      "split": "training",
+      "route_id": "91-1G-Y-j23-1",
+      "route_name": "RE",
+      "kind": "arrival",
+      "endpoints": 1,
+      "distinct_trips": 1,
+      "status_counts": {
+        "REAL": 1
+      },
+      "real_endpoints": 1,
+      "cutoff_before_actual": 1,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 1,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "training",
+      "route_id": "91-1G-Y-j23-1",
+      "route_name": "RE",
+      "kind": "departure",
+      "endpoints": 1,
+      "distinct_trips": 1,
+      "status_counts": {
+        "REAL": 1
+      },
+      "real_endpoints": 1,
+      "cutoff_before_actual": 1,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 1,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "training",
+      "route_id": "91-1L-Y-j23-1",
+      "route_name": "RE",
+      "kind": "arrival",
+      "endpoints": 8,
+      "distinct_trips": 8,
+      "status_counts": {
+        "REAL": 8
+      },
+      "real_endpoints": 8,
+      "cutoff_before_actual": 8,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 8,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "training",
+      "route_id": "91-1L-Y-j23-1",
+      "route_name": "RE",
+      "kind": "departure",
+      "endpoints": 8,
+      "distinct_trips": 8,
+      "status_counts": {
+        "REAL": 8
+      },
+      "real_endpoints": 8,
+      "cutoff_before_actual": 8,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 8,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "training",
+      "route_id": "91-1P-Y-j23-1",
+      "route_name": "RE",
+      "kind": "arrival",
+      "endpoints": 1,
+      "distinct_trips": 1,
+      "status_counts": {
+        "REAL": 1
+      },
+      "real_endpoints": 1,
+      "cutoff_before_actual": 1,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 1,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "training",
+      "route_id": "91-1P-Y-j23-1",
+      "route_name": "RE",
+      "kind": "departure",
+      "endpoints": 1,
+      "distinct_trips": 1,
+      "status_counts": {
+        "REAL": 1
+      },
+      "real_endpoints": 1,
+      "cutoff_before_actual": 1,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 1,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "training",
+      "route_id": "91-2-B-j23-1",
+      "route_name": "S2",
+      "kind": "arrival",
+      "endpoints": 40,
+      "distinct_trips": 16,
+      "status_counts": {
+        "REAL": 40
+      },
+      "real_endpoints": 40,
+      "cutoff_before_actual": 40,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 40,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "training",
+      "route_id": "91-2-B-j23-1",
+      "route_name": "S2",
+      "kind": "departure",
+      "endpoints": 40,
+      "distinct_trips": 16,
+      "status_counts": {
+        "REAL": 40
+      },
+      "real_endpoints": 40,
+      "cutoff_before_actual": 40,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 40,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "training",
+      "route_id": "91-20-D-j23-1",
+      "route_name": "S20",
+      "kind": "arrival",
+      "endpoints": 8,
+      "distinct_trips": 3,
+      "status_counts": {
+        "REAL": 8
+      },
+      "real_endpoints": 8,
+      "cutoff_before_actual": 8,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 7,
+      "real_without_numeric_forecast": 1,
+      "error_samples": 7,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": -66.14285714285714,
+      "error_mae_seconds": 214.71428571428572,
+      "error_sd_seconds": 252.72015390640334
+    },
+    {
+      "split": "training",
+      "route_id": "91-20-D-j23-1",
+      "route_name": "S20",
+      "kind": "departure",
+      "endpoints": 8,
+      "distinct_trips": 3,
+      "status_counts": {
+        "REAL": 8
+      },
+      "real_endpoints": 8,
+      "cutoff_before_actual": 8,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 5,
+      "real_without_numeric_forecast": 3,
+      "error_samples": 5,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": -113.4,
+      "error_mae_seconds": 195.4,
+      "error_sd_seconds": 201.28661157662722
+    },
+    {
+      "split": "training",
+      "route_id": "91-21-E-j23-1",
+      "route_name": "S21",
+      "kind": "arrival",
+      "endpoints": 8,
+      "distinct_trips": 3,
+      "status_counts": {
+        "REAL": 8
+      },
+      "real_endpoints": 8,
+      "cutoff_before_actual": 8,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 8,
+      "real_without_numeric_forecast": 0,
+      "error_samples": 8,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 133.125,
+      "error_mae_seconds": 140.625,
+      "error_sd_seconds": 92.43134517807566
+    },
+    {
+      "split": "training",
+      "route_id": "91-21-E-j23-1",
+      "route_name": "S21",
+      "kind": "departure",
+      "endpoints": 8,
+      "distinct_trips": 3,
+      "status_counts": {
+        "REAL": 8
+      },
+      "real_endpoints": 8,
+      "cutoff_before_actual": 8,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 8,
+      "real_without_numeric_forecast": 0,
+      "error_samples": 8,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 152.0,
+      "error_mae_seconds": 152.0,
+      "error_sd_seconds": 92.93315570113515
+    },
+    {
+      "split": "training",
+      "route_id": "91-23-B-j23-1",
+      "route_name": "S23",
+      "kind": "arrival",
+      "endpoints": 3,
+      "distinct_trips": 3,
+      "status_counts": {
+        "REAL": 3
+      },
+      "real_endpoints": 3,
+      "cutoff_before_actual": 3,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 3,
+      "real_without_numeric_forecast": 0,
+      "error_samples": 3,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 74.0,
+      "error_mae_seconds": 104.66666666666667,
+      "error_sd_seconds": 136.17635624439362
+    },
+    {
+      "split": "training",
+      "route_id": "91-23-B-j23-1",
+      "route_name": "S23",
+      "kind": "departure",
+      "endpoints": 3,
+      "distinct_trips": 3,
+      "status_counts": {
+        "REAL": 3
+      },
+      "real_endpoints": 3,
+      "cutoff_before_actual": 3,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 3,
+      "real_without_numeric_forecast": 0,
+      "error_samples": 3,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 46.333333333333336,
+      "error_mae_seconds": 92.33333333333333,
+      "error_sd_seconds": 142.13491243650637
+    },
+    {
+      "split": "training",
+      "route_id": "91-24-j23-1",
+      "route_name": "S24",
+      "kind": "arrival",
+      "endpoints": 82,
+      "distinct_trips": 18,
+      "status_counts": {
+        "MISSING": 41,
+        "REAL": 41
+      },
+      "real_endpoints": 41,
+      "cutoff_before_actual": 41,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 41,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "training",
+      "route_id": "91-24-j23-1",
+      "route_name": "S24",
+      "kind": "departure",
+      "endpoints": 82,
+      "distinct_trips": 18,
+      "status_counts": {
+        "MISSING": 41,
+        "REAL": 41
+      },
+      "real_endpoints": 41,
+      "cutoff_before_actual": 41,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 41,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "training",
+      "route_id": "91-2G-Y-j23-1",
+      "route_name": "EC",
+      "kind": "arrival",
+      "endpoints": 3,
+      "distinct_trips": 3,
+      "status_counts": {
+        "MISSING": 3
+      },
+      "real_endpoints": 0,
+      "cutoff_before_actual": 0,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 0,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "training",
+      "route_id": "91-2G-Y-j23-1",
+      "route_name": "EC",
+      "kind": "departure",
+      "endpoints": 3,
+      "distinct_trips": 3,
+      "status_counts": {
+        "MISSING": 3
+      },
+      "real_endpoints": 0,
+      "cutoff_before_actual": 0,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 0,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "training",
+      "route_id": "91-3-D-j23-1",
+      "route_name": "S3",
+      "kind": "arrival",
+      "endpoints": 50,
+      "distinct_trips": 18,
+      "status_counts": {
+        "REAL": 50
+      },
+      "real_endpoints": 50,
+      "cutoff_before_actual": 50,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 19,
+      "real_without_numeric_forecast": 31,
+      "error_samples": 19,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 43.10526315789474,
+      "error_mae_seconds": 44.1578947368421,
+      "error_sd_seconds": 46.137348978460324
+    },
+    {
+      "split": "training",
+      "route_id": "91-3-D-j23-1",
+      "route_name": "S3",
+      "kind": "departure",
+      "endpoints": 50,
+      "distinct_trips": 18,
+      "status_counts": {
+        "REAL": 50
+      },
+      "real_endpoints": 50,
+      "cutoff_before_actual": 50,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 19,
+      "real_without_numeric_forecast": 31,
+      "error_samples": 19,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 4.2105263157894735,
+      "error_mae_seconds": 39.68421052631579,
+      "error_sd_seconds": 52.74317117185085
+    },
+    {
+      "split": "training",
+      "route_id": "91-35-B-j23-1",
+      "route_name": "IR35",
+      "kind": "arrival",
+      "endpoints": 2,
+      "distinct_trips": 2,
+      "status_counts": {
+        "REAL": 2
+      },
+      "real_endpoints": 2,
+      "cutoff_before_actual": 2,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 2,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "training",
+      "route_id": "91-35-B-j23-1",
+      "route_name": "IR35",
+      "kind": "departure",
+      "endpoints": 2,
+      "distinct_trips": 2,
+      "status_counts": {
+        "REAL": 2
+      },
+      "real_endpoints": 2,
+      "cutoff_before_actual": 2,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 2,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "training",
+      "route_id": "91-35-Y-j23-1",
+      "route_name": "IR",
+      "kind": "arrival",
+      "endpoints": 1,
+      "distinct_trips": 1,
+      "status_counts": {
+        "REAL": 1
+      },
+      "real_endpoints": 1,
+      "cutoff_before_actual": 1,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 1,
+      "real_without_numeric_forecast": 0,
+      "error_samples": 1,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": -79.0,
+      "error_mae_seconds": 79.0,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "training",
+      "route_id": "91-35-Y-j23-1",
+      "route_name": "IR",
+      "kind": "departure",
+      "endpoints": 1,
+      "distinct_trips": 1,
+      "status_counts": {
+        "REAL": 1
+      },
+      "real_endpoints": 1,
+      "cutoff_before_actual": 1,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 1,
+      "real_without_numeric_forecast": 0,
+      "error_samples": 1,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": -3.0,
+      "error_mae_seconds": 3.0,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "training",
+      "route_id": "91-36-A-j23-1",
+      "route_name": "IR36",
+      "kind": "arrival",
+      "endpoints": 32,
+      "distinct_trips": 8,
+      "status_counts": {
+        "REAL": 32
+      },
+      "real_endpoints": 32,
+      "cutoff_before_actual": 32,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 32,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "training",
+      "route_id": "91-36-A-j23-1",
+      "route_name": "IR36",
+      "kind": "departure",
+      "endpoints": 32,
+      "distinct_trips": 8,
+      "status_counts": {
+        "REAL": 32
+      },
+      "real_endpoints": 32,
+      "cutoff_before_actual": 32,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 32,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "training",
+      "route_id": "91-42-j23-1",
+      "route_name": "S42",
+      "kind": "arrival",
+      "endpoints": 6,
+      "distinct_trips": 3,
+      "status_counts": {
+        "REAL": 6
+      },
+      "real_endpoints": 6,
+      "cutoff_before_actual": 6,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 2,
+      "real_without_numeric_forecast": 4,
+      "error_samples": 2,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 80.0,
+      "error_mae_seconds": 80.0,
+      "error_sd_seconds": 76.36753236814714
+    },
+    {
+      "split": "training",
+      "route_id": "91-42-j23-1",
+      "route_name": "S42",
+      "kind": "departure",
+      "endpoints": 6,
+      "distinct_trips": 3,
+      "status_counts": {
+        "REAL": 6
+      },
+      "real_endpoints": 6,
+      "cutoff_before_actual": 6,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 4,
+      "real_without_numeric_forecast": 2,
+      "error_samples": 4,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 32.5,
+      "error_mae_seconds": 50.5,
+      "error_sd_seconds": 66.34505759034856
+    },
+    {
+      "split": "training",
+      "route_id": "91-5-A-j23-1",
+      "route_name": "IC5",
+      "kind": "arrival",
+      "endpoints": 9,
+      "distinct_trips": 9,
+      "status_counts": {
+        "REAL": 7,
+        "MISSING": 2
+      },
+      "real_endpoints": 7,
+      "cutoff_before_actual": 7,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 7,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "training",
+      "route_id": "91-5-A-j23-1",
+      "route_name": "IC5",
+      "kind": "departure",
+      "endpoints": 9,
+      "distinct_trips": 9,
+      "status_counts": {
+        "REAL": 7,
+        "MISSING": 2
+      },
+      "real_endpoints": 7,
+      "cutoff_before_actual": 7,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 7,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "training",
+      "route_id": "91-5-C-j23-1",
+      "route_name": "S5",
+      "kind": "arrival",
+      "endpoints": 50,
+      "distinct_trips": 18,
+      "status_counts": {
+        "REAL": 50
+      },
+      "real_endpoints": 50,
+      "cutoff_before_actual": 50,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 28,
+      "real_without_numeric_forecast": 22,
+      "error_samples": 28,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 37.17857142857143,
+      "error_mae_seconds": 62.67857142857143,
+      "error_sd_seconds": 87.57644430943516
+    },
+    {
+      "split": "training",
+      "route_id": "91-5-C-j23-1",
+      "route_name": "S5",
+      "kind": "departure",
+      "endpoints": 50,
+      "distinct_trips": 18,
+      "status_counts": {
+        "REAL": 50
+      },
+      "real_endpoints": 50,
+      "cutoff_before_actual": 50,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 32,
+      "real_without_numeric_forecast": 18,
+      "error_samples": 32,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 25.65625,
+      "error_mae_seconds": 51.15625,
+      "error_sd_seconds": 74.7950357913696
+    },
+    {
+      "split": "training",
+      "route_id": "91-6-D-j23-1",
+      "route_name": "S6",
+      "kind": "arrival",
+      "endpoints": 68,
+      "distinct_trips": 20,
+      "status_counts": {
+        "REAL": 68
+      },
+      "real_endpoints": 68,
+      "cutoff_before_actual": 68,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 14,
+      "real_without_numeric_forecast": 54,
+      "error_samples": 14,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 47.142857142857146,
+      "error_mae_seconds": 55.285714285714285,
+      "error_sd_seconds": 65.05720221804471
+    },
+    {
+      "split": "training",
+      "route_id": "91-6-D-j23-1",
+      "route_name": "S6",
+      "kind": "departure",
+      "endpoints": 68,
+      "distinct_trips": 20,
+      "status_counts": {
+        "REAL": 68
+      },
+      "real_endpoints": 68,
+      "cutoff_before_actual": 68,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 13,
+      "real_without_numeric_forecast": 55,
+      "error_samples": 13,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 33.07692307692308,
+      "error_mae_seconds": 44.46153846153846,
+      "error_sd_seconds": 51.8820160531912
+    },
+    {
+      "split": "training",
+      "route_id": "91-7-C-j23-1",
+      "route_name": "S7",
+      "kind": "arrival",
+      "endpoints": 48,
+      "distinct_trips": 16,
+      "status_counts": {
+        "REAL": 48
+      },
+      "real_endpoints": 48,
+      "cutoff_before_actual": 48,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 4,
+      "real_without_numeric_forecast": 44,
+      "error_samples": 4,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 64.25,
+      "error_mae_seconds": 64.25,
+      "error_sd_seconds": 27.992558534963063
+    },
+    {
+      "split": "training",
+      "route_id": "91-7-C-j23-1",
+      "route_name": "S7",
+      "kind": "departure",
+      "endpoints": 48,
+      "distinct_trips": 16,
+      "status_counts": {
+        "REAL": 48
+      },
+      "real_endpoints": 48,
+      "cutoff_before_actual": 48,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 2,
+      "real_without_numeric_forecast": 46,
+      "error_samples": 2,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 79.5,
+      "error_mae_seconds": 79.5,
+      "error_sd_seconds": 47.37615433949868
+    },
+    {
+      "split": "training",
+      "route_id": "91-75-j23-1",
+      "route_name": "IR75",
+      "kind": "arrival",
+      "endpoints": 8,
+      "distinct_trips": 8,
+      "status_counts": {
+        "REAL": 8
+      },
+      "real_endpoints": 8,
+      "cutoff_before_actual": 8,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 8,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "training",
+      "route_id": "91-75-j23-1",
+      "route_name": "IR75",
+      "kind": "departure",
+      "endpoints": 8,
+      "distinct_trips": 8,
+      "status_counts": {
+        "REAL": 8
+      },
+      "real_endpoints": 8,
+      "cutoff_before_actual": 8,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 8,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "training",
+      "route_id": "91-8-C-j23-1",
+      "route_name": "S8",
+      "kind": "arrival",
+      "endpoints": 82,
+      "distinct_trips": 18,
+      "status_counts": {
+        "REAL": 82
+      },
+      "real_endpoints": 82,
+      "cutoff_before_actual": 82,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 8,
+      "real_without_numeric_forecast": 74,
+      "error_samples": 8,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": -13.75,
+      "error_mae_seconds": 31.25,
+      "error_sd_seconds": 34.677081768799404
+    },
+    {
+      "split": "training",
+      "route_id": "91-8-C-j23-1",
+      "route_name": "S8",
+      "kind": "departure",
+      "endpoints": 82,
+      "distinct_trips": 18,
+      "status_counts": {
+        "REAL": 82
+      },
+      "real_endpoints": 82,
+      "cutoff_before_actual": 82,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 10,
+      "real_without_numeric_forecast": 72,
+      "error_samples": 10,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": -5.1,
+      "error_mae_seconds": 24.7,
+      "error_sd_seconds": 31.634896343542316
+    },
+    {
+      "split": "training",
+      "route_id": "91-8-E-j23-1",
+      "route_name": "IC8",
+      "kind": "arrival",
+      "endpoints": 4,
+      "distinct_trips": 4,
+      "status_counts": {
+        "MISSING": 1,
+        "REAL": 3
+      },
+      "real_endpoints": 3,
+      "cutoff_before_actual": 3,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 3,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "training",
+      "route_id": "91-8-E-j23-1",
+      "route_name": "IC8",
+      "kind": "departure",
+      "endpoints": 4,
+      "distinct_trips": 4,
+      "status_counts": {
+        "MISSING": 1,
+        "REAL": 3
+      },
+      "real_endpoints": 3,
+      "cutoff_before_actual": 3,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 3,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "training",
+      "route_id": "91-81-A-j23-1",
+      "route_name": "IC81",
+      "kind": "arrival",
+      "endpoints": 4,
+      "distinct_trips": 4,
+      "status_counts": {
+        "REAL": 3,
+        "MISSING": 1
+      },
+      "real_endpoints": 3,
+      "cutoff_before_actual": 3,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 3,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "training",
+      "route_id": "91-81-A-j23-1",
+      "route_name": "IC81",
+      "kind": "departure",
+      "endpoints": 4,
+      "distinct_trips": 4,
+      "status_counts": {
+        "REAL": 3,
+        "MISSING": 1
+      },
+      "real_endpoints": 3,
+      "cutoff_before_actual": 3,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 3,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "training",
+      "route_id": "91-9-D-j23-1",
+      "route_name": "S9",
+      "kind": "arrival",
+      "endpoints": 64,
+      "distinct_trips": 20,
+      "status_counts": {
+        "REAL": 64
+      },
+      "real_endpoints": 64,
+      "cutoff_before_actual": 64,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 20,
+      "real_without_numeric_forecast": 44,
+      "error_samples": 20,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 21.25,
+      "error_mae_seconds": 70.45,
+      "error_sd_seconds": 95.22653046952387
+    },
+    {
+      "split": "training",
+      "route_id": "91-9-D-j23-1",
+      "route_name": "S9",
+      "kind": "departure",
+      "endpoints": 64,
+      "distinct_trips": 20,
+      "status_counts": {
+        "REAL": 64
+      },
+      "real_endpoints": 64,
+      "cutoff_before_actual": 64,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 15,
+      "real_without_numeric_forecast": 49,
+      "error_samples": 15,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": -13.8,
+      "error_mae_seconds": 59.13333333333333,
+      "error_sd_seconds": 90.27197002075766
+    },
+    {
+      "split": "validation",
+      "route_id": "91-1-D-j23-1",
+      "route_name": "IC1",
+      "kind": "arrival",
+      "endpoints": 72,
+      "distinct_trips": 36,
+      "status_counts": {
+        "REAL": 72
+      },
+      "real_endpoints": 72,
+      "cutoff_before_actual": 72,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 72,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "validation",
+      "route_id": "91-1-D-j23-1",
+      "route_name": "IC1",
+      "kind": "departure",
+      "endpoints": 72,
+      "distinct_trips": 36,
+      "status_counts": {
+        "REAL": 72
+      },
+      "real_endpoints": 72,
+      "cutoff_before_actual": 72,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 72,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "validation",
+      "route_id": "91-11-A-j23-1",
+      "route_name": "S11",
+      "kind": "arrival",
+      "endpoints": 378,
+      "distinct_trips": 90,
+      "status_counts": {
+        "REAL": 374,
+        "CANCELED": 4
+      },
+      "real_endpoints": 374,
+      "cutoff_before_actual": 374,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 100,
+      "real_without_numeric_forecast": 274,
+      "error_samples": 100,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 53.01,
+      "error_mae_seconds": 58.81,
+      "error_sd_seconds": 59.56296981965702
+    },
+    {
+      "split": "validation",
+      "route_id": "91-11-A-j23-1",
+      "route_name": "S11",
+      "kind": "departure",
+      "endpoints": 378,
+      "distinct_trips": 90,
+      "status_counts": {
+        "REAL": 374,
+        "CANCELED": 4
+      },
+      "real_endpoints": 374,
+      "cutoff_before_actual": 374,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 100,
+      "real_without_numeric_forecast": 274,
+      "error_samples": 100,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 34.39,
+      "error_mae_seconds": 50.99,
+      "error_sd_seconds": 67.726111372322
+    },
+    {
+      "split": "validation",
+      "route_id": "91-12-j23-1",
+      "route_name": "S12",
+      "kind": "arrival",
+      "endpoints": 360,
+      "distinct_trips": 72,
+      "status_counts": {
+        "REAL": 360
+      },
+      "real_endpoints": 360,
+      "cutoff_before_actual": 360,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 39,
+      "real_without_numeric_forecast": 321,
+      "error_samples": 39,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 64.33333333333333,
+      "error_mae_seconds": 70.28205128205128,
+      "error_sd_seconds": 107.82059497959742
+    },
+    {
+      "split": "validation",
+      "route_id": "91-12-j23-1",
+      "route_name": "S12",
+      "kind": "departure",
+      "endpoints": 360,
+      "distinct_trips": 72,
+      "status_counts": {
+        "REAL": 360
+      },
+      "real_endpoints": 360,
+      "cutoff_before_actual": 360,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 32,
+      "real_without_numeric_forecast": 328,
+      "error_samples": 32,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 55.34375,
+      "error_mae_seconds": 66.46875,
+      "error_sd_seconds": 105.41518816167473
+    },
+    {
+      "split": "validation",
+      "route_id": "91-13-j23-1",
+      "route_name": "IR13",
+      "kind": "arrival",
+      "endpoints": 64,
+      "distinct_trips": 36,
+      "status_counts": {
+        "REAL": 64
+      },
+      "real_endpoints": 64,
+      "cutoff_before_actual": 64,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 64,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "validation",
+      "route_id": "91-13-j23-1",
+      "route_name": "IR13",
+      "kind": "departure",
+      "endpoints": 64,
+      "distinct_trips": 36,
+      "status_counts": {
+        "REAL": 64
+      },
+      "real_endpoints": 64,
+      "cutoff_before_actual": 64,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 64,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "validation",
+      "route_id": "91-14-C-j23-1",
+      "route_name": "S14",
+      "kind": "arrival",
+      "endpoints": 144,
+      "distinct_trips": 72,
+      "status_counts": {
+        "REAL": 144
+      },
+      "real_endpoints": 144,
+      "cutoff_before_actual": 144,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 36,
+      "real_without_numeric_forecast": 108,
+      "error_samples": 36,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 25.38888888888889,
+      "error_mae_seconds": 29.555555555555557,
+      "error_sd_seconds": 31.089987159651603
+    },
+    {
+      "split": "validation",
+      "route_id": "91-14-C-j23-1",
+      "route_name": "S14",
+      "kind": "departure",
+      "endpoints": 144,
+      "distinct_trips": 72,
+      "status_counts": {
+        "REAL": 144
+      },
+      "real_endpoints": 144,
+      "cutoff_before_actual": 144,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 18,
+      "real_without_numeric_forecast": 126,
+      "error_samples": 18,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 16.333333333333332,
+      "error_mae_seconds": 26.22222222222222,
+      "error_sd_seconds": 32.449055093647765
+    },
+    {
+      "split": "validation",
+      "route_id": "91-15-C-j23-1",
+      "route_name": "S15",
+      "kind": "arrival",
+      "endpoints": 225,
+      "distinct_trips": 81,
+      "status_counts": {
+        "REAL": 225
+      },
+      "real_endpoints": 225,
+      "cutoff_before_actual": 225,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 39,
+      "real_without_numeric_forecast": 186,
+      "error_samples": 39,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 22.05128205128205,
+      "error_mae_seconds": 62.92307692307692,
+      "error_sd_seconds": 83.62414305058479
+    },
+    {
+      "split": "validation",
+      "route_id": "91-15-C-j23-1",
+      "route_name": "S15",
+      "kind": "departure",
+      "endpoints": 225,
+      "distinct_trips": 81,
+      "status_counts": {
+        "REAL": 225
+      },
+      "real_endpoints": 225,
+      "cutoff_before_actual": 225,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 43,
+      "real_without_numeric_forecast": 182,
+      "error_samples": 43,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 25.372093023255815,
+      "error_mae_seconds": 63.46511627906977,
+      "error_sd_seconds": 89.59459572770105
+    },
+    {
+      "split": "validation",
+      "route_id": "91-16-A-j23-1",
+      "route_name": "S16",
+      "kind": "arrival",
+      "endpoints": 369,
+      "distinct_trips": 81,
+      "status_counts": {
+        "REAL": 368,
+        "CANCELED": 1
+      },
+      "real_endpoints": 368,
+      "cutoff_before_actual": 368,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 17,
+      "real_without_numeric_forecast": 351,
+      "error_samples": 17,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 157.2941176470588,
+      "error_mae_seconds": 157.2941176470588,
+      "error_sd_seconds": 89.7355592183795
+    },
+    {
+      "split": "validation",
+      "route_id": "91-16-A-j23-1",
+      "route_name": "S16",
+      "kind": "departure",
+      "endpoints": 369,
+      "distinct_trips": 81,
+      "status_counts": {
+        "REAL": 368,
+        "PROGNOSE": 1
+      },
+      "real_endpoints": 368,
+      "cutoff_before_actual": 368,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 20,
+      "real_without_numeric_forecast": 348,
+      "error_samples": 20,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 153.15,
+      "error_mae_seconds": 153.15,
+      "error_sd_seconds": 87.24754558453961
+    },
+    {
+      "split": "validation",
+      "route_id": "91-19-A-j23-1",
+      "route_name": "S19",
+      "kind": "arrival",
+      "endpoints": 168,
+      "distinct_trips": 56,
+      "status_counts": {
+        "REAL": 168
+      },
+      "real_endpoints": 168,
+      "cutoff_before_actual": 168,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 26,
+      "real_without_numeric_forecast": 142,
+      "error_samples": 26,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 103.5,
+      "error_mae_seconds": 103.5,
+      "error_sd_seconds": 45.52559719542403
+    },
+    {
+      "split": "validation",
+      "route_id": "91-19-A-j23-1",
+      "route_name": "S19",
+      "kind": "departure",
+      "endpoints": 168,
+      "distinct_trips": 56,
+      "status_counts": {
+        "REAL": 168
+      },
+      "real_endpoints": 168,
+      "cutoff_before_actual": 168,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 67,
+      "real_without_numeric_forecast": 101,
+      "error_samples": 67,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 75.59701492537313,
+      "error_mae_seconds": 75.6268656716418,
+      "error_sd_seconds": 45.73940006413558
+    },
+    {
+      "split": "validation",
+      "route_id": "91-1G-Y-j23-1",
+      "route_name": "RE",
+      "kind": "arrival",
+      "endpoints": 7,
+      "distinct_trips": 7,
+      "status_counts": {
+        "REAL": 7
+      },
+      "real_endpoints": 7,
+      "cutoff_before_actual": 7,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 7,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "validation",
+      "route_id": "91-1G-Y-j23-1",
+      "route_name": "RE",
+      "kind": "departure",
+      "endpoints": 7,
+      "distinct_trips": 7,
+      "status_counts": {
+        "REAL": 7
+      },
+      "real_endpoints": 7,
+      "cutoff_before_actual": 7,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 7,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "validation",
+      "route_id": "91-1L-Y-j23-1",
+      "route_name": "RE",
+      "kind": "arrival",
+      "endpoints": 36,
+      "distinct_trips": 36,
+      "status_counts": {
+        "REAL": 36
+      },
+      "real_endpoints": 36,
+      "cutoff_before_actual": 36,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 9,
+      "real_without_numeric_forecast": 27,
+      "error_samples": 9,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 74.33333333333333,
+      "error_mae_seconds": 76.11111111111111,
+      "error_sd_seconds": 64.71669027383895
+    },
+    {
+      "split": "validation",
+      "route_id": "91-1L-Y-j23-1",
+      "route_name": "RE",
+      "kind": "departure",
+      "endpoints": 36,
+      "distinct_trips": 36,
+      "status_counts": {
+        "REAL": 36
+      },
+      "real_endpoints": 36,
+      "cutoff_before_actual": 36,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 9,
+      "real_without_numeric_forecast": 27,
+      "error_samples": 9,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 82.11111111111111,
+      "error_mae_seconds": 82.11111111111111,
+      "error_sd_seconds": 49.993610702879934
+    },
+    {
+      "split": "validation",
+      "route_id": "91-1P-Y-j23-1",
+      "route_name": "RE",
+      "kind": "arrival",
+      "endpoints": 7,
+      "distinct_trips": 7,
+      "status_counts": {
+        "REAL": 7
+      },
+      "real_endpoints": 7,
+      "cutoff_before_actual": 7,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 7,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "validation",
+      "route_id": "91-1P-Y-j23-1",
+      "route_name": "RE",
+      "kind": "departure",
+      "endpoints": 7,
+      "distinct_trips": 7,
+      "status_counts": {
+        "REAL": 7
+      },
+      "real_endpoints": 7,
+      "cutoff_before_actual": 7,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 7,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "validation",
+      "route_id": "91-2-B-j23-1",
+      "route_name": "S2",
+      "kind": "arrival",
+      "endpoints": 288,
+      "distinct_trips": 72,
+      "status_counts": {
+        "REAL": 287,
+        "PROGNOSE": 1
+      },
+      "real_endpoints": 287,
+      "cutoff_before_actual": 287,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 287,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "validation",
+      "route_id": "91-2-B-j23-1",
+      "route_name": "S2",
+      "kind": "departure",
+      "endpoints": 288,
+      "distinct_trips": 72,
+      "status_counts": {
+        "REAL": 287,
+        "CANCELED": 1
+      },
+      "real_endpoints": 287,
+      "cutoff_before_actual": 287,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 287,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "validation",
+      "route_id": "91-20-D-j23-1",
+      "route_name": "S20",
+      "kind": "arrival",
+      "endpoints": 56,
+      "distinct_trips": 21,
+      "status_counts": {
+        "REAL": 54,
+        "CANCELED": 2
+      },
+      "real_endpoints": 54,
+      "cutoff_before_actual": 54,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 48,
+      "real_without_numeric_forecast": 6,
+      "error_samples": 48,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 64.91666666666667,
+      "error_mae_seconds": 142.66666666666666,
+      "error_sd_seconds": 191.16761424882785
+    },
+    {
+      "split": "validation",
+      "route_id": "91-20-D-j23-1",
+      "route_name": "S20",
+      "kind": "departure",
+      "endpoints": 56,
+      "distinct_trips": 21,
+      "status_counts": {
+        "REAL": 54,
+        "CANCELED": 2
+      },
+      "real_endpoints": 54,
+      "cutoff_before_actual": 54,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 34,
+      "real_without_numeric_forecast": 20,
+      "error_samples": 34,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 31.38235294117647,
+      "error_mae_seconds": 152.08823529411765,
+      "error_sd_seconds": 233.22859312022905
+    },
+    {
+      "split": "validation",
+      "route_id": "91-21-E-j23-1",
+      "route_name": "S21",
+      "kind": "arrival",
+      "endpoints": 56,
+      "distinct_trips": 21,
+      "status_counts": {
+        "REAL": 56
+      },
+      "real_endpoints": 56,
+      "cutoff_before_actual": 56,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 56,
+      "real_without_numeric_forecast": 0,
+      "error_samples": 56,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 38.80357142857143,
+      "error_mae_seconds": 74.91071428571429,
+      "error_sd_seconds": 84.7461277512499
+    },
+    {
+      "split": "validation",
+      "route_id": "91-21-E-j23-1",
+      "route_name": "S21",
+      "kind": "departure",
+      "endpoints": 56,
+      "distinct_trips": 21,
+      "status_counts": {
+        "REAL": 56
+      },
+      "real_endpoints": 56,
+      "cutoff_before_actual": 56,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 56,
+      "real_without_numeric_forecast": 0,
+      "error_samples": 56,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 64.08928571428571,
+      "error_mae_seconds": 76.05357142857143,
+      "error_sd_seconds": 82.04949211204269
+    },
+    {
+      "split": "validation",
+      "route_id": "91-23-B-j23-1",
+      "route_name": "S23",
+      "kind": "arrival",
+      "endpoints": 21,
+      "distinct_trips": 21,
+      "status_counts": {
+        "REAL": 20,
+        "CANCELED": 1
+      },
+      "real_endpoints": 20,
+      "cutoff_before_actual": 20,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 16,
+      "real_without_numeric_forecast": 5,
+      "error_samples": 15,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 120.53333333333333,
+      "error_mae_seconds": 120.53333333333333,
+      "error_sd_seconds": 105.8906893699257
+    },
+    {
+      "split": "validation",
+      "route_id": "91-23-B-j23-1",
+      "route_name": "S23",
+      "kind": "departure",
+      "endpoints": 21,
+      "distinct_trips": 21,
+      "status_counts": {
+        "REAL": 20,
+        "CANCELED": 1
+      },
+      "real_endpoints": 20,
+      "cutoff_before_actual": 20,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 16,
+      "real_without_numeric_forecast": 5,
+      "error_samples": 15,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 102.2,
+      "error_mae_seconds": 102.2,
+      "error_sd_seconds": 97.66429381157828
+    },
+    {
+      "split": "validation",
+      "route_id": "91-24-j23-1",
+      "route_name": "S24",
+      "kind": "arrival",
+      "endpoints": 353,
+      "distinct_trips": 81,
+      "status_counts": {
+        "REAL": 344,
+        "CANCELED": 9
+      },
+      "real_endpoints": 344,
+      "cutoff_before_actual": 344,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 8,
+      "real_without_numeric_forecast": 336,
+      "error_samples": 8,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 36.0,
+      "error_mae_seconds": 36.0,
+      "error_sd_seconds": 20.2837021134844
+    },
+    {
+      "split": "validation",
+      "route_id": "91-24-j23-1",
+      "route_name": "S24",
+      "kind": "departure",
+      "endpoints": 353,
+      "distinct_trips": 81,
+      "status_counts": {
+        "REAL": 343,
+        "CANCELED": 10
+      },
+      "real_endpoints": 343,
+      "cutoff_before_actual": 343,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 8,
+      "real_without_numeric_forecast": 335,
+      "error_samples": 8,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 2.625,
+      "error_mae_seconds": 25.875,
+      "error_sd_seconds": 31.78021621791052
+    },
+    {
+      "split": "validation",
+      "route_id": "91-2G-Y-j23-1",
+      "route_name": "EC",
+      "kind": "arrival",
+      "endpoints": 16,
+      "distinct_trips": 16,
+      "status_counts": {
+        "MISSING": 9,
+        "REAL": 7
+      },
+      "real_endpoints": 7,
+      "cutoff_before_actual": 7,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 7,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "validation",
+      "route_id": "91-2G-Y-j23-1",
+      "route_name": "EC",
+      "kind": "departure",
+      "endpoints": 16,
+      "distinct_trips": 16,
+      "status_counts": {
+        "MISSING": 9,
+        "REAL": 7
+      },
+      "real_endpoints": 7,
+      "cutoff_before_actual": 7,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 1,
+      "real_without_numeric_forecast": 6,
+      "error_samples": 1,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 51.0,
+      "error_mae_seconds": 51.0,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "validation",
+      "route_id": "91-3-D-j23-1",
+      "route_name": "S3",
+      "kind": "arrival",
+      "endpoints": 230,
+      "distinct_trips": 81,
+      "status_counts": {
+        "REAL": 230
+      },
+      "real_endpoints": 230,
+      "cutoff_before_actual": 230,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 70,
+      "real_without_numeric_forecast": 160,
+      "error_samples": 70,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 40.9,
+      "error_mae_seconds": 59.18571428571428,
+      "error_sd_seconds": 72.2052529302726
+    },
+    {
+      "split": "validation",
+      "route_id": "91-3-D-j23-1",
+      "route_name": "S3",
+      "kind": "departure",
+      "endpoints": 230,
+      "distinct_trips": 81,
+      "status_counts": {
+        "REAL": 230
+      },
+      "real_endpoints": 230,
+      "cutoff_before_actual": 230,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 70,
+      "real_without_numeric_forecast": 160,
+      "error_samples": 70,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 22.65714285714286,
+      "error_mae_seconds": 44.48571428571429,
+      "error_sd_seconds": 60.949464862956305
+    },
+    {
+      "split": "validation",
+      "route_id": "91-35-B-j23-1",
+      "route_name": "IR35",
+      "kind": "arrival",
+      "endpoints": 14,
+      "distinct_trips": 14,
+      "status_counts": {
+        "REAL": 14
+      },
+      "real_endpoints": 14,
+      "cutoff_before_actual": 14,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 14,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "validation",
+      "route_id": "91-35-B-j23-1",
+      "route_name": "IR35",
+      "kind": "departure",
+      "endpoints": 14,
+      "distinct_trips": 14,
+      "status_counts": {
+        "REAL": 14
+      },
+      "real_endpoints": 14,
+      "cutoff_before_actual": 14,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 14,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "validation",
+      "route_id": "91-35-Y-j23-1",
+      "route_name": "IR",
+      "kind": "arrival",
+      "endpoints": 7,
+      "distinct_trips": 7,
+      "status_counts": {
+        "REAL": 7
+      },
+      "real_endpoints": 7,
+      "cutoff_before_actual": 7,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 7,
+      "real_without_numeric_forecast": 0,
+      "error_samples": 7,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": -36.57142857142857,
+      "error_mae_seconds": 64.0,
+      "error_sd_seconds": 62.922855261706886
+    },
+    {
+      "split": "validation",
+      "route_id": "91-35-Y-j23-1",
+      "route_name": "IR",
+      "kind": "departure",
+      "endpoints": 7,
+      "distinct_trips": 7,
+      "status_counts": {
+        "REAL": 7
+      },
+      "real_endpoints": 7,
+      "cutoff_before_actual": 7,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 7,
+      "real_without_numeric_forecast": 0,
+      "error_samples": 7,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 117.14285714285714,
+      "error_mae_seconds": 132.0,
+      "error_sd_seconds": 217.94756905536445
+    },
+    {
+      "split": "validation",
+      "route_id": "91-36-A-j23-1",
+      "route_name": "IR36",
+      "kind": "arrival",
+      "endpoints": 144,
+      "distinct_trips": 36,
+      "status_counts": {
+        "REAL": 144
+      },
+      "real_endpoints": 144,
+      "cutoff_before_actual": 144,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 144,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "validation",
+      "route_id": "91-36-A-j23-1",
+      "route_name": "IR36",
+      "kind": "departure",
+      "endpoints": 144,
+      "distinct_trips": 36,
+      "status_counts": {
+        "REAL": 144
+      },
+      "real_endpoints": 144,
+      "cutoff_before_actual": 144,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 144,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "validation",
+      "route_id": "91-42-j23-1",
+      "route_name": "S42",
+      "kind": "arrival",
+      "endpoints": 42,
+      "distinct_trips": 21,
+      "status_counts": {
+        "REAL": 42
+      },
+      "real_endpoints": 42,
+      "cutoff_before_actual": 42,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 19,
+      "real_without_numeric_forecast": 23,
+      "error_samples": 19,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 69.21052631578948,
+      "error_mae_seconds": 78.15789473684211,
+      "error_sd_seconds": 64.8541774096733
+    },
+    {
+      "split": "validation",
+      "route_id": "91-42-j23-1",
+      "route_name": "S42",
+      "kind": "departure",
+      "endpoints": 42,
+      "distinct_trips": 21,
+      "status_counts": {
+        "REAL": 42
+      },
+      "real_endpoints": 42,
+      "cutoff_before_actual": 42,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 26,
+      "real_without_numeric_forecast": 16,
+      "error_samples": 26,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 36.5,
+      "error_mae_seconds": 52.65384615384615,
+      "error_sd_seconds": 54.97872315723602
+    },
+    {
+      "split": "validation",
+      "route_id": "91-5-A-j23-1",
+      "route_name": "IC5",
+      "kind": "arrival",
+      "endpoints": 43,
+      "distinct_trips": 43,
+      "status_counts": {
+        "REAL": 43
+      },
+      "real_endpoints": 43,
+      "cutoff_before_actual": 43,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 43,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "validation",
+      "route_id": "91-5-A-j23-1",
+      "route_name": "IC5",
+      "kind": "departure",
+      "endpoints": 43,
+      "distinct_trips": 43,
+      "status_counts": {
+        "REAL": 43
+      },
+      "real_endpoints": 43,
+      "cutoff_before_actual": 43,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 43,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "validation",
+      "route_id": "91-5-C-j23-1",
+      "route_name": "S5",
+      "kind": "arrival",
+      "endpoints": 225,
+      "distinct_trips": 81,
+      "status_counts": {
+        "REAL": 225
+      },
+      "real_endpoints": 225,
+      "cutoff_before_actual": 225,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 121,
+      "real_without_numeric_forecast": 104,
+      "error_samples": 121,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 58.72727272727273,
+      "error_mae_seconds": 66.28099173553719,
+      "error_sd_seconds": 97.80371499419982
+    },
+    {
+      "split": "validation",
+      "route_id": "91-5-C-j23-1",
+      "route_name": "S5",
+      "kind": "departure",
+      "endpoints": 225,
+      "distinct_trips": 81,
+      "status_counts": {
+        "REAL": 225
+      },
+      "real_endpoints": 225,
+      "cutoff_before_actual": 225,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 136,
+      "real_without_numeric_forecast": 89,
+      "error_samples": 136,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 46.75,
+      "error_mae_seconds": 56.39705882352941,
+      "error_sd_seconds": 90.7134478984766
+    },
+    {
+      "split": "validation",
+      "route_id": "91-6-D-j23-1",
+      "route_name": "S6",
+      "kind": "arrival",
+      "endpoints": 306,
+      "distinct_trips": 90,
+      "status_counts": {
+        "REAL": 306
+      },
+      "real_endpoints": 306,
+      "cutoff_before_actual": 306,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 48,
+      "real_without_numeric_forecast": 258,
+      "error_samples": 48,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 79.27083333333333,
+      "error_mae_seconds": 81.47916666666667,
+      "error_sd_seconds": 81.93737608253502
+    },
+    {
+      "split": "validation",
+      "route_id": "91-6-D-j23-1",
+      "route_name": "S6",
+      "kind": "departure",
+      "endpoints": 306,
+      "distinct_trips": 90,
+      "status_counts": {
+        "REAL": 306
+      },
+      "real_endpoints": 306,
+      "cutoff_before_actual": 306,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 46,
+      "real_without_numeric_forecast": 260,
+      "error_samples": 46,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 83.8913043478261,
+      "error_mae_seconds": 92.5,
+      "error_sd_seconds": 96.78228218495126
+    },
+    {
+      "split": "validation",
+      "route_id": "91-7-C-j23-1",
+      "route_name": "S7",
+      "kind": "arrival",
+      "endpoints": 216,
+      "distinct_trips": 72,
+      "status_counts": {
+        "REAL": 216
+      },
+      "real_endpoints": 216,
+      "cutoff_before_actual": 216,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 15,
+      "real_without_numeric_forecast": 201,
+      "error_samples": 15,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 72.4,
+      "error_mae_seconds": 72.4,
+      "error_sd_seconds": 48.47650388148293
+    },
+    {
+      "split": "validation",
+      "route_id": "91-7-C-j23-1",
+      "route_name": "S7",
+      "kind": "departure",
+      "endpoints": 216,
+      "distinct_trips": 72,
+      "status_counts": {
+        "REAL": 216
+      },
+      "real_endpoints": 216,
+      "cutoff_before_actual": 216,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 6,
+      "real_without_numeric_forecast": 210,
+      "error_samples": 6,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 109.83333333333333,
+      "error_mae_seconds": 116.83333333333333,
+      "error_sd_seconds": 93.5337728666318
+    },
+    {
+      "split": "validation",
+      "route_id": "91-75-j23-1",
+      "route_name": "IR75",
+      "kind": "arrival",
+      "endpoints": 36,
+      "distinct_trips": 36,
+      "status_counts": {
+        "REAL": 26,
+        "MISSING": 8,
+        "CANCELED": 2
+      },
+      "real_endpoints": 26,
+      "cutoff_before_actual": 26,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 26,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "validation",
+      "route_id": "91-75-j23-1",
+      "route_name": "IR75",
+      "kind": "departure",
+      "endpoints": 36,
+      "distinct_trips": 36,
+      "status_counts": {
+        "REAL": 26,
+        "MISSING": 8,
+        "PROGNOSE": 2
+      },
+      "real_endpoints": 26,
+      "cutoff_before_actual": 26,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 26,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "validation",
+      "route_id": "91-8-C-j23-1",
+      "route_name": "S8",
+      "kind": "arrival",
+      "endpoints": 369,
+      "distinct_trips": 81,
+      "status_counts": {
+        "REAL": 366,
+        "SKIPPED": 3
+      },
+      "real_endpoints": 366,
+      "cutoff_before_actual": 366,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 47,
+      "real_without_numeric_forecast": 319,
+      "error_samples": 47,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 45.38297872340426,
+      "error_mae_seconds": 87.63829787234043,
+      "error_sd_seconds": 105.83160397362394
+    },
+    {
+      "split": "validation",
+      "route_id": "91-8-C-j23-1",
+      "route_name": "S8",
+      "kind": "departure",
+      "endpoints": 369,
+      "distinct_trips": 81,
+      "status_counts": {
+        "REAL": 365,
+        "SKIPPED": 4
+      },
+      "real_endpoints": 365,
+      "cutoff_before_actual": 365,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 58,
+      "real_without_numeric_forecast": 307,
+      "error_samples": 58,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 40.39655172413793,
+      "error_mae_seconds": 80.87931034482759,
+      "error_sd_seconds": 98.23761734480838
+    },
+    {
+      "split": "validation",
+      "route_id": "91-8-E-j23-1",
+      "route_name": "IC8",
+      "kind": "arrival",
+      "endpoints": 18,
+      "distinct_trips": 18,
+      "status_counts": {
+        "REAL": 18
+      },
+      "real_endpoints": 18,
+      "cutoff_before_actual": 18,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 18,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "validation",
+      "route_id": "91-8-E-j23-1",
+      "route_name": "IC8",
+      "kind": "departure",
+      "endpoints": 18,
+      "distinct_trips": 18,
+      "status_counts": {
+        "REAL": 18
+      },
+      "real_endpoints": 18,
+      "cutoff_before_actual": 18,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 18,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "validation",
+      "route_id": "91-81-A-j23-1",
+      "route_name": "IC81",
+      "kind": "arrival",
+      "endpoints": 18,
+      "distinct_trips": 18,
+      "status_counts": {
+        "REAL": 18
+      },
+      "real_endpoints": 18,
+      "cutoff_before_actual": 18,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 18,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "validation",
+      "route_id": "91-81-A-j23-1",
+      "route_name": "IC81",
+      "kind": "departure",
+      "endpoints": 18,
+      "distinct_trips": 18,
+      "status_counts": {
+        "REAL": 18
+      },
+      "real_endpoints": 18,
+      "cutoff_before_actual": 18,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 0,
+      "real_without_numeric_forecast": 18,
+      "error_samples": 0,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": null,
+      "error_mae_seconds": null,
+      "error_sd_seconds": null
+    },
+    {
+      "split": "validation",
+      "route_id": "91-9-D-j23-1",
+      "route_name": "S9",
+      "kind": "arrival",
+      "endpoints": 288,
+      "distinct_trips": 90,
+      "status_counts": {
+        "REAL": 288
+      },
+      "real_endpoints": 288,
+      "cutoff_before_actual": 288,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 77,
+      "real_without_numeric_forecast": 211,
+      "error_samples": 77,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 32.116883116883116,
+      "error_mae_seconds": 50.714285714285715,
+      "error_sd_seconds": 66.73119171760645
+    },
+    {
+      "split": "validation",
+      "route_id": "91-9-D-j23-1",
+      "route_name": "S9",
+      "kind": "departure",
+      "endpoints": 288,
+      "distinct_trips": 90,
+      "status_counts": {
+        "REAL": 288
+      },
+      "real_endpoints": 288,
+      "cutoff_before_actual": 288,
+      "cutoff_at_or_after_actual": 0,
+      "latest_numeric_forecast": 67,
+      "real_without_numeric_forecast": 221,
+      "error_samples": 67,
+      "legacy_prediction_changes": 0,
+      "error_mean_seconds": 23.104477611940297,
+      "error_mae_seconds": 43.97014925373134,
+      "error_sd_seconds": 58.13884486879252
+    }
+  ],
+  "outputs": [
+    {
+      "path": "experiments/reconstruction_v35/messages.json.gz",
+      "bytes": 69015,
+      "modified_utc": "2026-11-12T11:15:28.944844+00:00"
+    },
+    {
+      "path": "experiments/reconstruction_v35/events.json.gz",
+      "bytes": 289549,
+      "modified_utc": "2026-11-12T11:15:29.380844+00:00"
+    }
+  ],
+  "new_server_transfer_bytes": 0,
+  "local_raw_archives_copied": false,
+  "limitations": [
+    "Previously developed dates validate the message model away from V34 decision evaluation; they are not pristine holdouts.",
+    "Actual sources are 16-station, 07:30–09:35 subsets from compressed daily prefixes; missing remains unresolved.",
+    "The static snapshot version is Oct24; earlier dates are retrospective model-development data.",
+    "Error counts are physical endpoints, correlated within trips and days; they are not independent observations."
+  ]
+}

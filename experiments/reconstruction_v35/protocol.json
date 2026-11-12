@@ -1,0 +1,40 @@
+{
+  "stage": "V35: forecast-error likelihood check, then fixed-control paired replay",
+  "frozen_before": "New-model validation scores and V35 policy replays",
+  "training_dates": ["2023-10-01", "2023-10-02"],
+  "validation_dates": ["2023-10-03", "2023-10-04", "2023-10-05", "2023-10-06", "2023-10-07", "2023-10-08", "2023-10-09", "2023-10-10", "2023-10-11"],
+  "data_status": "Previously developed retrospective dates, disjoint from V34 six-date decision panel; not pristine confirmation.",
+  "messages": "Local raw archives; V34 extractor, 600-second sampling, 07:00 to 09:40; availability=max(capture,header,TripUpdate timestamp). No actual label substitutes for a prediction.",
+  "fit_queries": "Each source physical endpoint once, cutoff=scheduled-300; REAL and cutoff<actual, latest valid numeric forecast available by cutoff. Fit uses training dates only.",
+  "candidate": {
+    "name": "fitted_error_gaussian",
+    "error": "actual minus forecast",
+    "parameters": "For each event kind, pooled first and second error moments; route/kind moments shrunk toward kind pool with pseudocount 20. Center=forecast+shrunk mean; scale=max(30,sqrt(shrunk second moment-mean squared)). Unseen routes use the kind pool.",
+    "route_pseudocount": 20,
+    "minimum_sd_seconds": 30,
+    "joint_model": "Unchanged V5 physical trip prior, transition, grid and cancellation model. Multiply one latest Gaussian emission per unobserved endpoint. Conditional independence of different endpoint forecast errors is a working assumption to test, not an established fact.",
+    "no_additional_variants": "No bandwidth, bias, endpoint-selection, tempering or correlation parameter tuning on validation or V34 outcomes. No future forecast generator."
+  },
+  "validation": {
+    "models": ["own_only", "legacy_messages", "fitted_messages"],
+    "endpoint_panel": "Known REAL endpoints at scheduled-300 with actual>cutoff, including endpoints without a numeric message; score the common physical trip posterior.",
+    "onboard_panel": "Every supported contiguous pair of same-vehicle connections with measured chronological endpoints. At first-leg arrival, reveal that leg's departure and arrival and only messages already received; predict the next leg's arrival. Selection uses topology and label coverage, not error or method advantage.",
+    "metrics": ["CRPS_seconds", "MAE_seconds", "central_90_coverage", "central_90_width_seconds", "onboard_Brier_arrival_by_schedule_plus_300"],
+    "aggregation": "Retain every row, unsupported history and date. Report date means and equal-date macro means on common supported queries; no independent-endpoint confidence intervals.",
+    "model_retention_gate": "No increased unsupported queries; onboard macro CRPS strictly below legacy and no worse than own_only; onboard Brier no worse than legacy; onboard 90% coverage absolute deviation from 0.90 no worse than legacy. This is a development retention rule, not G2.",
+    "failure_action": "Keep the failed model and receipts as diagnostic evidence; do not promote it or tune it using V34. The predeclared paired replay below still measures its decision consequences."
+  },
+  "paired_replay": {
+    "cohort": "All unchanged 72 V34 roots, actual endpoints, menus, MCT, deadline and public message stream.",
+    "methods": {
+      "rolling_nominal": ["nominal", "nominal"],
+      "combined_rolling": ["rolling_fixed", "combined"],
+      "standard_conditional_rollout": ["rolling_fixed", "combined"]
+    },
+    "information": "Identical received public messages and own/local observations for all three controllers. Model change only. Reuse original legacy-message and own-only cheap-control results; no repeat of old rollout banks.",
+    "rollout": "Unchanged V34 disagreement trigger, continuation and finite-bank decision rule. 128 shared conditional worlds per actual disagreement; seed=34050+1000*root_index+call_index; no retry or refinement. All unresolved draws retained. Snapshot retains fitted model and excludes future archives.",
+    "timing": "Cold model construction, message processing, posterior, scoring, all sampling and continuation charged. IO/graph preparation separate; physical actions use logical clocks.",
+    "comparisons": "Each fitted control vs the same legacy control, and fitted rollout vs both fixed fitted cheap controls. Retain every positive, negative and tied root; no root-wise oracle baseline."
+  },
+  "stop": "This stage tests one observation model and existing controls. A predictive gain, a local repair or standard rollout gain alone is not a novel algorithm or G2. No new large DP/search is launched in this stage."
+}

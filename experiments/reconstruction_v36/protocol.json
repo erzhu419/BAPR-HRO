@@ -1,0 +1,51 @@
+{
+  "stage": "V36: single-message compression, message-age strata and joint-event diagnosis",
+  "frozen_before": "V36 prediction scores and paired control replays",
+  "physical_model": "../reconstruction_v34/model_fit.json; unchanged V5 physical trip chains, prior, support and cancellation model",
+  "emission_parameters": "../reconstruction_v35/fitted_emission.json; unchanged, fitted only on October 1-2",
+  "new_fit": false,
+  "candidate": {
+    "name": "single_message",
+    "class": "SingleMessageHistory",
+    "eligible_forecast": "Latest numeric records already received. For each physical trip, retain only slots strictly after its greatest hard-observed slot; without an own observation all numeric slots are eligible. This uses known passage order, never a scheduled/predicted-time cutoff that would delete a late vehicle.",
+    "selector": "Select maximum receipt timestamp; break ties by earliest original physical chain slot. Neither prediction value, future actual label, objective value nor realized gain enters this selector.",
+    "likelihood": "Apply the selected endpoint's V35 fitted Gaussian emission only. Raw forecasts and all notices remain public. Hard observations and local nonoccurrence are unchanged. After a receipt, withdrawal or new hard observation, recompute the same rule.",
+    "interpretation": "A cheap executable compression baseline, not complete-history Bayesian filtering. It both selects one signal and omits numeric messages on a known completed prefix; score differences alone do not identify forecast-error correlation as the cause.",
+    "variants": "Exactly this selector. No tuned age cutoff, alternative tie rule, tempering, correlation parameter or posterior fit."
+  },
+  "validation": {
+    "dates": ["2023-10-03", "2023-10-04", "2023-10-05", "2023-10-06", "2023-10-07", "2023-10-08", "2023-10-09", "2023-10-10", "2023-10-11"],
+    "queries": "Reuse all saved V35 endpoint (9070) and onboard (3010) queries, including unsupported records if any. No outcome-based rescreening.",
+    "models": ["own_only", "legacy_messages", "fitted_messages", "single_message"],
+    "reuse": "Reuse old three-model marginal predictions exactly. Rebuild only the previously uncomputed joint posterior scores for old models; score the new model once. No old policy rollout bank is repeated.",
+    "marginal_metrics": ["CRPS_seconds", "MAE_seconds", "central_90_coverage", "central_90_width_seconds", "conditional_operating_Brier"],
+    "joint_scope": "At the known first-leg arrival, exact two-slot posterior of the next same-trip connection departure and arrival, conditional on both operating, with only the original available messages and first-leg hard observations.",
+    "joint_events": {
+      "J1": "departure <= scheduled departure + 300 AND arrival <= scheduled arrival + 300",
+      "J2": "arrival - departure <= scheduled running time + 60"
+    },
+    "joint_metrics": "Probability and Brier for J1 and J2; also probability under the product of the same two-slot conditional marginals, to expose what physical dependence changes. This is two-event validation, not validation of the entire joint distribution.",
+    "strata": {
+      "target_message_age_seconds": [600, 1800],
+      "age_rule": "Use common raw target-message age: <=600, (600,1800], >1800; no target message separately.",
+      "eligible_future_forecast_count": [1, 4],
+      "count_rule": "Use common raw history and latest observed slot: 0, 1, 2-4, 5+. Also retain original raw active forecast count. Never use the selected model's count of one to stratify."
+    },
+    "aggregation": "Equal-date means on common supported queries, with all counts, per-date positive/negative comparisons and target-message subset retained. No endpoint-iid significance claims.",
+    "decision": "This is a structural diagnostic, not a new scalar acceptance gate. Report prediction, joint-event and physical-control tradeoffs separately. Preserve the failed V35 gate; do not adjust any model after seeing these scores."
+  },
+  "paired_replay": {
+    "cohort": "All unchanged 72 V34 roots, menus, MCT, deadlines, actual endpoints and public message streams",
+    "methods": {
+      "rolling_nominal": ["nominal", "nominal"],
+      "combined_rolling": ["rolling_fixed", "combined"],
+      "standard_conditional_rollout": ["rolling_fixed", "combined"]
+    },
+    "sampling": "Unchanged disagreement-triggered standard rollout: 128 shared worlds per actual trigger, seed=34050+1000*root_index+call_index, no retries; same combined continuation, no future message archives, every unresolved draw retained.",
+    "comparison": "Compare each controller against the same V35 all-message controller and the V34 own-only cheap controllers. Compare new rollout against both fixed new cheap controllers. No root-wise oracle baseline.",
+    "timing": "All cold model/history setup, selection, scoring, sampling and continuations charged; IO/graph preparation separate. Logical-clock quality replay."
+  },
+  "training_diagnosis": "Read-only October 1-2 residual and age summaries. Paired raw residual correlation is descriptive and cannot by itself disprove conditional independence given the full latent trajectory. No parameter fitting or rule selection follows it.",
+  "stop": "Finish the fixed diagnostic and 216 replays. Preserve all negative cases. No additional model variant, new large DP/search, or novel-algorithm admission based on this stage alone.",
+  "data_status": "Previously developed dates; validation dates disjoint from six policy dates but not pristine scientific confirmation. Reuse local artifacts, no server transfer."
+}
