@@ -1,0 +1,66 @@
+{
+  "stage": "V31 one-variable station-segment kernel development test",
+  "frozen_at_utc": "2026-11-12 07:00:14 UTC",
+  "trigger": "V30 mechanism diagnostics across both developed dates and BOARD/target roles identified station-segment heterogeneity as one candidate. Eleven route groups include ten descriptive improvements and the route-7 negative case; missing exact segment matches remain reported.",
+  "sources": {
+    "baseline_model": "experiments/reconstruction_v25/model_fit.json",
+    "training": "experiments/reconstruction_data_audit/city_vbz_dated_replay_v2.json.gz",
+    "training_dates": [
+      "2023-07-25"
+    ],
+    "menus": "experiments/reconstruction_v25/selection.json",
+    "fixed_forecasts_and_labels": "experiments/reconstruction_v30/results.json.gz",
+    "baseline_policy_replay": "experiments/reconstruction_v28/results.json.gz",
+    "mechanism": "experiments/reconstruction_v30/mechanism.json"
+  },
+  "candidate": {
+    "changed_variable": "Physical station segment only; preserve route, event kind and scheduled-duration grouping.",
+    "key": [
+      "route_id",
+      "event_kind",
+      "scheduled_duration",
+      "from_stop_id",
+      "to_stop_id"
+    ],
+    "segments": "Travel uses connection departure-to-arrival stations; dwell/gap uses previous arrival-to-next departure stations. Dwell endpoints coincide. Use stable source station identities when graph-local integers differ by date.",
+    "estimate": "For an observed segment group of size n, use n/(n+20) times its empirical elapsed law plus 20/(n+20) times the frozen V25 route/kind/schedule elapsed law.",
+    "shrinkage_strength": 20,
+    "tuning": "Fixed once before candidate results. No alternative strengths, cutoff searches, variable additions or post-result subgroup selection.",
+    "missing_group": "Use the existing V25 route kernel unchanged, including its existing pooled/residual fallback if that route group is absent.",
+    "eligibility": "Same observed elapsed samples and official-journey identity rules as the frozen duration fit; use only the declared July 25 training date.",
+    "fixed": "Initial/service laws, route priors, 20-second grid and existing projection, all 73 frozen menus, MCT, deadline, ideal public-event contract and control definitions."
+  },
+  "forecast_test": {
+    "population": "All 151 existing unique V30 history/role/cid actions, including BOARD-only histories; evaluate the candidate against route_empirical20 on identical histories and actual labels.",
+    "primary_scope": "V30 first_offer tag: 67 public histories and all their recorded fixed actions. Do not select by realized sign, candidate prediction or available final labels.",
+    "secondary_scope": "V29 six frozen later divergences are reported separately; retain two wins and four losses.",
+    "metrics": "Supported forecasts and known-label counts; matched first-arrival, remaining-wait, tail-wait and final-cost CRPS/error/coverage; legal_target_appears Brier; fixed-pair action differences.",
+    "primary_label_population": "Use the same complete final-cost labels for both models; keep the ten missing final labels in the coverage ledger and identification ranges. No imputation or model-dependent case deletion.",
+    "exclusions": "No new histories, target reselection in the fixed-forecast comparison, random worlds or independent-confirmation claim."
+  },
+  "policy_test": {
+    "candidate_policies": [
+      "one_step_nominal",
+      "single_target_nominal"
+    ],
+    "population": "Both policies on all 73 frozen roots; 48 origin and 25 first-transfer roots reported separately.",
+    "comparison": "Read the corresponding V28 route_empirical20 outcomes on the same root and objective. Do not rerun either old probability model.",
+    "primary": "Single-target mean truncated loss and arrival rate on all 48 origin roots.",
+    "other_outputs": "Keep the one-step comparison, conditional-transfer results, all per-root gains and harms, empty menus, unresolved trajectories and full local runtime.",
+    "accounting": "Record fitting/preparation/forecast/replay time for this development run. No full-system speedup claim from comparison to historical timing."
+  },
+  "retain_gate": {
+    "coverage": "Candidate forecast support and actual-label coverage may not drop relative to route_empirical20; policy label coverage may not drop on the compared frozen roots. Missing is not converted to failure.",
+    "probability": "Primary first_offer final-cost CRPS must be no worse overall and on each of July 16 and July 17; primary legal_target_appears Brier must be no worse overall, using matched labels.",
+    "action": "All-48-origin candidate single-target mean loss must be no worse than V28 route_empirical20 single-target, and its arrival rate must be no lower. First-transfer roots do not offset origin losses.",
+    "comparison_tolerance": "Only 1e-9 numerical tolerance for floating-score comparisons; no operational noninferiority margin is introduced.",
+    "failure": "Any failed condition ends this station-segment correction attempt. Do not retune shrinkage or expand variables/menus/WAIT/BOARD planning.",
+    "success": "Passing retains a modeling candidate for later independent confirmation only; it does not pass G2, establish significance or validate deployment."
+  },
+  "limits": [
+    "July 16 and 17 are developed retrospective dates, earlier than the July 25 training date; this is not prospective or independent confirmation.",
+    "Station heterogeneity was selected using development diagnostics. Its evaluation here is development evidence.",
+    "No new data downloads, new simulation worlds, large-menu DP or paper-method claim.",
+    "The V29 exact-scoring rescue remains stopped, regardless of this candidate's outcome."
+  ]
+}
