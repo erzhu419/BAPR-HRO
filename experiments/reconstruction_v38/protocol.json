@@ -1,0 +1,27 @@
+{
+  "stage": "V38: exact efficient evaluation of the V37 executable continuation",
+  "frozen_before": "Any V38 full-panel benchmark or policy replay; one predeclared first-state cProfile probe was already completed to locate costs.",
+  "fixed": "V37 model, all 72 roots, menus, real message streams, MCT, deadlines, 128 worlds per conditional state and original assigned seeds. V36 SingleMessageHistory and V35/V34 fits are unchanged.",
+  "variants": ["legacy", "shared", "fast"],
+  "definitions": {
+    "legacy": "Original ForecastPlanner with separate caches for the two action arms and unchanged SnapshotExecutor.",
+    "shared": "The same ForecastPlanner shared across two action arms within one bank, using existing public-history and menu cache keys.",
+    "fast": "Shared FastPlanner: exact terminal edge-vector contraction, requested rolling_fixed policy only, and batched interpolation. Same SnapshotExecutor, complete traces, posterior laws and observations."
+  },
+  "reference_budget": "One measurement per variant on each of all 148 existing V37 banks (142 references and 6 new policy states). Re-execute the original streams, with no new seeds, sample refinement or scientific observations. Keep each finished receipt; do not rerun to improve timing.",
+  "reference_validation": "Compare every world loss, status, action trace and decision count, paired missing-outcome interval and gate action against V37. Timing and internal arithmetic receipts are separate. A failure stops the rollout and is preserved for repair.",
+  "online_budget": "One actual complete replay per variant per original root: 3 x 72. Every eligible onboard state computes its full bank online. State/seed-only manifest assigns the original stream by complete raw public-state equality; no saved loss, gate answer or outcome enters control. An unknown state aborts this exact-replacement stage instead of launching new sampling.",
+  "cheap_methods": {
+    "nominal": ["nominal", "nominal"],
+    "combined_rolling": ["rolling_fixed", "combined"],
+    "single_rolling": ["rolling_fixed", "single"],
+    "pair_rolling": ["rolling_fixed", "pair"],
+    "pair_rollout": ["one_step_rollout", "pair"],
+    "pair_stopping": ["optimal", "pair"]
+  },
+  "cheap_budget": "One replay of each of the six fixed cheap methods per root, all using FastPlanner and the identical public information. This gives the cheap baselines the same implementation improvements. Validate against original actions and losses; no new policy or fitted threshold.",
+  "timing": "Sequential single-process execution, BLAS threads=1. Rotate variant/method execution order deterministically by case/root index. Cold independent physical model, history and planner for every variant; within-bank arm cache sharing only. Include sampling, posterior updates, all continuations, current diagnostics, action processing, state/seed lookup and manifest loading in complete control CPU. Common archive loading and graph construction and output serialization are separately outside control. Report process CPU and wall, and per-state paired reductions; no repeated timing selection.",
+  "interpretation": "Exact here means preserving the same finite-bank executable estimator, not exact integration of the population or an optimal future-message policy. Empirical unresolved-outcome bounds remain distinct from Monte Carlo uncertainty. Preserve all 4 positive, 2 negative and 66 tied original root cases. Speed and a remaining gap against tested cheap controls are necessary evidence, not sufficient proof of a novel OR contribution.",
+  "stop": "Finish exactness tests, all frozen reference benchmarks, all paired complete-control replays, theory and concise quality-CPU report. If speed or quality does not improve, retain the negative result without adding sample sizes, policy variants or new model fits.",
+  "data": "Existing six development dates and pruned menus, logical execution clocks. All local; server transfer bytes=0."
+}
