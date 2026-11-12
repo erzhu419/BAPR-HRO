@@ -1,0 +1,39 @@
+{
+  "stage": "V40: novelty audit and complete declared quality-budget comparison",
+  "frozen_before": "Any V40 real-state conditional simulation or physical replay. Budget choices use V39 cost ranges, not new outcomes. Literature checks already identify standard principles; all declared experiments still run.",
+  "fixed": "V39/V38 physical model, V36 SingleMessageHistory, V35 emission fit, all 148 original states, all 72 roots on six development dates, menus, information streams, MCT, deadlines and combined_rolling continuation. No refit, selected-state filter or new actual data.",
+  "variants": ["v38", "currentmemo", "frontier"],
+  "definitions": {
+    "v38": "V38 vectorized FastPlanner with shared arm caches and unchanged full physical continuation.",
+    "currentmemo": "Strong engineering comparator: original full node plus relevant-trip current history.signature for caching only the current action. Actual history keeps all raw messages for later reselection. Same V38 FastPlanner; no retired-menu projection.",
+    "frontier": "Unchanged V39 remaining-menu projection and raw relevant-history current-decision cache."
+  },
+  "budgets": [
+    {"name": "cpu005", "cpu_seconds": 0.05, "max_pairs": 512},
+    {"name": "cpu015", "cpu_seconds": 0.15, "max_pairs": 512},
+    {"name": "cpu050", "cpu_seconds": 0.50, "max_pairs": 512},
+    {"name": "cpu150", "cpu_seconds": 1.50, "max_pairs": 512},
+    {"name": "pairs128", "cpu_seconds": null, "max_pairs": 128},
+    {"name": "pairs512", "cpu_seconds": null, "max_pairs": 512}
+  ],
+  "stream": "Draw lazily in complete 128-world blocks using original full paths and sorted trip order. Block 0 uses the original base seed and preserves the original 128 worlds exactly. Later block seed = int(SeedSequence([base_seed,40040,block_index]).generate_state(1)[0]). Same stream and pair order for all implementations and budgets; alternative action then base action within each world. All conditioning and unused sampled worlds are charged.",
+  "state_seed": "Match the full original public state using the V38 seed_manifest and its count=128 semantic context, independently of the requested budget. On a match retain its original seed even if call ordinal changes. Otherwise seed=int(SeedSequence([40050,root_index,current_cid]).generate_state(1)[0]); this uses only the current public event, not actual loss, forecast value or new gate ordinal. Retain new states and all new outcomes.",
+  "deadline": "CPU quota is per public decision. For online controls, the first decision includes cold control setup; later decisions include processing since the previous action return, including own/local history updates, received-message processing, trace bookkeeping, cheap scoring, seed matching and all conditional work. Common archive/graph loading and output serialization are outside. The remaining final execution overhead is separately reported and included in total journey CPU.",
+  "stopping": "Cooperative checks at paired-world boundaries. Complete both actions of an atomic pair, update the empirical missing-outcome gate, then commit only if the checkpoint finished within the quota. Preserve and charge a late pair but do not let it change the returned action. Return the last committed incumbent; with zero committed pairs return the current combined action. If a later block's sampling exceeds the quota retain the previous incumbent. Report actual decision CPU, quota violations, overshoot, committed/late/generated pairs, sample ceilings and fallback. No hard real-time guarantee is claimed.",
+  "reference_budget": "One unrestricted 512-world evaluation per implementation on each of the 148 states: 444 measurements. Save all paired outcomes and prefix CPU/action/bounds. Verify the first 128 worlds and gate against V39. Prefixes at 16/32/64/128/256/512 and at the four CPU quotas give descriptive conditional quality-cost curves without repeating a state solely for timing; these are not substitutes for the actual stopped online replays.",
+  "online_budget": "Exactly 3 implementations x 6 declared settings x 72 roots = 1296 full online controls. Each decision actually observes its quota and independently computes current values. All actual roots are retained, including new states, harms, unresolved outcomes and late computations. The unrestricted 128-world anchors must reproduce V39 per-world and physical results; other budgets may legitimately choose different actions.",
+  "cheap_methods": {
+    "nominal": ["nominal", "nominal"],
+    "combined_rolling": ["rolling_fixed", "combined"],
+    "single_rolling": ["rolling_fixed", "single"],
+    "pair_rolling": ["rolling_fixed", "pair"],
+    "pair_rollout": ["one_step_rollout", "pair"],
+    "pair_stopping": ["optimal", "pair"]
+  },
+  "cheap_budget": "Six cheap methods, each with V38 and frontier implementations, once per root: 864 controls. Reuse those measured per-decision costs to report each fixed controller's quota feasibility; do not rerun a deterministic cheap policy at every quota or select a root-wise oracle. Total physical replays in this stage = 2160.",
+  "measurement": "Single process, single BLAS thread, deterministic rotated implementation/setting order. Fresh model/history/planner/decision cache per control; within-bank reuse only. All initialization, posterior, sampling, key/cache maintenance, incremental gates, late work, current-action processing and final control overhead enter actual whole-journey CPU. Report process CPU and wall, pairwise losses and cost by every root, daily grouping, and budget feasibility before interpreting a budget comparison. No repeated timing selection.",
+  "claims": "Missing-outcome bounds remain empirical bounds on completed Monte Carlo pairs. CPU stopping can correlate with trajectory complexity, so ordinary fixed-sample SE is not an anytime population certificate. Larger conditional banks are new simulation draws, not independent actual dates. Logical travel clocks remain unchanged; this is not execution-delay feasibility validation.",
+  "novelty_rule": "Map each claimed step to primary prior work and explicitly separate fixed-controller input equivalence from optimal-policy/state-model abstraction. A cost or sample-throughput gain alone does not establish an independent algorithm contribution. Do not use failure to find identical terminology as evidence of novelty.",
+  "closure_rule": "If the audited surviving content remains an exact implementation of standard rollout, relevant-information pruning and context caching without an independently established method contribution, close this algorithm-paper method route after completing the declared experiments, even if quality-cost improves. Preserve code, all prior and new positive/negative cases, useful strong baselines and scoped modeling/empirical findings. Do not add another optimizer, certificate, seed search or confirmation-date campaign to postpone that conclusion.",
+  "server_transfer_bytes": 0
+}
