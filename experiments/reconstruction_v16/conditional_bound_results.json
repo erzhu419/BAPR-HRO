@@ -1,0 +1,5033 @@
+{
+  "status": "complete",
+  "scope": "Same V13 frozen model, revealed R and first-ride/720s oracle tail.",
+  "exact_example": {
+    "population": 10.0,
+    "policy_loss": 10.0,
+    "original_expected_bank": 8.52734375,
+    "analytic_private_expected_bank": 10.0,
+    "banks": 256,
+    "optimism_before": 1.47265625,
+    "optimism_after": 0.0
+  },
+  "max_nodes": 50000,
+  "alpha_per_endpoint": 0.002777777777777778,
+  "contract": "All original integer-clock platform actions and actual public observations retained. No original A/B prefixes, visible observations or public action choices removed.",
+  "center": "For an eligible A/B board, replace the clipped arrival cost with its exact conditional mean given the sampled latent departure anchor. Keep sampled oracle continuation; clip total loss at the cap. Enable only when no later same-trip event is observable at the waiting stop before boarding.",
+  "stratified": "Each original departure-prefix atom has two private next-arrival strata of exact probability under its chain conditional law. Keep original future in its own stratum and draw a true-law residual conditional suffix in the other. Compare fixed-policy costs before minimizing. Residual futures are sampled, not integrated exactly.",
+  "conditional_difference": "Enumerate all independently selected one-future-per-prefix subbanks and average their minima with exact stratum weights. Jensen makes the difference pointwise nonnegative; its expectation is at most D. Substitute zero for an unfinished conditional comparison.",
+  "inference": "Eight independent outer banks per root. Bonferroni .05 over three roots and six one-sided endpoints per root. An upper bound on V_Rtau is not implied by empirical stratification. The penalty is valid but need not improve Z. Stratification improvement holds in expectation.",
+  "roots": [
+    {
+      "case": [
+        "2023-07-26",
+        0,
+        1
+      ],
+      "root_time": 29306,
+      "root_stop": 606,
+      "targets": [
+        9383,
+        11986
+      ],
+      "later_root_local_events": {
+        "1614.TA.91-14-E-j23-1.6.H": [],
+        "2221.TA.91-9-I-j23-1.9.H": []
+      },
+      "centering_eligible": {
+        "1614.TA.91-14-E-j23-1.6.H": true,
+        "2221.TA.91-9-I-j23-1.9.H": true
+      },
+      "factor_precompute_seconds": 0.13493822800228372,
+      "setup_seconds": 5.528572486000485,
+      "total_seconds": 52.847610472003,
+      "cap": 3394,
+      "rows": [
+        {
+          "bank": 0,
+          "original": {
+            "value": 514.0,
+            "worlds": 16,
+            "nodes": 86,
+            "wall_seconds": 0.993029099998239
+          },
+          "centered": {
+            "value": 501.31578809293933,
+            "nodes": 86,
+            "wall_seconds": 0.009567589004291221
+          },
+          "stratified": {
+            "status": "complete",
+            "value": 504.2956572761487,
+            "nodes": 37,
+            "oracle_evaluations": 1024,
+            "solve_seconds": 0.45679121000284795,
+            "preparation_seconds": 3.4018401379944407,
+            "worlds": 64
+          },
+          "conditional_difference": {
+            "value": 0.0,
+            "mean_original_given_augmented": 504.2956572761487,
+            "enumerated_subsamples": 256
+          },
+          "private": {
+            "1614.TA.91-14-E-j23-1.6.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29580,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 29642.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 29640,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29700,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29460,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 29522.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 29520,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29580,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29460,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 29522.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 29520,
+                    "state_count": 2,
+                    "is_original": false
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29580,
+                    "state_count": 18,
+                    "is_original": true
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29520,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570773,
+                "clipped_conditional_mean": 29582.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29580,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330416,
+                    "selected_arrival": 29640,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ],
+            "2221.TA.91-9-I-j23-1.9.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30180,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30242.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30180,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330412,
+                    "selected_arrival": 30300,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30300,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 30362.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30360,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30420,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30420,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30482.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30480,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330412,
+                    "selected_arrival": 30540,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30180,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30242.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30240,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330412,
+                    "selected_arrival": 30300,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "bank": 1,
+          "original": {
+            "value": 634.0,
+            "worlds": 16,
+            "nodes": 100,
+            "wall_seconds": 1.6657728319987655
+          },
+          "centered": {
+            "value": 634.0,
+            "nodes": 100,
+            "wall_seconds": 0.009828047004702967
+          },
+          "stratified": {
+            "status": "complete",
+            "value": 634.0,
+            "nodes": 48,
+            "oracle_evaluations": 928,
+            "solve_seconds": 0.34427082399633946,
+            "preparation_seconds": 3.5496345159990597,
+            "worlds": 64
+          },
+          "conditional_difference": {
+            "value": 1.1368683772161603e-13,
+            "mean_original_given_augmented": 633.9999999999999,
+            "enumerated_subsamples": 256
+          },
+          "private": {
+            "1614.TA.91-14-E-j23-1.6.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29280,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570773,
+                "clipped_conditional_mean": 29342.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29340,
+                    "state_count": 2,
+                    "is_original": false
+                  },
+                  {
+                    "weight": 0.11768127280330416,
+                    "selected_arrival": 29400,
+                    "state_count": 18,
+                    "is_original": true
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29760,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570773,
+                "clipped_conditional_mean": 29822.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29820,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330416,
+                    "selected_arrival": 29880,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29400,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570772,
+                "clipped_conditional_mean": 29462.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29460,
+                    "state_count": 2,
+                    "is_original": false
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29520,
+                    "state_count": 18,
+                    "is_original": true
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29580,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 29642.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 29640,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29700,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ],
+            "2221.TA.91-9-I-j23-1.9.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30300,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 30362.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30360,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30420,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30300,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 30362.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30360,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30420,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30240,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 30302.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 30300,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30360,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30120,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 30182.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 30180,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30240,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "bank": 2,
+          "original": {
+            "value": 649.0,
+            "worlds": 16,
+            "nodes": 104,
+            "wall_seconds": 1.5964740120034548
+          },
+          "centered": {
+            "value": 649.5789470232348,
+            "nodes": 104,
+            "wall_seconds": 0.009126643002673518
+          },
+          "stratified": {
+            "status": "complete",
+            "value": 649.0,
+            "nodes": 45,
+            "oracle_evaluations": 912,
+            "solve_seconds": 0.3380490429990459,
+            "preparation_seconds": 3.716952308001055,
+            "worlds": 64
+          },
+          "conditional_difference": {
+            "value": 1.1368683772161603e-13,
+            "mean_original_given_augmented": 648.9999999999999,
+            "enumerated_subsamples": 256
+          },
+          "private": {
+            "1614.TA.91-14-E-j23-1.6.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29400,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570772,
+                "clipped_conditional_mean": 29462.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29460,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29520,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29640,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570772,
+                "clipped_conditional_mean": 29702.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29700,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29760,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29520,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570773,
+                "clipped_conditional_mean": 29582.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29580,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330416,
+                    "selected_arrival": 29640,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29640,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570772,
+                "clipped_conditional_mean": 29702.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29700,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29760,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ],
+            "2221.TA.91-9-I-j23-1.9.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30360,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30422.315788092936,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 30420,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30480,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30000,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30062.315788092936,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 30000,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30120,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30000,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30062.315788092936,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 30060,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30120,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30240,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 30302.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 30300,
+                    "state_count": 2,
+                    "is_original": false
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30360,
+                    "state_count": 18,
+                    "is_original": true
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "bank": 3,
+          "original": {
+            "value": 859.0,
+            "worlds": 16,
+            "nodes": 102,
+            "wall_seconds": 1.7658469189991592
+          },
+          "centered": {
+            "value": 859.5789470232348,
+            "nodes": 102,
+            "wall_seconds": 0.010052806996100117
+          },
+          "stratified": {
+            "status": "complete",
+            "value": 859.0,
+            "nodes": 50,
+            "oracle_evaluations": 992,
+            "solve_seconds": 0.39724814799410524,
+            "preparation_seconds": 4.221238687998266,
+            "worlds": 64
+          },
+          "conditional_difference": {
+            "value": 0.0,
+            "mean_original_given_augmented": 859.0,
+            "enumerated_subsamples": 256
+          },
+          "private": {
+            "1614.TA.91-14-E-j23-1.6.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29400,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570772,
+                "clipped_conditional_mean": 29462.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29460,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29520,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29820,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 29882.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 29880,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29940,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29820,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 29882.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 29880,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29940,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29280,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570773,
+                "clipped_conditional_mean": 29342.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29340,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330416,
+                    "selected_arrival": 29400,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ],
+            "2221.TA.91-9-I-j23-1.9.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30300,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 30362.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30360,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30420,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30240,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 30302.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 30300,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30360,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30180,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30242.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30240,
+                    "state_count": 2,
+                    "is_original": false
+                  },
+                  {
+                    "weight": 0.11768127280330412,
+                    "selected_arrival": 30300,
+                    "state_count": 18,
+                    "is_original": true
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30060,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570772,
+                "clipped_conditional_mean": 30122.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30120,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30180,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "bank": 4,
+          "original": {
+            "value": 724.0,
+            "worlds": 16,
+            "nodes": 69,
+            "wall_seconds": 1.8288444360005087
+          },
+          "centered": {
+            "value": 725.7368410697072,
+            "nodes": 69,
+            "wall_seconds": 0.008932251999794971
+          },
+          "stratified": {
+            "status": "complete",
+            "value": 710.7652190920496,
+            "nodes": 32,
+            "oracle_evaluations": 960,
+            "solve_seconds": 0.38783596600114834,
+            "preparation_seconds": 3.96340614699875,
+            "worlds": 64
+          },
+          "conditional_difference": {
+            "value": 2.2737367544323206e-13,
+            "mean_original_given_augmented": 710.7652190920494,
+            "enumerated_subsamples": 256
+          },
+          "private": {
+            "1614.TA.91-14-E-j23-1.6.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29640,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570772,
+                "clipped_conditional_mean": 29702.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29700,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29760,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29640,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570772,
+                "clipped_conditional_mean": 29702.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29700,
+                    "state_count": 2,
+                    "is_original": false
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29760,
+                    "state_count": 18,
+                    "is_original": true
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29640,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570772,
+                "clipped_conditional_mean": 29702.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29640,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29760,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29400,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570772,
+                "clipped_conditional_mean": 29462.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29460,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29520,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ],
+            "2221.TA.91-9-I-j23-1.9.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29940,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30002.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30000,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330412,
+                    "selected_arrival": 30060,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30240,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 30302.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 30300,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30360,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30240,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 30302.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 30300,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30360,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30360,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30422.315788092936,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 30420,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30480,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "bank": 5,
+          "original": {
+            "value": 574.0,
+            "worlds": 16,
+            "nodes": 80,
+            "wall_seconds": 1.0608516130014323
+          },
+          "centered": {
+            "value": 545.1578940464697,
+            "nodes": 80,
+            "wall_seconds": 0.01274035099777393
+          },
+          "stratified": {
+            "status": "complete",
+            "value": 534.2956572761486,
+            "nodes": 39,
+            "oracle_evaluations": 1008,
+            "solve_seconds": 0.513809215000947,
+            "preparation_seconds": 5.234444371999416,
+            "worlds": 64
+          },
+          "conditional_difference": {
+            "value": 3.410605131648481e-13,
+            "mean_original_given_augmented": 534.2956572761483,
+            "enumerated_subsamples": 256
+          },
+          "private": {
+            "1614.TA.91-14-E-j23-1.6.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29460,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 29522.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 29520,
+                    "state_count": 2,
+                    "is_original": false
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29580,
+                    "state_count": 18,
+                    "is_original": true
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29700,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 29762.315788092936,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 29700,
+                    "state_count": 2,
+                    "is_original": false
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29820,
+                    "state_count": 18,
+                    "is_original": true
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29220,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 29282.315788092936,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 29280,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29340,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29460,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 29522.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 29520,
+                    "state_count": 2,
+                    "is_original": false
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29580,
+                    "state_count": 18,
+                    "is_original": true
+                  }
+                ]
+              }
+            ],
+            "2221.TA.91-9-I-j23-1.9.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30420,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30482.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30480,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330412,
+                    "selected_arrival": 30540,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30360,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30422.315788092936,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 30420,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30480,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30360,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30422.315788092936,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 30420,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30480,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30420,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30482.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30480,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330412,
+                    "selected_arrival": 30540,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "bank": 6,
+          "original": {
+            "value": 619.0,
+            "worlds": 16,
+            "nodes": 74,
+            "wall_seconds": 2.017999587995291
+          },
+          "centered": {
+            "value": 605.1578940464697,
+            "nodes": 74,
+            "wall_seconds": 0.009246770998288412
+          },
+          "stratified": {
+            "status": "complete",
+            "value": 596.0608763681983,
+            "nodes": 35,
+            "oracle_evaluations": 912,
+            "solve_seconds": 0.33851762500125915,
+            "preparation_seconds": 3.733811345999129,
+            "worlds": 64
+          },
+          "conditional_difference": {
+            "value": 0.20773322952902618,
+            "mean_original_given_augmented": 595.8531431386692,
+            "enumerated_subsamples": 256
+          },
+          "private": {
+            "1614.TA.91-14-E-j23-1.6.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29640,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570772,
+                "clipped_conditional_mean": 29702.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29700,
+                    "state_count": 2,
+                    "is_original": false
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29760,
+                    "state_count": 18,
+                    "is_original": true
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29640,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570772,
+                "clipped_conditional_mean": 29702.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29700,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29760,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29520,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570773,
+                "clipped_conditional_mean": 29582.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29580,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330416,
+                    "selected_arrival": 29640,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29520,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570773,
+                "clipped_conditional_mean": 29582.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29580,
+                    "state_count": 2,
+                    "is_original": false
+                  },
+                  {
+                    "weight": 0.11768127280330416,
+                    "selected_arrival": 29640,
+                    "state_count": 18,
+                    "is_original": true
+                  }
+                ]
+              }
+            ],
+            "2221.TA.91-9-I-j23-1.9.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30360,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30422.315788092936,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 30420,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30480,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30180,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30242.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30240,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330412,
+                    "selected_arrival": 30300,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30180,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30242.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30240,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330412,
+                    "selected_arrival": 30300,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30000,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30062.315788092936,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 30060,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30120,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "bank": 7,
+          "original": {
+            "value": 664.0,
+            "worlds": 16,
+            "nodes": 96,
+            "wall_seconds": 1.5409794070001226
+          },
+          "centered": {
+            "value": 680.7368410697045,
+            "nodes": 96,
+            "wall_seconds": 0.009502576001978014
+          },
+          "stratified": {
+            "status": "complete",
+            "value": 678.1217527363965,
+            "nodes": 44,
+            "oracle_evaluations": 944,
+            "solve_seconds": 0.37120950700045796,
+            "preparation_seconds": 3.7962389439999242,
+            "worlds": 64
+          },
+          "conditional_difference": {
+            "value": 3.5304381840994665,
+            "mean_original_given_augmented": 674.591314552297,
+            "enumerated_subsamples": 256
+          },
+          "private": {
+            "1614.TA.91-14-E-j23-1.6.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29220,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 29282.315788092936,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 29280,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29340,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29700,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 29762.315788092936,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 29700,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29820,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29520,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570773,
+                "clipped_conditional_mean": 29582.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29580,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330416,
+                    "selected_arrival": 29640,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29760,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570773,
+                "clipped_conditional_mean": 29822.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29820,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330416,
+                    "selected_arrival": 29880,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ],
+            "2221.TA.91-9-I-j23-1.9.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30120,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 30182.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 30180,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30240,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30360,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30422.315788092936,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 30420,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30480,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30300,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 30362.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30360,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30420,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30480,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30542.315788092936,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 30540,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30600,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "summary": {
+        "original": {
+          "mean": 654.625,
+          "lower": 306.649820131599
+        },
+        "centered": {
+          "mean": 650.15789404647,
+          "lower": 303.9679302725233,
+          "mean_paired_increment": -4.467105953529995,
+          "improved": 4,
+          "worsened": 3,
+          "D_lower": 0.0
+        },
+        "stratified": {
+          "mean": 645.6923953436177,
+          "lower": 301.86245481537765,
+          "mean_paired_increment": -8.932604656382289,
+          "improved": 1,
+          "worsened": 4,
+          "D_lower": 0.0
+        },
+        "conditional_difference": {
+          "mean": 0.46727142670366106,
+          "D_lower": 0.0010837594125206983,
+          "nonzero": 2
+        }
+      }
+    },
+    {
+      "case": [
+        "2023-07-26",
+        0,
+        2
+      ],
+      "root_time": 29575,
+      "root_stop": 453,
+      "targets": [
+        10616,
+        14033
+      ],
+      "later_root_local_events": {
+        "2381.TA.92-32-G-j23-1.5.H": [],
+        "2380.TA.92-32-G-j23-1.5.H": []
+      },
+      "centering_eligible": {
+        "2381.TA.92-32-G-j23-1.5.H": true,
+        "2380.TA.92-32-G-j23-1.5.H": true
+      },
+      "factor_precompute_seconds": 0.1603827579965582,
+      "setup_seconds": 4.881689820002066,
+      "total_seconds": 50.193050485999265,
+      "cap": 3125,
+      "rows": [
+        {
+          "bank": 0,
+          "original": {
+            "value": 470.0,
+            "worlds": 16,
+            "nodes": 52,
+            "wall_seconds": 0.9366220160009107
+          },
+          "centered": {
+            "value": 457.3157880929448,
+            "nodes": 52,
+            "wall_seconds": 0.006171817003632896
+          },
+          "stratified": {
+            "status": "complete",
+            "value": 448.82609546024776,
+            "nodes": 24,
+            "oracle_evaluations": 640,
+            "solve_seconds": 0.25905171199701726,
+            "preparation_seconds": 3.290482850999979,
+            "worlds": 64
+          },
+          "conditional_difference": {
+            "value": 0.0,
+            "mean_original_given_augmented": 448.8260954602478,
+            "enumerated_subsamples": 256
+          },
+          "private": {
+            "2381.TA.92-32-G-j23-1.5.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29820,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 29882.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29880,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330412,
+                    "selected_arrival": 29940,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30060,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 30122.315788092947,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30120,
+                    "state_count": 2,
+                    "is_original": false
+                  },
+                  {
+                    "weight": 0.11768127280330412,
+                    "selected_arrival": 30180,
+                    "state_count": 18,
+                    "is_original": true
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29940,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570772,
+                "clipped_conditional_mean": 30002.315788092947,
+                "branches": [
+                  {
+                    "weight": 0.882318727196696,
+                    "selected_arrival": 29940,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330407,
+                    "selected_arrival": 30060,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29820,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 29882.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29880,
+                    "state_count": 2,
+                    "is_original": false
+                  },
+                  {
+                    "weight": 0.11768127280330412,
+                    "selected_arrival": 29940,
+                    "state_count": 18,
+                    "is_original": true
+                  }
+                ]
+              }
+            ],
+            "2380.TA.92-32-G-j23-1.5.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30660,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30722.315788092936,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30660,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30780,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30780,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30842.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 30840,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330416,
+                    "selected_arrival": 30900,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 31140,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 31202.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 31200,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 31260,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 31260,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 31322.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 31320,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330416,
+                    "selected_arrival": 31380,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "bank": 1,
+          "original": {
+            "value": 560.0,
+            "worlds": 16,
+            "nodes": 59,
+            "wall_seconds": 1.669797666996601
+          },
+          "centered": {
+            "value": 576.7368410697063,
+            "nodes": 59,
+            "wall_seconds": 0.006722906000504736
+          },
+          "stratified": {
+            "status": "complete",
+            "value": 567.0608763681983,
+            "nodes": 34,
+            "oracle_evaluations": 496,
+            "solve_seconds": 0.1807626980007626,
+            "preparation_seconds": 3.7957492470013676,
+            "worlds": 64
+          },
+          "conditional_difference": {
+            "value": 0.0,
+            "mean_original_given_augmented": 567.0608763681983,
+            "enumerated_subsamples": 256
+          },
+          "private": {
+            "2381.TA.92-32-G-j23-1.5.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30000,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30062.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30000,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30120,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29880,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 29942.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 29940,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330416,
+                    "selected_arrival": 30000,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29520,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 29582.315788092936,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29520,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29640,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29700,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707715,
+                "clipped_conditional_mean": 29762.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.882318727196696,
+                    "selected_arrival": 29760,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330407,
+                    "selected_arrival": 29820,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ],
+            "2380.TA.92-32-G-j23-1.5.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30900,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30962.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30960,
+                    "state_count": 2,
+                    "is_original": false
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 31020,
+                    "state_count": 18,
+                    "is_original": true
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 31020,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 31082.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 31080,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330416,
+                    "selected_arrival": 31140,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 31200,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 31262.315788092947,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 31260,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330412,
+                    "selected_arrival": 31320,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 31020,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 31082.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 31080,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330416,
+                    "selected_arrival": 31140,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "bank": 2,
+          "original": {
+            "value": 605.0,
+            "worlds": 16,
+            "nodes": 48,
+            "wall_seconds": 1.5593971760026761
+          },
+          "centered": {
+            "value": 606.7368410697081,
+            "nodes": 48,
+            "wall_seconds": 0.0051126969992765225
+          },
+          "stratified": {
+            "status": "complete",
+            "value": 608.530438184099,
+            "nodes": 23,
+            "oracle_evaluations": 560,
+            "solve_seconds": 0.19713419600157067,
+            "preparation_seconds": 3.63030646200059,
+            "worlds": 64
+          },
+          "conditional_difference": {
+            "value": 0.0,
+            "mean_original_given_augmented": 608.5304381840992,
+            "enumerated_subsamples": 256
+          },
+          "private": {
+            "2381.TA.92-32-G-j23-1.5.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30000,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30062.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30060,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30120,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30060,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 30122.315788092947,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30120,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330412,
+                    "selected_arrival": 30180,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30060,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 30122.315788092947,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30120,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330412,
+                    "selected_arrival": 30180,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29520,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 29582.315788092936,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29580,
+                    "state_count": 2,
+                    "is_original": false
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29640,
+                    "state_count": 18,
+                    "is_original": true
+                  }
+                ]
+              }
+            ],
+            "2380.TA.92-32-G-j23-1.5.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30960,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 31022.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 31020,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330412,
+                    "selected_arrival": 31080,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30900,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30962.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30960,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 31020,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30720,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30782.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30780,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330412,
+                    "selected_arrival": 30840,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30840,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707715,
+                "clipped_conditional_mean": 30902.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.882318727196696,
+                    "selected_arrival": 30900,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330407,
+                    "selected_arrival": 30960,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "bank": 3,
+          "original": {
+            "value": 680.0,
+            "worlds": 16,
+            "nodes": 53,
+            "wall_seconds": 1.558108037999773
+          },
+          "centered": {
+            "value": 681.7368410697054,
+            "nodes": 53,
+            "wall_seconds": 0.005265965002763551
+          },
+          "stratified": {
+            "status": "complete",
+            "value": 683.5304381840991,
+            "nodes": 29,
+            "oracle_evaluations": 496,
+            "solve_seconds": 0.20016804199985927,
+            "preparation_seconds": 4.360190530002001,
+            "worlds": 64
+          },
+          "conditional_difference": {
+            "value": 0.0,
+            "mean_original_given_augmented": 683.5304381840992,
+            "enumerated_subsamples": 256
+          },
+          "private": {
+            "2381.TA.92-32-G-j23-1.5.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29880,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 29942.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 29940,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330416,
+                    "selected_arrival": 30000,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30000,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30062.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30060,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30120,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29580,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 29642.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29640,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330412,
+                    "selected_arrival": 29700,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30120,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30182.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 30180,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330416,
+                    "selected_arrival": 30240,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ],
+            "2380.TA.92-32-G-j23-1.5.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30960,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 31022.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30960,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330412,
+                    "selected_arrival": 31080,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30900,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30962.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30960,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 31020,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30780,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30842.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 30840,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330416,
+                    "selected_arrival": 30900,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30900,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30962.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30960,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 31020,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "bank": 4,
+          "original": {
+            "value": 530.0,
+            "worlds": 16,
+            "nodes": 32,
+            "wall_seconds": 1.603739140999096
+          },
+          "centered": {
+            "value": 532.3157880929439,
+            "nodes": 32,
+            "wall_seconds": 0.004216332999931183
+          },
+          "stratified": {
+            "status": "complete",
+            "value": 537.0608763681983,
+            "nodes": 15,
+            "oracle_evaluations": 512,
+            "solve_seconds": 0.1800879620059277,
+            "preparation_seconds": 4.1401255119999405,
+            "worlds": 64
+          },
+          "conditional_difference": {
+            "value": 0.0,
+            "mean_original_given_augmented": 537.0608763681984,
+            "enumerated_subsamples": 256
+          },
+          "private": {
+            "2381.TA.92-32-G-j23-1.5.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30000,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30062.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30060,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30120,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30060,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 30122.315788092947,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30120,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330412,
+                    "selected_arrival": 30180,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30060,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 30122.315788092947,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30120,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330412,
+                    "selected_arrival": 30180,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29820,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 29882.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29880,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330412,
+                    "selected_arrival": 29940,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ],
+            "2380.TA.92-32-G-j23-1.5.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30720,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30782.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30780,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330412,
+                    "selected_arrival": 30840,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30960,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 31022.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 31020,
+                    "state_count": 2,
+                    "is_original": false
+                  },
+                  {
+                    "weight": 0.11768127280330412,
+                    "selected_arrival": 31080,
+                    "state_count": 18,
+                    "is_original": true
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30840,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707715,
+                "clipped_conditional_mean": 30902.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.882318727196696,
+                    "selected_arrival": 30900,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330407,
+                    "selected_arrival": 30960,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30720,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30782.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30780,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330412,
+                    "selected_arrival": 30840,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "bank": 5,
+          "original": {
+            "value": 320.0,
+            "worlds": 16,
+            "nodes": 66,
+            "wall_seconds": 1.56166927999584
+          },
+          "centered": {
+            "value": 337.31578809294297,
+            "nodes": 66,
+            "wall_seconds": 0.007893991001765244
+          },
+          "stratified": {
+            "status": "complete",
+            "value": 327.06087636819825,
+            "nodes": 35,
+            "oracle_evaluations": 640,
+            "solve_seconds": 0.23241819600661984,
+            "preparation_seconds": 4.331766962000984,
+            "worlds": 64
+          },
+          "conditional_difference": {
+            "value": 0.0,
+            "mean_original_given_augmented": 327.0608763681984,
+            "enumerated_subsamples": 256
+          },
+          "private": {
+            "2381.TA.92-32-G-j23-1.5.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29760,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 29822.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29760,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29880,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29700,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707715,
+                "clipped_conditional_mean": 29762.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.882318727196696,
+                    "selected_arrival": 29760,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330407,
+                    "selected_arrival": 29820,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29820,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 29882.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29880,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330412,
+                    "selected_arrival": 29940,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29880,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 29942.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 29940,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330416,
+                    "selected_arrival": 30000,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ],
+            "2380.TA.92-32-G-j23-1.5.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 31080,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570772,
+                "clipped_conditional_mean": 31142.315788092947,
+                "branches": [
+                  {
+                    "weight": 0.882318727196696,
+                    "selected_arrival": 31140,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330407,
+                    "selected_arrival": 31200,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30960,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 31022.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 31020,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330412,
+                    "selected_arrival": 31080,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30840,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707715,
+                "clipped_conditional_mean": 30902.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.882318727196696,
+                    "selected_arrival": 30900,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330407,
+                    "selected_arrival": 30960,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30840,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707715,
+                "clipped_conditional_mean": 30902.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.882318727196696,
+                    "selected_arrival": 30900,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330407,
+                    "selected_arrival": 30960,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "bank": 6,
+          "original": {
+            "value": 560.0,
+            "worlds": 16,
+            "nodes": 72,
+            "wall_seconds": 0.9379233729996486
+          },
+          "centered": {
+            "value": 576.7368410697063,
+            "nodes": 72,
+            "wall_seconds": 0.006597125000553206
+          },
+          "stratified": {
+            "status": "complete",
+            "value": 565.2956572761485,
+            "nodes": 37,
+            "oracle_evaluations": 624,
+            "solve_seconds": 0.23187388399674091,
+            "preparation_seconds": 4.727574825999909,
+            "worlds": 64
+          },
+          "conditional_difference": {
+            "value": 0.0,
+            "mean_original_given_augmented": 565.2956572761487,
+            "enumerated_subsamples": 256
+          },
+          "private": {
+            "2381.TA.92-32-G-j23-1.5.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29640,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 29702.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 29700,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330416,
+                    "selected_arrival": 29760,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29820,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 29882.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29880,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330412,
+                    "selected_arrival": 29940,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29880,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 29942.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 29940,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330416,
+                    "selected_arrival": 30000,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30000,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30062.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30000,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30120,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ],
+            "2380.TA.92-32-G-j23-1.5.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30840,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707715,
+                "clipped_conditional_mean": 30902.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.882318727196696,
+                    "selected_arrival": 30900,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330407,
+                    "selected_arrival": 30960,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30420,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30482.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30480,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30540,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30720,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30782.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30780,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330412,
+                    "selected_arrival": 30840,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30600,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707715,
+                "clipped_conditional_mean": 30662.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.882318727196696,
+                    "selected_arrival": 30660,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330407,
+                    "selected_arrival": 30720,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "bank": 7,
+          "original": {
+            "value": 680.0,
+            "worlds": 16,
+            "nodes": 51,
+            "wall_seconds": 1.614161489000253
+          },
+          "centered": {
+            "value": 681.1578940464715,
+            "nodes": 51,
+            "wall_seconds": 0.004622663996997289
+          },
+          "stratified": {
+            "status": "complete",
+            "value": 683.5304381840991,
+            "nodes": 29,
+            "oracle_evaluations": 416,
+            "solve_seconds": 0.14927778999845032,
+            "preparation_seconds": 3.911601984000299,
+            "worlds": 64
+          },
+          "conditional_difference": {
+            "value": 0.0,
+            "mean_original_given_augmented": 683.5304381840992,
+            "enumerated_subsamples": 256
+          },
+          "private": {
+            "2381.TA.92-32-G-j23-1.5.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29640,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 29702.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 29700,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330416,
+                    "selected_arrival": 29760,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29580,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 29642.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29640,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330412,
+                    "selected_arrival": 29700,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29820,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 29882.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29880,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330412,
+                    "selected_arrival": 29940,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29760,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 29822.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29820,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29880,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ],
+            "2380.TA.92-32-G-j23-1.5.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 31140,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 31202.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 31200,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 31260,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30840,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707715,
+                "clipped_conditional_mean": 30902.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.882318727196696,
+                    "selected_arrival": 30900,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330407,
+                    "selected_arrival": 30960,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30900,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30962.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30900,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 31020,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30900,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30962.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30960,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 31020,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "summary": {
+        "original": {
+          "mean": 550.625,
+          "lower": 254.54486885631923
+        },
+        "centered": {
+          "mean": 556.2565778255162,
+          "lower": 257.6076350478718,
+          "mean_paired_increment": 5.63157782551616,
+          "improved": 7,
+          "worsened": 1,
+          "D_lower": 0.0
+        },
+        "stratified": {
+          "mean": 552.6119620491611,
+          "lower": 255.40794223525396,
+          "mean_paired_increment": 1.9869620491610362,
+          "improved": 7,
+          "worsened": 1,
+          "D_lower": 0.0
+        },
+        "conditional_difference": {
+          "mean": 0.0,
+          "D_lower": 0.0,
+          "nonzero": 0
+        }
+      }
+    },
+    {
+      "case": [
+        "2023-07-27",
+        0,
+        1
+      ],
+      "root_time": 29297,
+      "root_stop": 606,
+      "targets": [
+        9383,
+        11986
+      ],
+      "later_root_local_events": {
+        "1614.TA.91-14-E-j23-1.6.H": [],
+        "2221.TA.91-9-I-j23-1.9.H": []
+      },
+      "centering_eligible": {
+        "1614.TA.91-14-E-j23-1.6.H": true,
+        "2221.TA.91-9-I-j23-1.9.H": true
+      },
+      "factor_precompute_seconds": 0.14233954699739115,
+      "setup_seconds": 4.948832286005199,
+      "total_seconds": 52.35010446800152,
+      "cap": 3403,
+      "rows": [
+        {
+          "bank": 0,
+          "original": {
+            "value": 748.0,
+            "worlds": 16,
+            "nodes": 89,
+            "wall_seconds": 0.9871335330026341
+          },
+          "centered": {
+            "value": 749.7368410697063,
+            "nodes": 89,
+            "wall_seconds": 0.009849845999269746
+          },
+          "stratified": {
+            "status": "complete",
+            "value": 753.2956572761486,
+            "nodes": 45,
+            "oracle_evaluations": 880,
+            "solve_seconds": 0.41461247600091156,
+            "preparation_seconds": 3.2282242190049146,
+            "worlds": 64
+          },
+          "conditional_difference": {
+            "value": 0.0,
+            "mean_original_given_augmented": 753.2956572761487,
+            "enumerated_subsamples": 256
+          },
+          "private": {
+            "1614.TA.91-14-E-j23-1.6.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29760,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570773,
+                "clipped_conditional_mean": 29822.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29820,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330416,
+                    "selected_arrival": 29880,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29340,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 29402.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 29400,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29460,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29520,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570773,
+                "clipped_conditional_mean": 29582.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29580,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330416,
+                    "selected_arrival": 29640,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29760,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570773,
+                "clipped_conditional_mean": 29822.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29820,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330416,
+                    "selected_arrival": 29880,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ],
+            "2221.TA.91-9-I-j23-1.9.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30240,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 30302.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 30300,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30360,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30060,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570772,
+                "clipped_conditional_mean": 30122.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30120,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30180,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30540,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570772,
+                "clipped_conditional_mean": 30602.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30600,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30660,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30060,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570772,
+                "clipped_conditional_mean": 30122.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30120,
+                    "state_count": 2,
+                    "is_original": false
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30180,
+                    "state_count": 18,
+                    "is_original": true
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "bank": 1,
+          "original": {
+            "value": 688.0,
+            "worlds": 16,
+            "nodes": 87,
+            "wall_seconds": 1.6786966869985918
+          },
+          "centered": {
+            "value": 703.0,
+            "nodes": 87,
+            "wall_seconds": 0.009947369995643385
+          },
+          "stratified": {
+            "status": "complete",
+            "value": 686.2347809079504,
+            "nodes": 42,
+            "oracle_evaluations": 960,
+            "solve_seconds": 0.34910336999746505,
+            "preparation_seconds": 3.580207099999825,
+            "worlds": 64
+          },
+          "conditional_difference": {
+            "value": 0.0,
+            "mean_original_given_augmented": 686.2347809079504,
+            "enumerated_subsamples": 256
+          },
+          "private": {
+            "1614.TA.91-14-E-j23-1.6.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29280,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570773,
+                "clipped_conditional_mean": 29342.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29340,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330416,
+                    "selected_arrival": 29400,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29700,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 29762.315788092936,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 29760,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29820,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29160,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 29222.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29220,
+                    "state_count": 2,
+                    "is_original": false
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29280,
+                    "state_count": 18,
+                    "is_original": true
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29640,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570772,
+                "clipped_conditional_mean": 29702.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29640,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29760,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ],
+            "2221.TA.91-9-I-j23-1.9.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30000,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30062.315788092936,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 30060,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30120,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30120,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 30182.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 30180,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30240,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30120,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 30182.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 30180,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30240,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30000,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30062.315788092936,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 30060,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30120,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "bank": 2,
+          "original": {
+            "value": 523.0,
+            "worlds": 16,
+            "nodes": 163,
+            "wall_seconds": 1.5424197920001461
+          },
+          "centered": {
+            "value": 508.57894702323483,
+            "nodes": 163,
+            "wall_seconds": 0.011880447003932204
+          },
+          "stratified": {
+            "status": "complete",
+            "value": 523.0,
+            "nodes": 70,
+            "oracle_evaluations": 1072,
+            "solve_seconds": 0.42218039999715984,
+            "preparation_seconds": 3.879111168003874,
+            "worlds": 64
+          },
+          "conditional_difference": {
+            "value": 0.0,
+            "mean_original_given_augmented": 523.0,
+            "enumerated_subsamples": 256
+          },
+          "private": {
+            "1614.TA.91-14-E-j23-1.6.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29460,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 29522.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 29520,
+                    "state_count": 2,
+                    "is_original": false
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29580,
+                    "state_count": 18,
+                    "is_original": true
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29400,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570772,
+                "clipped_conditional_mean": 29462.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29460,
+                    "state_count": 2,
+                    "is_original": false
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29520,
+                    "state_count": 18,
+                    "is_original": true
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29520,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570773,
+                "clipped_conditional_mean": 29582.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29580,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330416,
+                    "selected_arrival": 29640,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29400,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570772,
+                "clipped_conditional_mean": 29462.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29460,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29520,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ],
+            "2221.TA.91-9-I-j23-1.9.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30480,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30542.315788092936,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 30540,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30600,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30180,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30242.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30240,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330412,
+                    "selected_arrival": 30300,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30180,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30242.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30240,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330412,
+                    "selected_arrival": 30300,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29940,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30002.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30000,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330412,
+                    "selected_arrival": 30060,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "bank": 3,
+          "original": {
+            "value": 613.0,
+            "worlds": 16,
+            "nodes": 119,
+            "wall_seconds": 1.7373460380040342
+          },
+          "centered": {
+            "value": 614.1578940464697,
+            "nodes": 119,
+            "wall_seconds": 0.009662258999014739
+          },
+          "stratified": {
+            "status": "complete",
+            "value": 618.2956572761487,
+            "nodes": 61,
+            "oracle_evaluations": 816,
+            "solve_seconds": 0.31448597000417067,
+            "preparation_seconds": 4.328137451004295,
+            "worlds": 64
+          },
+          "conditional_difference": {
+            "value": 0.0,
+            "mean_original_given_augmented": 618.2956572761487,
+            "enumerated_subsamples": 256
+          },
+          "private": {
+            "1614.TA.91-14-E-j23-1.6.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29280,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570773,
+                "clipped_conditional_mean": 29342.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29340,
+                    "state_count": 2,
+                    "is_original": false
+                  },
+                  {
+                    "weight": 0.11768127280330416,
+                    "selected_arrival": 29400,
+                    "state_count": 18,
+                    "is_original": true
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29340,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 29402.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 29400,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29460,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29520,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570773,
+                "clipped_conditional_mean": 29582.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29580,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330416,
+                    "selected_arrival": 29640,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29520,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570773,
+                "clipped_conditional_mean": 29582.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29580,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330416,
+                    "selected_arrival": 29640,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ],
+            "2221.TA.91-9-I-j23-1.9.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30300,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 30362.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30360,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30420,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29940,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30002.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30000,
+                    "state_count": 2,
+                    "is_original": false
+                  },
+                  {
+                    "weight": 0.11768127280330412,
+                    "selected_arrival": 30060,
+                    "state_count": 18,
+                    "is_original": true
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30180,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30242.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30180,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330412,
+                    "selected_arrival": 30300,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30300,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 30362.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30360,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30420,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "bank": 4,
+          "original": {
+            "value": 613.0,
+            "worlds": 16,
+            "nodes": 122,
+            "wall_seconds": 1.6546478909949656
+          },
+          "centered": {
+            "value": 629.1578940464697,
+            "nodes": 122,
+            "wall_seconds": 0.01118011299695354
+          },
+          "stratified": {
+            "status": "complete",
+            "value": 620.0608763681983,
+            "nodes": 53,
+            "oracle_evaluations": 1168,
+            "solve_seconds": 0.43757993199687917,
+            "preparation_seconds": 3.9036117130017374,
+            "worlds": 64
+          },
+          "conditional_difference": {
+            "value": 0.4154664590583934,
+            "mean_original_given_augmented": 619.6454099091399,
+            "enumerated_subsamples": 256
+          },
+          "private": {
+            "1614.TA.91-14-E-j23-1.6.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29760,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570773,
+                "clipped_conditional_mean": 29822.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29820,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330416,
+                    "selected_arrival": 29880,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29580,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 29642.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 29580,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29700,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29700,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 29762.315788092936,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 29760,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29820,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29580,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 29642.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 29640,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29700,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ],
+            "2221.TA.91-9-I-j23-1.9.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29940,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30002.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29940,
+                    "state_count": 2,
+                    "is_original": false
+                  },
+                  {
+                    "weight": 0.11768127280330412,
+                    "selected_arrival": 30060,
+                    "state_count": 18,
+                    "is_original": true
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30060,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570772,
+                "clipped_conditional_mean": 30122.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30120,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30180,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30060,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570772,
+                "clipped_conditional_mean": 30122.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30060,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30180,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30120,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 30182.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 30180,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30240,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "bank": 5,
+          "original": {
+            "value": 658.0,
+            "worlds": 16,
+            "nodes": 169,
+            "wall_seconds": 1.610473490000004
+          },
+          "centered": {
+            "value": 659.1578940464697,
+            "nodes": 169,
+            "wall_seconds": 0.012830872998165432
+          },
+          "stratified": {
+            "status": "complete",
+            "value": 661.5304381840991,
+            "nodes": 73,
+            "oracle_evaluations": 1088,
+            "solve_seconds": 0.41550670099968556,
+            "preparation_seconds": 4.231858081002429,
+            "worlds": 64
+          },
+          "conditional_difference": {
+            "value": 1.1368683772161603e-13,
+            "mean_original_given_augmented": 661.530438184099,
+            "enumerated_subsamples": 256
+          },
+          "private": {
+            "1614.TA.91-14-E-j23-1.6.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29820,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 29882.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 29820,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29940,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29520,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570773,
+                "clipped_conditional_mean": 29582.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29580,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330416,
+                    "selected_arrival": 29640,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29460,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 29522.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 29520,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29580,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29340,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 29402.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 29400,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29460,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ],
+            "2221.TA.91-9-I-j23-1.9.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29880,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 29942.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29940,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30000,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30360,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30422.315788092936,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 30420,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30480,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30300,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 30362.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30360,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30420,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30360,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30422.315788092936,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 30420,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30480,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "bank": 6,
+          "original": {
+            "value": 583.0,
+            "worlds": 16,
+            "nodes": 174,
+            "wall_seconds": 2.218079341997509
+          },
+          "centered": {
+            "value": 583.0,
+            "nodes": 174,
+            "wall_seconds": 0.0120152000017697
+          },
+          "stratified": {
+            "status": "complete",
+            "value": 583.0,
+            "nodes": 84,
+            "oracle_evaluations": 832,
+            "solve_seconds": 0.34629286299605155,
+            "preparation_seconds": 4.376412438003172,
+            "worlds": 64
+          },
+          "conditional_difference": {
+            "value": 0.0,
+            "mean_original_given_augmented": 583.0,
+            "enumerated_subsamples": 256
+          },
+          "private": {
+            "1614.TA.91-14-E-j23-1.6.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29580,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 29642.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 29640,
+                    "state_count": 2,
+                    "is_original": false
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29700,
+                    "state_count": 18,
+                    "is_original": true
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29460,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 29522.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 29520,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29580,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29760,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570773,
+                "clipped_conditional_mean": 29822.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29760,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330416,
+                    "selected_arrival": 29880,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29340,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 29402.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 29400,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29460,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ],
+            "2221.TA.91-9-I-j23-1.9.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30240,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 30302.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 30240,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30360,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30060,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570772,
+                "clipped_conditional_mean": 30122.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30120,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30180,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30480,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30542.315788092936,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 30540,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30600,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29820,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 29882.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.882318727196696,
+                    "selected_arrival": 29880,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330407,
+                    "selected_arrival": 30000,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "bank": 7,
+          "original": {
+            "value": 598.0,
+            "worlds": 16,
+            "nodes": 104,
+            "wall_seconds": 0.9446561219956493
+          },
+          "centered": {
+            "value": 599.7368410697054,
+            "nodes": 104,
+            "wall_seconds": 0.010141667000425514
+          },
+          "stratified": {
+            "status": "complete",
+            "value": 610.3565336443469,
+            "nodes": 54,
+            "oracle_evaluations": 896,
+            "solve_seconds": 0.3430151230058982,
+            "preparation_seconds": 4.3657230169992545,
+            "worlds": 64
+          },
+          "conditional_difference": {
+            "value": 0.0,
+            "mean_original_given_augmented": 610.3565336443469,
+            "enumerated_subsamples": 256
+          },
+          "private": {
+            "1614.TA.91-14-E-j23-1.6.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29580,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 29642.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 29640,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29700,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29520,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570773,
+                "clipped_conditional_mean": 29582.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29580,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330416,
+                    "selected_arrival": 29640,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29700,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 29762.315788092936,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 29760,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29820,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 29640,
+                "canceled": false,
+                "clipped_conditional_sd": 26.58135691570772,
+                "clipped_conditional_mean": 29702.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 29700,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 29760,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ],
+            "2221.TA.91-9-I-j23-1.9.H": [
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30300,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 30362.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30360,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30420,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30120,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 30182.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966958,
+                    "selected_arrival": 30180,
+                    "state_count": 2,
+                    "is_original": false
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30240,
+                    "state_count": 18,
+                    "is_original": true
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30420,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707726,
+                "clipped_conditional_mean": 30482.315788092943,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30480,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330412,
+                    "selected_arrival": 30540,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              },
+              {
+                "next_state_support": 20,
+                "prefix_departure": 30300,
+                "canceled": false,
+                "clipped_conditional_sd": 26.581356915707723,
+                "clipped_conditional_mean": 30362.31578809294,
+                "branches": [
+                  {
+                    "weight": 0.8823187271966959,
+                    "selected_arrival": 30360,
+                    "state_count": 2,
+                    "is_original": true
+                  },
+                  {
+                    "weight": 0.11768127280330411,
+                    "selected_arrival": 30420,
+                    "state_count": 18,
+                    "is_original": false
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "summary": {
+        "original": {
+          "mean": 628.0,
+          "lower": 295.7009138800204
+        },
+        "centered": {
+          "mean": 630.815788912757,
+          "lower": 296.7563287406517,
+          "mean_paired_increment": 2.8157889127569433,
+          "improved": 6,
+          "worsened": 1,
+          "D_lower": 0.0
+        },
+        "stratified": {
+          "mean": 631.9717429571115,
+          "lower": 297.5676403392287,
+          "mean_paired_increment": 3.971742957111502,
+          "improved": 5,
+          "worsened": 1,
+          "D_lower": 0.0
+        },
+        "conditional_difference": {
+          "mean": 0.05193330738231339,
+          "D_lower": 7.92439382664694e-07,
+          "nonzero": 1
+        }
+      }
+    }
+  ],
+  "panel": "V13 development tape"
+}

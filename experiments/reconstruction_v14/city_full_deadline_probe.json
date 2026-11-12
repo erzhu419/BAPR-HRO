@@ -1,0 +1,172 @@
+{
+  "protocol": {
+    "cases": [
+      [
+        "2023-07-26",
+        0,
+        1
+      ],
+      [
+        "2023-07-26",
+        0,
+        2
+      ],
+      [
+        "2023-07-27",
+        0,
+        1
+      ]
+    ],
+    "banks": 1,
+    "ab_atoms": 4,
+    "horizon": "journey deadline",
+    "extended_horizon": null,
+    "node_limit_per_arm_bank": 50000,
+    "exact_suffix_path_limit_per_cut": 32,
+    "inputs": [
+      "experiments/reconstruction_data_audit/city_vbz_dated_replay_v2.json.gz",
+      "experiments/reconstruction_v4/city_replay_results.json",
+      "experiments/reconstruction_v12/transfer_inventory.json",
+      "experiments/reconstruction_v10/tail_rescue_results.json",
+      "experiments/reconstruction_v13/factored_results.json"
+    ],
+    "v13": "Same rest and A/B draws, frozen local clocks and observations, complete actions. Verify both means per bank.",
+    "third": "Earliest scheduled arrival among legal root departures through transfer-ready+720, excluding A/B. Break ties by departure then connection ID. Hold the candidate fixed for all banks. The original rest draw for R and three independent draws form its factor. Reveal its index at the root or hide it.",
+    "suffix": "For each original A/B chain retain all latent event states up to its target departure. Keep the original suffix as draw zero and use a second FFBS draw conditional on the cut state and root evidence on the same frozen grid. This preserves trip marginals in expectation. The full product gives identical realized worlds to the hidden-label arm and the arm that knows both suffix draw indices at the root.",
+    "tail": "Only bank 0 per root. Hide R and retain local causal decisions up to the normal journey deadline. There is no earlier clairvoyant boundary. Other rest trips remain known to the finite-bank planner.",
+    "inference": "Single-bank feasibility probe. No incomplete solve contributes a value.",
+    "cost": "Bank wall time includes packing and model construction. Arms sharing the same bank reuse a memoized oracle; solver times include that shared-work benefit and are not independent timings."
+  },
+  "status": "complete",
+  "roots": [
+    {
+      "case": [
+        "2023-07-26",
+        0,
+        1
+      ],
+      "root_stop": 606,
+      "root_clock": 29306,
+      "goal": 3,
+      "deadline": 32700,
+      "setup_seconds": 5.581924121994234,
+      "third": {
+        "trip": "2277.TA.91-9-I-j23-1.10.H",
+        "cid": 10375,
+        "scheduled_departure": 29640,
+        "scheduled_goal_arrival": 29940,
+        "scored_connections": 17
+      },
+      "ab_trip_ids": [
+        "1614.TA.91-14-E-j23-1.6.H",
+        "2221.TA.91-9-I-j23-1.9.H"
+      ],
+      "ab_target_ids": [
+        9383,
+        11986
+      ],
+      "banks": [
+        {
+          "bank": 0,
+          "arms": [
+            {
+              "arm": "r_hidden_full_deadline",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 208568,
+              "solver_seconds": 9.489605420996668
+            }
+          ],
+          "wall_seconds": 12.58373156000016
+        }
+      ]
+    },
+    {
+      "case": [
+        "2023-07-26",
+        0,
+        2
+      ],
+      "root_stop": 453,
+      "root_clock": 29575,
+      "goal": 3,
+      "deadline": 32700,
+      "setup_seconds": 5.794306562005659,
+      "third": {
+        "trip": "3911.TA.92-32-G-j23-1.11.R",
+        "cid": 11130,
+        "scheduled_departure": 29820,
+        "scheduled_goal_arrival": 30300,
+        "scored_connections": 9
+      },
+      "ab_trip_ids": [
+        "2381.TA.92-32-G-j23-1.5.H",
+        "2380.TA.92-32-G-j23-1.5.H"
+      ],
+      "ab_target_ids": [
+        10616,
+        14033
+      ],
+      "banks": [
+        {
+          "bank": 0,
+          "arms": [
+            {
+              "arm": "r_hidden_full_deadline",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 120612,
+              "solver_seconds": 5.533591309002077
+            }
+          ],
+          "wall_seconds": 8.78113370900246
+        }
+      ]
+    },
+    {
+      "case": [
+        "2023-07-27",
+        0,
+        1
+      ],
+      "root_stop": 606,
+      "root_clock": 29297,
+      "goal": 3,
+      "deadline": 32700,
+      "setup_seconds": 5.492867884000589,
+      "third": {
+        "trip": "2277.TA.91-9-I-j23-1.10.H",
+        "cid": 10375,
+        "scheduled_departure": 29640,
+        "scheduled_goal_arrival": 29940,
+        "scored_connections": 17
+      },
+      "ab_trip_ids": [
+        "1614.TA.91-14-E-j23-1.6.H",
+        "2221.TA.91-9-I-j23-1.9.H"
+      ],
+      "ab_target_ids": [
+        9383,
+        11986
+      ],
+      "banks": [
+        {
+          "bank": 0,
+          "arms": [
+            {
+              "arm": "r_hidden_full_deadline",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 113154,
+              "solver_seconds": 6.421342609995918
+            }
+          ],
+          "wall_seconds": 9.532934800998191
+        }
+      ]
+    }
+  ]
+}

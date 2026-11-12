@@ -51,7 +51,7 @@ def product_trip_bank(graph, common_scene, trip_samples):
 
 
 def factored_prefix_lower(model, oracle_terminal, *, graph, factor_labels,
-                          elapsed_horizon, max_nodes=50000):
+                          elapsed_horizon, max_nodes=50000, trace=None):
     """Keep product-factor uncertainty until an actual change of vehicle.
 
     Use ``product_trip_bank`` to construct the platform model. The first
@@ -77,7 +77,7 @@ def factored_prefix_lower(model, oracle_terminal, *, graph, factor_labels,
                    for cid in state.used_connections - root.used_connections)
 
     result = causal_prefix_lower(model, oracle_terminal, elapsed_horizon=elapsed_horizon,
-        max_nodes=max_nodes, stop_when=changed_vehicle, factor_labels=factor_labels)
+        max_nodes=max_nodes, stop_when=changed_vehicle, factor_labels=factor_labels, trace=trace)
     kinds = {('changed_vehicle' if kind == 'public_boundary' else kind): mass
              for kind, mass in result.boundary_kind_mass.items()}
     return replace(result, boundary_kind_mass=kinds)

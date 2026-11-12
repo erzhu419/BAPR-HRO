@@ -94,8 +94,9 @@ def measured_policy(policy,ledger):
                         lambda s:measure(policy.applicable,'applicable',s),policy.name)
 
 
-def replay_arm(graph,plan,initial,goal,deadline,model,world,method,compiled,*,actual=None,metadata=None):
-    """Same model/world for all arms; actual source gaps retain V8 censoring."""
+def replay_arm(graph,plan,initial,goal,deadline,model,world,method,compiled,*,actual=None,
+               metadata=None,publish_not_before=None):
+    """Replay charged readiness, with an optional common earliest release across arms."""
     before = perf_counter()
     incumbent,incumbent_targets,_ = adapter(graph,plan.primary,initial,'incumbent')
     incumbent_prepare_seconds = perf_counter()-before
@@ -108,6 +109,8 @@ def replay_arm(graph,plan,initial,goal,deadline,model,world,method,compiled,*,ac
     binding_seconds,binding_cpu_seconds = perf_counter()-before,process_time()-cpu
     worker_seconds = compiled['construction_seconds']+binding_seconds
     publish_at = initial.time+ceil(worker_seconds)
+    if publish_not_before is not None:
+        publish_at = max(publish_at,publish_not_before)
     incumbent_work,candidate_work = Counter(),Counter()
     incumbent = measured_policy(incumbent,incumbent_work)
     candidate = measured_policy(binding.policy,candidate_work)

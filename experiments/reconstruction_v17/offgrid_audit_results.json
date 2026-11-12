@@ -1,0 +1,2494 @@
+{
+  "scope": "Existing three waiting roots and archived routes. No new dates or pulls.",
+  "physical_contract": "Use the actual observed departure second and legal visible menu. Never round the passenger clock, make an unobserved departure available, or read an actual future event.",
+  "model": "Projection interpolates scores over the old minute-grid brackets; anchor rebuilds the observed trip with the existing exact receipt conditioning on an expanded grid. Both retain V16 waiting heuristic. Neither extends the old bounds to a new timestamp model.",
+  "censor": "Source-safe replay refuses to infer absence of an unresolved extra candidate once boarding becomes possible. Baseline and downstream source audits use existing V13 rules. Recorded-only is sensitivity conditional on no unrecorded extra departure while waiting. The separate invariance audit checks every integer clock for each missing extra through the first recorded rescue and identifies its replay result only if none could change the action.",
+  "latency": "Preparation is charged at publication. Decision CPU and wall are recorded. Exact-second actions follow the existing ideal event response contract. On-demand anchor timing does not establish boardability if a deployment has zero dwell or a stricter physical reaction deadline.",
+  "shared_load_fit_seconds": 0.7803505889969529,
+  "roots": [
+    {
+      "case": [
+        "2023-07-26",
+        0,
+        1
+      ],
+      "clock": 29306,
+      "earliest_board": 29426,
+      "deadline": 32700,
+      "setup_seconds": 0.4244662659984897,
+      "prepare_seconds": 1.1532055900024716,
+      "prepare_cpu_seconds": 1.0475217360000002,
+      "departure_scope_counts": {
+        "unresolved_departure": 2,
+        "outside_boarding_interval": 2,
+        "measured_within_boarding_interval": 13
+      },
+      "measured_eligible": 13,
+      "original_scored": 0,
+      "projection_scored": 13,
+      "anchor_scored": 13,
+      "score_discrepancy": {
+        "mean_absolute": 29.70277010610824,
+        "max_absolute": 139.01081334540504
+      },
+      "median_score_seconds": {
+        "projection": 6.203998054843396e-06,
+        "anchor": 0.0029955919962958433
+      },
+      "baseline": {
+        "method": "first_visible",
+        "status": "arrived",
+        "loss_lower": 1060.0,
+        "loss_upper": 1060.0,
+        "published": true,
+        "rejected": false,
+        "publish_at": 29307,
+        "missing_connections": [],
+        "rides": [
+          {
+            "time": 30059,
+            "stop": 606,
+            "action": [
+              "board",
+              11986
+            ],
+            "next_time": 30120,
+            "next_stop": 647,
+            "ridden_connection": 11986,
+            "worker_running": false,
+            "policy": "first_visible"
+          },
+          {
+            "time": 30141,
+            "stop": 647,
+            "action": [
+              "board",
+              12200
+            ],
+            "next_time": 30196,
+            "next_stop": 88,
+            "ridden_connection": 12200,
+            "worker_running": false,
+            "policy": "first_visible"
+          },
+          {
+            "time": 30212,
+            "stop": 88,
+            "action": [
+              "board",
+              12663
+            ],
+            "next_time": 30280,
+            "next_stop": 568,
+            "ridden_connection": 12663,
+            "worker_running": false,
+            "policy": "first_visible"
+          },
+          {
+            "time": 30304,
+            "stop": 568,
+            "action": [
+              "board",
+              12885
+            ],
+            "next_time": 30366,
+            "next_stop": 3,
+            "ridden_connection": 12885,
+            "worker_running": false,
+            "policy": "first_visible"
+          }
+        ],
+        "worker_seconds": 1.3147997378837317e-05,
+        "total_rule_pipeline_seconds": 0.0038811660051578656,
+        "rule_work": {
+          "action_calls": 818,
+          "action_wall_seconds": 0.0038484230171889067,
+          "action_cpu_seconds": 0.0035911449999979084,
+          "applicable_calls": 1,
+          "applicable_wall_seconds": 8.992996299639344e-06,
+          "applicable_cpu_seconds": 8.556000000048414e-06
+        },
+        "triggers": {
+          "action_calls": 817,
+          "action_seconds": 0.002437558061501477,
+          "public_failures": 1,
+          "expiries": 0,
+          "visible_rescues": 0,
+          "fallback_entries": 1
+        },
+        "selected_rescues": []
+      },
+      "replays": {
+        "source_safe": {
+          "projection": {
+            "method": "source_safe_projection",
+            "status": "censored",
+            "loss_lower": 120,
+            "loss_upper": 3394,
+            "published": true,
+            "rejected": false,
+            "publish_at": 29308,
+            "missing_connections": [
+              9649,
+              11263
+            ],
+            "rides": [],
+            "worker_seconds": 1.153269533002458,
+            "total_rule_pipeline_seconds": 1.1539597289374797,
+            "rule_work": {
+              "action_calls": 121,
+              "action_wall_seconds": 0.0006727839354425669,
+              "action_cpu_seconds": 0.0006275830000017635,
+              "applicable_calls": 1,
+              "applicable_wall_seconds": 9.786002920009196e-06,
+              "applicable_cpu_seconds": 9.197000000682465e-06
+            },
+            "triggers": {
+              "action_calls": 119,
+              "action_seconds": 0.000350632966728881,
+              "public_failures": 1,
+              "expiries": 0,
+              "visible_rescues": 0,
+              "conditional_comparisons": 0,
+              "conditional_boardings": 0,
+              "fallback_entries": 1
+            },
+            "selected_rescues": [],
+            "gain_interval_vs_baseline": [
+              -2334.0,
+              940.0
+            ]
+          },
+          "anchor": {
+            "method": "source_safe_anchor",
+            "status": "censored",
+            "loss_lower": 120,
+            "loss_upper": 3394,
+            "published": true,
+            "rejected": false,
+            "publish_at": 29308,
+            "missing_connections": [
+              9649,
+              11263
+            ],
+            "rides": [],
+            "worker_seconds": 1.1532480089954333,
+            "total_rule_pipeline_seconds": 1.1539676360189333,
+            "rule_work": {
+              "action_calls": 121,
+              "action_wall_seconds": 0.0007025560189504176,
+              "action_cpu_seconds": 0.0006539670000016429,
+              "applicable_calls": 1,
+              "applicable_wall_seconds": 1.0105999535880983e-05,
+              "applicable_cpu_seconds": 9.497999998941964e-06
+            },
+            "triggers": {
+              "action_calls": 119,
+              "action_seconds": 0.0003630199862527661,
+              "public_failures": 1,
+              "expiries": 0,
+              "visible_rescues": 0,
+              "conditional_comparisons": 0,
+              "conditional_boardings": 0,
+              "fallback_entries": 1
+            },
+            "selected_rescues": [],
+            "gain_interval_vs_baseline": [
+              -2334.0,
+              940.0
+            ]
+          }
+        },
+        "recorded_only_sensitivity": {
+          "projection": {
+            "method": "recorded_only_sensitivity_projection",
+            "status": "arrived",
+            "loss_lower": 629.0,
+            "loss_upper": 629.0,
+            "published": true,
+            "rejected": false,
+            "publish_at": 29308,
+            "missing_connections": [],
+            "rides": [
+              {
+                "time": 29620,
+                "stop": 606,
+                "action": [
+                  "board",
+                  10375
+                ],
+                "next_time": 29694,
+                "next_stop": 647,
+                "ridden_connection": 10375,
+                "worker_running": false,
+                "policy": "recorded_only_sensitivity_projection"
+              },
+              {
+                "time": 29708,
+                "stop": 647,
+                "action": [
+                  "board",
+                  10611
+                ],
+                "next_time": 29762,
+                "next_stop": 88,
+                "ridden_connection": 10611,
+                "worker_running": false,
+                "policy": "recorded_only_sensitivity_projection"
+              },
+              {
+                "time": 29780,
+                "stop": 88,
+                "action": [
+                  "board",
+                  10847
+                ],
+                "next_time": 29851,
+                "next_stop": 568,
+                "ridden_connection": 10847,
+                "worker_running": false,
+                "policy": "recorded_only_sensitivity_projection"
+              },
+              {
+                "time": 29863,
+                "stop": 568,
+                "action": [
+                  "board",
+                  11306
+                ],
+                "next_time": 29935,
+                "next_stop": 3,
+                "ridden_connection": 11306,
+                "worker_running": false,
+                "policy": "recorded_only_sensitivity_projection"
+              }
+            ],
+            "worker_seconds": 1.153249795010197,
+            "total_rule_pipeline_seconds": 1.1552603569653002,
+            "rule_work": {
+              "action_calls": 362,
+              "action_wall_seconds": 0.001993479956581723,
+              "action_cpu_seconds": 0.0018656599999982149,
+              "applicable_calls": 1,
+              "applicable_wall_seconds": 8.6069994722493e-06,
+              "applicable_cpu_seconds": 8.12600000088537e-06
+            },
+            "triggers": {
+              "action_calls": 313,
+              "action_seconds": 0.0008201550226658583,
+              "public_failures": 1,
+              "expiries": 0,
+              "visible_rescues": 0,
+              "conditional_comparisons": 3,
+              "conditional_boardings": 1,
+              "fallback_entries": 1
+            },
+            "selected_rescues": [
+              {
+                "time": 29620,
+                "stop": 606,
+                "action": [
+                  "board",
+                  10375
+                ],
+                "branch": "conditional_rescue",
+                "reason": "actual_clock_path_score",
+                "score": 29943.64630147264,
+                "reference": 30587.718719966408,
+                "clock_method": "projection",
+                "original_bracket": [
+                  29580,
+                  29640
+                ],
+                "next_arrival_support": null,
+                "success_probability": 0.9999999999999996
+              }
+            ],
+            "gain_interval_vs_baseline": [
+              431.0,
+              431.0
+            ]
+          },
+          "anchor": {
+            "method": "recorded_only_sensitivity_anchor",
+            "status": "arrived",
+            "loss_lower": 629.0,
+            "loss_upper": 629.0,
+            "published": true,
+            "rejected": false,
+            "publish_at": 29308,
+            "missing_connections": [],
+            "rides": [
+              {
+                "time": 29620,
+                "stop": 606,
+                "action": [
+                  "board",
+                  10375
+                ],
+                "next_time": 29694,
+                "next_stop": 647,
+                "ridden_connection": 10375,
+                "worker_running": false,
+                "policy": "recorded_only_sensitivity_anchor"
+              },
+              {
+                "time": 29708,
+                "stop": 647,
+                "action": [
+                  "board",
+                  10611
+                ],
+                "next_time": 29762,
+                "next_stop": 88,
+                "ridden_connection": 10611,
+                "worker_running": false,
+                "policy": "recorded_only_sensitivity_anchor"
+              },
+              {
+                "time": 29780,
+                "stop": 88,
+                "action": [
+                  "board",
+                  10847
+                ],
+                "next_time": 29851,
+                "next_stop": 568,
+                "ridden_connection": 10847,
+                "worker_running": false,
+                "policy": "recorded_only_sensitivity_anchor"
+              },
+              {
+                "time": 29863,
+                "stop": 568,
+                "action": [
+                  "board",
+                  11306
+                ],
+                "next_time": 29935,
+                "next_stop": 3,
+                "ridden_connection": 11306,
+                "worker_running": false,
+                "policy": "recorded_only_sensitivity_anchor"
+              }
+            ],
+            "worker_seconds": 1.1532688180013793,
+            "total_rule_pipeline_seconds": 1.1651900350479991,
+            "rule_work": {
+              "action_calls": 362,
+              "action_wall_seconds": 0.011903396043635439,
+              "action_cpu_seconds": 0.010877598000021749,
+              "applicable_calls": 1,
+              "applicable_wall_seconds": 9.467003110330552e-06,
+              "applicable_cpu_seconds": 8.946999999537297e-06
+            },
+            "triggers": {
+              "action_calls": 313,
+              "action_seconds": 0.000843632995383814,
+              "public_failures": 1,
+              "expiries": 0,
+              "visible_rescues": 0,
+              "conditional_comparisons": 3,
+              "conditional_boardings": 1,
+              "fallback_entries": 1
+            },
+            "selected_rescues": [
+              {
+                "time": 29620,
+                "stop": 606,
+                "action": [
+                  "board",
+                  10375
+                ],
+                "branch": "conditional_rescue",
+                "reason": "actual_clock_path_score",
+                "score": 29940.407536507548,
+                "reference": 30587.718719966408,
+                "clock_method": "anchor",
+                "original_bracket": [
+                  29580,
+                  29640
+                ],
+                "next_arrival_support": 22,
+                "success_probability": 0.9999999999999996
+              }
+            ],
+            "gain_interval_vs_baseline": [
+              431.0,
+              431.0
+            ]
+          }
+        }
+      },
+      "missing_departure_invariance": {
+        "projection": {
+          "invariant": true,
+          "checked_from": 29426,
+          "checked_through": 29620,
+          "tested_seconds": {
+            "9649": 195,
+            "11263": 195
+          },
+          "scored_seconds": {
+            "9649": 195,
+            "11263": 41
+          },
+          "minimum_rejection_margin": {
+            "9649": 430.1166032368383,
+            "11263": 1395.5934379803039
+          },
+          "alternative_winning_departures": 0,
+          "first_alternative": null,
+          "identified_loss": [
+            629.0,
+            629.0
+          ],
+          "identified_gain": [
+            431.0,
+            431.0
+          ]
+        },
+        "anchor": {
+          "invariant": true,
+          "checked_from": 29426,
+          "checked_through": 29620,
+          "tested_seconds": {
+            "9649": 195,
+            "11263": 195
+          },
+          "scored_seconds": {
+            "9649": 195,
+            "11263": 41
+          },
+          "minimum_rejection_margin": {
+            "9649": 444.71100064842176,
+            "11263": 1442.6560092137042
+          },
+          "alternative_winning_departures": 0,
+          "first_alternative": null,
+          "identified_loss": [
+            629.0,
+            629.0
+          ],
+          "identified_gain": [
+            431.0,
+            431.0
+          ]
+        }
+      },
+      "missing_invariance_negative_control": {
+        "cid": 9649,
+        "time": 29426,
+        "margin_against_reference": -1041.7187199664077
+      },
+      "departure_audit": [
+        {
+          "cid": 9649,
+          "departure": null,
+          "source_status": "MISSING",
+          "scope": "unresolved_departure"
+        },
+        {
+          "cid": 9755,
+          "departure": 29421,
+          "source_status": "REAL",
+          "scope": "outside_boarding_interval"
+        },
+        {
+          "cid": 9812,
+          "departure": 29423,
+          "source_status": "REAL",
+          "scope": "outside_boarding_interval"
+        },
+        {
+          "cid": 10199,
+          "departure": 29551,
+          "source_status": "REAL",
+          "scope": "measured_within_boarding_interval",
+          "original_exact_available": false,
+          "projection": {
+            "clock": 29551,
+            "expected_arrival_or_deadline": 30572.804505649125,
+            "success_probability": 0.9636049015755115,
+            "next_arrival_support": null,
+            "method": "projection",
+            "bracket": [
+              29520,
+              29580
+            ],
+            "seconds": 1.1230004020035267e-05
+          },
+          "anchor": {
+            "clock": 29551,
+            "expected_arrival_or_deadline": 30586.726494584258,
+            "success_probability": 0.9562969963234396,
+            "next_arrival_support": 22,
+            "method": "anchor",
+            "bracket": [
+              29520,
+              29580
+            ],
+            "seconds": 0.0027822390038636513
+          }
+        },
+        {
+          "cid": 10326,
+          "departure": 29644,
+          "source_status": "REAL",
+          "scope": "measured_within_boarding_interval",
+          "original_exact_available": false,
+          "projection": {
+            "clock": 29644,
+            "expected_arrival_or_deadline": 30934.765962059657,
+            "success_probability": 0.8526794140905505,
+            "next_arrival_support": null,
+            "method": "projection",
+            "bracket": [
+              29640,
+              29700
+            ],
+            "seconds": 6.203998054843396e-06
+          },
+          "anchor": {
+            "clock": 29644,
+            "expected_arrival_or_deadline": 31020.06048233311,
+            "success_probability": 0.8150500186319877,
+            "next_arrival_support": 22,
+            "method": "anchor",
+            "bracket": [
+              29640,
+              29700
+            ],
+            "seconds": 0.0033899970003403723
+          }
+        },
+        {
+          "cid": 10375,
+          "departure": 29620,
+          "source_status": "REAL",
+          "scope": "measured_within_boarding_interval",
+          "original_exact_available": false,
+          "projection": {
+            "clock": 29620,
+            "expected_arrival_or_deadline": 29943.64630147264,
+            "success_probability": 0.9999999999999996,
+            "next_arrival_support": null,
+            "method": "projection",
+            "bracket": [
+              29580,
+              29640
+            ],
+            "seconds": 6.733003829140216e-06
+          },
+          "anchor": {
+            "clock": 29620,
+            "expected_arrival_or_deadline": 29940.407536507548,
+            "success_probability": 0.9999999999999996,
+            "next_arrival_support": 22,
+            "method": "anchor",
+            "bracket": [
+              29580,
+              29640
+            ],
+            "seconds": 0.0037213739997241646
+          }
+        },
+        {
+          "cid": 10398,
+          "departure": 29611,
+          "source_status": "REAL",
+          "scope": "measured_within_boarding_interval",
+          "original_exact_available": false,
+          "projection": {
+            "clock": 29611,
+            "expected_arrival_or_deadline": 30595.20161199452,
+            "success_probability": 0.9519868078595821,
+            "next_arrival_support": null,
+            "method": "projection",
+            "bracket": [
+              29580,
+              29640
+            ],
+            "seconds": 6.182999641168863e-06
+          },
+          "anchor": {
+            "clock": 29611,
+            "expected_arrival_or_deadline": 30601.874359035588,
+            "success_probability": 0.9483153533689304,
+            "next_arrival_support": 22,
+            "method": "anchor",
+            "bracket": [
+              29580,
+              29640
+            ],
+            "seconds": 0.0025532349973218516
+          }
+        },
+        {
+          "cid": 10407,
+          "departure": 29643,
+          "source_status": "REAL",
+          "scope": "measured_within_boarding_interval",
+          "original_exact_available": false,
+          "projection": {
+            "clock": 29643,
+            "expected_arrival_or_deadline": 31284.029944396432,
+            "success_probability": 0.7323698866778918,
+            "next_arrival_support": null,
+            "method": "projection",
+            "bracket": [
+              29640,
+              29700
+            ],
+            "seconds": 6.060996383894235e-06
+          },
+          "anchor": {
+            "clock": 29643,
+            "expected_arrival_or_deadline": 31423.040757741837,
+            "success_probability": 0.6612208272627613,
+            "next_arrival_support": 22,
+            "method": "anchor",
+            "bracket": [
+              29640,
+              29700
+            ],
+            "seconds": 0.0028772610021405853
+          }
+        },
+        {
+          "cid": 10989,
+          "departure": 29842,
+          "source_status": "REAL",
+          "scope": "measured_within_boarding_interval",
+          "original_exact_available": false,
+          "projection": {
+            "clock": 29842,
+            "expected_arrival_or_deadline": 30219.986727069776,
+            "success_probability": 0.9999999999999992,
+            "next_arrival_support": null,
+            "method": "projection",
+            "bracket": [
+              29820,
+              29880
+            ],
+            "seconds": 8.332004654221237e-06
+          },
+          "anchor": {
+            "clock": 29842,
+            "expected_arrival_or_deadline": 30217.91251002173,
+            "success_probability": 1.0,
+            "next_arrival_support": 22,
+            "method": "anchor",
+            "bracket": [
+              29820,
+              29880
+            ],
+            "seconds": 0.0034504249997553416
+          }
+        },
+        {
+          "cid": 11118,
+          "departure": 29833,
+          "source_status": "REAL",
+          "scope": "measured_within_boarding_interval",
+          "original_exact_available": false,
+          "projection": {
+            "clock": 29833,
+            "expected_arrival_or_deadline": 30788.132560909722,
+            "success_probability": 0.8846955831502357,
+            "next_arrival_support": null,
+            "method": "projection",
+            "bracket": [
+              29820,
+              29880
+            ],
+            "seconds": 6.932001269888133e-06
+          },
+          "anchor": {
+            "clock": 29833,
+            "expected_arrival_or_deadline": 30824.207345467985,
+            "success_probability": 0.8698887538644677,
+            "next_arrival_support": 22,
+            "method": "anchor",
+            "bracket": [
+              29820,
+              29880
+            ],
+            "seconds": 0.003118982000160031
+          }
+        },
+        {
+          "cid": 11232,
+          "departure": 29875,
+          "source_status": "REAL",
+          "scope": "measured_within_boarding_interval",
+          "original_exact_available": false,
+          "projection": {
+            "clock": 29875,
+            "expected_arrival_or_deadline": 31091.889672146128,
+            "success_probability": 0.8392198763051733,
+            "next_arrival_support": null,
+            "method": "projection",
+            "bracket": [
+              29820,
+              29880
+            ],
+            "seconds": 7.098002242855728e-06
+          },
+          "anchor": {
+            "clock": 29875,
+            "expected_arrival_or_deadline": 31091.351931629848,
+            "success_probability": 0.8396799624278006,
+            "next_arrival_support": 23,
+            "method": "anchor",
+            "bracket": [
+              29820,
+              29880
+            ],
+            "seconds": 0.0026192290024482645
+          }
+        },
+        {
+          "cid": 11263,
+          "departure": null,
+          "source_status": "MISSING",
+          "scope": "unresolved_departure"
+        },
+        {
+          "cid": 11395,
+          "departure": 29873,
+          "source_status": "REAL",
+          "scope": "measured_within_boarding_interval",
+          "original_exact_available": false,
+          "projection": {
+            "clock": 29873,
+            "expected_arrival_or_deadline": 31807.531499693563,
+            "success_probability": 0.478063196024703,
+            "next_arrival_support": null,
+            "method": "projection",
+            "bracket": [
+              29820,
+              29880
+            ],
+            "seconds": 6.215996108949184e-06
+          },
+          "anchor": {
+            "clock": 29873,
+            "expected_arrival_or_deadline": 31807.549268692248,
+            "success_probability": 0.4781386261806204,
+            "next_arrival_support": 23,
+            "method": "anchor",
+            "bracket": [
+              29820,
+              29880
+            ],
+            "seconds": 0.003532508999342099
+          }
+        },
+        {
+          "cid": 11817,
+          "departure": 29986,
+          "source_status": "REAL",
+          "scope": "measured_within_boarding_interval",
+          "original_exact_available": false,
+          "projection": {
+            "clock": 29986,
+            "expected_arrival_or_deadline": 31012.66100756771,
+            "success_probability": 0.9395895321755442,
+            "next_arrival_support": null,
+            "method": "projection",
+            "bracket": [
+              29940,
+              30000
+            ],
+            "seconds": 5.73100260226056e-06
+          },
+          "anchor": {
+            "clock": 29986,
+            "expected_arrival_or_deadline": 31041.386827539296,
+            "success_probability": 0.9208393776021361,
+            "next_arrival_support": 22,
+            "method": "anchor",
+            "bracket": [
+              29940,
+              30000
+            ],
+            "seconds": 0.002612792006402742
+          }
+        },
+        {
+          "cid": 11994,
+          "departure": 30059,
+          "source_status": "REAL",
+          "scope": "measured_within_boarding_interval",
+          "original_exact_available": false,
+          "projection": {
+            "clock": 30059,
+            "expected_arrival_or_deadline": 30978.998733661443,
+            "success_probability": 0.9630058031320536,
+            "next_arrival_support": null,
+            "method": "projection",
+            "bracket": [
+              30000,
+              30060
+            ],
+            "seconds": 5.533001967705786e-06
+          },
+          "anchor": {
+            "clock": 30059,
+            "expected_arrival_or_deadline": 30995.425049237485,
+            "success_probability": 0.9516561611228038,
+            "next_arrival_support": 22,
+            "method": "anchor",
+            "bracket": [
+              30000,
+              30060
+            ],
+            "seconds": 0.0024673940060893074
+          }
+        },
+        {
+          "cid": 12165,
+          "departure": 30199,
+          "source_status": "REAL",
+          "scope": "measured_within_boarding_interval",
+          "original_exact_available": false,
+          "projection": {
+            "clock": 30199,
+            "expected_arrival_or_deadline": 31343.06140789345,
+            "success_probability": 0.8280299357760593,
+            "next_arrival_support": null,
+            "method": "projection",
+            "bracket": [
+              30180,
+              30240
+            ],
+            "seconds": 5.597998097073287e-06
+          },
+          "anchor": {
+            "clock": 30199,
+            "expected_arrival_or_deadline": 31387.70123979399,
+            "success_probability": 0.8039613978352222,
+            "next_arrival_support": 22,
+            "method": "anchor",
+            "bracket": [
+              30180,
+              30240
+            ],
+            "seconds": 0.0033237949974136427
+          }
+        },
+        {
+          "cid": 12224,
+          "departure": 30207,
+          "source_status": "REAL",
+          "scope": "measured_within_boarding_interval",
+          "original_exact_available": false,
+          "projection": {
+            "clock": 30207,
+            "expected_arrival_or_deadline": 31306.682629374638,
+            "success_probability": 0.9608758272099143,
+            "next_arrival_support": null,
+            "method": "projection",
+            "bracket": [
+              30180,
+              30240
+            ],
+            "seconds": 5.873996997252107e-06
+          },
+          "anchor": {
+            "clock": 30207,
+            "expected_arrival_or_deadline": 31316.18332762445,
+            "success_probability": 0.9554645610888421,
+            "next_arrival_support": 23,
+            "method": "anchor",
+            "bracket": [
+              30180,
+              30240
+            ],
+            "seconds": 0.0029955919962958433
+          }
+        }
+      ]
+    },
+    {
+      "case": [
+        "2023-07-26",
+        0,
+        2
+      ],
+      "clock": 29575,
+      "earliest_board": 29695,
+      "deadline": 32700,
+      "setup_seconds": 0.4507635549962288,
+      "prepare_seconds": 0.47074923900072463,
+      "prepare_cpu_seconds": 0.42795570599999877,
+      "departure_scope_counts": {
+        "measured_within_boarding_interval": 9
+      },
+      "measured_eligible": 9,
+      "original_scored": 0,
+      "projection_scored": 9,
+      "anchor_scored": 9,
+      "score_discrepancy": {
+        "mean_absolute": 16.452727740660016,
+        "max_absolute": 58.87022800213526
+      },
+      "median_score_seconds": {
+        "projection": 6.821996066719294e-06,
+        "anchor": 0.0036790869999094866
+      },
+      "baseline": {
+        "method": "first_visible",
+        "status": "arrived",
+        "loss_lower": 388.0,
+        "loss_upper": 388.0,
+        "published": true,
+        "rejected": false,
+        "publish_at": 29576,
+        "missing_connections": [],
+        "rides": [
+          {
+            "time": 29776,
+            "stop": 453,
+            "action": [
+              "board",
+              10616
+            ],
+            "next_time": 29903,
+            "next_stop": 667,
+            "ridden_connection": 10616,
+            "worker_running": false,
+            "policy": "first_visible"
+          },
+          {
+            "time": 29916,
+            "stop": 667,
+            "action": [
+              "board",
+              10853
+            ],
+            "next_time": 29963,
+            "next_stop": 3,
+            "ridden_connection": 10853,
+            "worker_running": false,
+            "policy": "first_visible"
+          }
+        ],
+        "worker_seconds": 1.0536998161114752e-05,
+        "total_rule_pipeline_seconds": 0.0009818089747568592,
+        "rule_work": {
+          "action_calls": 216,
+          "action_wall_seconds": 0.0009517099751974456,
+          "action_cpu_seconds": 0.0008910279999891912,
+          "applicable_calls": 1,
+          "applicable_wall_seconds": 9.588002285454422e-06,
+          "applicable_cpu_seconds": 9.027000000827456e-06
+        },
+        "triggers": {
+          "action_calls": 215,
+          "action_seconds": 0.000561596971238032,
+          "public_failures": 0,
+          "expiries": 0,
+          "visible_rescues": 0,
+          "fallback_entries": 0
+        },
+        "selected_rescues": []
+      },
+      "replays": {
+        "source_safe": {
+          "projection": {
+            "method": "source_safe_projection",
+            "status": "arrived",
+            "loss_lower": 388.0,
+            "loss_upper": 388.0,
+            "published": true,
+            "rejected": false,
+            "publish_at": 29576,
+            "missing_connections": [],
+            "rides": [
+              {
+                "time": 29776,
+                "stop": 453,
+                "action": [
+                  "board",
+                  10616
+                ],
+                "next_time": 29903,
+                "next_stop": 667,
+                "ridden_connection": 10616,
+                "worker_running": false,
+                "policy": "source_safe_projection"
+              },
+              {
+                "time": 29916,
+                "stop": 667,
+                "action": [
+                  "board",
+                  10853
+                ],
+                "next_time": 29963,
+                "next_stop": 3,
+                "ridden_connection": 10853,
+                "worker_running": false,
+                "policy": "source_safe_projection"
+              }
+            ],
+            "worker_seconds": 0.47080505999474553,
+            "total_rule_pipeline_seconds": 0.4719566039420897,
+            "rule_work": {
+              "action_calls": 216,
+              "action_wall_seconds": 0.0011324329461785965,
+              "action_cpu_seconds": 0.0010587799999974834,
+              "applicable_calls": 1,
+              "applicable_wall_seconds": 9.411996870767325e-06,
+              "applicable_cpu_seconds": 8.795999999478e-06
+            },
+            "triggers": {
+              "action_calls": 215,
+              "action_seconds": 0.0005687579323421232,
+              "public_failures": 0,
+              "expiries": 0,
+              "visible_rescues": 0,
+              "conditional_comparisons": 0,
+              "conditional_boardings": 0,
+              "fallback_entries": 0
+            },
+            "selected_rescues": [],
+            "gain_interval_vs_baseline": [
+              0.0,
+              0.0
+            ]
+          },
+          "anchor": {
+            "method": "source_safe_anchor",
+            "status": "arrived",
+            "loss_lower": 388.0,
+            "loss_upper": 388.0,
+            "published": true,
+            "rejected": false,
+            "publish_at": 29576,
+            "missing_connections": [],
+            "rides": [
+              {
+                "time": 29776,
+                "stop": 453,
+                "action": [
+                  "board",
+                  10616
+                ],
+                "next_time": 29903,
+                "next_stop": 667,
+                "ridden_connection": 10616,
+                "worker_running": false,
+                "policy": "source_safe_anchor"
+              },
+              {
+                "time": 29916,
+                "stop": 667,
+                "action": [
+                  "board",
+                  10853
+                ],
+                "next_time": 29963,
+                "next_stop": 3,
+                "ridden_connection": 10853,
+                "worker_running": false,
+                "policy": "source_safe_anchor"
+              }
+            ],
+            "worker_seconds": 0.4707901710062288,
+            "total_rule_pipeline_seconds": 0.471913103996485,
+            "rule_work": {
+              "action_calls": 216,
+              "action_wall_seconds": 0.0011069849933846854,
+              "action_cpu_seconds": 0.001034824999987194,
+              "applicable_calls": 1,
+              "applicable_wall_seconds": 8.805996912997216e-06,
+              "applicable_cpu_seconds": 8.276000000861927e-06
+            },
+            "triggers": {
+              "action_calls": 215,
+              "action_seconds": 0.0005974100713501684,
+              "public_failures": 0,
+              "expiries": 0,
+              "visible_rescues": 0,
+              "conditional_comparisons": 0,
+              "conditional_boardings": 0,
+              "fallback_entries": 0
+            },
+            "selected_rescues": [],
+            "gain_interval_vs_baseline": [
+              0.0,
+              0.0
+            ]
+          }
+        },
+        "recorded_only_sensitivity": {
+          "projection": {
+            "method": "recorded_only_sensitivity_projection",
+            "status": "arrived",
+            "loss_lower": 388.0,
+            "loss_upper": 388.0,
+            "published": true,
+            "rejected": false,
+            "publish_at": 29576,
+            "missing_connections": [],
+            "rides": [
+              {
+                "time": 29776,
+                "stop": 453,
+                "action": [
+                  "board",
+                  10616
+                ],
+                "next_time": 29903,
+                "next_stop": 667,
+                "ridden_connection": 10616,
+                "worker_running": false,
+                "policy": "recorded_only_sensitivity_projection"
+              },
+              {
+                "time": 29916,
+                "stop": 667,
+                "action": [
+                  "board",
+                  10853
+                ],
+                "next_time": 29963,
+                "next_stop": 3,
+                "ridden_connection": 10853,
+                "worker_running": false,
+                "policy": "recorded_only_sensitivity_projection"
+              }
+            ],
+            "worker_seconds": 0.47079326800303534,
+            "total_rule_pipeline_seconds": 0.4719217590391054,
+            "rule_work": {
+              "action_calls": 216,
+              "action_wall_seconds": 0.001113691039790865,
+              "action_cpu_seconds": 0.0010417239999931382,
+              "applicable_calls": 1,
+              "applicable_wall_seconds": 7.757997082080692e-06,
+              "applicable_cpu_seconds": 7.304000000374344e-06
+            },
+            "triggers": {
+              "action_calls": 215,
+              "action_seconds": 0.0005733640209655277,
+              "public_failures": 0,
+              "expiries": 0,
+              "visible_rescues": 0,
+              "conditional_comparisons": 0,
+              "conditional_boardings": 0,
+              "fallback_entries": 0
+            },
+            "selected_rescues": [],
+            "gain_interval_vs_baseline": [
+              0.0,
+              0.0
+            ]
+          },
+          "anchor": {
+            "method": "recorded_only_sensitivity_anchor",
+            "status": "arrived",
+            "loss_lower": 388.0,
+            "loss_upper": 388.0,
+            "published": true,
+            "rejected": false,
+            "publish_at": 29576,
+            "missing_connections": [],
+            "rides": [
+              {
+                "time": 29776,
+                "stop": 453,
+                "action": [
+                  "board",
+                  10616
+                ],
+                "next_time": 29903,
+                "next_stop": 667,
+                "ridden_connection": 10616,
+                "worker_running": false,
+                "policy": "recorded_only_sensitivity_anchor"
+              },
+              {
+                "time": 29916,
+                "stop": 667,
+                "action": [
+                  "board",
+                  10853
+                ],
+                "next_time": 29963,
+                "next_stop": 3,
+                "ridden_connection": 10853,
+                "worker_running": false,
+                "policy": "recorded_only_sensitivity_anchor"
+              }
+            ],
+            "worker_seconds": 0.4707833270003903,
+            "total_rule_pipeline_seconds": 0.471915444068145,
+            "rule_work": {
+              "action_calls": 216,
+              "action_wall_seconds": 0.0011152330625918694,
+              "action_cpu_seconds": 0.001040279000001476,
+              "applicable_calls": 1,
+              "applicable_wall_seconds": 1.0492003639228642e-05,
+              "applicable_cpu_seconds": 9.79799999889508e-06
+            },
+            "triggers": {
+              "action_calls": 215,
+              "action_seconds": 0.0005790369832539,
+              "public_failures": 0,
+              "expiries": 0,
+              "visible_rescues": 0,
+              "conditional_comparisons": 0,
+              "conditional_boardings": 0,
+              "fallback_entries": 0
+            },
+            "selected_rescues": [],
+            "gain_interval_vs_baseline": [
+              0.0,
+              0.0
+            ]
+          }
+        }
+      },
+      "missing_departure_invariance": {
+        "projection": null,
+        "anchor": null
+      },
+      "missing_invariance_negative_control": null,
+      "departure_audit": [
+        {
+          "cid": 10871,
+          "departure": 29780,
+          "source_status": "REAL",
+          "scope": "measured_within_boarding_interval",
+          "original_exact_available": false,
+          "projection": {
+            "clock": 29780,
+            "expected_arrival_or_deadline": 31680.20449849064,
+            "success_probability": 0.5528082333744865,
+            "next_arrival_support": null,
+            "method": "projection",
+            "bracket": [
+              29760,
+              29820
+            ],
+            "seconds": 9.401002898812294e-06
+          },
+          "anchor": {
+            "clock": 29780,
+            "expected_arrival_or_deadline": 31680.722315058443,
+            "success_probability": 0.5526207087721999,
+            "next_arrival_support": 23,
+            "method": "anchor",
+            "bracket": [
+              29760,
+              29820
+            ],
+            "seconds": 0.004132089998165611
+          }
+        },
+        {
+          "cid": 11130,
+          "departure": 29901,
+          "source_status": "REAL",
+          "scope": "measured_within_boarding_interval",
+          "original_exact_available": false,
+          "projection": {
+            "clock": 29901,
+            "expected_arrival_or_deadline": 30806.110985463485,
+            "success_probability": 0.87727129304607,
+            "next_arrival_support": null,
+            "method": "projection",
+            "bracket": [
+              29880,
+              29940
+            ],
+            "seconds": 6.821996066719294e-06
+          },
+          "anchor": {
+            "clock": 29901,
+            "expected_arrival_or_deadline": 30846.368128603975,
+            "success_probability": 0.8605316263483369,
+            "next_arrival_support": 22,
+            "method": "anchor",
+            "bracket": [
+              29880,
+              29940
+            ],
+            "seconds": 0.0030306279950309545
+          }
+        },
+        {
+          "cid": 11269,
+          "departure": 29908,
+          "source_status": "REAL",
+          "scope": "measured_within_boarding_interval",
+          "original_exact_available": false,
+          "projection": {
+            "clock": 29908,
+            "expected_arrival_or_deadline": 30820.718519276837,
+            "success_probability": 0.9647131280779018,
+            "next_arrival_support": null,
+            "method": "projection",
+            "bracket": [
+              29880,
+              29940
+            ],
+            "seconds": 7.38400558475405e-06
+          },
+          "anchor": {
+            "clock": 29908,
+            "expected_arrival_or_deadline": 30823.276449129597,
+            "success_probability": 0.9637217017841653,
+            "next_arrival_support": 22,
+            "method": "anchor",
+            "bracket": [
+              29880,
+              29940
+            ],
+            "seconds": 0.0036790869999094866
+          }
+        },
+        {
+          "cid": 11803,
+          "departure": 30006,
+          "source_status": "REAL",
+          "scope": "measured_within_boarding_interval",
+          "original_exact_available": false,
+          "projection": {
+            "clock": 30006,
+            "expected_arrival_or_deadline": 31777.985979230256,
+            "success_probability": 0.5421719672275286,
+            "next_arrival_support": null,
+            "method": "projection",
+            "bracket": [
+              30000,
+              30060
+            ],
+            "seconds": 6.3589977798983455e-06
+          },
+          "anchor": {
+            "clock": 30006,
+            "expected_arrival_or_deadline": 31836.85620723239,
+            "success_probability": 0.5085718007988019,
+            "next_arrival_support": 21,
+            "method": "anchor",
+            "bracket": [
+              30000,
+              30060
+            ],
+            "seconds": 0.003878146002534777
+          }
+        },
+        {
+          "cid": 12111,
+          "departure": 30101,
+          "source_status": "REAL",
+          "scope": "measured_within_boarding_interval",
+          "original_exact_available": false,
+          "projection": {
+            "clock": 30101,
+            "expected_arrival_or_deadline": 31400.431430836834,
+            "success_probability": 0.7520964529452894,
+            "next_arrival_support": null,
+            "method": "projection",
+            "bracket": [
+              30060,
+              30120
+            ],
+            "seconds": 6.2820035964250565e-06
+          },
+          "anchor": {
+            "clock": 30101,
+            "expected_arrival_or_deadline": 31401.388104001617,
+            "success_probability": 0.7515835849526074,
+            "next_arrival_support": 22,
+            "method": "anchor",
+            "bracket": [
+              30060,
+              30120
+            ],
+            "seconds": 0.0022545130050275475
+          }
+        },
+        {
+          "cid": 12192,
+          "departure": 30224,
+          "source_status": "REAL",
+          "scope": "measured_within_boarding_interval",
+          "original_exact_available": false,
+          "projection": {
+            "clock": 30224,
+            "expected_arrival_or_deadline": 30413.41672530721,
+            "success_probability": 1.0,
+            "next_arrival_support": null,
+            "method": "projection",
+            "bracket": [
+              30180,
+              30240
+            ],
+            "seconds": 7.098002242855728e-06
+          },
+          "anchor": {
+            "clock": 30224,
+            "expected_arrival_or_deadline": 30412.636035878844,
+            "success_probability": 0.9999999999999999,
+            "next_arrival_support": 23,
+            "method": "anchor",
+            "bracket": [
+              30180,
+              30240
+            ],
+            "seconds": 0.002597749000415206
+          }
+        },
+        {
+          "cid": 12669,
+          "departure": 30278,
+          "source_status": "REAL",
+          "scope": "measured_within_boarding_interval",
+          "original_exact_available": false,
+          "projection": {
+            "clock": 30278,
+            "expected_arrival_or_deadline": 32000.61296728855,
+            "success_probability": 0.511484994532182,
+            "next_arrival_support": null,
+            "method": "projection",
+            "bracket": [
+              30240,
+              30300
+            ],
+            "seconds": 7.175003702286631e-06
+          },
+          "anchor": {
+            "clock": 30278,
+            "expected_arrival_or_deadline": 31988.41712175377,
+            "success_probability": 0.520646724832625,
+            "next_arrival_support": 22,
+            "method": "anchor",
+            "bracket": [
+              30240,
+              30300
+            ],
+            "seconds": 0.0041144669958157465
+          }
+        },
+        {
+          "cid": 12842,
+          "departure": 30274,
+          "source_status": "REAL",
+          "scope": "measured_within_boarding_interval",
+          "original_exact_available": false,
+          "projection": {
+            "clock": 30274,
+            "expected_arrival_or_deadline": 31281.723917654097,
+            "success_probability": 0.9748859168719706,
+            "next_arrival_support": null,
+            "method": "projection",
+            "bracket": [
+              30240,
+              30300
+            ],
+            "seconds": 6.722999387420714e-06
+          },
+          "anchor": {
+            "clock": 30274,
+            "expected_arrival_or_deadline": 31280.799008991966,
+            "success_probability": 0.9755131377996062,
+            "next_arrival_support": 22,
+            "method": "anchor",
+            "bracket": [
+              30240,
+              30300
+            ],
+            "seconds": 0.0037598249982693233
+          }
+        },
+        {
+          "cid": 12932,
+          "departure": 30383,
+          "source_status": "REAL",
+          "scope": "measured_within_boarding_interval",
+          "original_exact_available": false,
+          "projection": {
+            "clock": 30383,
+            "expected_arrival_or_deadline": 31180.169863969306,
+            "success_probability": 0.8742920646340894,
+            "next_arrival_support": null,
+            "method": "projection",
+            "bracket": [
+              30360,
+              30420
+            ],
+            "seconds": 6.513000698760152e-06
+          },
+          "anchor": {
+            "clock": 30383,
+            "expected_arrival_or_deadline": 31211.183179281998,
+            "success_probability": 0.858685539411597,
+            "next_arrival_support": 22,
+            "method": "anchor",
+            "bracket": [
+              30360,
+              30420
+            ],
+            "seconds": 0.002829231001669541
+          }
+        }
+      ]
+    },
+    {
+      "case": [
+        "2023-07-27",
+        0,
+        1
+      ],
+      "clock": 29297,
+      "earliest_board": 29417,
+      "deadline": 32700,
+      "setup_seconds": 0.5041829990004771,
+      "prepare_seconds": 1.1760738610028056,
+      "prepare_cpu_seconds": 1.0689670839999987,
+      "departure_scope_counts": {
+        "unresolved_departure": 2,
+        "measured_within_boarding_interval": 15
+      },
+      "measured_eligible": 15,
+      "original_scored": 0,
+      "projection_scored": 15,
+      "anchor_scored": 15,
+      "score_discrepancy": {
+        "mean_absolute": 26.45073032164049,
+        "max_absolute": 101.97530701640426
+      },
+      "median_score_seconds": {
+        "projection": 6.3920015236362815e-06,
+        "anchor": 0.003019959003722761
+      },
+      "baseline": {
+        "method": "first_visible",
+        "status": "arrived",
+        "loss_lower": 1074.0,
+        "loss_upper": 1074.0,
+        "published": true,
+        "rejected": false,
+        "publish_at": 29298,
+        "missing_connections": [],
+        "rides": [
+          {
+            "time": 30067,
+            "stop": 606,
+            "action": [
+              "board",
+              11986
+            ],
+            "next_time": 30126,
+            "next_stop": 647,
+            "ridden_connection": 11986,
+            "worker_running": false,
+            "policy": "first_visible"
+          },
+          {
+            "time": 30136,
+            "stop": 647,
+            "action": [
+              "board",
+              12200
+            ],
+            "next_time": 30190,
+            "next_stop": 88,
+            "ridden_connection": 12200,
+            "worker_running": false,
+            "policy": "first_visible"
+          },
+          {
+            "time": 30203,
+            "stop": 88,
+            "action": [
+              "board",
+              12663
+            ],
+            "next_time": 30274,
+            "next_stop": 568,
+            "ridden_connection": 12663,
+            "worker_running": false,
+            "policy": "first_visible"
+          },
+          {
+            "time": 30290,
+            "stop": 568,
+            "action": [
+              "board",
+              12885
+            ],
+            "next_time": 30371,
+            "next_stop": 3,
+            "ridden_connection": 12885,
+            "worker_running": false,
+            "policy": "first_visible"
+          }
+        ],
+        "worker_seconds": 9.037001291289926e-06,
+        "total_rule_pipeline_seconds": 0.0037683828923036344,
+        "rule_work": {
+          "action_calls": 813,
+          "action_wall_seconds": 0.0037396948973764665,
+          "action_cpu_seconds": 0.003510363000010841,
+          "applicable_calls": 1,
+          "applicable_wall_seconds": 1.0072995792143047e-05,
+          "applicable_cpu_seconds": 9.608000000937977e-06
+        },
+        "triggers": {
+          "action_calls": 812,
+          "action_seconds": 0.0023148581458372064,
+          "public_failures": 1,
+          "expiries": 0,
+          "visible_rescues": 0,
+          "fallback_entries": 1
+        },
+        "selected_rescues": []
+      },
+      "replays": {
+        "source_safe": {
+          "projection": {
+            "method": "source_safe_projection",
+            "status": "censored",
+            "loss_lower": 120,
+            "loss_upper": 3403,
+            "published": true,
+            "rejected": false,
+            "publish_at": 29299,
+            "missing_connections": [
+              9649,
+              11263
+            ],
+            "rides": [],
+            "worker_seconds": 1.1761328770007822,
+            "total_rule_pipeline_seconds": 1.1768021599709755,
+            "rule_work": {
+              "action_calls": 121,
+              "action_wall_seconds": 0.0006504809643956833,
+              "action_cpu_seconds": 0.0006062429999929009,
+              "applicable_calls": 1,
+              "applicable_wall_seconds": 9.191004210151732e-06,
+              "applicable_cpu_seconds": 8.666000001156249e-06
+            },
+            "triggers": {
+              "action_calls": 119,
+              "action_seconds": 0.0003436370170675218,
+              "public_failures": 1,
+              "expiries": 0,
+              "visible_rescues": 0,
+              "conditional_comparisons": 0,
+              "conditional_boardings": 0,
+              "fallback_entries": 1
+            },
+            "selected_rescues": [],
+            "gain_interval_vs_baseline": [
+              -2329.0,
+              954.0
+            ]
+          },
+          "anchor": {
+            "method": "source_safe_anchor",
+            "status": "censored",
+            "loss_lower": 120,
+            "loss_upper": 3403,
+            "published": true,
+            "rejected": false,
+            "publish_at": 29299,
+            "missing_connections": [
+              9649,
+              11263
+            ],
+            "rides": [],
+            "worker_seconds": 1.17611590600427,
+            "total_rule_pipeline_seconds": 1.1768390069992165,
+            "rule_work": {
+              "action_calls": 121,
+              "action_wall_seconds": 0.0007037479954306036,
+              "action_cpu_seconds": 0.000654551000003778,
+              "applicable_calls": 1,
+              "applicable_wall_seconds": 1.3203003618400544e-05,
+              "applicable_cpu_seconds": 1.2224000000671253e-05
+            },
+            "triggers": {
+              "action_calls": 119,
+              "action_seconds": 0.0003648110505309887,
+              "public_failures": 1,
+              "expiries": 0,
+              "visible_rescues": 0,
+              "conditional_comparisons": 0,
+              "conditional_boardings": 0,
+              "fallback_entries": 1
+            },
+            "selected_rescues": [],
+            "gain_interval_vs_baseline": [
+              -2329.0,
+              954.0
+            ]
+          }
+        },
+        "recorded_only_sensitivity": {
+          "projection": {
+            "method": "recorded_only_sensitivity_projection",
+            "status": "arrived",
+            "loss_lower": 642.0,
+            "loss_upper": 642.0,
+            "published": true,
+            "rejected": false,
+            "publish_at": 29299,
+            "missing_connections": [],
+            "rides": [
+              {
+                "time": 29613,
+                "stop": 606,
+                "action": [
+                  "board",
+                  10375
+                ],
+                "next_time": 29708,
+                "next_stop": 647,
+                "ridden_connection": 10375,
+                "worker_running": false,
+                "policy": "recorded_only_sensitivity_projection"
+              },
+              {
+                "time": 29716,
+                "stop": 647,
+                "action": [
+                  "board",
+                  10611
+                ],
+                "next_time": 29771,
+                "next_stop": 88,
+                "ridden_connection": 10611,
+                "worker_running": false,
+                "policy": "recorded_only_sensitivity_projection"
+              },
+              {
+                "time": 29785,
+                "stop": 88,
+                "action": [
+                  "board",
+                  10847
+                ],
+                "next_time": 29853,
+                "next_stop": 568,
+                "ridden_connection": 10847,
+                "worker_running": false,
+                "policy": "recorded_only_sensitivity_projection"
+              },
+              {
+                "time": 29865,
+                "stop": 568,
+                "action": [
+                  "board",
+                  11306
+                ],
+                "next_time": 29939,
+                "next_stop": 3,
+                "ridden_connection": 11306,
+                "worker_running": false,
+                "policy": "recorded_only_sensitivity_projection"
+              }
+            ],
+            "worker_seconds": 1.176118066003255,
+            "total_rule_pipeline_seconds": 1.1780796659077168,
+            "rule_work": {
+              "action_calls": 354,
+              "action_wall_seconds": 0.001945585900102742,
+              "action_cpu_seconds": 0.001813914000024397,
+              "applicable_calls": 1,
+              "applicable_wall_seconds": 9.544004569761455e-06,
+              "applicable_cpu_seconds": 9.307999999208505e-06
+            },
+            "triggers": {
+              "action_calls": 315,
+              "action_seconds": 0.0008270840553450398,
+              "public_failures": 1,
+              "expiries": 0,
+              "visible_rescues": 0,
+              "conditional_comparisons": 5,
+              "conditional_boardings": 1,
+              "fallback_entries": 1
+            },
+            "selected_rescues": [
+              {
+                "time": 29613,
+                "stop": 606,
+                "action": [
+                  "board",
+                  10375
+                ],
+                "branch": "conditional_rescue",
+                "reason": "actual_clock_path_score",
+                "score": 29936.64630182038,
+                "reference": 30587.718719966408,
+                "clock_method": "projection",
+                "original_bracket": [
+                  29580,
+                  29640
+                ],
+                "next_arrival_support": null,
+                "success_probability": 0.9999999999999997
+              }
+            ],
+            "gain_interval_vs_baseline": [
+              432.0,
+              432.0
+            ]
+          },
+          "anchor": {
+            "method": "recorded_only_sensitivity_anchor",
+            "status": "arrived",
+            "loss_lower": 642.0,
+            "loss_upper": 642.0,
+            "published": true,
+            "rejected": false,
+            "publish_at": 29299,
+            "missing_connections": [],
+            "rides": [
+              {
+                "time": 29613,
+                "stop": 606,
+                "action": [
+                  "board",
+                  10375
+                ],
+                "next_time": 29708,
+                "next_stop": 647,
+                "ridden_connection": 10375,
+                "worker_running": false,
+                "policy": "recorded_only_sensitivity_anchor"
+              },
+              {
+                "time": 29716,
+                "stop": 647,
+                "action": [
+                  "board",
+                  10611
+                ],
+                "next_time": 29771,
+                "next_stop": 88,
+                "ridden_connection": 10611,
+                "worker_running": false,
+                "policy": "recorded_only_sensitivity_anchor"
+              },
+              {
+                "time": 29785,
+                "stop": 88,
+                "action": [
+                  "board",
+                  10847
+                ],
+                "next_time": 29853,
+                "next_stop": 568,
+                "ridden_connection": 10847,
+                "worker_running": false,
+                "policy": "recorded_only_sensitivity_anchor"
+              },
+              {
+                "time": 29865,
+                "stop": 568,
+                "action": [
+                  "board",
+                  11306
+                ],
+                "next_time": 29939,
+                "next_stop": 3,
+                "ridden_connection": 11306,
+                "worker_running": false,
+                "policy": "recorded_only_sensitivity_anchor"
+              }
+            ],
+            "worker_seconds": 1.176122254000802,
+            "total_rule_pipeline_seconds": 1.1941710879837046,
+            "rule_work": {
+              "action_calls": 354,
+              "action_wall_seconds": 0.018033812986686826,
+              "action_cpu_seconds": 0.016450387999997318,
+              "applicable_calls": 1,
+              "applicable_wall_seconds": 8.155002433340997e-06,
+              "applicable_cpu_seconds": 7.745000001335711e-06
+            },
+            "triggers": {
+              "action_calls": 315,
+              "action_seconds": 0.0008296049782074988,
+              "public_failures": 1,
+              "expiries": 0,
+              "visible_rescues": 0,
+              "conditional_comparisons": 5,
+              "conditional_boardings": 1,
+              "fallback_entries": 1
+            },
+            "selected_rescues": [
+              {
+                "time": 29613,
+                "stop": 606,
+                "action": [
+                  "board",
+                  10375
+                ],
+                "branch": "conditional_rescue",
+                "reason": "actual_clock_path_score",
+                "score": 29935.335979192252,
+                "reference": 30587.718719966408,
+                "clock_method": "anchor",
+                "original_bracket": [
+                  29580,
+                  29640
+                ],
+                "next_arrival_support": 22,
+                "success_probability": 1.0
+              }
+            ],
+            "gain_interval_vs_baseline": [
+              432.0,
+              432.0
+            ]
+          }
+        }
+      },
+      "missing_departure_invariance": {
+        "projection": {
+          "invariant": true,
+          "checked_from": 29417,
+          "checked_through": 29613,
+          "tested_seconds": {
+            "9649": 197,
+            "11263": 197
+          },
+          "scored_seconds": {
+            "9649": 197,
+            "11263": 34
+          },
+          "minimum_rejection_margin": {
+            "9649": 403.13153421052994,
+            "11263": 1408.0425806747153
+          },
+          "alternative_winning_departures": 0,
+          "first_alternative": null,
+          "identified_loss": [
+            642.0,
+            642.0
+          ],
+          "identified_gain": [
+            432.0,
+            432.0
+          ]
+        },
+        "anchor": {
+          "invariant": true,
+          "checked_from": 29417,
+          "checked_through": 29613,
+          "tested_seconds": {
+            "9649": 197,
+            "11263": 197
+          },
+          "scored_seconds": {
+            "9649": 197,
+            "11263": 34
+          },
+          "minimum_rejection_margin": {
+            "9649": 426.2623777368135,
+            "11263": 1450.7868112284632
+          },
+          "alternative_winning_departures": 0,
+          "first_alternative": null,
+          "identified_loss": [
+            642.0,
+            642.0
+          ],
+          "identified_gain": [
+            432.0,
+            432.0
+          ]
+        }
+      },
+      "missing_invariance_negative_control": null,
+      "departure_audit": [
+        {
+          "cid": 9649,
+          "departure": null,
+          "source_status": "MISSING",
+          "scope": "unresolved_departure"
+        },
+        {
+          "cid": 9755,
+          "departure": 29446,
+          "source_status": "REAL",
+          "scope": "measured_within_boarding_interval",
+          "original_exact_available": false,
+          "projection": {
+            "clock": 29446,
+            "expected_arrival_or_deadline": 31424.620917080796,
+            "success_probability": 0.5996885470860829,
+            "next_arrival_support": null,
+            "method": "projection",
+            "bracket": [
+              29400,
+              29460
+            ],
+            "seconds": 9.643998055253178e-06
+          },
+          "anchor": {
+            "clock": 29446,
+            "expected_arrival_or_deadline": 31427.298286548503,
+            "success_probability": 0.5985262681030787,
+            "next_arrival_support": 22,
+            "method": "anchor",
+            "bracket": [
+              29400,
+              29460
+            ],
+            "seconds": 0.0035261929951957427
+          }
+        },
+        {
+          "cid": 9812,
+          "departure": 29424,
+          "source_status": "REAL",
+          "scope": "measured_within_boarding_interval",
+          "original_exact_available": false,
+          "projection": {
+            "clock": 29424,
+            "expected_arrival_or_deadline": 30560.35210208028,
+            "success_probability": 0.9149753839031293,
+            "next_arrival_support": null,
+            "method": "projection",
+            "bracket": [
+              29400,
+              29460
+            ],
+            "seconds": 6.833004590589553e-06
+          },
+          "anchor": {
+            "clock": 29424,
+            "expected_arrival_or_deadline": 30590.794350049833,
+            "success_probability": 0.9032281229428082,
+            "next_arrival_support": 22,
+            "method": "anchor",
+            "bracket": [
+              29400,
+              29460
+            ],
+            "seconds": 0.002830299999914132
+          }
+        },
+        {
+          "cid": 10199,
+          "departure": 29560,
+          "source_status": "REAL",
+          "scope": "measured_within_boarding_interval",
+          "original_exact_available": false,
+          "projection": {
+            "clock": 29560,
+            "expected_arrival_or_deadline": 30565.999634402026,
+            "success_probability": 0.9673064160133555,
+            "next_arrival_support": null,
+            "method": "projection",
+            "bracket": [
+              29520,
+              29580
+            ],
+            "seconds": 6.777998351026326e-06
+          },
+          "anchor": {
+            "clock": 29560,
+            "expected_arrival_or_deadline": 30582.956592574665,
+            "success_probability": 0.9583591905692382,
+            "next_arrival_support": 22,
+            "method": "anchor",
+            "bracket": [
+              29520,
+              29580
+            ],
+            "seconds": 0.0026992839993909
+          }
+        },
+        {
+          "cid": 10326,
+          "departure": 29676,
+          "source_status": "REAL",
+          "scope": "measured_within_boarding_interval",
+          "original_exact_available": false,
+          "projection": {
+            "clock": 29676,
+            "expected_arrival_or_deadline": 31055.69244355907,
+            "success_probability": 0.7990726045081338,
+            "next_arrival_support": null,
+            "method": "projection",
+            "bracket": [
+              29640,
+              29700
+            ],
+            "seconds": 6.215996108949184e-06
+          },
+          "anchor": {
+            "clock": 29676,
+            "expected_arrival_or_deadline": 31090.429316193273,
+            "success_probability": 0.7839634258002119,
+            "next_arrival_support": 23,
+            "method": "anchor",
+            "bracket": [
+              29640,
+              29700
+            ],
+            "seconds": 0.0033353120015817694
+          }
+        },
+        {
+          "cid": 10375,
+          "departure": 29613,
+          "source_status": "REAL",
+          "scope": "measured_within_boarding_interval",
+          "original_exact_available": false,
+          "projection": {
+            "clock": 29613,
+            "expected_arrival_or_deadline": 29936.64630182038,
+            "success_probability": 0.9999999999999997,
+            "next_arrival_support": null,
+            "method": "projection",
+            "bracket": [
+              29580,
+              29640
+            ],
+            "seconds": 7.780996384099126e-06
+          },
+          "anchor": {
+            "clock": 29613,
+            "expected_arrival_or_deadline": 29935.335979192252,
+            "success_probability": 1.0,
+            "next_arrival_support": 22,
+            "method": "anchor",
+            "bracket": [
+              29580,
+              29640
+            ],
+            "seconds": 0.0036807950018555857
+          }
+        },
+        {
+          "cid": 10398,
+          "departure": 29602,
+          "source_status": "REAL",
+          "scope": "measured_within_boarding_interval",
+          "original_exact_available": false,
+          "projection": {
+            "clock": 29602,
+            "expected_arrival_or_deadline": 30603.389065548832,
+            "success_probability": 0.9475677489979835,
+            "next_arrival_support": null,
+            "method": "projection",
+            "bracket": [
+              29580,
+              29640
+            ],
+            "seconds": 6.226000550668687e-06
+          },
+          "anchor": {
+            "clock": 29602,
+            "expected_arrival_or_deadline": 30606.87725522798,
+            "success_probability": 0.9456138274662704,
+            "next_arrival_support": 22,
+            "method": "anchor",
+            "bracket": [
+              29580,
+              29640
+            ],
+            "seconds": 0.002571705997979734
+          }
+        },
+        {
+          "cid": 10407,
+          "departure": 29669,
+          "source_status": "REAL",
+          "scope": "measured_within_boarding_interval",
+          "original_exact_available": false,
+          "projection": {
+            "clock": 29669,
+            "expected_arrival_or_deadline": 31439.425771416598,
+            "success_probability": 0.6527764947247696,
+            "next_arrival_support": null,
+            "method": "projection",
+            "bracket": [
+              29640,
+              29700
+            ],
+            "seconds": 6.3920015236362815e-06
+          },
+          "anchor": {
+            "clock": 29669,
+            "expected_arrival_or_deadline": 31510.98241184062,
+            "success_probability": 0.6162042776652992,
+            "next_arrival_support": 23,
+            "method": "anchor",
+            "bracket": [
+              29640,
+              29700
+            ],
+            "seconds": 0.0029868529964005575
+          }
+        },
+        {
+          "cid": 10989,
+          "departure": 29813,
+          "source_status": "REAL",
+          "scope": "measured_within_boarding_interval",
+          "original_exact_available": false,
+          "projection": {
+            "clock": 29813,
+            "expected_arrival_or_deadline": 30190.986751685152,
+            "success_probability": 0.9999999999999992,
+            "next_arrival_support": null,
+            "method": "projection",
+            "bracket": [
+              29760,
+              29820
+            ],
+            "seconds": 6.810994818806648e-06
+          },
+          "anchor": {
+            "clock": 29813,
+            "expected_arrival_or_deadline": 30185.1648370872,
+            "success_probability": 0.9999999999999997,
+            "next_arrival_support": 22,
+            "method": "anchor",
+            "bracket": [
+              29760,
+              29820
+            ],
+            "seconds": 0.0032870069990167394
+          }
+        },
+        {
+          "cid": 11118,
+          "departure": 29841,
+          "source_status": "REAL",
+          "scope": "measured_within_boarding_interval",
+          "original_exact_available": false,
+          "projection": {
+            "clock": 29841,
+            "expected_arrival_or_deadline": 30811.988377255748,
+            "success_probability": 0.8746701261626486,
+            "next_arrival_support": null,
+            "method": "projection",
+            "bracket": [
+              29820,
+              29880
+            ],
+            "seconds": 6.966001819819212e-06
+          },
+          "anchor": {
+            "clock": 29841,
+            "expected_arrival_or_deadline": 30834.644250486435,
+            "success_probability": 0.8655163469993754,
+            "next_arrival_support": 22,
+            "method": "anchor",
+            "bracket": [
+              29820,
+              29880
+            ],
+            "seconds": 0.0032078989970614202
+          }
+        },
+        {
+          "cid": 11232,
+          "departure": 29881,
+          "source_status": "REAL",
+          "scope": "measured_within_boarding_interval",
+          "original_exact_available": false,
+          "projection": {
+            "clock": 29881,
+            "expected_arrival_or_deadline": 31110.669268708738,
+            "success_probability": 0.8303395188042335,
+            "next_arrival_support": null,
+            "method": "projection",
+            "bracket": [
+              29880,
+              29940
+            ],
+            "seconds": 6.22699735686183e-06
+          },
+          "anchor": {
+            "clock": 29881,
+            "expected_arrival_or_deadline": 31212.644575725142,
+            "success_probability": 0.7812892191428138,
+            "next_arrival_support": 22,
+            "method": "anchor",
+            "bracket": [
+              29880,
+              29940
+            ],
+            "seconds": 0.0026969149985234253
+          }
+        },
+        {
+          "cid": 11263,
+          "departure": null,
+          "source_status": "MISSING",
+          "scope": "unresolved_departure"
+        },
+        {
+          "cid": 11395,
+          "departure": 29893,
+          "source_status": "REAL",
+          "scope": "measured_within_boarding_interval",
+          "original_exact_available": false,
+          "projection": {
+            "clock": 29893,
+            "expected_arrival_or_deadline": 31876.196738097253,
+            "success_probability": 0.44219422502303557,
+            "next_arrival_support": null,
+            "method": "projection",
+            "bracket": [
+              29880,
+              29940
+            ],
+            "seconds": 6.722002581227571e-06
+          },
+          "anchor": {
+            "clock": 29893,
+            "expected_arrival_or_deadline": 31948.626995395327,
+            "success_probability": 0.40440162729595186,
+            "next_arrival_support": 23,
+            "method": "anchor",
+            "bracket": [
+              29880,
+              29940
+            ],
+            "seconds": 0.003509155001665931
+          }
+        },
+        {
+          "cid": 11817,
+          "departure": 30141,
+          "source_status": "REAL",
+          "scope": "measured_within_boarding_interval",
+          "original_exact_available": false,
+          "projection": {
+            "clock": 30141,
+            "expected_arrival_or_deadline": 30960.496359237222,
+            "success_probability": 0.9806404418999508,
+            "next_arrival_support": null,
+            "method": "projection",
+            "bracket": [
+              30120,
+              30180
+            ],
+            "seconds": 5.565998435486108e-06
+          },
+          "anchor": {
+            "clock": 30141,
+            "expected_arrival_or_deadline": 30966.519617108297,
+            "success_probability": 0.9774687910655708,
+            "next_arrival_support": 22,
+            "method": "anchor",
+            "bracket": [
+              30120,
+              30180
+            ],
+            "seconds": 0.0026975430009770207
+          }
+        },
+        {
+          "cid": 11994,
+          "departure": 30093,
+          "source_status": "REAL",
+          "scope": "measured_within_boarding_interval",
+          "original_exact_available": false,
+          "projection": {
+            "clock": 30093,
+            "expected_arrival_or_deadline": 30970.98375301576,
+            "success_probability": 0.9702369468622789,
+            "next_arrival_support": null,
+            "method": "projection",
+            "bracket": [
+              30060,
+              30120
+            ],
+            "seconds": 4.936999175697565e-06
+          },
+          "anchor": {
+            "clock": 30093,
+            "expected_arrival_or_deadline": 30973.216012568137,
+            "success_probability": 0.968330916269482,
+            "next_arrival_support": 22,
+            "method": "anchor",
+            "bracket": [
+              30060,
+              30120
+            ],
+            "seconds": 0.0024015219969442114
+          }
+        },
+        {
+          "cid": 12165,
+          "departure": 30069,
+          "source_status": "REAL",
+          "scope": "measured_within_boarding_interval",
+          "original_exact_available": false,
+          "projection": {
+            "clock": 30069,
+            "expected_arrival_or_deadline": 31094.523701689795,
+            "success_probability": 0.9589810476904446,
+            "next_arrival_support": null,
+            "method": "projection",
+            "bracket": [
+              30060,
+              30120
+            ],
+            "seconds": 4.870998964179307e-06
+          },
+          "anchor": {
+            "clock": 30069,
+            "expected_arrival_or_deadline": 31117.89670522053,
+            "success_probability": 0.9470567506653558,
+            "next_arrival_support": 21,
+            "method": "anchor",
+            "bracket": [
+              30060,
+              30120
+            ],
+            "seconds": 0.003353175998199731
+          }
+        },
+        {
+          "cid": 12224,
+          "departure": 30103,
+          "source_status": "REAL",
+          "scope": "measured_within_boarding_interval",
+          "original_exact_available": false,
+          "projection": {
+            "clock": 30103,
+            "expected_arrival_or_deadline": 31253.08898566781,
+            "success_probability": 0.9903984371508252,
+            "next_arrival_support": null,
+            "method": "projection",
+            "bracket": [
+              30060,
+              30120
+            ],
+            "seconds": 5.400994268711656e-06
+          },
+          "anchor": {
+            "clock": 30103,
+            "expected_arrival_or_deadline": 31254.169466419713,
+            "success_probability": 0.9893884686341081,
+            "next_arrival_support": 23,
+            "method": "anchor",
+            "bracket": [
+              30060,
+              30120
+            ],
+            "seconds": 0.003019959003722761
+          }
+        }
+      ]
+    }
+  ]
+}

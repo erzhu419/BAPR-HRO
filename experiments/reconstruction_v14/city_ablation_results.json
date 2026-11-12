@@ -1,0 +1,4861 @@
+{
+  "protocol": {
+    "cases": [
+      [
+        "2023-07-26",
+        0,
+        1
+      ],
+      [
+        "2023-07-26",
+        0,
+        2
+      ],
+      [
+        "2023-07-27",
+        0,
+        1
+      ]
+    ],
+    "banks": 8,
+    "ab_atoms": 4,
+    "horizon": 720,
+    "extended_horizon": 1080,
+    "node_limit_per_arm_bank": 50000,
+    "exact_suffix_path_limit_per_cut": 32,
+    "inputs": [
+      "experiments/reconstruction_data_audit/city_vbz_dated_replay_v2.json.gz",
+      "experiments/reconstruction_v4/city_replay_results.json",
+      "experiments/reconstruction_v12/transfer_inventory.json",
+      "experiments/reconstruction_v10/tail_rescue_results.json",
+      "experiments/reconstruction_v13/factored_results.json"
+    ],
+    "v13": "Same rest and A/B draws, frozen local clocks and observations, complete actions. Verify both means per bank.",
+    "third": "Earliest scheduled arrival among legal root departures through transfer-ready+720, excluding A/B. Break ties by departure then connection ID. Hold the candidate fixed for all banks. The original rest draw for R and three independent draws form its factor. Reveal its index at the root or hide it.",
+    "suffix": "For each original A/B chain retain all latent event states up to its target departure. Keep the original suffix as draw zero and use a second FFBS draw conditional on the cut state and root evidence on the same frozen grid. This preserves trip marginals in expectation. The full product gives identical realized worlds to the hidden-label arm and the arm that knows both suffix draw indices at the root.",
+    "tail": "Full local execution until the 720/1080 second clock boundary, without stopping at the first ride. As in V13, an atomic ride may cross the cutoff. All arms then use the V13 clairvoyant tail.",
+    "inference": "Point diagnostics on 8 common outer draws per root, not independent product rows. The suffix label comparison diagnoses this nested sampling scheme and is not a population bias estimate. No incomplete solve contributes a value. No G2 certification.",
+    "cost": "Bank wall time includes packing and model construction. Arms sharing the same bank reuse a memoized oracle; solver times include that shared-work benefit and are not independent timings."
+  },
+  "status": "complete",
+  "roots": [
+    {
+      "case": [
+        "2023-07-26",
+        0,
+        1
+      ],
+      "root_stop": 606,
+      "root_clock": 29306,
+      "goal": 3,
+      "deadline": 32700,
+      "setup_seconds": 17.221423955998034,
+      "third": {
+        "trip": "2277.TA.91-9-I-j23-1.10.H",
+        "cid": 10375,
+        "scheduled_departure": 29640,
+        "scheduled_goal_arrival": 29940,
+        "scored_connections": 17
+      },
+      "ab_trip_ids": [
+        "1614.TA.91-14-E-j23-1.6.H",
+        "2221.TA.91-9-I-j23-1.9.H"
+      ],
+      "ab_target_ids": [
+        9383,
+        11986
+      ],
+      "banks": [
+        {
+          "bank": 0,
+          "arms": [
+            {
+              "arm": "v13",
+              "status": "complete",
+              "world_count": 16,
+              "groups": 1,
+              "information_nodes": 2085,
+              "transition_evaluations": 11776,
+              "oracle_evaluations": 272,
+              "value": 514.0,
+              "clairvoyant_root_mean": 514.0,
+              "expected_boundary_elapsed": 274.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.307763185002841
+            },
+            {
+              "arm": "tail_720",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 200992,
+              "solver_seconds": 22.694582323994837
+            },
+            {
+              "arm": "tail_1080",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 116854,
+              "solver_seconds": 15.368886617005046
+            },
+            {
+              "arm": "r_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 8340,
+              "transition_evaluations": 47104,
+              "oracle_evaluations": 1088,
+              "value": 514.0,
+              "clairvoyant_root_mean": 514.0,
+              "expected_boundary_elapsed": 274.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 4.559648617003404
+            },
+            {
+              "arm": "r_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 5022,
+              "transition_evaluations": 47104,
+              "oracle_evaluations": 1088,
+              "value": 514.0,
+              "clairvoyant_root_mean": 514.0,
+              "expected_boundary_elapsed": 274.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 2.957213859001058
+            },
+            {
+              "arm": "suffix_labels_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 8340,
+              "transition_evaluations": 47104,
+              "oracle_evaluations": 1088,
+              "value": 529.0,
+              "clairvoyant_root_mean": 529.0,
+              "expected_boundary_elapsed": 274.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.699091557005886
+            },
+            {
+              "arm": "suffix_labels_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 2085,
+              "transition_evaluations": 47104,
+              "oracle_evaluations": 1088,
+              "value": 529.0,
+              "clairvoyant_root_mean": 529.0,
+              "expected_boundary_elapsed": 274.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.39926461000141
+            }
+          ],
+          "conditional_suffix": {
+            "1614.TA.91-14-E-j23-1.6.H": [
+              {
+                "departure": 29580,
+                "canceled": false,
+                "original_arrival": 29640,
+                "split_arrival": 29640,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29460,
+                "canceled": false,
+                "original_arrival": 29520,
+                "split_arrival": 29520,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29460,
+                "canceled": false,
+                "original_arrival": 29580,
+                "split_arrival": 29580,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29520,
+                "canceled": false,
+                "original_arrival": 29580,
+                "split_arrival": 29580,
+                "conditional_arrival_sd": 26.58135691570773,
+                "valid_suffixes_capped": 33
+              }
+            ],
+            "2221.TA.91-9-I-j23-1.9.H": [
+              {
+                "departure": 30180,
+                "canceled": false,
+                "original_arrival": 30180,
+                "split_arrival": 30240,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30300,
+                "canceled": false,
+                "original_arrival": 30360,
+                "split_arrival": 30360,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30420,
+                "canceled": false,
+                "original_arrival": 30480,
+                "split_arrival": 30480,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30180,
+                "canceled": false,
+                "original_arrival": 30240,
+                "split_arrival": 30240,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              }
+            ]
+          },
+          "wall_seconds": 63.93999325200275
+        },
+        {
+          "bank": 1,
+          "arms": [
+            {
+              "arm": "v13",
+              "status": "complete",
+              "world_count": 16,
+              "groups": 1,
+              "information_nodes": 2355,
+              "transition_evaluations": 11752,
+              "oracle_evaluations": 248,
+              "value": 634.0,
+              "clairvoyant_root_mean": 634.0,
+              "expected_boundary_elapsed": 244.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 0.27185747399926186
+            },
+            {
+              "arm": "tail_720",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 161914,
+              "solver_seconds": 4.907239296997432
+            },
+            {
+              "arm": "tail_1080",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 128881,
+              "solver_seconds": 4.190982977997919
+            },
+            {
+              "arm": "r_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 9416,
+              "transition_evaluations": 46992,
+              "oracle_evaluations": 976,
+              "value": 634.0,
+              "clairvoyant_root_mean": 634.0,
+              "expected_boundary_elapsed": 281.5,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.5496540060048574
+            },
+            {
+              "arm": "r_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 6021,
+              "transition_evaluations": 46992,
+              "oracle_evaluations": 976,
+              "value": 634.0,
+              "clairvoyant_root_mean": 634.0,
+              "expected_boundary_elapsed": 247.75,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 0.7651508889975958
+            },
+            {
+              "arm": "suffix_labels_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 9420,
+              "transition_evaluations": 47008,
+              "oracle_evaluations": 992,
+              "value": 634.0,
+              "clairvoyant_root_mean": 634.0,
+              "expected_boundary_elapsed": 229.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.6942982139953529
+            },
+            {
+              "arm": "suffix_labels_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 2356,
+              "transition_evaluations": 47008,
+              "oracle_evaluations": 992,
+              "value": 634.0,
+              "clairvoyant_root_mean": 634.0,
+              "expected_boundary_elapsed": 214.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.1757590330016683
+            }
+          ],
+          "conditional_suffix": {
+            "1614.TA.91-14-E-j23-1.6.H": [
+              {
+                "departure": 29280,
+                "canceled": false,
+                "original_arrival": 29400,
+                "split_arrival": 29340,
+                "conditional_arrival_sd": 26.58135691570773,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29760,
+                "canceled": false,
+                "original_arrival": 29820,
+                "split_arrival": 29820,
+                "conditional_arrival_sd": 26.58135691570773,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29400,
+                "canceled": false,
+                "original_arrival": 29520,
+                "split_arrival": 29460,
+                "conditional_arrival_sd": 26.58135691570772,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29580,
+                "canceled": false,
+                "original_arrival": 29640,
+                "split_arrival": 29700,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              }
+            ],
+            "2221.TA.91-9-I-j23-1.9.H": [
+              {
+                "departure": 30300,
+                "canceled": false,
+                "original_arrival": 30360,
+                "split_arrival": 30360,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30300,
+                "canceled": false,
+                "original_arrival": 30360,
+                "split_arrival": 30300,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30240,
+                "canceled": false,
+                "original_arrival": 30300,
+                "split_arrival": 30240,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30120,
+                "canceled": false,
+                "original_arrival": 30180,
+                "split_arrival": 30240,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              }
+            ]
+          },
+          "wall_seconds": 19.331551317001868
+        },
+        {
+          "bank": 2,
+          "arms": [
+            {
+              "arm": "v13",
+              "status": "complete",
+              "world_count": 16,
+              "groups": 1,
+              "information_nodes": 2296,
+              "transition_evaluations": 11748,
+              "oracle_evaluations": 244,
+              "value": 649.0,
+              "clairvoyant_root_mean": 649.0,
+              "expected_boundary_elapsed": 334.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 0.29889654999715276
+            },
+            {
+              "arm": "tail_720",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 135496,
+              "solver_seconds": 5.4604668370011495
+            },
+            {
+              "arm": "tail_1080",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 80439,
+              "solver_seconds": 6.714214214000094
+            },
+            {
+              "arm": "r_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 9166,
+              "transition_evaluations": 46992,
+              "oracle_evaluations": 976,
+              "value": 649.0,
+              "clairvoyant_root_mean": 649.0,
+              "expected_boundary_elapsed": 334.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 3.5672653349975008
+            },
+            {
+              "arm": "r_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 6505,
+              "transition_evaluations": 46992,
+              "oracle_evaluations": 976,
+              "value": 649.0,
+              "clairvoyant_root_mean": 649.0,
+              "expected_boundary_elapsed": 334.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 2.5945590319970506
+            },
+            {
+              "arm": "suffix_labels_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 9174,
+              "transition_evaluations": 46992,
+              "oracle_evaluations": 976,
+              "value": 626.5,
+              "clairvoyant_root_mean": 626.5,
+              "expected_boundary_elapsed": 326.5,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 3.94431098500354
+            },
+            {
+              "arm": "suffix_labels_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 2300,
+              "transition_evaluations": 46992,
+              "oracle_evaluations": 976,
+              "value": 626.5,
+              "clairvoyant_root_mean": 626.5,
+              "expected_boundary_elapsed": 326.5,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.692939545995614
+            }
+          ],
+          "conditional_suffix": {
+            "1614.TA.91-14-E-j23-1.6.H": [
+              {
+                "departure": 29400,
+                "canceled": false,
+                "original_arrival": 29460,
+                "split_arrival": 29460,
+                "conditional_arrival_sd": 26.58135691570772,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29640,
+                "canceled": false,
+                "original_arrival": 29700,
+                "split_arrival": 29640,
+                "conditional_arrival_sd": 26.58135691570772,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29520,
+                "canceled": false,
+                "original_arrival": 29580,
+                "split_arrival": 29580,
+                "conditional_arrival_sd": 26.58135691570773,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29640,
+                "canceled": false,
+                "original_arrival": 29700,
+                "split_arrival": 29700,
+                "conditional_arrival_sd": 26.58135691570772,
+                "valid_suffixes_capped": 33
+              }
+            ],
+            "2221.TA.91-9-I-j23-1.9.H": [
+              {
+                "departure": 30360,
+                "canceled": false,
+                "original_arrival": 30420,
+                "split_arrival": 30420,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30000,
+                "canceled": false,
+                "original_arrival": 30000,
+                "split_arrival": 30060,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30000,
+                "canceled": false,
+                "original_arrival": 30060,
+                "split_arrival": 30060,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30240,
+                "canceled": false,
+                "original_arrival": 30360,
+                "split_arrival": 30300,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              }
+            ]
+          },
+          "wall_seconds": 37.2696025740006
+        },
+        {
+          "bank": 3,
+          "arms": [
+            {
+              "arm": "v13",
+              "status": "complete",
+              "world_count": 16,
+              "groups": 1,
+              "information_nodes": 2223,
+              "transition_evaluations": 11768,
+              "oracle_evaluations": 264,
+              "value": 859.0,
+              "clairvoyant_root_mean": 859.0,
+              "expected_boundary_elapsed": 438.99999999999994,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 2.5242925849961466
+            },
+            {
+              "arm": "tail_720",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 201172,
+              "solver_seconds": 12.865078324000933
+            },
+            {
+              "arm": "tail_1080",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 69955,
+              "solver_seconds": 6.934672665003745
+            },
+            {
+              "arm": "r_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 8873,
+              "transition_evaluations": 47056,
+              "oracle_evaluations": 1040,
+              "value": 731.5,
+              "clairvoyant_root_mean": 731.5,
+              "expected_boundary_elapsed": 386.5,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 3.7495224960002815
+            },
+            {
+              "arm": "r_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 6812,
+              "transition_evaluations": 47056,
+              "oracle_evaluations": 1040,
+              "value": 731.5,
+              "clairvoyant_root_mean": 731.5,
+              "expected_boundary_elapsed": 386.49999999999994,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.6905095619949861
+            },
+            {
+              "arm": "suffix_labels_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 8892,
+              "transition_evaluations": 47072,
+              "oracle_evaluations": 1056,
+              "value": 859.0,
+              "clairvoyant_root_mean": 851.5,
+              "expected_boundary_elapsed": 499.0,
+              "singleton_before_boundary_probability": 0.03125,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 3.00398186599341
+            },
+            {
+              "arm": "suffix_labels_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 2223,
+              "transition_evaluations": 47072,
+              "oracle_evaluations": 1056,
+              "value": 859.0,
+              "clairvoyant_root_mean": 851.5,
+              "expected_boundary_elapsed": 438.99999999999994,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.3676268790004542
+            }
+          ],
+          "conditional_suffix": {
+            "1614.TA.91-14-E-j23-1.6.H": [
+              {
+                "departure": 29400,
+                "canceled": false,
+                "original_arrival": 29460,
+                "split_arrival": 29460,
+                "conditional_arrival_sd": 26.58135691570772,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29820,
+                "canceled": false,
+                "original_arrival": 29880,
+                "split_arrival": 29880,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29820,
+                "canceled": false,
+                "original_arrival": 29880,
+                "split_arrival": 29880,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29280,
+                "canceled": false,
+                "original_arrival": 29340,
+                "split_arrival": 29280,
+                "conditional_arrival_sd": 26.58135691570773,
+                "valid_suffixes_capped": 33
+              }
+            ],
+            "2221.TA.91-9-I-j23-1.9.H": [
+              {
+                "departure": 30300,
+                "canceled": false,
+                "original_arrival": 30360,
+                "split_arrival": 30360,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30240,
+                "canceled": false,
+                "original_arrival": 30300,
+                "split_arrival": 30300,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30180,
+                "canceled": false,
+                "original_arrival": 30300,
+                "split_arrival": 30180,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30060,
+                "canceled": false,
+                "original_arrival": 30120,
+                "split_arrival": 30180,
+                "conditional_arrival_sd": 26.58135691570772,
+                "valid_suffixes_capped": 33
+              }
+            ]
+          },
+          "wall_seconds": 45.32699388500623
+        },
+        {
+          "bank": 4,
+          "arms": [
+            {
+              "arm": "v13",
+              "status": "complete",
+              "world_count": 16,
+              "groups": 1,
+              "information_nodes": 1560,
+              "transition_evaluations": 11760,
+              "oracle_evaluations": 256,
+              "value": 724.0,
+              "clairvoyant_root_mean": 724.0,
+              "expected_boundary_elapsed": 438.99999999999994,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 0.5904133430012735
+            },
+            {
+              "arm": "tail_720",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 490769,
+              "solver_seconds": 19.988601420998748
+            },
+            {
+              "arm": "tail_1080",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 157343,
+              "solver_seconds": 9.682952909999585
+            },
+            {
+              "arm": "r_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 6239,
+              "transition_evaluations": 47024,
+              "oracle_evaluations": 1008,
+              "value": 735.25,
+              "clairvoyant_root_mean": 735.25,
+              "expected_boundary_elapsed": 436.46874999999994,
+              "singleton_before_boundary_probability": 0.015625,
+              "boundary_kind_mass": {
+                "public_boundary": 0.953125,
+                "clock_limit": 0.046875
+              },
+              "solver_seconds": 2.475631257002533
+            },
+            {
+              "arm": "r_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 4358,
+              "transition_evaluations": 47024,
+              "oracle_evaluations": 1008,
+              "value": 735.25,
+              "clairvoyant_root_mean": 735.25,
+              "expected_boundary_elapsed": 436.46874999999994,
+              "singleton_before_boundary_probability": 0.015625,
+              "boundary_kind_mass": {
+                "public_boundary": 0.953125,
+                "clock_limit": 0.046875
+              },
+              "solver_seconds": 2.2505415009945864
+            },
+            {
+              "arm": "suffix_labels_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 6238,
+              "transition_evaluations": 47040,
+              "oracle_evaluations": 1024,
+              "value": 739.0,
+              "clairvoyant_root_mean": 739.0,
+              "expected_boundary_elapsed": 431.49999999999994,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 2.105128415998479
+            },
+            {
+              "arm": "suffix_labels_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 1562,
+              "transition_evaluations": 47040,
+              "oracle_evaluations": 1024,
+              "value": 739.0,
+              "clairvoyant_root_mean": 739.0,
+              "expected_boundary_elapsed": 431.49999999999994,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 0.639694770994538
+            }
+          ],
+          "conditional_suffix": {
+            "1614.TA.91-14-E-j23-1.6.H": [
+              {
+                "departure": 29640,
+                "canceled": false,
+                "original_arrival": 29700,
+                "split_arrival": 29700,
+                "conditional_arrival_sd": 26.58135691570772,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29640,
+                "canceled": false,
+                "original_arrival": 29760,
+                "split_arrival": 29700,
+                "conditional_arrival_sd": 26.58135691570772,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29640,
+                "canceled": false,
+                "original_arrival": 29640,
+                "split_arrival": 29640,
+                "conditional_arrival_sd": 26.58135691570772,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29400,
+                "canceled": false,
+                "original_arrival": 29460,
+                "split_arrival": 29460,
+                "conditional_arrival_sd": 26.58135691570772,
+                "valid_suffixes_capped": 33
+              }
+            ],
+            "2221.TA.91-9-I-j23-1.9.H": [
+              {
+                "departure": 29940,
+                "canceled": false,
+                "original_arrival": 30000,
+                "split_arrival": 30000,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30240,
+                "canceled": false,
+                "original_arrival": 30300,
+                "split_arrival": 30300,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30240,
+                "canceled": false,
+                "original_arrival": 30300,
+                "split_arrival": 30300,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30360,
+                "canceled": false,
+                "original_arrival": 30420,
+                "split_arrival": 30480,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              }
+            ]
+          },
+          "wall_seconds": 50.495306826996966
+        },
+        {
+          "bank": 5,
+          "arms": [
+            {
+              "arm": "v13",
+              "status": "complete",
+              "world_count": 16,
+              "groups": 1,
+              "information_nodes": 1897,
+              "transition_evaluations": 11772,
+              "oracle_evaluations": 268,
+              "value": 574.0,
+              "clairvoyant_root_mean": 574.0,
+              "expected_boundary_elapsed": 334.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 0.27965876500093145
+            },
+            {
+              "arm": "tail_720",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 325290,
+              "solver_seconds": 7.128850922999845
+            },
+            {
+              "arm": "tail_1080",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 301316,
+              "solver_seconds": 6.934413806993689
+            },
+            {
+              "arm": "r_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 7585,
+              "transition_evaluations": 47072,
+              "oracle_evaluations": 1056,
+              "value": 604.0,
+              "clairvoyant_root_mean": 604.0,
+              "expected_boundary_elapsed": 349.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.1861506460045348
+            },
+            {
+              "arm": "r_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 5015,
+              "transition_evaluations": 47072,
+              "oracle_evaluations": 1056,
+              "value": 604.0,
+              "clairvoyant_root_mean": 604.0,
+              "expected_boundary_elapsed": 349.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.0448636479995912
+            },
+            {
+              "arm": "suffix_labels_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 7588,
+              "transition_evaluations": 47088,
+              "oracle_evaluations": 1072,
+              "value": 544.0,
+              "clairvoyant_root_mean": 544.0,
+              "expected_boundary_elapsed": 319.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.174913162998564
+            },
+            {
+              "arm": "suffix_labels_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 1899,
+              "transition_evaluations": 47088,
+              "oracle_evaluations": 1072,
+              "value": 544.0,
+              "clairvoyant_root_mean": 544.0,
+              "expected_boundary_elapsed": 319.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 0.9471729939978104
+            }
+          ],
+          "conditional_suffix": {
+            "1614.TA.91-14-E-j23-1.6.H": [
+              {
+                "departure": 29460,
+                "canceled": false,
+                "original_arrival": 29580,
+                "split_arrival": 29520,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29700,
+                "canceled": false,
+                "original_arrival": 29820,
+                "split_arrival": 29760,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29220,
+                "canceled": false,
+                "original_arrival": 29280,
+                "split_arrival": 29280,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29460,
+                "canceled": false,
+                "original_arrival": 29580,
+                "split_arrival": 29520,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              }
+            ],
+            "2221.TA.91-9-I-j23-1.9.H": [
+              {
+                "departure": 30420,
+                "canceled": false,
+                "original_arrival": 30480,
+                "split_arrival": 30480,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30360,
+                "canceled": false,
+                "original_arrival": 30420,
+                "split_arrival": 30360,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30360,
+                "canceled": false,
+                "original_arrival": 30420,
+                "split_arrival": 30420,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30420,
+                "canceled": false,
+                "original_arrival": 30480,
+                "split_arrival": 30480,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              }
+            ]
+          },
+          "wall_seconds": 24.59053284699621
+        },
+        {
+          "bank": 6,
+          "arms": [
+            {
+              "arm": "v13",
+              "status": "complete",
+              "world_count": 16,
+              "groups": 1,
+              "information_nodes": 1562,
+              "transition_evaluations": 11748,
+              "oracle_evaluations": 244,
+              "value": 619.0,
+              "clairvoyant_root_mean": 604.0,
+              "expected_boundary_elapsed": 349.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 0.31999114099744475
+            },
+            {
+              "arm": "tail_720",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 295790,
+              "solver_seconds": 13.511539069004357
+            },
+            {
+              "arm": "tail_1080",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 105574,
+              "solver_seconds": 7.136395273002563
+            },
+            {
+              "arm": "r_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 6246,
+              "transition_evaluations": 46992,
+              "oracle_evaluations": 976,
+              "value": 615.25,
+              "clairvoyant_root_mean": 607.75,
+              "expected_boundary_elapsed": 337.75,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 2.894890629002475
+            },
+            {
+              "arm": "r_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 4257,
+              "transition_evaluations": 46992,
+              "oracle_evaluations": 976,
+              "value": 615.25,
+              "clairvoyant_root_mean": 607.75,
+              "expected_boundary_elapsed": 337.75,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.400412162001885
+            },
+            {
+              "arm": "suffix_labels_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 6246,
+              "transition_evaluations": 46992,
+              "oracle_evaluations": 976,
+              "value": 619.0,
+              "clairvoyant_root_mean": 611.5,
+              "expected_boundary_elapsed": 349.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 3.3339549009979237
+            },
+            {
+              "arm": "suffix_labels_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 1566,
+              "transition_evaluations": 46992,
+              "oracle_evaluations": 976,
+              "value": 619.0,
+              "clairvoyant_root_mean": 611.5,
+              "expected_boundary_elapsed": 349.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.4562004999970668
+            }
+          ],
+          "conditional_suffix": {
+            "1614.TA.91-14-E-j23-1.6.H": [
+              {
+                "departure": 29640,
+                "canceled": false,
+                "original_arrival": 29760,
+                "split_arrival": 29700,
+                "conditional_arrival_sd": 26.58135691570772,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29640,
+                "canceled": false,
+                "original_arrival": 29700,
+                "split_arrival": 29700,
+                "conditional_arrival_sd": 26.58135691570772,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29520,
+                "canceled": false,
+                "original_arrival": 29580,
+                "split_arrival": 29580,
+                "conditional_arrival_sd": 26.58135691570773,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29520,
+                "canceled": false,
+                "original_arrival": 29640,
+                "split_arrival": 29640,
+                "conditional_arrival_sd": 26.58135691570773,
+                "valid_suffixes_capped": 33
+              }
+            ],
+            "2221.TA.91-9-I-j23-1.9.H": [
+              {
+                "departure": 30360,
+                "canceled": false,
+                "original_arrival": 30420,
+                "split_arrival": 30420,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30180,
+                "canceled": false,
+                "original_arrival": 30240,
+                "split_arrival": 30240,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30180,
+                "canceled": false,
+                "original_arrival": 30240,
+                "split_arrival": 30240,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30000,
+                "canceled": false,
+                "original_arrival": 30060,
+                "split_arrival": 30120,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              }
+            ]
+          },
+          "wall_seconds": 40.868780393000634
+        },
+        {
+          "bank": 7,
+          "arms": [
+            {
+              "arm": "v13",
+              "status": "complete",
+              "world_count": 16,
+              "groups": 1,
+              "information_nodes": 2175,
+              "transition_evaluations": 11756,
+              "oracle_evaluations": 252,
+              "value": 664.0,
+              "clairvoyant_root_mean": 664.0,
+              "expected_boundary_elapsed": 438.99999999999994,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.7382939219969558
+            },
+            {
+              "arm": "tail_720",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 151362,
+              "solver_seconds": 7.422969715000363
+            },
+            {
+              "arm": "tail_1080",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 65295,
+              "solver_seconds": 5.398084888001904
+            },
+            {
+              "arm": "r_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 8700,
+              "transition_evaluations": 47024,
+              "oracle_evaluations": 1008,
+              "value": 664.0,
+              "clairvoyant_root_mean": 664.0,
+              "expected_boundary_elapsed": 435.25,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 2.8994084849982755
+            },
+            {
+              "arm": "r_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 5247,
+              "transition_evaluations": 47024,
+              "oracle_evaluations": 1008,
+              "value": 664.0,
+              "clairvoyant_root_mean": 664.0,
+              "expected_boundary_elapsed": 435.24999999999994,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.4708268470058101
+            },
+            {
+              "arm": "suffix_labels_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 8700,
+              "transition_evaluations": 47024,
+              "oracle_evaluations": 1008,
+              "value": 679.0,
+              "clairvoyant_root_mean": 679.0,
+              "expected_boundary_elapsed": 446.5,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 4.783189737005159
+            },
+            {
+              "arm": "suffix_labels_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 2176,
+              "transition_evaluations": 47024,
+              "oracle_evaluations": 1008,
+              "value": 679.0,
+              "clairvoyant_root_mean": 679.0,
+              "expected_boundary_elapsed": 446.49999999999994,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.7345831650018226
+            }
+          ],
+          "conditional_suffix": {
+            "1614.TA.91-14-E-j23-1.6.H": [
+              {
+                "departure": 29220,
+                "canceled": false,
+                "original_arrival": 29280,
+                "split_arrival": 29280,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29700,
+                "canceled": false,
+                "original_arrival": 29700,
+                "split_arrival": 29760,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29520,
+                "canceled": false,
+                "original_arrival": 29580,
+                "split_arrival": 29580,
+                "conditional_arrival_sd": 26.58135691570773,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29760,
+                "canceled": false,
+                "original_arrival": 29820,
+                "split_arrival": 29820,
+                "conditional_arrival_sd": 26.58135691570773,
+                "valid_suffixes_capped": 33
+              }
+            ],
+            "2221.TA.91-9-I-j23-1.9.H": [
+              {
+                "departure": 30120,
+                "canceled": false,
+                "original_arrival": 30180,
+                "split_arrival": 30180,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30360,
+                "canceled": false,
+                "original_arrival": 30420,
+                "split_arrival": 30420,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30300,
+                "canceled": false,
+                "original_arrival": 30360,
+                "split_arrival": 30360,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30480,
+                "canceled": false,
+                "original_arrival": 30540,
+                "split_arrival": 30540,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              }
+            ]
+          },
+          "wall_seconds": 36.54102955300186
+        }
+      ]
+    },
+    {
+      "case": [
+        "2023-07-26",
+        0,
+        2
+      ],
+      "root_stop": 453,
+      "root_clock": 29575,
+      "goal": 3,
+      "deadline": 32700,
+      "setup_seconds": 5.3287125720016775,
+      "third": {
+        "trip": "3911.TA.92-32-G-j23-1.11.R",
+        "cid": 11130,
+        "scheduled_departure": 29820,
+        "scheduled_goal_arrival": 30300,
+        "scored_connections": 9
+      },
+      "ab_trip_ids": [
+        "2381.TA.92-32-G-j23-1.5.H",
+        "2380.TA.92-32-G-j23-1.5.H"
+      ],
+      "ab_target_ids": [
+        10616,
+        14033
+      ],
+      "banks": [
+        {
+          "bank": 0,
+          "arms": [
+            {
+              "arm": "v13",
+              "status": "complete",
+              "world_count": 16,
+              "groups": 1,
+              "information_nodes": 1582,
+              "transition_evaluations": 11680,
+              "oracle_evaluations": 176,
+              "value": 470.0,
+              "clairvoyant_root_mean": 470.0,
+              "expected_boundary_elapsed": 410.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 0.36813427400193177
+            },
+            {
+              "arm": "tail_720",
+              "status": "complete",
+              "world_count": 16,
+              "groups": 1,
+              "information_nodes": 45625,
+              "transition_evaluations": 209088,
+              "oracle_evaluations": 3072,
+              "value": 470.0,
+              "clairvoyant_root_mean": 470.0,
+              "expected_boundary_elapsed": 470.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "terminal": 1.0
+              },
+              "solver_seconds": 6.715282786004536
+            },
+            {
+              "arm": "tail_1080",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 377960,
+              "solver_seconds": 8.09779053699458
+            },
+            {
+              "arm": "r_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 6327,
+              "transition_evaluations": 46720,
+              "oracle_evaluations": 704,
+              "value": 470.0,
+              "clairvoyant_root_mean": 470.0,
+              "expected_boundary_elapsed": 410.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 0.9109309170016786
+            },
+            {
+              "arm": "r_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 4864,
+              "transition_evaluations": 46720,
+              "oracle_evaluations": 704,
+              "value": 470.0,
+              "clairvoyant_root_mean": 470.0,
+              "expected_boundary_elapsed": 410.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 0.945331052003894
+            },
+            {
+              "arm": "suffix_labels_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 6326,
+              "transition_evaluations": 46720,
+              "oracle_evaluations": 704,
+              "value": 462.5,
+              "clairvoyant_root_mean": 462.5,
+              "expected_boundary_elapsed": 402.5,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 0.9002117519994499
+            },
+            {
+              "arm": "suffix_labels_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 1584,
+              "transition_evaluations": 46720,
+              "oracle_evaluations": 704,
+              "value": 462.5,
+              "clairvoyant_root_mean": 462.5,
+              "expected_boundary_elapsed": 402.5,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 0.5861274519993458
+            }
+          ],
+          "conditional_suffix": {
+            "2381.TA.92-32-G-j23-1.5.H": [
+              {
+                "departure": 29820,
+                "canceled": false,
+                "original_arrival": 29880,
+                "split_arrival": 29880,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30060,
+                "canceled": false,
+                "original_arrival": 30180,
+                "split_arrival": 30120,
+                "conditional_arrival_sd": 26.58135691570772,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29940,
+                "canceled": false,
+                "original_arrival": 29940,
+                "split_arrival": 30000,
+                "conditional_arrival_sd": 26.581356915707715,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29820,
+                "canceled": false,
+                "original_arrival": 29940,
+                "split_arrival": 29880,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              }
+            ],
+            "2380.TA.92-32-G-j23-1.5.H": [
+              {
+                "departure": 30660,
+                "canceled": false,
+                "original_arrival": 30660,
+                "split_arrival": 30720,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30780,
+                "canceled": false,
+                "original_arrival": 30840,
+                "split_arrival": 30780,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 31140,
+                "canceled": false,
+                "original_arrival": 31200,
+                "split_arrival": 31200,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 31260,
+                "canceled": false,
+                "original_arrival": 31320,
+                "split_arrival": 31320,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              }
+            ]
+          },
+          "wall_seconds": 23.899880122000468
+        },
+        {
+          "bank": 1,
+          "arms": [
+            {
+              "arm": "v13",
+              "status": "complete",
+              "world_count": 16,
+              "groups": 1,
+              "information_nodes": 2055,
+              "transition_evaluations": 11644,
+              "oracle_evaluations": 140,
+              "value": 560.0,
+              "clairvoyant_root_mean": 560.0,
+              "expected_boundary_elapsed": 423.74999999999994,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 0.75,
+                "clock_limit": 0.25
+              },
+              "solver_seconds": 0.3858227440068731
+            },
+            {
+              "arm": "tail_720",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 285060,
+              "solver_seconds": 6.68615167500684
+            },
+            {
+              "arm": "tail_1080",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 176349,
+              "solver_seconds": 4.0645715259961435
+            },
+            {
+              "arm": "r_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 8222,
+              "transition_evaluations": 46576,
+              "oracle_evaluations": 560,
+              "value": 560.0,
+              "clairvoyant_root_mean": 560.0,
+              "expected_boundary_elapsed": 423.74999999999994,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 0.75,
+                "clock_limit": 0.25
+              },
+              "solver_seconds": 1.1964539849941502
+            },
+            {
+              "arm": "r_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 4650,
+              "transition_evaluations": 46576,
+              "oracle_evaluations": 560,
+              "value": 560.0,
+              "clairvoyant_root_mean": 560.0,
+              "expected_boundary_elapsed": 423.74999999999994,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 0.75,
+                "clock_limit": 0.25
+              },
+              "solver_seconds": 0.6499296330002835
+            },
+            {
+              "arm": "suffix_labels_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 8220,
+              "transition_evaluations": 46576,
+              "oracle_evaluations": 560,
+              "value": 567.5,
+              "clairvoyant_root_mean": 567.5,
+              "expected_boundary_elapsed": 431.24999999999994,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 0.75,
+                "clock_limit": 0.25
+              },
+              "solver_seconds": 1.1743124819986406
+            },
+            {
+              "arm": "suffix_labels_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 2056,
+              "transition_evaluations": 46576,
+              "oracle_evaluations": 560,
+              "value": 567.5,
+              "clairvoyant_root_mean": 567.5,
+              "expected_boundary_elapsed": 431.24999999999994,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 0.75,
+                "clock_limit": 0.25
+              },
+              "solver_seconds": 0.5979974329966353
+            }
+          ],
+          "conditional_suffix": {
+            "2381.TA.92-32-G-j23-1.5.H": [
+              {
+                "departure": 30000,
+                "canceled": false,
+                "original_arrival": 30000,
+                "split_arrival": 30060,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29880,
+                "canceled": false,
+                "original_arrival": 29940,
+                "split_arrival": 29940,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29520,
+                "canceled": false,
+                "original_arrival": 29520,
+                "split_arrival": 29580,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29700,
+                "canceled": false,
+                "original_arrival": 29760,
+                "split_arrival": 29760,
+                "conditional_arrival_sd": 26.581356915707715,
+                "valid_suffixes_capped": 33
+              }
+            ],
+            "2380.TA.92-32-G-j23-1.5.H": [
+              {
+                "departure": 30900,
+                "canceled": false,
+                "original_arrival": 31020,
+                "split_arrival": 30960,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 31020,
+                "canceled": false,
+                "original_arrival": 31080,
+                "split_arrival": 31140,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 31200,
+                "canceled": false,
+                "original_arrival": 31260,
+                "split_arrival": 31260,
+                "conditional_arrival_sd": 26.58135691570772,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 31020,
+                "canceled": false,
+                "original_arrival": 31080,
+                "split_arrival": 31080,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              }
+            ]
+          },
+          "wall_seconds": 20.770593893001205
+        },
+        {
+          "bank": 2,
+          "arms": [
+            {
+              "arm": "v13",
+              "status": "complete",
+              "world_count": 16,
+              "groups": 1,
+              "information_nodes": 1575,
+              "transition_evaluations": 11660,
+              "oracle_evaluations": 156,
+              "value": 605.0,
+              "clairvoyant_root_mean": 605.0,
+              "expected_boundary_elapsed": 560.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 0.21628513400355587
+            },
+            {
+              "arm": "tail_720",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 246248,
+              "solver_seconds": 6.299517328996444
+            },
+            {
+              "arm": "tail_1080",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 206012,
+              "solver_seconds": 4.445147284997802
+            },
+            {
+              "arm": "r_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 6302,
+              "transition_evaluations": 46640,
+              "oracle_evaluations": 624,
+              "value": 605.0,
+              "clairvoyant_root_mean": 605.0,
+              "expected_boundary_elapsed": 560.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 0.8577205269975821
+            },
+            {
+              "arm": "r_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 3445,
+              "transition_evaluations": 46640,
+              "oracle_evaluations": 624,
+              "value": 605.0,
+              "clairvoyant_root_mean": 605.0,
+              "expected_boundary_elapsed": 560.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 0.8661777520028409
+            },
+            {
+              "arm": "suffix_labels_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 6300,
+              "transition_evaluations": 46640,
+              "oracle_evaluations": 624,
+              "value": 612.5,
+              "clairvoyant_root_mean": 612.5,
+              "expected_boundary_elapsed": 575.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.6444105070040678
+            },
+            {
+              "arm": "suffix_labels_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 1576,
+              "transition_evaluations": 46640,
+              "oracle_evaluations": 624,
+              "value": 612.5,
+              "clairvoyant_root_mean": 612.5,
+              "expected_boundary_elapsed": 567.5,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 0.5727444020012626
+            }
+          ],
+          "conditional_suffix": {
+            "2381.TA.92-32-G-j23-1.5.H": [
+              {
+                "departure": 30000,
+                "canceled": false,
+                "original_arrival": 30060,
+                "split_arrival": 30060,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30060,
+                "canceled": false,
+                "original_arrival": 30120,
+                "split_arrival": 30120,
+                "conditional_arrival_sd": 26.58135691570772,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30060,
+                "canceled": false,
+                "original_arrival": 30120,
+                "split_arrival": 30180,
+                "conditional_arrival_sd": 26.58135691570772,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29520,
+                "canceled": false,
+                "original_arrival": 29640,
+                "split_arrival": 29580,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              }
+            ],
+            "2380.TA.92-32-G-j23-1.5.H": [
+              {
+                "departure": 30960,
+                "canceled": false,
+                "original_arrival": 31020,
+                "split_arrival": 31020,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30900,
+                "canceled": false,
+                "original_arrival": 30960,
+                "split_arrival": 30960,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30720,
+                "canceled": false,
+                "original_arrival": 30780,
+                "split_arrival": 30780,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30840,
+                "canceled": false,
+                "original_arrival": 30900,
+                "split_arrival": 30840,
+                "conditional_arrival_sd": 26.581356915707715,
+                "valid_suffixes_capped": 33
+              }
+            ]
+          },
+          "wall_seconds": 20.17249010800151
+        },
+        {
+          "bank": 3,
+          "arms": [
+            {
+              "arm": "v13",
+              "status": "complete",
+              "world_count": 16,
+              "groups": 1,
+              "information_nodes": 2174,
+              "transition_evaluations": 11644,
+              "oracle_evaluations": 140,
+              "value": 680.0,
+              "clairvoyant_root_mean": 680.0,
+              "expected_boundary_elapsed": 543.75,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 0.75,
+                "clock_limit": 0.25
+              },
+              "solver_seconds": 0.22471879899967462
+            },
+            {
+              "arm": "tail_720",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 203072,
+              "solver_seconds": 4.594731600001978
+            },
+            {
+              "arm": "tail_1080",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 189404,
+              "solver_seconds": 4.342961235000985
+            },
+            {
+              "arm": "r_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 8696,
+              "transition_evaluations": 46576,
+              "oracle_evaluations": 560,
+              "value": 680.0,
+              "clairvoyant_root_mean": 680.0,
+              "expected_boundary_elapsed": 543.75,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 0.75,
+                "clock_limit": 0.25
+              },
+              "solver_seconds": 1.1709165209977073
+            },
+            {
+              "arm": "r_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 4760,
+              "transition_evaluations": 46576,
+              "oracle_evaluations": 560,
+              "value": 680.0,
+              "clairvoyant_root_mean": 680.0,
+              "expected_boundary_elapsed": 543.75,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 0.7499999999999998,
+                "clock_limit": 0.25
+              },
+              "solver_seconds": 0.6496484410017729
+            },
+            {
+              "arm": "suffix_labels_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 8696,
+              "transition_evaluations": 46576,
+              "oracle_evaluations": 560,
+              "value": 672.5,
+              "clairvoyant_root_mean": 672.5,
+              "expected_boundary_elapsed": 536.25,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 0.75,
+                "clock_limit": 0.25
+              },
+              "solver_seconds": 0.8918611180051812
+            },
+            {
+              "arm": "suffix_labels_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 2175,
+              "transition_evaluations": 46576,
+              "oracle_evaluations": 560,
+              "value": 672.5,
+              "clairvoyant_root_mean": 672.5,
+              "expected_boundary_elapsed": 536.25,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 0.75,
+                "clock_limit": 0.25
+              },
+              "solver_seconds": 0.8567952550001792
+            }
+          ],
+          "conditional_suffix": {
+            "2381.TA.92-32-G-j23-1.5.H": [
+              {
+                "departure": 29880,
+                "canceled": false,
+                "original_arrival": 29940,
+                "split_arrival": 29880,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30000,
+                "canceled": false,
+                "original_arrival": 30060,
+                "split_arrival": 30060,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29580,
+                "canceled": false,
+                "original_arrival": 29640,
+                "split_arrival": 29640,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30120,
+                "canceled": false,
+                "original_arrival": 30180,
+                "split_arrival": 30180,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              }
+            ],
+            "2380.TA.92-32-G-j23-1.5.H": [
+              {
+                "departure": 30960,
+                "canceled": false,
+                "original_arrival": 30960,
+                "split_arrival": 31020,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30900,
+                "canceled": false,
+                "original_arrival": 30960,
+                "split_arrival": 30960,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30780,
+                "canceled": false,
+                "original_arrival": 30840,
+                "split_arrival": 30840,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30900,
+                "canceled": false,
+                "original_arrival": 30960,
+                "split_arrival": 30960,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              }
+            ]
+          },
+          "wall_seconds": 18.27447472199856
+        },
+        {
+          "bank": 4,
+          "arms": [
+            {
+              "arm": "v13",
+              "status": "complete",
+              "world_count": 16,
+              "groups": 1,
+              "information_nodes": 1511,
+              "transition_evaluations": 11648,
+              "oracle_evaluations": 144,
+              "value": 530.0,
+              "clairvoyant_root_mean": 530.0,
+              "expected_boundary_elapsed": 470.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 0.2153076719987439
+            },
+            {
+              "arm": "tail_720",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 421492,
+              "solver_seconds": 8.93082649599819
+            },
+            {
+              "arm": "tail_1080",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 145418,
+              "solver_seconds": 4.540531400998589
+            },
+            {
+              "arm": "r_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 6042,
+              "transition_evaluations": 46592,
+              "oracle_evaluations": 576,
+              "value": 530.0,
+              "clairvoyant_root_mean": 530.0,
+              "expected_boundary_elapsed": 470.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.2219376010034466
+            },
+            {
+              "arm": "r_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 4101,
+              "transition_evaluations": 46592,
+              "oracle_evaluations": 576,
+              "value": 530.0,
+              "clairvoyant_root_mean": 530.0,
+              "expected_boundary_elapsed": 470.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 0.6673510289983824
+            },
+            {
+              "arm": "suffix_labels_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 6048,
+              "transition_evaluations": 46592,
+              "oracle_evaluations": 576,
+              "value": 545.0,
+              "clairvoyant_root_mean": 545.0,
+              "expected_boundary_elapsed": 485.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 0.9468594499994651
+            },
+            {
+              "arm": "suffix_labels_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 1515,
+              "transition_evaluations": 46592,
+              "oracle_evaluations": 576,
+              "value": 552.5,
+              "clairvoyant_root_mean": 545.0,
+              "expected_boundary_elapsed": 477.5,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 0.5986055660032434
+            }
+          ],
+          "conditional_suffix": {
+            "2381.TA.92-32-G-j23-1.5.H": [
+              {
+                "departure": 30000,
+                "canceled": false,
+                "original_arrival": 30060,
+                "split_arrival": 30060,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30060,
+                "canceled": false,
+                "original_arrival": 30120,
+                "split_arrival": 30120,
+                "conditional_arrival_sd": 26.58135691570772,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30060,
+                "canceled": false,
+                "original_arrival": 30120,
+                "split_arrival": 30180,
+                "conditional_arrival_sd": 26.58135691570772,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29820,
+                "canceled": false,
+                "original_arrival": 29880,
+                "split_arrival": 29880,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              }
+            ],
+            "2380.TA.92-32-G-j23-1.5.H": [
+              {
+                "departure": 30720,
+                "canceled": false,
+                "original_arrival": 30780,
+                "split_arrival": 30780,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30960,
+                "canceled": false,
+                "original_arrival": 31080,
+                "split_arrival": 30960,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30840,
+                "canceled": false,
+                "original_arrival": 30900,
+                "split_arrival": 30900,
+                "conditional_arrival_sd": 26.581356915707715,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30720,
+                "canceled": false,
+                "original_arrival": 30780,
+                "split_arrival": 30780,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              }
+            ]
+          },
+          "wall_seconds": 24.082963605003897
+        },
+        {
+          "bank": 5,
+          "arms": [
+            {
+              "arm": "v13",
+              "status": "complete",
+              "world_count": 16,
+              "groups": 1,
+              "information_nodes": 2361,
+              "transition_evaluations": 11680,
+              "oracle_evaluations": 176,
+              "value": 320.0,
+              "clairvoyant_root_mean": 320.0,
+              "expected_boundary_elapsed": 260.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 0.2436389650029014
+            },
+            {
+              "arm": "tail_720",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 202080,
+              "solver_seconds": 5.24104270600219
+            },
+            {
+              "arm": "tail_1080",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 201617,
+              "solver_seconds": 4.729002473002765
+            },
+            {
+              "arm": "r_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 9444,
+              "transition_evaluations": 46720,
+              "oracle_evaluations": 704,
+              "value": 320.0,
+              "clairvoyant_root_mean": 320.0,
+              "expected_boundary_elapsed": 260.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.2726032289938303
+            },
+            {
+              "arm": "r_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 6880,
+              "transition_evaluations": 46720,
+              "oracle_evaluations": 704,
+              "value": 320.0,
+              "clairvoyant_root_mean": 320.0,
+              "expected_boundary_elapsed": 260.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 0.9999999999999999
+              },
+              "solver_seconds": 0.7222673409996787
+            },
+            {
+              "arm": "suffix_labels_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 9444,
+              "transition_evaluations": 46720,
+              "oracle_evaluations": 704,
+              "value": 335.0,
+              "clairvoyant_root_mean": 335.0,
+              "expected_boundary_elapsed": 275.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.566715163004119
+            },
+            {
+              "arm": "suffix_labels_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 2362,
+              "transition_evaluations": 46720,
+              "oracle_evaluations": 704,
+              "value": 335.0,
+              "clairvoyant_root_mean": 335.0,
+              "expected_boundary_elapsed": 275.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.1563333890007925
+            }
+          ],
+          "conditional_suffix": {
+            "2381.TA.92-32-G-j23-1.5.H": [
+              {
+                "departure": 29760,
+                "canceled": false,
+                "original_arrival": 29760,
+                "split_arrival": 29880,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29700,
+                "canceled": false,
+                "original_arrival": 29760,
+                "split_arrival": 29760,
+                "conditional_arrival_sd": 26.581356915707715,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29820,
+                "canceled": false,
+                "original_arrival": 29880,
+                "split_arrival": 29880,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29880,
+                "canceled": false,
+                "original_arrival": 29940,
+                "split_arrival": 29940,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              }
+            ],
+            "2380.TA.92-32-G-j23-1.5.H": [
+              {
+                "departure": 31080,
+                "canceled": false,
+                "original_arrival": 31140,
+                "split_arrival": 31140,
+                "conditional_arrival_sd": 26.581356915707715,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30960,
+                "canceled": false,
+                "original_arrival": 31020,
+                "split_arrival": 31020,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30840,
+                "canceled": false,
+                "original_arrival": 30900,
+                "split_arrival": 30840,
+                "conditional_arrival_sd": 26.581356915707715,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30840,
+                "canceled": false,
+                "original_arrival": 30900,
+                "split_arrival": 30840,
+                "conditional_arrival_sd": 26.581356915707715,
+                "valid_suffixes_capped": 33
+              }
+            ]
+          },
+          "wall_seconds": 20.87561538400041
+        },
+        {
+          "bank": 6,
+          "arms": [
+            {
+              "arm": "v13",
+              "status": "complete",
+              "world_count": 16,
+              "groups": 1,
+              "information_nodes": 2305,
+              "transition_evaluations": 11676,
+              "oracle_evaluations": 172,
+              "value": 560.0,
+              "clairvoyant_root_mean": 560.0,
+              "expected_boundary_elapsed": 335.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 0.264677715000289
+            },
+            {
+              "arm": "tail_720",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 166376,
+              "solver_seconds": 4.94898293800361
+            },
+            {
+              "arm": "tail_1080",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 70399,
+              "solver_seconds": 2.638516557002731
+            },
+            {
+              "arm": "r_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 9219,
+              "transition_evaluations": 46704,
+              "oracle_evaluations": 688,
+              "value": 560.0,
+              "clairvoyant_root_mean": 560.0,
+              "expected_boundary_elapsed": 335.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.3811659999992116
+            },
+            {
+              "arm": "r_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 6837,
+              "transition_evaluations": 46704,
+              "oracle_evaluations": 688,
+              "value": 560.0,
+              "clairvoyant_root_mean": 560.0,
+              "expected_boundary_elapsed": 335.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.0949603820045013
+            },
+            {
+              "arm": "suffix_labels_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 9220,
+              "transition_evaluations": 46704,
+              "oracle_evaluations": 688,
+              "value": 575.0,
+              "clairvoyant_root_mean": 575.0,
+              "expected_boundary_elapsed": 342.5,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.7351896519976435
+            },
+            {
+              "arm": "suffix_labels_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 2307,
+              "transition_evaluations": 46704,
+              "oracle_evaluations": 688,
+              "value": 575.0,
+              "clairvoyant_root_mean": 575.0,
+              "expected_boundary_elapsed": 342.5,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 0.9028022819984471
+            }
+          ],
+          "conditional_suffix": {
+            "2381.TA.92-32-G-j23-1.5.H": [
+              {
+                "departure": 29640,
+                "canceled": false,
+                "original_arrival": 29700,
+                "split_arrival": 29700,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29820,
+                "canceled": false,
+                "original_arrival": 29880,
+                "split_arrival": 29880,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29880,
+                "canceled": false,
+                "original_arrival": 29940,
+                "split_arrival": 29940,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30000,
+                "canceled": false,
+                "original_arrival": 30000,
+                "split_arrival": 30060,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              }
+            ],
+            "2380.TA.92-32-G-j23-1.5.H": [
+              {
+                "departure": 30840,
+                "canceled": false,
+                "original_arrival": 30900,
+                "split_arrival": 30900,
+                "conditional_arrival_sd": 26.581356915707715,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30420,
+                "canceled": false,
+                "original_arrival": 30480,
+                "split_arrival": 30480,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30720,
+                "canceled": false,
+                "original_arrival": 30780,
+                "split_arrival": 30780,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30600,
+                "canceled": false,
+                "original_arrival": 30660,
+                "split_arrival": 30660,
+                "conditional_arrival_sd": 26.581356915707715,
+                "valid_suffixes_capped": 33
+              }
+            ]
+          },
+          "wall_seconds": 17.74041349699837
+        },
+        {
+          "bank": 7,
+          "arms": [
+            {
+              "arm": "v13",
+              "status": "complete",
+              "world_count": 16,
+              "groups": 1,
+              "information_nodes": 2652,
+              "transition_evaluations": 11624,
+              "oracle_evaluations": 120,
+              "value": 680.0,
+              "clairvoyant_root_mean": 680.0,
+              "expected_boundary_elapsed": 350.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 0.3163421119970735
+            },
+            {
+              "arm": "tail_720",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 201564,
+              "solver_seconds": 5.711777407996124
+            },
+            {
+              "arm": "tail_1080",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 201744,
+              "solver_seconds": 5.625026109999453
+            },
+            {
+              "arm": "r_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 10604,
+              "transition_evaluations": 46480,
+              "oracle_evaluations": 464,
+              "value": 680.0,
+              "clairvoyant_root_mean": 680.0,
+              "expected_boundary_elapsed": 350.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.1796646299990243
+            },
+            {
+              "arm": "r_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 8364,
+              "transition_evaluations": 46480,
+              "oracle_evaluations": 464,
+              "value": 680.0,
+              "clairvoyant_root_mean": 680.0,
+              "expected_boundary_elapsed": 350.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.2313521260002744
+            },
+            {
+              "arm": "suffix_labels_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 10608,
+              "transition_evaluations": 46496,
+              "oracle_evaluations": 480,
+              "value": 680.0,
+              "clairvoyant_root_mean": 680.0,
+              "expected_boundary_elapsed": 350.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.2631620579995797
+            },
+            {
+              "arm": "suffix_labels_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 2652,
+              "transition_evaluations": 46496,
+              "oracle_evaluations": 480,
+              "value": 680.0,
+              "clairvoyant_root_mean": 680.0,
+              "expected_boundary_elapsed": 350.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 0.5917528760037385
+            }
+          ],
+          "conditional_suffix": {
+            "2381.TA.92-32-G-j23-1.5.H": [
+              {
+                "departure": 29640,
+                "canceled": false,
+                "original_arrival": 29700,
+                "split_arrival": 29700,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29580,
+                "canceled": false,
+                "original_arrival": 29640,
+                "split_arrival": 29640,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29820,
+                "canceled": false,
+                "original_arrival": 29880,
+                "split_arrival": 29880,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29760,
+                "canceled": false,
+                "original_arrival": 29820,
+                "split_arrival": 29820,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              }
+            ],
+            "2380.TA.92-32-G-j23-1.5.H": [
+              {
+                "departure": 31140,
+                "canceled": false,
+                "original_arrival": 31200,
+                "split_arrival": 31200,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30840,
+                "canceled": false,
+                "original_arrival": 30900,
+                "split_arrival": 30900,
+                "conditional_arrival_sd": 26.581356915707715,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30900,
+                "canceled": false,
+                "original_arrival": 30900,
+                "split_arrival": 30960,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30900,
+                "canceled": false,
+                "original_arrival": 30960,
+                "split_arrival": 30960,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              }
+            ]
+          },
+          "wall_seconds": 21.85566322300292
+        }
+      ]
+    },
+    {
+      "case": [
+        "2023-07-27",
+        0,
+        1
+      ],
+      "root_stop": 606,
+      "root_clock": 29297,
+      "goal": 3,
+      "deadline": 32700,
+      "setup_seconds": 5.256351333999191,
+      "third": {
+        "trip": "2277.TA.91-9-I-j23-1.10.H",
+        "cid": 10375,
+        "scheduled_departure": 29640,
+        "scheduled_goal_arrival": 29940,
+        "scored_connections": 17
+      },
+      "ab_trip_ids": [
+        "1614.TA.91-14-E-j23-1.6.H",
+        "2221.TA.91-9-I-j23-1.9.H"
+      ],
+      "ab_target_ids": [
+        9383,
+        11986
+      ],
+      "banks": [
+        {
+          "bank": 0,
+          "arms": [
+            {
+              "arm": "v13",
+              "status": "complete",
+              "world_count": 16,
+              "groups": 1,
+              "information_nodes": 2116,
+              "transition_evaluations": 11740,
+              "oracle_evaluations": 236,
+              "value": 748.0,
+              "clairvoyant_root_mean": 748.0,
+              "expected_boundary_elapsed": 477.99999999999994,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 0.3772934780063224
+            },
+            {
+              "arm": "tail_720",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 234252,
+              "solver_seconds": 6.417902341003355
+            },
+            {
+              "arm": "tail_1080",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 187662,
+              "solver_seconds": 5.997391716002312
+            },
+            {
+              "arm": "r_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 8461,
+              "transition_evaluations": 46944,
+              "oracle_evaluations": 928,
+              "value": 706.75,
+              "clairvoyant_root_mean": 706.75,
+              "expected_boundary_elapsed": 466.74999999999994,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.6034344799991231
+            },
+            {
+              "arm": "r_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 6632,
+              "transition_evaluations": 46944,
+              "oracle_evaluations": 928,
+              "value": 706.75,
+              "clairvoyant_root_mean": 706.75,
+              "expected_boundary_elapsed": 466.74999999999994,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.3409716929963906
+            },
+            {
+              "arm": "suffix_labels_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 8468,
+              "transition_evaluations": 46960,
+              "oracle_evaluations": 944,
+              "value": 770.5,
+              "clairvoyant_root_mean": 770.5,
+              "expected_boundary_elapsed": 470.49999999999994,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.109911664003448
+            },
+            {
+              "arm": "suffix_labels_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 2119,
+              "transition_evaluations": 46960,
+              "oracle_evaluations": 944,
+              "value": 770.5,
+              "clairvoyant_root_mean": 770.5,
+              "expected_boundary_elapsed": 470.49999999999994,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 0.8856468349986244
+            }
+          ],
+          "conditional_suffix": {
+            "1614.TA.91-14-E-j23-1.6.H": [
+              {
+                "departure": 29760,
+                "canceled": false,
+                "original_arrival": 29820,
+                "split_arrival": 29820,
+                "conditional_arrival_sd": 26.58135691570773,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29340,
+                "canceled": false,
+                "original_arrival": 29400,
+                "split_arrival": 29400,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29520,
+                "canceled": false,
+                "original_arrival": 29580,
+                "split_arrival": 29580,
+                "conditional_arrival_sd": 26.58135691570773,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29760,
+                "canceled": false,
+                "original_arrival": 29820,
+                "split_arrival": 29760,
+                "conditional_arrival_sd": 26.58135691570773,
+                "valid_suffixes_capped": 33
+              }
+            ],
+            "2221.TA.91-9-I-j23-1.9.H": [
+              {
+                "departure": 30240,
+                "canceled": false,
+                "original_arrival": 30300,
+                "split_arrival": 30300,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30060,
+                "canceled": false,
+                "original_arrival": 30120,
+                "split_arrival": 30180,
+                "conditional_arrival_sd": 26.58135691570772,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30540,
+                "canceled": false,
+                "original_arrival": 30600,
+                "split_arrival": 30600,
+                "conditional_arrival_sd": 26.58135691570772,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30060,
+                "canceled": false,
+                "original_arrival": 30180,
+                "split_arrival": 30180,
+                "conditional_arrival_sd": 26.58135691570772,
+                "valid_suffixes_capped": 33
+              }
+            ]
+          },
+          "wall_seconds": 22.384239133003575
+        },
+        {
+          "bank": 1,
+          "arms": [
+            {
+              "arm": "v13",
+              "status": "complete",
+              "world_count": 16,
+              "groups": 1,
+              "information_nodes": 1937,
+              "transition_evaluations": 11760,
+              "oracle_evaluations": 256,
+              "value": 688.0,
+              "clairvoyant_root_mean": 688.0,
+              "expected_boundary_elapsed": 432.99999999999994,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 0.28447193800093373
+            },
+            {
+              "arm": "tail_720",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 229468,
+              "solver_seconds": 6.429395826002292
+            },
+            {
+              "arm": "tail_1080",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 155608,
+              "solver_seconds": 4.694972659999621
+            },
+            {
+              "arm": "r_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 7744,
+              "transition_evaluations": 47024,
+              "oracle_evaluations": 1008,
+              "value": 661.75,
+              "clairvoyant_root_mean": 661.75,
+              "expected_boundary_elapsed": 350.5,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.4017583540044143
+            },
+            {
+              "arm": "r_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 6763,
+              "transition_evaluations": 47024,
+              "oracle_evaluations": 1008,
+              "value": 661.75,
+              "clairvoyant_root_mean": 661.75,
+              "expected_boundary_elapsed": 350.5,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 0.9999999999999999
+              },
+              "solver_seconds": 0.7487155680064461
+            },
+            {
+              "arm": "suffix_labels_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 7754,
+              "transition_evaluations": 47040,
+              "oracle_evaluations": 1024,
+              "value": 695.5,
+              "clairvoyant_root_mean": 695.5,
+              "expected_boundary_elapsed": 447.99999999999994,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.396606125003018
+            },
+            {
+              "arm": "suffix_labels_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 1943,
+              "transition_evaluations": 47040,
+              "oracle_evaluations": 1024,
+              "value": 695.5,
+              "clairvoyant_root_mean": 695.5,
+              "expected_boundary_elapsed": 440.49999999999994,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 0.6795646259997739
+            }
+          ],
+          "conditional_suffix": {
+            "1614.TA.91-14-E-j23-1.6.H": [
+              {
+                "departure": 29280,
+                "canceled": false,
+                "original_arrival": 29340,
+                "split_arrival": 29340,
+                "conditional_arrival_sd": 26.58135691570773,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29700,
+                "canceled": false,
+                "original_arrival": 29760,
+                "split_arrival": 29820,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29160,
+                "canceled": false,
+                "original_arrival": 29280,
+                "split_arrival": 29220,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29640,
+                "canceled": false,
+                "original_arrival": 29640,
+                "split_arrival": 29700,
+                "conditional_arrival_sd": 26.58135691570772,
+                "valid_suffixes_capped": 33
+              }
+            ],
+            "2221.TA.91-9-I-j23-1.9.H": [
+              {
+                "departure": 30000,
+                "canceled": false,
+                "original_arrival": 30060,
+                "split_arrival": 30120,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30120,
+                "canceled": false,
+                "original_arrival": 30180,
+                "split_arrival": 30240,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30120,
+                "canceled": false,
+                "original_arrival": 30180,
+                "split_arrival": 30180,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30000,
+                "canceled": false,
+                "original_arrival": 30060,
+                "split_arrival": 30060,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              }
+            ]
+          },
+          "wall_seconds": 20.824560061002558
+        },
+        {
+          "bank": 2,
+          "arms": [
+            {
+              "arm": "v13",
+              "status": "complete",
+              "world_count": 16,
+              "groups": 1,
+              "information_nodes": 3221,
+              "transition_evaluations": 11788,
+              "oracle_evaluations": 284,
+              "value": 523.0,
+              "clairvoyant_root_mean": 523.0,
+              "expected_boundary_elapsed": 238.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 0.32313805199373746
+            },
+            {
+              "arm": "tail_720",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 187525,
+              "solver_seconds": 4.418796304998978
+            },
+            {
+              "arm": "tail_1080",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 118611,
+              "solver_seconds": 4.1973929760060855
+            },
+            {
+              "arm": "r_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 12872,
+              "transition_evaluations": 47136,
+              "oracle_evaluations": 1120,
+              "value": 523.0,
+              "clairvoyant_root_mean": 523.0,
+              "expected_boundary_elapsed": 238.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.5218847280048067
+            },
+            {
+              "arm": "r_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 9387,
+              "transition_evaluations": 47136,
+              "oracle_evaluations": 1120,
+              "value": 523.0,
+              "clairvoyant_root_mean": 523.0,
+              "expected_boundary_elapsed": 238.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.0511114180044387
+            },
+            {
+              "arm": "suffix_labels_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 12884,
+              "transition_evaluations": 47152,
+              "oracle_evaluations": 1136,
+              "value": 508.0,
+              "clairvoyant_root_mean": 508.0,
+              "expected_boundary_elapsed": 230.5,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.8397993230028078
+            },
+            {
+              "arm": "suffix_labels_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 3225,
+              "transition_evaluations": 47152,
+              "oracle_evaluations": 1136,
+              "value": 507.99999999999994,
+              "clairvoyant_root_mean": 508.0,
+              "expected_boundary_elapsed": 230.5,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 0.7022029139989172
+            }
+          ],
+          "conditional_suffix": {
+            "1614.TA.91-14-E-j23-1.6.H": [
+              {
+                "departure": 29460,
+                "canceled": false,
+                "original_arrival": 29580,
+                "split_arrival": 29520,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29400,
+                "canceled": false,
+                "original_arrival": 29520,
+                "split_arrival": 29460,
+                "conditional_arrival_sd": 26.58135691570772,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29520,
+                "canceled": false,
+                "original_arrival": 29580,
+                "split_arrival": 29640,
+                "conditional_arrival_sd": 26.58135691570773,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29400,
+                "canceled": false,
+                "original_arrival": 29460,
+                "split_arrival": 29460,
+                "conditional_arrival_sd": 26.58135691570772,
+                "valid_suffixes_capped": 33
+              }
+            ],
+            "2221.TA.91-9-I-j23-1.9.H": [
+              {
+                "departure": 30480,
+                "canceled": false,
+                "original_arrival": 30540,
+                "split_arrival": 30540,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30180,
+                "canceled": false,
+                "original_arrival": 30240,
+                "split_arrival": 30180,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30180,
+                "canceled": false,
+                "original_arrival": 30240,
+                "split_arrival": 30240,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29940,
+                "canceled": false,
+                "original_arrival": 30000,
+                "split_arrival": 30000,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              }
+            ]
+          },
+          "wall_seconds": 19.535641192000185
+        },
+        {
+          "bank": 3,
+          "arms": [
+            {
+              "arm": "v13",
+              "status": "complete",
+              "world_count": 16,
+              "groups": 1,
+              "information_nodes": 3066,
+              "transition_evaluations": 11724,
+              "oracle_evaluations": 220,
+              "value": 613.0,
+              "clairvoyant_root_mean": 613.0,
+              "expected_boundary_elapsed": 343.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.1912341650022427
+            },
+            {
+              "arm": "tail_720",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 134936,
+              "solver_seconds": 3.907168149999052
+            },
+            {
+              "arm": "tail_1080",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 75875,
+              "solver_seconds": 2.7566350850029266
+            },
+            {
+              "arm": "r_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 12260,
+              "transition_evaluations": 46880,
+              "oracle_evaluations": 864,
+              "value": 590.5,
+              "clairvoyant_root_mean": 590.5,
+              "expected_boundary_elapsed": 343.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.435958000998653
+            },
+            {
+              "arm": "r_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 7280,
+              "transition_evaluations": 46880,
+              "oracle_evaluations": 864,
+              "value": 590.5,
+              "clairvoyant_root_mean": 590.5,
+              "expected_boundary_elapsed": 335.5,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.0022576980045415
+            },
+            {
+              "arm": "suffix_labels_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 12264,
+              "transition_evaluations": 46896,
+              "oracle_evaluations": 880,
+              "value": 620.5,
+              "clairvoyant_root_mean": 620.5,
+              "expected_boundary_elapsed": 343.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.6901646580008673
+            },
+            {
+              "arm": "suffix_labels_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 3070,
+              "transition_evaluations": 46896,
+              "oracle_evaluations": 880,
+              "value": 620.5,
+              "clairvoyant_root_mean": 620.5,
+              "expected_boundary_elapsed": 343.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.0216439979994902
+            }
+          ],
+          "conditional_suffix": {
+            "1614.TA.91-14-E-j23-1.6.H": [
+              {
+                "departure": 29280,
+                "canceled": false,
+                "original_arrival": 29400,
+                "split_arrival": 29340,
+                "conditional_arrival_sd": 26.58135691570773,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29340,
+                "canceled": false,
+                "original_arrival": 29400,
+                "split_arrival": 29400,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29520,
+                "canceled": false,
+                "original_arrival": 29580,
+                "split_arrival": 29580,
+                "conditional_arrival_sd": 26.58135691570773,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29520,
+                "canceled": false,
+                "original_arrival": 29580,
+                "split_arrival": 29580,
+                "conditional_arrival_sd": 26.58135691570773,
+                "valid_suffixes_capped": 33
+              }
+            ],
+            "2221.TA.91-9-I-j23-1.9.H": [
+              {
+                "departure": 30300,
+                "canceled": false,
+                "original_arrival": 30360,
+                "split_arrival": 30420,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29940,
+                "canceled": false,
+                "original_arrival": 30060,
+                "split_arrival": 29940,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30180,
+                "canceled": false,
+                "original_arrival": 30180,
+                "split_arrival": 30240,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30300,
+                "canceled": false,
+                "original_arrival": 30360,
+                "split_arrival": 30360,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              }
+            ]
+          },
+          "wall_seconds": 18.38782332700066
+        },
+        {
+          "bank": 4,
+          "arms": [
+            {
+              "arm": "v13",
+              "status": "complete",
+              "world_count": 16,
+              "groups": 1,
+              "information_nodes": 2255,
+              "transition_evaluations": 11812,
+              "oracle_evaluations": 308,
+              "value": 613.0,
+              "clairvoyant_root_mean": 613.0,
+              "expected_boundary_elapsed": 328.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 0.3000428090017522
+            },
+            {
+              "arm": "tail_720",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 94233,
+              "solver_seconds": 3.9231960590041126
+            },
+            {
+              "arm": "tail_1080",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 54526,
+              "solver_seconds": 2.1589255729995784
+            },
+            {
+              "arm": "r_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 9024,
+              "transition_evaluations": 47248,
+              "oracle_evaluations": 1232,
+              "value": 613.0,
+              "clairvoyant_root_mean": 613.0,
+              "expected_boundary_elapsed": 328.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.2062678630027222
+            },
+            {
+              "arm": "r_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 6004,
+              "transition_evaluations": 47248,
+              "oracle_evaluations": 1232,
+              "value": 613.0,
+              "clairvoyant_root_mean": 613.0,
+              "expected_boundary_elapsed": 328.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.0389636519976193
+            },
+            {
+              "arm": "suffix_labels_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 9020,
+              "transition_evaluations": 47248,
+              "oracle_evaluations": 1232,
+              "value": 620.5,
+              "clairvoyant_root_mean": 620.5,
+              "expected_boundary_elapsed": 328.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.970898050996766
+            },
+            {
+              "arm": "suffix_labels_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 2258,
+              "transition_evaluations": 47248,
+              "oracle_evaluations": 1232,
+              "value": 620.5,
+              "clairvoyant_root_mean": 620.5,
+              "expected_boundary_elapsed": 328.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 0.7827980560032302
+            }
+          ],
+          "conditional_suffix": {
+            "1614.TA.91-14-E-j23-1.6.H": [
+              {
+                "departure": 29760,
+                "canceled": false,
+                "original_arrival": 29820,
+                "split_arrival": 29820,
+                "conditional_arrival_sd": 26.58135691570773,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29580,
+                "canceled": false,
+                "original_arrival": 29580,
+                "split_arrival": 29640,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29700,
+                "canceled": false,
+                "original_arrival": 29760,
+                "split_arrival": 29760,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29580,
+                "canceled": false,
+                "original_arrival": 29640,
+                "split_arrival": 29580,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              }
+            ],
+            "2221.TA.91-9-I-j23-1.9.H": [
+              {
+                "departure": 29940,
+                "canceled": false,
+                "original_arrival": 30060,
+                "split_arrival": 30000,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30060,
+                "canceled": false,
+                "original_arrival": 30120,
+                "split_arrival": 30120,
+                "conditional_arrival_sd": 26.58135691570772,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30060,
+                "canceled": false,
+                "original_arrival": 30060,
+                "split_arrival": 30120,
+                "conditional_arrival_sd": 26.58135691570772,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30120,
+                "canceled": false,
+                "original_arrival": 30180,
+                "split_arrival": 30240,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              }
+            ]
+          },
+          "wall_seconds": 16.911588031995052
+        },
+        {
+          "bank": 5,
+          "arms": [
+            {
+              "arm": "v13",
+              "status": "complete",
+              "world_count": 16,
+              "groups": 1,
+              "information_nodes": 3584,
+              "transition_evaluations": 11792,
+              "oracle_evaluations": 288,
+              "value": 658.0,
+              "clairvoyant_root_mean": 658.0,
+              "expected_boundary_elapsed": 358.0,
+              "singleton_before_boundary_probability": 0.0625,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 0.3798371180018876
+            },
+            {
+              "arm": "tail_720",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 112821,
+              "solver_seconds": 4.5519937930002925
+            },
+            {
+              "arm": "tail_1080",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 52570,
+              "solver_seconds": 2.5106423429970164
+            },
+            {
+              "arm": "r_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 14328,
+              "transition_evaluations": 47168,
+              "oracle_evaluations": 1152,
+              "value": 620.5,
+              "clairvoyant_root_mean": 620.5,
+              "expected_boundary_elapsed": 343.0,
+              "singleton_before_boundary_probability": 0.046875,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 2.3549724589975085
+            },
+            {
+              "arm": "r_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 11220,
+              "transition_evaluations": 47168,
+              "oracle_evaluations": 1152,
+              "value": 620.5,
+              "clairvoyant_root_mean": 620.5,
+              "expected_boundary_elapsed": 343.0,
+              "singleton_before_boundary_probability": 0.046875,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.2097037290004664
+            },
+            {
+              "arm": "suffix_labels_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 14336,
+              "transition_evaluations": 47168,
+              "oracle_evaluations": 1152,
+              "value": 643.0,
+              "clairvoyant_root_mean": 643.0,
+              "expected_boundary_elapsed": 343.0,
+              "singleton_before_boundary_probability": 0.03125,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.9090464749970124
+            },
+            {
+              "arm": "suffix_labels_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 3587,
+              "transition_evaluations": 47168,
+              "oracle_evaluations": 1152,
+              "value": 643.0,
+              "clairvoyant_root_mean": 643.0,
+              "expected_boundary_elapsed": 328.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.2899815769997076
+            }
+          ],
+          "conditional_suffix": {
+            "1614.TA.91-14-E-j23-1.6.H": [
+              {
+                "departure": 29820,
+                "canceled": false,
+                "original_arrival": 29820,
+                "split_arrival": 29940,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29520,
+                "canceled": false,
+                "original_arrival": 29580,
+                "split_arrival": 29580,
+                "conditional_arrival_sd": 26.58135691570773,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29460,
+                "canceled": false,
+                "original_arrival": 29520,
+                "split_arrival": 29520,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29340,
+                "canceled": false,
+                "original_arrival": 29400,
+                "split_arrival": 29400,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              }
+            ],
+            "2221.TA.91-9-I-j23-1.9.H": [
+              {
+                "departure": 29880,
+                "canceled": false,
+                "original_arrival": 29940,
+                "split_arrival": 29940,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30360,
+                "canceled": false,
+                "original_arrival": 30420,
+                "split_arrival": 30420,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30300,
+                "canceled": false,
+                "original_arrival": 30360,
+                "split_arrival": 30360,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30360,
+                "canceled": false,
+                "original_arrival": 30420,
+                "split_arrival": 30420,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              }
+            ]
+          },
+          "wall_seconds": 21.225507324001228
+        },
+        {
+          "bank": 6,
+          "arms": [
+            {
+              "arm": "v13",
+              "status": "complete",
+              "world_count": 16,
+              "groups": 1,
+              "information_nodes": 3710,
+              "transition_evaluations": 11728,
+              "oracle_evaluations": 224,
+              "value": 583.0,
+              "clairvoyant_root_mean": 553.0,
+              "expected_boundary_elapsed": 184.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 0.29901257999881636
+            },
+            {
+              "arm": "tail_720",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 162451,
+              "solver_seconds": 5.023953308998898
+            },
+            {
+              "arm": "tail_1080",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 77360,
+              "solver_seconds": 3.3438912400015397
+            },
+            {
+              "arm": "r_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 14824,
+              "transition_evaluations": 46912,
+              "oracle_evaluations": 896,
+              "value": 583.0,
+              "clairvoyant_root_mean": 553.0,
+              "expected_boundary_elapsed": 221.3125,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.9379691229987657
+            },
+            {
+              "arm": "r_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 10574,
+              "transition_evaluations": 46912,
+              "oracle_evaluations": 896,
+              "value": 583.0,
+              "clairvoyant_root_mean": 553.0,
+              "expected_boundary_elapsed": 184.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.1608580200045253
+            },
+            {
+              "arm": "suffix_labels_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 14840,
+              "transition_evaluations": 46912,
+              "oracle_evaluations": 896,
+              "value": 583.0,
+              "clairvoyant_root_mean": 545.5,
+              "expected_boundary_elapsed": 251.125,
+              "singleton_before_boundary_probability": 0.03125,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.7047072839995963
+            },
+            {
+              "arm": "suffix_labels_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 3713,
+              "transition_evaluations": 46912,
+              "oracle_evaluations": 896,
+              "value": 583.0,
+              "clairvoyant_root_mean": 545.5,
+              "expected_boundary_elapsed": 184.0,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.274104449999868
+            }
+          ],
+          "conditional_suffix": {
+            "1614.TA.91-14-E-j23-1.6.H": [
+              {
+                "departure": 29580,
+                "canceled": false,
+                "original_arrival": 29700,
+                "split_arrival": 29640,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29460,
+                "canceled": false,
+                "original_arrival": 29520,
+                "split_arrival": 29520,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29760,
+                "canceled": false,
+                "original_arrival": 29760,
+                "split_arrival": 29820,
+                "conditional_arrival_sd": 26.58135691570773,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29340,
+                "canceled": false,
+                "original_arrival": 29400,
+                "split_arrival": 29400,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              }
+            ],
+            "2221.TA.91-9-I-j23-1.9.H": [
+              {
+                "departure": 30240,
+                "canceled": false,
+                "original_arrival": 30240,
+                "split_arrival": 30300,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30060,
+                "canceled": false,
+                "original_arrival": 30120,
+                "split_arrival": 30120,
+                "conditional_arrival_sd": 26.58135691570772,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30480,
+                "canceled": false,
+                "original_arrival": 30540,
+                "split_arrival": 30540,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29820,
+                "canceled": false,
+                "original_arrival": 29880,
+                "split_arrival": 29880,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              }
+            ]
+          },
+          "wall_seconds": 20.489837150998937
+        },
+        {
+          "bank": 7,
+          "arms": [
+            {
+              "arm": "v13",
+              "status": "complete",
+              "world_count": 16,
+              "groups": 1,
+              "information_nodes": 2518,
+              "transition_evaluations": 11744,
+              "oracle_evaluations": 240,
+              "value": 598.0,
+              "clairvoyant_root_mean": 598.0,
+              "expected_boundary_elapsed": 372.99999999999994,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.1416581500016036
+            },
+            {
+              "arm": "tail_720",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 145172,
+              "solver_seconds": 3.865741050998622
+            },
+            {
+              "arm": "tail_1080",
+              "status": "budget_exceeded",
+              "completed_groups": 0,
+              "information_nodes": 50000,
+              "transition_evaluations": 109640,
+              "solver_seconds": 4.307917705998989
+            },
+            {
+              "arm": "r_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 10068,
+              "transition_evaluations": 46960,
+              "oracle_evaluations": 944,
+              "value": 598.0,
+              "clairvoyant_root_mean": 598.0,
+              "expected_boundary_elapsed": 372.99999999999994,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.4783299419941613
+            },
+            {
+              "arm": "r_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 6630,
+              "transition_evaluations": 46960,
+              "oracle_evaluations": 944,
+              "value": 598.0,
+              "clairvoyant_root_mean": 598.0,
+              "expected_boundary_elapsed": 372.99999999999994,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 0.8449256859967136
+            },
+            {
+              "arm": "suffix_labels_revealed",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 4,
+              "information_nodes": 10072,
+              "transition_evaluations": 46976,
+              "oracle_evaluations": 960,
+              "value": 605.5,
+              "clairvoyant_root_mean": 605.5,
+              "expected_boundary_elapsed": 372.99999999999994,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 1.9578291870057
+            },
+            {
+              "arm": "suffix_labels_hidden",
+              "status": "complete",
+              "world_count": 64,
+              "groups": 1,
+              "information_nodes": 2518,
+              "transition_evaluations": 46976,
+              "oracle_evaluations": 960,
+              "value": 605.5,
+              "clairvoyant_root_mean": 605.5,
+              "expected_boundary_elapsed": 372.99999999999994,
+              "singleton_before_boundary_probability": 0.0,
+              "boundary_kind_mass": {
+                "public_boundary": 1.0
+              },
+              "solver_seconds": 0.9448970829980681
+            }
+          ],
+          "conditional_suffix": {
+            "1614.TA.91-14-E-j23-1.6.H": [
+              {
+                "departure": 29580,
+                "canceled": false,
+                "original_arrival": 29640,
+                "split_arrival": 29640,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29520,
+                "canceled": false,
+                "original_arrival": 29580,
+                "split_arrival": 29580,
+                "conditional_arrival_sd": 26.58135691570773,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29700,
+                "canceled": false,
+                "original_arrival": 29760,
+                "split_arrival": 29760,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 29640,
+                "canceled": false,
+                "original_arrival": 29700,
+                "split_arrival": 29700,
+                "conditional_arrival_sd": 26.58135691570772,
+                "valid_suffixes_capped": 33
+              }
+            ],
+            "2221.TA.91-9-I-j23-1.9.H": [
+              {
+                "departure": 30300,
+                "canceled": false,
+                "original_arrival": 30360,
+                "split_arrival": 30360,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30120,
+                "canceled": false,
+                "original_arrival": 30240,
+                "split_arrival": 30180,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30420,
+                "canceled": false,
+                "original_arrival": 30480,
+                "split_arrival": 30480,
+                "conditional_arrival_sd": 26.581356915707726,
+                "valid_suffixes_capped": 33
+              },
+              {
+                "departure": 30300,
+                "canceled": false,
+                "original_arrival": 30360,
+                "split_arrival": 30360,
+                "conditional_arrival_sd": 26.581356915707723,
+                "valid_suffixes_capped": 33
+              }
+            ]
+          },
+          "wall_seconds": 20.736908792001486
+        }
+      ]
+    }
+  ],
+  "summary": [
+    {
+      "case": [
+        "2023-07-26",
+        0,
+        1
+      ],
+      "arms": {
+        "v13": {
+          "completed": 8,
+          "attempted": 8,
+          "total_solver_seconds": 7.331166964992008,
+          "mean_complete_value": 654.625
+        },
+        "tail_720": {
+          "completed": 0,
+          "attempted": 8,
+          "total_solver_seconds": 93.97932790999766,
+          "mean_complete_value": null
+        },
+        "tail_1080": {
+          "completed": 0,
+          "attempted": 8,
+          "total_solver_seconds": 62.360603352004546,
+          "mean_complete_value": null
+        },
+        "r_revealed": {
+          "completed": 8,
+          "attempted": 8,
+          "total_solver_seconds": 22.882171471013862,
+          "mean_complete_value": 643.375
+        },
+        "r_hidden": {
+          "completed": 8,
+          "attempted": 8,
+          "total_solver_seconds": 14.174077499992563,
+          "mean_complete_value": 643.375
+        },
+        "suffix_labels_revealed": {
+          "completed": 8,
+          "attempted": 8,
+          "total_solver_seconds": 21.738868838998314,
+          "mean_complete_value": 653.6875
+        },
+        "suffix_labels_hidden": {
+          "completed": 8,
+          "attempted": 8,
+          "total_solver_seconds": 10.413241497990384,
+          "mean_complete_value": 653.6875
+        }
+      },
+      "comparisons": {
+        "tail_720_minus_v13": {
+          "pairs": 0,
+          "differences": [],
+          "same_realized_worlds": true,
+          "mean_difference": null
+        },
+        "tail_1080_minus_v13": {
+          "pairs": 0,
+          "differences": [],
+          "same_realized_worlds": true,
+          "mean_difference": null
+        },
+        "tail_1080_minus_tail_720": {
+          "pairs": 0,
+          "differences": [],
+          "same_realized_worlds": true,
+          "mean_difference": null
+        },
+        "r_hidden_minus_r_revealed": {
+          "pairs": 8,
+          "differences": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "same_realized_worlds": true,
+          "mean_difference": 0.0
+        },
+        "suffix_labels_hidden_minus_suffix_labels_revealed": {
+          "pairs": 8,
+          "differences": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "same_realized_worlds": true,
+          "mean_difference": 0.0
+        },
+        "suffix_labels_hidden_minus_v13": {
+          "pairs": 8,
+          "differences": [
+            15.0,
+            0.0,
+            -22.5,
+            0.0,
+            15.0,
+            -30.0,
+            0.0,
+            15.0
+          ],
+          "same_realized_worlds": false,
+          "mean_difference": -0.9375
+        }
+      },
+      "v13_first_visible_same_world_gaps": {
+        "v13": {
+          "pairs": 8,
+          "gaps": [
+            0.0,
+            412.5,
+            131.25,
+            195.0,
+            105.0,
+            247.5,
+            30.0,
+            138.75
+          ],
+          "mean_gap": 157.5,
+          "mean_gap_beyond_60": 97.5
+        },
+        "tail_720": {
+          "pairs": 0,
+          "gaps": [],
+          "mean_gap": null,
+          "mean_gap_beyond_60": null
+        },
+        "tail_1080": {
+          "pairs": 0,
+          "gaps": [],
+          "mean_gap": null,
+          "mean_gap_beyond_60": null
+        }
+      },
+      "distinct_operating_departure_conditions": 49,
+      "singleton_arrival_conditions_v13": 43,
+      "singleton_arrival_conditions_split": 26,
+      "operating_cut_anchors": 64,
+      "anchors_exceeding_exact_suffix_limit": 64,
+      "mean_original_law_conditional_arrival_sd": 26.581356915707723,
+      "same_cut_changed_arrival": 22
+    },
+    {
+      "case": [
+        "2023-07-26",
+        0,
+        2
+      ],
+      "arms": {
+        "v13": {
+          "completed": 8,
+          "attempted": 8,
+          "total_solver_seconds": 2.234927415011043,
+          "mean_complete_value": 550.625
+        },
+        "tail_720": {
+          "completed": 1,
+          "attempted": 8,
+          "total_solver_seconds": 49.12831293800991,
+          "mean_complete_value": 470.0
+        },
+        "tail_1080": {
+          "completed": 0,
+          "attempted": 8,
+          "total_solver_seconds": 38.48354712399305,
+          "mean_complete_value": null
+        },
+        "r_revealed": {
+          "completed": 8,
+          "attempted": 8,
+          "total_solver_seconds": 9.191393409986631,
+          "mean_complete_value": 550.625
+        },
+        "r_hidden": {
+          "completed": 8,
+          "attempted": 8,
+          "total_solver_seconds": 6.827017756011628,
+          "mean_complete_value": 550.625
+        },
+        "suffix_labels_revealed": {
+          "completed": 8,
+          "attempted": 8,
+          "total_solver_seconds": 10.122722182008147,
+          "mean_complete_value": 556.25
+        },
+        "suffix_labels_hidden": {
+          "completed": 8,
+          "attempted": 8,
+          "total_solver_seconds": 5.8631586550036445,
+          "mean_complete_value": 557.1875
+        }
+      },
+      "comparisons": {
+        "tail_720_minus_v13": {
+          "pairs": 1,
+          "differences": [
+            0.0
+          ],
+          "same_realized_worlds": true,
+          "mean_difference": 0.0
+        },
+        "tail_1080_minus_v13": {
+          "pairs": 0,
+          "differences": [],
+          "same_realized_worlds": true,
+          "mean_difference": null
+        },
+        "tail_1080_minus_tail_720": {
+          "pairs": 0,
+          "differences": [],
+          "same_realized_worlds": true,
+          "mean_difference": null
+        },
+        "r_hidden_minus_r_revealed": {
+          "pairs": 8,
+          "differences": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "same_realized_worlds": true,
+          "mean_difference": 0.0
+        },
+        "suffix_labels_hidden_minus_suffix_labels_revealed": {
+          "pairs": 8,
+          "differences": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            7.5,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "same_realized_worlds": true,
+          "mean_difference": 0.9375
+        },
+        "suffix_labels_hidden_minus_v13": {
+          "pairs": 8,
+          "differences": [
+            -7.5,
+            7.5,
+            7.5,
+            -7.5,
+            22.5,
+            15.0,
+            15.0,
+            0.0
+          ],
+          "same_realized_worlds": false,
+          "mean_difference": 6.5625
+        }
+      },
+      "v13_first_visible_same_world_gaps": {
+        "v13": {
+          "pairs": 8,
+          "gaps": [
+            0.0,
+            228.75,
+            183.75,
+            97.5,
+            0.0,
+            0.0,
+            78.75,
+            405.0
+          ],
+          "mean_gap": 124.21875,
+          "mean_gap_beyond_60": 64.21875
+        },
+        "tail_720": {
+          "pairs": 1,
+          "gaps": [
+            0.0
+          ],
+          "mean_gap": 0.0,
+          "mean_gap_beyond_60": -60.0
+        },
+        "tail_1080": {
+          "pairs": 0,
+          "gaps": [],
+          "mean_gap": null,
+          "mean_gap_beyond_60": null
+        }
+      },
+      "distinct_operating_departure_conditions": 56,
+      "singleton_arrival_conditions_v13": 54,
+      "singleton_arrival_conditions_split": 36,
+      "operating_cut_anchors": 64,
+      "anchors_exceeding_exact_suffix_limit": 64,
+      "mean_original_law_conditional_arrival_sd": 26.581356915707723,
+      "same_cut_changed_arrival": 21
+    },
+    {
+      "case": [
+        "2023-07-27",
+        0,
+        1
+      ],
+      "arms": {
+        "v13": {
+          "completed": 8,
+          "attempted": 8,
+          "total_solver_seconds": 4.296688290007296,
+          "mean_complete_value": 628.0
+        },
+        "tail_720": {
+          "completed": 0,
+          "attempted": 8,
+          "total_solver_seconds": 38.5381468340056,
+          "mean_complete_value": null
+        },
+        "tail_1080": {
+          "completed": 0,
+          "attempted": 8,
+          "total_solver_seconds": 29.96776929900807,
+          "mean_complete_value": null
+        },
+        "r_revealed": {
+          "completed": 8,
+          "attempted": 8,
+          "total_solver_seconds": 12.940574950000155,
+          "mean_complete_value": 612.0625
+        },
+        "r_hidden": {
+          "completed": 8,
+          "attempted": 8,
+          "total_solver_seconds": 8.397507464011142,
+          "mean_complete_value": 612.0625
+        },
+        "suffix_labels_revealed": {
+          "completed": 8,
+          "attempted": 8,
+          "total_solver_seconds": 13.578962767009216,
+          "mean_complete_value": 630.8125
+        },
+        "suffix_labels_hidden": {
+          "completed": 8,
+          "attempted": 8,
+          "total_solver_seconds": 7.5808395389976795,
+          "mean_complete_value": 630.8125
+        }
+      },
+      "comparisons": {
+        "tail_720_minus_v13": {
+          "pairs": 0,
+          "differences": [],
+          "same_realized_worlds": true,
+          "mean_difference": null
+        },
+        "tail_1080_minus_v13": {
+          "pairs": 0,
+          "differences": [],
+          "same_realized_worlds": true,
+          "mean_difference": null
+        },
+        "tail_1080_minus_tail_720": {
+          "pairs": 0,
+          "differences": [],
+          "same_realized_worlds": true,
+          "mean_difference": null
+        },
+        "r_hidden_minus_r_revealed": {
+          "pairs": 8,
+          "differences": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "same_realized_worlds": true,
+          "mean_difference": 0.0
+        },
+        "suffix_labels_hidden_minus_suffix_labels_revealed": {
+          "pairs": 8,
+          "differences": [
+            0.0,
+            0.0,
+            -5.684341886080802e-14,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "same_realized_worlds": true,
+          "mean_difference": -7.105427357601002e-15
+        },
+        "suffix_labels_hidden_minus_v13": {
+          "pairs": 8,
+          "differences": [
+            22.5,
+            7.5,
+            -15.000000000000057,
+            7.5,
+            7.5,
+            -15.0,
+            0.0,
+            7.5
+          ],
+          "same_realized_worlds": false,
+          "mean_difference": 2.812499999999993
+        }
+      },
+      "v13_first_visible_same_world_gaps": {
+        "v13": {
+          "pairs": 8,
+          "gaps": [
+            97.5,
+            247.5,
+            382.5,
+            262.5,
+            60.0,
+            131.25,
+            180.0,
+            0.0
+          ],
+          "mean_gap": 170.15625,
+          "mean_gap_beyond_60": 110.15625
+        },
+        "tail_720": {
+          "pairs": 0,
+          "gaps": [],
+          "mean_gap": null,
+          "mean_gap_beyond_60": null
+        },
+        "tail_1080": {
+          "pairs": 0,
+          "gaps": [],
+          "mean_gap": null,
+          "mean_gap_beyond_60": null
+        }
+      },
+      "distinct_operating_departure_conditions": 52,
+      "singleton_arrival_conditions_v13": 48,
+      "singleton_arrival_conditions_split": 28,
+      "operating_cut_anchors": 64,
+      "anchors_exceeding_exact_suffix_limit": 64,
+      "mean_original_law_conditional_arrival_sd": 26.581356915707723,
+      "same_cut_changed_arrival": 25
+    }
+  ]
+}

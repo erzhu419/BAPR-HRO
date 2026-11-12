@@ -1,0 +1,227 @@
+{
+  "source": "experiments/reconstruction_v13/factored_results.json",
+  "alpha_per_root": 0.008333333333333333,
+  "scope": "Fixed comparison of methods on the original V13 product banks only. Each method uses the prior per-root alpha allocation separately; the smaller limit is not selected as a combined claim.",
+  "estimand": "Delta=U-Z on one matched independent outer bank. The 4x4 rows share factors. Under the frozen model and unbiased fixed-policy evaluation, E[U]=J_F. The admissible information relaxation and exact empirical solve give E[Z]<=V*. The policy remains feasible in each bank, so 0<=Delta<=cap and E[Delta] upper bounds J_F-V*.",
+  "precision": "Extra outer banks narrow uncertainty about E[Delta], without changing its inner-bank or information-relaxation bias. The best-case sample counts are necessary under the loss range alone, for an all-zero tape, and do not project a benefit or specify a data collection target.",
+  "rows": [
+    {
+      "case": [
+        "2023-07-26",
+        0,
+        1
+      ],
+      "independent_banks": 8,
+      "dependent_rows_per_bank": 16,
+      "cap": 3394,
+      "per_bank_policy_loss": [
+        514.0,
+        1046.5,
+        780.25,
+        1054.0,
+        829.0,
+        821.5,
+        649.0,
+        802.75
+      ],
+      "per_bank_relaxation_value": [
+        514.0,
+        634.0,
+        649.0,
+        859.0,
+        724.0,
+        574.0,
+        619.0,
+        664.0
+      ],
+      "per_bank_delta": [
+        0.0,
+        412.5,
+        131.25,
+        195.0,
+        105.0,
+        247.5,
+        30.0,
+        138.75
+      ],
+      "sample_mean_delta": 157.5,
+      "sample_variance_delta": 17055.803571428572,
+      "original_mean_relaxation": 654.625,
+      "original_relaxation_lower_limit": 351.9547107532853,
+      "original_relaxation_statistical_margin": 302.6702892467147,
+      "paired_existing_upper": 1637.0446777135367,
+      "paired_predictable_eb": {
+        "upper": 2637.462850759426,
+        "predictable_bet_weights": [
+          0.9,
+          0.9,
+          0.9,
+          0.9,
+          0.9,
+          0.9,
+          0.9,
+          0.9
+        ]
+      },
+      "extra_upper_margin_existing": 1479.5446777135367,
+      "extra_upper_margin_eb": 2479.962850759426,
+      "best_case_outer_n_necessary": 269
+    },
+    {
+      "case": [
+        "2023-07-26",
+        0,
+        2
+      ],
+      "independent_banks": 8,
+      "dependent_rows_per_bank": 16,
+      "cap": 3125,
+      "per_bank_policy_loss": [
+        470.0,
+        788.75,
+        788.75,
+        777.5,
+        530.0,
+        320.0,
+        638.75,
+        1085.0
+      ],
+      "per_bank_relaxation_value": [
+        470.0,
+        560.0,
+        605.0,
+        680.0,
+        530.0,
+        320.0,
+        560.0,
+        680.0
+      ],
+      "per_bank_delta": [
+        0.0,
+        228.75,
+        183.75,
+        97.5,
+        0.0,
+        0.0,
+        78.75,
+        405.0
+      ],
+      "sample_mean_delta": 124.21875,
+      "sample_variance_delta": 20340.15066964286,
+      "original_mean_relaxation": 550.625,
+      "original_relaxation_lower_limit": 292.15607290680055,
+      "original_relaxation_statistical_margin": 258.46892709319945,
+      "paired_existing_upper": 1496.4782657314572,
+      "paired_predictable_eb": {
+        "upper": 2416.026358134699,
+        "predictable_bet_weights": [
+          0.9,
+          0.9,
+          0.9,
+          0.9,
+          0.9,
+          0.9,
+          0.9,
+          0.9
+        ]
+      },
+      "extra_upper_margin_existing": 1372.2595157314572,
+      "extra_upper_margin_eb": 2291.807608134699,
+      "best_case_outer_n_necessary": 247
+    },
+    {
+      "case": [
+        "2023-07-27",
+        0,
+        1
+      ],
+      "independent_banks": 8,
+      "dependent_rows_per_bank": 16,
+      "cap": 3403,
+      "per_bank_policy_loss": [
+        845.5,
+        935.5,
+        905.5,
+        875.5,
+        673.0,
+        789.25,
+        763.0,
+        598.0
+      ],
+      "per_bank_relaxation_value": [
+        748.0,
+        688.0,
+        523.0,
+        613.0,
+        613.0,
+        658.0,
+        583.0,
+        598.0
+      ],
+      "per_bank_delta": [
+        97.5,
+        247.5,
+        382.5,
+        262.5,
+        60.0,
+        131.25,
+        180.0,
+        0.0
+      ],
+      "sample_mean_delta": 170.15625,
+      "sample_variance_delta": 15368.052455357143,
+      "original_mean_relaxation": 628.0,
+      "original_relaxation_lower_limit": 339.3866436891258,
+      "original_relaxation_statistical_margin": 288.6133563108742,
+      "paired_existing_upper": 1647.8923504542909,
+      "paired_predictable_eb": {
+        "upper": 2647.166307122701,
+        "predictable_bet_weights": [
+          0.9,
+          0.9,
+          0.9,
+          0.9,
+          0.9,
+          0.9,
+          0.9,
+          0.9
+        ]
+      },
+      "extra_upper_margin_existing": 1477.7361004542909,
+      "extra_upper_margin_eb": 2477.010057122701,
+      "best_case_outer_n_necessary": 270
+    }
+  ],
+  "bernoulli_exact_checks": {
+    "alpha": 0.2,
+    "budget": 8,
+    "rows": [
+      {
+        "null_mean": 0.05,
+        "probability_any_prefix_rejects": 0.0001316863671875
+      },
+      {
+        "null_mean": 0.25,
+        "probability_any_prefix_rejects": 0.004638671875
+      },
+      {
+        "null_mean": 0.5,
+        "probability_any_prefix_rejects": 0.03125
+      },
+      {
+        "null_mean": 0.75,
+        "probability_any_prefix_rejects": 0.0
+      },
+      {
+        "null_mean": 0.95,
+        "probability_any_prefix_rejects": 0.0
+      }
+    ],
+    "adaptive_probe": {
+      "budget": 512,
+      "step": 16,
+      "quiet_weight": 0.9,
+      "varied_weight": 0.2511777276909587
+    }
+  }
+}
