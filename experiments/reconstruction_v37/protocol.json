@@ -1,0 +1,42 @@
+{
+  "stage": "V37: complete-continuation checks at cheap-control agreement states",
+  "frozen_before": "Any V37 conditional sampling or policy replay",
+  "fixed_model": "V36 SingleMessageHistory, V35 fitted_emission.json and V34 physical model_fit.json, without any refit or new message rule",
+  "fixed_context": "All 72 V34 roots, actual endpoints, menus, MCT, deadlines and legitimate real-time public message streams",
+  "reference_panel": {
+    "source": "V36 combined_rolling public-message traces, all roots",
+    "onboard_states": 144,
+    "eligible_states": 142,
+    "selection": "Every reached onboard state whose current ride has a retained exit after the current arrival. No score-margin, forecast-value, loss or estimated-benefit filter.",
+    "structural_exclusions": "Two final retained-exit states cannot continue to a later retained exit; they remain in census.json and are not sampled as meaningful two-action decisions.",
+    "agreement": "All 144 original onboard public states and actions agree with the V36 nominal and old disagreement-triggered rollout controls; verify against saved traces.",
+    "reference_call_index": "Chronological eligible onboard ordinal within each root, starting at zero"
+  },
+  "conditional_evaluation": {
+    "worlds_per_state": 128,
+    "reference_seed": "37050 + 1000*root_index + reference_call_index",
+    "new_policy_state_seed": "37050 + 1000*root_index + actual_eligible_call_index",
+    "actions": "The original combined current action is base; the other of alight/continue is alternative. Nominal current action is diagnostic only.",
+    "physical_sampling": "One conditional physical trajectory per trip per world, shared by both current actions. Preserve the frozen single-message model and all raw public information.",
+    "continuation": "After the forced current action, both sides execute the original combined_rolling continuation with new own/local observations, repeated alighting and tail choices. No recursive rollout. Received-message snapshot is frozen; future archive messages are not passed to hypothetical worlds.",
+    "off_grid": "Known receipts retain their observed clocks; incompatible future draws keep their original probability weight as unresolved. No clipping, shifting, resampling or conversion to travel failure.",
+    "decision": "D=alternative loss minus base loss. Unresolved action losses range over [0,deadline-current_clock]. Switch only if the upper endpoint of the full-bank empirical mean-D interval is strictly negative; otherwise retain base. Report complete-pair Monte Carlo SE separately.",
+    "scope": "The empirical missing-outcome interval is not a population confidence or regret certificate. Current snapshot simulation does not give a future-message optimum.",
+    "budget": "One 128-world bank for each of the 142 frozen reference states, then one bank for each new eligible public state actually reached in the single 72-root policy replay. No repeats, retries, refinement, new seeds for the same saved state or outcome-based continuation of the study."
+  },
+  "receipt_reuse": {
+    "rule": "Within the same root, compare complete semantic state dictionaries directly: recursive ride/menu structure, clock, full raw public history, base/alternative/nominal actions, world count and fixed model/continuation. Do not match only the current selected forecast or use hashes.",
+    "seed": "A matching saved reference/policy state keeps the seed assigned to its first bank, even if the current policy reaches it at a different eligible-call ordinal. A genuinely new state uses the declared current ordinal seed. Do not choose among receipts by their estimated gain.",
+    "persistence": "Save each newly completed bank immediately. Existing receipts and completed root replays are reused. Reference receipts and new policy receipts remain separate.",
+    "accounting": "Report actual executed CPU and computationally charged control CPU. Charged CPU equals current measured full control CPU plus original conditional-evaluation CPU for every reused bank; new bank CPU is already measured and is not added twice. Cold per-state reference timing may conservatively exceed an online warm-state evaluation."
+  },
+  "policy": {
+    "name": "onboard_complete_continuation_rollout",
+    "rule": "At every actually reached structurally eligible onboard decision, perform/reuse the same current-action comparison regardless of cheap-rule agreement. At the last retained exit keep the base decision; at platforms use the original combined rule.",
+    "evaluation": "Exactly one replay for each of all 72 roots, preserving all wins, losses, ties and unresolved cases. Reuse V36 three-controller and V34 fixed own-only nominal physical results as comparisons.",
+    "timing": "Cold full control model/history setup, both cheap diagnostic scores, all sampling and continuations, receipt matching and actual action processing charged; common input loading/graph preparation separately reported. Physical quality still uses logical clocks."
+  },
+  "interpretation": "This fills a coverage gap in a standard rollout baseline. It does not by itself introduce a new algorithm. Model-conditional ranking, actual trajectory gains and computational value are separate findings. Zero gains retain the negative result rather than authorizing a larger search.",
+  "stop": "Complete the reference census, all frozen state checks, the one fixed all-root policy replay, tests and concise report. Do not add a message variant, increase samples or build a larger DP in this stage.",
+  "data_status": "Existing development dates and pruned menus, not independent scientific confirmation. Local artifacts only; no server data transfer."
+}
