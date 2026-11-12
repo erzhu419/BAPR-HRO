@@ -2,7 +2,8 @@ import numpy as np
 import pytest
 
 from src.full_menu_opportunity import FullMenuOpportunity
-from src.plan_waiting_controls import CombinedWaitingOpportunity, SchedulePriority, SingleTargetOpportunity
+from src.plan_waiting_controls import (CombinedWaitingOpportunity, SchedulePriority,
+                                      SingleTargetOpportunity, TwoTargetOpportunity)
 
 
 class Scores:
@@ -96,3 +97,33 @@ def test_combined_waiting_keeps_complementary_rescue_and_single_target_advantage
     choice, receipt = combined.choose((0,), (), 10)
     assert choice is None
     assert receipt['single_wait'] == 40. and receipt['first_offer_wait'] == 90.
+
+
+def test_two_target_refusals_improve_combined_wait_and_retarget_after_public_receipts():
+    single = make({0: ([5], [1.], 0.), 1: ([20], [.5], .5),
+                   2: ([10, 30], [.5, .5], 0.)}, {0: 55., 1: 20., 2: 70.})
+    combined = CombinedWaitingOpportunity(single)
+    pair = TwoTargetOpportunity(combined)
+    assert combined.choose((0,), (), 5)[0] == 0
+    action, receipt = pair.choose((0,), (), 5)
+    # If vehicle2 appears at10, decline it and receive mean60 from vehicle1.
+    # Otherwise take vehicle1 at20 if present, then use vehicle2 at30.
+    assert receipt['wait'] == .5*60.+.5*(.5*20.+.5*70.) == 52.5
+    assert receipt['combined_wait'] == 57.5
+    assert receipt['best_pair'] == (1, 2) and action is None
+    assert pair.choose((2,), {0}, 10)[0] is None
+    assert pair.choose((1,), {0, 2}, 20)[0] == 1
+    # A public cancellation of1 makes the currently visible2 acceptable.
+    assert pair.choose((2,), {0, 1}, 10)[0] == 2
+
+
+def test_two_target_subset_keeps_unobserved_past_and_shared_board_preparation():
+    single = make({0: ([10], [1.], 0.), 1: ([0, 20], [.5, .5], 0.),
+                   2: ([30], [.5], .5)}, {0: 50., 1: 30., 2: 60.}, entry=5, ready=5)
+    pair = TwoTargetOpportunity(CombinedWaitingOpportunity(single))
+    # Half the worlds retain unseen past1;2 is then an optional fallback.
+    # The other half take1. Unknown past is not evidence of a future arrival.
+    assert pair.wait_score(10, {0}) == .5*30.+.5*(.5*60.+.5*100.) == 55.
+    assert pair.choose((0,), (), 10)[0] == 0
+    assert all(dp.reference.marks is single.reference.marks for _, _, dp in pair.pairs)
+    assert pair.wait_score(35, {0, 1, 2}) == 100.

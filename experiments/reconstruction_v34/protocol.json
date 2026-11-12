@@ -1,0 +1,75 @@
+{
+  "stage": "V34 timestamped-message natural decision discovery",
+  "main_dates": [
+    "2023-10-25",
+    "2023-10-26",
+    "2023-10-27",
+    "2023-10-28",
+    "2023-10-30",
+    "2023-10-31"
+  ],
+  "cohort": "Development discovery. Prior use of these dates is retained; none is called independent confirmation.",
+  "static_feed": "Existing Swiss/Zurich feed_version 20231024; main dates are strictly later. Earlier dates remain source-coverage inventory only.",
+  "model_source": "../reconstruction_v5/calibration_frozen_fit.json:evolving_fit",
+  "model": "Existing rail EvolvingTripBelief, 60-second original DELAYS support, independent physical vehicle chains, existing 2023-10-01/02 fit and cancel_persistence=0.9. No refitting to discovery outcomes.",
+  "numeric_messages": "Latest receipt per endpoint replaces prior forecast. Existing Gaussian emission with sd=max(30,60*training route std), own observed endpoint overrides its forecast. This noise model is declared, not calibrated to these forecast errors.",
+  "message_clock": "max(archive capture, feed header, individual TripUpdate timestamp); 10-minute archived capture sampling, 07:00 through 09:40. Future receipts never enter current choices.",
+  "future_messages": "No generative law for future message revisions is assumed. Conditional scores hold the currently received forecast snapshot; actual replay updates at subsequent decision times. Exact references can only cover that declared conditional problem.",
+  "public_observations": "Own reached departures/arrivals and local departures observed only during each platform visit; past-visit absence windows stop at departure. All controls share history and current messages.",
+  "structure": {
+    "seed": 20261112,
+    "first_departure_window": [
+      28200,
+      30600
+    ],
+    "horizon": 3600,
+    "max_first_legs": 8,
+    "max_tail_legs": 8,
+    "tail_first_wait": 900,
+    "services_per_route": 2,
+    "max_tail_rides": 2,
+    "max_hubs": 99,
+    "max_first_cids_per_hub": 4,
+    "max_selected_per_day": 12
+  },
+  "selection": "Enumerate one earliest in-window departure per physical trip and all qualifying goals using schedule-only V32 dual-hub/downstream-only topology. Save the full candidate catalogue before eligibility assessment. Keep roots with complete consistent endpoint labels for the entire retained menu and a relevant future-tail numeric message received by the first irreversible arrival; selection uses label coverage and message timing, never travel loss, forecast value or algorithm advantage. Round-robin direct/shared/two-transfer layers in fixed candidate order, one root per first vehicle and route/OD, at most twelve per day.",
+  "menu": "Every retained first- and subsequent-vehicle exit and variant is common and fixed; no route deleted after outcomes. Original GTFS max-stated station MCT with existing fallback120.",
+  "methods": {
+    "rolling_nominal": [
+      "nominal",
+      "nominal"
+    ],
+    "single_rolling": [
+      "rolling_fixed",
+      "single"
+    ],
+    "combined_rolling": [
+      "rolling_fixed",
+      "combined"
+    ],
+    "pair_rolling": [
+      "rolling_fixed",
+      "pair"
+    ],
+    "pair_rollout": [
+      "one_step_rollout",
+      "pair"
+    ],
+    "pair_stopping": [
+      "optimal",
+      "pair"
+    ]
+  },
+  "primary": "combined_rolling",
+  "paired_information_arms": [
+    "public_messages",
+    "own_and_local_only"
+  ],
+  "quality": "Truncated actual journey loss, public action differences and unresolved/support failures, paired by frozen root. Information gain and control gain are reported separately.",
+  "conditional_reference": "At most four earliest distinct public-action divergences between the cheap frontier and deeper control. Current-snapshot original-law or independently sampled conditional continuation checks retain both signs; no actual future enters reference decisions.",
+  "reference_worlds": 128,
+  "reference_seed": 34002,
+  "admission": "Reconstruction requires an interpretable natural residual beyond all common-information cheap controls. A forecast benefit shared by cheap methods, a repaired missing action, or hindsight alone does not admit a new algorithm.",
+  "timing": "Charge model/posterior, message application, all tail compilation and decisions; report process CPU and wall separately. Logical-clock action quality is a discovery probe; computational feasibility must be evaluated before production claims.",
+  "service_messages": "Current CANCELED/DELETED trip or SKIPPED endpoint notices mask unobserved future opportunities in planning until a later SCHEDULED/FORECAST revision. An already observed operating/locally boardable event overrides the prior notice. Announcements never rewrite physical actual endpoints. This is a common operational planning rule, not calibrated physical cancellation evidence."
+}

@@ -23,11 +23,13 @@ class FullMenuOpportunity:
         self.entry, self.ready, self.deadline = entry, ready, deadline
         self.cids = tuple(ranks)
         self.distributions, self.cdfs, self.absent, self.marks = {}, {}, {}, {}
+        self.mass_tails = {}
         for cid in self.cids:
             times, mass, cancel = compiler.departure_distribution(cid)
             times, mass = np.asarray(times), np.asarray(mass)
             self.distributions[cid] = times, mass, cancel
             self.cdfs[cid] = np.r_[0., np.cumsum(mass)]
+            self.mass_tails[cid] = np.r_[np.cumsum(mass[::-1])[::-1], 0.]
             self.absent[cid] = float(cancel+mass[times < entry].sum())
             legal = (times >= ready) & (times < deadline) & (mass > 0)
             clocks = times[legal]
@@ -52,8 +54,9 @@ class FullMenuOpportunity:
         unseen = tuple(cid for cid in self.cids if cid not in seen)
         survival = {}
         for cid in unseen:
-            times, mass, _ = self.distributions[cid]
-            survival[cid] = self.absent[cid]+float(mass[times > clock].sum())
+            times, _, _ = self.distributions[cid]
+            after = np.searchsorted(times, clock, side='right')
+            survival[cid] = self.absent[cid]+self.mass_tails[cid][after]
         active = tuple(cid for cid in unseen if survival[cid] > 0)
         gain = 0.
         for cid in active:
@@ -65,11 +68,12 @@ class FullMenuOpportunity:
                 if other == cid:
                     continue
                 other_times, _, _ = self.distributions[other]
-                cdf = self.cdfs[other]
-                lower = cdf[np.searchsorted(other_times, clock, side='right')]
                 side = 'right' if self.ranks[other] < self.ranks[cid] else 'left'
-                upper = cdf[np.searchsorted(other_times, times, side=side)]
-                selected = selected*(1.-np.maximum(0., upper-lower)/survival[other])
+                # Sum the nonnegative complement directly. Subtracting two
+                # nearly-one CDFs loses rare surviving atoms before dividing
+                # by their tiny conditional survival probability.
+                later = self.mass_tails[other][np.searchsorted(other_times, times, side=side)]
+                selected = selected*(self.absent[other]+later)/survival[other]
             gain += float(selected @ (self.deadline-scores[future]))
         return float(self.deadline-gain)
 

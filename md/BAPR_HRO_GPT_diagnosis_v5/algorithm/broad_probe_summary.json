@@ -1,0 +1,141 @@
+{
+  "scope": "Bounded schedule-only discovery outside the original four OD pairs.\n\nSelection accesses only static timetable fields. Actual metadata is loaded only\nafter the selected root catalog is saved. Development discovery, not independent\nconfirmation, not a city-wide prevalence estimate. Repository is read-only.\n",
+  "protocol": {
+    "seed": 20261112,
+    "day": "2023-07-17",
+    "start": 28500,
+    "deadline": 30900,
+    "max_new_od": 150,
+    "max_roots": 12,
+    "min_K": 2,
+    "max_K": 6,
+    "minimum_first_routes": 2,
+    "minimum_transfer_options": 2,
+    "no_direct": true,
+    "law": "segment n/(n+20)",
+    "board": "full conditional fixed-route first-tail cost",
+    "selection_uses_actual": false,
+    "budget_seconds": 180
+  },
+  "network": {
+    "stops": 701,
+    "connections": 28164,
+    "excluded_old_pairs": [
+      [
+        427,
+        3
+      ],
+      [
+        427,
+        607
+      ],
+      [
+        530,
+        3
+      ],
+      [
+        530,
+        607
+      ]
+    ]
+  },
+  "status": "all_selected_roots_complete",
+  "runtime_seconds": 37.35293058299976,
+  "selection_seconds": 3.4720311920000313,
+  "sequential_funnel": {
+    "sampled_new_od": 150,
+    "nonempty": 33,
+    "K_2_to_6": 19,
+    "two_first_routes": 12,
+    "two_transfer_options": 12,
+    "no_direct": 10
+  },
+  "selected": 10,
+  "completed": 10,
+  "initial_state_model_gaps": {
+    "first": {
+      "mean": 37.01371925326748,
+      "maximum": 175.16312200684115,
+      "strictly_positive_above_1e_6": 10
+    },
+    "one": {
+      "mean": 0.05257565577740024,
+      "maximum": 0.5257565577740024,
+      "strictly_positive_above_1e_6": 1
+    },
+    "single": {
+      "mean": 0.6563824362820014,
+      "maximum": 6.02452966736746,
+      "strictly_positive_above_1e_6": 4
+    },
+    "combined": {
+      "mean": 0.0,
+      "maximum": 0.0,
+      "strictly_positive_above_1e_6": 0
+    },
+    "pair": {
+      "mean": 0.0,
+      "maximum": 0.0,
+      "strictly_positive_above_1e_6": 0
+    }
+  },
+  "actual": {
+    "complete_pairs": 6,
+    "missing": 4,
+    "statuses": {
+      "unresolved_departure": 1,
+      "arrived": 6,
+      "unresolved_root_departure": 3
+    },
+    "mean_loss": {
+      "first": 1530.8333333333333,
+      "one": 1446.3333333333333,
+      "single": 1446.3333333333333,
+      "combined": 1446.3333333333333,
+      "pair": 1446.3333333333333,
+      "dp": 1446.3333333333333
+    },
+    "identical_trace_and_outcome_to_dp": {
+      "one": 6,
+      "single": 6,
+      "combined": 6,
+      "pair": 6
+    },
+    "first_to_combined_gain": [
+      {
+        "root_id": "broad_2023-07-17_17_594_334",
+        "gain": 0
+      },
+      {
+        "root_id": "broad_2023-07-17_23_322_539",
+        "gain": 0
+      },
+      {
+        "root_id": "broad_2023-07-17_63_492_316",
+        "gain": -97
+      },
+      {
+        "root_id": "broad_2023-07-17_113_543_339",
+        "gain": 0
+      },
+      {
+        "root_id": "broad_2023-07-17_141_480_105",
+        "gain": 0
+      },
+      {
+        "root_id": "broad_2023-07-17_146_416_319",
+        "gain": 604
+      }
+    ]
+  },
+  "checks": {
+    "max_dp_integration_error": 3.92901711165905e-10,
+    "max_first_threshold_error": 3.637978807091713e-12
+  },
+  "source_sha256": {
+    "broad_probe.py": "4c3d9b1790d9ff77eb6223e0b64468d9d4be4ea2599068b4a8746acb6c0ab85b",
+    "broad_probe_selection.json": "8d9bbf93256e976a25bf793b4d9a084d1e4121a9d4371ded25afba7ff8e0e9d6",
+    "broad_probe.json": "38947537ef1289f83a2f6aba4b18ec4ae34c427cf0ea9c509a618d590c9236fc"
+  },
+  "interpretation": "No extra exact-DP initial-state value over combined in these ten new schedule-selected roots. Six complete actual pairs agree; four unresolved labels are retained. This does not establish universal optimality, independent confirmation, or city-wide prevalence."
+}

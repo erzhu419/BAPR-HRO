@@ -1,6 +1,11 @@
 """Cheap public-event controls for a frozen root departure menu."""
 
+from copy import copy
+from itertools import combinations
+
 import numpy as np
+
+from .full_menu_waiting_dp import FullMenuWaitingDP
 
 
 class SchedulePriority:
@@ -96,6 +101,57 @@ class CombinedWaitingOpportunity:
     def choose(self, visible, seen, clock):
         wait, parts = self._waiting(clock, set(seen).union(visible))
         receipt = dict(method='combined_waiting', wait=wait, board=None, **parts)
+        if not visible:
+            return None, receipt
+        values = {cid: self.reference.score(cid, clock) for cid in visible}
+        best = min(visible, key=lambda cid: (values[cid], self.reference.ranks[cid]))
+        receipt.update(board=values[best], best_visible=best)
+        return (best if values[best] <= wait+1e-9 else None), receipt
+
+
+class TwoTargetOpportunity:
+    """Add optimal two-target waits to the combined rolling reference.
+
+    Each pair shares the frozen board marks and departure laws of the common
+    reference. It has four unseen-target states, independent of full menu
+    size. Pair compilation costs O(K^2 T) for K candidates and at most T
+    departure clocks per pair; all board/tail preparation is additional.
+
+    The selected pair is a waiting reference, not a commitment: every legal
+    public event compares all visible offers and all remaining pairs again.
+    Independence of root trips and the reference's local observation window
+    are required, exactly as for FullMenuWaitingDP.
+    """
+
+    def __init__(self, combined):
+        self.combined, self.reference = combined, combined.reference
+        self.cids = tuple(self.reference.cids)
+        self.pairs = []
+        for first, second in combinations(self.cids, 2):
+            reference = copy(self.reference)
+            reference.cids = (first, second)
+            reference.ranks = {cid: self.reference.ranks[cid] for cid in reference.cids}
+            self.pairs.append((first, second, FullMenuWaitingDP(reference)))
+
+    def _waiting(self, clock, seen):
+        combined_wait, parts = self.combined._waiting(clock, seen)
+        value, pair_wait, best_pair = combined_wait, self.reference.deadline, None
+        for first, second, dp in self.pairs:
+            if first in seen or second in seen:
+                continue
+            candidate = dp.wait_score(clock, ())
+            if candidate < pair_wait:
+                pair_wait, best_pair = candidate, (first, second)
+            value = min(value, candidate)
+        return value, dict(combined_wait=combined_wait, pair_wait=float(pair_wait),
+                           best_pair=best_pair, **parts)
+
+    def wait_score(self, clock, seen):
+        return self._waiting(clock, set(seen))[0]
+
+    def choose(self, visible, seen, clock):
+        wait, parts = self._waiting(clock, set(seen).union(visible))
+        receipt = dict(method='two_target_waiting', wait=wait, board=None, **parts)
         if not visible:
             return None, receipt
         values = {cid: self.reference.score(cid, clock) for cid in visible}

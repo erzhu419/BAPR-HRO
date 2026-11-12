@@ -1,0 +1,37 @@
+0 actual rolling_nominal unsupported_public_history:Observed departure lies outside frozen operating support None 0.651
+0 actual single_rolling unsupported_public_history:Observed departure lies outside frozen operating support None 0.258
+0 actual combined_rolling unsupported_public_history:Observed departure lies outside frozen operating support None 0.299
+0 actual pair_rolling unsupported_public_history:Observed departure lies outside frozen operating support None 0.255
+0 actual pair_rollout unsupported_public_history:Observed departure lies outside frozen operating support None 0.274
+0 actual pair_stopping unsupported_public_history:Observed departure lies outside frozen operating support None 0.281
+0 worlds rolling_nominal 32 13.96
+0 worlds single_rolling 32 12.95
+0 worlds combined_rolling 32 13.92
+0 worlds pair_rolling 32 13.79
+0 worlds pair_rollout 32 13.51
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/erzhu419/mine_code/BAPR-HRO/experiments/reconstruction_v33/run.py", line 133, in <module>
+    main()
+  File "/home/erzhu419/mine_code/BAPR-HRO/experiments/reconstruction_v33/run.py", line 123, in main
+    result = run_root(graph, metadata, model, params, root, index, protocol, pilot=args.pilot)
+  File "/home/erzhu419/mine_code/BAPR-HRO/experiments/reconstruction_v33/run.py", line 85, in run_root
+    result = Executor(graph, planner, root['deadline'], method=method, waiting=waiting, trace=False).run(
+  File "/home/erzhu419/mine_code/BAPR-HRO/experiments/reconstruction_v33/execute.py", line 142, in run
+    arrival, status = self.ride(ride, start, history, world)
+  File "/home/erzhu419/mine_code/BAPR-HRO/experiments/reconstruction_v33/execute.py", line 136, in ride
+    return self.platform(platform, arrival, history, world)
+  File "/home/erzhu419/mine_code/BAPR-HRO/experiments/reconstruction_v33/execute.py", line 100, in platform
+    return self.ride(platform.rides[choice], clock, history, world)
+  File "/home/erzhu419/mine_code/BAPR-HRO/experiments/reconstruction_v33/execute.py", line 129, in ride
+    compiled = self.planner.compile_ride(ride, history, self.method)
+  File "/home/erzhu419/mine_code/BAPR-HRO/experiments/reconstruction_v33/planner.py", line 265, in compile_ride
+    chain = OnboardStopping(times, costs, kernels, self.deadline)
+  File "/home/erzhu419/mine_code/BAPR-HRO/src/onboard_stopping.py", line 62, in __init__
+    self.alight_costs = tuple(np.asarray(g, dtype=float).copy() for g in alight_costs)
+  File "/home/erzhu419/mine_code/BAPR-HRO/src/onboard_stopping.py", line 62, in <genexpr>
+    self.alight_costs = tuple(np.asarray(g, dtype=float).copy() for g in alight_costs)
+KeyboardInterrupt

@@ -1,0 +1,571 @@
+{
+  "scope": "Recover public traces only for differences in the completed paired panel.\n\nThis post-hoc diagnostic does not select a new performance panel, alter the\noriginal results, or add evaluation worlds. The original full bank shape and\nseed are retained because changing the bank size changes subsequent trip\ndraws. Complete receipts are reused on later invocations.\n",
+  "summary": {
+    "difference_worlds": 8,
+    "roots": 3,
+    "reconstructed_outcomes": 24,
+    "new_replays_this_run": 0,
+    "all_absorbed_by_combined": true,
+    "by_method": {
+      "rolling_nominal": {
+        "worlds": 7,
+        "gain_sum": 3610.0,
+        "first_divergence_types": {
+          "onboard": 1,
+          "platform": 6
+        },
+        "mean_gain_over_original_panel": 9.401041666666666
+      },
+      "single_rolling": {
+        "worlds": 1,
+        "gain_sum": 100.0,
+        "first_divergence_types": {
+          "platform": 1
+        },
+        "mean_gain_over_original_panel": 0.2604166666666667
+      }
+    },
+    "wall": 4.177620382994064,
+    "initial_trace_build_wall": 14.046565188997192
+  },
+  "full_receipts": "gap_receipts.json.gz",
+  "cases": [
+    {
+      "root_id": "onboard_2023-07-16_4714_3",
+      "root_index": 5,
+      "world": 31,
+      "method": "rolling_nominal",
+      "gain_from_primary": 20,
+      "same_public_information": true,
+      "absorbed_by_combined": true,
+      "first_difference": {
+        "primary": {
+          "kind": "onboard",
+          "cid": 6360,
+          "clock": 31180,
+          "choice": "continue",
+          "receipt": {
+            "method": "one_step_rollout",
+            "stage": 0,
+            "alight": 32153.389856873986,
+            "continuation": 32141.682180129155,
+            "arrival_cid": 6360,
+            "clock": 31180,
+            "clock_mode": "on_grid",
+            "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+          }
+        },
+        "compared": {
+          "kind": "onboard",
+          "cid": 6360,
+          "clock": 31180,
+          "choice": "alight",
+          "receipt": {
+            "method": "nominal",
+            "stage": 0,
+            "alight": 32153.389856873986,
+            "continuation": 32153.710061913054,
+            "arrival_cid": 6360,
+            "clock": 31180,
+            "clock_mode": "on_grid",
+            "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+          }
+        }
+      },
+      "original_compute_wall": {
+        "combined_rolling": 1.1188868659955915,
+        "pair_rollout": 0.49937245895853266,
+        "rolling_nominal": 0.2928034290089272
+      }
+    },
+    {
+      "root_id": "onboard_2023-07-17_8197_2",
+      "root_index": 8,
+      "world": 5,
+      "method": "rolling_nominal",
+      "gain_from_primary": 1030,
+      "same_public_information": true,
+      "absorbed_by_combined": true,
+      "first_difference": {
+        "primary": {
+          "kind": "platform",
+          "stop": 53,
+          "entry": 29560,
+          "ready": 29680,
+          "clock": 29840,
+          "observed": {
+            "11061": 29840
+          },
+          "visible": [
+            11061
+          ],
+          "choice": 11061,
+          "receipt": {
+            "method": "two_target_waiting",
+            "wait": 31407.691364997125,
+            "board": 30497.451407768072,
+            "combined_wait": 31407.691364997125,
+            "pair_wait": 31407.69136500059,
+            "best_pair": [
+              9673,
+              10057
+            ],
+            "single_wait": 31407.691400655378,
+            "first_offer_wait": 31407.691364997125,
+            "target": 10057,
+            "unsupported_candidates": [],
+            "best_visible": 11061
+          }
+        },
+        "compared": {
+          "kind": "platform",
+          "stop": 53,
+          "entry": 29560,
+          "ready": 29680,
+          "clock": 29840,
+          "observed": {
+            "11061": 29840
+          },
+          "visible": [
+            11061
+          ],
+          "choice": null,
+          "receipt": {
+            "method": "rolling_mean",
+            "target": 10057,
+            "values": {
+              "11061": 30497.451407768072,
+              "9514": 30507.190357503925,
+              "9673": 30111.76961428511,
+              "10057": 30090.850455393156
+            }
+          }
+        }
+      },
+      "original_compute_wall": {
+        "combined_rolling": 0.5047277050034609,
+        "pair_rollout": 1.2102428980142577,
+        "rolling_nominal": 0.3794611959892791
+      }
+    },
+    {
+      "root_id": "onboard_2023-07-17_8197_2",
+      "root_index": 8,
+      "world": 25,
+      "method": "rolling_nominal",
+      "gain_from_primary": 80,
+      "same_public_information": true,
+      "absorbed_by_combined": true,
+      "first_difference": {
+        "primary": {
+          "kind": "platform",
+          "stop": 53,
+          "entry": 29380,
+          "ready": 29500,
+          "clock": 29540,
+          "observed": {
+            "9514": 29400,
+            "9673": 29540
+          },
+          "visible": [
+            9673
+          ],
+          "choice": 9673,
+          "receipt": {
+            "method": "two_target_waiting",
+            "wait": 29963.465486423684,
+            "board": 29788.030754375854,
+            "combined_wait": 29963.46605073895,
+            "pair_wait": 29963.465486423684,
+            "best_pair": [
+              10057,
+              11061
+            ],
+            "single_wait": 30190.14749903913,
+            "first_offer_wait": 29963.46605073895,
+            "target": 10057,
+            "unsupported_candidates": [],
+            "best_visible": 9673
+          }
+        },
+        "compared": {
+          "kind": "platform",
+          "stop": 53,
+          "entry": 29380,
+          "ready": 29500,
+          "clock": 29540,
+          "observed": {
+            "9514": 29400,
+            "9673": 29540
+          },
+          "visible": [
+            9673
+          ],
+          "choice": null,
+          "receipt": {
+            "method": "rolling_mean",
+            "target": 10057,
+            "values": {
+              "9673": 29788.030754375854,
+              "10057": 29781.9593063925,
+              "11061": 30497.47176745258
+            }
+          }
+        }
+      },
+      "original_compute_wall": {
+        "combined_rolling": 0.3453189090214437,
+        "pair_rollout": 1.0078785930236336,
+        "rolling_nominal": 0.4849150539812399
+      }
+    },
+    {
+      "root_id": "onboard_2023-07-17_7832_3",
+      "root_index": 10,
+      "world": 0,
+      "method": "single_rolling",
+      "gain_from_primary": 100,
+      "same_public_information": true,
+      "absorbed_by_combined": true,
+      "first_difference": {
+        "primary": {
+          "kind": "platform",
+          "stop": 156,
+          "entry": 29380,
+          "ready": 29500,
+          "clock": 29560,
+          "observed": {
+            "9685": 29480,
+            "9820": 29560
+          },
+          "visible": [
+            9820
+          ],
+          "choice": null,
+          "receipt": {
+            "method": "two_target_waiting",
+            "wait": 30758.95216866575,
+            "board": 30770.53245828492,
+            "combined_wait": 30758.952168665754,
+            "pair_wait": 30758.95216866575,
+            "best_pair": [
+              9676,
+              10228
+            ],
+            "single_wait": 30869.536517672055,
+            "first_offer_wait": 30758.952168665754,
+            "target": 9676,
+            "unsupported_candidates": [],
+            "best_visible": 9820
+          }
+        },
+        "compared": {
+          "kind": "platform",
+          "stop": 156,
+          "entry": 29380,
+          "ready": 29500,
+          "clock": 29560,
+          "observed": {
+            "9685": 29480,
+            "9820": 29560
+          },
+          "visible": [
+            9820
+          ],
+          "choice": 9820,
+          "receipt": {
+            "method": "single_target",
+            "wait": 30869.536517672055,
+            "board": 30770.53245828492,
+            "target": 9676,
+            "unsupported_candidates": [],
+            "best_visible": 9820
+          }
+        }
+      },
+      "original_compute_wall": {
+        "combined_rolling": 2.2189576780074276,
+        "pair_rollout": 0.8618417580146343,
+        "single_rolling": 0.777345880982466
+      }
+    },
+    {
+      "root_id": "onboard_2023-07-17_7832_3",
+      "root_index": 10,
+      "world": 2,
+      "method": "rolling_nominal",
+      "gain_from_primary": 670,
+      "same_public_information": true,
+      "absorbed_by_combined": true,
+      "first_difference": {
+        "primary": {
+          "kind": "platform",
+          "stop": 309,
+          "entry": 29500,
+          "ready": 29620,
+          "clock": 29740,
+          "observed": {
+            "10287": 29740
+          },
+          "visible": [
+            10287
+          ],
+          "choice": 10287,
+          "receipt": {
+            "method": "two_target_waiting",
+            "wait": 30775.71346568422,
+            "board": 30772.155137597594,
+            "combined_wait": 30775.71346568422,
+            "pair_wait": 30775.713465684228,
+            "best_pair": [
+              10380,
+              11349
+            ],
+            "single_wait": 30901.02609464012,
+            "first_offer_wait": 30775.71346568422,
+            "target": 10380,
+            "unsupported_candidates": [],
+            "best_visible": 10287
+          }
+        },
+        "compared": {
+          "kind": "platform",
+          "stop": 309,
+          "entry": 29500,
+          "ready": 29620,
+          "clock": 29740,
+          "observed": {
+            "10287": 29740
+          },
+          "visible": [
+            10287
+          ],
+          "choice": null,
+          "receipt": {
+            "method": "rolling_mean",
+            "target": 10380,
+            "values": {
+              "10287": 30772.155137597594,
+              "10380": 30616.402009094163,
+              "11349": 30996.292467328432
+            }
+          }
+        }
+      },
+      "original_compute_wall": {
+        "combined_rolling": 1.6233290970267262,
+        "pair_rollout": 1.846436284002266,
+        "rolling_nominal": 2.5851498160191113
+      }
+    },
+    {
+      "root_id": "onboard_2023-07-17_7832_3",
+      "root_index": 10,
+      "world": 9,
+      "method": "rolling_nominal",
+      "gain_from_primary": 750,
+      "same_public_information": true,
+      "absorbed_by_combined": true,
+      "first_difference": {
+        "primary": {
+          "kind": "platform",
+          "stop": 156,
+          "entry": 29420,
+          "ready": 29540,
+          "clock": 29580,
+          "observed": {
+            "9676": 29440,
+            "10228": 29580
+          },
+          "visible": [
+            10228
+          ],
+          "choice": 10228,
+          "receipt": {
+            "method": "two_target_waiting",
+            "wait": 31248.081496162835,
+            "board": 30880.09158177887,
+            "combined_wait": 31248.375006488877,
+            "pair_wait": 31248.081496162835,
+            "best_pair": [
+              9685,
+              9820
+            ],
+            "single_wait": 31250.415296679446,
+            "first_offer_wait": 31248.375006488877,
+            "target": 9820,
+            "unsupported_candidates": [],
+            "best_visible": 10228
+          }
+        },
+        "compared": {
+          "kind": "platform",
+          "stop": 156,
+          "entry": 29420,
+          "ready": 29540,
+          "clock": 29580,
+          "observed": {
+            "9676": 29440,
+            "10228": 29580
+          },
+          "visible": [
+            10228
+          ],
+          "choice": null,
+          "receipt": {
+            "method": "rolling_mean",
+            "target": 9820,
+            "values": {
+              "10228": 30880.09158177887,
+              "9685": 31171.35916381812,
+              "9820": 30795.56509961907
+            }
+          }
+        }
+      },
+      "original_compute_wall": {
+        "combined_rolling": 1.2060677950066747,
+        "pair_rollout": 0.935278633973212,
+        "rolling_nominal": 1.2228114009922137
+      }
+    },
+    {
+      "root_id": "onboard_2023-07-17_7832_3",
+      "root_index": 10,
+      "world": 17,
+      "method": "rolling_nominal",
+      "gain_from_primary": 490,
+      "same_public_information": true,
+      "absorbed_by_combined": true,
+      "first_difference": {
+        "primary": {
+          "kind": "platform",
+          "stop": 309,
+          "entry": 29500,
+          "ready": 29620,
+          "clock": 29900,
+          "observed": {
+            "11349": 29900
+          },
+          "visible": [
+            11349
+          ],
+          "choice": 11349,
+          "receipt": {
+            "method": "two_target_waiting",
+            "wait": 31314.101350759014,
+            "board": 30945.517713238536,
+            "combined_wait": 31314.101350759014,
+            "pair_wait": 31314.101350759018,
+            "best_pair": [
+              10287,
+              10380
+            ],
+            "single_wait": 31323.495740903272,
+            "first_offer_wait": 31314.101350759014,
+            "target": 10380,
+            "unsupported_candidates": [],
+            "best_visible": 11349
+          }
+        },
+        "compared": {
+          "kind": "platform",
+          "stop": 309,
+          "entry": 29500,
+          "ready": 29620,
+          "clock": 29900,
+          "observed": {
+            "11349": 29900
+          },
+          "visible": [
+            11349
+          ],
+          "choice": null,
+          "receipt": {
+            "method": "rolling_mean",
+            "target": 10380,
+            "values": {
+              "11349": 30945.517713326208,
+              "10287": 30959.752203392694,
+              "10380": 30854.592941912215
+            }
+          }
+        }
+      },
+      "original_compute_wall": {
+        "combined_rolling": 0.8675692239921773,
+        "pair_rollout": 0.8011953630048083,
+        "rolling_nominal": 1.1222054830141133
+      }
+    },
+    {
+      "root_id": "onboard_2023-07-17_7832_3",
+      "root_index": 10,
+      "world": 18,
+      "method": "rolling_nominal",
+      "gain_from_primary": 570,
+      "same_public_information": true,
+      "absorbed_by_combined": true,
+      "first_difference": {
+        "primary": {
+          "kind": "platform",
+          "stop": 156,
+          "entry": 29380,
+          "ready": 29500,
+          "clock": 29640,
+          "observed": {
+            "9685": 29440,
+            "9820": 29440,
+            "10228": 29640
+          },
+          "visible": [
+            10228
+          ],
+          "choice": 10228,
+          "receipt": {
+            "method": "two_target_waiting",
+            "wait": 31141.9289682323,
+            "board": 30909.66150795284,
+            "combined_wait": 31141.9289682323,
+            "pair_wait": 31350.0,
+            "best_pair": null,
+            "single_wait": 31141.9289682323,
+            "first_offer_wait": 31141.9289682323,
+            "target": 9676,
+            "unsupported_candidates": [],
+            "best_visible": 10228
+          }
+        },
+        "compared": {
+          "kind": "platform",
+          "stop": 156,
+          "entry": 29380,
+          "ready": 29500,
+          "clock": 29640,
+          "observed": {
+            "9685": 29440,
+            "9820": 29440,
+            "10228": 29640
+          },
+          "visible": [
+            10228
+          ],
+          "choice": null,
+          "receipt": {
+            "method": "rolling_mean",
+            "target": 9676,
+            "values": {
+              "10228": 30909.66150795284,
+              "9676": 30669.793631236273
+            }
+          }
+        }
+      },
+      "original_compute_wall": {
+        "combined_rolling": 0.745824113037088,
+        "pair_rollout": 1.0967219070153078,
+        "rolling_nominal": 1.5324062589934329
+      }
+    }
+  ]
+}

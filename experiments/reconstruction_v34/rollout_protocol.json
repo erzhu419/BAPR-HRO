@@ -1,0 +1,20 @@
+{
+  "stage": "Standard executable-continuation rollout after V34 conditional diagnosis",
+  "reason": "The four fixed reference states support different cheap controls at different public histories. This motivates testing one executable standard improvement policy against every fixed cheap control; per-state availability of a correct cheap action is not policy-level dominance.",
+  "parent_protocol": "protocol.json",
+  "development_only": true,
+  "frozen_cohort": "All 72 selected roots, public_messages arm, identical model, source endpoints, MCT, menus and real message stream.",
+  "current_controller": "combined_rolling",
+  "alternative": "rolling_nominal",
+  "trigger": "At any actually reached onboard or platform decision, compare the two legal current actions under the identical public history. Only a disagreement invokes conditional rollout. No recorded realized loss or future receipt is used by the trigger.",
+  "worlds_per_trigger": 128,
+  "seed": 34050,
+  "seed_rule": "34050 + 1000*root_index + gate_call_index, starting gate_call_index at zero. No retry or refinement after observing the estimate.",
+  "simulation": "Original current-snapshot conditional physical trip chains; one draw per physical trip per world. Both current actions share the same world bank. Subsequent control is combined_rolling with new local observations and the frozen received-message snapshot. Future archived messages are not supplied to hypothetical futures.",
+  "decision": "Let D be alternative-action loss minus combined-action loss. Retain every world; unresolved action losses lie in [0,deadline-current_clock]. Select the alternative only if the upper endpoint of the complete-bank empirical mean-D interval is strictly negative. Otherwise retain combined, including exact ties and overlapping intervals.",
+  "uncertainty": "This finite-bank missing-outcome interval is not a population regret certificate. Paired Monte Carlo standard errors and unresolved counts are reported separately.",
+  "physical_evaluation": "The chosen current action is executed in the same held-out-from-fit actual root; later real decisions again receive their legitimate messages and may invoke the same rule. All 72 roots, wins and harms are retained.",
+  "timing": "Entire cold process CPU and wall, including both cheap scores, snapshot reconstruction, conditional laws, sampling, all action continuations and actual control, are charged. The quality replay remains logical-clock; no real-time deadline feasibility is inferred.",
+  "attribution": "This is standard disagreement-triggered rollout with executable continuation, a strengthened baseline. A gain can reveal a useful approximation defect but does not itself establish a new OR algorithm.",
+  "comparison": "Compare to each of the six original public-message controllers, not to a hindsight per-root oracle. Do not overwrite original results or the preceding four-state reference budget."
+}

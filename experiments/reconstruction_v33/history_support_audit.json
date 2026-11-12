@@ -1,0 +1,138 @@
+{
+  "root_id": "onboard_2023-07-16_4368_70",
+  "trip": "1547.TA.92-72-B-j23-1.9.R",
+  "events": [
+    {
+      "cid": 4368,
+      "kind": "departure",
+      "clock": 29679,
+      "scheduled": 29700,
+      "base_range": [
+        29400,
+        33540
+      ],
+      "conditional_range": [
+        29400,
+        33540
+      ],
+      "prior_evidence": [],
+      "supported": true,
+      "posterior_clocks": [
+        29660,
+        29680
+      ]
+    },
+    {
+      "cid": 4368,
+      "kind": "arrival",
+      "clock": 29712,
+      "scheduled": 29700,
+      "base_range": [
+        29420,
+        33540
+      ],
+      "conditional_range": [
+        29680,
+        29780
+      ],
+      "prior_evidence": [
+        {
+          "trip": "1547.TA.92-72-B-j23-1.9.R",
+          "cid": 4368,
+          "kind": "departure",
+          "evidence": "observed",
+          "clock": 29679.0
+        }
+      ],
+      "supported": true,
+      "posterior_clocks": [
+        29700,
+        29720
+      ]
+    },
+    {
+      "cid": 4467,
+      "kind": "departure",
+      "clock": 29730,
+      "scheduled": 29760,
+      "base_range": [
+        29460,
+        33600
+      ],
+      "conditional_range": [
+        29700,
+        29840
+      ],
+      "prior_evidence": [
+        {
+          "trip": "1547.TA.92-72-B-j23-1.9.R",
+          "cid": 4368,
+          "kind": "departure",
+          "evidence": "observed",
+          "clock": 29679.0
+        },
+        {
+          "trip": "1547.TA.92-72-B-j23-1.9.R",
+          "cid": 4368,
+          "kind": "arrival",
+          "evidence": "observed",
+          "clock": 29712.0
+        }
+      ],
+      "supported": true,
+      "posterior_clocks": [
+        29720,
+        29740
+      ]
+    },
+    {
+      "cid": 4467,
+      "kind": "arrival",
+      "clock": 29870,
+      "scheduled": 29820,
+      "base_range": [
+        29520,
+        33660
+      ],
+      "conditional_range": [
+        29740,
+        29860
+      ],
+      "prior_evidence": [
+        {
+          "trip": "1547.TA.92-72-B-j23-1.9.R",
+          "cid": 4368,
+          "kind": "departure",
+          "evidence": "observed",
+          "clock": 29679.0
+        },
+        {
+          "trip": "1547.TA.92-72-B-j23-1.9.R",
+          "cid": 4368,
+          "kind": "arrival",
+          "evidence": "observed",
+          "clock": 29712.0
+        },
+        {
+          "trip": "1547.TA.92-72-B-j23-1.9.R",
+          "cid": 4467,
+          "kind": "departure",
+          "evidence": "observed",
+          "clock": 29730.0
+        }
+      ],
+      "supported": false,
+      "error": "Observed departure lies outside frozen operating support; trip=1547.TA.92-72-B-j23-1.9.R, cid=4467, kind=arrival, evidence=observed:29870.0, conditional_operating_support=(29740.0, 29860.0)"
+    }
+  ],
+  "attribution": {
+    "actual_segment_seconds": 140,
+    "frozen_duration_support_min": 25,
+    "frozen_duration_support_max": 118,
+    "conditioned_on_this_departure_only_arrival_support": [
+      29740,
+      29860
+    ],
+    "interpretation": "The finite empirical travel-duration law excludes this observed segment even without prior slots; historical evidence accumulation is not the cause. No support or fit was changed."
+  }
+}

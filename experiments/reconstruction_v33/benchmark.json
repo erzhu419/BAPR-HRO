@@ -1,0 +1,5866 @@
+{
+  "complete": true,
+  "root_indices": [
+    0,
+    1
+  ],
+  "data_io_wall": 0.6683392400009325,
+  "environment": {
+    "logical_cpus": 32,
+    "threads": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    }
+  },
+  "scope": "Two prespecified roots; real and original-law world0. Fresh model, nodes, posterior and planner are charged cold; identical-history cache reuse is charged warm.",
+  "timing": "Total includes constructor, menu nodes, posterior, recursive tail preparation, decisions, and physical endpoint lookup. Data/graph preparation and world generation are listed separately.",
+  "wall_scope": "Concurrent V33 work can contend for the host. Wall times are not isolated-host speedup evidence; process CPU is the charged comparison.",
+  "world_contract": "Each root uses the formal evaluation seed and full draw-bank size before selecting world0; physical vehicles are drawn once and never exposed to the planner.",
+  "days": {
+    "2023-07-16": {
+      "graph_endpoint_and_sampling_model_preparation_wall": 0.4868190700071864,
+      "supplement_applied": []
+    }
+  },
+  "roots": [
+    {
+      "root_index": 0,
+      "root_id": "onboard_2023-07-16_4368_70",
+      "seed": 33002,
+      "bank_worlds": 32,
+      "executed_world_index": 0,
+      "physical_world_generation_wall": 0.7545673489948967
+    },
+    {
+      "root_index": 1,
+      "root_id": "onboard_2023-07-16_5522_23",
+      "seed": 34002,
+      "bank_worlds": 32,
+      "executed_world_index": 0,
+      "physical_world_generation_wall": 1.174406721998821
+    }
+  ],
+  "measurements": [
+    {
+      "root_index": 0,
+      "root_id": "onboard_2023-07-16_4368_70",
+      "scenario": "actual",
+      "policy": "rolling_nominal",
+      "quality": {
+        "loss": null,
+        "status": "unsupported_public_history:Observed departure lies outside frozen operating support; trip=1547.TA.92-72-B-j23-1.9.R, cid=4467, kind=arrival, evidence=observed:29870.0, conditional_operating_support=(29740.0, 29860.0)",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 4368,
+            "clock": 29712,
+            "choice": "continue",
+            "receipt": {
+              "method": "nominal",
+              "stage": 0,
+              "alight": 30889.461594959357,
+              "continuation": 30665.85900554477,
+              "arrival_cid": 4368,
+              "clock": 29712,
+              "clock_mode": "adjacent_state_projection",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          }
+        ],
+        "decisions": {
+          "platform": 0,
+          "onboard": 1
+        }
+      },
+      "warm_quality": {
+        "loss": null,
+        "status": "unsupported_public_history:Observed departure lies outside frozen operating support; trip=1547.TA.92-72-B-j23-1.9.R, cid=4467, kind=arrival, evidence=observed:29870.0, conditional_operating_support=(29740.0, 29860.0)",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 4368,
+            "clock": 29712,
+            "choice": "continue",
+            "receipt": {
+              "method": "nominal",
+              "stage": 0,
+              "alight": 30889.461594959357,
+              "continuation": 30665.85900554477,
+              "arrival_cid": 4368,
+              "clock": 29712,
+              "clock_mode": "adjacent_state_projection",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          }
+        ],
+        "decisions": {
+          "platform": 0,
+          "onboard": 1
+        }
+      },
+      "identical_public_trace_and_outcome": true,
+      "cold": {
+        "total_wall": 1.0372596319939476,
+        "total_process_cpu": 0.9403822550000001,
+        "model_constructor_wall": 0.1591652829956729,
+        "model_constructor_cpu": 0.132292077,
+        "menu_and_planner_constructor_wall": 0.00029491200984921306,
+        "menu_and_planner_constructor_cpu": 0.00027023299999973105,
+        "executor_process_cpu": 0.8078199450000003,
+        "executor_compute_wall": 0.8406497670075623,
+        "executor_total_wall": 0.8776871860027313,
+        "planner_stats": {
+          "ride_queries": 62,
+          "ride_hits": 15,
+          "ride_compiles": 46,
+          "platform_queries": 40,
+          "platform_hits": 10,
+          "platform_compiles": 30,
+          "first_offer_queries": 80,
+          "first_offer_hits": 40,
+          "first_offer_compiles": 40,
+          "edge_compiles": 111,
+          "edge_cells": 4802304,
+          "kernel_compiles": 81,
+          "prior_future_edge_queries": 253,
+          "prior_future_kernel_queries": 108,
+          "top_level_compile_seconds": 0.8768140329921152
+        }
+      },
+      "warm": {
+        "total_wall": 0.0379994329996407,
+        "total_process_cpu": 0.03507915799999983,
+        "executor_compute_wall": 0.0001085719995899126,
+        "executor_total_wall": 0.03792270799749531,
+        "planner_stats": {
+          "ride_queries": 2,
+          "ride_hits": 1,
+          "ride_compiles": 0,
+          "platform_queries": 0,
+          "platform_hits": 0,
+          "platform_compiles": 0,
+          "first_offer_queries": 0,
+          "first_offer_hits": 0,
+          "first_offer_compiles": 0,
+          "edge_compiles": 0,
+          "edge_cells": 0,
+          "kernel_compiles": 0,
+          "prior_future_edge_queries": 0,
+          "prior_future_kernel_queries": 0,
+          "top_level_compile_seconds": 0.03771330299787223
+        }
+      }
+    },
+    {
+      "root_index": 0,
+      "root_id": "onboard_2023-07-16_4368_70",
+      "scenario": "actual",
+      "policy": "single_rolling",
+      "quality": {
+        "loss": null,
+        "status": "unsupported_public_history:Observed departure lies outside frozen operating support; trip=1547.TA.92-72-B-j23-1.9.R, cid=4467, kind=arrival, evidence=observed:29870.0, conditional_operating_support=(29740.0, 29860.0)",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 4368,
+            "clock": 29712,
+            "choice": "continue",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 30889.461594959357,
+              "continuation": 30668.450807383204,
+              "arrival_cid": 4368,
+              "clock": 29712,
+              "clock_mode": "adjacent_state_projection",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          }
+        ],
+        "decisions": {
+          "platform": 0,
+          "onboard": 1
+        }
+      },
+      "warm_quality": {
+        "loss": null,
+        "status": "unsupported_public_history:Observed departure lies outside frozen operating support; trip=1547.TA.92-72-B-j23-1.9.R, cid=4467, kind=arrival, evidence=observed:29870.0, conditional_operating_support=(29740.0, 29860.0)",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 4368,
+            "clock": 29712,
+            "choice": "continue",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 30889.461594959357,
+              "continuation": 30668.450807383204,
+              "arrival_cid": 4368,
+              "clock": 29712,
+              "clock_mode": "adjacent_state_projection",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          }
+        ],
+        "decisions": {
+          "platform": 0,
+          "onboard": 1
+        }
+      },
+      "identical_public_trace_and_outcome": true,
+      "cold": {
+        "total_wall": 1.0231678540003486,
+        "total_process_cpu": 0.834658874,
+        "model_constructor_wall": 0.15460227300354745,
+        "model_constructor_cpu": 0.142712387,
+        "menu_and_planner_constructor_wall": 0.00026031000015791506,
+        "menu_and_planner_constructor_cpu": 0.0002375410000001743,
+        "executor_process_cpu": 0.6917089459999999,
+        "executor_compute_wall": 0.825146313989535,
+        "executor_total_wall": 0.8682248319964856,
+        "planner_stats": {
+          "ride_queries": 62,
+          "ride_hits": 15,
+          "ride_compiles": 46,
+          "platform_queries": 40,
+          "platform_hits": 10,
+          "platform_compiles": 30,
+          "first_offer_queries": 80,
+          "first_offer_hits": 40,
+          "first_offer_compiles": 40,
+          "edge_compiles": 111,
+          "edge_cells": 4802304,
+          "kernel_compiles": 81,
+          "prior_future_edge_queries": 253,
+          "prior_future_kernel_queries": 108,
+          "top_level_compile_seconds": 0.8675237990100868
+        }
+      },
+      "warm": {
+        "total_wall": 0.04935046599712223,
+        "total_process_cpu": 0.04186335200000002,
+        "executor_compute_wall": 0.00013455600128509104,
+        "executor_total_wall": 0.04927911300910637,
+        "planner_stats": {
+          "ride_queries": 2,
+          "ride_hits": 1,
+          "ride_compiles": 0,
+          "platform_queries": 0,
+          "platform_hits": 0,
+          "platform_compiles": 0,
+          "first_offer_queries": 0,
+          "first_offer_hits": 0,
+          "first_offer_compiles": 0,
+          "edge_compiles": 0,
+          "edge_cells": 0,
+          "kernel_compiles": 0,
+          "prior_future_edge_queries": 0,
+          "prior_future_kernel_queries": 0,
+          "top_level_compile_seconds": 0.049004931992385536
+        }
+      }
+    },
+    {
+      "root_index": 0,
+      "root_id": "onboard_2023-07-16_4368_70",
+      "scenario": "actual",
+      "policy": "combined_rolling",
+      "quality": {
+        "loss": null,
+        "status": "unsupported_public_history:Observed departure lies outside frozen operating support; trip=1547.TA.92-72-B-j23-1.9.R, cid=4467, kind=arrival, evidence=observed:29870.0, conditional_operating_support=(29740.0, 29860.0)",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 4368,
+            "clock": 29712,
+            "choice": "continue",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 30889.461594959357,
+              "continuation": 30668.450807383204,
+              "arrival_cid": 4368,
+              "clock": 29712,
+              "clock_mode": "adjacent_state_projection",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          }
+        ],
+        "decisions": {
+          "platform": 0,
+          "onboard": 1
+        }
+      },
+      "warm_quality": {
+        "loss": null,
+        "status": "unsupported_public_history:Observed departure lies outside frozen operating support; trip=1547.TA.92-72-B-j23-1.9.R, cid=4467, kind=arrival, evidence=observed:29870.0, conditional_operating_support=(29740.0, 29860.0)",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 4368,
+            "clock": 29712,
+            "choice": "continue",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 30889.461594959357,
+              "continuation": 30668.450807383204,
+              "arrival_cid": 4368,
+              "clock": 29712,
+              "clock_mode": "adjacent_state_projection",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          }
+        ],
+        "decisions": {
+          "platform": 0,
+          "onboard": 1
+        }
+      },
+      "identical_public_trace_and_outcome": true,
+      "cold": {
+        "total_wall": 1.0996284009888768,
+        "total_process_cpu": 0.8158517679999995,
+        "model_constructor_wall": 0.070632723000017,
+        "model_constructor_cpu": 0.04663903499999966,
+        "menu_and_planner_constructor_wall": 0.0003409869968891144,
+        "menu_and_planner_constructor_cpu": 0.00031301400000005586,
+        "executor_process_cpu": 0.7688997189999998,
+        "executor_compute_wall": 0.9952163339912659,
+        "executor_total_wall": 1.028553098993143,
+        "planner_stats": {
+          "ride_queries": 62,
+          "ride_hits": 15,
+          "ride_compiles": 46,
+          "platform_queries": 40,
+          "platform_hits": 10,
+          "platform_compiles": 30,
+          "first_offer_queries": 80,
+          "first_offer_hits": 40,
+          "first_offer_compiles": 40,
+          "edge_compiles": 111,
+          "edge_cells": 4802304,
+          "kernel_compiles": 81,
+          "prior_future_edge_queries": 253,
+          "prior_future_kernel_queries": 108,
+          "top_level_compile_seconds": 1.0278403219999745
+        }
+      },
+      "warm": {
+        "total_wall": 0.038024571986170486,
+        "total_process_cpu": 0.03503211799999928,
+        "executor_compute_wall": 0.00010762701276689768,
+        "executor_total_wall": 0.037948486002278514,
+        "planner_stats": {
+          "ride_queries": 2,
+          "ride_hits": 1,
+          "ride_compiles": 0,
+          "platform_queries": 0,
+          "platform_hits": 0,
+          "platform_compiles": 0,
+          "first_offer_queries": 0,
+          "first_offer_hits": 0,
+          "first_offer_compiles": 0,
+          "edge_compiles": 0,
+          "edge_cells": 0,
+          "kernel_compiles": 0,
+          "prior_future_edge_queries": 0,
+          "prior_future_kernel_queries": 0,
+          "top_level_compile_seconds": 0.037732222001068294
+        }
+      }
+    },
+    {
+      "root_index": 0,
+      "root_id": "onboard_2023-07-16_4368_70",
+      "scenario": "actual",
+      "policy": "pair_rolling",
+      "quality": {
+        "loss": null,
+        "status": "unsupported_public_history:Observed departure lies outside frozen operating support; trip=1547.TA.92-72-B-j23-1.9.R, cid=4467, kind=arrival, evidence=observed:29870.0, conditional_operating_support=(29740.0, 29860.0)",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 4368,
+            "clock": 29712,
+            "choice": "continue",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 30889.461594959357,
+              "continuation": 30668.450807383204,
+              "arrival_cid": 4368,
+              "clock": 29712,
+              "clock_mode": "adjacent_state_projection",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          }
+        ],
+        "decisions": {
+          "platform": 0,
+          "onboard": 1
+        }
+      },
+      "warm_quality": {
+        "loss": null,
+        "status": "unsupported_public_history:Observed departure lies outside frozen operating support; trip=1547.TA.92-72-B-j23-1.9.R, cid=4467, kind=arrival, evidence=observed:29870.0, conditional_operating_support=(29740.0, 29860.0)",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 4368,
+            "clock": 29712,
+            "choice": "continue",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 30889.461594959357,
+              "continuation": 30668.450807383204,
+              "arrival_cid": 4368,
+              "clock": 29712,
+              "clock_mode": "adjacent_state_projection",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          }
+        ],
+        "decisions": {
+          "platform": 0,
+          "onboard": 1
+        }
+      },
+      "identical_public_trace_and_outcome": true,
+      "cold": {
+        "total_wall": 1.0690472279966343,
+        "total_process_cpu": 0.8390057950000003,
+        "model_constructor_wall": 0.20531010499689728,
+        "model_constructor_cpu": 0.16163642199999995,
+        "menu_and_planner_constructor_wall": 0.0002669630048330873,
+        "menu_and_planner_constructor_cpu": 0.0002437820000000812,
+        "executor_process_cpu": 0.6771255910000002,
+        "executor_compute_wall": 0.8265756009932375,
+        "executor_total_wall": 0.8633805619901977,
+        "planner_stats": {
+          "ride_queries": 62,
+          "ride_hits": 15,
+          "ride_compiles": 46,
+          "platform_queries": 40,
+          "platform_hits": 10,
+          "platform_compiles": 30,
+          "first_offer_queries": 80,
+          "first_offer_hits": 40,
+          "first_offer_compiles": 40,
+          "edge_compiles": 111,
+          "edge_cells": 4802304,
+          "kernel_compiles": 81,
+          "prior_future_edge_queries": 253,
+          "prior_future_kernel_queries": 108,
+          "top_level_compile_seconds": 0.8627703329984797
+        }
+      },
+      "warm": {
+        "total_wall": 0.0458262040046975,
+        "total_process_cpu": 0.031160625000000053,
+        "executor_compute_wall": 9.297399083152413e-05,
+        "executor_total_wall": 0.0457599509973079,
+        "planner_stats": {
+          "ride_queries": 2,
+          "ride_hits": 1,
+          "ride_compiles": 0,
+          "platform_queries": 0,
+          "platform_hits": 0,
+          "platform_compiles": 0,
+          "first_offer_queries": 0,
+          "first_offer_hits": 0,
+          "first_offer_compiles": 0,
+          "edge_compiles": 0,
+          "edge_cells": 0,
+          "kernel_compiles": 0,
+          "prior_future_edge_queries": 0,
+          "prior_future_kernel_queries": 0,
+          "top_level_compile_seconds": 0.04557456698967144
+        }
+      }
+    },
+    {
+      "root_index": 0,
+      "root_id": "onboard_2023-07-16_4368_70",
+      "scenario": "actual",
+      "policy": "pair_rollout",
+      "quality": {
+        "loss": null,
+        "status": "unsupported_public_history:Observed departure lies outside frozen operating support; trip=1547.TA.92-72-B-j23-1.9.R, cid=4467, kind=arrival, evidence=observed:29870.0, conditional_operating_support=(29740.0, 29860.0)",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 4368,
+            "clock": 29712,
+            "choice": "continue",
+            "receipt": {
+              "method": "one_step_rollout",
+              "stage": 0,
+              "alight": 30889.461594959357,
+              "continuation": 30668.450807383204,
+              "arrival_cid": 4368,
+              "clock": 29712,
+              "clock_mode": "adjacent_state_projection",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          }
+        ],
+        "decisions": {
+          "platform": 0,
+          "onboard": 1
+        }
+      },
+      "warm_quality": {
+        "loss": null,
+        "status": "unsupported_public_history:Observed departure lies outside frozen operating support; trip=1547.TA.92-72-B-j23-1.9.R, cid=4467, kind=arrival, evidence=observed:29870.0, conditional_operating_support=(29740.0, 29860.0)",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 4368,
+            "clock": 29712,
+            "choice": "continue",
+            "receipt": {
+              "method": "one_step_rollout",
+              "stage": 0,
+              "alight": 30889.461594959357,
+              "continuation": 30668.450807383204,
+              "arrival_cid": 4368,
+              "clock": 29712,
+              "clock_mode": "adjacent_state_projection",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          }
+        ],
+        "decisions": {
+          "platform": 0,
+          "onboard": 1
+        }
+      },
+      "identical_public_trace_and_outcome": true,
+      "cold": {
+        "total_wall": 0.9222330949996831,
+        "total_process_cpu": 0.706762823,
+        "model_constructor_wall": 0.05557038399274461,
+        "model_constructor_cpu": 0.035840903000000424,
+        "menu_and_planner_constructor_wall": 0.005453236008179374,
+        "menu_and_planner_constructor_cpu": 0.00027666500000034233,
+        "executor_process_cpu": 0.6706452549999993,
+        "executor_compute_wall": 0.8272662259987555,
+        "executor_total_wall": 0.8611265400104458,
+        "planner_stats": {
+          "ride_queries": 62,
+          "ride_hits": 15,
+          "ride_compiles": 46,
+          "platform_queries": 40,
+          "platform_hits": 10,
+          "platform_compiles": 30,
+          "first_offer_queries": 80,
+          "first_offer_hits": 40,
+          "first_offer_compiles": 40,
+          "edge_compiles": 111,
+          "edge_cells": 4802304,
+          "kernel_compiles": 81,
+          "prior_future_edge_queries": 253,
+          "prior_future_kernel_queries": 108,
+          "top_level_compile_seconds": 0.8604370780085446
+        }
+      },
+      "warm": {
+        "total_wall": 0.0372818699979689,
+        "total_process_cpu": 0.03072346500000034,
+        "executor_compute_wall": 0.00012604700168594718,
+        "executor_total_wall": 0.037221772989141755,
+        "planner_stats": {
+          "ride_queries": 2,
+          "ride_hits": 1,
+          "ride_compiles": 0,
+          "platform_queries": 0,
+          "platform_hits": 0,
+          "platform_compiles": 0,
+          "first_offer_queries": 0,
+          "first_offer_hits": 0,
+          "first_offer_compiles": 0,
+          "edge_compiles": 0,
+          "edge_cells": 0,
+          "kernel_compiles": 0,
+          "prior_future_edge_queries": 0,
+          "prior_future_kernel_queries": 0,
+          "top_level_compile_seconds": 0.03701162998913787
+        }
+      }
+    },
+    {
+      "root_index": 0,
+      "root_id": "onboard_2023-07-16_4368_70",
+      "scenario": "actual",
+      "policy": "pair_stopping",
+      "quality": {
+        "loss": null,
+        "status": "unsupported_public_history:Observed departure lies outside frozen operating support; trip=1547.TA.92-72-B-j23-1.9.R, cid=4467, kind=arrival, evidence=observed:29870.0, conditional_operating_support=(29740.0, 29860.0)",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 4368,
+            "clock": 29712,
+            "choice": "continue",
+            "receipt": {
+              "method": "optimal",
+              "stage": 0,
+              "alight": 30889.461594959357,
+              "continuation": 30668.450807383204,
+              "arrival_cid": 4368,
+              "clock": 29712,
+              "clock_mode": "adjacent_state_projection",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          }
+        ],
+        "decisions": {
+          "platform": 0,
+          "onboard": 1
+        }
+      },
+      "warm_quality": {
+        "loss": null,
+        "status": "unsupported_public_history:Observed departure lies outside frozen operating support; trip=1547.TA.92-72-B-j23-1.9.R, cid=4467, kind=arrival, evidence=observed:29870.0, conditional_operating_support=(29740.0, 29860.0)",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 4368,
+            "clock": 29712,
+            "choice": "continue",
+            "receipt": {
+              "method": "optimal",
+              "stage": 0,
+              "alight": 30889.461594959357,
+              "continuation": 30668.450807383204,
+              "arrival_cid": 4368,
+              "clock": 29712,
+              "clock_mode": "adjacent_state_projection",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          }
+        ],
+        "decisions": {
+          "platform": 0,
+          "onboard": 1
+        }
+      },
+      "identical_public_trace_and_outcome": true,
+      "cold": {
+        "total_wall": 1.1445014130003983,
+        "total_process_cpu": 0.8291922959999996,
+        "model_constructor_wall": 0.18179450499883387,
+        "model_constructor_cpu": 0.14903919799999965,
+        "menu_and_planner_constructor_wall": 0.00026293599512428045,
+        "menu_and_planner_constructor_cpu": 0.00023956400000013645,
+        "executor_process_cpu": 0.6799135339999998,
+        "executor_compute_wall": 0.9291478220111458,
+        "executor_total_wall": 0.9623436049878364,
+        "planner_stats": {
+          "ride_queries": 62,
+          "ride_hits": 15,
+          "ride_compiles": 46,
+          "platform_queries": 40,
+          "platform_hits": 10,
+          "platform_compiles": 30,
+          "first_offer_queries": 80,
+          "first_offer_hits": 40,
+          "first_offer_compiles": 40,
+          "edge_compiles": 111,
+          "edge_cells": 4802304,
+          "kernel_compiles": 81,
+          "prior_future_edge_queries": 253,
+          "prior_future_kernel_queries": 108,
+          "top_level_compile_seconds": 0.9617000770085724
+        }
+      },
+      "warm": {
+        "total_wall": 0.033028849997208454,
+        "total_process_cpu": 0.030494101000000384,
+        "executor_compute_wall": 0.00010757299605756998,
+        "executor_total_wall": 0.032959820004180074,
+        "planner_stats": {
+          "ride_queries": 2,
+          "ride_hits": 1,
+          "ride_compiles": 0,
+          "platform_queries": 0,
+          "platform_hits": 0,
+          "platform_compiles": 0,
+          "first_offer_queries": 0,
+          "first_offer_hits": 0,
+          "first_offer_compiles": 0,
+          "edge_compiles": 0,
+          "edge_cells": 0,
+          "kernel_compiles": 0,
+          "prior_future_edge_queries": 0,
+          "prior_future_kernel_queries": 0,
+          "top_level_compile_seconds": 0.03276111699233297
+        }
+      }
+    },
+    {
+      "root_index": 0,
+      "root_id": "onboard_2023-07-16_4368_70",
+      "scenario": "model_world0",
+      "policy": "rolling_nominal",
+      "quality": {
+        "loss": 1150,
+        "status": "arrived",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 4368,
+            "clock": 29980,
+            "choice": "alight",
+            "receipt": {
+              "method": "nominal",
+              "stage": 0,
+              "alight": 30941.37684697866,
+              "continuation": 31331.16959824398,
+              "arrival_cid": 4368,
+              "clock": 29980,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 289,
+            "entry": 29980,
+            "ready": 30100,
+            "clock": 30300,
+            "observed": {
+              "5185": 30300
+            },
+            "visible": [
+              5185
+            ],
+            "choice": null,
+            "receipt": {
+              "method": "rolling_mean",
+              "target": 5479,
+              "values": {
+                "5185": 31535.671342283185,
+                "5210": 30764.650609801058,
+                "5479": 30743.77285386521,
+                "6031": 31830.376051736584
+              }
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 289,
+            "entry": 29980,
+            "ready": 30100,
+            "clock": 30360,
+            "observed": {
+              "5185": 30300,
+              "5479": 30360
+            },
+            "visible": [
+              5479
+            ],
+            "choice": 5479,
+            "receipt": {
+              "method": "rolling_mean",
+              "target": 5479,
+              "values": {
+                "5479": 30740.321507381665,
+                "5210": 30813.391122428937,
+                "6031": 31830.376641783445
+              }
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5479,
+            "clock": 30460,
+            "choice": "continue",
+            "receipt": {
+              "method": "nominal",
+              "stage": 0,
+              "alight": 31523.15710001114,
+              "continuation": 30771.067172121544,
+              "arrival_cid": 5479,
+              "clock": 30460,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5580,
+            "clock": 30580,
+            "choice": "continue",
+            "receipt": {
+              "method": "nominal",
+              "stage": 1,
+              "alight": 31522.328720450103,
+              "continuation": 30814.0358098344,
+              "arrival_cid": 5580,
+              "clock": 30580,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5682,
+            "clock": 30660,
+            "choice": "continue",
+            "receipt": {
+              "method": "nominal",
+              "stage": 2,
+              "alight": 31521.766447451428,
+              "continuation": 30817.004447547264,
+              "arrival_cid": 5682,
+              "clock": 30660,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5789,
+            "clock": 30720,
+            "choice": "continue",
+            "receipt": {
+              "method": "nominal",
+              "stage": 3,
+              "alight": 31520.573021992856,
+              "continuation": 30799.973085260117,
+              "arrival_cid": 5789,
+              "clock": 30720,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "destination",
+            "cid": 5995,
+            "clock": 30820
+          }
+        ],
+        "decisions": {
+          "platform": 2,
+          "onboard": 5
+        }
+      },
+      "warm_quality": {
+        "loss": 1150,
+        "status": "arrived",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 4368,
+            "clock": 29980,
+            "choice": "alight",
+            "receipt": {
+              "method": "nominal",
+              "stage": 0,
+              "alight": 30941.37684697866,
+              "continuation": 31331.16959824398,
+              "arrival_cid": 4368,
+              "clock": 29980,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 289,
+            "entry": 29980,
+            "ready": 30100,
+            "clock": 30300,
+            "observed": {
+              "5185": 30300
+            },
+            "visible": [
+              5185
+            ],
+            "choice": null,
+            "receipt": {
+              "method": "rolling_mean",
+              "target": 5479,
+              "values": {
+                "5185": 31535.671342283185,
+                "5210": 30764.650609801058,
+                "5479": 30743.77285386521,
+                "6031": 31830.376051736584
+              }
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 289,
+            "entry": 29980,
+            "ready": 30100,
+            "clock": 30360,
+            "observed": {
+              "5185": 30300,
+              "5479": 30360
+            },
+            "visible": [
+              5479
+            ],
+            "choice": 5479,
+            "receipt": {
+              "method": "rolling_mean",
+              "target": 5479,
+              "values": {
+                "5479": 30740.321507381665,
+                "5210": 30813.391122428937,
+                "6031": 31830.376641783445
+              }
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5479,
+            "clock": 30460,
+            "choice": "continue",
+            "receipt": {
+              "method": "nominal",
+              "stage": 0,
+              "alight": 31523.15710001114,
+              "continuation": 30771.067172121544,
+              "arrival_cid": 5479,
+              "clock": 30460,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5580,
+            "clock": 30580,
+            "choice": "continue",
+            "receipt": {
+              "method": "nominal",
+              "stage": 1,
+              "alight": 31522.328720450103,
+              "continuation": 30814.0358098344,
+              "arrival_cid": 5580,
+              "clock": 30580,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5682,
+            "clock": 30660,
+            "choice": "continue",
+            "receipt": {
+              "method": "nominal",
+              "stage": 2,
+              "alight": 31521.766447451428,
+              "continuation": 30817.004447547264,
+              "arrival_cid": 5682,
+              "clock": 30660,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5789,
+            "clock": 30720,
+            "choice": "continue",
+            "receipt": {
+              "method": "nominal",
+              "stage": 3,
+              "alight": 31520.573021992856,
+              "continuation": 30799.973085260117,
+              "arrival_cid": 5789,
+              "clock": 30720,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "destination",
+            "cid": 5995,
+            "clock": 30820
+          }
+        ],
+        "decisions": {
+          "platform": 2,
+          "onboard": 5
+        }
+      },
+      "identical_public_trace_and_outcome": true,
+      "cold": {
+        "total_wall": 1.1213286900019739,
+        "total_process_cpu": 1.0347486909999999,
+        "model_constructor_wall": 0.15193032000388484,
+        "model_constructor_cpu": 0.14021418799999985,
+        "menu_and_planner_constructor_wall": 0.0004446419916348532,
+        "menu_and_planner_constructor_cpu": 0.0004080140000004562,
+        "executor_process_cpu": 0.8941264889999996,
+        "executor_compute_wall": 0.9684651609859429,
+        "executor_total_wall": 0.968824219002272,
+        "planner_stats": {
+          "ride_queries": 97,
+          "ride_hits": 32,
+          "ride_compiles": 65,
+          "platform_queries": 50,
+          "platform_hits": 10,
+          "platform_compiles": 40,
+          "first_offer_queries": 141,
+          "first_offer_hits": 93,
+          "first_offer_compiles": 48,
+          "edge_compiles": 127,
+          "edge_cells": 5494528,
+          "kernel_compiles": 91,
+          "prior_future_edge_queries": 253,
+          "prior_future_kernel_queries": 175,
+          "top_level_compile_seconds": 0.9299150800216012
+        }
+      },
+      "warm": {
+        "total_wall": 0.0023246380005730316,
+        "total_process_cpu": 0.002146682000001121,
+        "executor_compute_wall": 0.0021484129974851385,
+        "executor_total_wall": 0.0022797900019213557,
+        "planner_stats": {
+          "ride_queries": 5,
+          "ride_hits": 5,
+          "ride_compiles": 0,
+          "platform_queries": 2,
+          "platform_hits": 2,
+          "platform_compiles": 0,
+          "first_offer_queries": 0,
+          "first_offer_hits": 0,
+          "first_offer_compiles": 0,
+          "edge_compiles": 0,
+          "edge_cells": 0,
+          "kernel_compiles": 0,
+          "prior_future_edge_queries": 0,
+          "prior_future_kernel_queries": 0,
+          "top_level_compile_seconds": 0.0
+        }
+      }
+    },
+    {
+      "root_index": 0,
+      "root_id": "onboard_2023-07-16_4368_70",
+      "scenario": "model_world0",
+      "policy": "single_rolling",
+      "quality": {
+        "loss": 1150,
+        "status": "arrived",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 4368,
+            "clock": 29980,
+            "choice": "alight",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 30941.37684697866,
+              "continuation": 31325.168071640368,
+              "arrival_cid": 4368,
+              "clock": 29980,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 289,
+            "entry": 29980,
+            "ready": 30100,
+            "clock": 30300,
+            "observed": {
+              "5185": 30300
+            },
+            "visible": [
+              5185
+            ],
+            "choice": null,
+            "receipt": {
+              "method": "single_target",
+              "wait": 30743.77285386521,
+              "board": 31535.671342283185,
+              "target": 5479,
+              "unsupported_candidates": [],
+              "best_visible": 5185
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 289,
+            "entry": 29980,
+            "ready": 30100,
+            "clock": 30360,
+            "observed": {
+              "5185": 30300,
+              "5479": 30360
+            },
+            "visible": [
+              5479
+            ],
+            "choice": 5479,
+            "receipt": {
+              "method": "single_target",
+              "wait": 30872.105357986464,
+              "board": 30740.321507381665,
+              "target": 5210,
+              "unsupported_candidates": [],
+              "best_visible": 5479
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5479,
+            "clock": 30460,
+            "choice": "continue",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 31523.15710001114,
+              "continuation": 30771.067172121548,
+              "arrival_cid": 5479,
+              "clock": 30460,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5580,
+            "clock": 30580,
+            "choice": "continue",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 1,
+              "alight": 31522.328720450103,
+              "continuation": 30814.035809834404,
+              "arrival_cid": 5580,
+              "clock": 30580,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5682,
+            "clock": 30660,
+            "choice": "continue",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 2,
+              "alight": 31521.766447451428,
+              "continuation": 30817.00444754726,
+              "arrival_cid": 5682,
+              "clock": 30660,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5789,
+            "clock": 30720,
+            "choice": "continue",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 3,
+              "alight": 31520.573021992856,
+              "continuation": 30799.973085260117,
+              "arrival_cid": 5789,
+              "clock": 30720,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "destination",
+            "cid": 5995,
+            "clock": 30820
+          }
+        ],
+        "decisions": {
+          "platform": 2,
+          "onboard": 5
+        }
+      },
+      "warm_quality": {
+        "loss": 1150,
+        "status": "arrived",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 4368,
+            "clock": 29980,
+            "choice": "alight",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 30941.37684697866,
+              "continuation": 31325.168071640368,
+              "arrival_cid": 4368,
+              "clock": 29980,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 289,
+            "entry": 29980,
+            "ready": 30100,
+            "clock": 30300,
+            "observed": {
+              "5185": 30300
+            },
+            "visible": [
+              5185
+            ],
+            "choice": null,
+            "receipt": {
+              "method": "single_target",
+              "wait": 30743.77285386521,
+              "board": 31535.671342283185,
+              "target": 5479,
+              "unsupported_candidates": [],
+              "best_visible": 5185
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 289,
+            "entry": 29980,
+            "ready": 30100,
+            "clock": 30360,
+            "observed": {
+              "5185": 30300,
+              "5479": 30360
+            },
+            "visible": [
+              5479
+            ],
+            "choice": 5479,
+            "receipt": {
+              "method": "single_target",
+              "wait": 30872.105357986464,
+              "board": 30740.321507381665,
+              "target": 5210,
+              "unsupported_candidates": [],
+              "best_visible": 5479
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5479,
+            "clock": 30460,
+            "choice": "continue",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 31523.15710001114,
+              "continuation": 30771.067172121548,
+              "arrival_cid": 5479,
+              "clock": 30460,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5580,
+            "clock": 30580,
+            "choice": "continue",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 1,
+              "alight": 31522.328720450103,
+              "continuation": 30814.035809834404,
+              "arrival_cid": 5580,
+              "clock": 30580,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5682,
+            "clock": 30660,
+            "choice": "continue",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 2,
+              "alight": 31521.766447451428,
+              "continuation": 30817.00444754726,
+              "arrival_cid": 5682,
+              "clock": 30660,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5789,
+            "clock": 30720,
+            "choice": "continue",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 3,
+              "alight": 31520.573021992856,
+              "continuation": 30799.973085260117,
+              "arrival_cid": 5789,
+              "clock": 30720,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "destination",
+            "cid": 5995,
+            "clock": 30820
+          }
+        ],
+        "decisions": {
+          "platform": 2,
+          "onboard": 5
+        }
+      },
+      "identical_public_trace_and_outcome": true,
+      "cold": {
+        "total_wall": 0.8545730860059848,
+        "total_process_cpu": 0.7888328380000011,
+        "model_constructor_wall": 0.04265980100899469,
+        "model_constructor_cpu": 0.03938115799999942,
+        "menu_and_planner_constructor_wall": 0.00028816099802497774,
+        "menu_and_planner_constructor_cpu": 0.000262748000000812,
+        "executor_process_cpu": 0.7491889320000009,
+        "executor_compute_wall": 0.8112110149959335,
+        "executor_total_wall": 0.8114973310002824,
+        "planner_stats": {
+          "ride_queries": 97,
+          "ride_hits": 32,
+          "ride_compiles": 65,
+          "platform_queries": 50,
+          "platform_hits": 10,
+          "platform_compiles": 40,
+          "first_offer_queries": 141,
+          "first_offer_hits": 93,
+          "first_offer_compiles": 48,
+          "edge_compiles": 127,
+          "edge_cells": 5494528,
+          "kernel_compiles": 91,
+          "prior_future_edge_queries": 253,
+          "prior_future_kernel_queries": 175,
+          "top_level_compile_seconds": 0.7702426440373529
+        }
+      },
+      "warm": {
+        "total_wall": 0.0020629820064641535,
+        "total_process_cpu": 0.0019050329999998894,
+        "executor_compute_wall": 0.0019129359861835837,
+        "executor_total_wall": 0.002019307008595206,
+        "planner_stats": {
+          "ride_queries": 5,
+          "ride_hits": 5,
+          "ride_compiles": 0,
+          "platform_queries": 2,
+          "platform_hits": 2,
+          "platform_compiles": 0,
+          "first_offer_queries": 0,
+          "first_offer_hits": 0,
+          "first_offer_compiles": 0,
+          "edge_compiles": 0,
+          "edge_cells": 0,
+          "kernel_compiles": 0,
+          "prior_future_edge_queries": 0,
+          "prior_future_kernel_queries": 0,
+          "top_level_compile_seconds": 0.0
+        }
+      }
+    },
+    {
+      "root_index": 0,
+      "root_id": "onboard_2023-07-16_4368_70",
+      "scenario": "model_world0",
+      "policy": "combined_rolling",
+      "quality": {
+        "loss": 1150,
+        "status": "arrived",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 4368,
+            "clock": 29980,
+            "choice": "alight",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 30941.37684697866,
+              "continuation": 31325.168071640368,
+              "arrival_cid": 4368,
+              "clock": 29980,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 289,
+            "entry": 29980,
+            "ready": 30100,
+            "clock": 30300,
+            "observed": {
+              "5185": 30300
+            },
+            "visible": [
+              5185
+            ],
+            "choice": null,
+            "receipt": {
+              "method": "combined_waiting",
+              "wait": 30731.653646553394,
+              "board": 31535.671342283185,
+              "single_wait": 30743.77285386521,
+              "first_offer_wait": 30731.653646553394,
+              "target": 5479,
+              "unsupported_candidates": [],
+              "best_visible": 5185
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 289,
+            "entry": 29980,
+            "ready": 30100,
+            "clock": 30360,
+            "observed": {
+              "5185": 30300,
+              "5479": 30360
+            },
+            "visible": [
+              5479
+            ],
+            "choice": 5479,
+            "receipt": {
+              "method": "combined_waiting",
+              "wait": 30860.580215242546,
+              "board": 30740.321507381665,
+              "single_wait": 30872.105357986464,
+              "first_offer_wait": 30860.580215242546,
+              "target": 5210,
+              "unsupported_candidates": [],
+              "best_visible": 5479
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5479,
+            "clock": 30460,
+            "choice": "continue",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 31523.15710001114,
+              "continuation": 30771.067172121548,
+              "arrival_cid": 5479,
+              "clock": 30460,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5580,
+            "clock": 30580,
+            "choice": "continue",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 1,
+              "alight": 31522.328720450103,
+              "continuation": 30814.035809834404,
+              "arrival_cid": 5580,
+              "clock": 30580,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5682,
+            "clock": 30660,
+            "choice": "continue",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 2,
+              "alight": 31521.766447451428,
+              "continuation": 30817.00444754726,
+              "arrival_cid": 5682,
+              "clock": 30660,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5789,
+            "clock": 30720,
+            "choice": "continue",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 3,
+              "alight": 31520.573021992856,
+              "continuation": 30799.973085260117,
+              "arrival_cid": 5789,
+              "clock": 30720,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "destination",
+            "cid": 5995,
+            "clock": 30820
+          }
+        ],
+        "decisions": {
+          "platform": 2,
+          "onboard": 5
+        }
+      },
+      "warm_quality": {
+        "loss": 1150,
+        "status": "arrived",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 4368,
+            "clock": 29980,
+            "choice": "alight",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 30941.37684697866,
+              "continuation": 31325.168071640368,
+              "arrival_cid": 4368,
+              "clock": 29980,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 289,
+            "entry": 29980,
+            "ready": 30100,
+            "clock": 30300,
+            "observed": {
+              "5185": 30300
+            },
+            "visible": [
+              5185
+            ],
+            "choice": null,
+            "receipt": {
+              "method": "combined_waiting",
+              "wait": 30731.653646553394,
+              "board": 31535.671342283185,
+              "single_wait": 30743.77285386521,
+              "first_offer_wait": 30731.653646553394,
+              "target": 5479,
+              "unsupported_candidates": [],
+              "best_visible": 5185
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 289,
+            "entry": 29980,
+            "ready": 30100,
+            "clock": 30360,
+            "observed": {
+              "5185": 30300,
+              "5479": 30360
+            },
+            "visible": [
+              5479
+            ],
+            "choice": 5479,
+            "receipt": {
+              "method": "combined_waiting",
+              "wait": 30860.580215242546,
+              "board": 30740.321507381665,
+              "single_wait": 30872.105357986464,
+              "first_offer_wait": 30860.580215242546,
+              "target": 5210,
+              "unsupported_candidates": [],
+              "best_visible": 5479
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5479,
+            "clock": 30460,
+            "choice": "continue",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 31523.15710001114,
+              "continuation": 30771.067172121548,
+              "arrival_cid": 5479,
+              "clock": 30460,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5580,
+            "clock": 30580,
+            "choice": "continue",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 1,
+              "alight": 31522.328720450103,
+              "continuation": 30814.035809834404,
+              "arrival_cid": 5580,
+              "clock": 30580,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5682,
+            "clock": 30660,
+            "choice": "continue",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 2,
+              "alight": 31521.766447451428,
+              "continuation": 30817.00444754726,
+              "arrival_cid": 5682,
+              "clock": 30660,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5789,
+            "clock": 30720,
+            "choice": "continue",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 3,
+              "alight": 31520.573021992856,
+              "continuation": 30799.973085260117,
+              "arrival_cid": 5789,
+              "clock": 30720,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "destination",
+            "cid": 5995,
+            "clock": 30820
+          }
+        ],
+        "decisions": {
+          "platform": 2,
+          "onboard": 5
+        }
+      },
+      "identical_public_trace_and_outcome": true,
+      "cold": {
+        "total_wall": 0.9933275640069041,
+        "total_process_cpu": 0.9089872850000003,
+        "model_constructor_wall": 0.18263114600267727,
+        "model_constructor_cpu": 0.16803754199999865,
+        "menu_and_planner_constructor_wall": 0.00027493000379763544,
+        "menu_and_planner_constructor_cpu": 0.0002508960000007221,
+        "executor_process_cpu": 0.7406988470000009,
+        "executor_compute_wall": 0.8100120129965944,
+        "executor_total_wall": 0.8102945190039463,
+        "planner_stats": {
+          "ride_queries": 97,
+          "ride_hits": 32,
+          "ride_compiles": 65,
+          "platform_queries": 50,
+          "platform_hits": 10,
+          "platform_compiles": 40,
+          "first_offer_queries": 141,
+          "first_offer_hits": 93,
+          "first_offer_compiles": 48,
+          "edge_compiles": 127,
+          "edge_cells": 5494528,
+          "kernel_compiles": 91,
+          "prior_future_edge_queries": 253,
+          "prior_future_kernel_queries": 175,
+          "top_level_compile_seconds": 0.7725875210162485
+        }
+      },
+      "warm": {
+        "total_wall": 0.002189147999160923,
+        "total_process_cpu": 0.0020214439999985956,
+        "executor_compute_wall": 0.00204100098926574,
+        "executor_total_wall": 0.0021456679969560355,
+        "planner_stats": {
+          "ride_queries": 5,
+          "ride_hits": 5,
+          "ride_compiles": 0,
+          "platform_queries": 2,
+          "platform_hits": 2,
+          "platform_compiles": 0,
+          "first_offer_queries": 0,
+          "first_offer_hits": 0,
+          "first_offer_compiles": 0,
+          "edge_compiles": 0,
+          "edge_cells": 0,
+          "kernel_compiles": 0,
+          "prior_future_edge_queries": 0,
+          "prior_future_kernel_queries": 0,
+          "top_level_compile_seconds": 0.0
+        }
+      }
+    },
+    {
+      "root_index": 0,
+      "root_id": "onboard_2023-07-16_4368_70",
+      "scenario": "model_world0",
+      "policy": "pair_rolling",
+      "quality": {
+        "loss": 1150,
+        "status": "arrived",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 4368,
+            "clock": 29980,
+            "choice": "alight",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 30941.37684697866,
+              "continuation": 31325.168071640368,
+              "arrival_cid": 4368,
+              "clock": 29980,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 289,
+            "entry": 29980,
+            "ready": 30100,
+            "clock": 30300,
+            "observed": {
+              "5185": 30300
+            },
+            "visible": [
+              5185
+            ],
+            "choice": null,
+            "receipt": {
+              "method": "two_target_waiting",
+              "wait": 30730.044544901983,
+              "board": 31535.671342283185,
+              "combined_wait": 30731.653646553394,
+              "pair_wait": 30730.044544901983,
+              "best_pair": [
+                5210,
+                5479
+              ],
+              "single_wait": 30743.77285386521,
+              "first_offer_wait": 30731.653646553394,
+              "target": 5479,
+              "unsupported_candidates": [],
+              "best_visible": 5185
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 289,
+            "entry": 29980,
+            "ready": 30100,
+            "clock": 30360,
+            "observed": {
+              "5185": 30300,
+              "5479": 30360
+            },
+            "visible": [
+              5479
+            ],
+            "choice": 5479,
+            "receipt": {
+              "method": "two_target_waiting",
+              "wait": 30860.565678662606,
+              "board": 30740.321507381665,
+              "combined_wait": 30860.580215242546,
+              "pair_wait": 30860.565678662606,
+              "best_pair": [
+                5210,
+                6031
+              ],
+              "single_wait": 30872.105357986464,
+              "first_offer_wait": 30860.580215242546,
+              "target": 5210,
+              "unsupported_candidates": [],
+              "best_visible": 5479
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5479,
+            "clock": 30460,
+            "choice": "continue",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 31523.15710001114,
+              "continuation": 30771.067172121548,
+              "arrival_cid": 5479,
+              "clock": 30460,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5580,
+            "clock": 30580,
+            "choice": "continue",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 1,
+              "alight": 31522.328720450103,
+              "continuation": 30814.035809834404,
+              "arrival_cid": 5580,
+              "clock": 30580,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5682,
+            "clock": 30660,
+            "choice": "continue",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 2,
+              "alight": 31521.766447451428,
+              "continuation": 30817.00444754726,
+              "arrival_cid": 5682,
+              "clock": 30660,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5789,
+            "clock": 30720,
+            "choice": "continue",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 3,
+              "alight": 31520.573021992856,
+              "continuation": 30799.973085260117,
+              "arrival_cid": 5789,
+              "clock": 30720,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "destination",
+            "cid": 5995,
+            "clock": 30820
+          }
+        ],
+        "decisions": {
+          "platform": 2,
+          "onboard": 5
+        }
+      },
+      "warm_quality": {
+        "loss": 1150,
+        "status": "arrived",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 4368,
+            "clock": 29980,
+            "choice": "alight",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 30941.37684697866,
+              "continuation": 31325.168071640368,
+              "arrival_cid": 4368,
+              "clock": 29980,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 289,
+            "entry": 29980,
+            "ready": 30100,
+            "clock": 30300,
+            "observed": {
+              "5185": 30300
+            },
+            "visible": [
+              5185
+            ],
+            "choice": null,
+            "receipt": {
+              "method": "two_target_waiting",
+              "wait": 30730.044544901983,
+              "board": 31535.671342283185,
+              "combined_wait": 30731.653646553394,
+              "pair_wait": 30730.044544901983,
+              "best_pair": [
+                5210,
+                5479
+              ],
+              "single_wait": 30743.77285386521,
+              "first_offer_wait": 30731.653646553394,
+              "target": 5479,
+              "unsupported_candidates": [],
+              "best_visible": 5185
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 289,
+            "entry": 29980,
+            "ready": 30100,
+            "clock": 30360,
+            "observed": {
+              "5185": 30300,
+              "5479": 30360
+            },
+            "visible": [
+              5479
+            ],
+            "choice": 5479,
+            "receipt": {
+              "method": "two_target_waiting",
+              "wait": 30860.565678662606,
+              "board": 30740.321507381665,
+              "combined_wait": 30860.580215242546,
+              "pair_wait": 30860.565678662606,
+              "best_pair": [
+                5210,
+                6031
+              ],
+              "single_wait": 30872.105357986464,
+              "first_offer_wait": 30860.580215242546,
+              "target": 5210,
+              "unsupported_candidates": [],
+              "best_visible": 5479
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5479,
+            "clock": 30460,
+            "choice": "continue",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 31523.15710001114,
+              "continuation": 30771.067172121548,
+              "arrival_cid": 5479,
+              "clock": 30460,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5580,
+            "clock": 30580,
+            "choice": "continue",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 1,
+              "alight": 31522.328720450103,
+              "continuation": 30814.035809834404,
+              "arrival_cid": 5580,
+              "clock": 30580,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5682,
+            "clock": 30660,
+            "choice": "continue",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 2,
+              "alight": 31521.766447451428,
+              "continuation": 30817.00444754726,
+              "arrival_cid": 5682,
+              "clock": 30660,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5789,
+            "clock": 30720,
+            "choice": "continue",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 3,
+              "alight": 31520.573021992856,
+              "continuation": 30799.973085260117,
+              "arrival_cid": 5789,
+              "clock": 30720,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "destination",
+            "cid": 5995,
+            "clock": 30820
+          }
+        ],
+        "decisions": {
+          "platform": 2,
+          "onboard": 5
+        }
+      },
+      "identical_public_trace_and_outcome": true,
+      "cold": {
+        "total_wall": 1.186990906993742,
+        "total_process_cpu": 0.8504478759999987,
+        "model_constructor_wall": 0.06048718700185418,
+        "model_constructor_cpu": 0.0373708060000002,
+        "menu_and_planner_constructor_wall": 0.00040638199425302446,
+        "menu_and_planner_constructor_cpu": 0.000372476999999094,
+        "executor_process_cpu": 0.8127045929999994,
+        "executor_compute_wall": 1.125680450015352,
+        "executor_total_wall": 1.1259482280001976,
+        "planner_stats": {
+          "ride_queries": 97,
+          "ride_hits": 32,
+          "ride_compiles": 65,
+          "platform_queries": 50,
+          "platform_hits": 10,
+          "platform_compiles": 40,
+          "first_offer_queries": 141,
+          "first_offer_hits": 93,
+          "first_offer_compiles": 48,
+          "edge_compiles": 127,
+          "edge_cells": 5494528,
+          "kernel_compiles": 91,
+          "prior_future_edge_queries": 253,
+          "prior_future_kernel_queries": 175,
+          "top_level_compile_seconds": 1.0222325579961762
+        }
+      },
+      "warm": {
+        "total_wall": 0.06404375500278547,
+        "total_process_cpu": 0.05911907599999999,
+        "executor_compute_wall": 0.06383059499785304,
+        "executor_total_wall": 0.06396344699896872,
+        "planner_stats": {
+          "ride_queries": 5,
+          "ride_hits": 5,
+          "ride_compiles": 0,
+          "platform_queries": 2,
+          "platform_hits": 2,
+          "platform_compiles": 0,
+          "first_offer_queries": 0,
+          "first_offer_hits": 0,
+          "first_offer_compiles": 0,
+          "edge_compiles": 0,
+          "edge_cells": 0,
+          "kernel_compiles": 0,
+          "prior_future_edge_queries": 0,
+          "prior_future_kernel_queries": 0,
+          "top_level_compile_seconds": 0.0
+        }
+      }
+    },
+    {
+      "root_index": 0,
+      "root_id": "onboard_2023-07-16_4368_70",
+      "scenario": "model_world0",
+      "policy": "pair_rollout",
+      "quality": {
+        "loss": 1150,
+        "status": "arrived",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 4368,
+            "clock": 29980,
+            "choice": "alight",
+            "receipt": {
+              "method": "one_step_rollout",
+              "stage": 0,
+              "alight": 30941.37684697866,
+              "continuation": 31325.168071640368,
+              "arrival_cid": 4368,
+              "clock": 29980,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 289,
+            "entry": 29980,
+            "ready": 30100,
+            "clock": 30300,
+            "observed": {
+              "5185": 30300
+            },
+            "visible": [
+              5185
+            ],
+            "choice": null,
+            "receipt": {
+              "method": "two_target_waiting",
+              "wait": 30730.044544901983,
+              "board": 31535.671342283185,
+              "combined_wait": 30731.653646553394,
+              "pair_wait": 30730.044544901983,
+              "best_pair": [
+                5210,
+                5479
+              ],
+              "single_wait": 30743.77285386521,
+              "first_offer_wait": 30731.653646553394,
+              "target": 5479,
+              "unsupported_candidates": [],
+              "best_visible": 5185
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 289,
+            "entry": 29980,
+            "ready": 30100,
+            "clock": 30360,
+            "observed": {
+              "5185": 30300,
+              "5479": 30360
+            },
+            "visible": [
+              5479
+            ],
+            "choice": 5479,
+            "receipt": {
+              "method": "two_target_waiting",
+              "wait": 30860.565678662606,
+              "board": 30740.321507381665,
+              "combined_wait": 30860.580215242546,
+              "pair_wait": 30860.565678662606,
+              "best_pair": [
+                5210,
+                6031
+              ],
+              "single_wait": 30872.105357986464,
+              "first_offer_wait": 30860.580215242546,
+              "target": 5210,
+              "unsupported_candidates": [],
+              "best_visible": 5479
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5479,
+            "clock": 30460,
+            "choice": "continue",
+            "receipt": {
+              "method": "one_step_rollout",
+              "stage": 0,
+              "alight": 31523.15710001114,
+              "continuation": 30771.067172121548,
+              "arrival_cid": 5479,
+              "clock": 30460,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5580,
+            "clock": 30580,
+            "choice": "continue",
+            "receipt": {
+              "method": "one_step_rollout",
+              "stage": 1,
+              "alight": 31522.328720450103,
+              "continuation": 30814.035809834404,
+              "arrival_cid": 5580,
+              "clock": 30580,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5682,
+            "clock": 30660,
+            "choice": "continue",
+            "receipt": {
+              "method": "one_step_rollout",
+              "stage": 2,
+              "alight": 31521.766447451428,
+              "continuation": 30817.00444754726,
+              "arrival_cid": 5682,
+              "clock": 30660,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5789,
+            "clock": 30720,
+            "choice": "continue",
+            "receipt": {
+              "method": "one_step_rollout",
+              "stage": 3,
+              "alight": 31520.573021992856,
+              "continuation": 30799.973085260117,
+              "arrival_cid": 5789,
+              "clock": 30720,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "destination",
+            "cid": 5995,
+            "clock": 30820
+          }
+        ],
+        "decisions": {
+          "platform": 2,
+          "onboard": 5
+        }
+      },
+      "warm_quality": {
+        "loss": 1150,
+        "status": "arrived",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 4368,
+            "clock": 29980,
+            "choice": "alight",
+            "receipt": {
+              "method": "one_step_rollout",
+              "stage": 0,
+              "alight": 30941.37684697866,
+              "continuation": 31325.168071640368,
+              "arrival_cid": 4368,
+              "clock": 29980,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 289,
+            "entry": 29980,
+            "ready": 30100,
+            "clock": 30300,
+            "observed": {
+              "5185": 30300
+            },
+            "visible": [
+              5185
+            ],
+            "choice": null,
+            "receipt": {
+              "method": "two_target_waiting",
+              "wait": 30730.044544901983,
+              "board": 31535.671342283185,
+              "combined_wait": 30731.653646553394,
+              "pair_wait": 30730.044544901983,
+              "best_pair": [
+                5210,
+                5479
+              ],
+              "single_wait": 30743.77285386521,
+              "first_offer_wait": 30731.653646553394,
+              "target": 5479,
+              "unsupported_candidates": [],
+              "best_visible": 5185
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 289,
+            "entry": 29980,
+            "ready": 30100,
+            "clock": 30360,
+            "observed": {
+              "5185": 30300,
+              "5479": 30360
+            },
+            "visible": [
+              5479
+            ],
+            "choice": 5479,
+            "receipt": {
+              "method": "two_target_waiting",
+              "wait": 30860.565678662606,
+              "board": 30740.321507381665,
+              "combined_wait": 30860.580215242546,
+              "pair_wait": 30860.565678662606,
+              "best_pair": [
+                5210,
+                6031
+              ],
+              "single_wait": 30872.105357986464,
+              "first_offer_wait": 30860.580215242546,
+              "target": 5210,
+              "unsupported_candidates": [],
+              "best_visible": 5479
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5479,
+            "clock": 30460,
+            "choice": "continue",
+            "receipt": {
+              "method": "one_step_rollout",
+              "stage": 0,
+              "alight": 31523.15710001114,
+              "continuation": 30771.067172121548,
+              "arrival_cid": 5479,
+              "clock": 30460,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5580,
+            "clock": 30580,
+            "choice": "continue",
+            "receipt": {
+              "method": "one_step_rollout",
+              "stage": 1,
+              "alight": 31522.328720450103,
+              "continuation": 30814.035809834404,
+              "arrival_cid": 5580,
+              "clock": 30580,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5682,
+            "clock": 30660,
+            "choice": "continue",
+            "receipt": {
+              "method": "one_step_rollout",
+              "stage": 2,
+              "alight": 31521.766447451428,
+              "continuation": 30817.00444754726,
+              "arrival_cid": 5682,
+              "clock": 30660,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5789,
+            "clock": 30720,
+            "choice": "continue",
+            "receipt": {
+              "method": "one_step_rollout",
+              "stage": 3,
+              "alight": 31520.573021992856,
+              "continuation": 30799.973085260117,
+              "arrival_cid": 5789,
+              "clock": 30720,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "destination",
+            "cid": 5995,
+            "clock": 30820
+          }
+        ],
+        "decisions": {
+          "platform": 2,
+          "onboard": 5
+        }
+      },
+      "identical_public_trace_and_outcome": true,
+      "cold": {
+        "total_wall": 1.0229474619991379,
+        "total_process_cpu": 0.9351453240000005,
+        "model_constructor_wall": 0.16746220098866615,
+        "model_constructor_cpu": 0.15231851900000137,
+        "menu_and_planner_constructor_wall": 0.00026654000976122916,
+        "menu_and_planner_constructor_cpu": 0.00024283999999852313,
+        "executor_process_cpu": 0.7825839650000006,
+        "executor_compute_wall": 0.8548178079945501,
+        "executor_total_wall": 0.8550849570019636,
+        "planner_stats": {
+          "ride_queries": 97,
+          "ride_hits": 32,
+          "ride_compiles": 65,
+          "platform_queries": 50,
+          "platform_hits": 10,
+          "platform_compiles": 40,
+          "first_offer_queries": 141,
+          "first_offer_hits": 93,
+          "first_offer_compiles": 48,
+          "edge_compiles": 127,
+          "edge_cells": 5494528,
+          "kernel_compiles": 91,
+          "prior_future_edge_queries": 253,
+          "prior_future_kernel_queries": 175,
+          "top_level_compile_seconds": 0.7500193959858734
+        }
+      },
+      "warm": {
+        "total_wall": 0.0639524409925798,
+        "total_process_cpu": 0.05903471599999932,
+        "executor_compute_wall": 0.06376297400856856,
+        "executor_total_wall": 0.06388827199407388,
+        "planner_stats": {
+          "ride_queries": 5,
+          "ride_hits": 5,
+          "ride_compiles": 0,
+          "platform_queries": 2,
+          "platform_hits": 2,
+          "platform_compiles": 0,
+          "first_offer_queries": 0,
+          "first_offer_hits": 0,
+          "first_offer_compiles": 0,
+          "edge_compiles": 0,
+          "edge_cells": 0,
+          "kernel_compiles": 0,
+          "prior_future_edge_queries": 0,
+          "prior_future_kernel_queries": 0,
+          "top_level_compile_seconds": 0.0
+        }
+      }
+    },
+    {
+      "root_index": 0,
+      "root_id": "onboard_2023-07-16_4368_70",
+      "scenario": "model_world0",
+      "policy": "pair_stopping",
+      "quality": {
+        "loss": 1150,
+        "status": "arrived",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 4368,
+            "clock": 29980,
+            "choice": "alight",
+            "receipt": {
+              "method": "optimal",
+              "stage": 0,
+              "alight": 30941.37684697866,
+              "continuation": 31325.168071640368,
+              "arrival_cid": 4368,
+              "clock": 29980,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 289,
+            "entry": 29980,
+            "ready": 30100,
+            "clock": 30300,
+            "observed": {
+              "5185": 30300
+            },
+            "visible": [
+              5185
+            ],
+            "choice": null,
+            "receipt": {
+              "method": "two_target_waiting",
+              "wait": 30730.044544901983,
+              "board": 31535.671342283185,
+              "combined_wait": 30731.653646553394,
+              "pair_wait": 30730.044544901983,
+              "best_pair": [
+                5210,
+                5479
+              ],
+              "single_wait": 30743.77285386521,
+              "first_offer_wait": 30731.653646553394,
+              "target": 5479,
+              "unsupported_candidates": [],
+              "best_visible": 5185
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 289,
+            "entry": 29980,
+            "ready": 30100,
+            "clock": 30360,
+            "observed": {
+              "5185": 30300,
+              "5479": 30360
+            },
+            "visible": [
+              5479
+            ],
+            "choice": 5479,
+            "receipt": {
+              "method": "two_target_waiting",
+              "wait": 30860.565678662606,
+              "board": 30740.321507381665,
+              "combined_wait": 30860.580215242546,
+              "pair_wait": 30860.565678662606,
+              "best_pair": [
+                5210,
+                6031
+              ],
+              "single_wait": 30872.105357986464,
+              "first_offer_wait": 30860.580215242546,
+              "target": 5210,
+              "unsupported_candidates": [],
+              "best_visible": 5479
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5479,
+            "clock": 30460,
+            "choice": "continue",
+            "receipt": {
+              "method": "optimal",
+              "stage": 0,
+              "alight": 31523.15710001114,
+              "continuation": 30771.067172121548,
+              "arrival_cid": 5479,
+              "clock": 30460,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5580,
+            "clock": 30580,
+            "choice": "continue",
+            "receipt": {
+              "method": "optimal",
+              "stage": 1,
+              "alight": 31522.328720450103,
+              "continuation": 30814.035809834404,
+              "arrival_cid": 5580,
+              "clock": 30580,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5682,
+            "clock": 30660,
+            "choice": "continue",
+            "receipt": {
+              "method": "optimal",
+              "stage": 2,
+              "alight": 31521.766447451428,
+              "continuation": 30817.00444754726,
+              "arrival_cid": 5682,
+              "clock": 30660,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5789,
+            "clock": 30720,
+            "choice": "continue",
+            "receipt": {
+              "method": "optimal",
+              "stage": 3,
+              "alight": 31520.573021992856,
+              "continuation": 30799.973085260117,
+              "arrival_cid": 5789,
+              "clock": 30720,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "destination",
+            "cid": 5995,
+            "clock": 30820
+          }
+        ],
+        "decisions": {
+          "platform": 2,
+          "onboard": 5
+        }
+      },
+      "warm_quality": {
+        "loss": 1150,
+        "status": "arrived",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 4368,
+            "clock": 29980,
+            "choice": "alight",
+            "receipt": {
+              "method": "optimal",
+              "stage": 0,
+              "alight": 30941.37684697866,
+              "continuation": 31325.168071640368,
+              "arrival_cid": 4368,
+              "clock": 29980,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 289,
+            "entry": 29980,
+            "ready": 30100,
+            "clock": 30300,
+            "observed": {
+              "5185": 30300
+            },
+            "visible": [
+              5185
+            ],
+            "choice": null,
+            "receipt": {
+              "method": "two_target_waiting",
+              "wait": 30730.044544901983,
+              "board": 31535.671342283185,
+              "combined_wait": 30731.653646553394,
+              "pair_wait": 30730.044544901983,
+              "best_pair": [
+                5210,
+                5479
+              ],
+              "single_wait": 30743.77285386521,
+              "first_offer_wait": 30731.653646553394,
+              "target": 5479,
+              "unsupported_candidates": [],
+              "best_visible": 5185
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 289,
+            "entry": 29980,
+            "ready": 30100,
+            "clock": 30360,
+            "observed": {
+              "5185": 30300,
+              "5479": 30360
+            },
+            "visible": [
+              5479
+            ],
+            "choice": 5479,
+            "receipt": {
+              "method": "two_target_waiting",
+              "wait": 30860.565678662606,
+              "board": 30740.321507381665,
+              "combined_wait": 30860.580215242546,
+              "pair_wait": 30860.565678662606,
+              "best_pair": [
+                5210,
+                6031
+              ],
+              "single_wait": 30872.105357986464,
+              "first_offer_wait": 30860.580215242546,
+              "target": 5210,
+              "unsupported_candidates": [],
+              "best_visible": 5479
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5479,
+            "clock": 30460,
+            "choice": "continue",
+            "receipt": {
+              "method": "optimal",
+              "stage": 0,
+              "alight": 31523.15710001114,
+              "continuation": 30771.067172121548,
+              "arrival_cid": 5479,
+              "clock": 30460,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5580,
+            "clock": 30580,
+            "choice": "continue",
+            "receipt": {
+              "method": "optimal",
+              "stage": 1,
+              "alight": 31522.328720450103,
+              "continuation": 30814.035809834404,
+              "arrival_cid": 5580,
+              "clock": 30580,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5682,
+            "clock": 30660,
+            "choice": "continue",
+            "receipt": {
+              "method": "optimal",
+              "stage": 2,
+              "alight": 31521.766447451428,
+              "continuation": 30817.00444754726,
+              "arrival_cid": 5682,
+              "clock": 30660,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 5789,
+            "clock": 30720,
+            "choice": "continue",
+            "receipt": {
+              "method": "optimal",
+              "stage": 3,
+              "alight": 31520.573021992856,
+              "continuation": 30799.973085260117,
+              "arrival_cid": 5789,
+              "clock": 30720,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "destination",
+            "cid": 5995,
+            "clock": 30820
+          }
+        ],
+        "decisions": {
+          "platform": 2,
+          "onboard": 5
+        }
+      },
+      "identical_public_trace_and_outcome": true,
+      "cold": {
+        "total_wall": 1.261246266993112,
+        "total_process_cpu": 1.078458830999999,
+        "model_constructor_wall": 0.20587849999719765,
+        "model_constructor_cpu": 0.18757244799999917,
+        "menu_and_planner_constructor_wall": 0.0002958129916805774,
+        "menu_and_planner_constructor_cpu": 0.00027102399999989757,
+        "executor_process_cpu": 0.8906153589999999,
+        "executor_compute_wall": 1.0546021539630601,
+        "executor_total_wall": 1.0549382450117264,
+        "planner_stats": {
+          "ride_queries": 97,
+          "ride_hits": 32,
+          "ride_compiles": 65,
+          "platform_queries": 50,
+          "platform_hits": 10,
+          "platform_compiles": 40,
+          "first_offer_queries": 141,
+          "first_offer_hits": 93,
+          "first_offer_compiles": 48,
+          "edge_compiles": 127,
+          "edge_cells": 5494528,
+          "kernel_compiles": 91,
+          "prior_future_edge_queries": 253,
+          "prior_future_kernel_queries": 175,
+          "top_level_compile_seconds": 0.9495873670093715
+        }
+      },
+      "warm": {
+        "total_wall": 0.08305172700784169,
+        "total_process_cpu": 0.07666573500000062,
+        "executor_compute_wall": 0.08282354501716327,
+        "executor_total_wall": 0.08298167599423323,
+        "planner_stats": {
+          "ride_queries": 5,
+          "ride_hits": 5,
+          "ride_compiles": 0,
+          "platform_queries": 2,
+          "platform_hits": 2,
+          "platform_compiles": 0,
+          "first_offer_queries": 0,
+          "first_offer_hits": 0,
+          "first_offer_compiles": 0,
+          "edge_compiles": 0,
+          "edge_cells": 0,
+          "kernel_compiles": 0,
+          "prior_future_edge_queries": 0,
+          "prior_future_kernel_queries": 0,
+          "top_level_compile_seconds": 0.0
+        }
+      }
+    },
+    {
+      "root_index": 1,
+      "root_id": "onboard_2023-07-16_5522_23",
+      "scenario": "actual",
+      "policy": "rolling_nominal",
+      "quality": {
+        "loss": 894,
+        "status": "arrived",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 5522,
+            "clock": 30448,
+            "choice": "alight",
+            "receipt": {
+              "method": "nominal",
+              "stage": 0,
+              "alight": 31388.400324543745,
+              "continuation": 31398.644111680263,
+              "arrival_cid": 5522,
+              "clock": 30448,
+              "clock_mode": "adjacent_state_projection",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 455,
+            "entry": 30448,
+            "ready": 30568,
+            "clock": 30818,
+            "observed": {
+              "6271": 30818
+            },
+            "visible": [
+              6271
+            ],
+            "choice": 6271,
+            "receipt": {
+              "method": "rolling_mean",
+              "target": 6271,
+              "values": {
+                "6271": 31384.293068330142,
+                "7293": 32265.826926628226
+              }
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 6464,
+            "clock": 31003,
+            "choice": "alight",
+            "receipt": {
+              "method": "nominal",
+              "stage": 0,
+              "alight": 31380.440735682758,
+              "continuation": 31692.638647972246,
+              "arrival_cid": 6464,
+              "clock": 31003,
+              "clock_mode": "adjacent_state_projection",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 113,
+            "entry": 31003,
+            "ready": 31123,
+            "clock": 31152,
+            "observed": {
+              "6859": 31152
+            },
+            "visible": [
+              6859
+            ],
+            "choice": 6859,
+            "receipt": {
+              "method": "rolling_mean",
+              "target": 6859,
+              "values": {
+                "6859": 31224.198034769463,
+                "7183": 31482.14168519551
+              }
+            }
+          },
+          {
+            "kind": "destination",
+            "cid": 6859,
+            "clock": 31224
+          }
+        ],
+        "decisions": {
+          "platform": 2,
+          "onboard": 2
+        }
+      },
+      "warm_quality": {
+        "loss": 894,
+        "status": "arrived",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 5522,
+            "clock": 30448,
+            "choice": "alight",
+            "receipt": {
+              "method": "nominal",
+              "stage": 0,
+              "alight": 31388.400324543745,
+              "continuation": 31398.644111680263,
+              "arrival_cid": 5522,
+              "clock": 30448,
+              "clock_mode": "adjacent_state_projection",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 455,
+            "entry": 30448,
+            "ready": 30568,
+            "clock": 30818,
+            "observed": {
+              "6271": 30818
+            },
+            "visible": [
+              6271
+            ],
+            "choice": 6271,
+            "receipt": {
+              "method": "rolling_mean",
+              "target": 6271,
+              "values": {
+                "6271": 31384.293068330142,
+                "7293": 32265.826926628226
+              }
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 6464,
+            "clock": 31003,
+            "choice": "alight",
+            "receipt": {
+              "method": "nominal",
+              "stage": 0,
+              "alight": 31380.440735682758,
+              "continuation": 31692.638647972246,
+              "arrival_cid": 6464,
+              "clock": 31003,
+              "clock_mode": "adjacent_state_projection",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 113,
+            "entry": 31003,
+            "ready": 31123,
+            "clock": 31152,
+            "observed": {
+              "6859": 31152
+            },
+            "visible": [
+              6859
+            ],
+            "choice": 6859,
+            "receipt": {
+              "method": "rolling_mean",
+              "target": 6859,
+              "values": {
+                "6859": 31224.198034769463,
+                "7183": 31482.14168519551
+              }
+            }
+          },
+          {
+            "kind": "destination",
+            "cid": 6859,
+            "clock": 31224
+          }
+        ],
+        "decisions": {
+          "platform": 2,
+          "onboard": 2
+        }
+      },
+      "identical_public_trace_and_outcome": true,
+      "cold": {
+        "total_wall": 1.8541794630000368,
+        "total_process_cpu": 1.3750840540000002,
+        "model_constructor_wall": 0.04409426600614097,
+        "model_constructor_cpu": 0.0407017819999993,
+        "menu_and_planner_constructor_wall": 0.00037069300014991313,
+        "menu_and_planner_constructor_cpu": 0.0003407870000007307,
+        "executor_process_cpu": 1.3340414850000002,
+        "executor_compute_wall": 1.809341085026972,
+        "executor_total_wall": 1.8095382469909964,
+        "planner_stats": {
+          "ride_queries": 68,
+          "ride_hits": 7,
+          "ride_compiles": 61,
+          "platform_queries": 52,
+          "platform_hits": 15,
+          "platform_compiles": 37,
+          "first_offer_queries": 109,
+          "first_offer_hits": 59,
+          "first_offer_compiles": 50,
+          "edge_compiles": 162,
+          "edge_cells": 7008768,
+          "kernel_compiles": 99,
+          "prior_future_edge_queries": 277,
+          "prior_future_kernel_queries": 147,
+          "top_level_compile_seconds": 1.747578226000769
+        }
+      },
+      "warm": {
+        "total_wall": 0.0010407819936517626,
+        "total_process_cpu": 0.0009616440000002058,
+        "executor_compute_wall": 0.0009197610052069649,
+        "executor_total_wall": 0.0009949349914677441,
+        "planner_stats": {
+          "ride_queries": 2,
+          "ride_hits": 2,
+          "ride_compiles": 0,
+          "platform_queries": 2,
+          "platform_hits": 2,
+          "platform_compiles": 0,
+          "first_offer_queries": 0,
+          "first_offer_hits": 0,
+          "first_offer_compiles": 0,
+          "edge_compiles": 0,
+          "edge_cells": 0,
+          "kernel_compiles": 0,
+          "prior_future_edge_queries": 0,
+          "prior_future_kernel_queries": 0,
+          "top_level_compile_seconds": 0.0
+        }
+      }
+    },
+    {
+      "root_index": 1,
+      "root_id": "onboard_2023-07-16_5522_23",
+      "scenario": "actual",
+      "policy": "single_rolling",
+      "quality": {
+        "loss": 894,
+        "status": "arrived",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 5522,
+            "clock": 30448,
+            "choice": "alight",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 31388.400324543745,
+              "continuation": 31398.65760697812,
+              "arrival_cid": 5522,
+              "clock": 30448,
+              "clock_mode": "adjacent_state_projection",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 455,
+            "entry": 30448,
+            "ready": 30568,
+            "clock": 30818,
+            "observed": {
+              "6271": 30818
+            },
+            "visible": [
+              6271
+            ],
+            "choice": 6271,
+            "receipt": {
+              "method": "single_target",
+              "wait": 32268.007997405784,
+              "board": 31384.293068330142,
+              "target": 7293,
+              "unsupported_candidates": [],
+              "best_visible": 6271
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 6464,
+            "clock": 31003,
+            "choice": "alight",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 31380.440735682758,
+              "continuation": 31698.292011081274,
+              "arrival_cid": 6464,
+              "clock": 31003,
+              "clock_mode": "adjacent_state_projection",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 113,
+            "entry": 31003,
+            "ready": 31123,
+            "clock": 31152,
+            "observed": {
+              "6859": 31152
+            },
+            "visible": [
+              6859
+            ],
+            "choice": 6859,
+            "receipt": {
+              "method": "single_target",
+              "wait": 31482.14168519551,
+              "board": 31224.198034769463,
+              "target": 7183,
+              "unsupported_candidates": [],
+              "best_visible": 6859
+            }
+          },
+          {
+            "kind": "destination",
+            "cid": 6859,
+            "clock": 31224
+          }
+        ],
+        "decisions": {
+          "platform": 2,
+          "onboard": 2
+        }
+      },
+      "warm_quality": {
+        "loss": 894,
+        "status": "arrived",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 5522,
+            "clock": 30448,
+            "choice": "alight",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 31388.400324543745,
+              "continuation": 31398.65760697812,
+              "arrival_cid": 5522,
+              "clock": 30448,
+              "clock_mode": "adjacent_state_projection",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 455,
+            "entry": 30448,
+            "ready": 30568,
+            "clock": 30818,
+            "observed": {
+              "6271": 30818
+            },
+            "visible": [
+              6271
+            ],
+            "choice": 6271,
+            "receipt": {
+              "method": "single_target",
+              "wait": 32268.007997405784,
+              "board": 31384.293068330142,
+              "target": 7293,
+              "unsupported_candidates": [],
+              "best_visible": 6271
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 6464,
+            "clock": 31003,
+            "choice": "alight",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 31380.440735682758,
+              "continuation": 31698.292011081274,
+              "arrival_cid": 6464,
+              "clock": 31003,
+              "clock_mode": "adjacent_state_projection",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 113,
+            "entry": 31003,
+            "ready": 31123,
+            "clock": 31152,
+            "observed": {
+              "6859": 31152
+            },
+            "visible": [
+              6859
+            ],
+            "choice": 6859,
+            "receipt": {
+              "method": "single_target",
+              "wait": 31482.14168519551,
+              "board": 31224.198034769463,
+              "target": 7183,
+              "unsupported_candidates": [],
+              "best_visible": 6859
+            }
+          },
+          {
+            "kind": "destination",
+            "cid": 6859,
+            "clock": 31224
+          }
+        ],
+        "decisions": {
+          "platform": 2,
+          "onboard": 2
+        }
+      },
+      "identical_public_trace_and_outcome": true,
+      "cold": {
+        "total_wall": 1.5055816570093157,
+        "total_process_cpu": 1.3270068129999988,
+        "model_constructor_wall": 0.23562077000678983,
+        "model_constructor_cpu": 0.17321687299999944,
+        "menu_and_planner_constructor_wall": 0.00032313200063072145,
+        "menu_and_planner_constructor_cpu": 0.00029554099999984373,
+        "executor_process_cpu": 1.1534943989999995,
+        "executor_compute_wall": 1.2692775899922708,
+        "executor_total_wall": 1.269457861999399,
+        "planner_stats": {
+          "ride_queries": 68,
+          "ride_hits": 7,
+          "ride_compiles": 61,
+          "platform_queries": 52,
+          "platform_hits": 15,
+          "platform_compiles": 37,
+          "first_offer_queries": 109,
+          "first_offer_hits": 59,
+          "first_offer_compiles": 50,
+          "edge_compiles": 162,
+          "edge_cells": 7008768,
+          "kernel_compiles": 99,
+          "prior_future_edge_queries": 277,
+          "prior_future_kernel_queries": 147,
+          "top_level_compile_seconds": 1.21969100102433
+        }
+      },
+      "warm": {
+        "total_wall": 0.000975234986981377,
+        "total_process_cpu": 0.0009011289999989458,
+        "executor_compute_wall": 0.000862126995343715,
+        "executor_total_wall": 0.0009315259958384559,
+        "planner_stats": {
+          "ride_queries": 2,
+          "ride_hits": 2,
+          "ride_compiles": 0,
+          "platform_queries": 2,
+          "platform_hits": 2,
+          "platform_compiles": 0,
+          "first_offer_queries": 0,
+          "first_offer_hits": 0,
+          "first_offer_compiles": 0,
+          "edge_compiles": 0,
+          "edge_cells": 0,
+          "kernel_compiles": 0,
+          "prior_future_edge_queries": 0,
+          "prior_future_kernel_queries": 0,
+          "top_level_compile_seconds": 0.0
+        }
+      }
+    },
+    {
+      "root_index": 1,
+      "root_id": "onboard_2023-07-16_5522_23",
+      "scenario": "actual",
+      "policy": "combined_rolling",
+      "quality": {
+        "loss": 894,
+        "status": "arrived",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 5522,
+            "clock": 30448,
+            "choice": "alight",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 31388.400324543745,
+              "continuation": 31398.65760697812,
+              "arrival_cid": 5522,
+              "clock": 30448,
+              "clock_mode": "adjacent_state_projection",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 455,
+            "entry": 30448,
+            "ready": 30568,
+            "clock": 30818,
+            "observed": {
+              "6271": 30818
+            },
+            "visible": [
+              6271
+            ],
+            "choice": 6271,
+            "receipt": {
+              "method": "combined_waiting",
+              "wait": 32268.007997405784,
+              "board": 31384.293068330142,
+              "single_wait": 32268.007997405784,
+              "first_offer_wait": 32268.007997405784,
+              "target": 7293,
+              "unsupported_candidates": [],
+              "best_visible": 6271
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 6464,
+            "clock": 31003,
+            "choice": "alight",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 31380.440735682758,
+              "continuation": 31698.292011081274,
+              "arrival_cid": 6464,
+              "clock": 31003,
+              "clock_mode": "adjacent_state_projection",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 113,
+            "entry": 31003,
+            "ready": 31123,
+            "clock": 31152,
+            "observed": {
+              "6859": 31152
+            },
+            "visible": [
+              6859
+            ],
+            "choice": 6859,
+            "receipt": {
+              "method": "combined_waiting",
+              "wait": 31482.14168519551,
+              "board": 31224.198034769463,
+              "single_wait": 31482.14168519551,
+              "first_offer_wait": 31482.14168519551,
+              "target": 7183,
+              "unsupported_candidates": [],
+              "best_visible": 6859
+            }
+          },
+          {
+            "kind": "destination",
+            "cid": 6859,
+            "clock": 31224
+          }
+        ],
+        "decisions": {
+          "platform": 2,
+          "onboard": 2
+        }
+      },
+      "warm_quality": {
+        "loss": 894,
+        "status": "arrived",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 5522,
+            "clock": 30448,
+            "choice": "alight",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 31388.400324543745,
+              "continuation": 31398.65760697812,
+              "arrival_cid": 5522,
+              "clock": 30448,
+              "clock_mode": "adjacent_state_projection",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 455,
+            "entry": 30448,
+            "ready": 30568,
+            "clock": 30818,
+            "observed": {
+              "6271": 30818
+            },
+            "visible": [
+              6271
+            ],
+            "choice": 6271,
+            "receipt": {
+              "method": "combined_waiting",
+              "wait": 32268.007997405784,
+              "board": 31384.293068330142,
+              "single_wait": 32268.007997405784,
+              "first_offer_wait": 32268.007997405784,
+              "target": 7293,
+              "unsupported_candidates": [],
+              "best_visible": 6271
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 6464,
+            "clock": 31003,
+            "choice": "alight",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 31380.440735682758,
+              "continuation": 31698.292011081274,
+              "arrival_cid": 6464,
+              "clock": 31003,
+              "clock_mode": "adjacent_state_projection",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 113,
+            "entry": 31003,
+            "ready": 31123,
+            "clock": 31152,
+            "observed": {
+              "6859": 31152
+            },
+            "visible": [
+              6859
+            ],
+            "choice": 6859,
+            "receipt": {
+              "method": "combined_waiting",
+              "wait": 31482.14168519551,
+              "board": 31224.198034769463,
+              "single_wait": 31482.14168519551,
+              "first_offer_wait": 31482.14168519551,
+              "target": 7183,
+              "unsupported_candidates": [],
+              "best_visible": 6859
+            }
+          },
+          {
+            "kind": "destination",
+            "cid": 6859,
+            "clock": 31224
+          }
+        ],
+        "decisions": {
+          "platform": 2,
+          "onboard": 2
+        }
+      },
+      "identical_public_trace_and_outcome": true,
+      "cold": {
+        "total_wall": 1.4644478039990645,
+        "total_process_cpu": 1.1561544260000005,
+        "model_constructor_wall": 0.04656388999137562,
+        "model_constructor_cpu": 0.04296784699999989,
+        "menu_and_planner_constructor_wall": 0.0003432550001889467,
+        "menu_and_planner_constructor_cpu": 0.00031357499999984384,
+        "executor_process_cpu": 1.1128730040000008,
+        "executor_compute_wall": 1.4171824569930322,
+        "executor_total_wall": 1.417361579995486,
+        "planner_stats": {
+          "ride_queries": 68,
+          "ride_hits": 7,
+          "ride_compiles": 61,
+          "platform_queries": 52,
+          "platform_hits": 15,
+          "platform_compiles": 37,
+          "first_offer_queries": 109,
+          "first_offer_hits": 59,
+          "first_offer_compiles": 50,
+          "edge_compiles": 162,
+          "edge_cells": 7008768,
+          "kernel_compiles": 99,
+          "prior_future_edge_queries": 277,
+          "prior_future_kernel_queries": 147,
+          "top_level_compile_seconds": 1.369453830004204
+        }
+      },
+      "warm": {
+        "total_wall": 0.0011367519909981638,
+        "total_process_cpu": 0.0010499519999989104,
+        "executor_compute_wall": 0.0010058869956992567,
+        "executor_total_wall": 0.0010882030037464574,
+        "planner_stats": {
+          "ride_queries": 2,
+          "ride_hits": 2,
+          "ride_compiles": 0,
+          "platform_queries": 2,
+          "platform_hits": 2,
+          "platform_compiles": 0,
+          "first_offer_queries": 0,
+          "first_offer_hits": 0,
+          "first_offer_compiles": 0,
+          "edge_compiles": 0,
+          "edge_cells": 0,
+          "kernel_compiles": 0,
+          "prior_future_edge_queries": 0,
+          "prior_future_kernel_queries": 0,
+          "top_level_compile_seconds": 0.0
+        }
+      }
+    },
+    {
+      "root_index": 1,
+      "root_id": "onboard_2023-07-16_5522_23",
+      "scenario": "actual",
+      "policy": "pair_rolling",
+      "quality": {
+        "loss": 894,
+        "status": "arrived",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 5522,
+            "clock": 30448,
+            "choice": "alight",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 31388.400324543745,
+              "continuation": 31398.65760697812,
+              "arrival_cid": 5522,
+              "clock": 30448,
+              "clock_mode": "adjacent_state_projection",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 455,
+            "entry": 30448,
+            "ready": 30568,
+            "clock": 30818,
+            "observed": {
+              "6271": 30818
+            },
+            "visible": [
+              6271
+            ],
+            "choice": 6271,
+            "receipt": {
+              "method": "two_target_waiting",
+              "wait": 32268.007997405784,
+              "board": 31384.293068330142,
+              "combined_wait": 32268.007997405784,
+              "pair_wait": 32730.0,
+              "best_pair": null,
+              "single_wait": 32268.007997405784,
+              "first_offer_wait": 32268.007997405784,
+              "target": 7293,
+              "unsupported_candidates": [],
+              "best_visible": 6271
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 6464,
+            "clock": 31003,
+            "choice": "alight",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 31380.440735682758,
+              "continuation": 31698.292011081274,
+              "arrival_cid": 6464,
+              "clock": 31003,
+              "clock_mode": "adjacent_state_projection",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 113,
+            "entry": 31003,
+            "ready": 31123,
+            "clock": 31152,
+            "observed": {
+              "6859": 31152
+            },
+            "visible": [
+              6859
+            ],
+            "choice": 6859,
+            "receipt": {
+              "method": "two_target_waiting",
+              "wait": 31482.14168519551,
+              "board": 31224.198034769463,
+              "combined_wait": 31482.14168519551,
+              "pair_wait": 32730.0,
+              "best_pair": null,
+              "single_wait": 31482.14168519551,
+              "first_offer_wait": 31482.14168519551,
+              "target": 7183,
+              "unsupported_candidates": [],
+              "best_visible": 6859
+            }
+          },
+          {
+            "kind": "destination",
+            "cid": 6859,
+            "clock": 31224
+          }
+        ],
+        "decisions": {
+          "platform": 2,
+          "onboard": 2
+        }
+      },
+      "warm_quality": {
+        "loss": 894,
+        "status": "arrived",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 5522,
+            "clock": 30448,
+            "choice": "alight",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 31388.400324543745,
+              "continuation": 31398.65760697812,
+              "arrival_cid": 5522,
+              "clock": 30448,
+              "clock_mode": "adjacent_state_projection",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 455,
+            "entry": 30448,
+            "ready": 30568,
+            "clock": 30818,
+            "observed": {
+              "6271": 30818
+            },
+            "visible": [
+              6271
+            ],
+            "choice": 6271,
+            "receipt": {
+              "method": "two_target_waiting",
+              "wait": 32268.007997405784,
+              "board": 31384.293068330142,
+              "combined_wait": 32268.007997405784,
+              "pair_wait": 32730.0,
+              "best_pair": null,
+              "single_wait": 32268.007997405784,
+              "first_offer_wait": 32268.007997405784,
+              "target": 7293,
+              "unsupported_candidates": [],
+              "best_visible": 6271
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 6464,
+            "clock": 31003,
+            "choice": "alight",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 31380.440735682758,
+              "continuation": 31698.292011081274,
+              "arrival_cid": 6464,
+              "clock": 31003,
+              "clock_mode": "adjacent_state_projection",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 113,
+            "entry": 31003,
+            "ready": 31123,
+            "clock": 31152,
+            "observed": {
+              "6859": 31152
+            },
+            "visible": [
+              6859
+            ],
+            "choice": 6859,
+            "receipt": {
+              "method": "two_target_waiting",
+              "wait": 31482.14168519551,
+              "board": 31224.198034769463,
+              "combined_wait": 31482.14168519551,
+              "pair_wait": 32730.0,
+              "best_pair": null,
+              "single_wait": 31482.14168519551,
+              "first_offer_wait": 31482.14168519551,
+              "target": 7183,
+              "unsupported_candidates": [],
+              "best_visible": 6859
+            }
+          },
+          {
+            "kind": "destination",
+            "cid": 6859,
+            "clock": 31224
+          }
+        ],
+        "decisions": {
+          "platform": 2,
+          "onboard": 2
+        }
+      },
+      "identical_public_trace_and_outcome": true,
+      "cold": {
+        "total_wall": 1.424118166003609,
+        "total_process_cpu": 1.3144548689999986,
+        "model_constructor_wall": 0.17628238200268243,
+        "model_constructor_cpu": 0.16268200000000022,
+        "menu_and_planner_constructor_wall": 0.0004966209962731227,
+        "menu_and_planner_constructor_cpu": 0.00045637599999892586,
+        "executor_process_cpu": 1.1513164929999995,
+        "executor_compute_wall": 1.2469477279810235,
+        "executor_total_wall": 1.247133426993969,
+        "planner_stats": {
+          "ride_queries": 68,
+          "ride_hits": 7,
+          "ride_compiles": 61,
+          "platform_queries": 52,
+          "platform_hits": 15,
+          "platform_compiles": 37,
+          "first_offer_queries": 109,
+          "first_offer_hits": 59,
+          "first_offer_compiles": 50,
+          "edge_compiles": 162,
+          "edge_cells": 7008768,
+          "kernel_compiles": 99,
+          "prior_future_edge_queries": 277,
+          "prior_future_kernel_queries": 147,
+          "top_level_compile_seconds": 1.1878741780092241
+        }
+      },
+      "warm": {
+        "total_wall": 0.011410658989916556,
+        "total_process_cpu": 0.01053430199999994,
+        "executor_compute_wall": 0.011236310994718224,
+        "executor_total_wall": 0.011351048000506125,
+        "planner_stats": {
+          "ride_queries": 2,
+          "ride_hits": 2,
+          "ride_compiles": 0,
+          "platform_queries": 2,
+          "platform_hits": 2,
+          "platform_compiles": 0,
+          "first_offer_queries": 0,
+          "first_offer_hits": 0,
+          "first_offer_compiles": 0,
+          "edge_compiles": 0,
+          "edge_cells": 0,
+          "kernel_compiles": 0,
+          "prior_future_edge_queries": 0,
+          "prior_future_kernel_queries": 0,
+          "top_level_compile_seconds": 0.0
+        }
+      }
+    },
+    {
+      "root_index": 1,
+      "root_id": "onboard_2023-07-16_5522_23",
+      "scenario": "actual",
+      "policy": "pair_rollout",
+      "quality": {
+        "loss": 894,
+        "status": "arrived",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 5522,
+            "clock": 30448,
+            "choice": "alight",
+            "receipt": {
+              "method": "one_step_rollout",
+              "stage": 0,
+              "alight": 31388.400324543745,
+              "continuation": 31398.65760697812,
+              "arrival_cid": 5522,
+              "clock": 30448,
+              "clock_mode": "adjacent_state_projection",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 455,
+            "entry": 30448,
+            "ready": 30568,
+            "clock": 30818,
+            "observed": {
+              "6271": 30818
+            },
+            "visible": [
+              6271
+            ],
+            "choice": 6271,
+            "receipt": {
+              "method": "two_target_waiting",
+              "wait": 32268.007997405784,
+              "board": 31384.293068330142,
+              "combined_wait": 32268.007997405784,
+              "pair_wait": 32730.0,
+              "best_pair": null,
+              "single_wait": 32268.007997405784,
+              "first_offer_wait": 32268.007997405784,
+              "target": 7293,
+              "unsupported_candidates": [],
+              "best_visible": 6271
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 6464,
+            "clock": 31003,
+            "choice": "alight",
+            "receipt": {
+              "method": "one_step_rollout",
+              "stage": 0,
+              "alight": 31380.440735682758,
+              "continuation": 31698.292011081274,
+              "arrival_cid": 6464,
+              "clock": 31003,
+              "clock_mode": "adjacent_state_projection",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 113,
+            "entry": 31003,
+            "ready": 31123,
+            "clock": 31152,
+            "observed": {
+              "6859": 31152
+            },
+            "visible": [
+              6859
+            ],
+            "choice": 6859,
+            "receipt": {
+              "method": "two_target_waiting",
+              "wait": 31482.14168519551,
+              "board": 31224.198034769463,
+              "combined_wait": 31482.14168519551,
+              "pair_wait": 32730.0,
+              "best_pair": null,
+              "single_wait": 31482.14168519551,
+              "first_offer_wait": 31482.14168519551,
+              "target": 7183,
+              "unsupported_candidates": [],
+              "best_visible": 6859
+            }
+          },
+          {
+            "kind": "destination",
+            "cid": 6859,
+            "clock": 31224
+          }
+        ],
+        "decisions": {
+          "platform": 2,
+          "onboard": 2
+        }
+      },
+      "warm_quality": {
+        "loss": 894,
+        "status": "arrived",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 5522,
+            "clock": 30448,
+            "choice": "alight",
+            "receipt": {
+              "method": "one_step_rollout",
+              "stage": 0,
+              "alight": 31388.400324543745,
+              "continuation": 31398.65760697812,
+              "arrival_cid": 5522,
+              "clock": 30448,
+              "clock_mode": "adjacent_state_projection",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 455,
+            "entry": 30448,
+            "ready": 30568,
+            "clock": 30818,
+            "observed": {
+              "6271": 30818
+            },
+            "visible": [
+              6271
+            ],
+            "choice": 6271,
+            "receipt": {
+              "method": "two_target_waiting",
+              "wait": 32268.007997405784,
+              "board": 31384.293068330142,
+              "combined_wait": 32268.007997405784,
+              "pair_wait": 32730.0,
+              "best_pair": null,
+              "single_wait": 32268.007997405784,
+              "first_offer_wait": 32268.007997405784,
+              "target": 7293,
+              "unsupported_candidates": [],
+              "best_visible": 6271
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 6464,
+            "clock": 31003,
+            "choice": "alight",
+            "receipt": {
+              "method": "one_step_rollout",
+              "stage": 0,
+              "alight": 31380.440735682758,
+              "continuation": 31698.292011081274,
+              "arrival_cid": 6464,
+              "clock": 31003,
+              "clock_mode": "adjacent_state_projection",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 113,
+            "entry": 31003,
+            "ready": 31123,
+            "clock": 31152,
+            "observed": {
+              "6859": 31152
+            },
+            "visible": [
+              6859
+            ],
+            "choice": 6859,
+            "receipt": {
+              "method": "two_target_waiting",
+              "wait": 31482.14168519551,
+              "board": 31224.198034769463,
+              "combined_wait": 31482.14168519551,
+              "pair_wait": 32730.0,
+              "best_pair": null,
+              "single_wait": 31482.14168519551,
+              "first_offer_wait": 31482.14168519551,
+              "target": 7183,
+              "unsupported_candidates": [],
+              "best_visible": 6859
+            }
+          },
+          {
+            "kind": "destination",
+            "cid": 6859,
+            "clock": 31224
+          }
+        ],
+        "decisions": {
+          "platform": 2,
+          "onboard": 2
+        }
+      },
+      "identical_public_trace_and_outcome": true,
+      "cold": {
+        "total_wall": 1.434214016990154,
+        "total_process_cpu": 1.3209175860000002,
+        "model_constructor_wall": 0.17122261600161437,
+        "model_constructor_cpu": 0.15802853799999994,
+        "menu_and_planner_constructor_wall": 0.000412306995713152,
+        "menu_and_planner_constructor_cpu": 0.00037862799999999197,
+        "executor_process_cpu": 1.1625104200000003,
+        "executor_compute_wall": 1.2621619359997567,
+        "executor_total_wall": 1.2623874890123261,
+        "planner_stats": {
+          "ride_queries": 68,
+          "ride_hits": 7,
+          "ride_compiles": 61,
+          "platform_queries": 52,
+          "platform_hits": 15,
+          "platform_compiles": 37,
+          "first_offer_queries": 109,
+          "first_offer_hits": 59,
+          "first_offer_compiles": 50,
+          "edge_compiles": 162,
+          "edge_cells": 7008768,
+          "kernel_compiles": 99,
+          "prior_future_edge_queries": 277,
+          "prior_future_kernel_queries": 147,
+          "top_level_compile_seconds": 1.2047304089792306
+        }
+      },
+      "warm": {
+        "total_wall": 0.009693258994957432,
+        "total_process_cpu": 0.008950572000003376,
+        "executor_compute_wall": 0.00948960697860457,
+        "executor_total_wall": 0.00961325500975363,
+        "planner_stats": {
+          "ride_queries": 2,
+          "ride_hits": 2,
+          "ride_compiles": 0,
+          "platform_queries": 2,
+          "platform_hits": 2,
+          "platform_compiles": 0,
+          "first_offer_queries": 0,
+          "first_offer_hits": 0,
+          "first_offer_compiles": 0,
+          "edge_compiles": 0,
+          "edge_cells": 0,
+          "kernel_compiles": 0,
+          "prior_future_edge_queries": 0,
+          "prior_future_kernel_queries": 0,
+          "top_level_compile_seconds": 0.0
+        }
+      }
+    },
+    {
+      "root_index": 1,
+      "root_id": "onboard_2023-07-16_5522_23",
+      "scenario": "actual",
+      "policy": "pair_stopping",
+      "quality": {
+        "loss": 894,
+        "status": "arrived",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 5522,
+            "clock": 30448,
+            "choice": "alight",
+            "receipt": {
+              "method": "optimal",
+              "stage": 0,
+              "alight": 31388.400324543745,
+              "continuation": 31398.65760697812,
+              "arrival_cid": 5522,
+              "clock": 30448,
+              "clock_mode": "adjacent_state_projection",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 455,
+            "entry": 30448,
+            "ready": 30568,
+            "clock": 30818,
+            "observed": {
+              "6271": 30818
+            },
+            "visible": [
+              6271
+            ],
+            "choice": 6271,
+            "receipt": {
+              "method": "two_target_waiting",
+              "wait": 32268.007997405784,
+              "board": 31384.293068330142,
+              "combined_wait": 32268.007997405784,
+              "pair_wait": 32730.0,
+              "best_pair": null,
+              "single_wait": 32268.007997405784,
+              "first_offer_wait": 32268.007997405784,
+              "target": 7293,
+              "unsupported_candidates": [],
+              "best_visible": 6271
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 6464,
+            "clock": 31003,
+            "choice": "alight",
+            "receipt": {
+              "method": "optimal",
+              "stage": 0,
+              "alight": 31380.440735682758,
+              "continuation": 31698.292011081274,
+              "arrival_cid": 6464,
+              "clock": 31003,
+              "clock_mode": "adjacent_state_projection",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 113,
+            "entry": 31003,
+            "ready": 31123,
+            "clock": 31152,
+            "observed": {
+              "6859": 31152
+            },
+            "visible": [
+              6859
+            ],
+            "choice": 6859,
+            "receipt": {
+              "method": "two_target_waiting",
+              "wait": 31482.14168519551,
+              "board": 31224.198034769463,
+              "combined_wait": 31482.14168519551,
+              "pair_wait": 32730.0,
+              "best_pair": null,
+              "single_wait": 31482.14168519551,
+              "first_offer_wait": 31482.14168519551,
+              "target": 7183,
+              "unsupported_candidates": [],
+              "best_visible": 6859
+            }
+          },
+          {
+            "kind": "destination",
+            "cid": 6859,
+            "clock": 31224
+          }
+        ],
+        "decisions": {
+          "platform": 2,
+          "onboard": 2
+        }
+      },
+      "warm_quality": {
+        "loss": 894,
+        "status": "arrived",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 5522,
+            "clock": 30448,
+            "choice": "alight",
+            "receipt": {
+              "method": "optimal",
+              "stage": 0,
+              "alight": 31388.400324543745,
+              "continuation": 31398.65760697812,
+              "arrival_cid": 5522,
+              "clock": 30448,
+              "clock_mode": "adjacent_state_projection",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 455,
+            "entry": 30448,
+            "ready": 30568,
+            "clock": 30818,
+            "observed": {
+              "6271": 30818
+            },
+            "visible": [
+              6271
+            ],
+            "choice": 6271,
+            "receipt": {
+              "method": "two_target_waiting",
+              "wait": 32268.007997405784,
+              "board": 31384.293068330142,
+              "combined_wait": 32268.007997405784,
+              "pair_wait": 32730.0,
+              "best_pair": null,
+              "single_wait": 32268.007997405784,
+              "first_offer_wait": 32268.007997405784,
+              "target": 7293,
+              "unsupported_candidates": [],
+              "best_visible": 6271
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 6464,
+            "clock": 31003,
+            "choice": "alight",
+            "receipt": {
+              "method": "optimal",
+              "stage": 0,
+              "alight": 31380.440735682758,
+              "continuation": 31698.292011081274,
+              "arrival_cid": 6464,
+              "clock": 31003,
+              "clock_mode": "adjacent_state_projection",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 113,
+            "entry": 31003,
+            "ready": 31123,
+            "clock": 31152,
+            "observed": {
+              "6859": 31152
+            },
+            "visible": [
+              6859
+            ],
+            "choice": 6859,
+            "receipt": {
+              "method": "two_target_waiting",
+              "wait": 31482.14168519551,
+              "board": 31224.198034769463,
+              "combined_wait": 31482.14168519551,
+              "pair_wait": 32730.0,
+              "best_pair": null,
+              "single_wait": 31482.14168519551,
+              "first_offer_wait": 31482.14168519551,
+              "target": 7183,
+              "unsupported_candidates": [],
+              "best_visible": 6859
+            }
+          },
+          {
+            "kind": "destination",
+            "cid": 6859,
+            "clock": 31224
+          }
+        ],
+        "decisions": {
+          "platform": 2,
+          "onboard": 2
+        }
+      },
+      "identical_public_trace_and_outcome": true,
+      "cold": {
+        "total_wall": 1.3582746909960406,
+        "total_process_cpu": 1.2131140709999997,
+        "model_constructor_wall": 0.04631220499868505,
+        "model_constructor_cpu": 0.042710818999999844,
+        "menu_and_planner_constructor_wall": 0.0003202880034223199,
+        "menu_and_planner_constructor_cpu": 0.0002922850000004473,
+        "executor_process_cpu": 1.1701109669999994,
+        "executor_compute_wall": 1.31129071500618,
+        "executor_total_wall": 1.3114761659962824,
+        "planner_stats": {
+          "ride_queries": 68,
+          "ride_hits": 7,
+          "ride_compiles": 61,
+          "platform_queries": 52,
+          "platform_hits": 15,
+          "platform_compiles": 37,
+          "first_offer_queries": 109,
+          "first_offer_hits": 59,
+          "first_offer_compiles": 50,
+          "edge_compiles": 162,
+          "edge_cells": 7008768,
+          "kernel_compiles": 99,
+          "prior_future_edge_queries": 277,
+          "prior_future_kernel_queries": 147,
+          "top_level_compile_seconds": 1.2464363570179557
+        }
+      },
+      "warm": {
+        "total_wall": 0.009087137994356453,
+        "total_process_cpu": 0.00838955300000066,
+        "executor_compute_wall": 0.00894216301094275,
+        "executor_total_wall": 0.009030611006892286,
+        "planner_stats": {
+          "ride_queries": 2,
+          "ride_hits": 2,
+          "ride_compiles": 0,
+          "platform_queries": 2,
+          "platform_hits": 2,
+          "platform_compiles": 0,
+          "first_offer_queries": 0,
+          "first_offer_hits": 0,
+          "first_offer_compiles": 0,
+          "edge_compiles": 0,
+          "edge_cells": 0,
+          "kernel_compiles": 0,
+          "prior_future_edge_queries": 0,
+          "prior_future_kernel_queries": 0,
+          "top_level_compile_seconds": 0.0
+        }
+      }
+    },
+    {
+      "root_index": 1,
+      "root_id": "onboard_2023-07-16_5522_23",
+      "scenario": "model_world0",
+      "policy": "rolling_nominal",
+      "quality": {
+        "loss": 1050,
+        "status": "arrived",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 5522,
+            "clock": 30500,
+            "choice": "alight",
+            "receipt": {
+              "method": "nominal",
+              "stage": 0,
+              "alight": 31388.567243016852,
+              "continuation": 31398.4237436963,
+              "arrival_cid": 5522,
+              "clock": 30500,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 455,
+            "entry": 30500,
+            "ready": 30620,
+            "clock": 30840,
+            "observed": {
+              "6271": 30840
+            },
+            "visible": [
+              6271
+            ],
+            "choice": 6271,
+            "receipt": {
+              "method": "rolling_mean",
+              "target": 6271,
+              "values": {
+                "6271": 31391.927894924964,
+                "7293": 32265.826926628226
+              }
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 6464,
+            "clock": 31080,
+            "choice": "alight",
+            "receipt": {
+              "method": "nominal",
+              "stage": 0,
+              "alight": 31414.211124947622,
+              "continuation": 31901.553995028695,
+              "arrival_cid": 6464,
+              "clock": 31080,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 113,
+            "entry": 31080,
+            "ready": 31200,
+            "clock": 31320,
+            "observed": {
+              "6859": 31320
+            },
+            "visible": [
+              6859
+            ],
+            "choice": 6859,
+            "receipt": {
+              "method": "rolling_mean",
+              "target": 6859,
+              "values": {
+                "6859": 31392.198034769463,
+                "7183": 31532.226000794755
+              }
+            }
+          },
+          {
+            "kind": "destination",
+            "cid": 6859,
+            "clock": 31380
+          }
+        ],
+        "decisions": {
+          "platform": 2,
+          "onboard": 2
+        }
+      },
+      "warm_quality": {
+        "loss": 1050,
+        "status": "arrived",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 5522,
+            "clock": 30500,
+            "choice": "alight",
+            "receipt": {
+              "method": "nominal",
+              "stage": 0,
+              "alight": 31388.567243016852,
+              "continuation": 31398.4237436963,
+              "arrival_cid": 5522,
+              "clock": 30500,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 455,
+            "entry": 30500,
+            "ready": 30620,
+            "clock": 30840,
+            "observed": {
+              "6271": 30840
+            },
+            "visible": [
+              6271
+            ],
+            "choice": 6271,
+            "receipt": {
+              "method": "rolling_mean",
+              "target": 6271,
+              "values": {
+                "6271": 31391.927894924964,
+                "7293": 32265.826926628226
+              }
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 6464,
+            "clock": 31080,
+            "choice": "alight",
+            "receipt": {
+              "method": "nominal",
+              "stage": 0,
+              "alight": 31414.211124947622,
+              "continuation": 31901.553995028695,
+              "arrival_cid": 6464,
+              "clock": 31080,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 113,
+            "entry": 31080,
+            "ready": 31200,
+            "clock": 31320,
+            "observed": {
+              "6859": 31320
+            },
+            "visible": [
+              6859
+            ],
+            "choice": 6859,
+            "receipt": {
+              "method": "rolling_mean",
+              "target": 6859,
+              "values": {
+                "6859": 31392.198034769463,
+                "7183": 31532.226000794755
+              }
+            }
+          },
+          {
+            "kind": "destination",
+            "cid": 6859,
+            "clock": 31380
+          }
+        ],
+        "decisions": {
+          "platform": 2,
+          "onboard": 2
+        }
+      },
+      "identical_public_trace_and_outcome": true,
+      "cold": {
+        "total_wall": 1.6602000419952674,
+        "total_process_cpu": 1.369575544,
+        "model_constructor_wall": 0.18861586099956185,
+        "model_constructor_cpu": 0.1729914569999984,
+        "menu_and_planner_constructor_wall": 0.0003188659902662039,
+        "menu_and_planner_constructor_cpu": 0.0002915029999996932,
+        "executor_process_cpu": 1.1962925840000018,
+        "executor_compute_wall": 1.4709147209941875,
+        "executor_total_wall": 1.471101887000259,
+        "planner_stats": {
+          "ride_queries": 68,
+          "ride_hits": 7,
+          "ride_compiles": 61,
+          "platform_queries": 52,
+          "platform_hits": 15,
+          "platform_compiles": 37,
+          "first_offer_queries": 109,
+          "first_offer_hits": 59,
+          "first_offer_compiles": 50,
+          "edge_compiles": 162,
+          "edge_cells": 7008768,
+          "kernel_compiles": 99,
+          "prior_future_edge_queries": 277,
+          "prior_future_kernel_queries": 147,
+          "top_level_compile_seconds": 1.4424771550111473
+        }
+      },
+      "warm": {
+        "total_wall": 0.0009197929903166369,
+        "total_process_cpu": 0.0008495010000011405,
+        "executor_compute_wall": 0.0008016169886104763,
+        "executor_total_wall": 0.0008787330007180572,
+        "planner_stats": {
+          "ride_queries": 2,
+          "ride_hits": 2,
+          "ride_compiles": 0,
+          "platform_queries": 2,
+          "platform_hits": 2,
+          "platform_compiles": 0,
+          "first_offer_queries": 0,
+          "first_offer_hits": 0,
+          "first_offer_compiles": 0,
+          "edge_compiles": 0,
+          "edge_cells": 0,
+          "kernel_compiles": 0,
+          "prior_future_edge_queries": 0,
+          "prior_future_kernel_queries": 0,
+          "top_level_compile_seconds": 0.0
+        }
+      }
+    },
+    {
+      "root_index": 1,
+      "root_id": "onboard_2023-07-16_5522_23",
+      "scenario": "model_world0",
+      "policy": "single_rolling",
+      "quality": {
+        "loss": 1050,
+        "status": "arrived",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 5522,
+            "clock": 30500,
+            "choice": "alight",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 31388.567243016852,
+              "continuation": 31398.76731166894,
+              "arrival_cid": 5522,
+              "clock": 30500,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 455,
+            "entry": 30500,
+            "ready": 30620,
+            "clock": 30840,
+            "observed": {
+              "6271": 30840
+            },
+            "visible": [
+              6271
+            ],
+            "choice": 6271,
+            "receipt": {
+              "method": "single_target",
+              "wait": 32268.007997405784,
+              "board": 31391.927894924964,
+              "target": 7293,
+              "unsupported_candidates": [],
+              "best_visible": 6271
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 6464,
+            "clock": 31080,
+            "choice": "alight",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 31414.211124947622,
+              "continuation": 31899.91902224833,
+              "arrival_cid": 6464,
+              "clock": 31080,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 113,
+            "entry": 31080,
+            "ready": 31200,
+            "clock": 31320,
+            "observed": {
+              "6859": 31320
+            },
+            "visible": [
+              6859
+            ],
+            "choice": 6859,
+            "receipt": {
+              "method": "single_target",
+              "wait": 31535.21511563038,
+              "board": 31392.198034769463,
+              "target": 7183,
+              "unsupported_candidates": [],
+              "best_visible": 6859
+            }
+          },
+          {
+            "kind": "destination",
+            "cid": 6859,
+            "clock": 31380
+          }
+        ],
+        "decisions": {
+          "platform": 2,
+          "onboard": 2
+        }
+      },
+      "warm_quality": {
+        "loss": 1050,
+        "status": "arrived",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 5522,
+            "clock": 30500,
+            "choice": "alight",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 31388.567243016852,
+              "continuation": 31398.76731166894,
+              "arrival_cid": 5522,
+              "clock": 30500,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 455,
+            "entry": 30500,
+            "ready": 30620,
+            "clock": 30840,
+            "observed": {
+              "6271": 30840
+            },
+            "visible": [
+              6271
+            ],
+            "choice": 6271,
+            "receipt": {
+              "method": "single_target",
+              "wait": 32268.007997405784,
+              "board": 31391.927894924964,
+              "target": 7293,
+              "unsupported_candidates": [],
+              "best_visible": 6271
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 6464,
+            "clock": 31080,
+            "choice": "alight",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 31414.211124947622,
+              "continuation": 31899.91902224833,
+              "arrival_cid": 6464,
+              "clock": 31080,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 113,
+            "entry": 31080,
+            "ready": 31200,
+            "clock": 31320,
+            "observed": {
+              "6859": 31320
+            },
+            "visible": [
+              6859
+            ],
+            "choice": 6859,
+            "receipt": {
+              "method": "single_target",
+              "wait": 31535.21511563038,
+              "board": 31392.198034769463,
+              "target": 7183,
+              "unsupported_candidates": [],
+              "best_visible": 6859
+            }
+          },
+          {
+            "kind": "destination",
+            "cid": 6859,
+            "clock": 31380
+          }
+        ],
+        "decisions": {
+          "platform": 2,
+          "onboard": 2
+        }
+      },
+      "identical_public_trace_and_outcome": true,
+      "cold": {
+        "total_wall": 1.5229112499946496,
+        "total_process_cpu": 1.211762039,
+        "model_constructor_wall": 0.1957994440017501,
+        "model_constructor_cpu": 0.15121495500000037,
+        "menu_and_planner_constructor_wall": 0.00034898599551524967,
+        "menu_and_planner_constructor_cpu": 0.0003195559999973341,
+        "executor_process_cpu": 1.0602275280000022,
+        "executor_compute_wall": 1.3264741159946425,
+        "executor_total_wall": 1.3266236180061242,
+        "planner_stats": {
+          "ride_queries": 68,
+          "ride_hits": 7,
+          "ride_compiles": 61,
+          "platform_queries": 52,
+          "platform_hits": 15,
+          "platform_compiles": 37,
+          "first_offer_queries": 109,
+          "first_offer_hits": 59,
+          "first_offer_compiles": 50,
+          "edge_compiles": 162,
+          "edge_cells": 7008768,
+          "kernel_compiles": 99,
+          "prior_future_edge_queries": 277,
+          "prior_future_kernel_queries": 147,
+          "top_level_compile_seconds": 1.297923591992003
+        }
+      },
+      "warm": {
+        "total_wall": 0.0009184699883917347,
+        "total_process_cpu": 0.0008482389999997508,
+        "executor_compute_wall": 0.0008051109907682985,
+        "executor_total_wall": 0.0008774409943725914,
+        "planner_stats": {
+          "ride_queries": 2,
+          "ride_hits": 2,
+          "ride_compiles": 0,
+          "platform_queries": 2,
+          "platform_hits": 2,
+          "platform_compiles": 0,
+          "first_offer_queries": 0,
+          "first_offer_hits": 0,
+          "first_offer_compiles": 0,
+          "edge_compiles": 0,
+          "edge_cells": 0,
+          "kernel_compiles": 0,
+          "prior_future_edge_queries": 0,
+          "prior_future_kernel_queries": 0,
+          "top_level_compile_seconds": 0.0
+        }
+      }
+    },
+    {
+      "root_index": 1,
+      "root_id": "onboard_2023-07-16_5522_23",
+      "scenario": "model_world0",
+      "policy": "combined_rolling",
+      "quality": {
+        "loss": 1050,
+        "status": "arrived",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 5522,
+            "clock": 30500,
+            "choice": "alight",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 31388.567243016852,
+              "continuation": 31398.76731166894,
+              "arrival_cid": 5522,
+              "clock": 30500,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 455,
+            "entry": 30500,
+            "ready": 30620,
+            "clock": 30840,
+            "observed": {
+              "6271": 30840
+            },
+            "visible": [
+              6271
+            ],
+            "choice": 6271,
+            "receipt": {
+              "method": "combined_waiting",
+              "wait": 32268.007997405784,
+              "board": 31391.927894924964,
+              "single_wait": 32268.007997405784,
+              "first_offer_wait": 32268.007997405784,
+              "target": 7293,
+              "unsupported_candidates": [],
+              "best_visible": 6271
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 6464,
+            "clock": 31080,
+            "choice": "alight",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 31414.211124947622,
+              "continuation": 31899.91902224833,
+              "arrival_cid": 6464,
+              "clock": 31080,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 113,
+            "entry": 31080,
+            "ready": 31200,
+            "clock": 31320,
+            "observed": {
+              "6859": 31320
+            },
+            "visible": [
+              6859
+            ],
+            "choice": 6859,
+            "receipt": {
+              "method": "combined_waiting",
+              "wait": 31535.21511563038,
+              "board": 31392.198034769463,
+              "single_wait": 31535.21511563038,
+              "first_offer_wait": 31535.215115630384,
+              "target": 7183,
+              "unsupported_candidates": [],
+              "best_visible": 6859
+            }
+          },
+          {
+            "kind": "destination",
+            "cid": 6859,
+            "clock": 31380
+          }
+        ],
+        "decisions": {
+          "platform": 2,
+          "onboard": 2
+        }
+      },
+      "warm_quality": {
+        "loss": 1050,
+        "status": "arrived",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 5522,
+            "clock": 30500,
+            "choice": "alight",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 31388.567243016852,
+              "continuation": 31398.76731166894,
+              "arrival_cid": 5522,
+              "clock": 30500,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 455,
+            "entry": 30500,
+            "ready": 30620,
+            "clock": 30840,
+            "observed": {
+              "6271": 30840
+            },
+            "visible": [
+              6271
+            ],
+            "choice": 6271,
+            "receipt": {
+              "method": "combined_waiting",
+              "wait": 32268.007997405784,
+              "board": 31391.927894924964,
+              "single_wait": 32268.007997405784,
+              "first_offer_wait": 32268.007997405784,
+              "target": 7293,
+              "unsupported_candidates": [],
+              "best_visible": 6271
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 6464,
+            "clock": 31080,
+            "choice": "alight",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 31414.211124947622,
+              "continuation": 31899.91902224833,
+              "arrival_cid": 6464,
+              "clock": 31080,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 113,
+            "entry": 31080,
+            "ready": 31200,
+            "clock": 31320,
+            "observed": {
+              "6859": 31320
+            },
+            "visible": [
+              6859
+            ],
+            "choice": 6859,
+            "receipt": {
+              "method": "combined_waiting",
+              "wait": 31535.21511563038,
+              "board": 31392.198034769463,
+              "single_wait": 31535.21511563038,
+              "first_offer_wait": 31535.215115630384,
+              "target": 7183,
+              "unsupported_candidates": [],
+              "best_visible": 6859
+            }
+          },
+          {
+            "kind": "destination",
+            "cid": 6859,
+            "clock": 31380
+          }
+        ],
+        "decisions": {
+          "platform": 2,
+          "onboard": 2
+        }
+      },
+      "identical_public_trace_and_outcome": true,
+      "cold": {
+        "total_wall": 1.2164844139915658,
+        "total_process_cpu": 1.0736767570000012,
+        "model_constructor_wall": 0.038102220991277136,
+        "model_constructor_cpu": 0.035111320000002166,
+        "menu_and_planner_constructor_wall": 0.0003293730114819482,
+        "menu_and_planner_constructor_cpu": 0.0003017519999986007,
+        "executor_process_cpu": 1.0382636850000004,
+        "executor_compute_wall": 1.1777526539954124,
+        "executor_total_wall": 1.1779280969931278,
+        "planner_stats": {
+          "ride_queries": 68,
+          "ride_hits": 7,
+          "ride_compiles": 61,
+          "platform_queries": 52,
+          "platform_hits": 15,
+          "platform_compiles": 37,
+          "first_offer_queries": 109,
+          "first_offer_hits": 59,
+          "first_offer_compiles": 50,
+          "edge_compiles": 162,
+          "edge_cells": 7008768,
+          "kernel_compiles": 99,
+          "prior_future_edge_queries": 277,
+          "prior_future_kernel_queries": 147,
+          "top_level_compile_seconds": 1.1472695530101191
+        }
+      },
+      "warm": {
+        "total_wall": 0.0011123199947178364,
+        "total_process_cpu": 0.0010213079999985553,
+        "executor_compute_wall": 0.0009837989782681689,
+        "executor_total_wall": 0.0010719540005084127,
+        "planner_stats": {
+          "ride_queries": 2,
+          "ride_hits": 2,
+          "ride_compiles": 0,
+          "platform_queries": 2,
+          "platform_hits": 2,
+          "platform_compiles": 0,
+          "first_offer_queries": 0,
+          "first_offer_hits": 0,
+          "first_offer_compiles": 0,
+          "edge_compiles": 0,
+          "edge_cells": 0,
+          "kernel_compiles": 0,
+          "prior_future_edge_queries": 0,
+          "prior_future_kernel_queries": 0,
+          "top_level_compile_seconds": 0.0
+        }
+      }
+    },
+    {
+      "root_index": 1,
+      "root_id": "onboard_2023-07-16_5522_23",
+      "scenario": "model_world0",
+      "policy": "pair_rolling",
+      "quality": {
+        "loss": 1050,
+        "status": "arrived",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 5522,
+            "clock": 30500,
+            "choice": "alight",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 31388.567243016852,
+              "continuation": 31398.76731166894,
+              "arrival_cid": 5522,
+              "clock": 30500,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 455,
+            "entry": 30500,
+            "ready": 30620,
+            "clock": 30840,
+            "observed": {
+              "6271": 30840
+            },
+            "visible": [
+              6271
+            ],
+            "choice": 6271,
+            "receipt": {
+              "method": "two_target_waiting",
+              "wait": 32268.007997405784,
+              "board": 31391.927894924964,
+              "combined_wait": 32268.007997405784,
+              "pair_wait": 32730.0,
+              "best_pair": null,
+              "single_wait": 32268.007997405784,
+              "first_offer_wait": 32268.007997405784,
+              "target": 7293,
+              "unsupported_candidates": [],
+              "best_visible": 6271
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 6464,
+            "clock": 31080,
+            "choice": "alight",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 31414.211124947622,
+              "continuation": 31899.91902224833,
+              "arrival_cid": 6464,
+              "clock": 31080,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 113,
+            "entry": 31080,
+            "ready": 31200,
+            "clock": 31320,
+            "observed": {
+              "6859": 31320
+            },
+            "visible": [
+              6859
+            ],
+            "choice": 6859,
+            "receipt": {
+              "method": "two_target_waiting",
+              "wait": 31535.21511563038,
+              "board": 31392.198034769463,
+              "combined_wait": 31535.21511563038,
+              "pair_wait": 32730.0,
+              "best_pair": null,
+              "single_wait": 31535.21511563038,
+              "first_offer_wait": 31535.215115630384,
+              "target": 7183,
+              "unsupported_candidates": [],
+              "best_visible": 6859
+            }
+          },
+          {
+            "kind": "destination",
+            "cid": 6859,
+            "clock": 31380
+          }
+        ],
+        "decisions": {
+          "platform": 2,
+          "onboard": 2
+        }
+      },
+      "warm_quality": {
+        "loss": 1050,
+        "status": "arrived",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 5522,
+            "clock": 30500,
+            "choice": "alight",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 31388.567243016852,
+              "continuation": 31398.76731166894,
+              "arrival_cid": 5522,
+              "clock": 30500,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 455,
+            "entry": 30500,
+            "ready": 30620,
+            "clock": 30840,
+            "observed": {
+              "6271": 30840
+            },
+            "visible": [
+              6271
+            ],
+            "choice": 6271,
+            "receipt": {
+              "method": "two_target_waiting",
+              "wait": 32268.007997405784,
+              "board": 31391.927894924964,
+              "combined_wait": 32268.007997405784,
+              "pair_wait": 32730.0,
+              "best_pair": null,
+              "single_wait": 32268.007997405784,
+              "first_offer_wait": 32268.007997405784,
+              "target": 7293,
+              "unsupported_candidates": [],
+              "best_visible": 6271
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 6464,
+            "clock": 31080,
+            "choice": "alight",
+            "receipt": {
+              "method": "rolling_fixed",
+              "stage": 0,
+              "alight": 31414.211124947622,
+              "continuation": 31899.91902224833,
+              "arrival_cid": 6464,
+              "clock": 31080,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 113,
+            "entry": 31080,
+            "ready": 31200,
+            "clock": 31320,
+            "observed": {
+              "6859": 31320
+            },
+            "visible": [
+              6859
+            ],
+            "choice": 6859,
+            "receipt": {
+              "method": "two_target_waiting",
+              "wait": 31535.21511563038,
+              "board": 31392.198034769463,
+              "combined_wait": 31535.21511563038,
+              "pair_wait": 32730.0,
+              "best_pair": null,
+              "single_wait": 31535.21511563038,
+              "first_offer_wait": 31535.215115630384,
+              "target": 7183,
+              "unsupported_candidates": [],
+              "best_visible": 6859
+            }
+          },
+          {
+            "kind": "destination",
+            "cid": 6859,
+            "clock": 31380
+          }
+        ],
+        "decisions": {
+          "platform": 2,
+          "onboard": 2
+        }
+      },
+      "identical_public_trace_and_outcome": true,
+      "cold": {
+        "total_wall": 1.3558565830026055,
+        "total_process_cpu": 1.250962543,
+        "model_constructor_wall": 0.1790210410108557,
+        "model_constructor_cpu": 0.1651669009999992,
+        "menu_and_planner_constructor_wall": 0.0003578530013328418,
+        "menu_and_planner_constructor_cpu": 0.0003257679999997265,
+        "executor_process_cpu": 1.085469874000001,
+        "executor_compute_wall": 1.1761650739936158,
+        "executor_total_wall": 1.1763613029906992,
+        "planner_stats": {
+          "ride_queries": 68,
+          "ride_hits": 7,
+          "ride_compiles": 61,
+          "platform_queries": 52,
+          "platform_hits": 15,
+          "platform_compiles": 37,
+          "first_offer_queries": 109,
+          "first_offer_hits": 59,
+          "first_offer_compiles": 50,
+          "edge_compiles": 162,
+          "edge_cells": 7008768,
+          "kernel_compiles": 99,
+          "prior_future_edge_queries": 277,
+          "prior_future_kernel_queries": 147,
+          "top_level_compile_seconds": 1.1404724150052061
+        }
+      },
+      "warm": {
+        "total_wall": 0.0088581529998919,
+        "total_process_cpu": 0.008177852000002872,
+        "executor_compute_wall": 0.008723835024284199,
+        "executor_total_wall": 0.008808985003270209,
+        "planner_stats": {
+          "ride_queries": 2,
+          "ride_hits": 2,
+          "ride_compiles": 0,
+          "platform_queries": 2,
+          "platform_hits": 2,
+          "platform_compiles": 0,
+          "first_offer_queries": 0,
+          "first_offer_hits": 0,
+          "first_offer_compiles": 0,
+          "edge_compiles": 0,
+          "edge_cells": 0,
+          "kernel_compiles": 0,
+          "prior_future_edge_queries": 0,
+          "prior_future_kernel_queries": 0,
+          "top_level_compile_seconds": 0.0
+        }
+      }
+    },
+    {
+      "root_index": 1,
+      "root_id": "onboard_2023-07-16_5522_23",
+      "scenario": "model_world0",
+      "policy": "pair_rollout",
+      "quality": {
+        "loss": 1050,
+        "status": "arrived",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 5522,
+            "clock": 30500,
+            "choice": "alight",
+            "receipt": {
+              "method": "one_step_rollout",
+              "stage": 0,
+              "alight": 31388.567243016852,
+              "continuation": 31398.76687715191,
+              "arrival_cid": 5522,
+              "clock": 30500,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 455,
+            "entry": 30500,
+            "ready": 30620,
+            "clock": 30840,
+            "observed": {
+              "6271": 30840
+            },
+            "visible": [
+              6271
+            ],
+            "choice": 6271,
+            "receipt": {
+              "method": "two_target_waiting",
+              "wait": 32268.007997405784,
+              "board": 31391.927894924964,
+              "combined_wait": 32268.007997405784,
+              "pair_wait": 32730.0,
+              "best_pair": null,
+              "single_wait": 32268.007997405784,
+              "first_offer_wait": 32268.007997405784,
+              "target": 7293,
+              "unsupported_candidates": [],
+              "best_visible": 6271
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 6464,
+            "clock": 31080,
+            "choice": "alight",
+            "receipt": {
+              "method": "one_step_rollout",
+              "stage": 0,
+              "alight": 31414.211124947622,
+              "continuation": 31899.91902224833,
+              "arrival_cid": 6464,
+              "clock": 31080,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 113,
+            "entry": 31080,
+            "ready": 31200,
+            "clock": 31320,
+            "observed": {
+              "6859": 31320
+            },
+            "visible": [
+              6859
+            ],
+            "choice": 6859,
+            "receipt": {
+              "method": "two_target_waiting",
+              "wait": 31535.21511563038,
+              "board": 31392.198034769463,
+              "combined_wait": 31535.21511563038,
+              "pair_wait": 32730.0,
+              "best_pair": null,
+              "single_wait": 31535.21511563038,
+              "first_offer_wait": 31535.215115630384,
+              "target": 7183,
+              "unsupported_candidates": [],
+              "best_visible": 6859
+            }
+          },
+          {
+            "kind": "destination",
+            "cid": 6859,
+            "clock": 31380
+          }
+        ],
+        "decisions": {
+          "platform": 2,
+          "onboard": 2
+        }
+      },
+      "warm_quality": {
+        "loss": 1050,
+        "status": "arrived",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 5522,
+            "clock": 30500,
+            "choice": "alight",
+            "receipt": {
+              "method": "one_step_rollout",
+              "stage": 0,
+              "alight": 31388.567243016852,
+              "continuation": 31398.76687715191,
+              "arrival_cid": 5522,
+              "clock": 30500,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 455,
+            "entry": 30500,
+            "ready": 30620,
+            "clock": 30840,
+            "observed": {
+              "6271": 30840
+            },
+            "visible": [
+              6271
+            ],
+            "choice": 6271,
+            "receipt": {
+              "method": "two_target_waiting",
+              "wait": 32268.007997405784,
+              "board": 31391.927894924964,
+              "combined_wait": 32268.007997405784,
+              "pair_wait": 32730.0,
+              "best_pair": null,
+              "single_wait": 32268.007997405784,
+              "first_offer_wait": 32268.007997405784,
+              "target": 7293,
+              "unsupported_candidates": [],
+              "best_visible": 6271
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 6464,
+            "clock": 31080,
+            "choice": "alight",
+            "receipt": {
+              "method": "one_step_rollout",
+              "stage": 0,
+              "alight": 31414.211124947622,
+              "continuation": 31899.91902224833,
+              "arrival_cid": 6464,
+              "clock": 31080,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 113,
+            "entry": 31080,
+            "ready": 31200,
+            "clock": 31320,
+            "observed": {
+              "6859": 31320
+            },
+            "visible": [
+              6859
+            ],
+            "choice": 6859,
+            "receipt": {
+              "method": "two_target_waiting",
+              "wait": 31535.21511563038,
+              "board": 31392.198034769463,
+              "combined_wait": 31535.21511563038,
+              "pair_wait": 32730.0,
+              "best_pair": null,
+              "single_wait": 31535.21511563038,
+              "first_offer_wait": 31535.215115630384,
+              "target": 7183,
+              "unsupported_candidates": [],
+              "best_visible": 6859
+            }
+          },
+          {
+            "kind": "destination",
+            "cid": 6859,
+            "clock": 31380
+          }
+        ],
+        "decisions": {
+          "platform": 2,
+          "onboard": 2
+        }
+      },
+      "identical_public_trace_and_outcome": true,
+      "cold": {
+        "total_wall": 1.569293345004553,
+        "total_process_cpu": 1.2156400079999976,
+        "model_constructor_wall": 0.15967179500148632,
+        "model_constructor_cpu": 0.14709974299999828,
+        "menu_and_planner_constructor_wall": 0.00032900400401558727,
+        "menu_and_planner_constructor_cpu": 0.0003009509999998272,
+        "executor_process_cpu": 1.0682393139999995,
+        "executor_compute_wall": 1.4089636610151501,
+        "executor_total_wall": 1.409136184011004,
+        "planner_stats": {
+          "ride_queries": 68,
+          "ride_hits": 7,
+          "ride_compiles": 61,
+          "platform_queries": 52,
+          "platform_hits": 15,
+          "platform_compiles": 37,
+          "first_offer_queries": 109,
+          "first_offer_hits": 59,
+          "first_offer_compiles": 50,
+          "edge_compiles": 162,
+          "edge_cells": 7008768,
+          "kernel_compiles": 99,
+          "prior_future_edge_queries": 277,
+          "prior_future_kernel_queries": 147,
+          "top_level_compile_seconds": 1.3725981260067783
+        }
+      },
+      "warm": {
+        "total_wall": 0.009063920995686203,
+        "total_process_cpu": 0.008368522999997907,
+        "executor_compute_wall": 0.008920574007788673,
+        "executor_total_wall": 0.009014764000312425,
+        "planner_stats": {
+          "ride_queries": 2,
+          "ride_hits": 2,
+          "ride_compiles": 0,
+          "platform_queries": 2,
+          "platform_hits": 2,
+          "platform_compiles": 0,
+          "first_offer_queries": 0,
+          "first_offer_hits": 0,
+          "first_offer_compiles": 0,
+          "edge_compiles": 0,
+          "edge_cells": 0,
+          "kernel_compiles": 0,
+          "prior_future_edge_queries": 0,
+          "prior_future_kernel_queries": 0,
+          "top_level_compile_seconds": 0.0
+        }
+      }
+    },
+    {
+      "root_index": 1,
+      "root_id": "onboard_2023-07-16_5522_23",
+      "scenario": "model_world0",
+      "policy": "pair_stopping",
+      "quality": {
+        "loss": 1050,
+        "status": "arrived",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 5522,
+            "clock": 30500,
+            "choice": "alight",
+            "receipt": {
+              "method": "optimal",
+              "stage": 0,
+              "alight": 31388.567243016852,
+              "continuation": 31398.76687715191,
+              "arrival_cid": 5522,
+              "clock": 30500,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 455,
+            "entry": 30500,
+            "ready": 30620,
+            "clock": 30840,
+            "observed": {
+              "6271": 30840
+            },
+            "visible": [
+              6271
+            ],
+            "choice": 6271,
+            "receipt": {
+              "method": "two_target_waiting",
+              "wait": 32268.007997405784,
+              "board": 31391.927894924964,
+              "combined_wait": 32268.007997405784,
+              "pair_wait": 32730.0,
+              "best_pair": null,
+              "single_wait": 32268.007997405784,
+              "first_offer_wait": 32268.007997405784,
+              "target": 7293,
+              "unsupported_candidates": [],
+              "best_visible": 6271
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 6464,
+            "clock": 31080,
+            "choice": "alight",
+            "receipt": {
+              "method": "optimal",
+              "stage": 0,
+              "alight": 31414.211124947622,
+              "continuation": 31899.91902224833,
+              "arrival_cid": 6464,
+              "clock": 31080,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 113,
+            "entry": 31080,
+            "ready": 31200,
+            "clock": 31320,
+            "observed": {
+              "6859": 31320
+            },
+            "visible": [
+              6859
+            ],
+            "choice": 6859,
+            "receipt": {
+              "method": "two_target_waiting",
+              "wait": 31535.21511563038,
+              "board": 31392.198034769463,
+              "combined_wait": 31535.21511563038,
+              "pair_wait": 32730.0,
+              "best_pair": null,
+              "single_wait": 31535.21511563038,
+              "first_offer_wait": 31535.215115630384,
+              "target": 7183,
+              "unsupported_candidates": [],
+              "best_visible": 6859
+            }
+          },
+          {
+            "kind": "destination",
+            "cid": 6859,
+            "clock": 31380
+          }
+        ],
+        "decisions": {
+          "platform": 2,
+          "onboard": 2
+        }
+      },
+      "warm_quality": {
+        "loss": 1050,
+        "status": "arrived",
+        "trace": [
+          {
+            "kind": "onboard",
+            "cid": 5522,
+            "clock": 30500,
+            "choice": "alight",
+            "receipt": {
+              "method": "optimal",
+              "stage": 0,
+              "alight": 31388.567243016852,
+              "continuation": 31398.76687715191,
+              "arrival_cid": 5522,
+              "clock": 30500,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 455,
+            "entry": 30500,
+            "ready": 30620,
+            "clock": 30840,
+            "observed": {
+              "6271": 30840
+            },
+            "visible": [
+              6271
+            ],
+            "choice": 6271,
+            "receipt": {
+              "method": "two_target_waiting",
+              "wait": 32268.007997405784,
+              "board": 31391.927894924964,
+              "combined_wait": 32268.007997405784,
+              "pair_wait": 32730.0,
+              "best_pair": null,
+              "single_wait": 32268.007997405784,
+              "first_offer_wait": 32268.007997405784,
+              "target": 7293,
+              "unsupported_candidates": [],
+              "best_visible": 6271
+            }
+          },
+          {
+            "kind": "onboard",
+            "cid": 6464,
+            "clock": 31080,
+            "choice": "alight",
+            "receipt": {
+              "method": "optimal",
+              "stage": 0,
+              "alight": 31414.211124947622,
+              "continuation": 31899.91902224833,
+              "arrival_cid": 6464,
+              "clock": 31080,
+              "clock_mode": "on_grid",
+              "value_scope": "Conditional ride chain with fixed-history first-offer child scores; not a joint information-tree optimum"
+            }
+          },
+          {
+            "kind": "platform",
+            "stop": 113,
+            "entry": 31080,
+            "ready": 31200,
+            "clock": 31320,
+            "observed": {
+              "6859": 31320
+            },
+            "visible": [
+              6859
+            ],
+            "choice": 6859,
+            "receipt": {
+              "method": "two_target_waiting",
+              "wait": 31535.21511563038,
+              "board": 31392.198034769463,
+              "combined_wait": 31535.21511563038,
+              "pair_wait": 32730.0,
+              "best_pair": null,
+              "single_wait": 31535.21511563038,
+              "first_offer_wait": 31535.215115630384,
+              "target": 7183,
+              "unsupported_candidates": [],
+              "best_visible": 6859
+            }
+          },
+          {
+            "kind": "destination",
+            "cid": 6859,
+            "clock": 31380
+          }
+        ],
+        "decisions": {
+          "platform": 2,
+          "onboard": 2
+        }
+      },
+      "identical_public_trace_and_outcome": true,
+      "cold": {
+        "total_wall": 1.1958010149974143,
+        "total_process_cpu": 1.1032171989999995,
+        "model_constructor_wall": 0.04059409099863842,
+        "model_constructor_cpu": 0.037473425999998256,
+        "menu_and_planner_constructor_wall": 0.0003626839898061007,
+        "menu_and_planner_constructor_cpu": 0.00033247000000002913,
+        "executor_process_cpu": 1.0654113030000012,
+        "executor_compute_wall": 1.1545212719938718,
+        "executor_total_wall": 1.1547049950022483,
+        "planner_stats": {
+          "ride_queries": 68,
+          "ride_hits": 7,
+          "ride_compiles": 61,
+          "platform_queries": 52,
+          "platform_hits": 15,
+          "platform_compiles": 37,
+          "first_offer_queries": 109,
+          "first_offer_hits": 59,
+          "first_offer_compiles": 50,
+          "edge_compiles": 162,
+          "edge_cells": 7008768,
+          "kernel_compiles": 99,
+          "prior_future_edge_queries": 277,
+          "prior_future_kernel_queries": 147,
+          "top_level_compile_seconds": 1.1139007140154717
+        }
+      },
+      "warm": {
+        "total_wall": 0.009825649001868442,
+        "total_process_cpu": 0.00907089500000069,
+        "executor_compute_wall": 0.009678190006525256,
+        "executor_total_wall": 0.009781115993973799,
+        "planner_stats": {
+          "ride_queries": 2,
+          "ride_hits": 2,
+          "ride_compiles": 0,
+          "platform_queries": 2,
+          "platform_hits": 2,
+          "platform_compiles": 0,
+          "first_offer_queries": 0,
+          "first_offer_hits": 0,
+          "first_offer_compiles": 0,
+          "edge_compiles": 0,
+          "edge_cells": 0,
+          "kernel_compiles": 0,
+          "prior_future_edge_queries": 0,
+          "prior_future_kernel_queries": 0,
+          "top_level_compile_seconds": 0.0
+        }
+      }
+    }
+  ],
+  "summary": {
+    "cells": 24,
+    "identical_replays": 24,
+    "measured_quality": "Travel loss and status are retained for every cell; unsupported histories have loss=null.",
+    "interpretation": "Small charged-control benchmark; it does not establish a G2 algorithm contribution."
+  }
+}

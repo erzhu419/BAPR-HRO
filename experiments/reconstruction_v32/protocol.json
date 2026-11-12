@@ -1,0 +1,20 @@
+{
+  "stage": "V32 natural onboard decision discovery",
+  "model": "Unchanged V31 segment duration model, July 25 training, 20 second grid",
+  "data": "Existing July 16 and 17 development archives; no independent confirmation claim",
+  "selection": "screen.py saves schedule-only roots and denominators before replay",
+  "information": "The common prefix attempts one statically fixed first vehicle from start; unavailable service costs the deadline. No observations of other vehicles at the origin are carried. Onboard decisions observe only own arrivals. Local platform departures are observed from entry through departure; observations stop when leaving. No external forecast is supplied. Vehicle paths are drawn once per trip and reused at every candidate occurrence.",
+  "actions": "All retained first-vehicle alighting hubs, all retained tail variants, up to two transfers. Tail variant is selected at boarding; the final platform uses first legal offer.",
+  "quadrature_worlds": 512,
+  "evaluation_worlds": 512,
+  "quadrature_seed": 32001,
+  "evaluation_seed": 32002,
+  "full_hub_seed_formula": "base_seed + 1000 * root_index; initial capped probe used base_seed + root_index",
+  "menu_expansion": "The same twelve roots are also evaluated with all their original eight-leg-prefix hubs. The initial three-hub cap makes one-step rollout structurally sufficient in a chain; expansion removes this artificial limitation without selecting on outcomes.",
+  "main_tail_control": "two_target",
+  "onboard_controls": ["rolling_nominal", "rolling_fixed", "one_step_rollout", "optimal"],
+  "tail_controls": ["first", "nominal", "single", "combined", "pair", "exact"],
+  "reference_scope": "Standard chain stopping is exact for supplied tail-value tables and the first vehicle chain. Tail values are independently sampled physical policy costs; report quadrature uncertainty. The small exact waiting table is only a fixed-mark surrogate when tail trips overlap root offers. All eighteen overlapping platforms additionally receive public-history-conditioned two-target replay; this forced-arrival diagnostic is reported separately from full-root evaluation.",
+  "comparison": "No per-realization best-policy selection. The primary baseline is rolling two-target tail control with one-step onboard rollout. Preserve all paired wins, losses, missing labels and unsupported histories.",
+  "continuation": "A new algorithm requires a reproducible residual beyond standard chain stopping and cheap controls, with identifiable legal predecision information and a demonstrated computation bottleneck. Otherwise retain the baselines and stop algorithm admission; do not consume new dates."
+}

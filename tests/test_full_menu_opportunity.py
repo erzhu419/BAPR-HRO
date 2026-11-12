@@ -73,3 +73,23 @@ def test_wait_product_matches_independent_world_enumeration_with_past_ties_and_c
         total += probability*(costs[min(offers)[2]] if offers else 100)
         mass += probability
     assert full.wait_score(10, {0}) == pytest.approx(total/mass)
+
+
+@pytest.mark.parametrize('ranks', [{1: (1, 1), 2: (2, 2)}, {1: (2, 1), 2: (1, 2)}])
+def test_tiny_survival_matches_conditional_atom_enumeration(ranks):
+    # The dominant already-excluded atom rounds the cumulative probability
+    # to one. The remaining 1e-17 atoms still define a valid conditional law.
+    laws = {1: ([5, 20, 30, 120], [1., 1e-17, 2e-17, 1e-17], 2e-17),
+            2: ([5, 20, 40, 120], [1., 2e-17, 1e-17, 2e-17], 1e-17)}
+    costs = {1: 35., 2: 60.}
+    full = FullMenuOpportunity(Scores(laws, costs), ranks, 0, 0, 100)
+    atoms = [tuple(zip(times[1:], mass[1:]))+((None, cancel),)
+             for times, mass, cancel in laws.values()]
+    total, surviving = 0., 0.
+    for world in product(*atoms):
+        probability = np.prod([p for _, p in world])
+        offers = [(clock, ranks[cid], cid) for cid, (clock, _) in zip(laws, world)
+                  if clock is not None and clock < 100]
+        total += probability*(costs[min(offers)[2]] if offers else 100.)
+        surviving += probability
+    assert full.wait_score(10, ()) == pytest.approx(total/surviving, abs=1e-12)
