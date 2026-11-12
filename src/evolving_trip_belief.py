@@ -308,11 +308,19 @@ class EvolvingTripBelief:
     incomplete feeds use False, retaining only received facts and ride/wait
     evidence. Off-grid exact observations augment the integration grid, so the
     physical continuous-clock posterior is approximated.
+
+    The default grid uses the historical discrete Gaussian weights. An
+    explicit ``grid_step_seconds`` uses cell probabilities from a bounded
+    ordered Gaussian reference on the same physical support. Route and
+    transition parameters remain in minutes and service laws stay fixed.
     """
     def __init__(self, graph, *, minute=60, travel_sd=2.0, dwell_sd=1.0,
                  travel_drift=0.0, dwell_drift=0.0, public_occurrences=True,
-                 cancel_persistence=.9, gap_sd=None, gap_drift=None):
+                 cancel_persistence=.9, gap_sd=None, gap_drift=None, grid_step_seconds=None):
         self.graph, self.minute = graph, minute
+        self._validate_grid_step(grid_step_seconds)
+        self.grid_step_seconds = grid_step_seconds
+        self._trip_grid_steps = {}
         self.travel_sd, self.dwell_sd = travel_sd, dwell_sd
         self.travel_drift, self.dwell_drift = travel_drift, dwell_drift
         self.gap_sd = travel_sd if gap_sd is None else gap_sd
@@ -344,6 +352,37 @@ class EvolvingTripBelief:
         self._cid_order = tuple(slots[i].cid for slots in self._trips.values()
                                 for i in range(0, len(slots), 2))
         self._cache = {trip: _TripMemo() for trip in self._trips}
+
+    def _validate_grid_step(self, step):
+        if step is not None and (self.minute != 60 or not isinstance(step, (int, np.integer))
+                                 or isinstance(step, bool) or step <= 0):
+            raise ValueError('The explicit clock grid needs second clocks and a positive integer step')
+
+    def grid_step_for_trip(self, trip):
+        return self._trip_grid_steps.get(trip, self.grid_step_seconds)
+
+    def with_grid_step(self, grid_step_seconds, *, trips=None):
+        """Fork the belief with new quadrature on all or specified trip IDs."""
+        self._validate_grid_step(grid_step_seconds)
+        branch = self.copy()
+        selected = set(self._trips) if trips is None else set(trips)
+        unknown = selected.difference(self._trips)
+        if unknown:
+            raise KeyError(f'Unknown trip IDs: {sorted(unknown)}')
+        if trips is None:
+            branch.grid_step_seconds = grid_step_seconds
+            branch._trip_grid_steps = {}
+        else:
+            branch._trip_grid_steps = dict(self._trip_grid_steps)
+            branch._trip_grid_steps.update(dict.fromkeys(selected, grid_step_seconds))
+        changed = [trip for trip in selected if self.grid_step_for_trip(trip) != grid_step_seconds]
+        if changed:
+            branch._flat_event_cache = self._flat_event_cache.copy()
+            for trip in changed:
+                branch._cache[trip] = _TripMemo()
+                for slot in self._trips[trip][::2]:
+                    branch._flat_event_cache.pop(slot.cid, None)
+        return branch
 
     def copy(self):
         branch = copy(self)
@@ -481,18 +520,32 @@ class EvolvingTripBelief:
         slots = self._trips[trip]
         route = self.graph.connections[slots[0].cid].route
         pars = parameters.get(route, {"mean": 1., "std": 2., "cancel_rate": .01})
-        key = self._revision.get(trip, 0), pars["mean"], pars["std"], pars["cancel_rate"]
+        grid_step = self.grid_step_for_trip(trip)
+        key = self._revision.get(trip, 0), pars["mean"], pars["std"], pars["cancel_rate"], grid_step
         memo = self._cache[trip]
         if memo.key == key:
             return memo.law
         observed = [(s, self._known_times[s.cid, s.kind]) for s in slots
                     if (s.cid, s.kind) in self._known_times]
-        shifts = np.unique(np.r_[DELAYS * self.minute, [t - s.scheduled for s, t in observed]]).astype(int)
+        unit = self.minute
+        fixed_shifts = DELAYS * unit
+        if grid_step is not None:
+            from .clock_cells import bounded_clock_log_mass, bounded_elapsed_log_mass
+
+            low, high = fixed_shifts[0], fixed_shifts[-1]
+            fixed_shifts = np.r_[np.arange(low, high + 1, grid_step), high]
+        shifts = np.unique(np.r_[fixed_shifts, [t - s.scheduled for s, t in observed]]).astype(int)
         anchors = np.asarray([t for _, t in observed], dtype=int)
         q = pars["cancel_rate"]
         times, canceled, emissions = zip(*(self._grid(slot, shifts, anchors, q != 0) for slot in slots))
-        delays = [(t - s.scheduled) / self.minute for t, s in zip(times, slots)]
-        initial = -.5 * ((delays[0] - pars["mean"]) / max(pars["std"], .5)) ** 2
+        delays = [(t - s.scheduled) / unit for t, s in zip(times, slots)]
+        if grid_step is None:
+            initial = -.5 * ((delays[0] - pars["mean"]) / max(pars["std"], .5)) ** 2
+        else:
+            clocks = times[0][~canceled[0]]
+            mass = bounded_clock_log_mass(clocks, slots[0].scheduled + pars["mean"] * unit,
+                                          max(pars["std"], .5) * unit)
+            initial = mass[np.searchsorted(clocks, times[0])]
         initial -= logsumexp(initial[~canceled[0]])
         with np.errstate(divide="ignore"):
             initial += np.log(np.where(canceled[0], q, 1 - q))
@@ -518,7 +571,7 @@ class EvolvingTripBelief:
         def transition_kernel(index):
             i = index + 1
             delta, travel, sd, drift = steps[index]
-            kernel_key = (delta, travel, sd, drift,
+            kernel_key = (grid_step, delta, travel, sd, drift,
                           tuple(delays[i - 1]), tuple(delays[i]),
                           None if travel else (q, persistence))
             # Shared kernels serve fixed, unobserved grids. Observed-clock
@@ -526,9 +579,16 @@ class EvolvingTripBelief:
             # release their anchor-specific matrices.
             log_step = shared_cache.get(kernel_key) if shared_cache is not None else None
             if log_step is None:
-                log_step = -.5 * ((delays[i][None, :] - delays[i - 1][:, None] - drift) / sd) ** 2
-                ordered = times[i][None, :] >= times[i - 1][:, None]
-                log_step = np.where(ordered, log_step, -np.inf)
+                if grid_step is None:
+                    log_step = -.5 * ((delays[i][None, :] - delays[i - 1][:, None] - drift) / sd) ** 2
+                    ordered = times[i][None, :] >= times[i - 1][:, None]
+                    log_step = np.where(ordered, log_step, -np.inf)
+                else:
+                    previous = times[i - 1][~canceled[i - 1]]
+                    following = times[i][~canceled[i]]
+                    mass = bounded_elapsed_log_mass(previous, following, delta + drift * unit, sd * unit)
+                    log_step = mass[np.ix_(np.searchsorted(previous, times[i - 1]),
+                                           np.searchsorted(following, times[i]))]
                 # Normalize potential-clock transitions once per availability state.
                 norm = logsumexp(log_step[:, ~canceled[i]], axis=1, keepdims=True)
                 log_step -= np.where(np.isfinite(norm), norm, 0.0)

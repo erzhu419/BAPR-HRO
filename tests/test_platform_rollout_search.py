@@ -38,6 +38,25 @@ def test_future_rollout_ignores_unobserved_arrival_while_choosing_a_public_offer
                                 {0}).tolist() == [20, 20]
 
 
+def test_nominal_nonoccurrence_retains_departures_before_platform_entry():
+    graph = _graph((('now', 0, 1, 30, 80), ('later', 0, 1, 40, 50)))
+
+    class Belief(_TimetableBelief):
+        def event_distribution(self, cid, kind, parameters):
+            if cid == 1:
+                return np.array([5, 10, 40]), np.array([.25, .25, .5]), .2
+            return super().event_distribution(cid, kind, parameters)
+
+    root = PlatformState(0, 20, initialized=True, local_since=10)
+    search = PlatformRolloutSearch(graph, Belief(graph), {}, root, 1, 120, {0: (0,), 1: (1,)}, None)
+    state = PlatformState(0, 30, local_since=10, visible_connections=(0,), initialized=True)
+
+    # Cancellation and the departure at 5 both lead to the deadline. A
+    # departure at 10 would have been observed and is ruled out by the log.
+    assert np.isclose(search.nominal_wait[10, 1], (.4*120+.4*50)/.8)
+    assert search.choose(state, None, 0, None, (0,)) == (0, ())
+
+
 def test_rollout_matches_public_transfer_failure_and_fallback_timing():
     graph = _graph((('incoming', 0, 1, 5, 10), ('target', 1, 3, 14, 22),
                     ('before_ready', 1, 3, 12, 19), ('first', 1, 2, 13, 16),

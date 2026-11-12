@@ -7,7 +7,7 @@ import numpy as np
 
 from .committed_transit import CommittedState
 from .conditional_rescue_policy import ConditionalRescuePolicy, _BoundConditionalRescue
-from .interruptible_recourse import RecourseCursor
+from .interruptible_recourse import InterruptibleRecourse, RecourseCursor
 from .risk_bounds import CommitmentBounds
 
 
@@ -87,6 +87,12 @@ class ActualClockRescue(ConditionalRescuePolicy):
     def __init__(self, graph, plan, root, deadline, scores, extras, margin, clock_scores, *, mode,
                  censor_unknown_extras=True, wait_value=None):
         super().__init__(graph, plan, root, deadline, scores, extras, margin)
+        # Attempt expiry governs the original rule's waiting, not the set of
+        # physically boardable offers in the observed-clock comparison.
+        for cid in plan.primary[:1] + plan.rescue[:1]:
+            if cid in scores.rows and cid not in self.suffixes:
+                self.suffixes[cid] = InterruptibleRecourse(graph, scores.paths[cid], root, deadline,
+                                                         mode='public_failure')
         if mode not in ('anchor', 'projection'):
             raise ValueError(f'Unknown off-grid scoring mode: {mode}')
         self.clock_scores, self.mode = clock_scores, mode
@@ -96,6 +102,7 @@ class ActualClockRescue(ConditionalRescuePolicy):
     def bind(self, name):
         return _BoundActualClockRescue(self, name)
 
+
 class _BoundActualClockRescue(_BoundConditionalRescue):
     def targets(self, state):
         targets = super().targets(state)
@@ -103,7 +110,7 @@ class _BoundActualClockRescue(_BoundConditionalRescue):
         if (self.follow is None and c.censor_unknown_extras
                 and state.stop == c.root.stop and state.used_connections == c.root.used_connections
                 and state.time >= c.scores.ready):
-            targets += tuple(c.suffixes)
+            targets = tuple(dict.fromkeys((*targets, *c.suffixes)))
         return targets
 
     def action(self, state):

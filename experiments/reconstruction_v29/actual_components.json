@@ -1,0 +1,597 @@
+{
+  "stage": "V29 actual duration decomposition of the frozen six diagnostic action pairs",
+  "created_at_utc": "2026-11-12T05:58:56.497828+00:00",
+  "selection": "experiments/reconstruction_v29/selection.json",
+  "source_metadata": "experiments/reconstruction_v25/city_transfer_endpoints.json.gz",
+  "source_replay": "experiments/reconstruction_v28/results.json.gz",
+  "units": "seconds",
+  "component_definitions": {
+    "root_wait": "First boarded departure minus original root start; includes the 30-second publication interval.",
+    "first_path_ride": "Last actual first-path arrival minus its first departure; includes all same-vehicle intermediate dwell and gaps.",
+    "tail_transfer_wait": "Selected tail departure minus first-path arrival; includes station MCT.",
+    "tail_ride": "Last actual tail-path arrival minus its first departure, including same-vehicle intermediate dwell; zero for direct routes."
+  },
+  "scope": "Retrospective accounting of saved physical trajectories only. No model score, new policy, new worlds or counterfactual optimality claim.",
+  "cases": [
+    {
+      "root_id": "2023-07-17_0_27600_origin",
+      "start": 27600,
+      "divergence_clock": 27764,
+      "outcomes": {
+        "one_step": {
+          "action": 3194,
+          "tail": 3641,
+          "components_seconds": {
+            "root_wait": 164,
+            "first_path_ride": 438,
+            "tail_transfer_wait": 126,
+            "tail_ride": 210
+          },
+          "root_wait_after_publication_ready": 134,
+          "transfer_minimum_seconds": 120,
+          "transfer_wait_after_minimum": 6,
+          "first_path": {
+            "connection_ids": [
+              3194,
+              3442,
+              4158,
+              4631
+            ],
+            "trip_id": "3561.TA.91-2-H-j23-1.14.R",
+            "route_name": "2",
+            "departure": 27764,
+            "arrival": 28202,
+            "elapsed_including_same_vehicle_stops": 438,
+            "adjacency_travel_seconds": 302,
+            "between_adjacency_seconds": 136
+          },
+          "tail_path": {
+            "connection_ids": [
+              3641,
+              3880
+            ],
+            "trip_id": "2376.TA.92-32-G-j23-1.5.H",
+            "route_name": "32",
+            "departure": 28328,
+            "arrival": 28538,
+            "elapsed_including_same_vehicle_stops": 210,
+            "adjacency_travel_seconds": 196,
+            "between_adjacency_seconds": 14
+          },
+          "total_loss": 938,
+          "saved_v28_loss": 938,
+          "route_outcome_matches_saved": true
+        },
+        "single": {
+          "action": 4108,
+          "tail": null,
+          "components_seconds": {
+            "root_wait": 443,
+            "first_path_ride": 610,
+            "tail_transfer_wait": 0,
+            "tail_ride": 0
+          },
+          "root_wait_after_publication_ready": 413,
+          "transfer_minimum_seconds": 0,
+          "transfer_wait_after_minimum": 0,
+          "first_path": {
+            "connection_ids": [
+              4108,
+              4349,
+              5041,
+              5264,
+              5746,
+              5976
+            ],
+            "trip_id": "2317.TA.91-9-I-j23-1.10.H",
+            "route_name": "9",
+            "departure": 28043,
+            "arrival": 28653,
+            "elapsed_including_same_vehicle_stops": 610,
+            "adjacency_travel_seconds": 490,
+            "between_adjacency_seconds": 120
+          },
+          "tail_path": null,
+          "total_loss": 1053,
+          "saved_v28_loss": 1053,
+          "route_outcome_matches_saved": true
+        }
+      },
+      "single_gain_by_component": {
+        "root_wait": -279,
+        "first_path_ride": -172,
+        "tail_transfer_wait": 126,
+        "tail_ride": 210
+      },
+      "single_total_gain": -115
+    },
+    {
+      "root_id": "2023-07-17_0_28500_origin",
+      "start": 28500,
+      "divergence_clock": 28671,
+      "outcomes": {
+        "one_step": {
+          "action": 6709,
+          "tail": 7164,
+          "components_seconds": {
+            "root_wait": 171,
+            "first_path_ride": 380,
+            "tail_transfer_wait": 185,
+            "tail_ride": 127
+          },
+          "root_wait_after_publication_ready": 141,
+          "transfer_minimum_seconds": 120,
+          "transfer_wait_after_minimum": 65,
+          "first_path": {
+            "connection_ids": [
+              6709,
+              6953,
+              7676,
+              8160
+            ],
+            "trip_id": "3556.TA.91-2-H-j23-1.14.R",
+            "route_name": "2",
+            "departure": 28671,
+            "arrival": 29051,
+            "elapsed_including_same_vehicle_stops": 380,
+            "adjacency_travel_seconds": 290,
+            "between_adjacency_seconds": 90
+          },
+          "tail_path": {
+            "connection_ids": [
+              7164,
+              7399
+            ],
+            "trip_id": "2377.TA.92-32-G-j23-1.5.H",
+            "route_name": "32",
+            "departure": 29236,
+            "arrival": 29363,
+            "elapsed_including_same_vehicle_stops": 127,
+            "adjacency_travel_seconds": 115,
+            "between_adjacency_seconds": 12
+          },
+          "total_loss": 863,
+          "saved_v28_loss": 863,
+          "route_outcome_matches_saved": true
+        },
+        "single": {
+          "action": 7633,
+          "tail": null,
+          "components_seconds": {
+            "root_wait": 666,
+            "first_path_ride": 645,
+            "tail_transfer_wait": 0,
+            "tail_ride": 0
+          },
+          "root_wait_after_publication_ready": 636,
+          "transfer_minimum_seconds": 0,
+          "transfer_wait_after_minimum": 0,
+          "first_path": {
+            "connection_ids": [
+              7633,
+              7879,
+              8568,
+              8787,
+              9256,
+              9494
+            ],
+            "trip_id": "2319.TA.91-9-I-j23-1.10.H",
+            "route_name": "9",
+            "departure": 29166,
+            "arrival": 29811,
+            "elapsed_including_same_vehicle_stops": 645,
+            "adjacency_travel_seconds": 516,
+            "between_adjacency_seconds": 129
+          },
+          "tail_path": null,
+          "total_loss": 1311,
+          "saved_v28_loss": 1311,
+          "route_outcome_matches_saved": true
+        }
+      },
+      "single_gain_by_component": {
+        "root_wait": -495,
+        "first_path_ride": -265,
+        "tail_transfer_wait": 185,
+        "tail_ride": 127
+      },
+      "single_total_gain": -448
+    },
+    {
+      "root_id": "2023-07-17_0_29400_origin",
+      "start": 29400,
+      "divergence_clock": 29535,
+      "outcomes": {
+        "one_step": {
+          "action": 10241,
+          "tail": 12263,
+          "components_seconds": {
+            "root_wait": 135,
+            "first_path_ride": 429,
+            "tail_transfer_wait": 274,
+            "tail_ride": 125
+          },
+          "root_wait_after_publication_ready": 105,
+          "transfer_minimum_seconds": 120,
+          "transfer_wait_after_minimum": 154,
+          "first_path": {
+            "connection_ids": [
+              10241,
+              10488,
+              11185,
+              11650
+            ],
+            "trip_id": "3550.TA.91-2-H-j23-1.14.R",
+            "route_name": "2",
+            "departure": 29535,
+            "arrival": 29964,
+            "elapsed_including_same_vehicle_stops": 429,
+            "adjacency_travel_seconds": 315,
+            "between_adjacency_seconds": 114
+          },
+          "tail_path": {
+            "connection_ids": [
+              12263,
+              12732
+            ],
+            "trip_id": "2083.TA.92-32-G-j23-1.5.H",
+            "route_name": "32",
+            "departure": 30238,
+            "arrival": 30363,
+            "elapsed_including_same_vehicle_stops": 125,
+            "adjacency_travel_seconds": 111,
+            "between_adjacency_seconds": 14
+          },
+          "total_loss": 963,
+          "saved_v28_loss": 963,
+          "route_outcome_matches_saved": true
+        },
+        "single": {
+          "action": 11133,
+          "tail": null,
+          "components_seconds": {
+            "root_wait": 403,
+            "first_path_ride": 605,
+            "tail_transfer_wait": 0,
+            "tail_ride": 0
+          },
+          "root_wait_after_publication_ready": 373,
+          "transfer_minimum_seconds": 0,
+          "transfer_wait_after_minimum": 0,
+          "first_path": {
+            "connection_ids": [
+              11133,
+              11373,
+              12058,
+              12271,
+              12743,
+              12965
+            ],
+            "trip_id": "2221.TA.91-9-I-j23-1.9.H",
+            "route_name": "9",
+            "departure": 29803,
+            "arrival": 30408,
+            "elapsed_including_same_vehicle_stops": 605,
+            "adjacency_travel_seconds": 461,
+            "between_adjacency_seconds": 144
+          },
+          "tail_path": null,
+          "total_loss": 1008,
+          "saved_v28_loss": 1008,
+          "route_outcome_matches_saved": true
+        }
+      },
+      "single_gain_by_component": {
+        "root_wait": -268,
+        "first_path_ride": -176,
+        "tail_transfer_wait": 274,
+        "tail_ride": 125
+      },
+      "single_total_gain": -45
+    },
+    {
+      "root_id": "2023-07-17_0_30300_origin",
+      "start": 30300,
+      "divergence_clock": 30539,
+      "outcomes": {
+        "one_step": {
+          "action": 13683,
+          "tail": 15660,
+          "components_seconds": {
+            "root_wait": 239,
+            "first_path_ride": 433,
+            "tail_transfer_wait": 590,
+            "tail_ride": 165
+          },
+          "root_wait_after_publication_ready": 209,
+          "transfer_minimum_seconds": 120,
+          "transfer_wait_after_minimum": 470,
+          "first_path": {
+            "connection_ids": [
+              13683,
+              13920,
+              14605,
+              15065
+            ],
+            "trip_id": "3551.TA.91-2-H-j23-1.14.R",
+            "route_name": "2",
+            "departure": 30539,
+            "arrival": 30972,
+            "elapsed_including_same_vehicle_stops": 433,
+            "adjacency_travel_seconds": 350,
+            "between_adjacency_seconds": 83
+          },
+          "tail_path": {
+            "connection_ids": [
+              15660,
+              16103
+            ],
+            "trip_id": "2090.TA.92-32-G-j23-1.5.H",
+            "route_name": "32",
+            "departure": 31562,
+            "arrival": 31727,
+            "elapsed_including_same_vehicle_stops": 165,
+            "adjacency_travel_seconds": 153,
+            "between_adjacency_seconds": 12
+          },
+          "total_loss": 1427,
+          "saved_v28_loss": 1427,
+          "route_outcome_matches_saved": true
+        },
+        "single": {
+          "action": 14563,
+          "tail": null,
+          "components_seconds": {
+            "root_wait": 389,
+            "first_path_ride": 616,
+            "tail_transfer_wait": 0,
+            "tail_ride": 0
+          },
+          "root_wait_after_publication_ready": 359,
+          "transfer_minimum_seconds": 0,
+          "transfer_wait_after_minimum": 0,
+          "first_path": {
+            "connection_ids": [
+              14563,
+              14787,
+              15455,
+              15669,
+              16114,
+              16335
+            ],
+            "trip_id": "2225.TA.91-9-I-j23-1.9.H",
+            "route_name": "9",
+            "departure": 30689,
+            "arrival": 31305,
+            "elapsed_including_same_vehicle_stops": 616,
+            "adjacency_travel_seconds": 466,
+            "between_adjacency_seconds": 150
+          },
+          "tail_path": null,
+          "total_loss": 1005,
+          "saved_v28_loss": 1005,
+          "route_outcome_matches_saved": true
+        }
+      },
+      "single_gain_by_component": {
+        "root_wait": -150,
+        "first_path_ride": -183,
+        "tail_transfer_wait": 590,
+        "tail_ride": 165
+      },
+      "single_total_gain": 422
+    },
+    {
+      "root_id": "2023-07-17_0_31200_origin",
+      "start": 31200,
+      "divergence_clock": 31355,
+      "outcomes": {
+        "one_step": {
+          "action": 17058,
+          "tail": 18995,
+          "components_seconds": {
+            "root_wait": 155,
+            "first_path_ride": 420,
+            "tail_transfer_wait": 587,
+            "tail_ride": 187
+          },
+          "root_wait_after_publication_ready": 125,
+          "transfer_minimum_seconds": 120,
+          "transfer_wait_after_minimum": 467,
+          "first_path": {
+            "connection_ids": [
+              17058,
+              17284,
+              17955,
+              18400
+            ],
+            "trip_id": "3558.TA.91-2-H-j23-1.14.R",
+            "route_name": "2",
+            "departure": 31355,
+            "arrival": 31775,
+            "elapsed_including_same_vehicle_stops": 420,
+            "adjacency_travel_seconds": 305,
+            "between_adjacency_seconds": 115
+          },
+          "tail_path": {
+            "connection_ids": [
+              18995,
+              19433
+            ],
+            "trip_id": "2077.TA.92-32-G-j23-1.5.H",
+            "route_name": "32",
+            "departure": 32362,
+            "arrival": 32549,
+            "elapsed_including_same_vehicle_stops": 187,
+            "adjacency_travel_seconds": 175,
+            "between_adjacency_seconds": 12
+          },
+          "total_loss": 1349,
+          "saved_v28_loss": 1349,
+          "route_outcome_matches_saved": true
+        },
+        "single": {
+          "action": 17908,
+          "tail": null,
+          "components_seconds": {
+            "root_wait": 434,
+            "first_path_ride": 547,
+            "tail_transfer_wait": 0,
+            "tail_ride": 0
+          },
+          "root_wait_after_publication_ready": 404,
+          "transfer_minimum_seconds": 0,
+          "transfer_wait_after_minimum": 0,
+          "first_path": {
+            "connection_ids": [
+              17908,
+              18134,
+              18800,
+              19006,
+              19443,
+              19672
+            ],
+            "trip_id": "2224.TA.91-9-I-j23-1.9.H",
+            "route_name": "9",
+            "departure": 31634,
+            "arrival": 32181,
+            "elapsed_including_same_vehicle_stops": 547,
+            "adjacency_travel_seconds": 451,
+            "between_adjacency_seconds": 96
+          },
+          "tail_path": null,
+          "total_loss": 981,
+          "saved_v28_loss": 981,
+          "route_outcome_matches_saved": true
+        }
+      },
+      "single_gain_by_component": {
+        "root_wait": -279,
+        "first_path_ride": -127,
+        "tail_transfer_wait": 587,
+        "tail_ride": 187
+      },
+      "single_total_gain": 368
+    },
+    {
+      "root_id": "2023-07-17_0_32100_origin",
+      "start": 32100,
+      "divergence_clock": 32399,
+      "outcomes": {
+        "one_step": {
+          "action": 20156,
+          "tail": 22461,
+          "components_seconds": {
+            "root_wait": 299,
+            "first_path_ride": 374,
+            "tail_transfer_wait": 229,
+            "tail_ride": 135
+          },
+          "root_wait_after_publication_ready": 269,
+          "transfer_minimum_seconds": 120,
+          "transfer_wait_after_minimum": 109,
+          "first_path": {
+            "connection_ids": [
+              20156,
+              20588,
+              21274,
+              21711
+            ],
+            "trip_id": "3433.TA.91-2-H-j23-1.14.R",
+            "route_name": "2",
+            "departure": 32399,
+            "arrival": 32773,
+            "elapsed_including_same_vehicle_stops": 374,
+            "adjacency_travel_seconds": 297,
+            "between_adjacency_seconds": 77
+          },
+          "tail_path": {
+            "connection_ids": [
+              22461,
+              22666
+            ],
+            "trip_id": "1132.TA.92-32-G-j23-1.5.H",
+            "route_name": "32",
+            "departure": 33002,
+            "arrival": 33137,
+            "elapsed_including_same_vehicle_stops": 135,
+            "adjacency_travel_seconds": 125,
+            "between_adjacency_seconds": 10
+          },
+          "total_loss": 1037,
+          "saved_v28_loss": 1037,
+          "route_outcome_matches_saved": true
+        },
+        "single": {
+          "action": 21234,
+          "tail": null,
+          "components_seconds": {
+            "root_wait": 373,
+            "first_path_ride": 699,
+            "tail_transfer_wait": 0,
+            "tail_ride": 0
+          },
+          "root_wait_after_publication_ready": 343,
+          "transfer_minimum_seconds": 0,
+          "transfer_wait_after_minimum": 0,
+          "first_path": {
+            "connection_ids": [
+              21234,
+              21452,
+              22093,
+              22302,
+              22741,
+              22958
+            ],
+            "trip_id": "2222.TA.91-9-I-j23-1.9.H",
+            "route_name": "9",
+            "departure": 32473,
+            "arrival": 33172,
+            "elapsed_including_same_vehicle_stops": 699,
+            "adjacency_travel_seconds": 506,
+            "between_adjacency_seconds": 193
+          },
+          "tail_path": null,
+          "total_loss": 1072,
+          "saved_v28_loss": 1072,
+          "route_outcome_matches_saved": true
+        }
+      },
+      "single_gain_by_component": {
+        "root_wait": -74,
+        "first_path_ride": -325,
+        "tail_transfer_wait": 229,
+        "tail_ride": 135
+      },
+      "single_total_gain": -35
+    }
+  ],
+  "summary": {
+    "cases": 6,
+    "single_wins": 2,
+    "single_harms": 4,
+    "mean_components_seconds": {
+      "one_step": {
+        "root_wait": 193.83333333333334,
+        "first_path_ride": 412.3333333333333,
+        "tail_transfer_wait": 331.8333333333333,
+        "tail_ride": 158.16666666666666
+      },
+      "single": {
+        "root_wait": 451.3333333333333,
+        "first_path_ride": 620.3333333333334,
+        "tail_transfer_wait": 0,
+        "tail_ride": 0
+      }
+    },
+    "mean_single_gain_by_component": {
+      "root_wait": -257.5,
+      "first_path_ride": -208,
+      "tail_transfer_wait": 331.8333333333333,
+      "tail_ride": 158.16666666666666
+    },
+    "mean_single_total_gain": 24.5,
+    "all_12_routes_reproduce_saved_outcomes": true,
+    "all_12_component_sums_equal_saved_losses": true
+  }
+}

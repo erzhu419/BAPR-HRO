@@ -18,7 +18,9 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--source-cache', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--date', action='append', help='ISO operating date. Repeat for each selected day.')
     args = parser.parse_args()
+    dates = tuple(args.date or DATES)
     if not args.source_cache.exists():
         temporary = args.source_cache.with_suffix('.csv.partial')
         with urlopen(SOURCE, timeout=90) as response, temporary.open('wb') as handle:
@@ -34,7 +36,7 @@ def main():
         for row in reader:
             scanned += 1
             day = datetime.strptime(row['betriebsdatum'], '%d.%m.%y').date().isoformat()
-            if day not in DATES or not row['soll_ab_von']:
+            if day not in dates or not row['soll_ab_von']:
                 continue
             dep = int(row['soll_ab_von'])
             offset = (datetime.strptime(row['datum_von'], '%d.%m.%y').date()
@@ -46,7 +48,7 @@ def main():
     audit = {'source': SOURCE, 'remote_source_cache': str(args.source_cache),
              'remote_source_bytes': args.source_cache.stat().st_size, 'scanned_weekly_rows': scanned,
              'local_subset_bytes': args.output.stat().st_size, 'window_seconds': [START, END],
-             'rows_by_date': {day: sum(n for (date_, line), n in counts.items() if date_ == day) for day in DATES},
+             'rows_by_date': {day: sum(n for (date_, line), n in counts.items() if date_ == day) for day in dates},
              'rows_by_date_line': [{'date': day, 'line': line, 'rows': n} for (day, line), n in sorted(counts.items())]}
     args.output.with_suffix('.audit.json').write_text(json.dumps(audit, indent=2) + '\n')
     print(json.dumps(audit), flush=True)

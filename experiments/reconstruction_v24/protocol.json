@@ -1,0 +1,61 @@
+{
+  "scope": "Development mechanism audit after V23. The same July 23/24 archive days have already been inspected; this is not independent confirmation.",
+  "source": "experiments/reconstruction_v23/city_transfer_endpoints.json.gz",
+  "selection_inputs": "Static stop, connection, trip, schedule and pickup/dropoff fields only. No endpoint time, outcome, official journey identity or fitted score selects a menu.",
+  "population": "The same four named OD pairs and six start clocks on each date, 48 OD windows total. Keep the origin and the scheduled itinerary's first transfer as separate roots. No destination expansion.",
+  "start_clocks": [
+    27600,
+    28500,
+    29400,
+    30300,
+    31200,
+    32100
+  ],
+  "journey_cap_seconds": 2400,
+  "publication_seconds": 30,
+  "first_departure_window": "Scheduled readiness minus 120 seconds through readiness plus 600 seconds. One retained connection per distinct first trip. Exclude the incoming prefix trip at a transfer root.",
+  "menu": "For each first trip, enumerate contiguous same-trip prefixes. A direct arrival is admissible. At each possible alighting stop, enumerate all contiguous through trips to the named destination with scheduled departures between root entry and deadline, excluding the first trip. A transfer candidate must have at least two distinct tail trips catchable under the schedule, providing a primary and a rescue. Keep the schedule-earliest destination arrival, then fewer transfers, then lexicographic connection IDs. All tail paths of the selected transfer stop remain in that option.",
+  "independence": "From every tail menu remove all first trips in the original root catalog and the incoming prefix trip. Record removed tail paths and exclude a transfer option if fewer than two distinct nominally catchable tail trips remain. Keep the original catalog for coverage inspection.",
+  "paired_menu": "Among remaining options retain the earliest scheduled first departure, breaking ties by earliest destination arrival and connection ID. Choose the second option by earliest scheduled destination arrival, then fewer transfers and connection ID, requiring that at least one selected option have a downstream transfer. Roots without a qualifying pair remain in coverage output with an empty selected menu. Keep all independence-filtered options in full_options for the whole-menu cheap first-offer comparison and record when the pair omits the schedule-best direct option. Origin and transfer roots are different conditional states, not independent journeys. All choices precede actual endpoint evaluation.",
+  "strong_controls": "Keep direct options and immediate first-opportunity boarding. Compare a common-menu nominal control and conditional transfer-aware values with identical downstream rescue execution.",
+  "interpretation": "Report menu coverage and missing actual endpoints before losses. Distinguish model decisions from actual outcome evidence and raw computational cost. Preserve V23 negatives and V20 original-model certificates. A favorable development example does not pass G2 or establish OR novelty.",
+  "evaluation": {
+    "grid_step_seconds": 60,
+    "model_worlds_per_root": 64,
+    "seed": "[20261112,24,root_index]",
+    "model_roots": "Frozen scheduled entry/readiness; exact integration over all first-offer histories and shared fitted model. Samples are paired implementation and full-menu comparisons, not independent confirmation.",
+    "actual_roots": "Actual incoming prefix where completely observed; missing endpoints retained unresolved. Same ideal departure-clock contract as V23.",
+    "methods": [
+      "first_offer",
+      "clock_nominal",
+      "mean_arrival",
+      "exact",
+      "full_first_offer"
+    ],
+    "cost": "Record shared setup, independent nominal score preparation, incremental exact preparation, offline exhaustive integration, sampling and replay separately. CPU not inserted as passenger delay; no end-to-end latency or G2 efficiency claim.",
+    "tails": "First legal visible tail after actual arrival plus station MCT; no arbitrary timeout. Same frozen rescue menu for every root policy."
+  },
+  "resolution_followup": {
+    "reason": "The 60-second run showed model-to-actual reversal and wait-for-old-trip failures. Check numerical resolution on all 43 frozen pairs without changing menus or fitting.",
+    "steps": [
+      20,
+      10
+    ],
+    "worlds_per_root": 0,
+    "comparisons": "Reuse exact expectation integration and same actual archive paths. No new worlds, no new dates. Preserve the completed 60-second paired results.",
+    "memory": "Fine grids release per-root message caches; their diagnostic wall times are not matched cold/warm speed ratios."
+  },
+  "training_calibration_followup": {
+    "reason": "The original 7/25 training archive itself shows growing predicted lateness by within-trip position; pooled residual Gaussian clocks do not preserve measured elapsed means at each scheduled duration.",
+    "fit_date": "2023-07-25",
+    "change": "Independent empirical elapsed law conditioned on transition kind and scheduled elapsed seconds; retain initial route clock prior, service law, public information and every frozen route menu. Unseen duration uses same-kind empirical residuals shifted and clipped at zero.",
+    "evaluation": "All 43 frozen pairs at 20-second grid; 64 paired model worlds per root and identical actual archive. Fine-grid 10-second actual and integrated-expectation sensitivity, no additional samples. No outcome-selected parameter tuning.",
+    "interpretation": "A model calibration repair prototype, not a new planning method, new independent confirmation or a continuation of V20 certificates."
+  },
+  "calibration_discretization_followup": {
+    "reason": "The pooled empirical duration at zero scheduled dwell is 13.935 seconds; nearest projection gives 16.538 on a 20-second grid and 14.040 on a 10-second grid. The diagnosed route measures 16.43 seconds, so pooled underprediction and coarse rounding can accidentally offset.",
+    "fixed_changes": "Use all training route x kind x scheduled-duration strata, fall back to pooled kind x duration then pooled residuals only for absent strata. Split atom mass linearly across adjacent legal grid points to preserve the conditional mean away from boundaries. No fit to replay outcomes.",
+    "historical_receipts": "empirical20 and empirical10 retain pooled nearest-grid prototype results; empirical_pooled_nearest_source.py preserves its source.",
+    "final_receipts": "route_empirical20 (64 paired worlds per frozen root) and route_empirical10 (exact integration and same actual replays only)."
+  }
+}

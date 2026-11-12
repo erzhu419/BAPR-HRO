@@ -131,7 +131,7 @@ def template_trip_map(belief, parameters):
         clocks = tuple(slot.scheduled - start for slot in slots)
         gaps = tuple(connections[slots[i - 1].cid].arr_stop != connections[slots[i].cid].dep_stop
                      for i in range(2, len(slots), 2))
-        key = pars['mean'], pars['std'], pars['cancel_rate'], clocks, gaps
+        key = pars['mean'], pars['std'], pars['cancel_rate'], clocks, gaps, belief.grid_step_for_trip(trip)
         representative, epoch = representatives.setdefault(key, (trip, start))
         templates[trip] = representative, start - epoch
     return templates

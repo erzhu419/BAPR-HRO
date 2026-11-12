@@ -1,0 +1,14 @@
+{
+  "stage": "V26 fixed-model five-offer multistep waiting diagnosis",
+  "selection": "All six 2023-07-16 OD0 origin roots from V25, including its five repaired-model losses and one gain. Exactly copy full_options; no screening or menu change.",
+  "fit": "Read V25 model_fit.json unchanged: original20 and route_empirical20, with the latter primary. No fitting, grid scan, source download or threshold selection.",
+  "controls": ["full_first_offer", "one_step_nominal", "multistep_nominal"],
+  "change": "Only replace the one-step future first-offer continuation with optimal repeated board-or-wait decisions. Fixed clock_nominal boarding costs and downstream first-offer rescue remain identical. No exact conditional boarding score is compiled.",
+  "dp": "Finite independent-trip product law; unseen subset and event clock are sufficient. Joint simultaneous offers, cancellation, departure before entry, automatic observation before ready and beyond-deadline mass retained. Off-grid actual clocks query the strictly next supported event; no interpolation of continuation.",
+  "evaluation": "Exact expectation of all three policies under the fixed nominal terminal-cost problem, all supported state comparisons, actual replay of all six roots, and 128 independently drawn full-trip worlds per root per law shared by the three policies. The six actual roots are selected development diagnostics, not a new holdout.",
+  "worlds": {"per_root_per_law": 128, "seed_entropy": "[20261112,26,law_index,root_index]", "total": 1536, "sampling": "Reuse V24 selected_worlds on every root and tail trip; preserve within-vehicle clocks and independent vehicles."},
+  "public_contract": "Reuse V25 public_offers/execute for actual replay. Seen receipts only since entry; unobserved past vehicles are not removed. Initial publication 30 seconds, physical MCT and 40 minute cap unchanged. No future actual record enters a choice.",
+  "verification": "Exhaustive independent micro-world tests verify the DP; exact policy evaluation must match its table and weakly dominate the old controls for the proxy objective. Replayed V25 controls must retain their original actions and losses. Failures stop the stage for a concrete fix, never trigger extra worlds or retuning.",
+  "cost": "Record fresh per-root model/controller preparation, DP incremental compilation, online choice, exact policy integration and sampled/actual replay separately. Run production timings without parallel calibration jobs; microtests may be completed first. Do not charge model-score compilation to first-offer.",
+  "decision": "Retain every positive and negative root and all 1536 worlds. Distinguish optimal proxy value from physical travel loss. A standard subset DP improvement does not establish an OR contribution or transfer V20 certificates. No expansion to the Monday 18-candidate menus in this stage."
+}

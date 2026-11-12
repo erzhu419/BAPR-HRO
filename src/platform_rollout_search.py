@@ -164,10 +164,11 @@ class PlatformRolloutSearch:
             gain = np.zeros(masses.size)
             live = (departures >= self.ready) & (departures < self.deadline)
             gain[live] = self.deadline-board[departures[live]-self.root.time, col]
-            # A no-show by clock t has no hidden future ETA. Integrate the
-            # remaining public offer times against frozen nominal path marks.
+            # A departure before platform entry can explain a no-show just
+            # like cancellation. Only elapsed, observed clocks are excluded.
+            entry = np.searchsorted(departures, self.root.local_since, side='left')
             i = np.searchsorted(departures, clock, side='right')
-            survival = cancel+np.r_[np.cumsum(masses[::-1])[::-1], 0.][i]
+            survival = cancel+masses[:entry].sum()+np.r_[np.cumsum(masses[::-1])[::-1], 0.][i]
             saving = np.r_[np.cumsum((masses*gain)[::-1])[::-1], 0.][i]
             wait[:, col] -= np.divide(saving, survival, out=np.zeros_like(saving), where=survival > 0)
         return board, wait

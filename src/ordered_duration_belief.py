@@ -10,24 +10,8 @@ from __future__ import annotations
 import numpy as np
 from scipy.special import log_ndtr
 
+from .clock_cells import log_normal_interval
 from .evolving_trip_belief import EvolvingTripBelief, _ChainLaw, logsumexp
-
-
-def log_normal_interval(lower, upper, mean=0., sd=1.):
-    """Stable log normal probability for finite or infinite interval endpoints."""
-    low, high = np.broadcast_arrays((np.asarray(lower) - mean) / sd,
-                                    (np.asarray(upper) - mean) / sd)
-    # In the positive tail subtract survival probabilities; subtract CDFs in
-    # the negative tail. Avoid1-CDF and subtraction of two rounded ones.
-    positive = low >= 0
-    large = np.where(positive, log_ndtr(-low), log_ndtr(high))
-    small = np.where(positive, log_ndtr(-high), log_ndtr(low))
-    result = np.full(low.shape, -np.inf)
-    valid = (high > low) & np.isfinite(large)
-    with np.errstate(divide='ignore', invalid='ignore'):
-        difference = small[valid] - large[valid]
-        result[valid] = large[valid] + np.log(-np.expm1(np.minimum(0., difference)))
-    return result
 
 
 def initial_clock_log_mass(clocks, mean, sd):
