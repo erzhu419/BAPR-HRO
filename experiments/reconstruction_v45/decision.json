@@ -1,0 +1,82 @@
+{
+  "stage": "V45",
+  "completed": true,
+  "model": "V41_exact_integer_anchor_finite_chain_v2",
+  "cohort": {
+    "states": 148,
+    "bank_configurations": 3,
+    "banks": 444,
+    "roots": 72,
+    "controls": 5,
+    "physical_replays": 360
+  },
+  "net_compute_vs_v44": {
+    "markov128": {
+      "roots": 72,
+      "all_outcomes_resolved": true,
+      "all_root_losses_no_worse": true,
+      "lower_aggregate_cpu_and_wall": true,
+      "passed": true,
+      "costs": {
+        "cpu": {
+          "subject_total": 40.24541631399991,
+          "baseline_total": 50.89199968200005,
+          "slower_roots": 3
+        },
+        "wall": {
+          "subject_total": 42.88936081592692,
+          "baseline_total": 54.1836452880234,
+          "slower_roots": 3
+        }
+      },
+      "scope": "Empirical engineering condition: all 72 losses no worse and both aggregate CPU/wall lower; not G2 novelty."
+    },
+    "absorbing": {
+      "roots": 72,
+      "all_outcomes_resolved": true,
+      "all_root_losses_no_worse": true,
+      "lower_aggregate_cpu_and_wall": false,
+      "passed": false,
+      "costs": {
+        "cpu": {
+          "subject_total": 110.94955692599996,
+          "baseline_total": 50.89199968200005,
+          "slower_roots": 72
+        },
+        "wall": {
+          "subject_total": 118.11298096904648,
+          "baseline_total": 54.1836452880234,
+          "slower_roots": 72
+        }
+      },
+      "scope": "Empirical engineering condition: all 72 losses no worse and both aggregate CPU/wall lower; not G2 novelty."
+    }
+  },
+  "same_bank_values_and_prefixes_preserved": true,
+  "same_online_trajectories": true,
+  "full_pi_rank_certifications": {
+    "frozen": 0,
+    "online": 0
+  },
+  "independent_method_contribution_established": false,
+  "g2_passed": false,
+  "retain": "markov128 as the strongest measured matched-continuation baseline under the proved structural conditions",
+  "stop": "Current exact prefix absorption and trivial action-gap bound: no added decisions, higher whole cost, no useful action certification. Current matched-computation route closes without an independent OR claim.",
+  "reopen_requirement": "Construct a cheap nontrivial bound on current ALIGHT tail value with proved action exclusion before further integration expansion; not implemented or empirically established in V45.",
+  "tests": {
+    "passed": 886,
+    "seconds": 18.47,
+    "source": "tests.log"
+  },
+  "server_transfer_bytes": 0,
+  "artifacts": [
+    "THEORY.md",
+    "NOVELTY.md",
+    "RESULTS.md",
+    "summary.json",
+    "reference.csv",
+    "roots.csv",
+    "budgets.csv",
+    "quality_time.png"
+  ]
+}
