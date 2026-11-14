@@ -1,0 +1,253 @@
+{
+  "scope": "Real threads and wall clocks; fixed model windows, not transit door data or policy timing.",
+  "cases": [
+    {
+      "token": {
+        "token_id": "probe:timely",
+        "legal_actions": [
+          "continue",
+          "alight"
+        ],
+        "opens_at": 193090.551202293,
+        "closes_at": 193091.551202293,
+        "source": "fixed synthetic window; no archive endpoints"
+      },
+      "started_wall": 193090.551205302,
+      "fallback_published": true,
+      "attempts": [
+        {
+          "sequence": 0,
+          "token_id": "probe:timely",
+          "action": "continue",
+          "origin": "fallback",
+          "received_wall": 193090.551211464,
+          "accepted": true,
+          "reason": null,
+          "payload": null
+        },
+        {
+          "sequence": 1,
+          "token_id": "probe:timely",
+          "action": "alight",
+          "origin": "background",
+          "received_wall": 193090.551472983,
+          "accepted": true,
+          "reason": null,
+          "payload": null
+        }
+      ],
+      "consumption": [
+        {
+          "received_wall": 193090.551674575,
+          "accepted": true,
+          "reason": null,
+          "action": "alight"
+        }
+      ],
+      "consumed": {
+        "sequence": 1,
+        "token_id": "probe:timely",
+        "action": "alight",
+        "origin": "background",
+        "received_wall": 193090.551472983,
+        "accepted": true,
+        "reason": null,
+        "payload": null,
+        "consumed_wall": 193090.551674575
+      },
+      "latest_published": {
+        "sequence": 1,
+        "token_id": "probe:timely",
+        "action": "alight",
+        "origin": "background",
+        "received_wall": 193090.551472983,
+        "accepted": true,
+        "reason": null,
+        "payload": null
+      },
+      "worker_started": true,
+      "launch_rejection": null,
+      "background_result": {
+        "computation": "protocol-only; no model scoring"
+      },
+      "background_error": null,
+      "cost": {
+        "request_to_finish_process_cpu": 0.000451936,
+        "request_to_finish_wall": 0.0005855829804204404,
+        "worker_thread_cpu": 4.5506999999999996e-05,
+        "worker_wall": 0.00035857001785188913,
+        "worker_late_wall": 0.0,
+        "worker_late_cpu_interval": [
+          0.0,
+          0.0
+        ],
+        "all_worker_cpu_charged": 4.5506999999999996e-05,
+        "interpretation": "Process span includes concurrent consumer work; worker CPU is a subset, not an additive fee. Late CPU is bracketed when a work segment crosses the wall deadline."
+      },
+      "case": "timely",
+      "fallback_seen_before_launch": {
+        "sequence": 0,
+        "token_id": "probe:timely",
+        "action": "continue",
+        "origin": "fallback",
+        "received_wall": 193090.551211464,
+        "accepted": true,
+        "reason": null,
+        "payload": null
+      },
+      "consumer_finished_before_worker": true
+    },
+    {
+      "token": {
+        "token_id": "probe:late",
+        "legal_actions": [
+          "continue",
+          "alight"
+        ],
+        "opens_at": 193090.5518335,
+        "closes_at": 193090.5818335,
+        "source": "fixed synthetic window; no archive endpoints"
+      },
+      "started_wall": 193090.551835809,
+      "fallback_published": true,
+      "attempts": [
+        {
+          "sequence": 0,
+          "token_id": "probe:late",
+          "action": "continue",
+          "origin": "fallback",
+          "received_wall": 193090.551838036,
+          "accepted": true,
+          "reason": null,
+          "payload": null
+        },
+        {
+          "sequence": 1,
+          "token_id": "probe:late",
+          "action": "alight",
+          "origin": "background",
+          "received_wall": 193090.592093204,
+          "accepted": false,
+          "reason": "deadline_expired",
+          "payload": null
+        }
+      ],
+      "consumption": [
+        {
+          "received_wall": 193090.552098665,
+          "accepted": true,
+          "reason": null,
+          "action": "continue"
+        }
+      ],
+      "consumed": {
+        "sequence": 0,
+        "token_id": "probe:late",
+        "action": "continue",
+        "origin": "fallback",
+        "received_wall": 193090.551838036,
+        "accepted": true,
+        "reason": null,
+        "payload": null,
+        "consumed_wall": 193090.552098665
+      },
+      "latest_published": {
+        "sequence": 0,
+        "token_id": "probe:late",
+        "action": "continue",
+        "origin": "fallback",
+        "received_wall": 193090.551838036,
+        "accepted": true,
+        "reason": null,
+        "payload": null
+      },
+      "worker_started": true,
+      "launch_rejection": null,
+      "background_result": {
+        "computation": "protocol-only; no model scoring"
+      },
+      "background_error": null,
+      "cost": {
+        "request_to_finish_process_cpu": 0.000604368999999997,
+        "request_to_finish_wall": 0.04047593701398,
+        "worker_thread_cpu": 0.00020498,
+        "worker_wall": 0.040321988984942436,
+        "worker_late_wall": 0.010429107991512865,
+        "worker_late_cpu_interval": [
+          7.314999999999999e-05,
+          0.00020497999999999998
+        ],
+        "all_worker_cpu_charged": 0.00020498,
+        "interpretation": "Process span includes concurrent consumer work; worker CPU is a subset, not an additive fee. Late CPU is bracketed when a work segment crosses the wall deadline."
+      },
+      "case": "late",
+      "fallback_seen_before_launch": {
+        "sequence": 0,
+        "token_id": "probe:late",
+        "action": "continue",
+        "origin": "fallback",
+        "received_wall": 193090.551838036,
+        "accepted": true,
+        "reason": null,
+        "payload": null
+      },
+      "consumer_finished_before_worker": true
+    },
+    {
+      "token": {
+        "token_id": "probe:empty",
+        "legal_actions": [
+          "continue",
+          "alight"
+        ],
+        "opens_at": 193090.592393876,
+        "closes_at": 193090.592393876,
+        "source": "fixed synthetic window; no archive endpoints"
+      },
+      "started_wall": 193090.592398899,
+      "fallback_published": false,
+      "attempts": [
+        {
+          "sequence": 0,
+          "token_id": "probe:empty",
+          "action": "continue",
+          "origin": "fallback",
+          "received_wall": 193090.592402122,
+          "accepted": false,
+          "reason": "empty_window",
+          "payload": null
+        }
+      ],
+      "consumption": [
+        {
+          "received_wall": 193090.592519033,
+          "accepted": false,
+          "reason": "no_published_action",
+          "action": null
+        }
+      ],
+      "consumed": null,
+      "latest_published": null,
+      "worker_started": false,
+      "launch_rejection": "no_published_fallback",
+      "background_result": null,
+      "background_error": null,
+      "cost": {
+        "request_to_finish_process_cpu": 9.117200000000047e-05,
+        "request_to_finish_wall": 0.00013528901035897434,
+        "worker_thread_cpu": 0.0,
+        "worker_wall": 0.0,
+        "worker_late_wall": 0.0,
+        "worker_late_cpu_interval": [
+          0.0,
+          0.0
+        ],
+        "all_worker_cpu_charged": 0.0,
+        "interpretation": "Process span includes concurrent consumer work; worker CPU is a subset, not an additive fee. Late CPU is bracketed when a work segment crosses the wall deadline."
+      },
+      "case": "empty",
+      "fallback_seen_before_launch": null,
+      "consumer_finished_before_worker": false
+    }
+  ]
+}
