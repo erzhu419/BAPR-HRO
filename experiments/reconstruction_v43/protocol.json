@@ -1,0 +1,17 @@
+{
+  "stage": "V43: fixed-policy two-arm attribution and existing stronger stopping controls",
+  "model": "V41_exact_integer_anchor_finite_chain_v2",
+  "fixed": "V41 fit, 148 public states, 72 roots, menus and ordering, six development dates, station MCT, received-message history, original seeds, loss and ideal logical publication contract. No new data, parameters or candidate selection.",
+  "reference_policy": "MatchedContinuationPlanner, frontier PhysicalDecisionEngine, rolling_fixed onboard and combined waiting; exactly the V41 shallow policy pi. Full 128-world G_pi receipts remain the reference, not exact population truth.",
+  "reference_budget": "148 x 128 original paired root worlds; execute forced ALIGHT/CONTINUE under pi only to first reached platform or terminal. Preserve every positive and negative case. Do not rerun complete paths for the attribution.",
+  "levels": ["original cheap action values", "fixed pi prefix then frozen local combined with root-history scoring", "same prefix then frozen local combined with legitimately updated scoring", "saved full pi continuation"],
+  "reference_law": "Both intermediate values use the ORIGINAL root generating distribution conditioned on legitimate hard/local prefix observations. Policy scoring uses the stated root or updated working belief. Future reselection of a received message is not silently inserted into the root physical law. Local reference is exact only for its specified frozen marks and waiting rule.",
+  "uncertainty": "Retain per-world paired outcomes, paired Monte Carlo SE and unresolved probability bounds. Intermediate telescoping errors are descriptive and order dependent, not causal effect attribution. Never call a 128-world mean exact G_pi.",
+  "strong_methods": ["rolling_fixed", "one_step_rollout", "optimal"],
+  "strong_scope": "Existing finite-chain stopping methods, with V41 matched shallow tail scoring and combined waiting. All recursively compiled rides use the selected method. Optimal means exact only for supplied frozen tail marks/chain, not full information-tree optimal control. Scores at all148 fixed states are diagnostics against fixed pi, not evaluations of the new policies.",
+  "online_configurations": ["rolling_fixed", "one_step_rollout", "optimal", "full128"],
+  "online_budget": "72 x 4 = 288 fresh full physical controls; same natural endpoint archive and causal messages. Original rolling and full128 must reproduce V41 physical outcomes and full128 conditional scientific receipts. New stopping controls may change actions; keep all outcomes. No CPU-based sample stopping.",
+  "cost": "One process and one BLAS thread; deterministic rotated arm order. Common archive load and per-root graph setup separately reported. Cold control setup, history updates, compilation, posterior computation, original full128 worlds, decision publication and execution included in total CPU/wall. No selected timing reruns or offline references in online controls.",
+  "decision": "A reduction in one-arm error or matched local integration does not establish G2. Compare BOTH action errors and boundaries, existing strong control loss/cost and all cases. Deep reconstruction requires a residual important gap plus a constructive structural mechanism distinct from known stopping, integration, rollout and context caching. Without that, explicitly stop this fixed-model algorithm route; do not auto-expand dates, budgets or future-message models.",
+  "server_transfer_bytes": 0
+}
