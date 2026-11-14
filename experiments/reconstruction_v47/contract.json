@@ -1,0 +1,20 @@
+{
+  "stage": "V47 shared-state quota recycling and incremental intervals",
+  "fixed_source_commit": "0022df22e775c677e0cf6ebeb71901b7fe8d9dbd",
+  "fixed": "V41 finite model, fit, original V38 menus including scoring-only exits, P0 root law, public history, W forecast reselection, rolling_fixed/combined complete policy pi, cutoff, candidate ranks and numerical comparisons. No new data or future messages.",
+  "target": "Absolute truncated P0 cost after forced ALIGHT or CONTINUE followed by unchanged complete pi; difference ALIGHT minus CONTINUE. V45 kappa and full128 sample means are comparison estimates, not exact full-pi population truth.",
+  "state_indices": [2, 25, 26, 52, 55, 120, 122],
+  "root_indices": [2, 13, 14, 26, 27, 62, 63],
+  "configurations": ["legacy46", "incremental_split", "incremental_recycle", "markov128", "full128"],
+  "fresh_calls": 35,
+  "measurement": "One deterministic rotated pass, one process and one BLAS thread; cold solver per query. Include model/history setup, base decision, initialization, bound extraction and scheduling in complete CPU and wall cost. Common archive loading and graph construction are reported separately. Keep every receipt, including negative or unfinished calls; no timing selection or automatic rerun.",
+  "limits": {"charged_compiles": 2000, "process_cpu_seconds": 120, "initial_alight_compiles": 1000, "initial_alight_cpu_seconds": 60},
+  "counting": "Each implementation has at most2000 charged evaluator entries, not equal arithmetic work. The new retained DAG uses ordinary event DP also for independent terminal platforms, whereas V46 bulk platforms count WAIT/BOARD separately. Hence only new split/recycle have identical primitive definitions; their pair isolates allocation. Compare legacy46 through full CPU/wall and guarantee, also reporting all internal work. No claim that2000 legacy entries equal2000 new entries.",
+  "allocation": "Initially ALIGHT at most half, then CONTINUE may use the remaining global budget. incremental_split ends there; incremental_recycle returns any unused global allowance to unfinished ALIGHT after CONTINUE completes, without restarting paid work. No extra total quota, no outcome-based root selection.",
+  "checkpoints": [500, 1000, 1500, 2000],
+  "intervals": "Every positive physical branch retained. Nonnegative weighted ranges propagate under the fixed policy, never feeding actual values into W. Saved lower bounds are nondecreasing and upper bounds nonincreasing up to roundoff; checkpoints use cumulative costs and credits. Certify only when the complete-pi difference excludes zero beyond1e-9.",
+  "quality": "Report all seven full-pi gap intervals, widths, unresolved mass, certifications and certified directions. Report regret upper bounds for the frozen V45 choice from these intervals. No online journey improvement inferred from a root certificate; no sample mean used to reject a deterministic interval.",
+  "preconditions": "Independent tiny original-executor comparisons, forward/reverse shared evidence, pause/resume equivalence, retained mass, monotone checkpoint intervals, same-kernel allocation and budget conservation tests must pass before the35 natural calls.",
+  "gate": "If no useful certification or independent method advantage is established, retain this bounded evaluation and stop before all148 values, online72 roots, new dates or paper claims. Better work allocation alone is not independent algorithmic novelty.",
+  "server_transfer_bytes": 0
+}
