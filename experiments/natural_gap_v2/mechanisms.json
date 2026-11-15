@@ -1,0 +1,255 @@
+{
+  "scope": "Read-only inspection of the five differing saved journeys and two canceled initial endpoints; no control replay or sampled worlds.",
+  "positive_root_count": 4,
+  "positive_mechanism_groups": 3,
+  "positive_dates": 3,
+  "cases": [
+    {
+      "roots": [
+        57
+      ],
+      "day": "2023-03-27",
+      "gain_seconds_each": 247,
+      "mechanism": "Continue on IR36 to HB and transfer to S12; all six cheap policies alight at Oerlikon, take S21 to Hardbruecke and then S5.",
+      "source_receipts": [
+        "roots/057_new_cheap.json.gz",
+        "roots/057_new_full128.json.gz"
+      ],
+      "first_action_differences": [
+        {
+          "index": 0,
+          "cheap": {
+            "kind": "onboard",
+            "cid": 126,
+            "clock": 29111,
+            "choice": "alight"
+          },
+          "challenger": {
+            "kind": "onboard",
+            "cid": 126,
+            "clock": 29111,
+            "choice": "continue"
+          }
+        }
+      ]
+    },
+    {
+      "roots": [
+        98,
+        99
+      ],
+      "day": "2023-03-31",
+      "gain_seconds_each": 83,
+      "mechanism": "Different S3/S6 incoming trips both alight at HB for the same IR36 430.TA.91-36-A-j23-1.142.H, cid188 (29421 to 29711). All six cheap policies continue to Hardbruecke and take the same S5 201.TA.91-5-C-j23-1.72.H, cid192 (29627 to 29794). Two entrance histories share one downstream competition event.",
+      "source_receipts": [
+        "roots/098_new_cheap.json.gz",
+        "roots/098_new_full128.json.gz",
+        "roots/099_new_cheap.json.gz",
+        "roots/099_new_full128.json.gz"
+      ],
+      "first_action_differences": [
+        {
+          "index": 0,
+          "cheap": {
+            "kind": "onboard",
+            "cid": 106,
+            "clock": 28673,
+            "choice": "continue"
+          },
+          "challenger": {
+            "kind": "onboard",
+            "cid": 106,
+            "clock": 28673,
+            "choice": "alight"
+          }
+        },
+        {
+          "index": 1,
+          "cheap": {
+            "kind": "onboard",
+            "cid": 128,
+            "clock": 28915,
+            "choice": "continue"
+          },
+          "challenger": {
+            "kind": "onboard",
+            "cid": 128,
+            "clock": 28915,
+            "choice": "alight"
+          }
+        }
+      ]
+    },
+    {
+      "roots": [
+        136
+      ],
+      "day": "2023-04-03",
+      "gain_seconds_each": 240,
+      "mechanism": "Continue on S20 to Hardbruecke and take S5; all six cheap policies alight at Stadelhofen and wait for S12.",
+      "source_receipts": [
+        "roots/136_new_cheap.json.gz",
+        "roots/136_new_full128.json.gz"
+      ],
+      "first_action_differences": [
+        {
+          "index": 0,
+          "cheap": {
+            "kind": "onboard",
+            "cid": 111,
+            "clock": 29036,
+            "choice": "alight"
+          },
+          "challenger": {
+            "kind": "onboard",
+            "cid": 111,
+            "clock": 29036,
+            "choice": "continue"
+          }
+        }
+      ]
+    },
+    {
+      "roots": [
+        4
+      ],
+      "day": "2023-03-23",
+      "gain_seconds_each": -172,
+      "mechanism": "Full/matched alight at HB and take S19; cheap/single/pair/one_step/CSA continue to Hardbruecke and take the faster S5. Mean also loses 172 seconds.",
+      "source_receipts": [
+        "roots/004_new_cheap.json.gz",
+        "roots/004_new_full128.json.gz"
+      ],
+      "first_action_differences": [
+        {
+          "index": 1,
+          "cheap": {
+            "kind": "onboard",
+            "cid": 138,
+            "clock": 29037,
+            "choice": "continue"
+          },
+          "challenger": {
+            "kind": "onboard",
+            "cid": 138,
+            "clock": 29037,
+            "choice": "alight"
+          }
+        }
+      ]
+    }
+  ],
+  "initial_cancellations": [
+    {
+      "root_index": 151,
+      "day": "2023-04-04",
+      "first_local_cid": 121,
+      "source_connection_id": 122,
+      "route": "S24",
+      "vehicle": "20428",
+      "official_journey": "85:11:20428:001",
+      "departure_status": "CANCELED",
+      "arrival_status": "CANCELED",
+      "all_eight_loss": 3600
+    },
+    {
+      "root_index": 160,
+      "day": "2023-04-05",
+      "first_local_cid": 111,
+      "source_connection_id": 112,
+      "route": "S20",
+      "vehicle": "20028",
+      "official_journey": "85:11:20028:001",
+      "departure_status": "CANCELED",
+      "arrival_status": "CANCELED",
+      "all_eight_loss": 3600
+    }
+  ],
+  "missing_outcomes": [
+    {
+      "root_index": 28,
+      "day": "2023-03-25",
+      "unresolved_policies": {
+        "new_snapshot_csa": "unresolved:154:departure:MISSING"
+      },
+      "bounds_seconds": [
+        0,
+        3600
+      ],
+      "complete_other_policies": [
+        "new_cheap",
+        "new_mean",
+        "new_single",
+        "new_pair",
+        "new_one_step",
+        "new_matched128",
+        "new_full128"
+      ]
+    },
+    {
+      "root_index": 31,
+      "day": "2023-03-25",
+      "unresolved_policies": {
+        "new_cheap": "unresolved:173:departure:MISSING",
+        "new_mean": "unresolved:173:departure:MISSING",
+        "new_single": "unresolved:173:departure:MISSING",
+        "new_pair": "unresolved:173:departure:MISSING",
+        "new_one_step": "unresolved:173:departure:MISSING",
+        "new_snapshot_csa": "unresolved:173:departure:MISSING",
+        "new_matched128": "unresolved:173:departure:MISSING",
+        "new_full128": "unresolved:173:departure:MISSING"
+      },
+      "bounds_seconds": [
+        0,
+        3600
+      ],
+      "complete_other_policies": []
+    },
+    {
+      "root_index": 43,
+      "day": "2023-03-26",
+      "unresolved_policies": {
+        "new_cheap": "unresolved:173:departure:MISSING",
+        "new_mean": "unresolved:173:departure:MISSING",
+        "new_single": "unresolved:173:departure:MISSING",
+        "new_pair": "unresolved:173:departure:MISSING",
+        "new_one_step": "unresolved:173:departure:MISSING",
+        "new_snapshot_csa": "unresolved:173:departure:MISSING",
+        "new_matched128": "unresolved:173:departure:MISSING",
+        "new_full128": "unresolved:173:departure:MISSING"
+      },
+      "bounds_seconds": [
+        0,
+        3600
+      ],
+      "complete_other_policies": []
+    }
+  ],
+  "shared_tail_event": {
+    "roots": [
+      98,
+      99
+    ],
+    "day": "2023-03-31",
+    "full_and_matched": {
+      "trip_id": "430.TA.91-36-A-j23-1.142.H",
+      "local_cid": 188,
+      "route": "IR36",
+      "from_stop": "Zuerich HB",
+      "to_stop": "Zuerich Altstetten",
+      "departure_seconds": 29421,
+      "arrival_seconds": 29711
+    },
+    "all_six_cheap": {
+      "trip_id": "201.TA.91-5-C-j23-1.72.H",
+      "local_cid": 192,
+      "route": "S5",
+      "from_stop": "Zuerich Hardbruecke",
+      "to_stop": "Zuerich Altstetten",
+      "departure_seconds": 29627,
+      "arrival_seconds": 29794
+    },
+    "same_tail_race_not_two_independent_replications": true
+  },
+  "conclusion": "The four strict positive roots survive all six fixed cheap controls, but cover three dates and three downstream mechanism groups; roots98/99 share the same tail race. Both earlier and later alighting can help. The negative case, full-horizon missing-loss bounds and 49-second mean full-rollout CPU prevent treating these archive mechanisms as net value or G2. The canceled initial roots are common service failures, not archive clock artifacts or policy differences."
+}

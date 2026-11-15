@@ -1,0 +1,11 @@
+{
+  "completed_at_utc": "2026-11-15T11:55:10.323706+00:00",
+  "command": "python3 -m pytest -q tests/test_natural_gap_clock.py tests/test_training_identity.py",
+  "passed": 17,
+  "new_clock_cases": 5,
+  "legacy_identity_cases": 12,
+  "defect": "On2023-03-26, epoch minus local midnight shifts morning service clocks by one hour relative to GTFS/actual civil service times.",
+  "fix": "Convert capture, header, individual update and absolute prediction epoch to Europe/Zurich wall clock before naive service-date subtraction; raw delay remains scheduled civil seconds plus delay.",
+  "historical_default_preserved": true,
+  "target_archive_values_read": false
+}

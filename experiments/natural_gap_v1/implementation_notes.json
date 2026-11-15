@@ -1,0 +1,94 @@
+{
+  "stage": "natural_gap_v1",
+  "written_at_utc": "2026-11-15T11:22:39.581000+00:00",
+  "scope": "Read-only interface review of existing code and historical materials. No new-date RT/actual values or policy outcomes opened; no experiments run.",
+  "recommendation": "Use one small stage-specific preparation/runner layer; retain the existing V41 physical model, repaired frozen emission candidate, public-clock rules, menu construction rules and all eight fixed controls. A new date panel alone is not algorithmic novelty.",
+  "interfaces": [
+    {
+      "file": "experiments/decision_calibration_v2/prepare_static.py",
+      "functions": [
+        "extract_static(zip_path, output_dir)",
+        "dated_connections_from_static(dates, runtime_root)"
+      ],
+      "use": "Source-version-correct isolated static runtime; retain original16 stations, SBB named trains, service activation, physical sequence adjacency,07:30–09:35 graph window and full platform IDs. Construct release groups sequentially or in separate processes because dated_connections_from_static temporarily changes the builder module ROOT."
+    },
+    {
+      "file": "experiments/reconstruction_data_audit/build_dated_replay.py",
+      "functions": [
+        "attach_outcomes(day, connections, rows)"
+      ],
+      "use": "Join service day/operator/train/station/kind/planned-minute; REAL, CANCELED, PROGNOSE, ambiguity and missing remain distinct. Call with empty rows before target access to create schedule-only placeholders; later attach filtered server actuals without changing connection order/IDs."
+    },
+    {
+      "file": "experiments/training_identity_v1/audit.py",
+      "functions": [
+        "audit_day(day,connections,old_catalog,source_catalog)",
+        "decoder_maps(evidence)",
+        "canonical_frames(frames,canonical)"
+      ],
+      "use": "Freeze all date mappings before RT decode. Build full-day public endpoint catalogs via training_identity_v1/public_catalog.py. Match exact public identity, retain unknowns, no literal-ID fallback. For a graph built from its correct source release the public mapping should normally be identity; do not reuse Oct24 graph merely to reuse IDs."
+    },
+    {
+      "file": "experiments/training_identity_v1/run.py",
+      "functions": [
+        "extract_day(day,evidence,archive)"
+      ],
+      "use": "Existing local or server archive path accepted; original V34 10-minute capture phase and07:00–09:40 window, receipt=max(capture,header,TripUpdate), source CIDs and canonical trip IDs. Reuse from server without copying national tar locally. decision_calibration_v2/fetch_messages.py separately supports raw published-platform evidence if required; model does not consume platform audit fields."
+    },
+    {
+      "file": "experiments/reconstruction_v34/discover.py",
+      "functions": [
+        "context(data,day)",
+        "static_catalog(data,protocol)"
+      ],
+      "use": "Schedule-only roots from frozen topology recipe; context returns graph/world/stop mapping/source-to-local mapping/metadata/omitted connections. Explicitly keep the existing station-transfer bounds for the frozen model, and audit new source-platform evidence separately."
+    },
+    {
+      "file": "experiments/decision_calibration_v2/run_calibration.py",
+      "functions": [
+        "select_public(catalog,dates,maximum)",
+        "initial_state(graph,root,node,history,metadata)"
+      ],
+      "use": "select_public freezes the public cohort using deterministic direct/shared/two-transfer layers with original daily cap. initial_state uses the unchanged physical executor to establish whether the first decision is actually reached; complete endpoints alone do not imply a reached root."
+    },
+    {
+      "file": "experiments/reconstruction_v50/menu.py + experiments/decision_gap_v1/candidate_coverage.py",
+      "functions": [
+        "wide_root(graph,root,structure)",
+        "expand_menu(graph,original_node,goal)",
+        "endpoint_coverage(graph,metadata,node,observations)"
+      ],
+      "use": "Build wide menu and public upstream-prefix closure before labels. Save cap/candidate ledgers and freshly measured construction cost. ObservationContract.from_menu(expanded) and original-union rule preserve common station observations. Audit all expanded path endpoints plus observation-only departure slots after menu freeze."
+    },
+    {
+      "file": "experiments/control_identity_v1/run.py",
+      "functions": [
+        "one_arm(index,model_name,policy,menu,graph_context,resident)"
+      ],
+      "use": "Pure arm execution can reuse repaired fit snapshot, setup(), PhysicalHistory, MatchedContinuationPlanner and PolicyExecutor. New runner supplies new data/messages/menus and its own frozen root manifest, rotated arm order and128-world/120-CPU original budget. Update output menu_source/menu_cost_source metadata; do not claim a new menu paid the old V50 construction cost."
+    }
+  ],
+  "required_integration_changes": [
+    "Do not invoke old main programs unchanged: V34 build_sources/messages bind old date lists; control_identity check_inputs binds72 roots and old selection; initialize/run_root bind V34 data and decision_gap menus. Their low-level functions accept new dated contexts, but entrypoints are historical cohort scripts.",
+    "Do not use V34.select as an expanded-menu completeness guarantee: it calls label_coverage and message_eligibility on the original narrow root. Freeze the expanded menu first, run endpoint_coverage on the expanded node plus common observation contract, and audit predecision numeric publication timing against expanded nonincoming tail endpoints. Keep the complete public root/exclusion ledger; do not select by forecast value, loss or policy advantage.",
+    "For a natural decision require an observed initial prefix and a numeric future-tail message with receipt no later than the first reached decision. Preserve no-message, missing-endpoint, canceled-prefix, clock-failure and unsupported-history roots as explicit outcomes, not replacement candidates.",
+    "Keep newly encountered route IDs on the existing pooled-prior/emission fallback and report those counts. Do not refit the physical model or repaired emission candidate to the new panel."
+  ],
+  "bugs_assessed": "No new solver/model defect established by this read-only review. The obsolete hard-coded cohort entrypoints and narrow-menu eligibility are confirmed integration hazards if copied unchanged; use the existing generic functions and full-menu audit rather than changing frozen solver semantics.",
+  "data_and_interpretation_boundaries": [
+    "Existing archive filenames or old confirmation labels do not imply untouched dates; use the exposure inventory and metadata-only date freeze before reading values.",
+    "Partial actual archive prefixes cannot establish full endpoint coverage. Use cached full-member filtered rows where available; retain unknown labels and original bounded loss rather than fabricate cancellations or drop roots.",
+    "RT capture filename is collector time, not verified operator delivery. Preserve the frozen phase filter; a present archive can yield zero sampled morning snapshots. Empty/missing frames are not vehicle nonoccurrence.",
+    "Choose static release from public collector validity metadata (next ZIP mtime calendar day14:00), not directory date or best RT match. Calendar validity alone is insufficient publication-version provenance.",
+    "Fixed station-max MCT with fallback120 and ideal boarding clock remain the replay semantics. Public station-only stop IDs or scheduled platforms do not establish realized platform-specific transfer time.",
+    "The root generator retains the existing16-station/window, route-service count, waiting-window, ride-depth and path caps. dated_graph omits no-dropoff connections. Report this declared finite graph/menu scope; do not interpret an empty candidate set as a network-wide negative result or silently expand scope.",
+    "All cheap policies remain separate deployed comparators. A per-root hindsight best cheap score may describe coverage but is not an online controller. Keep all positive,negative,tie,missing and CPU-unfinished cases; same-state finite128-world banks are not population-optimality certificates."
+  ],
+  "minimum_deliverables": [
+    "metadata-only date/source manifest and frozen admission rule",
+    "all-public static root/menu/candidate ledger",
+    "source identity maps frozen before RT decode",
+    "full-menu coverage and predecision-message/reached-root ledger",
+    "all eight same-information control receipts with shared menu charge and retained missing/unfinished bounds"
+  ]
+}

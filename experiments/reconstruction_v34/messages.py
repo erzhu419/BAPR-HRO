@@ -37,8 +37,9 @@ def endpoint_map(connections):
     return trips
 
 
-def snapshot_frames(feed, day, midnight, captured, member, trips):
-    header = int(feed.header.timestamp) - midnight if feed.header.HasField('timestamp') else None
+def snapshot_frames(feed, day, midnight, captured, member, trips, *, epoch_to_service=None):
+    convert = epoch_to_service if epoch_to_service is not None else lambda epoch: int(epoch)-midnight
+    header = convert(feed.header.timestamp) if feed.header.HasField('timestamp') else None
     output = []
     for entity in feed.entity:
         if not entity.HasField('trip_update'):
@@ -47,7 +48,7 @@ def snapshot_frames(feed, day, midnight, captured, member, trips):
         trip = update.trip.trip_id
         if trip not in trips or update.trip.start_date != day.replace('-', ''):
             continue
-        measured = int(update.timestamp) - midnight if update.HasField('timestamp') else None
+        measured = convert(update.timestamp) if update.HasField('timestamp') else None
         receipt = max(x for x in (captured, header, measured) if x is not None)
         status = pb.TripDescriptor.ScheduleRelationship.Name(update.trip.schedule_relationship)
         events = []
@@ -68,7 +69,7 @@ def snapshot_frames(feed, day, midnight, captured, member, trips):
                     elif stop.HasField(kind):
                         prediction = getattr(stop, kind)
                         if prediction.HasField('time'):
-                            clock = int(prediction.time) - midnight
+                            clock = convert(prediction.time)
                         elif prediction.HasField('delay'):
                             clock = scheduled + prediction.delay
                         else:

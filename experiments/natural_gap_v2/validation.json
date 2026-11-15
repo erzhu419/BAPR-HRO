@@ -1,0 +1,35 @@
+{
+  "local_core": {
+    "passed": 49,
+    "seconds": 0.84,
+    "log": "tests_core.log",
+    "modules": [
+      "natural_gap_clock",
+      "natural_gap_run",
+      "natural_gap_summary",
+      "v34_messages",
+      "control_identity",
+      "v51_rollout",
+      "v51_baselines"
+    ]
+  },
+  "additional_local_modules": {
+    "test_natural_gap_prepare.py": 5,
+    "test_natural_gap_events.py": 7,
+    "test_natural_gap_rt_acquire.py": 1,
+    "test_training_identity.py": 12,
+    "test_natural_gap_rt_resume.py": 1
+  },
+  "local_distinct_tests_passed": 75,
+  "server": {
+    "passed": 19,
+    "seconds": 3.17,
+    "log": "tests_server.log",
+    "python": "3.11.15",
+    "numpy": "2.4.4",
+    "scipy": "1.17.1",
+    "scope": "Synthetic control/clock tests only; no old72 or new target replay"
+  },
+  "environment": "pytest absent in server csbapr environment; installed only into stage test_dependencies and used via PYTHONPATH, leaving shared environment unchanged",
+  "provenance": "49 local core tests executed by root; additional targeted modules executed by responsible agents; duplicates across suites and server run are not added to distinct count."
+}

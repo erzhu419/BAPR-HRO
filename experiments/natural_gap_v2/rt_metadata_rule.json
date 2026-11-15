@@ -1,0 +1,36 @@
+{
+  "frozen_at_utc": "2026-11-15T11:52:53.297296+00:00",
+  "phase": "metadata-only acquisition prescreen; date panel not yet frozen",
+  "source_rule": "Operationalization of natural_gap_v1 original-public-window capture coverage: all17 existing ten-minute sampling bins have at least one matching archive member.",
+  "clock": "epoch -> Europe/Zurich local wall clock -> naive difference from service-date midnight, matching GTFS and actual endpoint civil service seconds",
+  "window_seconds": [
+    25200,
+    34800
+  ],
+  "capture_filter": "25200 <= captured < 34860 and captured % 600 < 60",
+  "required_bin_starts": [
+    25200,
+    25800,
+    26400,
+    27000,
+    27600,
+    28200,
+    28800,
+    29400,
+    30000,
+    30600,
+    31200,
+    31800,
+    32400,
+    33000,
+    33600,
+    34200,
+    34800
+  ],
+  "selection": "Chronological first14 dates excluded by no prior exposure and complete matching static/actual archive metadata; RT capture requirement17/17. Incomplete dates retained in considered ledger; do not substitute after full date freeze.",
+  "metadata_read": "Tar member names and capture clocks only. No protobuf/header/prediction/actual endpoint parsing.",
+  "dst": "Correct known March26 clock-conversion defect before target archive inspection: epoch-minus-midnight shifts the morning by1h. No date exclusion or model-information change; all capture/header/individual-update/absolute-event times use the common civil clock. OriginalV34 defaults remain unchanged for historical reproduction.",
+  "protobuf_values_opened_before_rule": false,
+  "initial_rule_at_utc": "2026-11-15T11:50:51.967196+00:00",
+  "no_tar_members_or_target_values_read_before_clock_correction": true
+}

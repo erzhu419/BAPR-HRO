@@ -1,0 +1,47 @@
+{
+  "stage": "natural_gap_v1",
+  "status": "source_screening_complete_new_event_evaluation_blocked",
+  "rules_frozen": true,
+  "dates_frozen": false,
+  "eligible_dates": [],
+  "considered_dates": 63,
+  "developed_dates": 58,
+  "unexposed_missing_source_dates": [
+    "2023-07-18",
+    "2023-07-19",
+    "2023-07-20",
+    "2023-07-21",
+    "2023-07-22"
+  ],
+  "blocker": "All49 existing RT source dates are exposed. Five undeveloped VBZ actual-cache dates lack RT, matching static, and established compatibility with the fixed V41 SBB rail domain.",
+  "candidate": "../control_identity_v1/repaired_fit.json",
+  "candidate_changed": false,
+  "new_roots_registered": 0,
+  "new_controls_executed": 0,
+  "original_72_additional_budget": 0,
+  "positive_events": null,
+  "negative_events": null,
+  "event_signs_status": "not evaluated; no eligible new-date inputs",
+  "missingness_preserved_in": "date_selection.json",
+  "g2_passed": false,
+  "deeper_reconstruction_admitted": false,
+  "reason": "No new decision-gap evidence could be obtained from these caches. Data insufficiency is not evidence of cheap-policy optimality or absence of useful structure.",
+  "next": "Acquire matching untouched railway actuals, capture-clocked RT and historical static identities; apply frozen14-date selection and original evaluation rules. Do not rescan the same cache set absent a source change, reuse exposed dates as confirmation or add budget to old72 roots.",
+  "target_values_opened": false,
+  "large_files_downloaded": false,
+  "server_metadata_bytes": 47155,
+  "tests": {
+    "command": "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 python3 -m pytest -q tests/test_natural_gap_selection.py",
+    "passed": 4,
+    "seconds": 0.03
+  },
+  "deliverables": [
+    "protocol.json",
+    "exposure_inventory.json",
+    "source_inventory.json",
+    "date_selection.json",
+    "select_dates.py",
+    "implementation_notes.json",
+    "RESULTS.md"
+  ]
+}

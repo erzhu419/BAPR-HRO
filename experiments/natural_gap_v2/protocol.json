@@ -1,0 +1,56 @@
+{
+  "stage": "natural_gap_v2",
+  "rules_frozen_at_utc": "2026-11-15T11:21:36.074486+00:00",
+  "target_values_opened_before_freeze": false,
+  "purpose": "Find naturally occurring residual decision gaps against the fixed cheap family on unused service dates; admission to investigation, not a G2 or independent-calibration success by itself.",
+  "sources": "Official Swiss actual/static archives plus accepted traines captures; server acquisition/processing, local small receipts only.",
+  "date_selection": {
+    "target_days": 14,
+    "order": "Chronological first unused service dates with existing matching static service data, actual endpoint archive and RT capture coverage for the original public time window. This continues the prior14-date rule. Exclude every date used for fitting, model selection, calibration, outcome inspection or control replay. Metadata-only inspection does not expose outcomes.",
+    "capture_coverage": "Check capture filename clocks before freezing dates; archive name alone is insufficient. If content or event coverage is missing after freezing, retain missing cases and do not replace dates.",
+    "incomplete_panel": "Keep all considered dates with their exclusion or missing-source reasons. Fewer than14 dates is an incomplete panel; no independent population acceptance. No used date substitutes and no old72-root replay."
+  },
+  "fixed": {
+    "candidate": "experiments/control_identity_v1/repaired_fit.json",
+    "physical_model": "V34 model_fit and V41 PhysicalHistory; no target-date refit or likelihood tuning",
+    "public_root_rule": "Reuse decision_calibration_v2.select_public / V34 public structural recipe before actual labels; retain initially missing or canceled roots. Same stations, scheduled window, 12 roots per date, public order, horizon and MCT.",
+    "menu": "V50 wide_root then decision_gap_v1.expand_menu public prefix closure; preserve pickup/dropoff, remaining ride depth, absorption and observation rules. Do not choose roots or candidates by gains, actual endpoints or predicted action advantage.",
+    "information": "Correct source-version native trip identities before RT decoding. All policies share the external received stream and the expanded observation contract; endogenous histories follow actions. No future remote messages in planning worlds.",
+    "policies": [
+      "cheap",
+      "mean",
+      "single",
+      "pair",
+      "one_step",
+      "snapshot_csa",
+      "matched128",
+      "full128"
+    ],
+    "rollout_limits": {
+      "worlds_per_query": 128,
+      "process_cpu_seconds": 120,
+      "seed": 510015,
+      "matched_maximum_candidates": 6
+    },
+    "execution": "One cold rotated measured run per policy and registered root; no selected reruns or increased sample budgets. Keep ideal action clocks as in the frozen executor; record fully charged CPU separately."
+  },
+  "events": "Register the first public onboard decision, every upstream menu candidate and each declared downstream legal exit before reading labels. Keep no-downstream-opportunity cases, missing histories, initial endpoint failure, cancellation, forecast-only or ambiguous endpoints. Actual endpoint coverage must cover the expanded menu and local observation connections.",
+  "comparison": {
+    "gain": "Baseline loss minus challenger loss; positive means improvement. Compare every fixed policy separately, do not deploy a per-root hindsight-best baseline.",
+    "unknown": "Preserve loss=None and the original [0,deadline-start] bound; paired gain uses interval subtraction. Do not infer absence of messages from a missing archive. Report complete-pair means only as supplementary.",
+    "candidate_gap": "A predeclared feasible challenger has strictly positive observed gain against every one of the six fixed cheap policies at a complete registered root. Report all positive, negative, tie and unknown roots and duplicate event clusters. This is an observed candidate mechanism, not proof of an expected-value gap.",
+    "panel_value": "Report all-root and per-date paired quality and billed CPU, retaining unknown bounds. A single favorable event does not establish overall superiority.",
+    "operational_admission": "For a claim about actual catchability retain source identity, predecision message timing and concrete platform-transfer provenance. Missing actual platform evidence remains unresolved; station-MCT replay is a model-relative diagnosis.",
+    "deeper_reconstruction": "Requires a residual mechanism not explained by existing cheap policies or input/menu defects and a separate structural/theoretical novelty argument. No residual signal, insufficient data or unresolved operating evidence does not authorize deeper reconstruction.",
+    "calibration": "Any probability confirmation retains decision_calibration_v1/acceptance_rules.json:14 dates, original4 partitions, +/-0.02 bias band and original20000 day bootstrap. This stage does not relax or replace that gate."
+  },
+  "retention": "All considered dates, registered roots, events, positive/negative/tie/missing outcomes and computational unknowns remain in denominator. Data availability is not a negative scientific outcome.",
+  "frozen_dates": false,
+  "selected_dates": [],
+  "original_72_additional_budget": 0,
+  "g2_passed": false,
+  "parent_protocol": "../natural_gap_v1/protocol.json",
+  "source_authorization": "User explicitly authorized new official public archives and previously accepted traines captures, with server processing and small local results.",
+  "acquisition_registered_at_utc": "2026-11-15T11:53:28.899384+00:00",
+  "clock_note": "All RT UNIX timestamps will be represented in the same Zurich civil service-day seconds as fixed GTFS and actual parser. This corrects the reachable March26 DST coordinate mismatch before any new target values are opened; likelihood, public receipt max rule and sample phase stay fixed."
+}
