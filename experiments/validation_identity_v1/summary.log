@@ -1,0 +1,36 @@
+{
+  "validation_endpoint_queries": 9152,
+  "validation_actual_statuses": {
+    "REAL": 9070,
+    "MISSING": 34,
+    "PROGNOSE": 4,
+    "CANCELED": 37,
+    "SKIPPED": 7
+  },
+  "validation_numeric_forecast_present": 7420,
+  "validation_error_eligible": 7383,
+  "source_queries_and_labels_preserved": true,
+  "scored_queries_by_panel": {
+    "endpoint": 9070,
+    "onboard": 3010
+  },
+  "all_original_scored_query_definitions_equal": true,
+  "own_only_predictions_equal_to_original": true,
+  "own_only_different_query_ids": [],
+  "row_files": "validation_days/*.json.gz",
+  "paired_differences": "paired_prediction_rows.json.gz",
+  "original_gate": {
+    "passed": true,
+    "criteria": {
+      "no_increased_unsupported_in_each_panel": true,
+      "onboard_CRPS_below_legacy": true,
+      "onboard_CRPS_no_worse_than_own": true,
+      "onboard_Brier_no_worse_than_legacy": true,
+      "onboard_coverage_deviation_no_worse_than_legacy": true
+    },
+    "scope": "Development model-retention rule only; not G2 or independent confirmation."
+  },
+  "candidate_refitted": false,
+  "controls_executed": false,
+  "interpretation": "Forecast scoring on previously developed dates. The original V35 gate and score operator are unchanged; this is not V41 policy validation or G2."
+}

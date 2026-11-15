@@ -1,0 +1,57 @@
+{
+  "stage": "V35 training message identity audit and isolated repair candidate",
+  "frozen_at_utc": "2026-11-15T09:22:26.478254+00:00",
+  "training_dates": [
+    "2023-10-01",
+    "2023-10-02"
+  ],
+  "query_source": "experiments/reconstruction_v35/events.json.gz: split=training",
+  "query_count": 1932,
+  "original_eligible_errors": 334,
+  "static_source_version": "20230926",
+  "version_selection": "Collector getValidUntil: next static ZIP mtime calendar date at 14:00; selected by public metadata before error audit",
+  "public_endpoint_identity": [
+    "operator_id",
+    "vehicle_number",
+    "route_id",
+    "station",
+    "stop_sequence",
+    "kind",
+    "scheduled_seconds"
+  ],
+  "matching": "Exact endpoint identity, unique in both full-day active regional public catalogs; train-status identity also unique in both catalogs. No literal-ID fallback or forecast-error matching. This proves individual training endpoints, not whole-chain or menu equivalence.",
+  "unmatched": "Preserve all original queries, actuals, cutoffs and unresolved reasons. Missing mappings cannot supply numeric forecasts.",
+  "information": {
+    "capture_window_seconds": [
+      25200,
+      34800
+    ],
+    "sample_seconds": 600,
+    "availability": "max(capture,feed header,TripUpdate timestamp)",
+    "cutoff": "scheduled endpoint minus 300 seconds",
+    "statuses": "Reuse original V35 latest valid numeric selection, cancellation and NO_DATA/SKIPPED clearing"
+  },
+  "fit": {
+    "error_eligibility": "REAL, cutoff < actual, latest valid numeric forecast at cutoff",
+    "error": "actual minus forecast",
+    "route_pseudocount": 20.0,
+    "minimum_sd_seconds": 30.0,
+    "source_dates": "Original two training days only"
+  },
+  "outputs": "Public correspondence, all original and corrected query outcomes, unchanged/wrong-service/missing/unknown accounting, isolated diagnostic fit if correction is needed.",
+  "unchanged": [
+    "V34 physical fit",
+    "Original V35 emission fit",
+    "V41 production model",
+    "menus",
+    "budgets",
+    "all prior results"
+  ],
+  "not_evaluated": [
+    "March calibration for model selection",
+    "October validation days",
+    "policies or solver restructuring"
+  ],
+  "decision": "Correct proven sample identity defects with the same predeclared estimator; do not promote a candidate or claim calibration/G2 from training statistics.",
+  "static_source_release": "2023-09-27"
+}

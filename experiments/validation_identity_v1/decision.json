@@ -1,0 +1,44 @@
+{
+  "stage": "validation_identity_v1",
+  "prediction_retention_gate": {
+    "passed": true,
+    "criteria": {
+      "no_increased_unsupported_in_each_panel": true,
+      "onboard_CRPS_below_legacy": true,
+      "onboard_CRPS_no_worse_than_own": true,
+      "onboard_Brier_no_worse_than_legacy": true,
+      "onboard_coverage_deviation_no_worse_than_legacy": true
+    },
+    "scope": "Development model-retention rule only; not G2 or independent confirmation."
+  },
+  "candidate": "fitted_emission.json",
+  "candidate_refitted_or_tuned": false,
+  "all_validation_dates_completed": true,
+  "g2_passed": false,
+  "v41_production_model_replaced": false,
+  "controls_executed": false,
+  "repeat_control_pairing_warranted": true,
+  "decision": "Retain the fixed candidate for a bounded development control pairing; no new solver or independent confirmation is admitted by this prediction gate.",
+  "basis": [
+    "All original five criteria passed on all nine dates with shared repaired histories.",
+    "All 9070 endpoint and 3010 onboard scoring queries retained; all three models supported every scored query.",
+    "Onboard CRPS improved relative to legacy messages and own-only; the two adverse dates remain."
+  ],
+  "remaining_limitations": [
+    "V35 prediction operator only, not V41 online-control validation.",
+    "Onboard 90% interval coverage remains84.336%, and Brier remains worse than own-only.",
+    "These dates were previously developed; joint catch calibration and actual platform evidence remain unresolved."
+  ],
+  "next_pairing": {
+    "domain_reference": "experiments/decision_gap_v1/contract.json",
+    "roots": 72,
+    "menu": "Latest frozen expanded menu and common observation domain; do not regress to the older V35 narrow controls or old V50 domain.",
+    "controls": "The eight existing new-domain policies: cheap, mean, single, pair, one_step, snapshot_csa, matched128, full128. Keep every root and unresolved actual outcome.",
+    "model_comparison": "Every fixed old/new model and control arm uses the same corrected external publication stream and common observation rules. Own/local histories can differ through actions. Old published wrong-identity scores are not reused as the same-information comparator.",
+    "message_preparation": "Resolve each control-date public static version and native trip identities before any new control run.",
+    "implementation": "Retain the existing V41 physical model and online information-update operator in every arm; the new fitted parameters are a controlled experimental change, not a validated production promotion.",
+    "budgets": "Reuse existing128 worlds/query,120 process-CPU seconds and seed510015; no added bank, retry or outcome-based selection.",
+    "comparison": "Whole-trip loss and fully billed CPU against each fixed strong cheap baseline; no per-root hindsight oracle.",
+    "stop": "If full rollout has no useful remaining advantage over the fixed cheap controls, preserve the result and do not expand DP/search. This model/data repair is not an independent algorithm contribution."
+  }
+}

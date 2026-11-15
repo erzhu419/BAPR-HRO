@@ -1,0 +1,78 @@
+{
+  "scope": "Independent audit of the original V35 prediction-retention gate on the fixed repaired candidate; no rescoring, refitting or new acceptance rule.",
+  "method": "Recomputed each day's common-supported metric means from saved per-query predictions, then averaged the nine days equally. All macro metrics agree with validation_summary.json within 1e-12.",
+  "sources": ["validation_days/*.json.gz", "validation_summary.json", "paired_prediction_summary.json", "public_identity_summary.json"],
+  "validation_dates": ["2023-10-03", "2023-10-04", "2023-10-05", "2023-10-06", "2023-10-07", "2023-10-08", "2023-10-09", "2023-10-10", "2023-10-11"],
+  "gate": {
+    "passed": true,
+    "criteria": {
+      "no_increased_unsupported_in_each_panel": true,
+      "onboard_CRPS_below_legacy": true,
+      "onboard_CRPS_no_worse_than_own": true,
+      "onboard_Brier_no_worse_than_legacy": true,
+      "onboard_coverage_deviation_no_worse_than_legacy": true
+    },
+    "onboard_equal_day_metrics": {
+      "own_only": {"CRPS_seconds": 30.00306996629264, "conditional_operating_Brier": 0.004611838376528565, "central_90_coverage": 0.934574469089978},
+      "legacy_messages": {"CRPS_seconds": 29.5827449091081, "conditional_operating_Brier": 0.007863507440053395, "central_90_coverage": 0.8122724804014111},
+      "fitted_messages": {"CRPS_seconds": 27.365332353447787, "conditional_operating_Brier": 0.005956592649224516, "central_90_coverage": 0.8433639222358008}
+    },
+    "onboard_CRPS_reduction_percent": {"versus_legacy": 7.49562815240179, "versus_own": 8.791559049818087},
+    "coverage_rule": "Absolute deviation of equal-day macro coverage from 0.90; not mean absolute daily deviation."
+  },
+  "denominators": {
+    "endpoint": {
+      "source_queries": 9152,
+      "eligible": 9070,
+      "common_supported": 9070,
+      "contributing_dates_each_model": 9,
+      "unsupported": {"own_only": 0, "legacy_messages": 0, "fitted_messages": 0},
+      "non_REAL_preserved": {"MISSING": 34, "PROGNOSE": 4, "CANCELED": 37, "SKIPPED": 7},
+      "unmapped": 0,
+      "target_forecast_present": 7383,
+      "no_target_forecast_still_scored": 1687
+    },
+    "onboard": {
+      "neighboring_source_rows": 3082,
+      "not_physically_contiguous": 56,
+      "non_REAL_prefix_or_target": 16,
+      "eligible": 3010,
+      "common_supported": 3010,
+      "contributing_dates_each_model": 9,
+      "unsupported": {"own_only": 0, "legacy_messages": 0, "fitted_messages": 0},
+      "unmapped": 0,
+      "target_forecast_present": 2417,
+      "no_target_forecast_still_scored": 593
+    },
+    "all_validation_queries_publicly_matched": 9152
+  },
+  "per_query_signs": {
+    "order": ["improved", "worsened", "tied"],
+    "endpoint": {
+      "versus_legacy": {"CRPS_seconds": [5350, 3683, 37], "MAE_seconds": [5340, 3693, 37]},
+      "versus_own": {"CRPS_seconds": [7059, 1974, 37], "MAE_seconds": [5779, 3254, 37]}
+    },
+    "onboard": {
+      "versus_legacy": {"CRPS_seconds": [1670, 1272, 68], "MAE_seconds": [1620, 1285, 105], "conditional_operating_Brier": [366, 2258, 386]},
+      "versus_own": {"CRPS_seconds": [1891, 1052, 67], "MAE_seconds": [1542, 1370, 98], "conditional_operating_Brier": [2847, 62, 101]}
+    }
+  },
+  "daily_onboard_CRPS_fitted_minus_legacy_seconds": {
+    "2023-10-03": -6.9930712822,
+    "2023-10-04": -6.5900689656,
+    "2023-10-05": -3.8188279987,
+    "2023-10-06": -2.2680041023,
+    "2023-10-07": 3.4416034879,
+    "2023-10-08": 5.0089386669,
+    "2023-10-09": -0.1641503588,
+    "2023-10-10": -5.7003996464,
+    "2023-10-11": -2.8727328017
+  },
+  "daily_onboard_CRPS_signs_versus_legacy": {"improved": 7, "worsened": 2, "tied": 0},
+  "limitations": [
+    "The fitted 90% interval covers 84.34%; improvement relative to legacy does not establish nominal coverage.",
+    "Fitted Brier remains worse than own_only despite passing the original comparison against legacy.",
+    "This is a V35 prediction-retention gate on development dates, not V41 policy validation, joint catch-probability calibration, independent confirmation or G2."
+  ],
+  "next_stage": "Keep the repaired candidate fixed for controlled policy comparisons in the current decision_gap_v1 domain: its new menu, all 72 roots, common observations, original budgets and V51 strong baseline family. Compare old and repaired fits under the same repaired histories; retain all positive, negative and unresolved outcomes."
+}

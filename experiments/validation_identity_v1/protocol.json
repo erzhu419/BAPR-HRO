@@ -1,0 +1,67 @@
+{
+  "stage": "Frozen repaired V35 candidate: identity-corrected October03\u201311 prediction gate",
+  "frozen_at_utc": "2026-11-15T10:19:28.102654+00:00",
+  "training_dates": [
+    "2023-10-01",
+    "2023-10-02"
+  ],
+  "validation_dates": [
+    "2023-10-03",
+    "2023-10-04",
+    "2023-10-05",
+    "2023-10-06",
+    "2023-10-07",
+    "2023-10-08",
+    "2023-10-09",
+    "2023-10-10",
+    "2023-10-11"
+  ],
+  "candidate_source": "experiments/training_identity_v1/candidate_emission.json",
+  "candidate_snapshot": "fitted_emission.json",
+  "candidate_refitted": false,
+  "original_protocol": "experiments/reconstruction_v35/protocol.json",
+  "validation": {
+    "models": [
+      "own_only",
+      "legacy_messages",
+      "fitted_messages"
+    ],
+    "endpoint_panel": "Known REAL endpoints at scheduled-300 with actual>cutoff, including endpoints without a numeric message; score the common physical trip posterior.",
+    "onboard_panel": "Every supported contiguous pair of same-vehicle connections with measured chronological endpoints. At first-leg arrival, reveal that leg's departure and arrival and only messages already received; predict the next leg's arrival. Selection uses topology and label coverage, not error or method advantage.",
+    "metrics": [
+      "CRPS_seconds",
+      "MAE_seconds",
+      "central_90_coverage",
+      "central_90_width_seconds",
+      "onboard_Brier_arrival_by_schedule_plus_300"
+    ],
+    "aggregation": "Retain every row, unsupported history and date. Report date means and equal-date macro means on common supported queries; no independent-endpoint confidence intervals.",
+    "model_retention_gate": "No increased unsupported queries; onboard macro CRPS strictly below legacy and no worse than own_only; onboard Brier no worse than legacy; onboard 90% coverage absolute deviation from 0.90 no worse than legacy. This is a development retention rule, not G2."
+  },
+  "original_query_count": 9152,
+  "original_REAL_endpoint_count": 9070,
+  "information": "Local raw archives; V34 extractor, 600-second sampling, 07:00 to 09:40; availability=max(capture,header,TripUpdate timestamp). No actual label substitutes for a prediction.",
+  "physical_model": "Unchanged V35 validation operator: V5 physical fit, minute=60, public_occurrences=False, original graph, exact own first-leg observations, latest endpoint messages. Both message arms consume the same corrected frames.",
+  "baselines": [
+    "own_only: original physical law with own observations",
+    "legacy_messages: original unfitted MessageHistory likelihood, on corrected messages; this is not the old V35 334-sample fitted model"
+  ],
+  "scoring_kernel": "experiments.reconstruction_v35.validate.run_day and aggregate reused without changes",
+  "identity_matching": "training_identity_v1.audit: exact full-day public endpoint and unique active physical service; retain every original query and unresolved correspondence, no literal-ID fallback",
+  "version_selection": "Official/mirror metadata and collector getValidUntil; selected before RT reconstruction or new scores; see static_source_manifest.json",
+  "gate_expressions": {
+    "no_increased_unsupported_in_each_panel": "fitted unsupported <= legacy unsupported, separately for endpoint and onboard panels",
+    "onboard_CRPS_below_legacy": "equal-date fitted CRPS < legacy CRPS",
+    "onboard_CRPS_no_worse_than_own": "equal-date fitted CRPS <= own_only CRPS",
+    "onboard_Brier_no_worse_than_legacy": "equal-date fitted Brier <= legacy Brier",
+    "onboard_coverage_deviation_no_worse_than_legacy": "abs(equal-date fitted coverage - .90) <= abs(legacy coverage - .90)"
+  },
+  "after_gate": "Assess whether same-information control and strong-cheap-baseline pairing is warranted only after all nine days and the unchanged gate. Failure keeps the candidate diagnostic and unpromoted; no retuning, search or DP. Success is development retention only, not G2 or independent confirmation.",
+  "preserved": [
+    "all prior results and fits",
+    "all original validation queries, labels and clocks",
+    "all positive, negative, unsupported and missing cases",
+    "original gate thresholds and aggregation"
+  ],
+  "data_status": "Previously developed retrospective dates, disjoint from V34 six-date decision panel; not pristine confirmation."
+}
