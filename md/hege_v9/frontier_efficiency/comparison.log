@@ -1,0 +1,242 @@
+{
+  "repo_sha": "6e46267b56656595d2f996bc206ab65c5ee222d8",
+  "repo_status_after": "",
+  "natural_runs_in_this_prototype": 1,
+  "comparisons_are_descriptive_not_same_machine_formal_benchmarks": true,
+  "rows": [
+    {
+      "variant": "original",
+      "manifest_index": 55,
+      "root_index": 27,
+      "query_cpu": 6.027984857,
+      "charged": 2000,
+      "gap": [
+        -223.695862554403,
+        1681.1571023010729
+      ],
+      "certified_action": null,
+      "original_fields": {
+        "complete": false,
+        "alight_mean": null,
+        "alight_unresolved_probability": 0.7682000287510489
+      },
+      "first_saved_certificate": null,
+      "budget_allocation": [
+        {
+          "arm": "alight",
+          "phase": "initial_alight",
+          "charged_compiles": 1000,
+          "process_cpu": 1.8406686719999996,
+          "stop_reason": "quota",
+          "cumulative_compiles": 1000
+        },
+        {
+          "arm": "continue",
+          "phase": "continue",
+          "charged_compiles": 677,
+          "process_cpu": 2.1805287809999996,
+          "stop_reason": "no_pending_work",
+          "cumulative_compiles": 1677
+        },
+        {
+          "arm": "alight",
+          "phase": "recycled_alight",
+          "charged_compiles": 323,
+          "process_cpu": 0.8685142240000019,
+          "stop_reason": "quota",
+          "cumulative_compiles": 2000
+        }
+      ]
+    },
+    {
+      "variant": "naive",
+      "manifest_index": 55,
+      "root_index": 27,
+      "query_cpu": 110.77024103800001,
+      "charged": 2000,
+      "gap": [
+        20.24841151059809,
+        20.24841151059809
+      ],
+      "certified_action": "continue",
+      "original_fields": {
+        "complete": false,
+        "alight_mean": null,
+        "alight_unresolved_probability": 4.1895207624829005e-16
+      },
+      "first_saved_certificate": {
+        "phase": "after_continue",
+        "charged": 1598,
+        "gap": [
+          20.248411107906577,
+          20.248414161615074
+        ],
+        "oracle_cpu": 63.255213106,
+        "outside_oracle_query_cpu_charged": 0.07020474800000898,
+        "conservative_complete_query_cpu": 63.32541785400001
+      },
+      "budget_allocation": [
+        {
+          "arm": "alight",
+          "phase": "initial_alight",
+          "charged_compiles": 921,
+          "process_cpu": 60.058380590999995,
+          "stop_reason": "cpu",
+          "cumulative_compiles": 921
+        },
+        {
+          "arm": "continue",
+          "phase": "continue",
+          "charged_compiles": 677,
+          "process_cpu": 2.761239414000002,
+          "stop_reason": "no_pending_work",
+          "cumulative_compiles": 1598
+        },
+        {
+          "arm": "alight",
+          "phase": "recycled_alight",
+          "charged_compiles": 402,
+          "process_cpu": 46.683120089,
+          "stop_reason": "quota",
+          "cumulative_compiles": 2000
+        }
+      ]
+    },
+    {
+      "variant": "efficient",
+      "manifest_index": 55,
+      "root_index": 27,
+      "query_cpu": 7.739573819,
+      "charged": 2000,
+      "gap": [
+        20.24841151059809,
+        20.24841151059809
+      ],
+      "certified_action": "continue",
+      "original_fields": {
+        "complete": false,
+        "alight_mean": null,
+        "alight_unresolved_probability": 4.1895207624829005e-16
+      },
+      "first_saved_certificate": {
+        "phase": "after_continue",
+        "charged": 1677,
+        "gap": [
+          20.248411483196833,
+          20.24841169386127
+        ],
+        "oracle_cpu": 5.829208877,
+        "outside_oracle_query_cpu_charged": 0.04985280000000092,
+        "conservative_complete_query_cpu": 5.879061677000001
+      },
+      "budget_allocation": [
+        {
+          "arm": "alight",
+          "phase": "initial_alight",
+          "charged_compiles": 1000,
+          "process_cpu": 2.6982863860000004,
+          "stop_reason": "quota",
+          "cumulative_compiles": 1000
+        },
+        {
+          "arm": "continue",
+          "phase": "continue",
+          "charged_compiles": 677,
+          "process_cpu": 2.6930896040000007,
+          "stop_reason": "no_pending_work",
+          "cumulative_compiles": 1677
+        },
+        {
+          "arm": "alight",
+          "phase": "recycled_alight",
+          "charged_compiles": 323,
+          "process_cpu": 1.0936637509999994,
+          "stop_reason": "quota",
+          "cumulative_compiles": 2000
+        }
+      ]
+    }
+  ],
+  "same_final_action_receipts_naive_and_efficient": true,
+  "same_final_difference_interval_naive_and_efficient": true,
+  "same_actions_at_500_naive_and_efficient": true,
+  "core_counter_differences_naive_to_efficient": {
+    "bulk_interval_reductions": {
+      "naive": 407,
+      "efficient": 390
+    }
+  },
+  "naive_to_efficient_query_cpu_ratio": 14.312188710710197,
+  "efficient_vs_original_query_cpu_ratio": 1.2839404880077654,
+  "naive_cpu_reduction_fraction": 0.9301294847201341,
+  "naive_fullgraph_node_visits": 11909676,
+  "efficient_root_mass_node_visits": 107861,
+  "efficient_root_mass_edge_visits": 773019,
+  "efficient_discovery_node_visits": 14088,
+  "root_mass_only_cpu": 0.3362073839999815,
+  "entire_priority_next_cpu_including_arithmetic": 1.112391545000035,
+  "snapshot_cpu": 1.413636328,
+  "cold_process_cost": {
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+      "/workspace/scratch/fde8f7d289c2/audit_6e46267/frontier_efficiency/efficient_priority.py",
+      "55"
+    ],
+    "returncode": 0,
+    "child_user_cpu": 9.49053,
+    "child_system_cpu": 1.008998,
+    "child_total_cpu": 10.499528,
+    "wall": 8.885453275001055,
+    "max_resident_kib": 317032,
+    "wrapper_cpu": 0.029306,
+    "definition": "Cold Python child including all module imports, archive loading, graph construction, query, interval extraction, serialization and logging"
+  },
+  "small_chain_cases": 6,
+  "small_chain_checkpoint_count": 115,
+  "small_chain_max_relative_mass_error": 7.696658355840722e-20,
+  "independent_adversarial_checks": {
+    "all_passed": true,
+    "cases": [
+      {
+        "case": "late_parent_after_child_expansion",
+        "passed": true,
+        "checks": 6
+      },
+      {
+        "case": "external_expansion_before_reach",
+        "passed": true,
+        "checks": 6
+      },
+      {
+        "case": "opaque_zero_weight_watch_and_later_physical_parent",
+        "passed": true,
+        "checks": 4
+      }
+    ],
+    "scope": "Independent hand-constructed DAGs; every step checks root masses and heap winner against full recomputation"
+  },
+  "evidence": {
+    "original": {
+      "path": "/workspace/scratch/fde8f7d289c2/repos/BAPR-HRO-6e46267/experiments/reconstruction_v47/natural/055_bulk_recycle.json.gz",
+      "sha256": "f44e2aea32377c47ad19af2f01c7226fc4dfb2d85c2d8fb9cbb4efbdcd45da51"
+    },
+    "naive": {
+      "path": "/workspace/scratch/fde8f7d289c2/audit_6e46267/theory_code/priority_diagnostic/055_priority.json",
+      "sha256": "39f9907a290fc8fadd1587a320ffa7e6afe9423b872792921fbfe0af7f5a2122"
+    },
+    "efficient": {
+      "path": "/workspace/scratch/fde8f7d289c2/audit_6e46267/frontier_efficiency/055_efficient.json",
+      "sha256": "845b25c7002587efa7691b657a2e9a084728bafa7576a77d24b80253a6db1f33"
+    }
+  },
+  "caveats": [
+    "One retrospective root, selected for mechanism diagnosis; no general 7-root success-rate or speed claim.",
+    "The archived original DFS query and the two audit runs were not a controlled same-machine repeated timing experiment.",
+    "The fast first A phase reaches quota 1000; the naive run hits its 60-second phase limit at 921. Total final A paid work is 1323 in both.",
+    "bulk_interval_reductions differs because saved checkpoints intersect C at different work counts; all other common non-priority counters match.",
+    "A interval prints equal endpoints but unresolved_probability is positive and mean remains null; no floating-point completion override is applied.",
+    "No certificate stopping policy was introduced: all 2000 paid units were still consumed.",
+    "No probability is pruned; np.longdouble changes only scheduling weight arithmetic, never value or policy calculations.",
+    "Incremental floating point summation order can differ at machine precision; six small paid traces match exactly and root27 final receipts/core counters match, but this is not a proof of universal bitwise scheduling equivalence."
+  ]
+}
