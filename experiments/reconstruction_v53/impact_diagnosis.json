@@ -1,0 +1,45 @@
+{
+  "scope": "Input-fixed query 0, forced root alight, first platform, initial P0 and the successive no-event prefix. These are conditional counterfactual branch probabilities, not full-journey or optimal-policy visitation probabilities.",
+  "sources": [
+    "experiments/reconstruction_v52/panel.json.gz#/rows/0",
+    "experiments/reconstruction_v34/data.json.gz",
+    "experiments/reconstruction_v34/model_fit.json",
+    "experiments/reconstruction_v35/fitted_emission.json"
+  ],
+  "input_selection": "Panel row 0 fixed before inspecting any outcome. No future endpoint labels or V53 value results used.",
+  "root_index": 0,
+  "query_index": 0,
+  "platform_stop": 2,
+  "entry": 28704.0,
+  "ready": 28944.0,
+  "deadline": 31770.0,
+  "action_cids": [134, 136, 145, 149, 167, 181, 191],
+  "relevant_observation_cids": [134, 136, 145, 149, 167, 181, 191, 224, 279],
+  "event_clock_count": 51,
+  "cutoff_seconds": 0.01,
+  "formula": "branch_influence = no_event_prefix_probability * conditional_joint_event_probability * (deadline - event_clock)",
+  "first_eight_no_event_prefix_rows": [
+    {"clock":28740.0,"reach":1.0,"no_event_conditional":0.7676253400927838,"positive_branches":15,"small_branches":5,"small_root_mass":4.756254425154605e-6,"small_root_width":0.01441145090821845,"largest_positive_conditional":0.1797686045054019},
+    {"clock":28800.0,"reach":0.7676253400927838,"no_event_conditional":0.5954693000243289,"positive_branches":15,"small_branches":0,"small_root_mass":0.0,"small_root_width":0.0,"largest_positive_conditional":0.25920442251321163},
+    {"clock":28860.0,"reach":0.45709732394598734,"no_event_conditional":0.3943312447882831,"positive_branches":31,"small_branches":16,"small_root_mass":6.795480321498244e-7,"small_root_width":0.00197748477355599,"largest_positive_conditional":0.24614655923982243},
+    {"clock":28920.0,"reach":0.18024775674101426,"no_event_conditional":0.21464970189868912,"positive_branches":31,"small_branches":16,"small_root_mass":5.5516286354163685e-6,"small_root_width":0.015822141610936646,"largest_positive_conditional":0.21408352151961915},
+    {"clock":28980.0,"reach":0.038690127,"no_event_conditional":0.093908631,"positive_branches":31,"small_branches":15,"small_root_mass":1.1908327793395402e-5,"small_root_width":0.03322423454357317,"largest_positive_conditional":0.2533560051074958},
+    {"clock":29040.0,"reach":0.003633337,"no_event_conditional":0.032643789,"positive_branches":63,"small_branches":48,"small_root_mass":8.716009541182937e-6,"small_root_width":0.023794706047429424,"largest_positive_conditional":0.4907692629868932},
+    {"clock":29100.0,"reach":0.000118606,"no_event_conditional":0.015086972,"positive_branches":63,"small_branches":58,"small_root_mass":6.466416299770396e-6,"small_root_width":0.017265331520386958,"largest_positive_conditional":0.5702453862098812},
+    {"clock":29160.0,"reach":0.000001789,"no_event_conditional":0.016581116,"positive_branches":127,"small_branches":127,"small_root_mass":1.7597333643928032e-6,"small_root_width":0.004592904081065223,"largest_positive_conditional":0.43151434451305354}
+  ],
+  "first_eight_aggregate": {
+    "positive_branches": 376,
+    "small_branches": 285,
+    "small_root_mass": 0.00003983791809146233,
+    "small_root_width_seconds": 0.11108825348516585
+  },
+  "interpretation": "At the first clock the largest branch is no-event, but the ordinary traversal postpones it until every visible branch has recursed. Many visible combinations have tiny influence; the first individual vehicle event itself has probability 0.17977 and is not tiny. Per-branch cutoff 0.01 is not a total-error guarantee: even this single no-event-prefix slice accumulates 0.11109 seconds.",
+  "reproduce": [
+    "Restore graph by V34 context(data, day), setup(model_fit), and V41 restored('shallow', fitted_emission, panel state). Restore the panel's complete V50 ObservationContract and root node.",
+    "Construct CompressedReference with unlimited diagnostic limits, call _prepare(node), and select node.exits[state.cid]. Do not solve or read saved policy values.",
+    "Set cids = reads.observation_cids(platform.stop, reads.platform_trips(platform)); obtain _event_grid(cids, entry). Start history=snapshot and reach=1.",
+    "For the first eight clocks enumerate _joint_outcomes(cids, clock, history). Count nonempty-visible outcomes passing reach*mass*(H-clock)<=0.01 and retain all probabilities. Record no_event as the summed empty-visible mass.",
+    "Advance only this diagnostic no-event prefix: reach*=no_event, clone history, then observe_platform(cids,entry,clock,{}). Stored reach/no-event scalars in the last four rows are rounded; branch aggregate sums use unrounded values."
+  ]
+}
