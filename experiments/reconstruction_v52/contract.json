@@ -1,0 +1,32 @@
+{
+  "stage": "V52 bounded causal-policy reference after common-menu baseline reconstruction",
+  "inputs": "Complete V51 states.json.gz union of all visited states from all72 roots and all declared baseline policies; no reuse of the old148-only panel.",
+  "panel_selection": "Before computing any V52 values: each original root contributes its first state with at least two legal actions; onboard states additionally require has_continuation=true. Order by public clock, earliest source state occurrence, then state index. Also include ALL same-public-history states satisfying those nontriviality conditions with different executed actions across V51 policies, deduplicating states already selected. All V51 states and all72 original roots remain the denominators; missing qualifying roots are explicit. Mandatory roots4,63,62,6,18,32,57 are included by the same first-state rule, not selected on a V52 gain.",
+  "modes": [
+    "optimal",
+    "cheap_p0",
+    "cheap_working",
+    "one_step_p0",
+    "two_step_p0"
+  ],
+  "limits": {
+    "states_per_query": 2000,
+    "process_cpu_seconds_per_query": 2
+  },
+  "target": "Conditional remaining truncated travel loss on the supplied legal public history. RootP0 and common wide observations fixed. optimal minimizes all subsequent causal choices; one/two_step optimize one/two actual choice layers then cheap_p0; cheap_p0 uses the unchanged cheap scorer on consistent rootP0, cheap_working retains workingW forecast reselection.",
+  "physical_information": "No archived futurepublic frames or real future endpoints enter the reference. Same-trip observed departures are generated jointly through complete finite-chain conditioning. Entry/ready and station visit boundaries remain fixed. All modes use the same finite actiondomain and commonstation observation contract.",
+  "accounting": "Every query has a cold model/history/solver. Common resident data and graph loads are separate. Setup CPU is deducted from the2second solver allowance; complete query CPU/wall includes setup, root laws, score calls, memoization, all observation/decision branches and final extraction. Rootforced actions receive fixed cumulative equal shares, with unused earlier capacity available later. State units differ from V49 scoring-entry units. Atomic operations may finish beyond a CPU precheck; record actualcost.",
+  "parallelism": "Natural timing may run serially or with two screening workers after V51 formal timings finish. ProcessCPU is reported for each call; parallelwall times are not interchangeable with the V51 singleprocess timing frontier.",
+  "uncertainty": "Unexpanded states and unvisited probability retain full physical ranges. Strict separated actionintervals alone certify. Print means only for complete computations. Budgetunknowns, unsupported histories, missing actual labels, positive and negative roots are retained.",
+  "interpretation": "Local policy-loss bounds do not imply a whole-journey optimalitygap or rootvisitation probability. A recursive reference timing out is not evidence of an intrinsic obstacle for optimized ordinaryDP. No newsolver development or larger budget follows automatically. V53 requires independently demonstrated residual loss, cheap-patch failure and a genuine ordinary-method obstacle.",
+  "validation": "Causal versusclairvoyant toyvalue, legal observation-only valueofinformation, jointsame-trip simultaneous events, readiness, budgetcontainment, finiteimprovement depth, forced onboard arms, and private-event fixedpolicy enumeration all checked before natural measurements.",
+  "retention": "All receipts preserved and reused on rerun; no natural query remeasurement or cap extension absent a documentedimplementation defect. No servertransfer or independentnewdates. keep_decisions=false in naturalruns; rootinput states retained once in panel.",
+  "server_transfer_bytes": 0,
+  "traversal": "Ordinary memoized Bellman recursion. At a platform clock, nonempty observed-event outcomes are evaluated in the declared conditional group order; the no-event continuation is an iterative affine chain. This prevents long supported time grids from consuming the language call stack. No probability is omitted.",
+  "implementation_comparison": {
+    "chronological": "Original time-index chance expansion; all 440 saved calls retained.",
+    "mass_terminal": "Same states, five policy classes, model, information and per-query limits. Expand ride chance outcomes by descending probability with index tie-break; integrate the immediate absorbing destination marginal exactly. These are ordinary evaluation optimizations, not a new policy or method claim.",
+    "trigger": "The completed chronological pass returned no exact value or certified action in 440 calls. Its ride chance iteration visits small-index support first and explicitly calls terminal arrival leaves. Compare all 440 cells, including wider ranges and incomplete cases, without extending the per-query limits.",
+    "scope": "Quality refers to interval width at the same declared limits. CPU stopping is checked at operation boundaries; observed CPU is retained. Neither implementation timeout establishes an intrinsic ordinary-DP barrier."
+  }
+}
