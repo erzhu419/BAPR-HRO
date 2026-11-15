@@ -1,0 +1,304 @@
+{
+  "status": "station_source_verified_platform_pair_unresolved",
+  "source": "data/swiss_gtfs/transfers.txt",
+  "aggregate_source": "experiments/reconstruction_data_audit/station_transfer_bounds.json",
+  "aggregation_code": "experiments/reconstruction_data_audit/audit_station_transfers.py",
+  "application_code": "experiments/reconstruction_v4/run_dated_replay.py:dated_graph",
+  "rule": "The frozen graph uses each station maximum of stated interior transfer times, with 120 seconds only where none is stated. Values below are unchanged.",
+  "stations": {
+    "8503003": {
+      "name": "Z\u00fcrich Stadelhofen",
+      "n_stated_interior_pairs": 12,
+      "prohibited_interior_pairs": 0,
+      "minimum_stated_seconds": 240,
+      "conservative_max_stated_seconds": 240,
+      "stated_time_counts": {
+        "240": 12
+      },
+      "examples": [
+        {
+          "from_stop_id": "8503003",
+          "to_stop_id": "8503003:0:1",
+          "transfer_type": "2",
+          "min_transfer_time": "240"
+        },
+        {
+          "from_stop_id": "8503003",
+          "to_stop_id": "8503003:0:3",
+          "transfer_type": "2",
+          "min_transfer_time": "240"
+        },
+        {
+          "from_stop_id": "8503003",
+          "to_stop_id": "8503003:0:2",
+          "transfer_type": "2",
+          "min_transfer_time": "240"
+        }
+      ],
+      "source_counts_match_saved_aggregate": true
+    },
+    "8503000": {
+      "name": "Z\u00fcrich HB",
+      "n_stated_interior_pairs": 552,
+      "prohibited_interior_pairs": 0,
+      "minimum_stated_seconds": 420,
+      "conservative_max_stated_seconds": 420,
+      "stated_time_counts": {
+        "420": 552
+      },
+      "examples": [
+        {
+          "from_stop_id": "8503000",
+          "to_stop_id": "8503000:0:41/42",
+          "transfer_type": "2",
+          "min_transfer_time": "420"
+        },
+        {
+          "from_stop_id": "8503000",
+          "to_stop_id": "8503000:0:43/44",
+          "transfer_type": "2",
+          "min_transfer_time": "420"
+        },
+        {
+          "from_stop_id": "8503000",
+          "to_stop_id": "8503000:0:17",
+          "transfer_type": "2",
+          "min_transfer_time": "420"
+        }
+      ],
+      "source_counts_match_saved_aggregate": true
+    },
+    "8503020": {
+      "name": "Z\u00fcrich Hardbr\u00fccke",
+      "n_stated_interior_pairs": 20,
+      "prohibited_interior_pairs": 0,
+      "minimum_stated_seconds": 180,
+      "conservative_max_stated_seconds": 180,
+      "stated_time_counts": {
+        "180": 20
+      },
+      "examples": [
+        {
+          "from_stop_id": "8503020",
+          "to_stop_id": "8503020:0:3",
+          "transfer_type": "2",
+          "min_transfer_time": "180"
+        },
+        {
+          "from_stop_id": "8503020",
+          "to_stop_id": "8503020:0:2",
+          "transfer_type": "2",
+          "min_transfer_time": "180"
+        },
+        {
+          "from_stop_id": "8503020",
+          "to_stop_id": "8503020:0:4",
+          "transfer_type": "2",
+          "min_transfer_time": "180"
+        }
+      ],
+      "source_counts_match_saved_aggregate": true
+    },
+    "8503006": {
+      "name": "Z\u00fcrich Oerlikon",
+      "n_stated_interior_pairs": 72,
+      "prohibited_interior_pairs": 0,
+      "minimum_stated_seconds": 180,
+      "conservative_max_stated_seconds": 180,
+      "stated_time_counts": {
+        "180": 72
+      },
+      "examples": [
+        {
+          "from_stop_id": "8503006",
+          "to_stop_id": "8503006:0:8",
+          "transfer_type": "2",
+          "min_transfer_time": "180"
+        },
+        {
+          "from_stop_id": "8503006",
+          "to_stop_id": "8503006:0:7",
+          "transfer_type": "2",
+          "min_transfer_time": "180"
+        },
+        {
+          "from_stop_id": "8503006",
+          "to_stop_id": "8503006:0:6",
+          "transfer_type": "2",
+          "min_transfer_time": "180"
+        }
+      ],
+      "source_counts_match_saved_aggregate": true
+    },
+    "8503001": {
+      "name": "Z\u00fcrich Altstetten",
+      "n_stated_interior_pairs": 30,
+      "prohibited_interior_pairs": 0,
+      "minimum_stated_seconds": 180,
+      "conservative_max_stated_seconds": 180,
+      "stated_time_counts": {
+        "180": 30
+      },
+      "examples": [
+        {
+          "from_stop_id": "8503001",
+          "to_stop_id": "8503001:0:4",
+          "transfer_type": "2",
+          "min_transfer_time": "180"
+        },
+        {
+          "from_stop_id": "8503001",
+          "to_stop_id": "8503001:0:3",
+          "transfer_type": "2",
+          "min_transfer_time": "180"
+        },
+        {
+          "from_stop_id": "8503001",
+          "to_stop_id": "8503001:0:2",
+          "transfer_type": "2",
+          "min_transfer_time": "180"
+        }
+      ],
+      "source_counts_match_saved_aggregate": true
+    }
+  },
+  "roots": [
+    {
+      "root_index": 6,
+      "day": "2023-10-25",
+      "current_cid": 115,
+      "exits": [
+        {
+          "role": "upstream",
+          "arrival_cid": 115,
+          "station_id": "8503003",
+          "station_name": "Z\u00fcrich Stadelhofen",
+          "fixed_mct_seconds": 240,
+          "actual_arrival_platform": null,
+          "actual_outgoing_platforms_recorded": false,
+          "platform_pair_verified": false
+        },
+        {
+          "role": "downstream_exit",
+          "arrival_cid": 134,
+          "station_id": "8503000",
+          "station_name": "Z\u00fcrich HB",
+          "fixed_mct_seconds": 420,
+          "actual_arrival_platform": null,
+          "actual_outgoing_platforms_recorded": false,
+          "platform_pair_verified": false
+        },
+        {
+          "role": "downstream_exit",
+          "arrival_cid": 174,
+          "station_id": "8503020",
+          "station_name": "Z\u00fcrich Hardbr\u00fccke",
+          "fixed_mct_seconds": 180,
+          "actual_arrival_platform": null,
+          "actual_outgoing_platforms_recorded": false,
+          "platform_pair_verified": false
+        },
+        {
+          "role": "downstream_exit",
+          "arrival_cid": 183,
+          "station_id": "8503006",
+          "station_name": "Z\u00fcrich Oerlikon",
+          "fixed_mct_seconds": 180,
+          "actual_arrival_platform": null,
+          "actual_outgoing_platforms_recorded": false,
+          "platform_pair_verified": false
+        }
+      ]
+    },
+    {
+      "root_index": 18,
+      "day": "2023-10-26",
+      "current_cid": 115,
+      "exits": [
+        {
+          "role": "upstream",
+          "arrival_cid": 115,
+          "station_id": "8503003",
+          "station_name": "Z\u00fcrich Stadelhofen",
+          "fixed_mct_seconds": 240,
+          "actual_arrival_platform": null,
+          "actual_outgoing_platforms_recorded": false,
+          "platform_pair_verified": false
+        },
+        {
+          "role": "downstream_exit",
+          "arrival_cid": 134,
+          "station_id": "8503000",
+          "station_name": "Z\u00fcrich HB",
+          "fixed_mct_seconds": 420,
+          "actual_arrival_platform": null,
+          "actual_outgoing_platforms_recorded": false,
+          "platform_pair_verified": false
+        },
+        {
+          "role": "downstream_exit",
+          "arrival_cid": 174,
+          "station_id": "8503020",
+          "station_name": "Z\u00fcrich Hardbr\u00fccke",
+          "fixed_mct_seconds": 180,
+          "actual_arrival_platform": null,
+          "actual_outgoing_platforms_recorded": false,
+          "platform_pair_verified": false
+        },
+        {
+          "role": "downstream_exit",
+          "arrival_cid": 183,
+          "station_id": "8503006",
+          "station_name": "Z\u00fcrich Oerlikon",
+          "fixed_mct_seconds": 180,
+          "actual_arrival_platform": null,
+          "actual_outgoing_platforms_recorded": false,
+          "platform_pair_verified": false
+        }
+      ]
+    },
+    {
+      "root_index": 32,
+      "day": "2023-10-27",
+      "current_cid": 126,
+      "exits": [
+        {
+          "role": "upstream",
+          "arrival_cid": 126,
+          "station_id": "8503006",
+          "station_name": "Z\u00fcrich Oerlikon",
+          "fixed_mct_seconds": 180,
+          "actual_arrival_platform": null,
+          "actual_outgoing_platforms_recorded": false,
+          "platform_pair_verified": false
+        },
+        {
+          "role": "downstream_exit",
+          "arrival_cid": 146,
+          "station_id": "8503000",
+          "station_name": "Z\u00fcrich HB",
+          "fixed_mct_seconds": 420,
+          "actual_arrival_platform": null,
+          "actual_outgoing_platforms_recorded": false,
+          "platform_pair_verified": false
+        },
+        {
+          "role": "downstream_exit",
+          "arrival_cid": 190,
+          "station_id": "8503001",
+          "station_name": "Z\u00fcrich Altstetten",
+          "fixed_mct_seconds": 180,
+          "actual_arrival_platform": null,
+          "actual_outgoing_platforms_recorded": false,
+          "platform_pair_verified": false
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "The current rail connection metadata retains station IDs and stop sequences but no arrival/departure platform IDs. These GTFS source times cannot be identified as the exact pair for a particular replayed transfer.",
+    "The HB 420-second, Stadelhofen 240-second and other 180-second values are supported station aggregations; this audit does not alter them or validate an operational platform-pair contract."
+  ],
+  "changed_transfer_seconds": false,
+  "server_transfer_bytes": 0
+}

@@ -1,0 +1,90 @@
+{
+  "status": "pending_data",
+  "date_selection_status": "No independent date list is frozen or acquired",
+  "purpose": "Independent catch-event probability diagnosis; not a G2 pass or a journey-gain experiment",
+  "known_exposed_source_dates": [
+    "2023-10-01",
+    "2023-10-02",
+    "2023-10-03",
+    "2023-10-04",
+    "2023-10-05",
+    "2023-10-06",
+    "2023-10-07",
+    "2023-10-08",
+    "2023-10-09",
+    "2023-10-10",
+    "2023-10-11",
+    "2023-10-12",
+    "2023-10-13",
+    "2023-10-14",
+    "2023-10-15",
+    "2023-10-16",
+    "2023-10-17",
+    "2023-10-18",
+    "2023-10-19",
+    "2023-10-20",
+    "2023-10-21",
+    "2023-10-22",
+    "2023-10-23",
+    "2023-10-24",
+    "2023-10-25",
+    "2023-10-26",
+    "2023-10-27",
+    "2023-10-28",
+    "2023-10-29",
+    "2023-10-30",
+    "2023-10-31",
+    "2023-11-01",
+    "2023-11-02",
+    "2023-11-03",
+    "2023-11-04"
+  ],
+  "exposure_sources": [
+    "data/per_day_distributions_corrected.pkl",
+    "experiments/reconstruction_v3/run_chronological_panel.py",
+    "experiments/reconstruction_v34/source_inventory.json",
+    "experiments/reconstruction_v35/data_inventory.json"
+  ],
+  "date_rule": {
+    "target_days": 14,
+    "selected_dates": [],
+    "selection": "After checking fitting, model selection, replay and prior research exposure, select the chronologically first 14 as-yet-unseen service dates with a valid static service feed, actual endpoint archive and predecision publication archive. Freeze the exact dates from source metadata before reading target values. The 35 listed dates are excluded; later dates are not automatically independent.",
+    "availability": "Record every considered date and missing source. Once dates are frozen, missing endpoints/messages and unavailable days remain reported; no outcome-based replacement or extension."
+  },
+  "fixed": {
+    "model": "V41 physical law and working policies, including the current V34 physical fit and V35 emission fit; no target-day refitting",
+    "menu": "decision_gap_v1 public candidate closure; unchanged ride-depth, pickup/dropoff, absorption and observation rules",
+    "population": "Use the V34 public structural root recipe and the P2 first-onboard opportunity enumeration on every selected date before event labels. Retain roots with unavailable initial prefixes as unresolved rather than silently discarding them.",
+    "joins": "Existing service date/operator/vehicle/stop/event/scheduled-minute join. Preserve REAL, CANCELED, forecast, missing and ambiguous identities separately.",
+    "information": "Each prediction uses only messages received by its actual decision clock. Missing or aged numeric forecasts retain their prespecified groups.",
+    "mct": "Unchanged GTFS station maximum values; separate platform-pair provenance status, no favorable buffer adjustment"
+  },
+  "missingness": {
+    "events": "Retain all four catch partitions, cancellations, absent downstream opportunities and unknown labels. Use the existing possible-partition bounds for unavailable labels.",
+    "probabilities": "Unsupported same-chain or missing-history probabilities remain unresolved and count in the denominator; complete-case scores are supplemental."
+  },
+  "inference": {
+    "unit": "Operational incidents nested within service dates. Group rows sharing an incoming or outgoing named trip on a date; preserve exact duplicate causal event counts separately.",
+    "summaries": "Per partition, report incident- and day-level predicted probability, observed indicator bounds and their difference; also the four-class Brier score or its min/max over possible labels. Report all prespecified forecast/MCT/downstream-opportunity groups.",
+    "uncertainty": "Do not treat overlapping roots or catch windows as iid. Report all daily estimates and resample whole dates, retaining incidents intact, for descriptive 95% uncertainty; sparse groups and missing dates remain unresolved.",
+    "decision": "No numeric calibration-pass or practical-effect threshold has been justified in this stage. Probability diagnostics cannot authorize a structural algorithm or establish G2/G3. A confirmation claim requires its acceptance rule to be fixed before the independent values are opened."
+  },
+  "groups": {
+    "forecast": [
+      "no_numeric_forecast",
+      "age_le_300",
+      "age_gt_300"
+    ],
+    "mct_increment_seconds": [
+      "le_0",
+      "0_to_180",
+      "gt_180"
+    ],
+    "downstream_opportunities": "count on the declared same-trip path"
+  },
+  "server_transfer_bytes": 0,
+  "limitations": [
+    "Untouched actual endpoints and predecision messages have not been located and verified.",
+    "Concrete platform-pair transfer identity is absent from the current rail replay metadata."
+  ]
+}
