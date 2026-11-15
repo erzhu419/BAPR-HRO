@@ -1,0 +1,44 @@
+{
+  "stage": "decision_calibration_v1",
+  "status": "rules_fixed_before_any_new_target_values; date_panel_not_available",
+  "target_days": 14,
+  "date_selection": "Chronologically first 14 service dates with verified unused real outcomes and joint availability of a valid static feed, actual endpoint archive and capture-timestamped predecision GTFS-RT. Check source metadata before opening values. Synthetic pseudo-date experiments alone do not imply real-target exposure. No used date substitutes for a missing new date.",
+  "fixed": {
+    "physical_and_working_model": "V41, using existing reconstruction_v34/model_fit.json and reconstruction_v35/fitted_emission.json; no refit or new cancellation/forecast law",
+    "menu": "decision_gap_v1 uniform upstream-prefix closure on the existing V50 menu recipe, preserving original transfer depth; no label-driven candidate or root selection",
+    "information": "Original public message receipt clock, own/local observations, entry versus ready, MCT and horizon; no actual future in P0 predictions",
+    "root_selection": "Use original V34 public structural catalogue and fixed round-robin direct/shared/two-transfer order, one incoming vehicle and route/OD, at most12 per date, before endpoint completeness or forecast values. Retain missing initial histories as unresolved; missing forecasts remain the no-numeric-forecast group.",
+    "events": "Every chosen root's first public legal onboard state; register all candidate/later-exit pairs before labels; absent through departures, canceled, missing and ambiguous endpoints remain in the ledger"
+  },
+  "primary": {
+    "target": "Four joint catch partitions 00,01,10,11 under the fixed operational clock and MCT",
+    "bias": "Observed indicator minus root-P0 probability; unknown indicators use possible-partition bounds and unknown model probabilities use [0,1]",
+    "weighting": "Within each date, group events sharing either incoming or outgoing physical trip into connected operational incidents; average event residuals within incidents, then equally over incidents and dates. Also report the full opportunity-weighted denominator.",
+    "absolute_equivalence_margin": 0.02,
+    "margin_rationale": "Predeclared screening tolerance of one excess or missing event per50 comparable opportunities. This is a research design choice, not a published universal standard or a travel-regret certificate.",
+    "interval": "20000 fixed-seed bootstrap replicates resampling whole dates with all incident/event rows intact. For each partition use percentiles0.00625 and0.99375 (Bonferroni allocation across four two-sided intervals, nominal family95%). Apply lower-tail calculation to missingness lower bounds and upper-tail calculation to upper bounds. Seed20261115; no additional looks or budget extension.",
+    "pass": "All14 predeclared dates represented, each with at least one structural opportunity, and all four entire intervals lie inside [-0.02,0.02]. This is a day-cluster screening conclusion for the declared population.",
+    "fail": "At least one partition interval lies wholly above0.02 or wholly below-0.02; retain the direction and all other partitions.",
+    "unresolved": "Fewer than14 eligible dates, a missing whole date or unknown opportunity denominator, or intervals that neither establish equivalence nor establish an excess. A nonsignificant difference is not a pass.",
+    "assumptions": "Date-level resampling is approximate and assumes the selected date clusters are reasonably representative;14 dates do not establish arbitrary conditional calibration or finite-sample coverage under unrestricted temporal dependence. Report every day and weekday, including missing days."
+  },
+  "secondary": {
+    "groups": "Frozen forecast-age, MCT-difference and downstream-option-count groups from decision_gap_v1; report all groups and date coverage without selecting winners",
+    "scores": "Four-class Brier score bounds over feasible label partitions; cancellations, forecast residuals and source-reach failure causes separately",
+    "claims": "Sparse or missing groups remain unresolved. Aggregate equivalence does not establish equivalence in every subgroup."
+  },
+  "platform_verification": {
+    "planned_pair": "Recover full stop_id by same-version static trip_id and stop_sequence; verify station and scheduled time; use explicit directed platform rule or an applicable true location_type=1 ancestor rule. A bare BPUIC with location_type empty/0 is not a parent-station wildcard.",
+    "actual_pair": "Require dated operational platform identity for both arrivals and departures. Planned stops and predecision assignments alone are not verified actual platforms.",
+    "pass": "All registered relevant transfer pairs have identified actual endpoints and an applicable published transfer rule consistent with the frozen MCT; report the exact scope.",
+    "fail": "A verified applicable rule contradicts the fixed MCT or prohibits a declared transfer; retain and report it without changing buffers in this experiment.",
+    "unresolved": "Missing platform identity or no unambiguous applicable rule. Absence of a self-transfer row does not imply zero transfer time."
+  },
+  "decision": "A failed or unresolved probability/operating-contract check does not admit deep solver reconstruction. Passing both only permits a separately frozen feasible-policy-gap test against the strengthened cheap controls; it does not pass G2 or establish a novel algorithm.",
+  "sources": [
+    "https://www.census.gov/about/policies/quality/standards/standarde1.html",
+    "https://nvlpubs.nist.gov/nistpubs/TechnicalNotes/NIST.TN.2106.pdf",
+    "https://gtfs.org/documentation/schedule/reference/#transferstxt"
+  ],
+  "recorded_at_utc": "2026-11-15T06:28:05.928646+00:00"
+}

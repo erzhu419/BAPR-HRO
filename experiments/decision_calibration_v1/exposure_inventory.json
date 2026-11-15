@@ -1,0 +1,1075 @@
+{
+  "stage": "decision_calibration_v1",
+  "inspected_at_utc": "2026-11-15T06:21:22.523075+00:00",
+  "scope": "Local source availability and historical exposure; metadata, prior protocols/code and existing derived-date keys only; no new target outcomes used",
+  "known_exposed_service_dates": [
+    "2023-07-16",
+    "2023-07-17",
+    "2023-07-23",
+    "2023-07-24",
+    "2023-07-25",
+    "2023-07-26",
+    "2023-07-27",
+    "2023-07-28",
+    "2023-07-29",
+    "2023-10-01",
+    "2023-10-02",
+    "2023-10-03",
+    "2023-10-04",
+    "2023-10-05",
+    "2023-10-06",
+    "2023-10-07",
+    "2023-10-08",
+    "2023-10-09",
+    "2023-10-10",
+    "2023-10-11",
+    "2023-10-12",
+    "2023-10-13",
+    "2023-10-14",
+    "2023-10-15",
+    "2023-10-16",
+    "2023-10-17",
+    "2023-10-18",
+    "2023-10-19",
+    "2023-10-20",
+    "2023-10-21",
+    "2023-10-22",
+    "2023-10-23",
+    "2023-10-24",
+    "2023-10-25",
+    "2023-10-26",
+    "2023-10-27",
+    "2023-10-28",
+    "2023-10-29",
+    "2023-10-30",
+    "2023-10-31",
+    "2023-11-01",
+    "2023-11-02",
+    "2023-11-03",
+    "2023-11-04"
+  ],
+  "known_exposure_count": 44,
+  "exposure_groups": [
+    {
+      "dates": [
+        "2023-10-01",
+        "2023-10-02",
+        "2023-10-03",
+        "2023-10-04",
+        "2023-10-05",
+        "2023-10-06",
+        "2023-10-07",
+        "2023-10-08",
+        "2023-10-09",
+        "2023-10-10",
+        "2023-10-11",
+        "2023-10-12",
+        "2023-10-13",
+        "2023-10-14",
+        "2023-10-15",
+        "2023-10-16",
+        "2023-10-17",
+        "2023-10-18",
+        "2023-10-19",
+        "2023-10-20",
+        "2023-10-21",
+        "2023-10-22",
+        "2023-10-23",
+        "2023-10-24",
+        "2023-10-25",
+        "2023-10-26",
+        "2023-10-27",
+        "2023-10-28",
+        "2023-10-29",
+        "2023-10-30",
+        "2023-10-31",
+        "2023-11-01",
+        "2023-11-02",
+        "2023-11-03",
+        "2023-11-04"
+      ],
+      "basis": "All 35 dates were summarized into both per-day distributions and chronological/LOO route priors; prior V3 chronology uses every date by default; later V5-V51 also use many observed actual/forecast subsets. None is untouched.",
+      "evidence": [
+        "data/per_day_distributions_corrected.pkl",
+        "data/per_day_distributions.pkl",
+        "data/route_priors_temporal_corrected.pkl",
+        "data/route_priors_loo.pkl",
+        "experiments/reconstruction_v3/run_chronological_panel.py:336-371",
+        "experiments/reconstruction_v34/source_inventory.json",
+        "experiments/reconstruction_v35/protocol.json"
+      ]
+    },
+    {
+      "dates": [
+        "2023-07-16",
+        "2023-07-17"
+      ],
+      "basis": "Frozen in V25, actual endpoints opened and subsequently used by V25-V33.",
+      "evidence": [
+        "experiments/reconstruction_v25/date_audit.json",
+        "experiments/reconstruction_v25/protocol.json",
+        "experiments/reconstruction_v33/protocol.json"
+      ]
+    },
+    {
+      "dates": [
+        "2023-07-23",
+        "2023-07-24"
+      ],
+      "basis": "V23/V24 mechanism development and measured endpoint replay.",
+      "evidence": [
+        "experiments/reconstruction_v23/protocol.json",
+        "experiments/reconstruction_v23/city_transfer_endpoints_audit.json",
+        "experiments/reconstruction_v24/screen.py"
+      ]
+    },
+    {
+      "dates": [
+        "2023-07-25",
+        "2023-07-26",
+        "2023-07-27"
+      ],
+      "basis": "Original city training/development dates and repeated V5-V24 frozen-state research.",
+      "evidence": [
+        "experiments/reconstruction_data_audit/city_vbz_dated_replay_v2_audit.json",
+        "experiments/reconstruction_v25/date_audit.json"
+      ]
+    },
+    {
+      "dates": [
+        "2023-07-28",
+        "2023-07-29"
+      ],
+      "basis": "V6 city confirmation and V22 natural screening have already used them.",
+      "evidence": [
+        "experiments/reconstruction_v6/city_confirmation_protocol.json",
+        "experiments/reconstruction_v6/city_confirmation_input_audit.json",
+        "experiments/reconstruction_v25/date_audit.json"
+      ]
+    }
+  ],
+  "synthetic_only_date_references": {
+    "dates": [
+      "2023-11-09",
+      "2023-11-10",
+      "2023-11-11",
+      "2023-11-12",
+      "2023-11-13",
+      "2023-11-14"
+    ],
+    "classification": "Prior-predictive generated pseudo-dates, not evidence that real endpoint/publication archives were observed",
+    "evidence": [
+      "experiments/reconstruction_v3/run_chronological_panel.py:47-48",
+      "experiments/reconstruction_v3/run_chronological_panel.py:107",
+      "experiments/reconstruction_v3/run_chronological_panel.py:345-346",
+      "experiments/reconstruction_v3/run_chronological_panel.py:371-372"
+    ],
+    "independence_rule": "Do not infer actual target-data exposure from a synthetic date label alone; verify any discovered real source separately before freezing it"
+  },
+  "other_dates_considered_in_prior_work": [
+    {
+      "dates": [
+        "2023-07-18",
+        "2023-07-19",
+        "2023-07-20",
+        "2023-07-21",
+        "2023-07-22"
+      ],
+      "status": "No fitted/evaluation use established by the protocol/audit/code search; prior remote weekly cache also contains these days, but the V25 filter selected only July16/17. Not declared fully independent or available locally.",
+      "evidence": [
+        "experiments/reconstruction_v25/prepare_source.py:DATES and filter_remote",
+        "experiments/reconstruction_v25/date_audit.json"
+      ],
+      "current_rt_source": "No matching local predecision RT archive found"
+    },
+    {
+      "dates": [
+        "2023-07-30",
+        "2023-07-31"
+      ],
+      "status": "Considered by V25 before acquisition, then rejected for absent same-source municipal archive; no target actual values reported opened",
+      "evidence": [
+        "experiments/reconstruction_v25/date_audit.json"
+      ],
+      "current_rt_source": "No matching local predecision RT archive found"
+    }
+  ],
+  "fitted_date_key_audit": [
+    {
+      "path": "data/per_day_distributions_corrected.pkl",
+      "bytes": 8456111,
+      "modified_utc": "2026-11-10T23:54:00.992421+00:00",
+      "service_dates": [
+        "2023-10-01",
+        "2023-10-02",
+        "2023-10-03",
+        "2023-10-04",
+        "2023-10-05",
+        "2023-10-06",
+        "2023-10-07",
+        "2023-10-08",
+        "2023-10-09",
+        "2023-10-10",
+        "2023-10-11",
+        "2023-10-12",
+        "2023-10-13",
+        "2023-10-14",
+        "2023-10-15",
+        "2023-10-16",
+        "2023-10-17",
+        "2023-10-18",
+        "2023-10-19",
+        "2023-10-20",
+        "2023-10-21",
+        "2023-10-22",
+        "2023-10-23",
+        "2023-10-24",
+        "2023-10-25",
+        "2023-10-26",
+        "2023-10-27",
+        "2023-10-28",
+        "2023-10-29",
+        "2023-10-30",
+        "2023-10-31",
+        "2023-11-01",
+        "2023-11-02",
+        "2023-11-03",
+        "2023-11-04"
+      ],
+      "inspection": "Only date strings in existing fitted-pickle opcode arguments; no target-day outcome values reported"
+    },
+    {
+      "path": "data/per_day_distributions.pkl",
+      "bytes": 1893346,
+      "modified_utc": "2026-04-28T15:10:25.296617+00:00",
+      "service_dates": [
+        "2023-10-01",
+        "2023-10-02",
+        "2023-10-03",
+        "2023-10-04",
+        "2023-10-05",
+        "2023-10-06",
+        "2023-10-07",
+        "2023-10-08",
+        "2023-10-09",
+        "2023-10-10",
+        "2023-10-11",
+        "2023-10-12",
+        "2023-10-13",
+        "2023-10-14",
+        "2023-10-15",
+        "2023-10-16",
+        "2023-10-17",
+        "2023-10-18",
+        "2023-10-19",
+        "2023-10-20",
+        "2023-10-21",
+        "2023-10-22",
+        "2023-10-23",
+        "2023-10-24",
+        "2023-10-25",
+        "2023-10-26",
+        "2023-10-27",
+        "2023-10-28",
+        "2023-10-29",
+        "2023-10-30",
+        "2023-10-31",
+        "2023-11-01",
+        "2023-11-02",
+        "2023-11-03",
+        "2023-11-04"
+      ],
+      "inspection": "Only date strings in existing fitted-pickle opcode arguments; no target-day outcome values reported"
+    },
+    {
+      "path": "data/route_priors_temporal_corrected.pkl",
+      "bytes": 79698,
+      "modified_utc": "2026-11-10T23:56:34.379877+00:00",
+      "service_dates": [
+        "2023-10-01",
+        "2023-10-02",
+        "2023-10-03",
+        "2023-10-04",
+        "2023-10-05",
+        "2023-10-06",
+        "2023-10-07",
+        "2023-10-08",
+        "2023-10-09",
+        "2023-10-10",
+        "2023-10-11",
+        "2023-10-12",
+        "2023-10-13",
+        "2023-10-14",
+        "2023-10-15",
+        "2023-10-16",
+        "2023-10-17",
+        "2023-10-18",
+        "2023-10-19",
+        "2023-10-20",
+        "2023-10-21",
+        "2023-10-22",
+        "2023-10-23",
+        "2023-10-24",
+        "2023-10-25",
+        "2023-10-26",
+        "2023-10-27",
+        "2023-10-28",
+        "2023-10-29",
+        "2023-10-30",
+        "2023-10-31",
+        "2023-11-01",
+        "2023-11-02",
+        "2023-11-03",
+        "2023-11-04"
+      ],
+      "inspection": "Only date strings in existing fitted-pickle opcode arguments; no target-day outcome values reported"
+    },
+    {
+      "path": "data/route_priors_loo.pkl",
+      "bytes": 2085941,
+      "modified_utc": "2026-04-29T05:00:14.047034+00:00",
+      "service_dates": [
+        "2023-10-01",
+        "2023-10-02",
+        "2023-10-03",
+        "2023-10-04",
+        "2023-10-05",
+        "2023-10-06",
+        "2023-10-07",
+        "2023-10-08",
+        "2023-10-09",
+        "2023-10-10",
+        "2023-10-11",
+        "2023-10-12",
+        "2023-10-13",
+        "2023-10-14",
+        "2023-10-15",
+        "2023-10-16",
+        "2023-10-17",
+        "2023-10-18",
+        "2023-10-19",
+        "2023-10-20",
+        "2023-10-21",
+        "2023-10-22",
+        "2023-10-23",
+        "2023-10-24",
+        "2023-10-25",
+        "2023-10-26",
+        "2023-10-27",
+        "2023-10-28",
+        "2023-10-29",
+        "2023-10-30",
+        "2023-10-31",
+        "2023-11-01",
+        "2023-11-02",
+        "2023-11-03",
+        "2023-11-04"
+      ],
+      "inspection": "Only date strings in existing fitted-pickle opcode arguments; no target-day outcome values reported"
+    }
+  ],
+  "local_rt_archives": [
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-01.tar.bz2",
+      "bytes": 122141822,
+      "modified_utc": "2023-10-02T11:52:04+00:00",
+      "service_date": "2023-10-01",
+      "exposure": "previously fitted/developed"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-02.tar.bz2",
+      "bytes": 176808531,
+      "modified_utc": "2023-10-03T12:05:18+00:00",
+      "service_date": "2023-10-02",
+      "exposure": "previously fitted/developed"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-03.tar.bz2",
+      "bytes": 176290938,
+      "modified_utc": "2023-10-04T11:50:46+00:00",
+      "service_date": "2023-10-03",
+      "exposure": "previously fitted/developed"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-04.tar.bz2",
+      "bytes": 175658373,
+      "modified_utc": "2023-10-05T12:04:28+00:00",
+      "service_date": "2023-10-04",
+      "exposure": "previously fitted/developed"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-05.tar.bz2",
+      "bytes": 177472518,
+      "modified_utc": "2023-10-06T12:04:49+00:00",
+      "service_date": "2023-10-05",
+      "exposure": "previously fitted/developed"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-06.tar.bz2",
+      "bytes": 176448371,
+      "modified_utc": "2023-10-07T12:05:57+00:00",
+      "service_date": "2023-10-06",
+      "exposure": "previously fitted/developed"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-07.tar.bz2",
+      "bytes": 154309676,
+      "modified_utc": "2023-10-08T11:57:18+00:00",
+      "service_date": "2023-10-07",
+      "exposure": "previously fitted/developed"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-08.tar.bz2",
+      "bytes": 129046297,
+      "modified_utc": "2023-10-09T11:49:15+00:00",
+      "service_date": "2023-10-08",
+      "exposure": "previously fitted/developed"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-09.tar.bz2",
+      "bytes": 179885617,
+      "modified_utc": "2023-10-10T12:04:49+00:00",
+      "service_date": "2023-10-09",
+      "exposure": "previously fitted/developed"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-10.tar.bz2",
+      "bytes": 183592258,
+      "modified_utc": "2023-10-11T12:01:42+00:00",
+      "service_date": "2023-10-10",
+      "exposure": "previously fitted/developed"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-11.tar.bz2",
+      "bytes": 183336307,
+      "modified_utc": "2023-10-12T12:10:24+00:00",
+      "service_date": "2023-10-11",
+      "exposure": "previously fitted/developed"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-12.tar.bz2",
+      "bytes": 178138598,
+      "modified_utc": "2023-10-13T12:01:34+00:00",
+      "service_date": "2023-10-12",
+      "exposure": "previously fitted/developed"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-13.tar.bz2",
+      "bytes": 167576612,
+      "modified_utc": "2023-10-14T12:01:07+00:00",
+      "service_date": "2023-10-13",
+      "exposure": "previously fitted/developed"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-14.tar.bz2",
+      "bytes": 153390447,
+      "modified_utc": "2023-10-15T11:53:26+00:00",
+      "service_date": "2023-10-14",
+      "exposure": "previously fitted/developed"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-15.tar.bz2",
+      "bytes": 125026168,
+      "modified_utc": "2023-10-16T11:49:16+00:00",
+      "service_date": "2023-10-15",
+      "exposure": "previously fitted/developed"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-16.tar.bz2",
+      "bytes": 175284460,
+      "modified_utc": "2023-10-17T12:01:19+00:00",
+      "service_date": "2023-10-16",
+      "exposure": "previously fitted/developed"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-17.tar.bz2",
+      "bytes": 177895029,
+      "modified_utc": "2023-10-18T11:57:53+00:00",
+      "service_date": "2023-10-17",
+      "exposure": "previously fitted/developed"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-18.tar.bz2",
+      "bytes": 180208852,
+      "modified_utc": "2023-10-19T12:00:00+00:00",
+      "service_date": "2023-10-18",
+      "exposure": "previously fitted/developed"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-19.tar.bz2",
+      "bytes": 154448761,
+      "modified_utc": "2023-10-20T12:01:03+00:00",
+      "service_date": "2023-10-19",
+      "exposure": "previously fitted/developed"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-20.tar.bz2",
+      "bytes": 153368708,
+      "modified_utc": "2023-10-21T11:59:07+00:00",
+      "service_date": "2023-10-20",
+      "exposure": "previously fitted/developed"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-21.tar.bz2",
+      "bytes": 118814809,
+      "modified_utc": "2023-10-22T11:52:42+00:00",
+      "service_date": "2023-10-21",
+      "exposure": "previously fitted/developed"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-22.tar.bz2",
+      "bytes": 118587548,
+      "modified_utc": "2023-10-23T11:48:30+00:00",
+      "service_date": "2023-10-22",
+      "exposure": "previously fitted/developed"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-23.tar.bz2",
+      "bytes": 174060142,
+      "modified_utc": "2023-10-24T11:59:46+00:00",
+      "service_date": "2023-10-23",
+      "exposure": "previously fitted/developed"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-24.tar.bz2",
+      "bytes": 176517606,
+      "modified_utc": "2023-10-25T12:00:34+00:00",
+      "service_date": "2023-10-24",
+      "exposure": "previously fitted/developed"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-25.tar.bz2",
+      "bytes": 176850432,
+      "modified_utc": "2023-10-26T12:01:41+00:00",
+      "service_date": "2023-10-25",
+      "exposure": "previously fitted/developed"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-26.tar.bz2",
+      "bytes": 178891169,
+      "modified_utc": "2023-10-27T12:01:06+00:00",
+      "service_date": "2023-10-26",
+      "exposure": "previously fitted/developed"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-27.tar.bz2",
+      "bytes": 179005280,
+      "modified_utc": "2023-10-28T12:03:17+00:00",
+      "service_date": "2023-10-27",
+      "exposure": "previously fitted/developed"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-28.tar.bz2",
+      "bytes": 152063006,
+      "modified_utc": "2023-10-29T12:52:46+00:00",
+      "service_date": "2023-10-28",
+      "exposure": "previously fitted/developed"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-29.tar.bz2",
+      "bytes": 78654738,
+      "modified_utc": "2023-10-30T12:47:50+00:00",
+      "service_date": "2023-10-29",
+      "exposure": "previously fitted/developed"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-30.tar.bz2",
+      "bytes": 177823099,
+      "modified_utc": "2023-10-31T13:00:03+00:00",
+      "service_date": "2023-10-30",
+      "exposure": "previously fitted/developed"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-10-31.tar.bz2",
+      "bytes": 181529081,
+      "modified_utc": "2023-11-01T12:55:18+00:00",
+      "service_date": "2023-10-31",
+      "exposure": "previously fitted/developed"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-11-01.tar.bz2",
+      "bytes": 170732807,
+      "modified_utc": "2023-11-02T12:53:18+00:00",
+      "service_date": "2023-11-01",
+      "exposure": "previously fitted/developed"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-11-02.tar.bz2",
+      "bytes": 181826745,
+      "modified_utc": "2023-11-03T13:00:05+00:00",
+      "service_date": "2023-11-02",
+      "exposure": "previously fitted/developed"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-11-03.tar.bz2",
+      "bytes": 182932405,
+      "modified_utc": "2023-11-04T13:02:13+00:00",
+      "service_date": "2023-11-03",
+      "exposure": "previously fitted/developed"
+    },
+    {
+      "path": "data/swiss_rt/gtfs-rt/2023-11-04.tar.bz2",
+      "bytes": 150853715,
+      "modified_utc": "2023-11-05T12:52:54+00:00",
+      "service_date": "2023-11-04",
+      "exposure": "previously fitted/developed"
+    }
+  ],
+  "local_filtered_endpoint_sources": [
+    {
+      "path": "experiments/reconstruction_data_audit/city_actual_rows.csv.gz",
+      "bytes": 472860,
+      "modified_utc": "2026-11-11T01:32:08.471637+00:00",
+      "filename_dates": [],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_data_audit/rail_calibration_sources/rail_calibration_2023-10-01.csv.gz",
+      "bytes": 12856,
+      "modified_utc": "2026-11-11T01:29:05.180197+00:00",
+      "filename_dates": [
+        "2023-10-01"
+      ],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_data_audit/rail_calibration_sources/rail_calibration_2023-10-02.csv.gz",
+      "bytes": 14048,
+      "modified_utc": "2026-11-11T01:29:05.417557+00:00",
+      "filename_dates": [
+        "2023-10-02"
+      ],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_data_audit/rail_calibration_sources/rail_calibration_2023-10-03.csv.gz",
+      "bytes": 14171,
+      "modified_utc": "2026-11-11T01:29:06.699119+00:00",
+      "filename_dates": [
+        "2023-10-03"
+      ],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_data_audit/rail_calibration_sources/rail_calibration_2023-10-04.csv.gz",
+      "bytes": 14063,
+      "modified_utc": "2026-11-11T01:29:06.817939+00:00",
+      "filename_dates": [
+        "2023-10-04"
+      ],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_data_audit/rail_calibration_sources/rail_calibration_2023-10-05.csv.gz",
+      "bytes": 13843,
+      "modified_utc": "2026-11-11T01:29:06.979195+00:00",
+      "filename_dates": [
+        "2023-10-05"
+      ],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_data_audit/rail_calibration_sources/rail_calibration_2023-10-06.csv.gz",
+      "bytes": 13903,
+      "modified_utc": "2026-11-11T01:29:07.165913+00:00",
+      "filename_dates": [
+        "2023-10-06"
+      ],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_data_audit/rail_calibration_sources/rail_calibration_2023-10-07.csv.gz",
+      "bytes": 12680,
+      "modified_utc": "2026-11-11T01:29:07.373848+00:00",
+      "filename_dates": [
+        "2023-10-07"
+      ],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_data_audit/rail_calibration_sources/rail_calibration_2023-10-08.csv.gz",
+      "bytes": 12613,
+      "modified_utc": "2026-11-11T01:29:07.535105+00:00",
+      "filename_dates": [
+        "2023-10-08"
+      ],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_data_audit/rail_calibration_sources/rail_calibration_2023-10-09.csv.gz",
+      "bytes": 13941,
+      "modified_utc": "2026-11-11T01:29:07.975152+00:00",
+      "filename_dates": [
+        "2023-10-09"
+      ],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_data_audit/rail_calibration_sources/rail_calibration_2023-10-10.csv.gz",
+      "bytes": 14045,
+      "modified_utc": "2026-11-11T01:29:08.092732+00:00",
+      "filename_dates": [
+        "2023-10-10"
+      ],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_data_audit/rail_calibration_sources/rail_calibration_2023-10-11.csv.gz",
+      "bytes": 13942,
+      "modified_utc": "2026-11-11T01:29:08.466468+00:00",
+      "filename_dates": [
+        "2023-10-11"
+      ],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_data_audit/rail_replay_sources/2023-10-02.csv.gz",
+      "bytes": 14048,
+      "modified_utc": "2026-11-11T01:51:33.059523+00:00",
+      "filename_dates": [
+        "2023-10-02"
+      ],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_data_audit/rail_replay_sources/2023-10-06.csv.gz",
+      "bytes": 13903,
+      "modified_utc": "2026-11-11T01:51:33.060818+00:00",
+      "filename_dates": [
+        "2023-10-06"
+      ],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_data_audit/rail_replay_sources/2023-10-09.csv.gz",
+      "bytes": 13941,
+      "modified_utc": "2026-11-11T01:51:33.062112+00:00",
+      "filename_dates": [
+        "2023-10-09"
+      ],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_data_audit/rail_replay_sources/2023-10-12.csv.gz",
+      "bytes": 13972,
+      "modified_utc": "2026-11-11T01:51:33.257049+00:00",
+      "filename_dates": [
+        "2023-10-12"
+      ],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_data_audit/rail_replay_sources/2023-10-25.csv.gz",
+      "bytes": 14498,
+      "modified_utc": "2026-11-11T01:51:33.674337+00:00",
+      "filename_dates": [
+        "2023-10-25"
+      ],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_data_audit/rail_replay_sources/2023-10-27.csv.gz",
+      "bytes": 14269,
+      "modified_utc": "2026-11-11T01:51:34.095840+00:00",
+      "filename_dates": [
+        "2023-10-27"
+      ],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_data_audit/vbz_peak_allkinds_rows.csv.gz",
+      "bytes": 3161314,
+      "modified_utc": "2026-11-11T01:40:16.783971+00:00",
+      "filename_dates": [],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_data_audit/vbz_peak_rows.csv.gz",
+      "bytes": 3153874,
+      "modified_utc": "2026-11-11T01:36:01.108550+00:00",
+      "filename_dates": [],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_v5/calibration_confirmation_sources/rail_confirmation_2023-10-13.csv.gz",
+      "bytes": 13916,
+      "modified_utc": "2026-11-11T02:50:39.325851+00:00",
+      "filename_dates": [
+        "2023-10-13"
+      ],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_v5/calibration_confirmation_sources/rail_confirmation_2023-10-26.csv.gz",
+      "bytes": 14229,
+      "modified_utc": "2026-11-11T02:50:39.342888+00:00",
+      "filename_dates": [
+        "2023-10-26"
+      ],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_v5/calibration_confirmation_sources/rail_confirmation_2023-10-30.csv.gz",
+      "bytes": 14194,
+      "modified_utc": "2026-11-11T02:50:39.364185+00:00",
+      "filename_dates": [
+        "2023-10-30"
+      ],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_v5/calibration_relative_confirmation_sources/rail_relative_confirmation_2023-10-16.csv.gz",
+      "bytes": 14014,
+      "modified_utc": "2026-11-11T03:37:03.863454+00:00",
+      "filename_dates": [
+        "2023-10-16"
+      ],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_v5/calibration_relative_confirmation_sources/rail_relative_confirmation_2023-10-20.csv.gz",
+      "bytes": 14035,
+      "modified_utc": "2026-11-11T03:37:04.285863+00:00",
+      "filename_dates": [
+        "2023-10-20"
+      ],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_v5/calibration_relative_confirmation_sources/rail_relative_confirmation_2023-10-31.csv.gz",
+      "bytes": 14241,
+      "modified_utc": "2026-11-11T03:37:04.708272+00:00",
+      "filename_dates": [
+        "2023-10-31"
+      ],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_v6/calibration_confirmation_sources/rail_v6_confirmation_2023-10-14.csv.gz",
+      "bytes": 12420,
+      "modified_utc": "2026-11-11T05:22:02.557537+00:00",
+      "filename_dates": [
+        "2023-10-14"
+      ],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_v6/calibration_confirmation_sources/rail_v6_confirmation_2023-10-17.csv.gz",
+      "bytes": 14063,
+      "modified_utc": "2026-11-11T05:22:45.867698+00:00",
+      "filename_dates": [
+        "2023-10-17"
+      ],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_v6/calibration_confirmation_sources/rail_v6_confirmation_2023-10-18.csv.gz",
+      "bytes": 13989,
+      "modified_utc": "2026-11-11T05:02:30.410229+00:00",
+      "filename_dates": [
+        "2023-10-18"
+      ],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_v6/calibration_confirmation_sources/rail_v6_confirmation_2023-10-23.csv.gz",
+      "bytes": 14128,
+      "modified_utc": "2026-11-11T05:02:20.803576+00:00",
+      "filename_dates": [
+        "2023-10-23"
+      ],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_v6/calibration_confirmation_sources/rail_v6_confirmation_2023-10-24.csv.gz",
+      "bytes": 14227,
+      "modified_utc": "2026-11-11T05:02:54.651318+00:00",
+      "filename_dates": [
+        "2023-10-24"
+      ],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_v6/calibration_confirmation_sources/rail_v6_confirmation_2023-10-28.csv.gz",
+      "bytes": 13093,
+      "modified_utc": "2026-11-11T05:22:12.379814+00:00",
+      "filename_dates": [
+        "2023-10-28"
+      ],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_v6/calibration_confirmation_sources/rail_v6_confirmation_chunked_2023-10-28.csv.gz",
+      "bytes": 13699,
+      "modified_utc": "2026-11-11T05:48:59.446334+00:00",
+      "filename_dates": [
+        "2023-10-28"
+      ],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_v6/city_confirmation_peak_rows.csv.gz",
+      "bytes": 1801301,
+      "modified_utc": "2026-11-11T05:18:44.528818+00:00",
+      "filename_dates": [],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_v6/decision_risk_sources/rail_decision_prefix_2023-10-15.csv.gz",
+      "bytes": 12345,
+      "modified_utc": "2026-11-11T05:47:41.446679+00:00",
+      "filename_dates": [
+        "2023-10-15"
+      ],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_v6/decision_risk_sources/rail_decision_prefix_2023-10-19.csv.gz",
+      "bytes": 14134,
+      "modified_utc": "2026-11-11T05:47:32.903052+00:00",
+      "filename_dates": [
+        "2023-10-19"
+      ],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_v6/decision_risk_sources/rail_decision_prefix_2023-10-22.csv.gz",
+      "bytes": 12450,
+      "modified_utc": "2026-11-11T05:47:32.864391+00:00",
+      "filename_dates": [
+        "2023-10-22"
+      ],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_v6/decision_risk_sources/rail_decision_risk_2023-10-15.csv.gz",
+      "bytes": 12789,
+      "modified_utc": "2026-11-11T05:48:01.770062+00:00",
+      "filename_dates": [
+        "2023-10-15"
+      ],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_v6/decision_risk_sources/rail_decision_risk_2023-10-19.csv.gz",
+      "bytes": 14744,
+      "modified_utc": "2026-11-11T05:48:05.454831+00:00",
+      "filename_dates": [
+        "2023-10-19"
+      ],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_v6/decision_risk_sources/rail_decision_risk_2023-10-22.csv.gz",
+      "bytes": 12858,
+      "modified_utc": "2026-11-11T05:48:02.159962+00:00",
+      "filename_dates": [
+        "2023-10-22"
+      ],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_v23/city_transfer_endpoints.json.gz",
+      "bytes": 3676906,
+      "modified_utc": "2026-11-12T03:31:17.833769+00:00",
+      "filename_dates": [],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_v25/city_transfer_endpoints.json.gz",
+      "bytes": 2209414,
+      "modified_utc": "2026-11-12T04:41:33.246168+00:00",
+      "filename_dates": [],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    },
+    {
+      "path": "experiments/reconstruction_v25/v25_peak_rows.csv.gz",
+      "bytes": 1595295,
+      "modified_utc": "2026-11-12T04:41:23.171821+00:00",
+      "filename_dates": [],
+      "inspection": "Filesystem metadata only; no new endpoint rows opened"
+    }
+  ],
+  "public_static_feeds": [
+    {
+      "path": "data/swiss_gtfs/feed_info.txt",
+      "bytes": 159,
+      "modified_utc": "2023-10-24T09:53:06+00:00",
+      "feed_version": "20231024",
+      "valid_from": "20221211",
+      "valid_through": "20231209",
+      "inspection": "Public static feed metadata"
+    },
+    {
+      "path": "data/zurich_gtfs/feed_info.txt",
+      "bytes": 159,
+      "modified_utc": "2026-04-07T15:21:46.830720+00:00",
+      "feed_version": "20231024",
+      "valid_from": "20221211",
+      "valid_through": "20231209",
+      "inspection": "Public static feed metadata"
+    }
+  ],
+  "local_candidate_intersection": {
+    "rt_date_count": 35,
+    "unexposed_rt_dates": [],
+    "eligible_untouched_dates": [],
+    "reason": "Every discovered local predecision RT date is already a fitted/developed date. Existing actual-only dates cannot supply a valid V41 public-history confirmation on their own."
+  },
+  "search_scope": {
+    "project_data_file_count": 64,
+    "workspace_metadata_root": "/home/erzhu419/mine_code",
+    "archive_filename_patterns": [
+      "*.tar.bz2",
+      "*gtfs*2023*.zip",
+      "*Fahrzeiten*",
+      "*istdaten*",
+      "*vbz_week*"
+    ],
+    "matched_paths": [
+      "/home/erzhu419/mine_code/BAPR-HRO/gtfs_fp2023_2023-10-25_04-15.zip",
+      "/home/erzhu419/mine_code/BAPR-HRO/data/swiss_rt/gtfs-rt/2023-10-12.tar.bz2",
+      "/home/erzhu419/mine_code/BAPR-HRO/data/swiss_rt/gtfs-rt/2023-10-29.tar.bz2",
+      "/home/erzhu419/mine_code/BAPR-HRO/data/swiss_rt/gtfs-rt/2023-10-01.tar.bz2",
+      "/home/erzhu419/mine_code/BAPR-HRO/data/swiss_rt/gtfs-rt/2023-10-14.tar.bz2",
+      "/home/erzhu419/mine_code/BAPR-HRO/data/swiss_rt/gtfs-rt/2023-10-03.tar.bz2",
+      "/home/erzhu419/mine_code/BAPR-HRO/data/swiss_rt/gtfs-rt/2023-11-04.tar.bz2",
+      "/home/erzhu419/mine_code/BAPR-HRO/data/swiss_rt/gtfs-rt/2023-10-10.tar.bz2",
+      "/home/erzhu419/mine_code/BAPR-HRO/data/swiss_rt/gtfs-rt/2023-10-19.tar.bz2",
+      "/home/erzhu419/mine_code/BAPR-HRO/data/swiss_rt/gtfs-rt/2023-10-13.tar.bz2",
+      "/home/erzhu419/mine_code/BAPR-HRO/data/swiss_rt/gtfs-rt/2023-10-21.tar.bz2",
+      "/home/erzhu419/mine_code/BAPR-HRO/data/swiss_rt/gtfs-rt/2023-10-30.tar.bz2",
+      "/home/erzhu419/mine_code/BAPR-HRO/data/swiss_rt/gtfs-rt/2023-10-24.tar.bz2",
+      "/home/erzhu419/mine_code/BAPR-HRO/data/swiss_rt/gtfs-rt/2023-10-06.tar.bz2",
+      "/home/erzhu419/mine_code/BAPR-HRO/data/swiss_rt/gtfs-rt/2023-11-01.tar.bz2",
+      "/home/erzhu419/mine_code/BAPR-HRO/data/swiss_rt/gtfs-rt/2023-10-25.tar.bz2",
+      "/home/erzhu419/mine_code/BAPR-HRO/data/swiss_rt/gtfs-rt/2023-10-08.tar.bz2",
+      "/home/erzhu419/mine_code/BAPR-HRO/data/swiss_rt/gtfs-rt/2023-10-20.tar.bz2",
+      "/home/erzhu419/mine_code/BAPR-HRO/data/swiss_rt/gtfs-rt/2023-10-17.tar.bz2",
+      "/home/erzhu419/mine_code/BAPR-HRO/data/swiss_rt/gtfs-rt/2023-10-18.tar.bz2",
+      "/home/erzhu419/mine_code/BAPR-HRO/data/swiss_rt/gtfs-rt/2023-10-05.tar.bz2",
+      "/home/erzhu419/mine_code/BAPR-HRO/data/swiss_rt/gtfs-rt/2023-10-07.tar.bz2",
+      "/home/erzhu419/mine_code/BAPR-HRO/data/swiss_rt/gtfs-rt/2023-10-04.tar.bz2",
+      "/home/erzhu419/mine_code/BAPR-HRO/data/swiss_rt/gtfs-rt/2023-10-09.tar.bz2",
+      "/home/erzhu419/mine_code/BAPR-HRO/data/swiss_rt/gtfs-rt/2023-11-03.tar.bz2",
+      "/home/erzhu419/mine_code/BAPR-HRO/data/swiss_rt/gtfs-rt/2023-10-23.tar.bz2",
+      "/home/erzhu419/mine_code/BAPR-HRO/data/swiss_rt/gtfs-rt/2023-10-16.tar.bz2",
+      "/home/erzhu419/mine_code/BAPR-HRO/data/swiss_rt/gtfs-rt/2023-10-31.tar.bz2",
+      "/home/erzhu419/mine_code/BAPR-HRO/data/swiss_rt/gtfs-rt/2023-10-22.tar.bz2",
+      "/home/erzhu419/mine_code/BAPR-HRO/data/swiss_rt/gtfs-rt/2023-10-26.tar.bz2",
+      "/home/erzhu419/mine_code/BAPR-HRO/data/swiss_rt/gtfs-rt/2023-11-02.tar.bz2",
+      "/home/erzhu419/mine_code/BAPR-HRO/data/swiss_rt/gtfs-rt/2023-10-15.tar.bz2",
+      "/home/erzhu419/mine_code/BAPR-HRO/data/swiss_rt/gtfs-rt/2023-10-27.tar.bz2",
+      "/home/erzhu419/mine_code/BAPR-HRO/data/swiss_rt/gtfs-rt/2023-10-02.tar.bz2",
+      "/home/erzhu419/mine_code/BAPR-HRO/data/swiss_rt/gtfs-rt/2023-10-28.tar.bz2",
+      "/home/erzhu419/mine_code/BAPR-HRO/data/swiss_rt/gtfs-rt/2023-10-11.tar.bz2",
+      "/home/erzhu419/mine_code/BAPR-HRO/data/swiss_rt/gtfs-static/gtfs_fp2023_2023-10-25_04-15.zip",
+      "/home/erzhu419/mine_code/BAPR-HRO/experiments/reconstruction_data_audit/filter_vbz_week_remote.py"
+    ],
+    "unreadable_locations": "8 unrelated Asumption Agent temporary agent/tmp/arg0 directories reported permission denied; no BAPR data path was inaccessible",
+    "scope_limit": "This is not a claim that every mounted Windows directory or arbitrary external dataset was inventoried"
+  },
+  "server_checked_by": "Separate calibration_inventory agent; no SSH, download or server value read by this local audit",
+  "target_values_opened_in_this_audit": false,
+  "decision": "No local eligible untouched date can currently be frozen; combine this exposure exclusion ledger with the live server source inventory."
+}

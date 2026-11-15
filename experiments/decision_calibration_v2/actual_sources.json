@@ -1,0 +1,42 @@
+{
+  "checked_at_utc": "2026-11-15T06:38:00+00:00",
+  "official_archive_index": "https://archive.opentransportdata.swiss/actual_data_archive.htm",
+  "official_static_index": "https://archive.opentransportdata.swiss/timetable_gtfs.php",
+  "actual_metadata_files": [
+    "actual_metadata_2023-03.json",
+    "actual_metadata_2023-11.json"
+  ],
+  "march_coverage": {
+    "first_date": "2023-03-01",
+    "last_date": "2023-03-31",
+    "all_dates_present": true,
+    "member_pattern": "YYYY-MM-DD_istdaten.csv",
+    "macos_metadata_entries_excluded": true,
+    "target_day_actual_values_read_before_date_freeze": false
+  },
+  "static_publications": [
+    "static_metadata_2023-03-01.json",
+    "static_metadata_2023-03-08.json",
+    "static_metadata_2023-03-15.json"
+  ],
+  "platform_provenance": {
+    "historic_actual_schema_documentation": "https://opentransportdata.swiss/en/cookbook/historic-and-statistics-cookbook/actual-data/",
+    "historic_actual_schema": "The 2023 actual CSV has no separate platform column. Official documentation says older BPUIC values truncated local 9-digit stop-edge identifiers to 7 digits. Version 2, available from 2025-07-13, retains more detailed identifiers and adds SLOID where available.",
+    "actual_time_rule": "Only REAL status is an actual endpoint. Forecast, estimated, unknown, cancellation and absent endpoints remain distinct.",
+    "siri_documentation": "https://opentransportdata.swiss/en/cookbook/realtime-prediction-cookbook/siri-et-pt/",
+    "siri_evidence": "Current SIRI-ET examples contain ArrivalPlatformName and DeparturePlatformName with expected-time records. This is publication evidence, not independent proof of the platform actually used. No 2023 public historical platform archive was identified in the official archive index or these endpoints.",
+    "sbb_previous_day_dataset": "https://data.sbb.ch/explore/dataset/ist-daten-sbb/information/",
+    "sbb_previous_day_scope": "The SBB derivative is a previous-day dataset; its current metadata does not establish 2023 archived platform observations.",
+    "planned_static_platforms": "GTFS child stop IDs and transfers.txt can establish planned platform pairs and published minimum transfer times where an explicit applicable rule exists. They cannot certify actual used platforms or measured pedestrian transfer durations.",
+    "actual_used_platform_evidence_status": "not_found",
+    "observed_pedestrian_transfer_duration_status": "not_found"
+  },
+  "archive_clock_limit": "Current HTTP Last-Modified dates describe archive hosting/migration. Historical static version names and feed_info identify the prior publication version; HTTP Last-Modified is not treated as a 2023 capture clock.",
+  "observed_2023_schema_confirmation": {
+    "evidence": "actual_parser_audit.json",
+    "days": 14,
+    "distinct_field_schemas": 1,
+    "actual_platform_field_present": false,
+    "all_selected_endpoints_compatible_with_existing_parser": true
+  }
+}
