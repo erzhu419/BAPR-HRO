@@ -1,0 +1,6436 @@
+{
+  "mode": "cheap_working",
+  "implementation": "structural_impact_conditional",
+  "target": "Declared finite-lookahead or fixed cheap policy",
+  "physical_law": "Root P0 conditioned on causal physical observations",
+  "scoring_law": "Working W reselection",
+  "value": {
+    "lower": 573.3603588053156,
+    "upper": 3021.8706864408487,
+    "complete": false,
+    "mean": null
+  },
+  "actions": {
+    "alight": {
+      "lower": 573.3603588053156,
+      "upper": 3021.8706864408487,
+      "complete": false,
+      "mean": null
+    },
+    "continue": {
+      "lower": 764.5919223739838,
+      "upper": 3008.6437140805865,
+      "complete": false,
+      "mean": null
+    }
+  },
+  "cheap_action": "alight",
+  "selected_action": "alight",
+  "certified_action": null,
+  "clock": 29108.0,
+  "deadline": 32130.0,
+  "counters": {
+    "states": 12174,
+    "cache_hits": 5311,
+    "chance_outcomes": 200481,
+    "decisions": 22912,
+    "joint_trip_conditionings": 26088,
+    "same_trip_observation_groups": 0,
+    "iterative_no_event_steps": 2172,
+    "terminal_integrations": 0,
+    "terminal_support_outcomes": 0,
+    "budget_unknowns": 25,
+    "unsupported_histories": 0,
+    "root_law_preparations": 28,
+    "whole_tail_integrations": 4,
+    "whole_tail_hits": 115,
+    "destination_bounds": 27,
+    "destination_bound_hits": 2,
+    "projected_event_states": 2174,
+    "partial_cache_hits": 1785,
+    "impact_pruned_branches": 170257,
+    "settled_cache_hits": 3099,
+    "terminal_dp_calls": 11,
+    "terminal_dp_admitted": 8,
+    "terminal_dp_complete": 7,
+    "terminal_dp_states": 2052,
+    "terminal_dp_budget_stops": 11,
+    "terminal_dp_hits": 0,
+    "terminal_platform_calls": 8,
+    "terminal_platform_integrations": 40,
+    "terminal_platform_states": 2052,
+    "terminal_platform_board_scores": 1229,
+    "terminal_platform_wait_compiles": 8,
+    "terminal_platform_wait_scores": 6642
+  },
+  "reasons": {
+    "impact_cutoff": 170257,
+    "budget": 16,
+    "budget_chance_remainder": 9
+  },
+  "limits": {
+    "states": 20000,
+    "process_cpu": 9.997712206
+  },
+  "future_public_frames": 0,
+  "population_scope": true,
+  "public_history": [
+    {
+      "trip": "877.TA.91-36-A-j23-1.142.H",
+      "cid": 126,
+      "kind": "departure",
+      "evidence": "observed",
+      "clock": 28820.0
+    },
+    {
+      "trip": "877.TA.91-36-A-j23-1.142.H",
+      "cid": 126,
+      "kind": "arrival",
+      "evidence": "observed",
+      "clock": 29108.0
+    },
+    {
+      "trip": "519.TA.91-16-A-j23-1.75.R",
+      "cid": 143,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 29220.0,
+      "sd_seconds": 66.41497451611501,
+      "receipt_seconds": 28203.0,
+      "emission_bias_seconds": -0.9983619983619968,
+      "emission_sd_seconds": 109.44784357924745,
+      "emission_selected": false
+    },
+    {
+      "trip": "519.TA.91-16-A-j23-1.75.R",
+      "cid": 143,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29040.0,
+      "sd_seconds": 66.41497451611501,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": -11.996745562130178,
+      "emission_sd_seconds": 106.30625341924083,
+      "emission_selected": true
+    },
+    {
+      "trip": "877.TA.91-36-A-j23-1.142.H",
+      "cid": 146,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 29400.0,
+      "sd_seconds": 73.85839491892577,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 26.503030303030304,
+      "emission_sd_seconds": 96.69343146143362,
+      "emission_selected": true
+    },
+    {
+      "trip": "758.TA.91-7-C-j23-1.93.R",
+      "cid": 151,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 29220.0,
+      "sd_seconds": 56.976725267623294,
+      "receipt_seconds": 28203.0,
+      "emission_bias_seconds": 32.794191919191924,
+      "emission_sd_seconds": 89.92881200645574,
+      "emission_selected": false
+    },
+    {
+      "trip": "758.TA.91-7-C-j23-1.93.R",
+      "cid": 151,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29040.0,
+      "sd_seconds": 56.976725267623294,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 20.051371705217857,
+      "emission_sd_seconds": 88.79020002357854,
+      "emission_selected": true
+    },
+    {
+      "trip": "10.TA.91-21-E-j23-1.2.H",
+      "cid": 152,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 29460.0,
+      "sd_seconds": 153.74329253661767,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 56.96645021645021,
+      "emission_sd_seconds": 105.51889902714682,
+      "emission_selected": false
+    },
+    {
+      "trip": "10.TA.91-21-E-j23-1.2.H",
+      "cid": 152,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29220.0,
+      "sd_seconds": 153.74329253661767,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 53.50464919695689,
+      "emission_sd_seconds": 108.977836410737,
+      "emission_selected": true
+    },
+    {
+      "trip": "22.TA.91-19-A-j23-1.5.H",
+      "cid": 156,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29040.0,
+      "sd_seconds": 52.81098370604357,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 36.80433925049309,
+      "emission_sd_seconds": 85.31683600454097,
+      "emission_selected": true
+    },
+    {
+      "trip": "435.TA.91-12-j23-1.110.H",
+      "cid": 157,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 29280.0,
+      "sd_seconds": 69.04696657891641,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 26.503030303030304,
+      "emission_sd_seconds": 96.69343146143362,
+      "emission_selected": true
+    },
+    {
+      "trip": "62.TA.91-19-A-j23-1.18.R",
+      "cid": 158,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 29460.0,
+      "sd_seconds": 52.81098370604357,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 40.04242424242425,
+      "emission_sd_seconds": 91.24970412672009,
+      "emission_selected": false
+    },
+    {
+      "trip": "62.TA.91-19-A-j23-1.18.R",
+      "cid": 158,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29220.0,
+      "sd_seconds": 52.81098370604357,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 36.80433925049309,
+      "emission_sd_seconds": 85.31683600454097,
+      "emission_selected": true
+    },
+    {
+      "trip": "749.TA.91-12-j23-1.154.R",
+      "cid": 159,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 29280.0,
+      "sd_seconds": 69.04696657891641,
+      "receipt_seconds": 27603.0,
+      "emission_bias_seconds": 26.503030303030304,
+      "emission_sd_seconds": 96.69343146143362,
+      "emission_selected": false
+    },
+    {
+      "trip": "749.TA.91-12-j23-1.154.R",
+      "cid": 159,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29160.0,
+      "sd_seconds": 69.04696657891641,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 14.106508875739644,
+      "emission_sd_seconds": 90.39407750276212,
+      "emission_selected": true
+    },
+    {
+      "trip": "243.TA.91-2-B-j23-1.4.H",
+      "cid": 168,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29220.0,
+      "sd_seconds": 80.76824484288365,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 14.106508875739644,
+      "emission_sd_seconds": 90.39407750276212,
+      "emission_selected": true
+    },
+    {
+      "trip": "519.TA.91-16-A-j23-1.75.R",
+      "cid": 169,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 29520.0,
+      "sd_seconds": 66.41497451611501,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": -0.9983619983619968,
+      "emission_sd_seconds": 109.44784357924745,
+      "emission_selected": false
+    },
+    {
+      "trip": "519.TA.91-16-A-j23-1.75.R",
+      "cid": 169,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29220.0,
+      "sd_seconds": 66.41497451611501,
+      "receipt_seconds": 28203.0,
+      "emission_bias_seconds": -11.996745562130178,
+      "emission_sd_seconds": 106.30625341924083,
+      "emission_selected": false
+    },
+    {
+      "trip": "919.TA.91-2-B-j23-1.121.R",
+      "cid": 170,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 29280.0,
+      "sd_seconds": 80.76824484288365,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 26.503030303030304,
+      "emission_sd_seconds": 96.69343146143362,
+      "emission_selected": true
+    },
+    {
+      "trip": "919.TA.91-2-B-j23-1.121.R",
+      "cid": 170,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29220.0,
+      "sd_seconds": 80.76824484288365,
+      "receipt_seconds": 28203.0,
+      "emission_bias_seconds": 14.106508875739644,
+      "emission_sd_seconds": 90.39407750276212,
+      "emission_selected": false
+    },
+    {
+      "trip": "137.TA.91-16-A-j23-1.9.H",
+      "cid": 173,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 29460.0,
+      "sd_seconds": 66.41497451611501,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": -0.9983619983619968,
+      "emission_sd_seconds": 109.44784357924745,
+      "emission_selected": false
+    },
+    {
+      "trip": "137.TA.91-16-A-j23-1.9.H",
+      "cid": 173,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29280.0,
+      "sd_seconds": 66.41497451611501,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": -11.996745562130178,
+      "emission_sd_seconds": 106.30625341924083,
+      "emission_selected": true
+    },
+    {
+      "trip": "758.TA.91-7-C-j23-1.93.R",
+      "cid": 176,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 29400.0,
+      "sd_seconds": 56.976725267623294,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 32.794191919191924,
+      "emission_sd_seconds": 89.92881200645574,
+      "emission_selected": false
+    },
+    {
+      "trip": "758.TA.91-7-C-j23-1.93.R",
+      "cid": 176,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29280.0,
+      "sd_seconds": 56.976725267623294,
+      "receipt_seconds": 28203.0,
+      "emission_bias_seconds": 20.051371705217857,
+      "emission_sd_seconds": 88.79020002357854,
+      "emission_selected": false
+    },
+    {
+      "trip": "919.TA.91-2-B-j23-1.121.R",
+      "cid": 177,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 29520.0,
+      "sd_seconds": 80.76824484288365,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 26.503030303030304,
+      "emission_sd_seconds": 96.69343146143362,
+      "emission_selected": false
+    },
+    {
+      "trip": "919.TA.91-2-B-j23-1.121.R",
+      "cid": 177,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29340.0,
+      "sd_seconds": 80.76824484288365,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 14.106508875739644,
+      "emission_sd_seconds": 90.39407750276212,
+      "emission_selected": false
+    },
+    {
+      "trip": "2038.TA.91-1-D-j23-1.388.R",
+      "cid": 178,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 29580.0,
+      "sd_seconds": 46.132884752154354,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 26.503030303030304,
+      "emission_sd_seconds": 96.69343146143362,
+      "emission_selected": false
+    },
+    {
+      "trip": "2038.TA.91-1-D-j23-1.388.R",
+      "cid": 178,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29340.0,
+      "sd_seconds": 46.132884752154354,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 14.106508875739644,
+      "emission_sd_seconds": 90.39407750276212,
+      "emission_selected": true
+    },
+    {
+      "trip": "386.TA.91-13-j23-1.93.H",
+      "cid": 180,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 29700.0,
+      "sd_seconds": 47.03572445492894,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 26.503030303030304,
+      "emission_sd_seconds": 96.69343146143362,
+      "emission_selected": false
+    },
+    {
+      "trip": "386.TA.91-13-j23-1.93.H",
+      "cid": 180,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29340.0,
+      "sd_seconds": 47.03572445492894,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 14.106508875739644,
+      "emission_sd_seconds": 90.39407750276212,
+      "emission_selected": true
+    },
+    {
+      "trip": "435.TA.91-12-j23-1.110.H",
+      "cid": 181,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 29520.0,
+      "sd_seconds": 69.04696657891641,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 26.503030303030304,
+      "emission_sd_seconds": 96.69343146143362,
+      "emission_selected": false
+    },
+    {
+      "trip": "435.TA.91-12-j23-1.110.H",
+      "cid": 181,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29400.0,
+      "sd_seconds": 69.04696657891641,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 14.106508875739644,
+      "emission_sd_seconds": 90.39407750276212,
+      "emission_selected": false
+    },
+    {
+      "trip": "749.TA.91-12-j23-1.154.R",
+      "cid": 185,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 29580.0,
+      "sd_seconds": 69.04696657891641,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 26.503030303030304,
+      "emission_sd_seconds": 96.69343146143362,
+      "emission_selected": false
+    },
+    {
+      "trip": "749.TA.91-12-j23-1.154.R",
+      "cid": 185,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29340.0,
+      "sd_seconds": 69.04696657891641,
+      "receipt_seconds": 27603.0,
+      "emission_bias_seconds": 14.106508875739644,
+      "emission_sd_seconds": 90.39407750276212,
+      "emission_selected": false
+    },
+    {
+      "trip": "10.TA.91-21-E-j23-1.2.H",
+      "cid": 186,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 29700.0,
+      "sd_seconds": 153.74329253661767,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 56.96645021645021,
+      "emission_sd_seconds": 105.51889902714682,
+      "emission_selected": false
+    },
+    {
+      "trip": "10.TA.91-21-E-j23-1.2.H",
+      "cid": 186,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29520.0,
+      "sd_seconds": 153.74329253661767,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 53.50464919695689,
+      "emission_sd_seconds": 108.977836410737,
+      "emission_selected": false
+    },
+    {
+      "trip": "22.TA.91-19-A-j23-1.5.H",
+      "cid": 187,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 29700.0,
+      "sd_seconds": 52.81098370604357,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 40.04242424242425,
+      "emission_sd_seconds": 91.24970412672009,
+      "emission_selected": false
+    },
+    {
+      "trip": "263.TA.91-8-C-j23-1.24.H",
+      "cid": 188,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 29640.0,
+      "sd_seconds": 87.15767573893972,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 15.002164502164504,
+      "emission_sd_seconds": 85.49619618681581,
+      "emission_selected": false
+    },
+    {
+      "trip": "263.TA.91-8-C-j23-1.24.H",
+      "cid": 188,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29460.0,
+      "sd_seconds": 87.15767573893972,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 7.704339250493096,
+      "emission_sd_seconds": 76.35180668155645,
+      "emission_selected": true
+    },
+    {
+      "trip": "519.TA.91-16-A-j23-1.75.R",
+      "cid": 189,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 29700.0,
+      "sd_seconds": 66.41497451611501,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": -0.9983619983619968,
+      "emission_sd_seconds": 109.44784357924745,
+      "emission_selected": false
+    },
+    {
+      "trip": "519.TA.91-16-A-j23-1.75.R",
+      "cid": 189,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29580.0,
+      "sd_seconds": 66.41497451611501,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": -11.996745562130178,
+      "emission_sd_seconds": 106.30625341924083,
+      "emission_selected": false
+    },
+    {
+      "trip": "877.TA.91-36-A-j23-1.142.H",
+      "cid": 190,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 29700.0,
+      "sd_seconds": 73.85839491892577,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 26.503030303030304,
+      "emission_sd_seconds": 96.69343146143362,
+      "emission_selected": false
+    },
+    {
+      "trip": "877.TA.91-36-A-j23-1.142.H",
+      "cid": 190,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29460.0,
+      "sd_seconds": 73.85839491892577,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 14.106508875739644,
+      "emission_sd_seconds": 90.39407750276212,
+      "emission_selected": false
+    },
+    {
+      "trip": "137.TA.91-16-A-j23-1.9.H",
+      "cid": 191,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 29640.0,
+      "sd_seconds": 66.41497451611501,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": -0.9983619983619968,
+      "emission_sd_seconds": 109.44784357924745,
+      "emission_selected": false
+    },
+    {
+      "trip": "137.TA.91-16-A-j23-1.9.H",
+      "cid": 191,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29520.0,
+      "sd_seconds": 66.41497451611501,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": -11.996745562130178,
+      "emission_sd_seconds": 106.30625341924083,
+      "emission_selected": false
+    },
+    {
+      "trip": "243.TA.91-2-B-j23-1.4.H",
+      "cid": 192,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 29760.0,
+      "sd_seconds": 80.76824484288365,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 26.503030303030304,
+      "emission_sd_seconds": 96.69343146143362,
+      "emission_selected": false
+    },
+    {
+      "trip": "62.TA.91-19-A-j23-1.18.R",
+      "cid": 194,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 29820.0,
+      "sd_seconds": 52.81098370604357,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 40.04242424242425,
+      "emission_sd_seconds": 91.24970412672009,
+      "emission_selected": false
+    },
+    {
+      "trip": "62.TA.91-19-A-j23-1.18.R",
+      "cid": 194,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29580.0,
+      "sd_seconds": 52.81098370604357,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 36.80433925049309,
+      "emission_sd_seconds": 85.31683600454097,
+      "emission_selected": false
+    },
+    {
+      "trip": "749.TA.91-12-j23-1.154.R",
+      "cid": 195,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 29820.0,
+      "sd_seconds": 69.04696657891641,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 26.503030303030304,
+      "emission_sd_seconds": 96.69343146143362,
+      "emission_selected": false
+    },
+    {
+      "trip": "749.TA.91-12-j23-1.154.R",
+      "cid": 195,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29640.0,
+      "sd_seconds": 69.04696657891641,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 14.106508875739644,
+      "emission_sd_seconds": 90.39407750276212,
+      "emission_selected": false
+    },
+    {
+      "trip": "758.TA.91-7-C-j23-1.93.R",
+      "cid": 196,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 29640.0,
+      "sd_seconds": 56.976725267623294,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 32.794191919191924,
+      "emission_sd_seconds": 89.92881200645574,
+      "emission_selected": false
+    },
+    {
+      "trip": "758.TA.91-7-C-j23-1.93.R",
+      "cid": 196,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29520.0,
+      "sd_seconds": 56.976725267623294,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 20.051371705217857,
+      "emission_sd_seconds": 88.79020002357854,
+      "emission_selected": false
+    },
+    {
+      "trip": "172.TA.91-14-C-j23-1.29.H",
+      "cid": 201,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 29880.0,
+      "sd_seconds": 55.62597315003926,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 20.859307359307362,
+      "emission_sd_seconds": 82.91249827428324,
+      "emission_selected": true
+    },
+    {
+      "trip": "263.TA.91-8-C-j23-1.24.H",
+      "cid": 202,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 29820.0,
+      "sd_seconds": 87.15767573893972,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 15.002164502164504,
+      "emission_sd_seconds": 85.49619618681581,
+      "emission_selected": false
+    },
+    {
+      "trip": "263.TA.91-8-C-j23-1.24.H",
+      "cid": 202,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29700.0,
+      "sd_seconds": 87.15767573893972,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 7.704339250493096,
+      "emission_sd_seconds": 76.35180668155645,
+      "emission_selected": false
+    },
+    {
+      "trip": "10.TA.91-21-E-j23-1.2.H",
+      "cid": 203,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 30000.0,
+      "sd_seconds": 153.74329253661767,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 56.96645021645021,
+      "emission_sd_seconds": 105.51889902714682,
+      "emission_selected": false
+    },
+    {
+      "trip": "10.TA.91-21-E-j23-1.2.H",
+      "cid": 203,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29760.0,
+      "sd_seconds": 153.74329253661767,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 53.50464919695689,
+      "emission_sd_seconds": 108.977836410737,
+      "emission_selected": false
+    },
+    {
+      "trip": "2038.TA.91-1-D-j23-1.388.R",
+      "cid": 204,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 30060.0,
+      "sd_seconds": 46.132884752154354,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 26.503030303030304,
+      "emission_sd_seconds": 96.69343146143362,
+      "emission_selected": false
+    },
+    {
+      "trip": "2038.TA.91-1-D-j23-1.388.R",
+      "cid": 204,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29700.0,
+      "sd_seconds": 46.132884752154354,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 14.106508875739644,
+      "emission_sd_seconds": 90.39407750276212,
+      "emission_selected": false
+    },
+    {
+      "trip": "435.TA.91-12-j23-1.110.H",
+      "cid": 205,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 29760.0,
+      "sd_seconds": 69.04696657891641,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 26.503030303030304,
+      "emission_sd_seconds": 96.69343146143362,
+      "emission_selected": false
+    },
+    {
+      "trip": "435.TA.91-12-j23-1.110.H",
+      "cid": 205,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29640.0,
+      "sd_seconds": 69.04696657891641,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 14.106508875739644,
+      "emission_sd_seconds": 90.39407750276212,
+      "emission_selected": false
+    },
+    {
+      "trip": "919.TA.91-2-B-j23-1.121.R",
+      "cid": 207,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29640.0,
+      "sd_seconds": 80.76824484288365,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 14.106508875739644,
+      "emission_sd_seconds": 90.39407750276212,
+      "emission_selected": false
+    },
+    {
+      "trip": "519.TA.91-16-A-j23-1.75.R",
+      "cid": 209,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 29880.0,
+      "sd_seconds": 66.41497451611501,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": -0.9983619983619968,
+      "emission_sd_seconds": 109.44784357924745,
+      "emission_selected": false
+    },
+    {
+      "trip": "519.TA.91-16-A-j23-1.75.R",
+      "cid": 209,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29820.0,
+      "sd_seconds": 66.41497451611501,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": -11.996745562130178,
+      "emission_sd_seconds": 106.30625341924083,
+      "emission_selected": false
+    },
+    {
+      "trip": "137.TA.91-16-A-j23-1.9.H",
+      "cid": 211,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 29880.0,
+      "sd_seconds": 66.41497451611501,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": -0.9983619983619968,
+      "emission_sd_seconds": 109.44784357924745,
+      "emission_selected": false
+    },
+    {
+      "trip": "137.TA.91-16-A-j23-1.9.H",
+      "cid": 211,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29760.0,
+      "sd_seconds": 66.41497451611501,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": -11.996745562130178,
+      "emission_sd_seconds": 106.30625341924083,
+      "emission_selected": false
+    },
+    {
+      "trip": "194.TA.91-9-D-j23-1.43.H",
+      "cid": 212,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 30000.0,
+      "sd_seconds": 73.96513741442232,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 23.876515151515154,
+      "emission_sd_seconds": 94.8106121472413,
+      "emission_selected": true
+    },
+    {
+      "trip": "386.TA.91-13-j23-1.93.H",
+      "cid": 213,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 30060.0,
+      "sd_seconds": 47.03572445492894,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 26.503030303030304,
+      "emission_sd_seconds": 96.69343146143362,
+      "emission_selected": false
+    },
+    {
+      "trip": "386.TA.91-13-j23-1.93.H",
+      "cid": 213,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29820.0,
+      "sd_seconds": 47.03572445492894,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 14.106508875739644,
+      "emission_sd_seconds": 90.39407750276212,
+      "emission_selected": false
+    },
+    {
+      "trip": "435.TA.91-12-j23-1.110.H",
+      "cid": 214,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 29940.0,
+      "sd_seconds": 69.04696657891641,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 26.503030303030304,
+      "emission_sd_seconds": 96.69343146143362,
+      "emission_selected": false
+    },
+    {
+      "trip": "435.TA.91-12-j23-1.110.H",
+      "cid": 214,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29820.0,
+      "sd_seconds": 69.04696657891641,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 14.106508875739644,
+      "emission_sd_seconds": 90.39407750276212,
+      "emission_selected": false
+    },
+    {
+      "trip": "749.TA.91-12-j23-1.154.R",
+      "cid": 215,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 30000.0,
+      "sd_seconds": 69.04696657891641,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 26.503030303030304,
+      "emission_sd_seconds": 96.69343146143362,
+      "emission_selected": false
+    },
+    {
+      "trip": "749.TA.91-12-j23-1.154.R",
+      "cid": 215,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29880.0,
+      "sd_seconds": 69.04696657891641,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 14.106508875739644,
+      "emission_sd_seconds": 90.39407750276212,
+      "emission_selected": false
+    },
+    {
+      "trip": "877.TA.91-36-A-j23-1.142.H",
+      "cid": 216,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29760.0,
+      "sd_seconds": 73.85839491892577,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 14.106508875739644,
+      "emission_sd_seconds": 90.39407750276212,
+      "emission_selected": false
+    },
+    {
+      "trip": "952.TA.91-5-C-j23-1.381.R",
+      "cid": 217,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 29880.0,
+      "sd_seconds": 61.66728792479851,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 32.730429292929294,
+      "emission_sd_seconds": 90.7609173849801,
+      "emission_selected": false
+    },
+    {
+      "trip": "952.TA.91-5-C-j23-1.381.R",
+      "cid": 217,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29760.0,
+      "sd_seconds": 61.66728792479851,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 21.21404187528448,
+      "emission_sd_seconds": 80.68061522793784,
+      "emission_selected": true
+    },
+    {
+      "trip": "243.TA.91-2-B-j23-1.4.H",
+      "cid": 218,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 30000.0,
+      "sd_seconds": 80.76824484288365,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 26.503030303030304,
+      "emission_sd_seconds": 96.69343146143362,
+      "emission_selected": false
+    },
+    {
+      "trip": "243.TA.91-2-B-j23-1.4.H",
+      "cid": 218,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29880.0,
+      "sd_seconds": 80.76824484288365,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 14.106508875739644,
+      "emission_sd_seconds": 90.39407750276212,
+      "emission_selected": false
+    },
+    {
+      "trip": "255.TA.91-3-D-j23-1.15.R",
+      "cid": 219,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 30120.0,
+      "sd_seconds": 76.91274276737244,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 34.59129759129759,
+      "emission_sd_seconds": 76.45911412319849,
+      "emission_selected": false
+    },
+    {
+      "trip": "255.TA.91-3-D-j23-1.15.R",
+      "cid": 219,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29880.0,
+      "sd_seconds": 76.91274276737244,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 9.285389167045972,
+      "emission_sd_seconds": 74.1531916040096,
+      "emission_selected": true
+    },
+    {
+      "trip": "530.TA.91-15-C-j23-1.58.R",
+      "cid": 220,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 30000.0,
+      "sd_seconds": 102.2628456478696,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 26.323593073593077,
+      "emission_sd_seconds": 85.80366346576409,
+      "emission_selected": false
+    },
+    {
+      "trip": "530.TA.91-15-C-j23-1.58.R",
+      "cid": 220,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29880.0,
+      "sd_seconds": 102.2628456478696,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 17.504339250493096,
+      "emission_sd_seconds": 79.15356383361042,
+      "emission_selected": true
+    },
+    {
+      "trip": "62.TA.91-19-A-j23-1.18.R",
+      "cid": 221,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 30180.0,
+      "sd_seconds": 52.81098370604357,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 40.04242424242425,
+      "emission_sd_seconds": 91.24970412672009,
+      "emission_selected": false
+    },
+    {
+      "trip": "62.TA.91-19-A-j23-1.18.R",
+      "cid": 221,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29880.0,
+      "sd_seconds": 52.81098370604357,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 36.80433925049309,
+      "emission_sd_seconds": 85.31683600454097,
+      "emission_selected": false
+    },
+    {
+      "trip": "137.TA.91-16-A-j23-1.9.H",
+      "cid": 222,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 30180.0,
+      "sd_seconds": 66.41497451611501,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": -0.9983619983619968,
+      "emission_sd_seconds": 109.44784357924745,
+      "emission_selected": false
+    },
+    {
+      "trip": "137.TA.91-16-A-j23-1.9.H",
+      "cid": 222,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29940.0,
+      "sd_seconds": 66.41497451611501,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": -11.996745562130178,
+      "emission_sd_seconds": 106.30625341924083,
+      "emission_selected": false
+    },
+    {
+      "trip": "263.TA.91-8-C-j23-1.24.H",
+      "cid": 223,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 29940.0,
+      "sd_seconds": 87.15767573893972,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 15.002164502164504,
+      "emission_sd_seconds": 85.49619618681581,
+      "emission_selected": false
+    },
+    {
+      "trip": "263.TA.91-8-C-j23-1.24.H",
+      "cid": 223,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29880.0,
+      "sd_seconds": 87.15767573893972,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 7.704339250493096,
+      "emission_sd_seconds": 76.35180668155645,
+      "emission_selected": false
+    },
+    {
+      "trip": "519.TA.91-16-A-j23-1.75.R",
+      "cid": 224,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 30120.0,
+      "sd_seconds": 66.41497451611501,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": -0.9983619983619968,
+      "emission_sd_seconds": 109.44784357924745,
+      "emission_selected": false
+    },
+    {
+      "trip": "519.TA.91-16-A-j23-1.75.R",
+      "cid": 224,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29940.0,
+      "sd_seconds": 66.41497451611501,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": -11.996745562130178,
+      "emission_sd_seconds": 106.30625341924083,
+      "emission_selected": false
+    },
+    {
+      "trip": "952.TA.91-5-C-j23-1.381.R",
+      "cid": 226,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 30060.0,
+      "sd_seconds": 61.66728792479851,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 32.730429292929294,
+      "emission_sd_seconds": 90.7609173849801,
+      "emission_selected": false
+    },
+    {
+      "trip": "952.TA.91-5-C-j23-1.381.R",
+      "cid": 226,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29940.0,
+      "sd_seconds": 61.66728792479851,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 21.21404187528448,
+      "emission_sd_seconds": 80.68061522793784,
+      "emission_selected": false
+    },
+    {
+      "trip": "172.TA.91-14-C-j23-1.29.H",
+      "cid": 227,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 30240.0,
+      "sd_seconds": 55.62597315003926,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 20.859307359307362,
+      "emission_sd_seconds": 82.91249827428324,
+      "emission_selected": false
+    },
+    {
+      "trip": "172.TA.91-14-C-j23-1.29.H",
+      "cid": 227,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 30000.0,
+      "sd_seconds": 55.62597315003926,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 8.297090729783037,
+      "emission_sd_seconds": 83.84669931260852,
+      "emission_selected": false
+    },
+    {
+      "trip": "194.TA.91-9-D-j23-1.43.H",
+      "cid": 228,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 30180.0,
+      "sd_seconds": 73.96513741442232,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 23.876515151515154,
+      "emission_sd_seconds": 94.8106121472413,
+      "emission_selected": false
+    },
+    {
+      "trip": "194.TA.91-9-D-j23-1.43.H",
+      "cid": 228,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 30060.0,
+      "sd_seconds": 73.96513741442232,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 2.1465765004226536,
+      "emission_sd_seconds": 90.10840838063702,
+      "emission_selected": false
+    },
+    {
+      "trip": "22.TA.91-19-A-j23-1.5.H",
+      "cid": 229,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 29940.0,
+      "sd_seconds": 52.81098370604357,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 36.80433925049309,
+      "emission_sd_seconds": 85.31683600454097,
+      "emission_selected": false
+    },
+    {
+      "trip": "243.TA.91-2-B-j23-1.4.H",
+      "cid": 230,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 30180.0,
+      "sd_seconds": 80.76824484288365,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 26.503030303030304,
+      "emission_sd_seconds": 96.69343146143362,
+      "emission_selected": false
+    },
+    {
+      "trip": "243.TA.91-2-B-j23-1.4.H",
+      "cid": 230,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 30060.0,
+      "sd_seconds": 80.76824484288365,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 14.106508875739644,
+      "emission_sd_seconds": 90.39407750276212,
+      "emission_selected": false
+    },
+    {
+      "trip": "248.TA.91-7-C-j23-1.22.H",
+      "cid": 231,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 30060.0,
+      "sd_seconds": 56.976725267623294,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 32.794191919191924,
+      "emission_sd_seconds": 89.92881200645574,
+      "emission_selected": true
+    },
+    {
+      "trip": "263.TA.91-8-C-j23-1.24.H",
+      "cid": 232,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 30180.0,
+      "sd_seconds": 87.15767573893972,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 15.002164502164504,
+      "emission_sd_seconds": 85.49619618681581,
+      "emission_selected": false
+    },
+    {
+      "trip": "263.TA.91-8-C-j23-1.24.H",
+      "cid": 232,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 30000.0,
+      "sd_seconds": 87.15767573893972,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 7.704339250493096,
+      "emission_sd_seconds": 76.35180668155645,
+      "emission_selected": false
+    },
+    {
+      "trip": "516.TA.91-11-A-j23-1.94.H",
+      "cid": 233,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 30180.0,
+      "sd_seconds": 62.11289530394271,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 22.45638200183655,
+      "emission_sd_seconds": 80.89912648972113,
+      "emission_selected": false
+    },
+    {
+      "trip": "516.TA.91-11-A-j23-1.94.H",
+      "cid": 233,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 30060.0,
+      "sd_seconds": 62.11289530394271,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 9.064550833781603,
+      "emission_sd_seconds": 77.07870359981585,
+      "emission_selected": true
+    },
+    {
+      "trip": "1049.TA.91-11-A-j23-1.210.R",
+      "cid": 235,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 30240.0,
+      "sd_seconds": 62.11289530394271,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 22.45638200183655,
+      "emission_sd_seconds": 80.89912648972113,
+      "emission_selected": false
+    },
+    {
+      "trip": "1049.TA.91-11-A-j23-1.210.R",
+      "cid": 235,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 30060.0,
+      "sd_seconds": 62.11289530394271,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 9.064550833781603,
+      "emission_sd_seconds": 77.07870359981585,
+      "emission_selected": true
+    },
+    {
+      "trip": "435.TA.91-12-j23-1.110.H",
+      "cid": 236,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 30180.0,
+      "sd_seconds": 69.04696657891641,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 26.503030303030304,
+      "emission_sd_seconds": 96.69343146143362,
+      "emission_selected": false
+    },
+    {
+      "trip": "435.TA.91-12-j23-1.110.H",
+      "cid": 236,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 30000.0,
+      "sd_seconds": 69.04696657891641,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 14.106508875739644,
+      "emission_sd_seconds": 90.39407750276212,
+      "emission_selected": false
+    },
+    {
+      "trip": "749.TA.91-12-j23-1.154.R",
+      "cid": 237,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 30300.0,
+      "sd_seconds": 69.04696657891641,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 26.503030303030304,
+      "emission_sd_seconds": 96.69343146143362,
+      "emission_selected": false
+    },
+    {
+      "trip": "749.TA.91-12-j23-1.154.R",
+      "cid": 237,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 30060.0,
+      "sd_seconds": 69.04696657891641,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 14.106508875739644,
+      "emission_sd_seconds": 90.39407750276212,
+      "emission_selected": false
+    },
+    {
+      "trip": "248.TA.91-7-C-j23-1.22.H",
+      "cid": 238,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 30360.0,
+      "sd_seconds": 56.976725267623294,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 32.794191919191924,
+      "emission_sd_seconds": 89.92881200645574,
+      "emission_selected": false
+    },
+    {
+      "trip": "248.TA.91-7-C-j23-1.22.H",
+      "cid": 238,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 30120.0,
+      "sd_seconds": 56.976725267623294,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 20.051371705217857,
+      "emission_sd_seconds": 88.79020002357854,
+      "emission_selected": false
+    },
+    {
+      "trip": "371.TA.91-6-D-j23-1.36.H",
+      "cid": 239,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 30300.0,
+      "sd_seconds": 202.30243202984565,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 35.001782531194294,
+      "emission_sd_seconds": 84.97791469627502,
+      "emission_selected": false
+    },
+    {
+      "trip": "371.TA.91-6-D-j23-1.36.H",
+      "cid": 239,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 30060.0,
+      "sd_seconds": 202.30243202984565,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 21.579702348933118,
+      "emission_sd_seconds": 77.56875728849185,
+      "emission_selected": true
+    },
+    {
+      "trip": "255.TA.91-3-D-j23-1.15.R",
+      "cid": 242,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 30300.0,
+      "sd_seconds": 76.91274276737244,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 34.59129759129759,
+      "emission_sd_seconds": 76.45911412319849,
+      "emission_selected": false
+    },
+    {
+      "trip": "255.TA.91-3-D-j23-1.15.R",
+      "cid": 242,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 30180.0,
+      "sd_seconds": 76.91274276737244,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 9.285389167045972,
+      "emission_sd_seconds": 74.1531916040096,
+      "emission_selected": false
+    },
+    {
+      "trip": "530.TA.91-15-C-j23-1.58.R",
+      "cid": 243,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 30240.0,
+      "sd_seconds": 102.2628456478696,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 26.323593073593077,
+      "emission_sd_seconds": 85.80366346576409,
+      "emission_selected": false
+    },
+    {
+      "trip": "530.TA.91-15-C-j23-1.58.R",
+      "cid": 243,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 30120.0,
+      "sd_seconds": 102.2628456478696,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 17.504339250493096,
+      "emission_sd_seconds": 79.15356383361042,
+      "emission_selected": false
+    },
+    {
+      "trip": "137.TA.91-16-A-j23-1.9.H",
+      "cid": 246,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 30240.0,
+      "sd_seconds": 66.41497451611501,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": -11.996745562130178,
+      "emission_sd_seconds": 106.30625341924083,
+      "emission_selected": false
+    },
+    {
+      "trip": "516.TA.91-11-A-j23-1.94.H",
+      "cid": 248,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 30360.0,
+      "sd_seconds": 62.11289530394271,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 22.45638200183655,
+      "emission_sd_seconds": 80.89912648972113,
+      "emission_selected": false
+    },
+    {
+      "trip": "516.TA.91-11-A-j23-1.94.H",
+      "cid": 248,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 30240.0,
+      "sd_seconds": 62.11289530394271,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 9.064550833781603,
+      "emission_sd_seconds": 77.07870359981585,
+      "emission_selected": false
+    },
+    {
+      "trip": "530.TA.91-15-C-j23-1.58.R",
+      "cid": 249,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 30300.0,
+      "sd_seconds": 102.2628456478696,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 17.504339250493096,
+      "emission_sd_seconds": 79.15356383361042,
+      "emission_selected": false
+    },
+    {
+      "trip": "952.TA.91-5-C-j23-1.381.R",
+      "cid": 251,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 30240.0,
+      "sd_seconds": 61.66728792479851,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 21.21404187528448,
+      "emission_sd_seconds": 80.68061522793784,
+      "emission_selected": false
+    },
+    {
+      "trip": "1049.TA.91-11-A-j23-1.210.R",
+      "cid": 252,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 30480.0,
+      "sd_seconds": 62.11289530394271,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 22.45638200183655,
+      "emission_sd_seconds": 80.89912648972113,
+      "emission_selected": false
+    },
+    {
+      "trip": "1049.TA.91-11-A-j23-1.210.R",
+      "cid": 252,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 30360.0,
+      "sd_seconds": 62.11289530394271,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 9.064550833781603,
+      "emission_sd_seconds": 77.07870359981585,
+      "emission_selected": false
+    },
+    {
+      "trip": "122.TA.91-3-D-j23-1.11.H",
+      "cid": 253,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 30540.0,
+      "sd_seconds": 76.91274276737244,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 34.59129759129759,
+      "emission_sd_seconds": 76.45911412319849,
+      "emission_selected": false
+    },
+    {
+      "trip": "122.TA.91-3-D-j23-1.11.H",
+      "cid": 253,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 30360.0,
+      "sd_seconds": 76.91274276737244,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 9.285389167045972,
+      "emission_sd_seconds": 74.1531916040096,
+      "emission_selected": true
+    },
+    {
+      "trip": "263.TA.91-8-C-j23-1.24.H",
+      "cid": 255,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 30300.0,
+      "sd_seconds": 87.15767573893972,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 7.704339250493096,
+      "emission_sd_seconds": 76.35180668155645,
+      "emission_selected": false
+    },
+    {
+      "trip": "371.TA.91-6-D-j23-1.36.H",
+      "cid": 256,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 30480.0,
+      "sd_seconds": 202.30243202984565,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 35.001782531194294,
+      "emission_sd_seconds": 84.97791469627502,
+      "emission_selected": false
+    },
+    {
+      "trip": "371.TA.91-6-D-j23-1.36.H",
+      "cid": 256,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 30360.0,
+      "sd_seconds": 202.30243202984565,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 21.579702348933118,
+      "emission_sd_seconds": 77.56875728849185,
+      "emission_selected": false
+    },
+    {
+      "trip": "255.TA.91-3-D-j23-1.15.R",
+      "cid": 257,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 30540.0,
+      "sd_seconds": 76.91274276737244,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 34.59129759129759,
+      "emission_sd_seconds": 76.45911412319849,
+      "emission_selected": false
+    },
+    {
+      "trip": "255.TA.91-3-D-j23-1.15.R",
+      "cid": 257,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 30420.0,
+      "sd_seconds": 76.91274276737244,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 9.285389167045972,
+      "emission_sd_seconds": 74.1531916040096,
+      "emission_selected": false
+    },
+    {
+      "trip": "516.TA.91-11-A-j23-1.94.H",
+      "cid": 258,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 30600.0,
+      "sd_seconds": 62.11289530394271,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 22.45638200183655,
+      "emission_sd_seconds": 80.89912648972113,
+      "emission_selected": false
+    },
+    {
+      "trip": "516.TA.91-11-A-j23-1.94.H",
+      "cid": 258,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 30420.0,
+      "sd_seconds": 62.11289530394271,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 9.064550833781603,
+      "emission_sd_seconds": 77.07870359981585,
+      "emission_selected": false
+    },
+    {
+      "trip": "194.TA.91-9-D-j23-1.43.H",
+      "cid": 262,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 30600.0,
+      "sd_seconds": 73.96513741442232,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 23.876515151515154,
+      "emission_sd_seconds": 94.8106121472413,
+      "emission_selected": false
+    },
+    {
+      "trip": "194.TA.91-9-D-j23-1.43.H",
+      "cid": 262,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 30480.0,
+      "sd_seconds": 73.96513741442232,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 2.1465765004226536,
+      "emission_sd_seconds": 90.10840838063702,
+      "emission_selected": false
+    },
+    {
+      "trip": "1049.TA.91-11-A-j23-1.210.R",
+      "cid": 263,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 30720.0,
+      "sd_seconds": 62.11289530394271,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 22.45638200183655,
+      "emission_sd_seconds": 80.89912648972113,
+      "emission_selected": false
+    },
+    {
+      "trip": "1049.TA.91-11-A-j23-1.210.R",
+      "cid": 263,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 30600.0,
+      "sd_seconds": 62.11289530394271,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 9.064550833781603,
+      "emission_sd_seconds": 77.07870359981585,
+      "emission_selected": false
+    },
+    {
+      "trip": "122.TA.91-3-D-j23-1.11.H",
+      "cid": 264,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 30720.0,
+      "sd_seconds": 76.91274276737244,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 34.59129759129759,
+      "emission_sd_seconds": 76.45911412319849,
+      "emission_selected": false
+    },
+    {
+      "trip": "122.TA.91-3-D-j23-1.11.H",
+      "cid": 264,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 30600.0,
+      "sd_seconds": 76.91274276737244,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 9.285389167045972,
+      "emission_sd_seconds": 74.1531916040096,
+      "emission_selected": false
+    },
+    {
+      "trip": "371.TA.91-6-D-j23-1.36.H",
+      "cid": 268,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 30600.0,
+      "sd_seconds": 202.30243202984565,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 21.579702348933118,
+      "emission_sd_seconds": 77.56875728849185,
+      "emission_selected": false
+    },
+    {
+      "trip": "1049.TA.91-11-A-j23-1.210.R",
+      "cid": 270,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 30900.0,
+      "sd_seconds": 62.11289530394271,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 22.45638200183655,
+      "emission_sd_seconds": 80.89912648972113,
+      "emission_selected": false
+    },
+    {
+      "trip": "1049.TA.91-11-A-j23-1.210.R",
+      "cid": 270,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 30780.0,
+      "sd_seconds": 62.11289530394271,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 9.064550833781603,
+      "emission_sd_seconds": 77.07870359981585,
+      "emission_selected": false
+    },
+    {
+      "trip": "194.TA.91-9-D-j23-1.43.H",
+      "cid": 271,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 30960.0,
+      "sd_seconds": 73.96513741442232,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 23.876515151515154,
+      "emission_sd_seconds": 94.8106121472413,
+      "emission_selected": false
+    },
+    {
+      "trip": "194.TA.91-9-D-j23-1.43.H",
+      "cid": 271,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 30720.0,
+      "sd_seconds": 73.96513741442232,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 2.1465765004226536,
+      "emission_sd_seconds": 90.10840838063702,
+      "emission_selected": false
+    },
+    {
+      "trip": "226.TA.91-15-C-j23-1.122.H",
+      "cid": 272,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 30960.0,
+      "sd_seconds": 102.2628456478696,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 26.323593073593077,
+      "emission_sd_seconds": 85.80366346576409,
+      "emission_selected": false
+    },
+    {
+      "trip": "226.TA.91-15-C-j23-1.122.H",
+      "cid": 272,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 30720.0,
+      "sd_seconds": 102.2628456478696,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 17.504339250493096,
+      "emission_sd_seconds": 79.15356383361042,
+      "emission_selected": true
+    },
+    {
+      "trip": "501.TA.91-16-A-j23-1.74.R",
+      "cid": 273,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 30660.0,
+      "sd_seconds": 66.41497451611501,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": -11.996745562130178,
+      "emission_sd_seconds": 106.30625341924083,
+      "emission_selected": true
+    },
+    {
+      "trip": "516.TA.91-11-A-j23-1.94.H",
+      "cid": 274,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 30840.0,
+      "sd_seconds": 62.11289530394271,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 22.45638200183655,
+      "emission_sd_seconds": 80.89912648972113,
+      "emission_selected": false
+    },
+    {
+      "trip": "516.TA.91-11-A-j23-1.94.H",
+      "cid": 274,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 30720.0,
+      "sd_seconds": 62.11289530394271,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 9.064550833781603,
+      "emission_sd_seconds": 77.07870359981585,
+      "emission_selected": false
+    },
+    {
+      "trip": "371.TA.91-6-D-j23-1.36.H",
+      "cid": 279,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 30960.0,
+      "sd_seconds": 202.30243202984565,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 35.001782531194294,
+      "emission_sd_seconds": 84.97791469627502,
+      "emission_selected": false
+    },
+    {
+      "trip": "754.TA.91-7-C-j23-1.93.R",
+      "cid": 281,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 31020.0,
+      "sd_seconds": 56.976725267623294,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 32.794191919191924,
+      "emission_sd_seconds": 89.92881200645574,
+      "emission_selected": false
+    },
+    {
+      "trip": "754.TA.91-7-C-j23-1.93.R",
+      "cid": 281,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 30780.0,
+      "sd_seconds": 56.976725267623294,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 20.051371705217857,
+      "emission_sd_seconds": 88.79020002357854,
+      "emission_selected": true
+    },
+    {
+      "trip": "122.TA.91-3-D-j23-1.11.H",
+      "cid": 283,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 30960.0,
+      "sd_seconds": 76.91274276737244,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 34.59129759129759,
+      "emission_sd_seconds": 76.45911412319849,
+      "emission_selected": false
+    },
+    {
+      "trip": "122.TA.91-3-D-j23-1.11.H",
+      "cid": 283,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 30840.0,
+      "sd_seconds": 76.91274276737244,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 9.285389167045972,
+      "emission_sd_seconds": 74.1531916040096,
+      "emission_selected": false
+    },
+    {
+      "trip": "378.TA.91-12-j23-1.101.H",
+      "cid": 286,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 31080.0,
+      "sd_seconds": 69.04696657891641,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 26.503030303030304,
+      "emission_sd_seconds": 96.69343146143362,
+      "emission_selected": true
+    },
+    {
+      "trip": "997.TA.91-12-j23-1.204.R",
+      "cid": 289,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 31080.0,
+      "sd_seconds": 69.04696657891641,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 26.503030303030304,
+      "emission_sd_seconds": 96.69343146143362,
+      "emission_selected": false
+    },
+    {
+      "trip": "997.TA.91-12-j23-1.204.R",
+      "cid": 289,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 30900.0,
+      "sd_seconds": 69.04696657891641,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 14.106508875739644,
+      "emission_sd_seconds": 90.39407750276212,
+      "emission_selected": true
+    },
+    {
+      "trip": "1049.TA.91-11-A-j23-1.210.R",
+      "cid": 290,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 31080.0,
+      "sd_seconds": 62.11289530394271,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 22.45638200183655,
+      "emission_sd_seconds": 80.89912648972113,
+      "emission_selected": false
+    },
+    {
+      "trip": "1049.TA.91-11-A-j23-1.210.R",
+      "cid": 290,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 30960.0,
+      "sd_seconds": 62.11289530394271,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 9.064550833781603,
+      "emission_sd_seconds": 77.07870359981585,
+      "emission_selected": false
+    },
+    {
+      "trip": "226.TA.91-15-C-j23-1.122.H",
+      "cid": 292,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 31140.0,
+      "sd_seconds": 102.2628456478696,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 26.323593073593077,
+      "emission_sd_seconds": 85.80366346576409,
+      "emission_selected": false
+    },
+    {
+      "trip": "226.TA.91-15-C-j23-1.122.H",
+      "cid": 292,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 31020.0,
+      "sd_seconds": 102.2628456478696,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 17.504339250493096,
+      "emission_sd_seconds": 79.15356383361042,
+      "emission_selected": false
+    },
+    {
+      "trip": "516.TA.91-11-A-j23-1.94.H",
+      "cid": 294,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 31140.0,
+      "sd_seconds": 62.11289530394271,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 22.45638200183655,
+      "emission_sd_seconds": 80.89912648972113,
+      "emission_selected": false
+    },
+    {
+      "trip": "516.TA.91-11-A-j23-1.94.H",
+      "cid": 294,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 30900.0,
+      "sd_seconds": 62.11289530394271,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 9.064550833781603,
+      "emission_sd_seconds": 77.07870359981585,
+      "emission_selected": false
+    },
+    {
+      "trip": "501.TA.91-16-A-j23-1.74.R",
+      "cid": 297,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 31200.0,
+      "sd_seconds": 66.41497451611501,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": -0.9983619983619968,
+      "emission_sd_seconds": 109.44784357924745,
+      "emission_selected": false
+    },
+    {
+      "trip": "122.TA.91-3-D-j23-1.11.H",
+      "cid": 299,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 31260.0,
+      "sd_seconds": 76.91274276737244,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 34.59129759129759,
+      "emission_sd_seconds": 76.45911412319849,
+      "emission_selected": false
+    },
+    {
+      "trip": "122.TA.91-3-D-j23-1.11.H",
+      "cid": 299,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 31080.0,
+      "sd_seconds": 76.91274276737244,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 9.285389167045972,
+      "emission_sd_seconds": 74.1531916040096,
+      "emission_selected": false
+    },
+    {
+      "trip": "136.TA.91-16-A-j23-1.9.H",
+      "cid": 300,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 31200.0,
+      "sd_seconds": 66.41497451611501,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": -0.9983619983619968,
+      "emission_sd_seconds": 109.44784357924745,
+      "emission_selected": false
+    },
+    {
+      "trip": "136.TA.91-16-A-j23-1.9.H",
+      "cid": 300,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 31080.0,
+      "sd_seconds": 66.41497451611501,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": -11.996745562130178,
+      "emission_sd_seconds": 106.30625341924083,
+      "emission_selected": true
+    },
+    {
+      "trip": "754.TA.91-7-C-j23-1.93.R",
+      "cid": 303,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 31200.0,
+      "sd_seconds": 56.976725267623294,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 32.794191919191924,
+      "emission_sd_seconds": 89.92881200645574,
+      "emission_selected": false
+    },
+    {
+      "trip": "754.TA.91-7-C-j23-1.93.R",
+      "cid": 303,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 31080.0,
+      "sd_seconds": 56.976725267623294,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 20.051371705217857,
+      "emission_sd_seconds": 88.79020002357854,
+      "emission_selected": false
+    },
+    {
+      "trip": "226.TA.91-15-C-j23-1.122.H",
+      "cid": 308,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 31200.0,
+      "sd_seconds": 102.2628456478696,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 17.504339250493096,
+      "emission_sd_seconds": 79.15356383361042,
+      "emission_selected": false
+    },
+    {
+      "trip": "378.TA.91-12-j23-1.101.H",
+      "cid": 310,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 31320.0,
+      "sd_seconds": 69.04696657891641,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 26.503030303030304,
+      "emission_sd_seconds": 96.69343146143362,
+      "emission_selected": false
+    },
+    {
+      "trip": "378.TA.91-12-j23-1.101.H",
+      "cid": 310,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 31200.0,
+      "sd_seconds": 69.04696657891641,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 14.106508875739644,
+      "emission_sd_seconds": 90.39407750276212,
+      "emission_selected": false
+    },
+    {
+      "trip": "997.TA.91-12-j23-1.204.R",
+      "cid": 313,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 31260.0,
+      "sd_seconds": 69.04696657891641,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 26.503030303030304,
+      "emission_sd_seconds": 96.69343146143362,
+      "emission_selected": false
+    },
+    {
+      "trip": "997.TA.91-12-j23-1.204.R",
+      "cid": 313,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 31140.0,
+      "sd_seconds": 69.04696657891641,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 14.106508875739644,
+      "emission_sd_seconds": 90.39407750276212,
+      "emission_selected": false
+    },
+    {
+      "trip": "501.TA.91-16-A-j23-1.74.R",
+      "cid": 316,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 31380.0,
+      "sd_seconds": 66.41497451611501,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": -0.9983619983619968,
+      "emission_sd_seconds": 109.44784357924745,
+      "emission_selected": false
+    },
+    {
+      "trip": "501.TA.91-16-A-j23-1.74.R",
+      "cid": 316,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 31260.0,
+      "sd_seconds": 66.41497451611501,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": -11.996745562130178,
+      "emission_sd_seconds": 106.30625341924083,
+      "emission_selected": false
+    },
+    {
+      "trip": "136.TA.91-16-A-j23-1.9.H",
+      "cid": 317,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 31440.0,
+      "sd_seconds": 66.41497451611501,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": -0.9983619983619968,
+      "emission_sd_seconds": 109.44784357924745,
+      "emission_selected": false
+    },
+    {
+      "trip": "136.TA.91-16-A-j23-1.9.H",
+      "cid": 317,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 31320.0,
+      "sd_seconds": 66.41497451611501,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": -11.996745562130178,
+      "emission_sd_seconds": 106.30625341924083,
+      "emission_selected": false
+    },
+    {
+      "trip": "754.TA.91-7-C-j23-1.93.R",
+      "cid": 321,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 31440.0,
+      "sd_seconds": 56.976725267623294,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 32.794191919191924,
+      "emission_sd_seconds": 89.92881200645574,
+      "emission_selected": false
+    },
+    {
+      "trip": "754.TA.91-7-C-j23-1.93.R",
+      "cid": 321,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 31320.0,
+      "sd_seconds": 56.976725267623294,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 20.051371705217857,
+      "emission_sd_seconds": 88.79020002357854,
+      "emission_selected": false
+    },
+    {
+      "trip": "997.TA.91-12-j23-1.204.R",
+      "cid": 322,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 31500.0,
+      "sd_seconds": 69.04696657891641,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 26.503030303030304,
+      "emission_sd_seconds": 96.69343146143362,
+      "emission_selected": false
+    },
+    {
+      "trip": "997.TA.91-12-j23-1.204.R",
+      "cid": 322,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 31320.0,
+      "sd_seconds": 69.04696657891641,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 14.106508875739644,
+      "emission_sd_seconds": 90.39407750276212,
+      "emission_selected": false
+    },
+    {
+      "trip": "378.TA.91-12-j23-1.101.H",
+      "cid": 328,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 31560.0,
+      "sd_seconds": 69.04696657891641,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 26.503030303030304,
+      "emission_sd_seconds": 96.69343146143362,
+      "emission_selected": false
+    },
+    {
+      "trip": "378.TA.91-12-j23-1.101.H",
+      "cid": 328,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 31440.0,
+      "sd_seconds": 69.04696657891641,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 14.106508875739644,
+      "emission_sd_seconds": 90.39407750276212,
+      "emission_selected": false
+    },
+    {
+      "trip": "501.TA.91-16-A-j23-1.74.R",
+      "cid": 334,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 31500.0,
+      "sd_seconds": 66.41497451611501,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": -11.996745562130178,
+      "emission_sd_seconds": 106.30625341924083,
+      "emission_selected": false
+    },
+    {
+      "trip": "136.TA.91-16-A-j23-1.9.H",
+      "cid": 336,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 31680.0,
+      "sd_seconds": 66.41497451611501,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": -0.9983619983619968,
+      "emission_sd_seconds": 109.44784357924745,
+      "emission_selected": false
+    },
+    {
+      "trip": "136.TA.91-16-A-j23-1.9.H",
+      "cid": 336,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 31560.0,
+      "sd_seconds": 66.41497451611501,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": -11.996745562130178,
+      "emission_sd_seconds": 106.30625341924083,
+      "emission_selected": false
+    },
+    {
+      "trip": "378.TA.91-12-j23-1.101.H",
+      "cid": 338,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 31740.0,
+      "sd_seconds": 69.04696657891641,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 26.503030303030304,
+      "emission_sd_seconds": 96.69343146143362,
+      "emission_selected": false
+    },
+    {
+      "trip": "378.TA.91-12-j23-1.101.H",
+      "cid": 338,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 31620.0,
+      "sd_seconds": 69.04696657891641,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 14.106508875739644,
+      "emission_sd_seconds": 90.39407750276212,
+      "emission_selected": false
+    },
+    {
+      "trip": "997.TA.91-12-j23-1.204.R",
+      "cid": 340,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 31740.0,
+      "sd_seconds": 69.04696657891641,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 26.503030303030304,
+      "emission_sd_seconds": 96.69343146143362,
+      "emission_selected": false
+    },
+    {
+      "trip": "997.TA.91-12-j23-1.204.R",
+      "cid": 340,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 31620.0,
+      "sd_seconds": 69.04696657891641,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 14.106508875739644,
+      "emission_sd_seconds": 90.39407750276212,
+      "emission_selected": false
+    },
+    {
+      "trip": "262.TA.91-3-D-j23-1.15.R",
+      "cid": 342,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 31920.0,
+      "sd_seconds": 76.91274276737244,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 34.59129759129759,
+      "emission_sd_seconds": 76.45911412319849,
+      "emission_selected": false
+    },
+    {
+      "trip": "262.TA.91-3-D-j23-1.15.R",
+      "cid": 342,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 31680.0,
+      "sd_seconds": 76.91274276737244,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 9.285389167045972,
+      "emission_sd_seconds": 74.1531916040096,
+      "emission_selected": true
+    },
+    {
+      "trip": "136.TA.91-16-A-j23-1.9.H",
+      "cid": 345,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 31980.0,
+      "sd_seconds": 66.41497451611501,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": -0.9983619983619968,
+      "emission_sd_seconds": 109.44784357924745,
+      "emission_selected": false
+    },
+    {
+      "trip": "136.TA.91-16-A-j23-1.9.H",
+      "cid": 345,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 31740.0,
+      "sd_seconds": 66.41497451611501,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": -11.996745562130178,
+      "emission_sd_seconds": 106.30625341924083,
+      "emission_selected": false
+    },
+    {
+      "trip": "501.TA.91-16-A-j23-1.74.R",
+      "cid": 348,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 31860.0,
+      "sd_seconds": 66.41497451611501,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": -0.9983619983619968,
+      "emission_sd_seconds": 109.44784357924745,
+      "emission_selected": false
+    },
+    {
+      "trip": "378.TA.91-12-j23-1.101.H",
+      "cid": 359,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 31980.0,
+      "sd_seconds": 69.04696657891641,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 26.503030303030304,
+      "emission_sd_seconds": 96.69343146143362,
+      "emission_selected": false
+    },
+    {
+      "trip": "378.TA.91-12-j23-1.101.H",
+      "cid": 359,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 31800.0,
+      "sd_seconds": 69.04696657891641,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 14.106508875739644,
+      "emission_sd_seconds": 90.39407750276212,
+      "emission_selected": false
+    },
+    {
+      "trip": "987.TA.91-11-A-j23-1.176.R",
+      "cid": 360,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 32040.0,
+      "sd_seconds": 62.11289530394271,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 22.45638200183655,
+      "emission_sd_seconds": 80.89912648972113,
+      "emission_selected": false
+    },
+    {
+      "trip": "987.TA.91-11-A-j23-1.176.R",
+      "cid": 360,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 31860.0,
+      "sd_seconds": 62.11289530394271,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 9.064550833781603,
+      "emission_sd_seconds": 77.07870359981585,
+      "emission_selected": true
+    },
+    {
+      "trip": "997.TA.91-12-j23-1.204.R",
+      "cid": 361,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 31800.0,
+      "sd_seconds": 69.04696657891641,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 14.106508875739644,
+      "emission_sd_seconds": 90.39407750276212,
+      "emission_selected": false
+    },
+    {
+      "trip": "262.TA.91-3-D-j23-1.15.R",
+      "cid": 367,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 32100.0,
+      "sd_seconds": 76.91274276737244,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 34.59129759129759,
+      "emission_sd_seconds": 76.45911412319849,
+      "emission_selected": false
+    },
+    {
+      "trip": "262.TA.91-3-D-j23-1.15.R",
+      "cid": 367,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 31980.0,
+      "sd_seconds": 76.91274276737244,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 9.285389167045972,
+      "emission_sd_seconds": 74.1531916040096,
+      "emission_selected": false
+    },
+    {
+      "trip": "136.TA.91-16-A-j23-1.9.H",
+      "cid": 370,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 32040.0,
+      "sd_seconds": 66.41497451611501,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": -11.996745562130178,
+      "emission_sd_seconds": 106.30625341924083,
+      "emission_selected": false
+    },
+    {
+      "trip": "987.TA.91-11-A-j23-1.176.R",
+      "cid": 379,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 32280.0,
+      "sd_seconds": 62.11289530394271,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 22.45638200183655,
+      "emission_sd_seconds": 80.89912648972113,
+      "emission_selected": false
+    },
+    {
+      "trip": "987.TA.91-11-A-j23-1.176.R",
+      "cid": 379,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 32160.0,
+      "sd_seconds": 62.11289530394271,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 9.064550833781603,
+      "emission_sd_seconds": 77.07870359981585,
+      "emission_selected": false
+    },
+    {
+      "trip": "262.TA.91-3-D-j23-1.15.R",
+      "cid": 380,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 32340.0,
+      "sd_seconds": 76.91274276737244,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 34.59129759129759,
+      "emission_sd_seconds": 76.45911412319849,
+      "emission_selected": false
+    },
+    {
+      "trip": "262.TA.91-3-D-j23-1.15.R",
+      "cid": 380,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 32220.0,
+      "sd_seconds": 76.91274276737244,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 9.285389167045972,
+      "emission_sd_seconds": 74.1531916040096,
+      "emission_selected": false
+    },
+    {
+      "trip": "987.TA.91-11-A-j23-1.176.R",
+      "cid": 391,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 32520.0,
+      "sd_seconds": 62.11289530394271,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 22.45638200183655,
+      "emission_sd_seconds": 80.89912648972113,
+      "emission_selected": false
+    },
+    {
+      "trip": "987.TA.91-11-A-j23-1.176.R",
+      "cid": 391,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 32400.0,
+      "sd_seconds": 62.11289530394271,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 9.064550833781603,
+      "emission_sd_seconds": 77.07870359981585,
+      "emission_selected": false
+    },
+    {
+      "trip": "987.TA.91-11-A-j23-1.176.R",
+      "cid": 400,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 32700.0,
+      "sd_seconds": 62.11289530394271,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 22.45638200183655,
+      "emission_sd_seconds": 80.89912648972113,
+      "emission_selected": false
+    },
+    {
+      "trip": "987.TA.91-11-A-j23-1.176.R",
+      "cid": 400,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 32580.0,
+      "sd_seconds": 62.11289530394271,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 9.064550833781603,
+      "emission_sd_seconds": 77.07870359981585,
+      "emission_selected": false
+    },
+    {
+      "trip": "987.TA.91-11-A-j23-1.176.R",
+      "cid": 420,
+      "kind": "arrival",
+      "evidence": "forecast",
+      "predicted_time": 32880.0,
+      "sd_seconds": 62.11289530394271,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 22.45638200183655,
+      "emission_sd_seconds": 80.89912648972113,
+      "emission_selected": false
+    },
+    {
+      "trip": "987.TA.91-11-A-j23-1.176.R",
+      "cid": 420,
+      "kind": "departure",
+      "evidence": "forecast",
+      "predicted_time": 32760.0,
+      "sd_seconds": 62.11289530394271,
+      "receipt_seconds": 28803.0,
+      "emission_bias_seconds": 9.064550833781603,
+      "emission_sd_seconds": 77.07870359981585,
+      "emission_selected": false
+    },
+    {
+      "trip": "10.TA.91-21-E-j23-1.2.H",
+      "evidence": "trip_status",
+      "status": "SCHEDULED",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "1049.TA.91-11-A-j23-1.210.R",
+      "evidence": "trip_status",
+      "status": "SCHEDULED",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "122.TA.91-3-D-j23-1.11.H",
+      "evidence": "trip_status",
+      "status": "SCHEDULED",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "136.TA.91-16-A-j23-1.9.H",
+      "evidence": "trip_status",
+      "status": "SCHEDULED",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "137.TA.91-16-A-j23-1.9.H",
+      "evidence": "trip_status",
+      "status": "SCHEDULED",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "172.TA.91-14-C-j23-1.29.H",
+      "evidence": "trip_status",
+      "status": "SCHEDULED",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "194.TA.91-9-D-j23-1.43.H",
+      "evidence": "trip_status",
+      "status": "SCHEDULED",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "2038.TA.91-1-D-j23-1.388.R",
+      "evidence": "trip_status",
+      "status": "SCHEDULED",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "22.TA.91-19-A-j23-1.5.H",
+      "evidence": "trip_status",
+      "status": "SCHEDULED",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "226.TA.91-15-C-j23-1.122.H",
+      "evidence": "trip_status",
+      "status": "SCHEDULED",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "243.TA.91-2-B-j23-1.4.H",
+      "evidence": "trip_status",
+      "status": "SCHEDULED",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "248.TA.91-7-C-j23-1.22.H",
+      "evidence": "trip_status",
+      "status": "SCHEDULED",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "255.TA.91-3-D-j23-1.15.R",
+      "evidence": "trip_status",
+      "status": "SCHEDULED",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "262.TA.91-3-D-j23-1.15.R",
+      "evidence": "trip_status",
+      "status": "SCHEDULED",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "263.TA.91-8-C-j23-1.24.H",
+      "evidence": "trip_status",
+      "status": "SCHEDULED",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "371.TA.91-6-D-j23-1.36.H",
+      "evidence": "trip_status",
+      "status": "SCHEDULED",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "378.TA.91-12-j23-1.101.H",
+      "evidence": "trip_status",
+      "status": "SCHEDULED",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "386.TA.91-13-j23-1.93.H",
+      "evidence": "trip_status",
+      "status": "SCHEDULED",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "435.TA.91-12-j23-1.110.H",
+      "evidence": "trip_status",
+      "status": "SCHEDULED",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "501.TA.91-16-A-j23-1.74.R",
+      "evidence": "trip_status",
+      "status": "SCHEDULED",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "516.TA.91-11-A-j23-1.94.H",
+      "evidence": "trip_status",
+      "status": "SCHEDULED",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "519.TA.91-16-A-j23-1.75.R",
+      "evidence": "trip_status",
+      "status": "SCHEDULED",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "530.TA.91-15-C-j23-1.58.R",
+      "evidence": "trip_status",
+      "status": "SCHEDULED",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "62.TA.91-19-A-j23-1.18.R",
+      "evidence": "trip_status",
+      "status": "SCHEDULED",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "749.TA.91-12-j23-1.154.R",
+      "evidence": "trip_status",
+      "status": "SCHEDULED",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "754.TA.91-7-C-j23-1.93.R",
+      "evidence": "trip_status",
+      "status": "SCHEDULED",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "758.TA.91-7-C-j23-1.93.R",
+      "evidence": "trip_status",
+      "status": "SCHEDULED",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "877.TA.91-36-A-j23-1.142.H",
+      "evidence": "trip_status",
+      "status": "SCHEDULED",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "919.TA.91-2-B-j23-1.121.R",
+      "evidence": "trip_status",
+      "status": "SCHEDULED",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "952.TA.91-5-C-j23-1.381.R",
+      "evidence": "trip_status",
+      "status": "SCHEDULED",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "987.TA.91-11-A-j23-1.176.R",
+      "evidence": "trip_status",
+      "status": "SCHEDULED",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "997.TA.91-12-j23-1.204.R",
+      "evidence": "trip_status",
+      "status": "SCHEDULED",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "877.TA.91-36-A-j23-1.142.H",
+      "cid": 126,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "519.TA.91-16-A-j23-1.75.R",
+      "cid": 143,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28203.0
+    },
+    {
+      "trip": "519.TA.91-16-A-j23-1.75.R",
+      "cid": 143,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "877.TA.91-36-A-j23-1.142.H",
+      "cid": 146,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "758.TA.91-7-C-j23-1.93.R",
+      "cid": 151,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28203.0
+    },
+    {
+      "trip": "758.TA.91-7-C-j23-1.93.R",
+      "cid": 151,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "10.TA.91-21-E-j23-1.2.H",
+      "cid": 152,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "10.TA.91-21-E-j23-1.2.H",
+      "cid": 152,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "22.TA.91-19-A-j23-1.5.H",
+      "cid": 156,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "435.TA.91-12-j23-1.110.H",
+      "cid": 157,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "62.TA.91-19-A-j23-1.18.R",
+      "cid": 158,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "62.TA.91-19-A-j23-1.18.R",
+      "cid": 158,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "749.TA.91-12-j23-1.154.R",
+      "cid": 159,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 27603.0
+    },
+    {
+      "trip": "749.TA.91-12-j23-1.154.R",
+      "cid": 159,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "243.TA.91-2-B-j23-1.4.H",
+      "cid": 168,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "519.TA.91-16-A-j23-1.75.R",
+      "cid": 169,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "519.TA.91-16-A-j23-1.75.R",
+      "cid": 169,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28203.0
+    },
+    {
+      "trip": "919.TA.91-2-B-j23-1.121.R",
+      "cid": 170,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "919.TA.91-2-B-j23-1.121.R",
+      "cid": 170,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28203.0
+    },
+    {
+      "trip": "137.TA.91-16-A-j23-1.9.H",
+      "cid": 173,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "137.TA.91-16-A-j23-1.9.H",
+      "cid": 173,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "758.TA.91-7-C-j23-1.93.R",
+      "cid": 176,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "758.TA.91-7-C-j23-1.93.R",
+      "cid": 176,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28203.0
+    },
+    {
+      "trip": "919.TA.91-2-B-j23-1.121.R",
+      "cid": 177,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "919.TA.91-2-B-j23-1.121.R",
+      "cid": 177,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "2038.TA.91-1-D-j23-1.388.R",
+      "cid": 178,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "2038.TA.91-1-D-j23-1.388.R",
+      "cid": 178,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "386.TA.91-13-j23-1.93.H",
+      "cid": 180,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "386.TA.91-13-j23-1.93.H",
+      "cid": 180,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "435.TA.91-12-j23-1.110.H",
+      "cid": 181,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "435.TA.91-12-j23-1.110.H",
+      "cid": 181,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "749.TA.91-12-j23-1.154.R",
+      "cid": 185,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "749.TA.91-12-j23-1.154.R",
+      "cid": 185,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 27603.0
+    },
+    {
+      "trip": "10.TA.91-21-E-j23-1.2.H",
+      "cid": 186,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "10.TA.91-21-E-j23-1.2.H",
+      "cid": 186,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "22.TA.91-19-A-j23-1.5.H",
+      "cid": 187,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "263.TA.91-8-C-j23-1.24.H",
+      "cid": 188,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "263.TA.91-8-C-j23-1.24.H",
+      "cid": 188,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "519.TA.91-16-A-j23-1.75.R",
+      "cid": 189,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "519.TA.91-16-A-j23-1.75.R",
+      "cid": 189,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "877.TA.91-36-A-j23-1.142.H",
+      "cid": 190,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "877.TA.91-36-A-j23-1.142.H",
+      "cid": 190,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "137.TA.91-16-A-j23-1.9.H",
+      "cid": 191,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "137.TA.91-16-A-j23-1.9.H",
+      "cid": 191,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "243.TA.91-2-B-j23-1.4.H",
+      "cid": 192,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "62.TA.91-19-A-j23-1.18.R",
+      "cid": 194,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "62.TA.91-19-A-j23-1.18.R",
+      "cid": 194,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "749.TA.91-12-j23-1.154.R",
+      "cid": 195,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "749.TA.91-12-j23-1.154.R",
+      "cid": 195,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "758.TA.91-7-C-j23-1.93.R",
+      "cid": 196,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "758.TA.91-7-C-j23-1.93.R",
+      "cid": 196,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "172.TA.91-14-C-j23-1.29.H",
+      "cid": 201,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "263.TA.91-8-C-j23-1.24.H",
+      "cid": 202,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "263.TA.91-8-C-j23-1.24.H",
+      "cid": 202,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "10.TA.91-21-E-j23-1.2.H",
+      "cid": 203,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "10.TA.91-21-E-j23-1.2.H",
+      "cid": 203,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "2038.TA.91-1-D-j23-1.388.R",
+      "cid": 204,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "2038.TA.91-1-D-j23-1.388.R",
+      "cid": 204,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "435.TA.91-12-j23-1.110.H",
+      "cid": 205,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "435.TA.91-12-j23-1.110.H",
+      "cid": 205,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "919.TA.91-2-B-j23-1.121.R",
+      "cid": 207,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "519.TA.91-16-A-j23-1.75.R",
+      "cid": 209,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "519.TA.91-16-A-j23-1.75.R",
+      "cid": 209,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "137.TA.91-16-A-j23-1.9.H",
+      "cid": 211,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "137.TA.91-16-A-j23-1.9.H",
+      "cid": 211,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "194.TA.91-9-D-j23-1.43.H",
+      "cid": 212,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "386.TA.91-13-j23-1.93.H",
+      "cid": 213,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "386.TA.91-13-j23-1.93.H",
+      "cid": 213,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "435.TA.91-12-j23-1.110.H",
+      "cid": 214,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "435.TA.91-12-j23-1.110.H",
+      "cid": 214,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "749.TA.91-12-j23-1.154.R",
+      "cid": 215,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "749.TA.91-12-j23-1.154.R",
+      "cid": 215,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "877.TA.91-36-A-j23-1.142.H",
+      "cid": 216,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "952.TA.91-5-C-j23-1.381.R",
+      "cid": 217,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "952.TA.91-5-C-j23-1.381.R",
+      "cid": 217,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "243.TA.91-2-B-j23-1.4.H",
+      "cid": 218,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "243.TA.91-2-B-j23-1.4.H",
+      "cid": 218,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "255.TA.91-3-D-j23-1.15.R",
+      "cid": 219,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "255.TA.91-3-D-j23-1.15.R",
+      "cid": 219,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "530.TA.91-15-C-j23-1.58.R",
+      "cid": 220,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "530.TA.91-15-C-j23-1.58.R",
+      "cid": 220,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "62.TA.91-19-A-j23-1.18.R",
+      "cid": 221,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "62.TA.91-19-A-j23-1.18.R",
+      "cid": 221,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "137.TA.91-16-A-j23-1.9.H",
+      "cid": 222,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "137.TA.91-16-A-j23-1.9.H",
+      "cid": 222,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "263.TA.91-8-C-j23-1.24.H",
+      "cid": 223,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "263.TA.91-8-C-j23-1.24.H",
+      "cid": 223,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "519.TA.91-16-A-j23-1.75.R",
+      "cid": 224,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "519.TA.91-16-A-j23-1.75.R",
+      "cid": 224,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "952.TA.91-5-C-j23-1.381.R",
+      "cid": 226,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "952.TA.91-5-C-j23-1.381.R",
+      "cid": 226,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "172.TA.91-14-C-j23-1.29.H",
+      "cid": 227,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "172.TA.91-14-C-j23-1.29.H",
+      "cid": 227,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "194.TA.91-9-D-j23-1.43.H",
+      "cid": 228,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "194.TA.91-9-D-j23-1.43.H",
+      "cid": 228,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "22.TA.91-19-A-j23-1.5.H",
+      "cid": 229,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "243.TA.91-2-B-j23-1.4.H",
+      "cid": 230,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "243.TA.91-2-B-j23-1.4.H",
+      "cid": 230,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "248.TA.91-7-C-j23-1.22.H",
+      "cid": 231,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "263.TA.91-8-C-j23-1.24.H",
+      "cid": 232,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "263.TA.91-8-C-j23-1.24.H",
+      "cid": 232,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "516.TA.91-11-A-j23-1.94.H",
+      "cid": 233,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "516.TA.91-11-A-j23-1.94.H",
+      "cid": 233,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "1049.TA.91-11-A-j23-1.210.R",
+      "cid": 235,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "1049.TA.91-11-A-j23-1.210.R",
+      "cid": 235,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "435.TA.91-12-j23-1.110.H",
+      "cid": 236,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "435.TA.91-12-j23-1.110.H",
+      "cid": 236,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "749.TA.91-12-j23-1.154.R",
+      "cid": 237,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "749.TA.91-12-j23-1.154.R",
+      "cid": 237,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "248.TA.91-7-C-j23-1.22.H",
+      "cid": 238,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "248.TA.91-7-C-j23-1.22.H",
+      "cid": 238,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "371.TA.91-6-D-j23-1.36.H",
+      "cid": 239,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "371.TA.91-6-D-j23-1.36.H",
+      "cid": 239,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "255.TA.91-3-D-j23-1.15.R",
+      "cid": 242,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "255.TA.91-3-D-j23-1.15.R",
+      "cid": 242,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "530.TA.91-15-C-j23-1.58.R",
+      "cid": 243,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "530.TA.91-15-C-j23-1.58.R",
+      "cid": 243,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "137.TA.91-16-A-j23-1.9.H",
+      "cid": 246,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "516.TA.91-11-A-j23-1.94.H",
+      "cid": 248,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "516.TA.91-11-A-j23-1.94.H",
+      "cid": 248,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "530.TA.91-15-C-j23-1.58.R",
+      "cid": 249,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "952.TA.91-5-C-j23-1.381.R",
+      "cid": 251,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "1049.TA.91-11-A-j23-1.210.R",
+      "cid": 252,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "1049.TA.91-11-A-j23-1.210.R",
+      "cid": 252,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "122.TA.91-3-D-j23-1.11.H",
+      "cid": 253,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "122.TA.91-3-D-j23-1.11.H",
+      "cid": 253,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "263.TA.91-8-C-j23-1.24.H",
+      "cid": 255,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "371.TA.91-6-D-j23-1.36.H",
+      "cid": 256,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "371.TA.91-6-D-j23-1.36.H",
+      "cid": 256,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "255.TA.91-3-D-j23-1.15.R",
+      "cid": 257,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "255.TA.91-3-D-j23-1.15.R",
+      "cid": 257,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "516.TA.91-11-A-j23-1.94.H",
+      "cid": 258,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "516.TA.91-11-A-j23-1.94.H",
+      "cid": 258,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "194.TA.91-9-D-j23-1.43.H",
+      "cid": 262,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "194.TA.91-9-D-j23-1.43.H",
+      "cid": 262,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "1049.TA.91-11-A-j23-1.210.R",
+      "cid": 263,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "1049.TA.91-11-A-j23-1.210.R",
+      "cid": 263,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "122.TA.91-3-D-j23-1.11.H",
+      "cid": 264,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "122.TA.91-3-D-j23-1.11.H",
+      "cid": 264,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "371.TA.91-6-D-j23-1.36.H",
+      "cid": 268,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "1049.TA.91-11-A-j23-1.210.R",
+      "cid": 270,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "1049.TA.91-11-A-j23-1.210.R",
+      "cid": 270,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "194.TA.91-9-D-j23-1.43.H",
+      "cid": 271,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "194.TA.91-9-D-j23-1.43.H",
+      "cid": 271,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "226.TA.91-15-C-j23-1.122.H",
+      "cid": 272,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "226.TA.91-15-C-j23-1.122.H",
+      "cid": 272,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "501.TA.91-16-A-j23-1.74.R",
+      "cid": 273,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "516.TA.91-11-A-j23-1.94.H",
+      "cid": 274,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "516.TA.91-11-A-j23-1.94.H",
+      "cid": 274,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "371.TA.91-6-D-j23-1.36.H",
+      "cid": 279,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "754.TA.91-7-C-j23-1.93.R",
+      "cid": 281,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "754.TA.91-7-C-j23-1.93.R",
+      "cid": 281,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "122.TA.91-3-D-j23-1.11.H",
+      "cid": 283,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "122.TA.91-3-D-j23-1.11.H",
+      "cid": 283,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "378.TA.91-12-j23-1.101.H",
+      "cid": 286,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "997.TA.91-12-j23-1.204.R",
+      "cid": 289,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "997.TA.91-12-j23-1.204.R",
+      "cid": 289,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "1049.TA.91-11-A-j23-1.210.R",
+      "cid": 290,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "1049.TA.91-11-A-j23-1.210.R",
+      "cid": 290,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "226.TA.91-15-C-j23-1.122.H",
+      "cid": 292,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "226.TA.91-15-C-j23-1.122.H",
+      "cid": 292,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "516.TA.91-11-A-j23-1.94.H",
+      "cid": 294,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "516.TA.91-11-A-j23-1.94.H",
+      "cid": 294,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "501.TA.91-16-A-j23-1.74.R",
+      "cid": 297,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "122.TA.91-3-D-j23-1.11.H",
+      "cid": 299,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "122.TA.91-3-D-j23-1.11.H",
+      "cid": 299,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "136.TA.91-16-A-j23-1.9.H",
+      "cid": 300,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "136.TA.91-16-A-j23-1.9.H",
+      "cid": 300,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "754.TA.91-7-C-j23-1.93.R",
+      "cid": 303,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "754.TA.91-7-C-j23-1.93.R",
+      "cid": 303,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "226.TA.91-15-C-j23-1.122.H",
+      "cid": 308,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "378.TA.91-12-j23-1.101.H",
+      "cid": 310,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "378.TA.91-12-j23-1.101.H",
+      "cid": 310,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "997.TA.91-12-j23-1.204.R",
+      "cid": 313,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "997.TA.91-12-j23-1.204.R",
+      "cid": 313,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "501.TA.91-16-A-j23-1.74.R",
+      "cid": 316,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "501.TA.91-16-A-j23-1.74.R",
+      "cid": 316,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "136.TA.91-16-A-j23-1.9.H",
+      "cid": 317,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "136.TA.91-16-A-j23-1.9.H",
+      "cid": 317,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "754.TA.91-7-C-j23-1.93.R",
+      "cid": 321,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "754.TA.91-7-C-j23-1.93.R",
+      "cid": 321,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "997.TA.91-12-j23-1.204.R",
+      "cid": 322,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "997.TA.91-12-j23-1.204.R",
+      "cid": 322,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "378.TA.91-12-j23-1.101.H",
+      "cid": 328,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "378.TA.91-12-j23-1.101.H",
+      "cid": 328,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "501.TA.91-16-A-j23-1.74.R",
+      "cid": 334,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "136.TA.91-16-A-j23-1.9.H",
+      "cid": 336,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "136.TA.91-16-A-j23-1.9.H",
+      "cid": 336,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "378.TA.91-12-j23-1.101.H",
+      "cid": 338,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "378.TA.91-12-j23-1.101.H",
+      "cid": 338,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "997.TA.91-12-j23-1.204.R",
+      "cid": 340,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "997.TA.91-12-j23-1.204.R",
+      "cid": 340,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "262.TA.91-3-D-j23-1.15.R",
+      "cid": 342,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "262.TA.91-3-D-j23-1.15.R",
+      "cid": 342,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "136.TA.91-16-A-j23-1.9.H",
+      "cid": 345,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "136.TA.91-16-A-j23-1.9.H",
+      "cid": 345,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "501.TA.91-16-A-j23-1.74.R",
+      "cid": 348,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "378.TA.91-12-j23-1.101.H",
+      "cid": 359,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "378.TA.91-12-j23-1.101.H",
+      "cid": 359,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "987.TA.91-11-A-j23-1.176.R",
+      "cid": 360,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "987.TA.91-11-A-j23-1.176.R",
+      "cid": 360,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "997.TA.91-12-j23-1.204.R",
+      "cid": 361,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "262.TA.91-3-D-j23-1.15.R",
+      "cid": 367,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "262.TA.91-3-D-j23-1.15.R",
+      "cid": 367,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "136.TA.91-16-A-j23-1.9.H",
+      "cid": 370,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "987.TA.91-11-A-j23-1.176.R",
+      "cid": 379,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "987.TA.91-11-A-j23-1.176.R",
+      "cid": 379,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "262.TA.91-3-D-j23-1.15.R",
+      "cid": 380,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "262.TA.91-3-D-j23-1.15.R",
+      "cid": 380,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "987.TA.91-11-A-j23-1.176.R",
+      "cid": 391,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "987.TA.91-11-A-j23-1.176.R",
+      "cid": 391,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "987.TA.91-11-A-j23-1.176.R",
+      "cid": 400,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "987.TA.91-11-A-j23-1.176.R",
+      "cid": 400,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "987.TA.91-11-A-j23-1.176.R",
+      "cid": 420,
+      "kind": "arrival",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "987.TA.91-11-A-j23-1.176.R",
+      "cid": 420,
+      "kind": "departure",
+      "evidence": "endpoint_status",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "877.TA.91-36-A-j23-1.142.H",
+      "cid": 126,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "519.TA.91-16-A-j23-1.75.R",
+      "cid": 143,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28203.0
+    },
+    {
+      "trip": "519.TA.91-16-A-j23-1.75.R",
+      "cid": 143,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "877.TA.91-36-A-j23-1.142.H",
+      "cid": 146,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "758.TA.91-7-C-j23-1.93.R",
+      "cid": 151,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28203.0
+    },
+    {
+      "trip": "758.TA.91-7-C-j23-1.93.R",
+      "cid": 151,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "10.TA.91-21-E-j23-1.2.H",
+      "cid": 152,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "10.TA.91-21-E-j23-1.2.H",
+      "cid": 152,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "22.TA.91-19-A-j23-1.5.H",
+      "cid": 156,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "435.TA.91-12-j23-1.110.H",
+      "cid": 157,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "62.TA.91-19-A-j23-1.18.R",
+      "cid": 158,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "62.TA.91-19-A-j23-1.18.R",
+      "cid": 158,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "749.TA.91-12-j23-1.154.R",
+      "cid": 159,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 27603.0
+    },
+    {
+      "trip": "749.TA.91-12-j23-1.154.R",
+      "cid": 159,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "243.TA.91-2-B-j23-1.4.H",
+      "cid": 168,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "519.TA.91-16-A-j23-1.75.R",
+      "cid": 169,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "519.TA.91-16-A-j23-1.75.R",
+      "cid": 169,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28203.0
+    },
+    {
+      "trip": "919.TA.91-2-B-j23-1.121.R",
+      "cid": 170,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "919.TA.91-2-B-j23-1.121.R",
+      "cid": 170,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28203.0
+    },
+    {
+      "trip": "137.TA.91-16-A-j23-1.9.H",
+      "cid": 173,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "137.TA.91-16-A-j23-1.9.H",
+      "cid": 173,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "758.TA.91-7-C-j23-1.93.R",
+      "cid": 176,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "758.TA.91-7-C-j23-1.93.R",
+      "cid": 176,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28203.0
+    },
+    {
+      "trip": "919.TA.91-2-B-j23-1.121.R",
+      "cid": 177,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "919.TA.91-2-B-j23-1.121.R",
+      "cid": 177,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "2038.TA.91-1-D-j23-1.388.R",
+      "cid": 178,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "2038.TA.91-1-D-j23-1.388.R",
+      "cid": 178,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "386.TA.91-13-j23-1.93.H",
+      "cid": 180,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "386.TA.91-13-j23-1.93.H",
+      "cid": 180,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "435.TA.91-12-j23-1.110.H",
+      "cid": 181,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "435.TA.91-12-j23-1.110.H",
+      "cid": 181,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "749.TA.91-12-j23-1.154.R",
+      "cid": 185,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "749.TA.91-12-j23-1.154.R",
+      "cid": 185,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 27603.0
+    },
+    {
+      "trip": "10.TA.91-21-E-j23-1.2.H",
+      "cid": 186,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "10.TA.91-21-E-j23-1.2.H",
+      "cid": 186,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "22.TA.91-19-A-j23-1.5.H",
+      "cid": 187,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "263.TA.91-8-C-j23-1.24.H",
+      "cid": 188,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "263.TA.91-8-C-j23-1.24.H",
+      "cid": 188,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "519.TA.91-16-A-j23-1.75.R",
+      "cid": 189,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "519.TA.91-16-A-j23-1.75.R",
+      "cid": 189,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "877.TA.91-36-A-j23-1.142.H",
+      "cid": 190,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "877.TA.91-36-A-j23-1.142.H",
+      "cid": 190,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "137.TA.91-16-A-j23-1.9.H",
+      "cid": 191,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "137.TA.91-16-A-j23-1.9.H",
+      "cid": 191,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "243.TA.91-2-B-j23-1.4.H",
+      "cid": 192,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "62.TA.91-19-A-j23-1.18.R",
+      "cid": 194,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "62.TA.91-19-A-j23-1.18.R",
+      "cid": 194,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "749.TA.91-12-j23-1.154.R",
+      "cid": 195,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "749.TA.91-12-j23-1.154.R",
+      "cid": 195,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "758.TA.91-7-C-j23-1.93.R",
+      "cid": 196,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "758.TA.91-7-C-j23-1.93.R",
+      "cid": 196,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "172.TA.91-14-C-j23-1.29.H",
+      "cid": 201,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "263.TA.91-8-C-j23-1.24.H",
+      "cid": 202,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "263.TA.91-8-C-j23-1.24.H",
+      "cid": 202,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "10.TA.91-21-E-j23-1.2.H",
+      "cid": 203,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "10.TA.91-21-E-j23-1.2.H",
+      "cid": 203,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "2038.TA.91-1-D-j23-1.388.R",
+      "cid": 204,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "2038.TA.91-1-D-j23-1.388.R",
+      "cid": 204,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "435.TA.91-12-j23-1.110.H",
+      "cid": 205,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "435.TA.91-12-j23-1.110.H",
+      "cid": 205,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "919.TA.91-2-B-j23-1.121.R",
+      "cid": 207,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "519.TA.91-16-A-j23-1.75.R",
+      "cid": 209,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "519.TA.91-16-A-j23-1.75.R",
+      "cid": 209,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "137.TA.91-16-A-j23-1.9.H",
+      "cid": 211,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "137.TA.91-16-A-j23-1.9.H",
+      "cid": 211,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "194.TA.91-9-D-j23-1.43.H",
+      "cid": 212,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "386.TA.91-13-j23-1.93.H",
+      "cid": 213,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "386.TA.91-13-j23-1.93.H",
+      "cid": 213,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "435.TA.91-12-j23-1.110.H",
+      "cid": 214,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "435.TA.91-12-j23-1.110.H",
+      "cid": 214,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "749.TA.91-12-j23-1.154.R",
+      "cid": 215,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "749.TA.91-12-j23-1.154.R",
+      "cid": 215,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "877.TA.91-36-A-j23-1.142.H",
+      "cid": 216,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "952.TA.91-5-C-j23-1.381.R",
+      "cid": 217,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "952.TA.91-5-C-j23-1.381.R",
+      "cid": 217,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "243.TA.91-2-B-j23-1.4.H",
+      "cid": 218,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "243.TA.91-2-B-j23-1.4.H",
+      "cid": 218,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "255.TA.91-3-D-j23-1.15.R",
+      "cid": 219,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "255.TA.91-3-D-j23-1.15.R",
+      "cid": 219,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "530.TA.91-15-C-j23-1.58.R",
+      "cid": 220,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "530.TA.91-15-C-j23-1.58.R",
+      "cid": 220,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "62.TA.91-19-A-j23-1.18.R",
+      "cid": 221,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "62.TA.91-19-A-j23-1.18.R",
+      "cid": 221,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "137.TA.91-16-A-j23-1.9.H",
+      "cid": 222,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "137.TA.91-16-A-j23-1.9.H",
+      "cid": 222,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "263.TA.91-8-C-j23-1.24.H",
+      "cid": 223,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "263.TA.91-8-C-j23-1.24.H",
+      "cid": 223,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "519.TA.91-16-A-j23-1.75.R",
+      "cid": 224,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "519.TA.91-16-A-j23-1.75.R",
+      "cid": 224,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "952.TA.91-5-C-j23-1.381.R",
+      "cid": 226,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "952.TA.91-5-C-j23-1.381.R",
+      "cid": 226,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "172.TA.91-14-C-j23-1.29.H",
+      "cid": 227,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "172.TA.91-14-C-j23-1.29.H",
+      "cid": 227,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "194.TA.91-9-D-j23-1.43.H",
+      "cid": 228,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "194.TA.91-9-D-j23-1.43.H",
+      "cid": 228,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "22.TA.91-19-A-j23-1.5.H",
+      "cid": 229,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "243.TA.91-2-B-j23-1.4.H",
+      "cid": 230,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "243.TA.91-2-B-j23-1.4.H",
+      "cid": 230,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "248.TA.91-7-C-j23-1.22.H",
+      "cid": 231,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "263.TA.91-8-C-j23-1.24.H",
+      "cid": 232,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "263.TA.91-8-C-j23-1.24.H",
+      "cid": 232,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "516.TA.91-11-A-j23-1.94.H",
+      "cid": 233,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "516.TA.91-11-A-j23-1.94.H",
+      "cid": 233,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "1049.TA.91-11-A-j23-1.210.R",
+      "cid": 235,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "1049.TA.91-11-A-j23-1.210.R",
+      "cid": 235,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "435.TA.91-12-j23-1.110.H",
+      "cid": 236,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "435.TA.91-12-j23-1.110.H",
+      "cid": 236,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "749.TA.91-12-j23-1.154.R",
+      "cid": 237,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "749.TA.91-12-j23-1.154.R",
+      "cid": 237,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "248.TA.91-7-C-j23-1.22.H",
+      "cid": 238,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "248.TA.91-7-C-j23-1.22.H",
+      "cid": 238,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "371.TA.91-6-D-j23-1.36.H",
+      "cid": 239,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "371.TA.91-6-D-j23-1.36.H",
+      "cid": 239,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "255.TA.91-3-D-j23-1.15.R",
+      "cid": 242,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "255.TA.91-3-D-j23-1.15.R",
+      "cid": 242,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "530.TA.91-15-C-j23-1.58.R",
+      "cid": 243,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "530.TA.91-15-C-j23-1.58.R",
+      "cid": 243,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "137.TA.91-16-A-j23-1.9.H",
+      "cid": 246,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "516.TA.91-11-A-j23-1.94.H",
+      "cid": 248,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "516.TA.91-11-A-j23-1.94.H",
+      "cid": 248,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "530.TA.91-15-C-j23-1.58.R",
+      "cid": 249,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "952.TA.91-5-C-j23-1.381.R",
+      "cid": 251,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "1049.TA.91-11-A-j23-1.210.R",
+      "cid": 252,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "1049.TA.91-11-A-j23-1.210.R",
+      "cid": 252,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "122.TA.91-3-D-j23-1.11.H",
+      "cid": 253,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "122.TA.91-3-D-j23-1.11.H",
+      "cid": 253,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "263.TA.91-8-C-j23-1.24.H",
+      "cid": 255,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "371.TA.91-6-D-j23-1.36.H",
+      "cid": 256,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "371.TA.91-6-D-j23-1.36.H",
+      "cid": 256,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "255.TA.91-3-D-j23-1.15.R",
+      "cid": 257,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "255.TA.91-3-D-j23-1.15.R",
+      "cid": 257,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "516.TA.91-11-A-j23-1.94.H",
+      "cid": 258,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "516.TA.91-11-A-j23-1.94.H",
+      "cid": 258,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "194.TA.91-9-D-j23-1.43.H",
+      "cid": 262,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "194.TA.91-9-D-j23-1.43.H",
+      "cid": 262,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "1049.TA.91-11-A-j23-1.210.R",
+      "cid": 263,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "1049.TA.91-11-A-j23-1.210.R",
+      "cid": 263,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "122.TA.91-3-D-j23-1.11.H",
+      "cid": 264,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "122.TA.91-3-D-j23-1.11.H",
+      "cid": 264,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "371.TA.91-6-D-j23-1.36.H",
+      "cid": 268,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "1049.TA.91-11-A-j23-1.210.R",
+      "cid": 270,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "1049.TA.91-11-A-j23-1.210.R",
+      "cid": 270,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "194.TA.91-9-D-j23-1.43.H",
+      "cid": 271,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "194.TA.91-9-D-j23-1.43.H",
+      "cid": 271,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "226.TA.91-15-C-j23-1.122.H",
+      "cid": 272,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "226.TA.91-15-C-j23-1.122.H",
+      "cid": 272,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "501.TA.91-16-A-j23-1.74.R",
+      "cid": 273,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "516.TA.91-11-A-j23-1.94.H",
+      "cid": 274,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "516.TA.91-11-A-j23-1.94.H",
+      "cid": 274,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "371.TA.91-6-D-j23-1.36.H",
+      "cid": 279,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "754.TA.91-7-C-j23-1.93.R",
+      "cid": 281,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "754.TA.91-7-C-j23-1.93.R",
+      "cid": 281,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "122.TA.91-3-D-j23-1.11.H",
+      "cid": 283,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "122.TA.91-3-D-j23-1.11.H",
+      "cid": 283,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "378.TA.91-12-j23-1.101.H",
+      "cid": 286,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "997.TA.91-12-j23-1.204.R",
+      "cid": 289,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "997.TA.91-12-j23-1.204.R",
+      "cid": 289,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "1049.TA.91-11-A-j23-1.210.R",
+      "cid": 290,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "1049.TA.91-11-A-j23-1.210.R",
+      "cid": 290,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "226.TA.91-15-C-j23-1.122.H",
+      "cid": 292,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "226.TA.91-15-C-j23-1.122.H",
+      "cid": 292,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "516.TA.91-11-A-j23-1.94.H",
+      "cid": 294,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "516.TA.91-11-A-j23-1.94.H",
+      "cid": 294,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "501.TA.91-16-A-j23-1.74.R",
+      "cid": 297,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "122.TA.91-3-D-j23-1.11.H",
+      "cid": 299,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "122.TA.91-3-D-j23-1.11.H",
+      "cid": 299,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "136.TA.91-16-A-j23-1.9.H",
+      "cid": 300,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "136.TA.91-16-A-j23-1.9.H",
+      "cid": 300,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "754.TA.91-7-C-j23-1.93.R",
+      "cid": 303,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "754.TA.91-7-C-j23-1.93.R",
+      "cid": 303,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "226.TA.91-15-C-j23-1.122.H",
+      "cid": 308,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "378.TA.91-12-j23-1.101.H",
+      "cid": 310,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "378.TA.91-12-j23-1.101.H",
+      "cid": 310,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "997.TA.91-12-j23-1.204.R",
+      "cid": 313,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "997.TA.91-12-j23-1.204.R",
+      "cid": 313,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "501.TA.91-16-A-j23-1.74.R",
+      "cid": 316,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "501.TA.91-16-A-j23-1.74.R",
+      "cid": 316,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "136.TA.91-16-A-j23-1.9.H",
+      "cid": 317,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "136.TA.91-16-A-j23-1.9.H",
+      "cid": 317,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "754.TA.91-7-C-j23-1.93.R",
+      "cid": 321,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "754.TA.91-7-C-j23-1.93.R",
+      "cid": 321,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "997.TA.91-12-j23-1.204.R",
+      "cid": 322,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "997.TA.91-12-j23-1.204.R",
+      "cid": 322,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "378.TA.91-12-j23-1.101.H",
+      "cid": 328,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "378.TA.91-12-j23-1.101.H",
+      "cid": 328,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "501.TA.91-16-A-j23-1.74.R",
+      "cid": 334,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "136.TA.91-16-A-j23-1.9.H",
+      "cid": 336,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "136.TA.91-16-A-j23-1.9.H",
+      "cid": 336,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "378.TA.91-12-j23-1.101.H",
+      "cid": 338,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "378.TA.91-12-j23-1.101.H",
+      "cid": 338,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "997.TA.91-12-j23-1.204.R",
+      "cid": 340,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "997.TA.91-12-j23-1.204.R",
+      "cid": 340,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "262.TA.91-3-D-j23-1.15.R",
+      "cid": 342,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "262.TA.91-3-D-j23-1.15.R",
+      "cid": 342,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "136.TA.91-16-A-j23-1.9.H",
+      "cid": 345,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "136.TA.91-16-A-j23-1.9.H",
+      "cid": 345,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "501.TA.91-16-A-j23-1.74.R",
+      "cid": 348,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "378.TA.91-12-j23-1.101.H",
+      "cid": 359,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "378.TA.91-12-j23-1.101.H",
+      "cid": 359,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "987.TA.91-11-A-j23-1.176.R",
+      "cid": 360,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "987.TA.91-11-A-j23-1.176.R",
+      "cid": 360,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "997.TA.91-12-j23-1.204.R",
+      "cid": 361,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "262.TA.91-3-D-j23-1.15.R",
+      "cid": 367,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "262.TA.91-3-D-j23-1.15.R",
+      "cid": 367,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "136.TA.91-16-A-j23-1.9.H",
+      "cid": 370,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "987.TA.91-11-A-j23-1.176.R",
+      "cid": 379,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "987.TA.91-11-A-j23-1.176.R",
+      "cid": 379,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "262.TA.91-3-D-j23-1.15.R",
+      "cid": 380,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "262.TA.91-3-D-j23-1.15.R",
+      "cid": 380,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "987.TA.91-11-A-j23-1.176.R",
+      "cid": 391,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "987.TA.91-11-A-j23-1.176.R",
+      "cid": 391,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "987.TA.91-11-A-j23-1.176.R",
+      "cid": 400,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "987.TA.91-11-A-j23-1.176.R",
+      "cid": 400,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "987.TA.91-11-A-j23-1.176.R",
+      "cid": 420,
+      "kind": "arrival",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    },
+    {
+      "trip": "987.TA.91-11-A-j23-1.176.R",
+      "cid": 420,
+      "kind": "departure",
+      "evidence": "endpoint_service_notice",
+      "status": "FORECAST",
+      "receipt_seconds": 28803.0
+    }
+  ],
+  "observation_contract": {
+    "scope": "Root-frozen station-local departures; independent of action menu",
+    "station_to_cids": [
+      {
+        "stop": 0,
+        "cids": [
+          205,
+          207,
+          209,
+          211,
+          215,
+          227,
+          229,
+          231,
+          243,
+          251,
+          255,
+          257,
+          262,
+          263,
+          268,
+          274,
+          283,
+          308,
+          321,
+          334,
+          340
+        ]
+      },
+      {
+        "stop": 1,
+        "cids": [
+          236,
+          248,
+          313
+        ]
+      },
+      {
+        "stop": 3,
+        "cids": [
+          300
+        ]
+      },
+      {
+        "stop": 4,
+        "cids": [
+          151,
+          158,
+          169,
+          186,
+          192,
+          201,
+          204,
+          212,
+          213,
+          239,
+          253,
+          272,
+          281,
+          297
+        ]
+      },
+      {
+        "stop": 9,
+        "cids": [
+          273
+        ]
+      },
+      {
+        "stop": 10,
+        "cids": [
+          189,
+          195,
+          226,
+          228,
+          256,
+          258,
+          264,
+          292,
+          303,
+          316,
+          322
+        ]
+      },
+      {
+        "stop": 12,
+        "cids": [
+          286,
+          342,
+          360
+        ]
+      },
+      {
+        "stop": 15,
+        "cids": [
+          289
+        ]
+      }
+    ],
+    "observation_window": "Original platform entry through departure from station; entry and ready remain distinct",
+    "current_offer": "All simultaneous observed departures; only visible action-menu vehicles are boardable"
+  },
+  "cost": {
+    "process_cpu": 10.000256432,
+    "wall": 10.008938892999936
+  },
+  "scope": "Same V53 causal targets, impact screening and original budgets; goal-dominance reduction and exact eligible terminal-platform integration. Terminal integration retains budget bounds without internal impact pruning. No new controller or independent method novelty claimed.",
+  "difference_interval": [
+    -2435.283355275271,
+    2257.278764066865
+  ],
+  "root_bounds": {
+    "alight": {
+      "lower": 29681.360358805316,
+      "upper": 32130.0,
+      "commitment": null
+    },
+    "continue": {
+      "lower": 29872.591922373984,
+      "upper": 32130.0,
+      "commitment": null
+    }
+  },
+  "impact_cutoff": 0.01,
+  "impact_scope": "Chance-path influence heuristic only. Every skipped probability retains a physical interval. The cutoff is not the total error, visitation under the optimal policy, or a probability filter.",
+  "semantic": {
+    "ride_views": 8,
+    "platform_views": 17,
+    "goal_barriers": 6,
+    "dropped_path_positions": 6,
+    "dropped_exits": 6
+  },
+  "query_index": 39,
+  "root_index": 32,
+  "prefix_cost": {
+    "process_cpu": 0.002287794000000787,
+    "wall": 0.0022900050000771444
+  },
+  "complete_cost": {
+    "process_cpu": 10.002749220000002,
+    "wall": 10.01144923000004
+  },
+  "audit_scope": "cProfile overhead is charged inside original 10 CPU-second cap. Diagnosis only; do not compare performance or bound quality to uninstrumented receipts."
+}
