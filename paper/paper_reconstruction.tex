@@ -1,351 +1,767 @@
-\documentclass[opre,dblanonrev]{informs4}
-\usepackage{amsmath,amssymb,graphicx,booktabs,natbib,url}
-\OneAndAHalfSpacedXII
-\EquationsNumberedThrough
-\TheoremsNumberedThrough
-\graphicspath{{../experiments/reconstruction_v3/}}
-\providecommand{\newblock}{\ }
-\MANUSCRIPTNO{}
-\makeatletter
-\def\theARTICLETOP{}
-\def\theARTICLEABSTRACT{%
-  \vspace*{10pt}%
-  \begin{minipage}[t]{\textwidth}\ABSfont
-    \noindent\theABSTRACT\endgraf
-    \vskip5pt
-    \theKEYWORDS
-  \end{minipage}\par\vspace*{12pt}}
-\makeatother
-
+\documentclass[preprint,12pt,authoryear]{elsarticle}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype,amsmath,amssymb,booktabs,graphicx,url,placeins}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue,hypertexnames=false]{hyperref}
+\setlength{\emergencystretch}{2em}
+\graphicspath{{figures/}{paper/figures/}}
+\journal{Transportation Research Part C}
 \begin{document}
-\RUNAUTHOR{Anonymous}
-\RUNTITLE{Causal Diagnostics for Transit Routing}
-\TITLE{Causal Diagnostics for Candidate Selection in Stochastic Transit Routing}
-\ARTICLEAUTHORS{\AUTHOR{Anonymous}\AFF{Affiliation withheld for review}}
-\ABSTRACT{%
-A missed vehicle can reflect an omitted feasible connection, a poor choice
-among admitted connections, or a continuation forecast that assigns the wrong
-value to recovery. We distinguish these mechanisms using a committed boarding
-model with fixed vehicle outcomes, time-stamped local observations, and a
-common capped journey loss. Two exact multileg examples on Z\"urich timetable
-fragments isolate a loss from omitting a same-vehicle continuation and a loss
-from decision-making within a candidate set. A 35-date, 18-OD generated panel
-calibrated to route-identified forecasts gives mean losses of 27.05 minutes for
-a feasible nominal policy and 25.88 for a history-conditioned rollout. Their
-mean compute times are 3.59 and 16.24 seconds. A separate deadline stress panel
-slightly favors the nominal policy. Matched transition budgets on six further
-conditions show where smaller candidate menus can save time. A two-date
-measured railway replay and a held-out endpoint check delimit the realism of
-the generated vehicle model. The results support evaluating candidate
-admission and continuation scoring separately before committing to a candidate
-compression algorithm.}
-\KEYWORDS{stochastic transit routing, partial information, recourse, evaluation}
-\maketitle
+\begin{frontmatter}
+\title{Evaluating Adaptive Transit Routing from Public Archives: Source Alignment, Transfer Assumptions, and Computation-Aware Replay}
+\author[anon]{Anonymous Author(s)}
+\affiliation[anon]{organization={Affiliation withheld for review}}
+\begin{abstract}
+Historical real-time transit feeds can support reproducible routing evaluations,
+but the conclusions depend on how timetables, observations, transfer assumptions,
+and computation are represented. We study these dependencies using Swiss public
+archives for a selected set of morning Z\"urich rail journeys. The retained
+experiment ledger contains 300 multi-policy journey queries on 25 operating
+days and a separate 14-day calibration panel. We compare analytical selective
+waiting, deterministic connection scanning, and sampled continuation evaluation
+within common candidate menus. Controlled development comparisons evaluate
+candidate restrictions and forecast fits; a separate identity audit exposes
+release mismatches. Cross-stage changes involving several factors remain
+explicit in the evidence ledger.
+A five-day panel undergoes a development replay after an execution audit, using
+preissued platform commands and computation-aware onboard recommendations.
+The corrected development replay retains all 60 queries: sampled continuation increases complete-pair mean loss by 75.19 s relative to the analytical rule; the all-query loss-increase bound is $[+13.93,+133.93]$ s. Mean journey process CPU is 0.59 s for the analytical rule and 35.55 s for sampled continuation.
+We provide an implementation-matched probability formula, a source and execution
+contract, and an evidence ledger retaining harms and unresolved journeys.
+The results identify representation and execution assumptions that materially
+affect the evaluation of real-time transit guidance.
+\end{abstract}
+\begin{highlights}
+\item Release-matched identifiers prevent joining forecasts to the wrong train.
+\item Transfer assumptions and candidate menus are explicit experimental factors.
+\item All selected journeys remain in paired missing-outcome bounds.
+\item Corrected execution is evaluated as development, preserving earlier receipts.
+\item Gains, harms, and unresolved outcomes remain visible at query level.
+\end{highlights}
+\begin{keyword}
+adaptive transit routing \sep GTFS-Realtime \sep selective waiting \sep archival replay \sep transfer times \sep computation-aware control
+\end{keyword}
+\end{frontmatter}
 
-\section{Decision problem and related work}
+\section{Introduction}
+Passengers receiving real-time transit guidance may decide whether to stay on a
+vehicle, alight at the next interchange, or wait for a later connection. A useful
+evaluation must reproduce both the alternatives available to the passenger and
+the information available when the recommendation is issued. Historical actual
+arrival and departure records provide outcomes, while archived real-time feeds
+provide predictions. A passenger decision process must be reconstructed from
+these sources using an explicit information and execution rule.
 
-A traveler has arrived at a stop, possibly on a vehicle that continues toward
-the destination. They may stay with that vehicle, change to a different one, or
-wait for information. The traveler's choice changes which events can be
-observed before the next commitment. A ranking that removes a boardable
-same-vehicle segment before scoring can therefore fail even when its
-conditional failure probabilities are accurate. Conversely, a candidate menu
-can contain both viable alternatives while their relative costs depend on the
-value of waiting or the action available after a missed departure.
+This paper examines four practical sources of evaluation sensitivity. First,
+candidate generation can exclude a useful departure or omit a continuation
+after a shared route prefix. Second, a literal trip identifier in one static
+timetable release may identify a different service in another release. Third,
+a station-wide transfer allowance and a platform-pair allowance define different
+feasible journeys. Fourth, planning takes time: the timestamp of the observation,
+the completion of a recommendation, and the departure of a vehicle are distinct
+events. A comparison that changes several of these factors together cannot
+attribute its full difference to the routing algorithm.
 
-Partial stop-level information and adaptive public transit policies have
-established precedents \citep{chenNie,rambha}. \citet{geissmann} give efficient
-adaptive policies for independently failing temporal connections, including a
-Z\"urich study. \citet{durner} studies realtime delay predictions, stochastic
-arrival labels, and several transfer strategies. These results motivate using
-a native strict strategy as a comparison and distinguishing its conditional
-arrival criterion from a capped journey loss. In a different setting,
-\citet{hanasusanto} study a restricted inventory of adaptive plans, while
-\citet{silver} use simulation to search over action--observation histories.
-Here we use that style of search as a reference, with an explicit transition
-budget. Our contribution is the diagnostic comparison on a common execution
-contract, including where candidate restriction, scoring and model fidelity
-change the interpretation of the results.
+We use selected morning Z\"urich S-Bahn and connecting rail journeys to ask:
+(i) which differences between lightweight and sampled controllers survive common
+menus and source alignment; (ii) how transfer and execution assumptions affect
+the comparison; and (iii) which remaining cases justify further algorithmic
+research. The contribution is a reproducible evaluation methodology and a
+transport case study. The analytical rule uses established selective-waiting
+calculations; sampled controllers provide finite-budget continuation references.
 
-\section{Execution contract and continuation values}
-\label{sec:contract}
+The study makes three contributions. It records an explicit relationship between
+source identity, public information, candidate menus, and executable actions. It
+separates controlled comparisons from cross-stage changes and conditional
+calibration from initial service availability. Finally, it preserves a complete
+ledger of positive, negative, tied, and unresolved queries through a development
+revision of the execution implementation. This last step is important: a
+previously unexposed date becomes development data once its results guide a fix.
 
-Let $t_0$ be the departure clock and $C$ the deadline in minutes from $t_0$.
-The loss is the elapsed time at destination if reached by $t_0+C$, and $C$
-otherwise. Each generated world fixes one cancellation and one integer delay
-for each trip. The delay shifts the scheduled departure and arrival of each
-segment of that trip. Different trips are independent in the fitted city-panel
-model. The exact diagnostic fragments can instead couple outcomes by a
-persistent regime.
+\section{Related Work and the Scope of the Comparison}
+Frequency-based transit strategies and selective waiting are established topics
+\citep{spiess1989,gentile2005,chenNie}. Schedule-based adaptive routing extends
+the decision problem to time-dependent information and recourse
+\citep{rambha}. The Connection Scan Algorithm includes expected-arrival
+decision-graph calculations, while stochastic public-transport routing and
+real-time hyperpath methods provide closely related alternatives
+\citep{dibbelt2018,geissmann,durner}. These precedents motivate a strong analytical
+baseline that uses uncertainty and can revise a static itinerary.
 
-A public history $h$ contains the stop, clock, last arrival, current trip, and
-observed vehicle events and attempt feedback. Each local decision publishes up
-to five unseen events that have occurred at the stop in the last ten minutes.
-A departure at the current minute remains boardable. A different vehicle
-requires the minimum transfer time from the previous arrival. Staying on the
-same trip incurs no transfer time. A boarding choice commits to at most 12
-minutes of waiting after the traveler is ready, subject to the overall
-deadline. A one-minute wait defers the commitment. The scheduled departure
-lookahead is 25 minutes. Boarding, cancellation, a missed departure and an
-expired commitment generate different feedback. A missed attempt reveals that
-the vehicle departed too early. The exact departure becomes available only if
-it was independently reported. The execution clock uses physical travel and
-waiting times. We measure planner wall time separately.
+The closest comparison for our single-target waiting rule is Heuristic~2 of
+\citet{liu2019}, Section~4.3: it compares boarding the available service with
+waiting for each alternative line. Their stochastic on-time-arrival formulation
+also includes boarding, waiting, transfers, and subset dynamic programming.
+Our use of named physical trips, truncated arrival loss, and a received-message
+posterior applies this established comparison structure to the present inputs
+and objective.
 
-For a first boarding action $c$, write $B$ for boarding within the commitment
-window, $p=\Pr(B\mid h,c)$, $A$ for the conditional expected capped loss given
-$B$, and $F$ for the corresponding cost after a failed first attempt. The
-costs use the same causal continuation policy and include elapsed time from
-the common origin. Then
-\begin{equation}
- Q(h,c)=pA+(1-p)F . \label{eq:first-boarding}
-\end{equation}
-A known trip outcome conditions all of its segments. An unknown trip uses a
-discrete plug-in delay model conditioned on receipts, missing publications and
-attempt feedback. Route fits use online mean and cancellation updates and a
-historical delay spread. We integrate $p$ directly on the departure support,
-and integrate $A$ directly when the action reaches the destination. A shared
-bank of eight worlds estimates the other conditional costs. When a needed
-positive-mass branch is missing, one additional draw from that branch changes
-only the selected trip, retaining every base world. This exploits the
-conditional independence of the fitted trips.
-
-The nominal policy uses conditional mean event times and a feasible timetable
-search with waiting. The rollout uses the same nominal policy as its tail,
-with the route parameters and candidate menu frozen for that query. Subsequent
-simulation decisions update their public trip information. The deployed
-policy can also refresh its route parameters and menu. The online shortlist
-prioritizes feasible same-trip continuations and admits up to five boardings
-and the wait action. An ablation replaces $F$ by $C$ for the current attempt.
-Every other transition and tail rule is shared in that comparison.
-
-\section{Candidate and information references}
-
-Let $H$ specify an allowed action set at every future public history. With
-the same loss and information, a policy $\pi$ restricted by $H$ satisfies
-\begin{equation}
- J(\pi)-J^*_{\rm full}=(J^*_H-J^*_{\rm full})+(J(\pi)-J^*_H).
- \label{eq:gap}
-\end{equation}
-The first term measures the cost of candidate restriction. The second is the
-cost of decisions within the rule. Exact finite-bank dynamic programming
-groups worlds by public outcome before selecting a continuation, and uses
-the same physical publication rule with either action menu. Knowing a regime
-changes the initial mixture while leaving several possible futures. Full
-hindsight discloses the world. With a fixed menu, increasing information can
-only weakly lower the optimum. This gives separate reference values for
-candidate restriction and information availability.
-
-Two four-connection Z\"urich fragments illustrate the distinction. Removing
-the through service's same-trip continuation increases the same-information
-optimum from 3.625 to 5.75 minutes. A restricted heuristic adds 1.25 minutes.
-In a second fragment, deleting a transfer backup leaves the same-information
-optimum at 6 minutes, and the restricted heuristic costs 8. Knowing the
-current regime gives full and restricted costs of 5.6 and 5.8 minutes.
-Hindsight gives 5 minutes for both. The second example uses two possible
-future worlds within each known regime. Increasing its horizon from 12 to 30
-minutes grows the full reference from 572 to 18,869 information nodes. This
-measures exact enumeration on a fragment with a specified world bank.
-
-\section{Forecast-calibrated generated comparisons}
-
-Exact trip identifiers link 189 trips and 2,000 connections to 33 route IDs.
-Sampling the archived realtime feeds and deduplicating event revisions
-produces 1,027,848 delay forecasts and 109,335 observed trip statuses over 35
-dates. Of those statuses, 237 declare cancellation. Daily world parameters
-use the target date's delay forecasts and declared service statuses. The
-policies use priors built from strictly earlier dates, with a documented
-fallback for missing route support. The timetable template deliberately holds
-topology fixed across conditions. Its constituent trips span different GTFS
-service calendars, which activate 74--176 of its connections per date in the
-archived static feed. The 35-date panel therefore describes generated trips
-on a common timetable template. Calendar-consistent measured evidence is
-reported separately below.
-
-The main experiment evaluates the original 18 OD pairs for each date under
-one common generated world, using a 120-minute cap. The four strategies are
-an online marginal-label score, native Durner strict, the feasible nominal
-policy and the continuation rollout. All face the same exogenous vehicle
-outcomes and publication mechanism. Native strict keeps its own objective
-and is evaluated under the common capped loss. Table~\ref{tab:chronological}
-summarizes 2,520 journeys. The rollout improves on nominal by 1.17 minutes on
-average, with 59 improvements, 15 regressions and 556 ties among the 630 OD
-conditions. Resampling the 35 generated date groups gives a descriptive
-rollout-minus-nominal interval of $[-2.49,-0.30]$ minutes. These generated
-groups are distinct from a sample of measured disruptions.
+Online POMDP methods such as POMCP and DESPOT address larger information and
+policy spaces \citep{silver,somani2013}. Our sampled continuation comparator uses
+a fixed 128-world bank and the declared continuation policy. Our deterministic
+snapshot scan solves a current-mean earliest-arrival problem, whereas stochastic
+CSA-MEAT explicitly evaluates uncertain arrival times.
 
 \begin{table}[ht]
-\TABLE{Generated 35-date, 18-OD panel\label{tab:chronological}}{%
-\begin{tabular}{lrrr}
+\centering\small
+\caption{How the present comparisons relate to existing methods.}
+\begin{tabular}{p{.26\textwidth}p{.31\textwidth}p{.34\textwidth}}
 \toprule
-Strategy & Mean loss (min) & Arrival (\%) & Mean compute (s)\\
+Method family & Ingredient reused here & Scope of the present evidence\\
 \midrule
-Marginal score & 52.00 & 70.95 & 4.56\\
-Durner strict & 61.56 & 63.81 & 4.44\\
-Feasible nominal & 27.05 & 95.08 & 3.59\\
-Continuation rollout & 25.88 & 95.87 & 16.24\\
+Hyperpaths and selective waiting & First feasible offer and target commitment & Analytical controller on a fixed menu\\
+Connection scanning & Deterministic current-mean timetable scan & Snapshot earliest arrival on the common menu\\
+Adaptive stochastic routing & Repeated decisions after observations & Restricted menu and working posterior\\
+Monte Carlo online planning & Paired sampled continuation values & Fixed implementation and declared world budget\\
 \bottomrule
-\end{tabular}}{Timing includes initial preparation and all online decisions.
-Each date is one generated vehicle world shared across the 18 OD pairs.}
+\end{tabular}
 \end{table}
 
-On 12 separate stress conditions, the date-specific delay location is
-increased by eight minutes, the standard deviation has a four-minute floor,
-and the cancellation probability has a 20\% floor. Across the 60-, 90- and
-120-minute caps, nominal and rollout each arrive on 11 conditions and rollout
-costs 0.67 minutes more on average at each cap. In another eight generated
-conditions with new OD pairs and dates from the earlier forecast model,
-nominal costs 31.00 minutes and rollout costs 31.63. Figure~\ref{fig:dates}
-shows date variation and the deadline sensitivity. The comparison supports
-keeping nominal as a substantive, low-compute reference.
+The methodological focus is the comparison contract: what each controller may
+observe and do, when its action becomes effective, and which outcomes remain
+unknown. We use proper probability scores to describe a working prediction
+model \citep{gneiting2007}, and evaluate routing benefit separately through
+paired executed journeys.
 
-\begin{figure}[ht]
-\FIGURE{\includegraphics[width=.96\textwidth]{chronological_panel.pdf}}
-{Date-level loss and arrival under deadline stress\label{fig:dates}}
-{The left panel averages 18 OD pairs per generated world. The right panel
-uses 12 shared stress conditions per cap.}
-\end{figure}
+\section{Data, Public Information, and the Working Model}
+\subsection{Sources and cohort construction}
+The actual endpoint and static timetable sources are the official Swiss open
+transport archives \citep{swissactual}. The real-time snapshots are third-party
+traines captures of the official GTFS-RT feed \citep{traines}; their capture
+timestamps are retained. Static releases are matched to the active real-time
+release using source metadata and physical service signatures before decoding
+the target forecast values. A service signature includes operator, train or
+journey identity where available, ordered stops, and scheduled times. The mapping
+uses identifiers, service order, and scheduled clocks available before outcomes.
 
-\section{Matched computation and measured replay}
+\begin{table}[ht]
+\centering\small\setlength{\tabcolsep}{4pt}
+\caption{Retained data panels and the role of the corrected replay.}
+\begin{tabular}{lrrp{.32\textwidth}}
+\toprule
+Service dates (2023) & Days & Queries & Role \\
+\midrule
+October 25--28, 30--31 & 6 & 72 & Historical development \\
+March 9--22 & 14 & 168 & Conditional calibration \\
+March 23--April 5 & 14 & 168 & Station-level control \\
+April 6--10 & 5 & 60 & Historical comparison \\
+April 6--10 (same queries) & 5 & 60 & Corrected development replay \\
+\bottomrule
+\end{tabular}
+\end{table}
 
-On six route-identified conditions from three dates we compare unrestricted
-physical actions, a frozen initial menu, a smaller frozen menu, and a generic
-public-history UCT search. The smaller menu retains five initial labels per
-stop and closes the set under trip membership. It retains 1,149--1,508 of
-2,000 connections. All planners respect a common upper limit of 128 or 512
-committed-model transitions per decision. A rollout estimate uses only
-complete common-world rounds over the root actions and falls back to nominal
-when none completes. UCT allocates its transition budget over public histories.
-At budget 128 the full and smaller-menu mean losses are 31.33 and 31.50
-minutes. At 512 they agree on all six journeys with mean 28.67. Mean
-end-to-end compute falls from 25.68 to 18.99 seconds at that larger budget.
-The matched limit counts transitions. Wall time also includes model setup,
-candidate preparation and search overhead. In these six conditions UCT has
-the lowest loss at 128 and is worse than full rollout at 512. This comparison
-measures a local empirical tradeoff for a bounded approximate search.
+For the March and April panels, dates and public menus were selected before
+target outcomes were opened. Each date contributes at most 12 public roots
+under the existing ordered structural catalogue, using the same regional stops,
+morning window, and horizon. The sampling unit is a structurally selected route
+query. Queries remain selected after initial cancellation or missing endpoint
+records. The October control
+panel was already used for development. The April 6--10 panel was initially
+unexposed but is now also development data for the corrected execution study.
 
-\begin{figure}[ht]
-\FIGURE{\includegraphics[width=.91\textwidth]{route_id_budget.pdf}}
-{Quality and computation at two transition budgets\label{fig:budget}}
-{Six paired generated conditions on the route-identified graph. The panels
-report actual simulated work and elapsed compute, respectively.}
-\end{figure}
+The physical and repaired forecast models were fitted on October 1--2, 2023.
+The March/April results are therefore retrospective cross-season evaluations.
+All revised development comparisons keep these fits fixed.
 
-Official Swiss actual data \citep{swissactual} provide unambiguous \texttt{REAL} timestamps for
-54 SBB endpoints on October 12 and 25. On these endpoints, empirical 90\%
-forecast intervals from earlier dates cover 19/30 and 8/24. Observed arrivals
-or departures beyond the upper interval endpoint explain most misses. All
-27 measured complete legs have different departure and arrival delays, with
-a maximum difference of 239 seconds. That directly limits the common-shift
-assumption used in the generated comparison.
+\subsection{Connections, observations, and loss}
+A connection $c$ records a vehicle trip, departure and arrival stops, planned
+platform identifiers, and scheduled event times. The archived world supplies
+realized departure and arrival times or an explicit cancellation status. Civil
+service-day seconds are used consistently, including the March 26 daylight-saving
+transition. A forecast entity becomes available at
+\[
+ t_{\rm rec}=\max\{t_{\rm capture},t_{\rm header},t_{\rm update}\}.
+\]
+An absent optional update timestamp contributes no additional availability
+constraint. Future forecasts are not revealed during planning simulations.
+First-hand observations depend on the passenger's chosen route and clocks.
+At a station, the executor reveals actual departures in a root-frozen list for
+that station, including listed services beyond the action menu and on other
+planned platforms. These declared station-local departure observations are
+held common across menus. Onboard observations follow the occupied vehicle.
 
-In a measured two-itinerary replay the traveler reaches Z\"urich HB on S11,
-then either stays aboard or transfers to S20 for Z\"urich Hardbr\"ucke. Both
-connections are feasible with the specified transfer time on both dates.
-Staying on S11 reaches the destination 302 and 233 seconds earlier,
-respectively. We separately record the actual times and the forecast
-available before each decision. The two measured itineraries identify
-realized costs on those services. Citywide evaluation requires measured
-competing services and date-specific network coverage.
-
-\section{Implications}
-
-The exact examples show that loss from candidate admission and loss within a
-menu can vary independently. The generated city experiments show that a
-feasible nominal policy captures much of the improvement over the marginal
-score. Explicit rollout adds a smaller and computationally more costly
-increment on the main panel, and reverses direction on the stress and fresh
-screens. The budgeted experiments show a promising but limited cost reduction
-from a smaller menu. A city-scale bound on candidate loss and a cheap stopping
-certificate remain separate research questions. The measured endpoints call
-for an observation and delay model that allows within-trip variation before
-interpreting a generated-policy ranking as a deployment outcome.
-
-\begin{APPENDICES}
-\ECHead{Electronic Companion}
-\section{First-event scoring and the policy gap}
-
-Equation~\eqref{eq:first-boarding} is the law of total expectation. For fixed
-continuation and nonempty branches, subtracting a fitted score gives the exact
-decomposition
+Each query has start $t_0$ and deadline $H=t_0+3600$ seconds. Its loss is elapsed
+arrival time, capped at $3600$ seconds; a known initial cancellation therefore
+has a known cap loss under the frozen query contract. Missing or forecast-only
+archival endpoints are not treated as actual timestamps. If they prevent
+evaluation of a journey, the loss remains bounded in $[0,3600]$.
+For policies $b$ and $a$, a mean paired saving is bounded by
 \begin{equation}
- \widehat Q-Q=(\widehat p-p)(A-F)+\widehat p(\widehat A-A)
-                  +(1-\widehat p)(\widehat F-F).
+\frac1N\sum_i(\ell_{b,i}-u_{a,i})
+\ \le\ \frac1N\sum_i(L_{b,i}-L_{a,i})
+\ \le\ \frac1N\sum_i(u_{b,i}-\ell_{a,i}).
+\label{eq:missing}
 \end{equation}
-The conditionally sampled means estimate the fixed fitted tail, and the
-choice made by minimizing estimates can still have selection error. If a
-branch has zero mass its conditional cost is undefined and its contribution
-to the mixture is zero. No estimated probability alone identifies the effect
-of choosing a different future tail.
+These are missing-outcome bounds. Complete-pair means and date bootstrap intervals
+describe the resolved subset alongside the full selected denominator.
 
-For the within-menu gap in \eqref{eq:gap}, write the one-step optimal
-continuation under $H$ as $Q^*_H(h,a)=\mathbb E[c+V^*_H(h')\mid h,a]$, with the
-same terminal cost for every policy. The sum of
-$Q^*_H(h,a)-V^*_H(h)$ along the executed policy telescopes in expectation to
-$J(\pi)-J^*_H$. Thus, if a greedy score has a uniform action error of at most
-$\delta(h)$ at each visited history, the per-step advantage is at most
-$2\delta(h)$. This is a conditional bound. The sampled fitted score supplies
-neither a uniform $\delta(h)$ nor a city-scale exact optimum.
+\subsection{Trip-chain delay and forecast conditioning}
+The working model is a finite-state chain along each physical trip. Ordered
+departure and arrival slots carry a clock and an operating/canceled state.
+Initial operating clock masses are discretized Gaussian weights based on route
+mean and scale, with a pooled fallback. Running and dwell transitions have
+separate Gaussian increment dispersions, and their support enforces nondecreasing
+event clocks. Cancellation uses a persistent two-state chain with persistence
+$0.90$. Exact integer-second observations augment the finite support and condition
+the chain at the observed slot. These choices represent within-trip temporal
+dependence and service persistence within the working model.
 
-\section{Statistical and formalization scope}
+The repaired forecast likelihood is fitted to errors defined as actual time
+minus forecast. For route $r$ and endpoint kind $k$, the selected forecast
+$\hat t$ has log-likelihood, up to an additive constant,
+\begin{equation}
+ \log p(\hat t\mid T,r,k)
+ =-\frac12\left(\frac{T-\hat t-b_{r,k}}{s_{r,k}}\right)^2.
+\label{eq:emission}
+\end{equation}
+Route-kind estimates shrink toward their endpoint-kind pooled estimate using
+20 pseudo-observations, and $s_{r,k}$ is floored at 30 seconds. The repaired
+pooled departure and arrival biases are 49.27 and 52.27 seconds,
+respectively. The same route-kind scale applies across forecast ages.
 
-With a Normal--Gamma posterior using rate $\beta_n$, the marginal Student-$t$
-scale squared of the mean is $\beta_n/(\alpha_n\kappa_n)$, and its variance for
-$\alpha_n>1$ is $\beta_n/[(\alpha_n-1)\kappa_n]$. These differ from the
-predictive variance for a future delay. A fixed Lipschitz penalty gives a
-Wasserstein upper bound under the usual moment assumptions. An affine
-equality additionally requires a feasible translation in the support. This
-is standard structure \citep{esfahaniKuhn}. A separate Bayesian risk
-formulation requires an explicit parameter-risk functional \citep{linRenZhou}.
-For a fixed ambiguity set, the worst-expectation map is nonexpansive in the
-supremum norm and discounting gives the discount factor as a contraction
-modulus. An undiscounted stochastic shortest path needs its own termination
-conditions. The finite reference here uses a finite horizon.
+To avoid repeatedly treating correlated revisions as independent evidence,
+the implementation uses one numeric forecast per trip: among events after the
+publicly completed prefix, choose the latest receipt, breaking ties by earliest
+event order. All other received records remain in the public audit history.
+The forecast selector uses receipt and event order.
+Service notices and first-hand observations are processed under the fixed public
+observation contract. When a traveler has not observed a departure between entry
+and the current clock, operating mass in that interval is excluded while
+pre-entry, future, and cancellation hypotheses remain available. Conditional
+chain inference and sampling use the same support and likelihood.
 
-The archived Lean artifact checks abstract statements under their encoded
-hypotheses. In particular, its Lipschitz-penalized expectation is defined as
-that expression, and the posterior theorem uses a supplied scale or error
-condition. A source map in the artifact README records the Lean objects and
-their assumptions. Lean 4.28.0 checks all imported proof modules and the main
-module with \texttt{lake build +Main:olean}. The checked scope is the abstract
-statements. Simulator contracts, forecast calibration, runtime and the
-reported comparisons are supported by the executable tests and experiment
-receipts.
-\end{APPENDICES}
+Trips are independent in the working physical law conditional on their supplied
+parameters and observations. This omission of cross-trip dependence, the narrow
+training period, and Gaussian tails motivate the calibration diagnostics below.
+The model is kept fixed throughout the controller comparison.
 
-\begin{thebibliography}{9}
+\section{Controller and Execution Contract}
+\subsection{Candidate menus and transfer assumptions}
+Every policy comparison specifies the same dated menu and permitted exits.
+An expanded menu removes a local departure cap and includes legal continuations
+after shared prefixes, while retaining the existing transfer depth and horizon.
+Deterministic scanning uses the same declared occurrences and exits.
+
+The station-level contract uses the existing station transfer allowance. The
+platform-pair contract first uses an applicable directed published transfer rule;
+otherwise it assigns an explicit assumed buffer to an identical platform
+identifier and falls back to the station rule for unresolved pairs. An explicit
+prohibition remains a prohibition. The same-platform buffer is 90 seconds in the
+primary development comparison, with the previously declared 60/90/120-second
+sensitivity.
+
+\subsection{Causal commands and computation completion}
+The corrected development executor fixes platform-pair readiness from planned
+static platform identifiers for each menu occurrence. Received platform
+announcements remain audit evidence. The static contract avoids making physical
+readiness depend on which internal planning query happened to refresh an
+announcement. It is a planned-platform model with an explicit 90-second
+same-platform assumption.
+
+Under the departure-only observation rule, the platform policy publishes a
+standing command before departure: either take the first eligible offer or
+wait for a named target. Entry, a newly received message, and other observed
+departures can trigger replanning from the current public history. A replacement
+command becomes active only when its calculation completes; the preceding
+command remains active during computation. If no command is active when an
+otherwise eligible departure occurs, that departure is missed. The actual
+departure consumes a previously issued command, without a post-departure
+boarding allowance.
+
+Onboard recommendations are submitted once the requested computation completes.
+The replay uses the recorded next departure as the alighting cutoff. If an
+alighting recommendation becomes active before this cutoff, its completion time
+is the transfer-entry clock; pair-specific walking time starts from that clock.
+The environment uses the cutoff to close the onboard action window. It is not supplied as a
+future numerical observation to the planner. A late proposal at an intermediate
+exit defaults to continuing, and the serial controller stays busy until its
+calculation ends.
+
+The last permitted exit of a menu ride triggers automatic alighting. At an
+intermediate exit whose recorded onward departure is at or before arrival,
+the nonpositive arrival--departure interval leaves no executable alighting
+decision and the passenger continues. A canceled onward-departure record
+supplies no usable departure cutoff; the
+result remains unresolved under that history. Archived replay records a missing
+endpoint, and a planning world records an incompatible projection. Both retain
+an unknown loss. The receipts distinguish the requested root action from the
+action the environment executes.
+
+All ten primary development arms share this new platform command policy,
+including the ideal-clock comparators. Their planning worlds use the same command
+semantics with zero simulated computation latency and no unrevealed future
+forecasts. Thus the historical-to-corrected change includes a common platform
+policy change as well as clock fixes. Within the corrected panel, matched ideal
+and computation-aware arms identify the measured clock effect for the same
+declared command policy.
+
+The executor first computes the analytical base and deducts its CPU from the
+query allowance. If the base has exhausted the allowance, sampling is skipped.
+Otherwise a process-CPU timer delivers \texttt{SIGPROF} during the remaining
+sampled evaluation, including posterior preparation and individual worlds.
+Python computation can be interrupted within either phase. A native
+library call can delay delivery of the Python signal handler, and final receipt
+construction adds overhead. Actual elapsed process CPU, the interrupted phase,
+and any allowance overshoot remain in the receipts. These measurements describe
+stopping behavior on the experimental machine.
+
+
+The 2023 endpoint archive supplies realized clocks. Static platform identifiers
+and real-time platform announcements provide separate evidence about the
+planned interchange used by the replay.
+
+\subsection{First-offer and single-target analytical values}
+The analytical baseline scores a first legal offer and a commitment to each
+single target, then uses the minimum as a continuation approximation. Let $r_k$
+be readiness for candidate $k$, $p_k(t)$ its operating departure mass, $q_k$ its
+cancellation mass, and $v_k(t)\le H$ its absolute downstream arrival score.
+The panel's platform menus contain at most one candidate per physical trip;
+conditional independence is assumed across these distinct trips. Candidates
+are ranked only to break simultaneous feasible departures. For a departure of
+candidate $k$ at $t$, define
+\begin{equation}
+ A_{j\mid k}(t)=
+ \begin{cases}
+  1, &t<r_j,\\
+  q_j+\sum_{u<r_j}p_j(u)+\sum_{u>t}p_j(u),
+       &t\ge r_j,\ j\text{ has higher tie priority than }k,\\
+  q_j+\sum_{u<r_j}p_j(u)+\sum_{u\ge t}p_j(u),
+       &t\ge r_j,\ j\text{ has lower tie priority than }k.
+ \end{cases}
+\label{eq:competitor}
+\end{equation}
+The first-offer frozen-score reference is
+\begin{equation}
+ V_{\rm first}=H-
+ \sum_k\sum_{r_k\le t<H}
+ p_k(t)\left[\prod_{j\ne k}A_{j\mid k}(t)\right](H-v_k(t)).
+\label{eq:first}
+\end{equation}
+The product includes \emph{all} other candidates. A lower-priority vehicle
+departing strictly earlier prevents selection of $k$ just as a higher-priority
+vehicle does; priority affects only equal departure times. Equation~\ref{eq:first}
+uses a default arrival score $H$ and subtracts the improvement from mutually
+exclusive first-offer events. If no legal offer occurs, the reference score is
+$H$.
+The continuation input $v_k(t)$ is supplied at the fixed current history.
+Equation~\ref{eq:first} is therefore a reference for these frozen scores. It is
+the complete policy value only if each supplied continuation already conditions
+on the full first-offer selection event and all subsequent information used by
+that policy. Non-arrival of competitors and later messages can otherwise change
+the appropriate continuation value.
+
+The target score is
+$V_k=H-\sum_{r_k\le t<H}p_k(t)(H-v_k(t))$, and the baseline envelope is
+$V_{\rm env}=\min\{V_{\rm first},\min_k V_k\}$.
+This approximate continuation envelope scores the current menu; the online
+controller can revise its target after further observations.
+
+Given marginal and continuation arrays, the implementation evaluates
+Equation~\ref{eq:first} with a candidate-by-competitor loop. For $K$ candidates
+and at most $D$ departure support points each, this requires $O(K^2D)$ arithmetic
+after tail probabilities and index lookups are available. Marginal inference,
+continuation compilation, and entry-clock batches are additional costs. Direct
+nonnegative tail sums avoid cancellation in $1-\mathrm{CDF}$.
+
+\subsection{Sampled continuation and override screening}
+The comparison family contains the analytical envelope, deterministic
+conditional-mean connection scanning, recursive selective continuation, and
+paired sampled continuation on the same public information. The standard
+analytical controller uses the envelope as a matched continuation approximation.
+The recursive variant applies selective waiting again during downstream value
+compilation; with two to six active distinct-trip candidates, it refines the
+score using a frozen-history combined-waiting dynamic program. These scores feed
+the same executable first-offer or single-target command policy.
+
+The sampled comparator evaluates both current alighting and continuation in
+common physical worlds, then runs its continuation controller in each world.
+These worlds share the current received history and reveal simulated first-hand
+events as the journey proceeds. The standard
+sampled reference has 128 worlds per query with the original 120-process-CPU-second
+query allowance. The selective screen requests 64 worlds, uses a 90-second
+analytical ambiguity threshold, and has a 1.8-process-CPU-second query allowance.
+The corrected executor charges the analytical base first and gives sampling the
+remaining allowance. Preparation and both forced continuations share that
+remainder.
+
+Its optional override screen uses a paired mean difference and standard error:
+the proposed improvement must exceed $1.96\,\widehat{\rm se}+5$ seconds.
+This normal-approximation screen requires at least two pairs and known outcomes
+for every requested pair. It retains the analytical choice when the sampled
+difference is small or this requirement fails. The declared threshold and
+query allowances are retained for the development comparison.
+
+\section{Evaluation Design and Evidence Levels}
+We distinguish three levels of evidence. Historical development comparisons can
+diagnose a source or implementation mechanism. Initially unexposed comparisons
+test a frozen implementation on a new set of dates. Re-evaluation after a code
+correction is a development comparison on those now-exposed dates, even if the
+old model and parameter values are retained. The corrected study reported here
+belongs to this third category.
+
+All controllers in a within-panel comparison receive the same external
+publication stream, message-availability rule, and common menu. Their realized
+decision histories may differ with executed actions and with decision and
+activation clocks, including when the same action consumes messages at different
+times. Computation measurements distinguish individual
+decision latency from whole-journey CPU, including menu and planning preparation
+under the declared accounting rule. Shared archive loading and graph preparation
+are recorded separately from the per-journey charge.
+
+The original five-day panel includes one Thursday and four Easter holiday or
+weekend days. Five dates were selected under a fixed acquisition budget. Date
+bootstrap intervals describe variation within this panel. We report complete-pair
+counts, full-cohort missingness bounds, and per-root differences together.
+Effects on repeated queries sharing a tail service are grouped when interpreting
+mechanisms.
+
+\subsection{Initial availability and conditional calibration}
+An initial vehicle cancellation prevents a first onboard decision from occurring.
+It remains part of whole-journey loss. A conditional onboard probability score,
+however, concerns states that were actually reached. We therefore report initial
+availability separately from the four joint catch indicators at an onboard
+state. For each registered pair, let $A$ indicate catching the outgoing trip
+after alighting at the current interchange, and let $B$ indicate catching it at
+the downstream interchange after staying on the current trip. The classes
+$P_{ab}=\Pr(A=a,B=b\mid\mathcal H)$ retain the dependence between the two
+outgoing-trip endpoints. In particular, $P_{10}$ is the probability that only the
+upstream interchange succeeds. Predictions and archived labels apply the same
+declared transfer times. These first-onboard snapshot probabilities define
+readiness as arrival plus transfer time; computation delay is evaluated
+separately in the controller replay. Separating availability from these conditional scores
+is a declared diagnostic change: the original
+14-date $\pm0.02$ equivalence gate and its unresolved result remain in the ledger.
+
+The two March panels and April panel contain 3,063 registered or
+onboard opportunities, of which 2,941 are resolved under their
+recorded contracts. The March 9--22 panel includes 103 reached
+opportunities with unresolved endpoints. These remain unknown labels. The March
+23--April 5 panel has 19 unreached opportunities associated with two known initial
+cancellations. Its conditional residual sums can be recovered from saved
+incident bounds because those 19 unknown contributions were symmetric; the
+recovery uses the saved bounds for that specific cancellation pattern.
+
+Brier scores are reported on resolved opportunities. The empirical climatology
+used for descriptive skill is estimated from the same evaluation cohort.
+Within-day incident weighting and within-day event weighting define different
+estimands: repeated queries sharing physical trips receive different influence.
+The revised summaries retain both, with equal weight across dates, and do not
+attribute a weighting change to the separation of initial cancellation.
+Recomputing the retained March conditional $P_{10}$ residual from the same saved opportunities gives 0.02080 with incident weights and 0.03115 with event weights. Both are positive; the difference is a weighting effect. The original calibration gate remains unresolved.
+The one-workday/four-holiday contrast is an exploratory calendar comparison.
+
+\section{Results}
+\subsection{What the historical controlled comparisons establish}
+\begin{table}[ht]
+\centering\small\setlength{\tabcolsep}{4pt}
+\caption{October development comparisons. The cross-stage row is not an isolated factor.}
+\begin{tabular}{p{.49\textwidth}rrr}
+\toprule
+Comparison & Before (s) & After (s) & Saving (s) \\
+\midrule
+Local departure cap, common observations & 1410.93 & 1390.75 & 20.18 \\
+Prefix closure, common observations & 1390.75 & 1386.10 & 4.65 \\
+Cross-stage source/implementation change & 1386.10 & 1389.75 & -3.65 \\
+Old vs. repaired likelihood, same corrected stream & 1389.75 & 1385.18 & 4.57 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Within the October comparisons, removing a local departure cap and closing
+shared prefixes can change an analytical policy without more sampled search.
+The fit comparison uses the same corrected external stream in both arms and
+therefore isolates changing the likelihood fit under that stream. It does not
+isolate a change in source identity alone. Across stage boundaries, the
+prefix-closed historical score of 1386.10 seconds changes to 1389.75
+seconds before the repaired fit reaches 1385.18 seconds. This intervening
+change is displayed rather than absorbed into a single repair benefit.
+
+The 14-day station-level panel retains 168 queries. Full continuation improves
+four complete queries relative to all six fixed cheap policies and harms one
+relative to the primary analytical rule. The four positive queries correspond
+to three dates and three downstream event groups; two share the same tail-train
+competition. There are 161 ties and two unresolved journeys, whose missing
+departure endpoints are distinct from the two initial cancellations with known
+cap losses. Complete-pair saving is +2.90 seconds, while the all-query
+mean saving bound is $[-39.99,+45.72]$ seconds. Whole-journey CPU is 1.14
+seconds for the analytical rule and 49.01 seconds for the sampled
+reference. These results identify concrete cases for development.
+
+The sample contains both useful earlier alighting and useful later alighting.
+Several continuation heuristics produce equal values on the tested states,
+providing an empirical reason to include them as lightweight comparators.
+
+\subsection{Preserved five-day results before the execution revision}
+\begin{table}[ht]
+\centering\small\setlength{\tabcolsep}{4pt}
+\caption{Retained five-day comparisons before the execution revision. Positive saving favors the first named policy.}
+\begin{tabular}{p{.32\textwidth}rrrr}
+\toprule
+Comparison & Pairs & Saving (s) & Date interval (s) & All-60 bound (s) \\
+\midrule
+Platform-pair analytical vs. station-level & 58 & +10.59 & $[-10.67,+25.83]$ & $[-82.25,+97.75]$ \\
+Recursive vs. analytical, platform-pair & 58 & -23.60 & $[-50.81,+0.00]$ & $[-142.82,+97.18]$ \\
+Gated vs. analytical, platform-pair & 58 & -28.24 & $[-49.52,-8.38]$ & $[-147.30,+92.70]$ \\
+Full rollout vs. analytical, platform-pair & 58 & +5.24 & $[+0.00,+15.72]$ & $[-114.93,+125.07]$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The analytical platform-pair rule differs from the station-level and
+deterministic-scan comparators on four complete queries: three gains of
+293, 286, and 339 seconds on the repeated Stettbach--Altstetten corridor, and
+one loss of 304 seconds. The corresponding complete-pair average is
++10.59 seconds with interval $[-10.67,+25.83]$. The positive contrast is inconclusive.
+Fifty-one of the 60 queries have equal recorded losses across the original
+eight arms; action histories are retained separately.
+
+The recursive and gated arms lose 23.60 and 28.24 seconds on average
+over complete pairs. The gated-arm date-bootstrap interval lies below zero in
+this historical panel, but the full-cohort missingness bound crosses zero.
+The historical dwell log distinguishes background gate
+expiry from base-plan completion; their consequences are re-examined in the
+corrected development study below. Old root 52 has an unresolved endpoint under
+the platform-pair contract, and root 55 is unresolved in all arms.
+
+\subsection{Corrected execution: development replay on the same dates}
+The corrected study contains 600 primary journey replays and 240 additional transfer-time sensitivity replays on the same 60 selected queries. Model fits, menus, external messages, and declared query allowances remain fixed. The common platform command policy changes as described above; these are development results.
+
+\begin{table}[ht]
+\centering\small\setlength{\tabcolsep}{4pt}
+\caption{Corrected development replay: truncated travel loss and total journey process CPU. Pair denotes the planned-platform transfer contract; measured denotes computation-aware activation. All-root bounds retain unresolved journeys.}
+\begin{tabular}{p{.34\textwidth}rrrrr}
+\toprule
+Policy and contract & Known & Loss (s) & All-60 bound (s) & CPU (s) & CPU $p_{99}$ \\
+\midrule
+Analytical, station/ideal & 59 & 1244.17 & $[+1223.43,+1283.43]$ & 0.63 & 1.65 \\
+Rollout128, station/ideal & 59 & 1261.12 & $[+1240.10,+1300.10]$ & 32.94 & 91.16 \\
+Analytical, pair/measured & 59 & 1233.76 & $[+1213.20,+1273.20]$ & 0.59 & 1.35 \\
+Analytical, pair/ideal & 59 & 1233.76 & $[+1213.20,+1273.20]$ & 0.65 & 1.83 \\
+Snapshot scan, pair/measured & 58 & 1234.74 & $[+1193.58,+1313.58]$ & 0.25 & 1.15 \\
+Recursive, pair/measured & 59 & 1233.76 & $[+1213.20,+1273.20]$ & 32.60 & 114.47 \\
+Recursive, pair/ideal & 59 & 1233.76 & $[+1213.20,+1273.20]$ & 36.46 & 162.90 \\
+Screen64, pair/measured & 59 & 1249.22 & $[+1228.40,+1288.40]$ & 36.03 & 145.09 \\
+Rollout128, pair/ideal & 59 & 1247.86 & $[+1227.07,+1287.07]$ & 31.58 & 90.97 \\
+Rollout128, pair/measured & 59 & 1308.95 & $[+1287.13,+1347.13]$ & 35.55 & 98.61 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[ht]
+\centering\small\setlength{\tabcolsep}{4pt}
+\caption{Matched corrected comparisons. Positive saving favors the first named policy; W/L/T/U counts wins, losses, ties and unknown pairs. Date intervals are descriptive on five exposed dates.}
+\begin{tabular}{p{.34\textwidth}rrrr}
+\toprule
+Comparison & W/L/T/U & Saving (s) & Date interval (s) & All-60 bound (s) \\
+\midrule
+Platform vs. station, analytical ideal & 3/1/55/1 & +10.41 & $[-10.49,+25.83]$ & $[-49.77,+70.23]$ \\
+Measured vs. ideal, analytical pair & 0/0/59/1 & +0.00 & $[+0.00,+0.00]$ & $[-60.00,+60.00]$ \\
+Recursive vs. analytical, pair ideal & 0/0/59/1 & +0.00 & $[+0.00,+0.00]$ & $[-60.00,+60.00]$ \\
+Measured vs. ideal, recursive pair & 0/0/59/1 & +0.00 & $[+0.00,+0.00]$ & $[-60.00,+60.00]$ \\
+Rollout vs. analytical, pair ideal & 0/3/56/1 & -14.10 & $[-23.83,-4.41]$ & $[-73.87,+46.13]$ \\
+Measured vs. ideal, rollout pair & 0/5/54/1 & -61.08 & $[-94.52,-26.53]$ & $[-120.07,-0.07]$ \\
+Recursive vs. analytical, pair measured & 0/0/59/1 & +0.00 & $[+0.00,+0.00]$ & $[-60.00,+60.00]$ \\
+Screen vs. analytical, pair measured & 0/1/58/1 & -15.46 & $[-46.37,+0.00]$ & $[-75.20,+44.80]$ \\
+Rollout vs. analytical, pair measured & 0/8/51/1 & -75.19 & $[-113.02,-40.67]$ & $[-133.93,-13.93]$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Whole-journey mean CPU is 0.59 s for the analytical pair/measured arm and 35.55 s for rollout. Their 59 complete pairs contain 0 rollout gains, 8 harms and 51 ties. Across all ten arms, unresolved query indices are 52, 55; every such query is retained in the bounds.
+
+The matched decomposition separates the sampled policy from its measured clock. At zero latency, rollout has 14.10 s larger complete-pair mean loss than the analytical rule. Applying its measured computation clock adds 61.08 s; the all-root loss-increase bound for this clock contrast is $[+0.07,+120.07]$ s. The recursive rule matches the analytical loss on every resolved pair while using 32.60 s mean journey CPU.
+
+The three zero-latency harms (queries 23, 47, 59) repeat the same exit pattern: a point-estimate comparison changes continuation to alighting. Each bank has 128 resolved pairs, but all three approximate 95\% intervals for the action difference contain zero, indicating weak action separation in those saved banks.
+
+Query 12 illustrates why computation records matter for attribution. Its 29 s recorded alighting window contains the recursive arm's 27.916 s base computation, whereas the same recursive base in the screen arm takes 34.922 s. The latter misses the cutoff before any sampled call. The screen arm's single harmful query therefore reflects this measured-runtime difference crossing a decision boundary. On the same query, rollout takes 55.554 s after its base calculation, exceeding the window during sampled evaluation.
+
+\begin{table}[ht]
+\centering\small\setlength{\tabcolsep}{4pt}
+\caption{Sampled-evaluation allowance after deducting analytical-base CPU, including posterior preparation. C/R/N counts fully computed, fully resolved, and requested banks. A computed world can have unknown outcomes. Max CPU and overrun concern the sampled call.}
+\begin{tabular}{p{.30\textwidth}rrrrr}
+\toprule
+Policy & C/R/N & Stopped & Max budget & CPU max. & Overrun max. \\
+\midrule
+Rollout128, station/ideal & 123/120/123 & 0 & 119.992 & 64.231 & 0.000 \\
+Screen64, pair/measured & 5/5/7 & 2 & 1.696 & 0.970 & 0.001 \\
+Rollout128, pair/ideal & 122/120/122 & 0 & 119.992 & 73.040 & 0.000 \\
+Rollout128, pair/measured & 130/128/130 & 0 & 119.992 & 56.928 & 0.000 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The analytical base exhausted the query allowance before sampling in Screen64, pair/measured: 19 decisions. These cases issue no sampled query.
+
+Across its 7 sampled queries, the screen retains the base proposal in every case.
+
+The normal screen requires known outcomes for every requested pair and at least two pairs. Interrupted computations and incompatible physical projections remain unresolved. Query allowances and whole-journey costs are different quantities: the latter also include other decisions and inherited menu construction.
+
+Saved-receipt checks cover 600 primary replays and 312 command-controlled boardings. For discretionary alighting, 286 subsequent platform entries match the recorded action-consumption clock; 6 alightings have no later platform record and remain outside that entry-clock check. This verifies the available replay records.
+
+\begin{table}[ht]
+\centering\small\setlength{\tabcolsep}{4pt}
+\caption{Same-platform allowance sensitivity in the corrected analytical policies. The 60 s and 120 s settings have no rollout comparator; 90 s repeats the primary setting.}
+\begin{tabular}{p{.36\textwidth}rrrr}
+\toprule
+Policy & Assumed time (s) & Known & Loss (s) & All-60 bound (s) \\
+\midrule
+Analytical, pair/measured & 60 & 59 & 1228.61 & $[+1208.13,+1268.13]$ \\
+Analytical, pair/measured & 90 & 59 & 1233.76 & $[+1213.20,+1273.20]$ \\
+Analytical, pair/measured & 120 & 59 & 1233.76 & $[+1213.20,+1273.20]$ \\
+Recursive, pair/measured & 60 & 59 & 1232.54 & $[+1212.00,+1272.00]$ \\
+Recursive, pair/measured & 90 & 59 & 1233.76 & $[+1213.20,+1273.20]$ \\
+Recursive, pair/measured & 120 & 59 & 1236.73 & $[+1216.12,+1276.12]$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[ht]
+\centering\small\setlength{\tabcolsep}{4pt}
+\caption{Conditional first-onboard snapshot calibration: descriptive date-bootstrap intervals for observed minus predicted joint probability. Readiness uses arrival plus transfer time. I weights incidents equally within a date; E weights events equally within a date. Dates have equal weight.}
+\begin{tabular}{lrrrr}
+\toprule
+Class & Station I & Station E & Pair I & Pair E \\
+\midrule
+$P_{00}$ & $[-0.0051,+0.0137]$ & $[-0.0091,+0.0198]$ & $[+0.0031,+0.0126]$ & $[+0.0043,+0.0180]$ \\
+$P_{01}$ & $[+0.0025,+0.0169]$ & $[+0.0034,+0.0237]$ & $[+0.0021,+0.0132]$ & $[+0.0032,+0.0184]$ \\
+$P_{10}$ & $[-0.0128,+0.0094]$ & $[-0.0186,+0.0129]$ & $[-0.0093,+0.0014]$ & $[-0.0134,+0.0015]$ \\
+$P_{11}$ & $[-0.0194,-0.0036]$ & $[-0.0274,-0.0039]$ & $[-0.0166,-0.0067]$ & $[-0.0233,-0.0090]$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The station calibration contains 60 roots (observed 60) and 410 opportunities, of which 410 are reached. Roots without opportunities remain in the availability denominator.
+
+The platform-pair calibration contains 60 roots (observed 60) and 410 opportunities, of which 410 are reached. Roots without opportunities remain in the availability denominator.
+
+\begin{figure}[ht]\centering
+
+\includegraphics[width=\textwidth]{trc_revision_quality.pdf}
+
+\caption{Corrected development comparison under the platform-pair, measured-clock contract. Left: complete-case loss versus whole-journey process CPU; vertical segments retain all-root missing-outcome bounds. Right: every root in two paired comparisons; crosses at the lower edge mark unresolved pairs. Positive saving favors the challenger.}\end{figure}
+\FloatBarrier
+
+\section{Implications and Limitations}
+The strongest current implication is methodological. Comparisons should state
+whether they change the candidate set, observations, likelihood, transfer
+feasibility, continuation objective, or execution clock. Reported improvements
+should be tied to controlled changes. A release-aware join and a documented
+transfer assumption make the routing comparison interpretable.
+
+Lightweight distributional waiting is a useful comparator because it uses
+predictive uncertainty and can revise its actions. Comparing it with a reasonably
+optimized sampled implementation makes the computational trade-off explicit.
+
+The study has four main limitations. First, route selection is geographically
+and temporally narrow; query selection is not demand weighted, and the latest
+five-date panel is holiday-heavy. Its bootstrap intervals are descriptive. Second,
+the physical law is a fixed cross-season working model with independent trips
+and imperfect tail calibration. Third, platform identities and walking times
+are assumptions of the archive replay, with no actual-track validation.
+Boarding and alighting are modeled as instantaneous actions, with recorded
+departure used as the alighting cutoff rather than a measured door-closing time.
+The station-local departure visibility assumption also lacks a direct
+validation against historical passenger signage or platform sight lines. Fourth,
+execution cost depends on this implementation and machine; process-CPU replay
+and interruptible queries do not provide a hard real-time guarantee. The
+normal-approximation override screen has no finite-sample or adaptive-query
+coverage guarantee. Inference about controller quality concerns the tested
+finite-menu policies: frozen continuation scores and equality on saved states
+supply no general optimality bound. Corrected
+same-date replays provide development evidence. An external confirmation would
+require a newly frozen population, a precision target, comparable optimized
+baselines, and no tuning on those outcomes.
+
+\section{Conclusion}
+The archival case study shows why routing comparisons need explicit source,
+transfer, information, and execution contracts. Candidate restrictions and
+forecast fits can alter the behavior of a lightweight controller; sampled continuation can
+help or harm specific journeys; and missing outcomes can dominate a cohort-wide
+conclusion. The corrected development replay preserves the historical evidence
+while testing implementation changes under a common contract. A broader claim
+of algorithmic superiority remains a separate research question.
+
+\appendix
+\section{Reproducibility and Preservation}
+Raw archives and complete replay receipts remain on the compute server. Local
+artifacts contain source manifests, summary tables, case evidence, and this
+manuscript generator. The prior manuscript and generators are archived before
+revision. Original October queries receive no additional control budget.
+The retained record contains 840 final-controller replay receipts and 45 additional completed development-attempt receipts. Some interrupted attempts ended before a complete receipt was written; their total count is not fully recoverable. These attempts are archived separately from the final paired panel.
+The revised stage is \texttt{trc\_revision\_v1}; historical panels retain their
+existing directories and results. Source and figure mappings are generated
+alongside the paper from the same small summaries. Numbers labelled historical
+are not overwritten by corrected development outcomes.
+
+The corrected replays ran on Intel Xeon Silver 4310 CPU @ 2.10GHz with 24 logical CPUs and 4 parallel workers. The software environment used Python 3.11.15, NumPy 2.4.4, and SciPy 1.17.1; OpenBLAS, OpenMP, and MKL thread settings were one. Each journey uses its own process CPU as replay latency; wall time is recorded separately.
+
+\begin{thebibliography}{20}
+
 \bibitem[Chen and Nie(2015)]{chenNie}
-Chen P, Nie YM (2015) Optimal transit routing with partial online information.
-\emph{Transportation Research Part B}.
+Chen, P.W., Nie, Y.M., 2015. Optimal transit routing with partial online
+information. \emph{Transportation Research Part B: Methodological} 72, 40--58.
 \url{https://doi.org/10.1016/j.trb.2014.11.007}.
+
+\bibitem[Dibbelt et al.(2018)]{dibbelt2018}
+Dibbelt, J., Pajor, T., Strasser, B., Wagner, D., 2018. Connection scan
+algorithm. \emph{ACM Journal of Experimental Algorithmics} 23, 1.7:1--1.7:56.
+\url{https://doi.org/10.1145/3274661}.
+
 \bibitem[Durner(2024)]{durner}
-Durner R (2024) \emph{Stochastic Strategies for Public Transport Journeys Based
-on Realtime Delay Predictions}. Master's thesis, University of Stuttgart.
+Durner, R., 2024. \emph{Stochastic Strategies for Public Transport Journeys
+Based on Realtime Delay Predictions}. Master's thesis, University of Stuttgart.
 \url{https://doi.org/10.18419/opus-14802}.
+
 \bibitem[Geissmann and Gianinazzi(2019)]{geissmann}
-Geissmann B, Gianinazzi L (2019) Routing in stochastic public transit networks.
-\emph{ATMOS}, article 4. \url{https://doi.org/10.4230/OASIcs.ATMOS.2019.4}.
-\bibitem[Hanasusanto et al.(2015)]{hanasusanto}
-Hanasusanto GA, Kuhn D, Wiesemann W (2015) K-adaptability in two-stage robust
-binary programming. \emph{Operations Research}.
-\url{https://doi.org/10.1287/opre.2015.1392}.
-\bibitem[Lin et al.(2022)]{linRenZhou}
-Lin Y, Ren Y, Zhou E (2022) Bayesian risk Markov decision processes.
-\emph{Advances in Neural Information Processing Systems}.
-\bibitem[Mohajerin Esfahani and Kuhn(2018)]{esfahaniKuhn}
-Mohajerin Esfahani P, Kuhn D (2018) Data-driven distributionally robust
-optimization using the Wasserstein metric. \emph{Mathematical Programming}
-171:115--166.
-\bibitem[Rambha et al.(2016)]{rambha}
-Rambha T, Boyles SD, Waller ST (2016) Adaptive transit routing in stochastic
-time-dependent networks. \emph{Transportation Science}.
-\url{https://doi.org/10.1287/trsc.2015.0613}.
-\bibitem[Silver and Veness(2010)]{silver}
-Silver D, Veness J (2010) Monte-Carlo planning in large POMDPs.
-\emph{Advances in Neural Information Processing Systems}.
+Geissmann, B., Gianinazzi, L., 2019. Routing in stochastic public transit
+networks. In: \emph{19th Symposium on Algorithmic Approaches for Transportation
+Modelling, Optimization, and Systems (ATMOS 2019)}, OASIcs, Vol.~75, Schloss
+Dagstuhl, pp.~4:1--4:15. \url{https://doi.org/10.4230/OASIcs.ATMOS.2019.4}.
+
+\bibitem[Gentile et al.(2005)]{gentile2005}
+Gentile, G., Nguyen, S., Pallottino, S., 2005. Route choice on transit networks
+with online information at stops. \emph{Transportation Science} 39~(3),
+289--297. \url{https://doi.org/10.1287/trsc.1040.0109}.
+
+\bibitem[Gneiting and Raftery(2007)]{gneiting2007}
+Gneiting, T., Raftery, A.E., 2007. Strictly proper scoring rules, prediction,
+and estimation. \emph{Journal of the American Statistical Association}
+102~(477), 359--378. \url{https://doi.org/10.1198/016214506000001437}.
+
+\bibitem[Liu et al.(2019)]{liu2019}
+Liu, Y., Blandin, S., Samaranayake, S., 2019. Stochastic on-time arrival problem
+in transit networks. \emph{Transportation Research Part B: Methodological}
+119, 122--138. \url{https://doi.org/10.1016/j.trb.2018.11.013}.
+
 \bibitem[Open Data Platform Mobility Switzerland(2023)]{swissactual}
-Open Data Platform Mobility Switzerland (2023) Actual data, October 2023
-archive. \url{https://archive.opentransportdata.swiss/istdaten/2023/ist-daten-2023-10.zip}.
+Open Data Platform Mobility Switzerland, 2023. Actual data (\emph{ist-daten})
+and timetable GTFS 2020 archives, 2023 operating days. Official Swiss federal
+mobility archive. \url{https://archive.opentransportdata.swiss/}.
+
+\bibitem[Rambha et al.(2016)]{rambha}
+Rambha, T., Boyles, S.D., Waller, S.T., 2016. Adaptive transit routing in
+stochastic time-dependent networks. \emph{Transportation Science} 50~(3),
+1043--1059. \url{https://doi.org/10.1287/trsc.2015.0613}.
+
+\bibitem[Silver and Veness(2010)]{silver}
+Silver, D., Veness, J., 2010. Monte-Carlo planning in large POMDPs. In:
+\emph{Advances in Neural Information Processing Systems} 23, pp.~2164--2172.
+
+\bibitem[Somani et al.(2013)]{somani2013}
+Somani, A., Ye, N., Hsu, D., Lee, W.S., 2013. DESPOT: Online POMDP planning with
+regularization. In: \emph{Advances in Neural Information Processing Systems}
+26, pp.~1772--1780.
+
+\bibitem[Spiess and Florian(1989)]{spiess1989}
+Spiess, H., Florian, M., 1989. Optimal strategies: A new assignment model for
+transit networks. \emph{Transportation Research Part B: Methodological}
+23~(2), 83--102. \url{https://doi.org/10.1016/0191-2615(89)90034-9}.
+
+\bibitem[traines(2023)]{traines}
+traines, 2023. Research captures of public Swiss GTFS-Realtime feeds.
+Third-party archive. \url{https://mirror.traines.eu/}.
+
 \end{thebibliography}
 
 \end{document}

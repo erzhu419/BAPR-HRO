@@ -1,0 +1,68 @@
+{
+  "protocol_id": "BAPR_HRO_G1_G2_G3_protocol_v2",
+  "created_on": "2026-11-15",
+  "supersedes": [
+    "experiments/decision_calibration_v1/acceptance_rules.json",
+    "experiments/natural_gap_v2/protocol.json"
+  ],
+  "frozen_history_policy": {
+    "historical_receipts_immutable": true,
+    "original_72_additional_tuning_budget": 0,
+    "exposed_dates_role": "diagnostic_and_attribution_only",
+    "independent_confirmation_requires_unexposed_dates": true
+  },
+  "gate_g1_contract": {
+    "name": "Causal Operational & Transfer Contract",
+    "transfer_time_contract": {
+      "contract_type": "published_static_and_announced_platform_pair",
+      "precedence": [
+        "1. Explicit directed GTFS transfers.txt rule for (from_stop_id, to_stop_id)",
+        "2. Same physical platform (from_stop_id == to_stop_id with explicit platform suffix): tau_same_platform_seconds (default 90s; sensitivity grid [60, 90, 120])",
+        "3. Parent-station fallback min_transfer_time when platform assignment is absent or cross-platform pair is unlisted"
+      ],
+      "retired_unverifiable_requirement": "2023 Swiss official ist-daten lacks physical track/platform columns (GLEIS/KANTE) and GTFS-RT TripUpdate provides announcements rather than track-circuit occupation; actual_platform_pairs_verified==all is retired and replaced by announced-vs-static stability auditing (99.46% agreement in natural_gap_v2)."
+    },
+    "service_and_calibration_separation": {
+      "metric_c1_initial_availability": {
+        "scope": "Root-level initial vehicle operating status prior to first onboard arrival",
+        "treatment": "Reported explicitly as pre-onboard service cancellation rate; never mixed as [-1, 1] missingness bounds into conditional onboard transfer calibration."
+      },
+      "metric_c2_conditional_onboard_calibration": {
+        "scope": "All registered upstream-vs-downstream transfer opportunities conditional on reaching the first onboard decision state",
+        "metrics": [
+          "Four-partition empirical minus predicted residuals (P00, P01, P10, P11) with whole-date cluster bootstrap CIs",
+          "Four-class Brier score and Brier skill score against schedule-nominal and empirical climatology",
+          "Stratified P10 hub-approach delay bias diagnostic (forecast_age, mct_difference, peak_hour)"
+        ],
+        "retired_broken_gate": "Simultaneous +/-0.02 98.75% Bonferroni equivalence on N=14 date clusters is retired because (a) N=14 cluster SE (~0.0055) cannot clear +/-0.02 reliably even at tiny bias, and (b) P10 exhibits a real +2.1% to +4.2% morning-peak hub-throat delay bias that must be modeled or guarded rather than treated as an unpassable binary blocker."
+      }
+    },
+    "execution_latency_contract": {
+      "online_dwell_budget_cpu_seconds": 2.0,
+      "async_wall_clock_accounting": "Required for any online controller claim; >5s multi-world rollouts (e.g., 49s full128) are strictly offline Monte Carlo references, not deployable online policies."
+    }
+  },
+  "gate_g2_method_and_value": {
+    "name": "Methodological Increment & Anytime Net Value",
+    "allowable_research_centers": {
+      "center_A_selective_certified_recourse": {
+        "target_venues": ["Operations Research (Transportation / Stochastic Models)", "Transportation Science"],
+        "core_thesis": "Decompose real-time transit recourse into (1) data identity & exact-anchor conditioning, (2) prefix-closed candidate completeness, (3) recursive selective waiting, and (4) sub-dwell CI-certified selective tail-race lookahead, proving why 97%+ of urban rail decisions collapse to O(1) selective waiting while isolating and solving the <3% tail-race regime within <2s CPU without uncertified MC noise harms."
+      },
+      "center_B_empirical_attribution_and_contract_design": {
+        "target_venues": ["Transportation Science", "Transportation Research Part B"],
+        "core_thesis": "Establish via large-scale causal replay across 34 Swiss operating days that GTFS-RT trip-identity errors (68% corrupted training updates), station-max transfer penalties (56.5% same-platform transfers), and continuation-value inconsistency dominate online tree search, demonstrating structural near-optimality of lightweight selective waiting in high-frequency corridors."
+      }
+    },
+    "evaluation_rules": {
+      "baseline_comparison": "Paired comparison against each individual deployable causal baseline (primarily prefix-closed cheap selective waiting and full-graph MeanSnapshotCSA), never against an infeasible post-hoc per-root minimum across six policies.",
+      "compute_parity": "Quality-vs-latency Pareto frontier under real async execution clock; online challenger must satisfy mean CPU <= 2.0s and p99 CPU <= 5.0s.",
+      "decision_certification": "Any stochastic rollout override of the analytical continuation action must satisfy paired CI certification (|mean_gain| - z_alpha * se > margin) so finite-sample MC noise cannot induce systematic regressions."
+    }
+  },
+  "gate_g3_independent_confirmation": {
+    "name": "Frozen-Design Unexposed Multi-Date Confirmation",
+    "design_freeze_required": true,
+    "unit_of_inference": "Date-clustered paired journey loss and conditional calibration skill on newly frozen, unexposed operating dates after G1-G2 freeze."
+  }
+}

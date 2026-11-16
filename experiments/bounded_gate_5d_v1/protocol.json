@@ -1,0 +1,126 @@
+{
+  "stage": "bounded_gate_5d_v1",
+  "protocol_version": "bounded_gate_5d_v1_2026_11_16",
+  "parent_protocol": "experiments/g2_reset_v1/protocol_v2.json",
+  "purpose": "Final strictly bounded 5-day unexposed confirmation/falsification experiment testing G1 (published platform-pair MCT + physical async dwell clock) and rationalized G2 (analytical RecursiveSelectivePlanner and sub-dwell <2.0s bounded certified rollout) before synthesizing the complete 39-day manuscript (Path B).",
+  "frozen_principles": {
+    "original_72_additional_budget": 0,
+    "prior_exposed_dates_excluded_count": 72,
+    "prior_exposure_sources": [
+      "experiments/natural_gap_v2/exposure_inventory.json",
+      "experiments/natural_gap_v2/exposure_record.json"
+    ],
+    "freeze_chronological_dates_before_outcomes": true,
+    "freeze_public_menus_before_outcomes": true,
+    "retain_all_positive_negative_tie_unresolved_roots": true,
+    "server_first_raw_storage": true
+  },
+  "date_selection": {
+    "target_days": 5,
+    "roots_per_day": 12,
+    "total_roots": 60,
+    "earliest_candidate_date": "2023-04-06",
+    "selection_rule": "Chronological first 5 unexposed service dates >= 2023-04-06 satisfying complete static GTFS release coverage, unique official daily ist-daten CSV member, and 17/17 morning 10-minute RT capture bins [25200..34800] in Europe/Zurich civil service seconds.",
+    "rt_capture_rule": "experiments/natural_gap_v2/rt_metadata_rule.json"
+  },
+  "frozen_models": {
+    "physical_fit": "experiments/reconstruction_v34/model_fit.json",
+    "emission_fit": "experiments/control_identity_v1/repaired_fit.json"
+  },
+  "mct_contracts": {
+    "station_max": {
+      "description": "Legacy single parent-station scalar min_transfer_time (e.g. 420s at Zurich HB)."
+    },
+    "platform_pair": {
+      "description": "3-tier published/announced platform-pair MCT: (1) explicit GTFS transfers.txt rule (or prohibited=inf), (2) same physical platform tau_same_platform=90s, (3) conservative station fallback.",
+      "tau_same_platform_default_seconds": 90.0,
+      "tau_same_platform_sensitivity_seconds": [60.0, 90.0, 120.0]
+    }
+  },
+  "clock_contracts": {
+    "ideal": {
+      "description": "Legacy zero-latency public clock; solver CPU does not advance physical door/departure deadlines."
+    },
+    "async": {
+      "description": "Anytime ActionPublisher against physical ist-daten station dwell [AN_PROGNOSE, max(AB_PROGNOSE_next, AN_PROGNOSE + 1s)]. Fast base action is published first; background rollout overrides are accepted iff completed strictly before physical train departure.",
+      "min_dwell_floor_seconds": 1.0,
+      "terminal_dwell_window_seconds": 60.0,
+      "platform_boarding_window_seconds": 15.0
+    }
+  },
+  "arms": [
+    {
+      "label": "cheap_statmax_ideal",
+      "controller": "cheap",
+      "mct_contract": "station_max",
+      "clock_contract": "ideal"
+    },
+    {
+      "label": "full128_statmax_ideal",
+      "controller": "full128",
+      "mct_contract": "station_max",
+      "clock_contract": "ideal"
+    },
+    {
+      "label": "cheap_plat_async",
+      "controller": "cheap",
+      "mct_contract": "platform_pair",
+      "clock_contract": "async"
+    },
+    {
+      "label": "snapshot_csa_plat_async",
+      "controller": "snapshot_csa",
+      "mct_contract": "platform_pair",
+      "clock_contract": "async"
+    },
+    {
+      "label": "recursive_plat_async",
+      "controller": "recursive",
+      "mct_contract": "platform_pair",
+      "clock_contract": "async"
+    },
+    {
+      "label": "bounded_cert_plat_async",
+      "controller": "bounded_cert",
+      "mct_contract": "platform_pair",
+      "clock_contract": "async"
+    },
+    {
+      "label": "full128_plat_ideal",
+      "controller": "full128",
+      "mct_contract": "platform_pair",
+      "clock_contract": "ideal"
+    },
+    {
+      "label": "full128_plat_async",
+      "controller": "full128",
+      "mct_contract": "platform_pair",
+      "clock_contract": "async"
+    }
+  ],
+  "controller_hyperparameters": {
+    "recursive": {
+      "exact_combined_max_width": 6
+    },
+    "bounded_cert": {
+      "exact_combined_max_width": 6,
+      "ambiguity_margin_seconds": 90.0,
+      "worlds_per_query": 64,
+      "max_process_cpu_seconds": 1.8,
+      "z_alpha": 1.96,
+      "min_effect_seconds": 5.0,
+      "seed": 510015
+    },
+    "full128": {
+      "worlds_per_query": 128,
+      "max_process_cpu_seconds": 120.0,
+      "seed": 510015
+    }
+  },
+  "verdict_rules": {
+    "bootstrap_replicates": 20000,
+    "bootstrap_seed": 20261116,
+    "online_cpu_budget_seconds": 2.0,
+    "stopping_rule": "If neither recursive_plat_async nor bounded_cert_plat_async achieves a positive date-cluster 95% lower CI over cheap_plat_async, confirm the Path B structural near-optimality stopping rule and conclude solver expansion."
+  }
+}

@@ -1,0 +1,115 @@
+The corrected study contains 600 primary journey replays and 240 additional transfer-time sensitivity replays on the same 60 selected queries. Model fits, menus, external messages, and declared query allowances remain fixed. The common platform command policy changes as described above; these are development results.
+
+\begin{table}[ht]
+\centering\small\setlength{\tabcolsep}{4pt}
+\caption{Corrected development replay: truncated travel loss and total journey process CPU. Pair denotes the planned-platform transfer contract; measured denotes computation-aware activation. All-root bounds retain unresolved journeys.}
+\begin{tabular}{p{.34\textwidth}rrrrr}
+\toprule
+Policy and contract & Known & Loss (s) & All-60 bound (s) & CPU (s) & CPU $p_{99}$ \\
+\midrule
+Analytical, station/ideal & 59 & 1244.17 & $[+1223.43,+1283.43]$ & 0.63 & 1.65 \\
+Rollout128, station/ideal & 59 & 1261.12 & $[+1240.10,+1300.10]$ & 32.94 & 91.16 \\
+Analytical, pair/measured & 59 & 1233.76 & $[+1213.20,+1273.20]$ & 0.59 & 1.35 \\
+Analytical, pair/ideal & 59 & 1233.76 & $[+1213.20,+1273.20]$ & 0.65 & 1.83 \\
+Snapshot scan, pair/measured & 58 & 1234.74 & $[+1193.58,+1313.58]$ & 0.25 & 1.15 \\
+Recursive, pair/measured & 59 & 1233.76 & $[+1213.20,+1273.20]$ & 32.60 & 114.47 \\
+Recursive, pair/ideal & 59 & 1233.76 & $[+1213.20,+1273.20]$ & 36.46 & 162.90 \\
+Screen64, pair/measured & 59 & 1249.22 & $[+1228.40,+1288.40]$ & 36.03 & 145.09 \\
+Rollout128, pair/ideal & 59 & 1247.86 & $[+1227.07,+1287.07]$ & 31.58 & 90.97 \\
+Rollout128, pair/measured & 59 & 1308.95 & $[+1287.13,+1347.13]$ & 35.55 & 98.61 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[ht]
+\centering\small\setlength{\tabcolsep}{4pt}
+\caption{Matched corrected comparisons. Positive saving favors the first named policy; W/L/T/U counts wins, losses, ties and unknown pairs. Date intervals are descriptive on five exposed dates.}
+\begin{tabular}{p{.34\textwidth}rrrr}
+\toprule
+Comparison & W/L/T/U & Saving (s) & Date interval (s) & All-60 bound (s) \\
+\midrule
+Platform vs. station, analytical ideal & 3/1/55/1 & +10.41 & $[-10.49,+25.83]$ & $[-49.77,+70.23]$ \\
+Measured vs. ideal, analytical pair & 0/0/59/1 & +0.00 & $[+0.00,+0.00]$ & $[-60.00,+60.00]$ \\
+Recursive vs. analytical, pair ideal & 0/0/59/1 & +0.00 & $[+0.00,+0.00]$ & $[-60.00,+60.00]$ \\
+Measured vs. ideal, recursive pair & 0/0/59/1 & +0.00 & $[+0.00,+0.00]$ & $[-60.00,+60.00]$ \\
+Rollout vs. analytical, pair ideal & 0/3/56/1 & -14.10 & $[-23.83,-4.41]$ & $[-73.87,+46.13]$ \\
+Measured vs. ideal, rollout pair & 0/5/54/1 & -61.08 & $[-94.52,-26.53]$ & $[-120.07,-0.07]$ \\
+Recursive vs. analytical, pair measured & 0/0/59/1 & +0.00 & $[+0.00,+0.00]$ & $[-60.00,+60.00]$ \\
+Screen vs. analytical, pair measured & 0/1/58/1 & -15.46 & $[-46.37,+0.00]$ & $[-75.20,+44.80]$ \\
+Rollout vs. analytical, pair measured & 0/8/51/1 & -75.19 & $[-113.02,-40.67]$ & $[-133.93,-13.93]$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Whole-journey mean CPU is 0.59 s for the analytical pair/measured arm and 35.55 s for rollout. Their 59 complete pairs contain 0 rollout gains, 8 harms and 51 ties. Across all ten arms, unresolved query indices are 52, 55; every such query is retained in the bounds.
+
+The matched decomposition separates the sampled policy from its measured clock. At zero latency, rollout has 14.10 s larger complete-pair mean loss than the analytical rule. Applying its measured computation clock adds 61.08 s; the all-root loss-increase bound for this clock contrast is $[+0.07,+120.07]$ s. The recursive rule matches the analytical loss on every resolved pair while using 32.60 s mean journey CPU.
+
+The three zero-latency harms (queries 23, 47, 59) repeat the same exit pattern: a point-estimate comparison changes continuation to alighting. Each bank has 128 resolved pairs, but all three approximate 95\% intervals for the action difference contain zero, indicating weak action separation in those saved banks.
+
+Query 12 illustrates why computation records matter for attribution. Its 29 s recorded alighting window contains the recursive arm's 27.916 s base computation, whereas the same recursive base in the screen arm takes 34.922 s. The latter misses the cutoff before any sampled call. The screen arm's single harmful query therefore reflects this measured-runtime difference crossing a decision boundary. On the same query, rollout takes 55.554 s after its base calculation, exceeding the window during sampled evaluation.
+
+\begin{table}[ht]
+\centering\small\setlength{\tabcolsep}{4pt}
+\caption{Sampled-evaluation allowance after deducting analytical-base CPU, including posterior preparation. C/R/N counts fully computed, fully resolved, and requested banks. A computed world can have unknown outcomes. Max CPU and overrun concern the sampled call.}
+\begin{tabular}{p{.30\textwidth}rrrrr}
+\toprule
+Policy & C/R/N & Stopped & Max budget & CPU max. & Overrun max. \\
+\midrule
+Rollout128, station/ideal & 123/120/123 & 0 & 119.992 & 64.231 & 0.000 \\
+Screen64, pair/measured & 5/5/7 & 2 & 1.696 & 0.970 & 0.001 \\
+Rollout128, pair/ideal & 122/120/122 & 0 & 119.992 & 73.040 & 0.000 \\
+Rollout128, pair/measured & 130/128/130 & 0 & 119.992 & 56.928 & 0.000 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The analytical base exhausted the query allowance before sampling in Screen64, pair/measured: 19 decisions. These cases issue no sampled query.
+
+Across its 7 sampled queries, the screen retains the base proposal in every case.
+
+The normal screen requires known outcomes for every requested pair and at least two pairs. Interrupted computations and incompatible physical projections remain unresolved. Query allowances and whole-journey costs are different quantities: the latter also include other decisions and inherited menu construction.
+
+Saved-receipt checks cover 600 primary replays and 312 command-controlled boardings. For discretionary alighting, 286 subsequent platform entries match the recorded action-consumption clock; 6 alightings have no later platform record and remain outside that entry-clock check. This verifies the available replay records.
+
+\begin{table}[ht]
+\centering\small\setlength{\tabcolsep}{4pt}
+\caption{Same-platform allowance sensitivity in the corrected analytical policies. The 60 s and 120 s settings have no rollout comparator; 90 s repeats the primary setting.}
+\begin{tabular}{p{.36\textwidth}rrrr}
+\toprule
+Policy & Assumed time (s) & Known & Loss (s) & All-60 bound (s) \\
+\midrule
+Analytical, pair/measured & 60 & 59 & 1228.61 & $[+1208.13,+1268.13]$ \\
+Analytical, pair/measured & 90 & 59 & 1233.76 & $[+1213.20,+1273.20]$ \\
+Analytical, pair/measured & 120 & 59 & 1233.76 & $[+1213.20,+1273.20]$ \\
+Recursive, pair/measured & 60 & 59 & 1232.54 & $[+1212.00,+1272.00]$ \\
+Recursive, pair/measured & 90 & 59 & 1233.76 & $[+1213.20,+1273.20]$ \\
+Recursive, pair/measured & 120 & 59 & 1236.73 & $[+1216.12,+1276.12]$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[ht]
+\centering\small\setlength{\tabcolsep}{4pt}
+\caption{Conditional first-onboard snapshot calibration: descriptive date-bootstrap intervals for observed minus predicted joint probability. Readiness uses arrival plus transfer time. I weights incidents equally within a date; E weights events equally within a date. Dates have equal weight.}
+\begin{tabular}{lrrrr}
+\toprule
+Class & Station I & Station E & Pair I & Pair E \\
+\midrule
+$P_{00}$ & $[-0.0051,+0.0137]$ & $[-0.0091,+0.0198]$ & $[+0.0031,+0.0126]$ & $[+0.0043,+0.0180]$ \\
+$P_{01}$ & $[+0.0025,+0.0169]$ & $[+0.0034,+0.0237]$ & $[+0.0021,+0.0132]$ & $[+0.0032,+0.0184]$ \\
+$P_{10}$ & $[-0.0128,+0.0094]$ & $[-0.0186,+0.0129]$ & $[-0.0093,+0.0014]$ & $[-0.0134,+0.0015]$ \\
+$P_{11}$ & $[-0.0194,-0.0036]$ & $[-0.0274,-0.0039]$ & $[-0.0166,-0.0067]$ & $[-0.0233,-0.0090]$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The station calibration contains 60 roots (observed 60) and 410 opportunities, of which 410 are reached. Roots without opportunities remain in the availability denominator.
+
+The platform-pair calibration contains 60 roots (observed 60) and 410 opportunities, of which 410 are reached. Roots without opportunities remain in the availability denominator.
+
+\begin{figure}[ht]\centering
+
+\includegraphics[width=\textwidth]{trc_revision_quality.pdf}
+
+\caption{Corrected development comparison under the platform-pair, measured-clock contract. Left: complete-case loss versus whole-journey process CPU; vertical segments retain all-root missing-outcome bounds. Right: every root in two paired comparisons; crosses at the lower edge mark unresolved pairs. Positive saving favors the challenger.}\end{figure}

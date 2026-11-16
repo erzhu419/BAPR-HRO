@@ -1,0 +1,207 @@
+{
+  "stage": "trc_revision_v1",
+  "status": "frozen_for_development_replay",
+  "created_at_utc": "2026-11-16T08:09:25.515544+00:00",
+  "purpose": "Development correction and causal attribution on the already exposed BG5 cohort; not an independent confirmation or G2 pass.",
+  "source_stage": "bounded_gate_5d_v1",
+  "source_directory": "/home/erzhu419/BAPR-HRO/experiments/bounded_gate_5d_v1",
+  "original_72_additional_budget": 0,
+  "historical_receipts_modified": false,
+  "dates": [
+    "2023-04-06",
+    "2023-04-07",
+    "2023-04-08",
+    "2023-04-09",
+    "2023-04-10"
+  ],
+  "roots": 60,
+  "arms": [
+    {
+      "label": "cheap_statmax_ideal",
+      "controller": "cheap",
+      "mct_contract": "station_max",
+      "clock_contract": "ideal"
+    },
+    {
+      "label": "full128_statmax_ideal",
+      "controller": "full128",
+      "mct_contract": "station_max",
+      "clock_contract": "ideal"
+    },
+    {
+      "label": "cheap_plat_async",
+      "controller": "cheap",
+      "mct_contract": "platform_pair",
+      "clock_contract": "async"
+    },
+    {
+      "label": "cheap_plat_ideal",
+      "controller": "cheap",
+      "mct_contract": "platform_pair",
+      "clock_contract": "ideal"
+    },
+    {
+      "label": "snapshot_csa_plat_async",
+      "controller": "snapshot_csa",
+      "mct_contract": "platform_pair",
+      "clock_contract": "async"
+    },
+    {
+      "label": "recursive_plat_async",
+      "controller": "recursive",
+      "mct_contract": "platform_pair",
+      "clock_contract": "async"
+    },
+    {
+      "label": "recursive_plat_ideal",
+      "controller": "recursive",
+      "mct_contract": "platform_pair",
+      "clock_contract": "ideal"
+    },
+    {
+      "label": "screen64_plat_async",
+      "controller": "bounded_cert",
+      "mct_contract": "platform_pair",
+      "clock_contract": "async"
+    },
+    {
+      "label": "full128_plat_ideal",
+      "controller": "full128",
+      "mct_contract": "platform_pair",
+      "clock_contract": "ideal"
+    },
+    {
+      "label": "full128_plat_async",
+      "controller": "full128",
+      "mct_contract": "platform_pair",
+      "clock_contract": "async"
+    }
+  ],
+  "core_calls": 600,
+  "sensitivity": {
+    "arms": [
+      "cheap_plat_async",
+      "recursive_plat_async"
+    ],
+    "tau_seconds": [
+      60.0,
+      120.0
+    ],
+    "calls": 240,
+    "scope": "Analytical-policy sensitivity only; no same-contract claim about full128 at these tau values."
+  },
+  "controller_hyperparameters": {
+    "recursive": {
+      "exact_combined_max_width": 6
+    },
+    "bounded_cert": {
+      "exact_combined_max_width": 6,
+      "ambiguity_margin_seconds": 90.0,
+      "worlds_per_query": 64,
+      "max_process_cpu_seconds": 1.8,
+      "z_alpha": 1.96,
+      "min_effect_seconds": 5.0,
+      "seed": 510015
+    },
+    "full128": {
+      "worlds_per_query": 128,
+      "max_process_cpu_seconds": 120.0,
+      "seed": 510015
+    }
+  },
+  "mct_contracts": {
+    "station_max": {
+      "description": "Legacy single parent-station scalar min_transfer_time (e.g. 420s at Zurich HB)."
+    },
+    "platform_pair": {
+      "description": "Static planned GTFS directed pair rule, otherwise assumed same-platform time, otherwise frozen station fallback. Real-time platform announcements are separate evidence and do not update the transfer-time contract.",
+      "tau_same_platform_default_seconds": 90.0,
+      "tau_same_platform_sensitivity_seconds": [
+        60.0,
+        90.0,
+        120.0
+      ]
+    }
+  },
+  "clock_contracts": {
+    "ideal": {
+      "description": "Zero-latency controller under the same prepublished first-eligible-or-target platform command class."
+    },
+    "async": {
+      "description": "Single-thread process-CPU replay. Each onboard query computes its base and optional continuation estimate serially; only the final completed proposal can be issued before actual train departure. When it misses the departure, the executor continues on the current vehicle; no alighting action is issued at the deadline. The completed action clock becomes the next platform entry. Platform commands are computed on entry, received RT messages and past departures. Each actual departure consumes only a previously published valid command, with no postdeparture grace; during platform computation the prior command remains active. Realized future departure clocks are executor-only.",
+      "min_dwell_floor_seconds": 0.0,
+      "terminal_dwell_window_seconds": 0.0,
+      "platform_boarding_window_seconds": 0.0,
+      "cpu_budget_scope": "SIGPROF interrupts the full query including preparation and inner evaluations. Full128 query cap120s; screen64 residual of1.8s including base, no query if exhausted. This is process-CPU interruption, not a hard wall-clock guarantee.",
+      "nonpositive_dwell": "At a discretionary exit with nonpositive realized dwell, continue without a query. Terminal menu exits are mandatory alighting and use no artificial dwell interval.",
+      "canceled_next_departure": "Cancellation supplies no door-closing endpoint. Preserve an unresolved outcome in archived execution and both forced rollout arms; do not treat cancellation as zero dwell or expose it as a controller observation."
+    }
+  },
+  "frozen_models": {
+    "physical": "physical_fit.json",
+    "emission": "repaired_fit.json"
+  },
+  "execution": {
+    "workers": 4,
+    "policy_order": "Rotate fixed core arms by root index; retain all receipts and failures; no result-driven reruns.",
+    "total_calls": 840,
+    "cpu_measurement": "Charge all measured cold journey work plus inherited menu construction. Shared source/graph preparation separately reported; query budget is separate from total journey cost."
+  },
+  "comparison": {
+    "pairing": "All 60 roots, same model/menu/source. Complete-pair means descriptive; all-root missingness bounds primary for absent outcomes.",
+    "causal_contrasts": [
+      [
+        "cheap_statmax_ideal",
+        "cheap_plat_ideal"
+      ],
+      [
+        "cheap_plat_ideal",
+        "cheap_plat_async"
+      ],
+      [
+        "cheap_plat_ideal",
+        "recursive_plat_ideal"
+      ],
+      [
+        "recursive_plat_ideal",
+        "recursive_plat_async"
+      ],
+      [
+        "cheap_plat_ideal",
+        "full128_plat_ideal"
+      ],
+      [
+        "cheap_plat_async",
+        "screen64_plat_async"
+      ],
+      [
+        "full128_plat_ideal",
+        "full128_plat_async"
+      ]
+    ],
+    "bootstrap": {
+      "replicates": 20000,
+      "seed": 20261116,
+      "unit": "Whole date; five exposed dates; descriptive uncertainty, no independent confirmation."
+    },
+    "oracle_scope": "Hindsight choice between two complete saved policies only. Not a bound on state-wise switching, a new policy, or EVPI.",
+    "acceptance": "No automatic G2/pass or near-optimality verdict; report whether each implemented budget and clock contract is met."
+  },
+  "calibration": {
+    "initial_availability": "Count every registered root, including roots with no downstream opportunities. Non-observed initial states retain their concrete reason.",
+    "within_day_weightings": [
+      "equal_incident_then_equal_date",
+      "equal_event_then_equal_date"
+    ],
+    "events": "All originally registered opportunities under the unchanged public menu, using contract-specific MCT in both predicted and archived catch events.",
+    "missingness": "Retain reached unresolved opportunities using probability/indicator bounds. Unreached initial decisions separately counted; do not silently equate them all with cancellation.",
+    "source": "Saved first-onboard history of the matching ideal cheap contract; no extra control worlds."
+  },
+  "limitations": [
+    "Already exposed dates, including the Easter holiday panel.",
+    "Static/announced platforms are not verified actual track occupation.",
+    "Single-thread measured process CPU is used as deterministic controller latency in replay; not a hard-real-time or verified passenger execution claim."
+  ],
+  "frozen_at_utc": "2026-11-16T08:38:26.048382+00:00",
+  "platform_policy": "Development revision: prepublish first-eligible or one-target command from the current public history, updated on entry/messages/past departures. All outer controllers and zero-latency rollout continuation use the same command class; planning worlds receive no future remote message."
+}

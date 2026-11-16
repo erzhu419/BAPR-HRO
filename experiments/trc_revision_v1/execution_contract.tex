@@ -1,0 +1,54 @@
+\subsection{Causal commands and computation completion}
+The corrected development executor fixes platform-pair readiness from planned
+static platform identifiers for each menu occurrence. Received platform
+announcements remain audit evidence. The static contract avoids making physical
+readiness depend on which internal planning query happened to refresh an
+announcement. It is a planned-platform model with an explicit 90-second
+same-platform assumption.
+
+Under the departure-only observation rule, the platform policy publishes a
+standing command before departure: either take the first eligible offer or
+wait for a named target. Entry, a newly received message, and other observed
+departures can trigger replanning from the current public history. A replacement
+command becomes active only when its calculation completes; the preceding
+command remains active during computation. If no command is active when an
+otherwise eligible departure occurs, that departure is missed. The actual
+departure consumes a previously issued command, without a post-departure
+boarding allowance.
+
+Onboard recommendations are submitted once the requested computation completes.
+The replay uses the recorded next departure as the alighting cutoff. If an
+alighting recommendation becomes active before this cutoff, its completion time
+is the transfer-entry clock; pair-specific walking time starts from that clock.
+The environment uses the cutoff to close the onboard action window. It is not supplied as a
+future numerical observation to the planner. A late proposal at an intermediate
+exit defaults to continuing, and the serial controller stays busy until its
+calculation ends.
+
+The last permitted exit of a menu ride triggers automatic alighting. At an
+intermediate exit whose recorded onward departure is at or before arrival,
+the nonpositive arrival--departure interval leaves no executable alighting
+decision and the passenger continues. A canceled onward-departure record
+supplies no usable departure cutoff; the
+result remains unresolved under that history. Archived replay records a missing
+endpoint, and a planning world records an incompatible projection. Both retain
+an unknown loss. The receipts distinguish the requested root action from the
+action the environment executes.
+
+All ten primary development arms share this new platform command policy,
+including the ideal-clock comparators. Their planning worlds use the same command
+semantics with zero simulated computation latency and no unrevealed future
+forecasts. Thus the historical-to-corrected change includes a common platform
+policy change as well as clock fixes. Within the corrected panel, matched ideal
+and computation-aware arms identify the measured clock effect for the same
+declared command policy.
+
+The executor first computes the analytical base and deducts its CPU from the
+query allowance. If the base has exhausted the allowance, sampling is skipped.
+Otherwise a process-CPU timer delivers \texttt{SIGPROF} during the remaining
+sampled evaluation, including posterior preparation and individual worlds.
+Python computation can be interrupted within either phase. A native
+library call can delay delivery of the Python signal handler, and final receipt
+construction adds overhead. Actual elapsed process CPU, the interrupted phase,
+and any allowance overshoot remain in the receipts. These measurements describe
+stopping behavior on the experimental machine.
